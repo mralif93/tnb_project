@@ -1,0 +1,80 @@
+<ion-menu [content]="content" id="myMenu">
+
+  <ion-content>
+    <ion-list style="border-bottom: 1px solid black; margin: 0px 0px 0px 0px;">
+      <ion-item style="font-size: 12px;" class="userDetailsSection">
+        <ion-row *ngIf="gv.personid">
+          <ion-col col-6>
+            <b text-uppercase>Employee Id</b>
+          </ion-col>
+          <ion-col col-6>
+            <b style="color:#FF4500">{{ gv.personid }}</b>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="gv.employeetype">
+          <ion-col col-6>
+            <b text-uppercase>Employee Type</b>
+          </ion-col>
+          <ion-col col-6>
+            <b style="color: #FF4500;">{{ gv.employeetype }}</b>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="!gv.testMobile">
+          <ion-col col-6>
+            <b text-uppercase>Status</b>
+          </ion-col>
+          <ion-col col-6>
+            <b text-uppercase class="statusBlinking">Online</b>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="gv.testMobile">
+          <ion-col col-6>
+            <b text-uppercase>Status</b>
+          </ion-col>
+          <ion-col col-6>
+            <b style="color: red;" text-uppercase>Offline</b>
+          </ion-col>
+        </ion-row>
+        <!-- <ion-row>
+          <ion-col col-6>
+            <b text-uppercase>Timer</b>
+          </ion-col>
+          <ion-col col-6>
+            <b style="color: black;">{{ gf.time | async }}</b>
+          </ion-col>
+        </ion-row> -->
+      </ion-item>
+    </ion-list>
+    <div *ngFor="let p of pages; let i = index">
+      <!-- || (i === 5 && gv.employeeTypeLogin && gv.employeetype !== 'EXECUTIVE') || (i === 6 && gv.employeeTypeLogin && gv.employeetype !== 'EXECUTIVE') || (i === 7 && gv.employeeTypeLogin && gv.employeetype !== 'EXECUTIVE') -->
+      <button menuClose ion-list ion-item (click)="openPage(p)"
+        *ngIf="i == 0 || i === 1 || (i === 2 && gv.employeetype !== 'EXECUTIVE' && gv.departContent === 'seal') || (i === 3 && gv.employeetype !== 'EXECUTIVE')  || (i === 4 && gv.employeeTypeLogin && gv.employeetype !== 'EXECUTIVE') || i === 5 || i === 6 || i === 7 || i === 8 && gv.employeeTypeLogin || i === 9">
+        <ng-container [ngSwitch]="true">
+          <ion-icon style="zoom:1.5;" item-start *ngSwitchCase="i === 0" class="ion-icon" name="md-stats"></ion-icon>
+          <ion-icon style="zoom:1.5;" item-start *ngSwitchCase="i === 1" class="ion-icon" name="md-filing"></ion-icon>
+          <ion-icon style="zoom:1.5;" item-start *ngSwitchCase="i === 2" class="ion-icon" name="md-open"></ion-icon>
+          <ion-icon style="zoom:1.5;" item-start *ngSwitchCase="i === 3" class="ion-icon" name="md-archive"></ion-icon>
+          <ion-icon style="zoom:1.5;" item-start *ngSwitchCase="i === 4" class="ion-icon" name="md-bookmarks"></ion-icon>
+          <!-- <ion-icon style="zoom:1.5;" item-start *ngSwitchCase="i === 5" class="ion-icon" name="md-add-circle"></ion-icon>
+          <ion-icon style="zoom:1.5;" item-start *ngSwitchCase="i === 6" class="ion-icon" name="md-checkmark-circle"></ion-icon>
+          <ion-icon style="zoom:1.5;" item-start *ngSwitchCase="i === 7" class="ion-icon" name="md-refresh-circle"></ion-icon> -->
+          <ion-icon style="zoom:1.5;" item-start *ngSwitchCase="i === 5" class="ion-icon" name="md-cloud-download"></ion-icon>
+          <ion-icon style="zoom:1.5;" item-start *ngSwitchCase="i === 6" class="ion-icon" name="md-checkmark-circle"></ion-icon>
+          <ion-icon style="zoom:1.5;" item-start *ngSwitchCase="i === 7" class="ion-icon" name="md-information-circle"></ion-icon>
+          <ion-icon style="zoom:1.5;" item-start *ngSwitchCase="i === 8" class="ion-icon" name="md-browsers"></ion-icon>
+          <ion-icon style="zoom:1.5;" item-start *ngSwitchCase="i === 9" class="ion-icon" name="md-log-out"></ion-icon>
+        </ng-container>
+        {{p.title}}
+      </button>
+    </div>
+
+  </ion-content>
+  <ion-footer>
+    <ion-toolbar>
+      <ion-label text-center text-uppercase text-wrap> version : {{ gv.version }}</ion-label>
+    </ion-toolbar>
+    <!-- <p> version : {{ gv.version }}</p> -->
+  </ion-footer>
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

@@ -1,0 +1,108 @@
+<!--
+  Generated template for the ChangeStatusPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+
+
+  <ion-grid class="headerStyle">
+    <ion-row>
+      <ion-col col-2 col-sm-3 style="text-align: left;padding-top: 0px;">
+        <button ion-button clear (click)="goBack()">
+          <ion-icon name="arrow-back" class="menuBackArrow"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-8 col-sm-5>
+        <div class="pageTitle">Change Status 
+        </div>
+      </ion-col>
+      <ion-col col-2 col-sm-4 style="text-align: right;padding-top: 0px;">
+          <ion-fab top right style="top: 0%">
+              <button ion-fab mini class="flash">
+                <ion-icon class="flash_plnt" name="planet" [style.color]="gv.testMobile ? 'red':'green'"> {{ gv.testMobile ? 'Offline':'Online' }} </ion-icon>
+              </button>
+            </ion-fab>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-grid>
+    <ion-list>
+      <ion-item>
+        <ion-label color="primary">Service Order Number</ion-label>
+        <ion-input type="text" placeholder="001280001239503"></ion-input>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label color="primary">Service Order</ion-label>
+        <ion-input type="text" placeholder="218913"></ion-input>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label color="primary">Current Status</ion-label>
+        <ion-input type="text" placeholder="In Progress"></ion-input>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label color="primary">Status Date</ion-label>
+        <ion-input type="text" placeholder="04/03/2018, 9:00AM"></ion-input>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label color="primary">New Status</ion-label>
+        <ion-select [(ngModel)]="gender" interface="popover">
+          <ion-option value="APPROVED">APPR &nbsp;-&nbsp; APPROVED</ion-option>
+          <ion-option value="COMPLETE">COMP &nbsp;-&nbsp; COMPLETE</ion-option>
+          <ion-option value="IN Progress">INPRG &nbsp;-&nbsp; IN Progress</ion-option>
+          <ion-option value="KIV">KIV &nbsp;-&nbsp; KIV</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item (click)="gotoUserSearchPage('ust1')">
+        <ion-label color="primary">User Status 1</ion-label>
+        <ion-input ng-readonly="true" type="text" *ngIf="userStatusValue1 != null && userStatusValue1 != ''" value="{{ userStatusValue1.name }} - {{ userStatusValue1.description }}"></ion-input>
+        <ion-icon ios="ios-search" md="md-search"></ion-icon>
+      </ion-item>
+
+      <ion-item (click)="gotoUserSearchPage('ust2')">
+        <ion-label color="primary">User Status 2</ion-label>
+        <ion-input ng-readonly="true" type="text" *ngIf="userStatusValue2 != null && userStatusValue2 != ''" value="{{ userStatusValue2.name }} - {{ userStatusValue2.description }} "></ion-input>
+        <ion-icon ios="ios-search" md="md-search"></ion-icon>
+      </ion-item>
+
+      <ion-item (click)="gotoUserSearchPage('ust3')">
+        <ion-label color="primary">User Status 3</ion-label>
+        <ion-input ng-readonly="true" type="text" *ngIf="userStatusValue3 != null && userStatusValue3 != ''" value="{{ userStatusValue3.name }} - {{ userStatusValue3.description }} "></ion-input>
+        <ion-icon ios="ios-search" md="md-search"></ion-icon>
+      </ion-item>
+
+      <ion-item (click)="gotoUserSearchPage('ust4')">
+        <ion-label color="primary">User Status 4</ion-label>
+        <ion-input ng-readonly="true" type="text" *ngIf="userStatusValue4 != null && userStatusValue4 != ''" value="{{ userStatusValue4.name }} - {{ userStatusValue4.description }} "></ion-input>
+        <ion-icon ios="ios-search" md="md-search"></ion-icon>
+      </ion-item>
+
+    </ion-list>
+
+    <ion-list>
+      <ion-item>
+        <button ion-button (click)="goBack()">Cancel</button>
+        <button ion-button (click)="goBack()" >Save</button>
+      </ion-item>
+    </ion-list>
+  </ion-grid>
+
+</ion-content>

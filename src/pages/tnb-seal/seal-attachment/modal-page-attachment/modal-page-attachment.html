@@ -1,0 +1,77 @@
+<ion-header>
+  <!-- <ion-navbar>
+    <ion-title>Attachment Info</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="closeModal()">
+        Close
+      </button>
+    </ion-buttons>
+  </ion-navbar> -->
+  <ion-toolbar>
+    <ion-title>Attachment Info</ion-title>
+    <!-- <ion-buttons end (click)="closeModal()">
+      <button ion-button icon-only color="primary">
+        <ion-icon name="md-close-circle"></ion-icon>
+      </button>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item *ngIf="typeIndicator && (type !== 'null' || type !== '')" no-lines>
+    <ion-label color="danger" style="font-style: italic;font-size: 15px;">
+      *Category of Image is required!</ion-label>
+  </ion-item>
+  <ion-item *ngIf="categoryIndicator && (type !== 'null' || type !== '')" no-lines>
+    <ion-label color="danger" style="font-style: italic;font-size: 15px;">
+      *Type of Image is required!</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked [color]="(typeIndicator && (type !== 'null' || type !== '')) ? 'danger' : 'primary'">
+      *Type of Image
+    </ion-label>
+    <ion-select [(ngModel)]="type" multiple="false" (ionChange)="typeSelection(photo, id, $event)"
+      placeholder="Please select" (ionChange)="validateInput()">
+      <ion-option value="PR">Premis</ion-option>
+      <ion-option value="MINS">Pepasangan Meter</ion-option>
+      <ion-option value="MD">Paparan Meter</ion-option>
+      <ion-option value="SNSMTR">Sil dan Pelekat (Meter)</ion-option>
+      <ion-option value="ANMLYM">Anomali (Meter)</ion-option>
+      <ion-option value="OTHRINS">Pemasangan (Lain)</ion-option>
+      <ion-option value="SNSOTHR">Sil dan Pelekat (Lain)</ion-option>
+      <ion-option value="ANMLMOTHR">Anomali (Lain)</ion-option>
+      <ion-option value="CRTVACT">Tindakan Pembetulan</ion-option>
+      <ion-option value="CRTVACTDM">Tindakan Pembetulan (Paparan Meter)</ion-option>
+      <ion-option value="WTNSS">Saksi</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked [color]="(categoryIndicator && (type !== 'null' || type !== '')) ? 'danger' : 'primary'">
+      *Category
+    </ion-label>
+    <ion-select [(ngModel)]="category" multiple="false" placeholder="Please select" (ionChange)="validateInput()">
+      <ion-option value="PI">Premise Image</ion-option>
+      <ion-option value="RI">Raw Image</ion-option>
+      <ion-option value="AI">Anomaly Image</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked color="primary">Description</ion-label>
+    <ion-textarea item-content type="textarea" rows="4" placeholder="Description" [(ngModel)]="description"
+      (ionChange)="validateInput()"></ion-textarea>
+  </ion-item>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar style=" text-align-last: start;">
+    <button ion-button mode="md" color="default" (click)="cancelModel()">Cancel</button>
+    <button ion-button mode="md" color="primary" (click)="closeModal()">Save</button>
+  </ion-toolbar>
+  <!-- <ion-navbar>
+    <ion-buttons end>
+      <button ion-button (click)="closeModal()">
+        Update
+      </button>
+    </ion-buttons>
+  </ion-navbar> -->
+</ion-footer>

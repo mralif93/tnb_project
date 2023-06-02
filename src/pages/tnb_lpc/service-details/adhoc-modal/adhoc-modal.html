@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Ad-Hoc Replacement</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="dismissModal()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <span *ngFor="let record of relatedrecord; let i = index;">
+    <ion-card *ngIf="record.ta0relatedrecstatus !== 'CANCEL'">
+      <ion-card-header>
+        {{ record.relatedrecwonum }}
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row>
+          <ion-col col-6 col-sm-3 col-md-3>
+            <ion-item>
+              <ion-label color="primary" stacked>Worktype</ion-label>
+              <ion-input type="text" disabled="true" value="{{ record.ta0relatedrecworktype }}"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6 col-sm-3 col-md-3>
+            <ion-item>
+              <ion-label color="primary" stacked>SN Code</ion-label>
+              <ion-input type="text" disabled="true" value="{{ record.ta0relatedrecsncode }}"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6 col-sm-3 col-md-3>
+            <ion-item>
+              <ion-label color="primary" stacked>Status</ion-label>
+              <ion-input type="text" disabled="true" value="{{ record.ta0relatedrecstatus }}"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-3 col-md-3 style="align-self: flex-end;">
+            <!-- <ion-item> -->
+            <button ion-button item-end icon-start block round color="primary" (click)="createAdhocFollowUp(i)"
+              *ngIf="!record.relatedrecwonum">
+              <ion-icon name="md-add"></ion-icon>Create
+            </button>
+            <button ion-button item-end icon-start block round color="danger" *ngIf="!record.relatedrecwonum">
+              <ion-icon name="md-trash"></ion-icon>Delete
+            </button>
+            <button ion-button item-end icon-start block round color="light" *ngIf="record.relatedrecwonum">
+              <ion-icon name="md-close"></ion-icon>Cancel
+            </button>
+            <!-- </ion-item> -->
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </span>
+</ion-content>

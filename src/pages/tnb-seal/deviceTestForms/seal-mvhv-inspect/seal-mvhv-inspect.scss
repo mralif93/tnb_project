@@ -1,0 +1,57 @@
+page-seal-mvhv-inspect {
+  .pageTitle {
+    // padding-top: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    align-items: left;
+  }
+
+  .flash {
+    height: 18px !important;
+    padding: 15px;
+    background-color: white;
+  }
+
+  @keyframes flash {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .flash_plnt {
+    animation: flash 2s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+    padding-right: 5px;
+    font-size: 15px;
+  }
+
+  .item-divider {
+    border-radius: 10px;
+    margin-top: 1%;
+  }
+
+  .list-ios {
+    margin: -5px;
+  }
+
+  .complete-color {
+    color: green;
+    zoom: 2;
+  }
+
+  .uncomplete-color {
+    color: #488aff;
+    zoom: 2;
+  }
+
+  .customCheck {
+    border-style: groove;
+    border: 2px solid groove;
+    border-radius: 12px;
+    padding: 4px;
+  }
+
+  ion-select {
+    min-width: -webkit-fill-available;
+  }
+}

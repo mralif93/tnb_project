@@ -1,0 +1,73 @@
+page-seal-ce-inspect {
+  .headerBlue {
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    background-color: white;
+    color: black;
+    border: 1px solid grey;
+  }
+
+  .radio-group {
+    margin-bottom: 0px;
+  }
+
+  .redHighlightText {
+    padding-bottom: 0px;
+    border-bottom: 2px solid red;
+    border-right: 0px solid;
+    border-left: 0px solid;
+    border-top: 0px solid;
+  }
+
+  .blackHighlightText {
+    padding-bottom: 0px;
+    border-bottom: 2px solid black;
+    border-right: 0px solid;
+    border-left: 0px solid;
+    border-top: 0px solid;
+  }
+
+  .label label-md label-md-primary {
+    width: 100%;
+  }
+
+  .flash {
+    box-shadow: none;
+    width: 74px !important;
+    border-radius: 10%;
+    color: #000000;
+    height: 28px !important;
+    padding: 12px 12px 12px 12px;
+    background-color: white;
+    top: -5px;
+  }
+
+  @keyframes flash {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .flash_plnt {
+    animation: flash 1s linear infinite;
+    padding-right: 5px;
+    font-size: 15px;
+  }
+
+  .offline_btn {
+    font-size: 15px;
+  }
+
+  .item-divider {
+    border-radius: 10px;
+    margin-top: 1%;
+  }
+
+  .pointer {
+    cursor: pointer;
+  }
+
+  ion-select {
+    min-width: -webkit-fill-available;
+  }
+}

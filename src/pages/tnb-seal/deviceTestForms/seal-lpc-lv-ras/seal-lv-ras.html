@@ -1,0 +1,1407 @@
+<!--
+  Generated template for the SealLpcLvRasPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-grid class="headerStyle">
+    <ion-row>
+      <ion-col col-2 col-sm-3 col-md-3 style="text-align: left;padding-top: 0px;">
+        <button ion-button clear (click)="goBack()">
+          <ion-icon name="arrow-back" class="menuBackArrow"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-8 col-sm-5 col-md-5>
+        <div class="pageTitle" style="padding-top: 8px;font-weight:bold;">seal-lpc-lv-rs
+        </div>
+      </ion-col>
+      <!--<ion-col col-2 col-sm-4 col-md-4 style="text-align: right;padding-top: 0px;">
+        <button ion-button icon-only clear (click)="presentPopover($event)">
+          <ion-icon name="more"></ion-icon>
+        </button>
+      </ion-col>-->
+      <ion-col col-4 col-sm-4 style="word-wrap: break-all; text-align: right; padding-top: 0px; width:12px">
+        <ion-col col-2 col-sm-2>
+          <ion-fab top right style="top: 0%">
+            <button ion-fab mini class="flash">
+              <ion-icon class="flash_plnt" name="planet" [style.color]="gv.testMobile ? 'red':'green'"> {{
+                gv.testMobile ? 'Offline':'Online' }} </ion-icon>
+            </button>
+          </ion-fab>
+        </ion-col>
+        <ion-col col-2 col-sm-2>
+          <button ion-button icon-only clear (click)="gf.presentPopover($event)">
+            <ion-icon name="more" class="menuBackArrow"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+
+
+<ion-content>
+  <ion-item-divider color="light" style="text-align: center;">Data Validation</ion-item-divider>
+  <ion-grid>
+    <ion-item-divider color="light">Customer Information </ion-item-divider>
+    <ion-row col-12 col-sm-12 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+      <ion-col>
+        <ion-label color="primary">Account No: </ion-label>
+        <ion-item>
+          <ion-input type="text" [readonly]="isReadonly" placeholder="account no">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-label color="primary">Registered Customer Name:</ion-label>
+        <ion-item>
+          <ion-input type="text" [readonly]="isReadonly" placeholder="customer registered name"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-label color="primary"> Customer Name:</ion-label>
+        <ion-item>
+          <ion-input type="text" [readonly]="isReadonly" placeholder="customer name"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row col-12 col-sm-12 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+      <ion-col>
+        <ion-label color="primary"> Station Code</ion-label>
+        <ion-item>
+          <ion-input type="text" [readonly]="isReadonly" placeholder="station code"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-label color="primary">Premis Type</ion-label>
+        <ion-item>
+          <ion-input type="text" placeholder="select premis type"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-label color="primary">Rate Category</ion-label>
+        <ion-item>
+          <ion-input type="text" [readonly]="isReadonly" placeholder="rate category"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-label color="primary">Address</ion-label>
+        <ion-item>
+          <ion-input type="text" [readonly]="isReadonly" placeholder="address"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row col-12 col-sm-12 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+      <ion-col>
+        <ion-label color="primary">Inspection Date </ion-label>
+        <ion-item>
+          <ion-datetime  displayFormat="DD/MM/YYYY"></ion-datetime>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-label color="primary">Start</ion-label>
+        <ion-item>
+          <ion-datetime displayFormat="HH:mm:ss"></ion-datetime>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-label color="primary">End</ion-label>
+        <ion-item>
+          <ion-datetime  displayFormat="HH:mm:ss"></ion-datetime>
+        </ion-item>
+      </ion-col>
+      <!-- End for Customer Information -->
+    </ion-row>
+    <ion-item-divider color="light">Meter Information </ion-item-divider>
+    <ion-row col-12 col-sm-12 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+      <ion-col col-6 col-sm-6 style="word-wrap:  break-all; padding-left: 5px;">
+      </ion-col>
+      <ion-col col-6 col-sm-6 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-label color="primary">Main/Check Meter</ion-label>
+      </ion-col>
+      <!-- Meter Serial No. -->
+      <ion-row col-6 col-sm-6 style="word-wrap:break-all; padding-left: 5px;" class="headerBlue">
+        <ion-label color="primary">Meter Serial No.</ion-label>
+      </ion-row>
+      <ion-row col-6 col-sm-6 style="word-wrap:break-all; padding-left: 5px;" class="headerBlue">
+        <ion-item>
+          <ion-input type="text" placeholder="serial no."></ion-input>
+        </ion-item>
+      </ion-row>
+
+      <!-- Brand/Model-->
+      <ion-row col-6 col-sm-6 style="word-wrap:break-all; padding-left: 5px;" class="headerBlue">
+        <ion-label color="primary">Model/Brand</ion-label>
+      </ion-row>
+      <ion-row col-6 col-sm-6 style="word-wrap:break-all; padding-left: 5px;" class="headerBlue">
+        <ion-item>
+          <ion-input type="text" [readonly]="isReadonly" placeholder="enter brand/model"></ion-input>
+        </ion-item>
+      </ion-row>
+
+      <!-- Meter Ratio-->
+      <ion-row col-6 col-sm-6 style="word-wrap:break-all; padding-left: 5px;" class="headerBlue">
+        <ion-label color="primary">Meter Ratio</ion-label>
+      </ion-row>
+      <ion-row col-6 col-sm-6 style="word-wrap:break-all; padding-left: 5px;" class="headerBlue">
+        <ion-item>
+          <ion-input type="text" [readonly]="isReadonly" placeholder="value meter ratio"></ion-input>
+        </ion-item>
+      </ion-row>
+
+      <!-- Ct Ratio -->
+      <ion-row col-6 col-sm-6 style="word-wrap:break-all; padding-left: 5px;" class="headerBlue">
+        <ion-label color="primary">CT Ratio</ion-label>
+      </ion-row>
+      <ion-row col-6 col-sm-6 style="word-wrap:break-all; padding-left: 5px;" class="headerBlue">
+        <ion-item>
+          <ion-input type="text" [readonly]="isReadonly" placeholder="CT ratio"></ion-input>
+        </ion-item>
+      </ion-row>
+      <!-- Register Factor -->
+      <ion-row col-6 col-sm-6 style="word-wrap:break-all; padding-left: 5px;" class="headerBlue">
+        <ion-label color="primary">Register Factor</ion-label>
+      </ion-row>
+      <ion-row col-6 col-sm-6 style="word-wrap:break-all; padding-left: 5px;" class="headerBlue">
+        <ion-item>
+          <ion-input type="text" [readonly]="isReadonly" placeholder="register factor"></ion-input>
+        </ion-item>
+      </ion-row>
+      <!-- Total Factor -->
+      <ion-row col-6 col-sm-6 style="word-wrap:break-all; padding-left: 5px;" class="headerBlue">
+        <ion-label color="primary">Total Factor</ion-label>
+      </ion-row>
+      <ion-row col-6 col-sm-6 style="word-wrap:break-all; padding-left: 5px;" class="headerBlue">
+        <ion-item>
+          <ion-input type="text" [readonly]="isReadonly" placeholder="total factor"></ion-input>
+        </ion-item>
+      </ion-row>
+      <!-- Constat -->
+      <ion-row col-6 col-sm-6 style="word-wrap:break-all; padding-left: 5px;" class="headerBlue">
+        <ion-label color="primary">Constant</ion-label>
+      </ion-row>
+      <ion-row col-6 col-sm-6 style="word-wrap:break-all; padding-left: 5px;" class="headerBlue">
+        <ion-item>
+          <ion-input type="text" placeholder="constat"></ion-input>
+        </ion-item>
+      </ion-row>
+      <!-- Dail Before -->
+      <ion-row col-6 col-sm-6 style="word-wrap:break-all; padding-left: 5px;" class="headerBlue">
+        <ion-label color="primary">Dail Before</ion-label>
+      </ion-row>
+      <ion-row col-6 col-sm-6 style="word-wrap:break-all; padding-left: 5px;" class="headerBlue">
+        <ion-item>
+          <ion-input type="text" [readonly]="isReadonly" placeholder="dail before"></ion-input>
+        </ion-item>
+      </ion-row>
+      <!-- Dail After -->
+      <ion-row col-6 col-sm-6 style="word-wrap:break-all; padding-left: 5px;" class="headerBlue">
+        <ion-label color="primary">Dail After</ion-label>
+      </ion-row>
+      <ion-row col-6 col-sm-6 style="word-wrap:break-all; padding-left: 5px;" class="headerBlue">
+        <ion-item>
+          <ion-input type="text" [readonly]="isReadonly" placeholder="dail after"></ion-input>
+        </ion-item>
+      </ion-row>
+      <!-- KWH register Start  -->
+      <ion-row col-6 col-sm-6 style="word-wrap:break-all; padding-left: 5px;" class="headerBlue">
+        <ion-label color="primary"> Import KWH Register Start</ion-label>
+      </ion-row>
+      <ion-row col-6 col-sm-6 style="word-wrap:break-all; padding-left: 5px;" class="headerBlue">
+        <ion-item>
+          <ion-input type="text"  placeholder="start"></ion-input>
+        </ion-item>
+      </ion-row>
+      <!-- KWH register End-->
+      <ion-row col-6 col-sm-6 style="word-wrap:break-all; padding-left: 5px;" class="headerBlue">
+        <ion-label color="primary">Import KWH Register End</ion-label>
+      </ion-row>
+      <ion-row col-6 col-sm-6 style="word-wrap:break-all; padding-left: 5px;" class="headerBlue">
+        <ion-item>
+          <ion-input type="text" placeholder="end"></ion-input>
+        </ion-item>
+      </ion-row>
+      <!-- KVARGH Register Start -->
+      <ion-row col-6 col-sm-6 style="word-wrap:break-all; padding-left: 5px;" class="headerBlue">
+        <ion-label color="primary">Import KVARGH Register Start</ion-label>
+      </ion-row>
+      <ion-row col-6 col-sm-6 style="word-wrap:break-all; padding-left: 5px;" class="headerBlue">
+        <ion-item>
+          <ion-input type="text" placeholder="start"></ion-input>
+        </ion-item>
+      </ion-row>
+      <!-- KWH register export-->
+      <ion-row col-6 col-sm-6 style="word-wrap:break-all; padding-left: 5px;" class="headerBlue">
+        <ion-label color="primary">KWH Register Export</ion-label>
+      </ion-row>
+      <ion-row col-6 col-sm-6 style="word-wrap:break-all; padding-left: 5px;" class="headerBlue">
+        <ion-item>
+          <ion-input type="text" placeholder="export"></ion-input>
+        </ion-item>
+      </ion-row>
+      <!-- MD Register (KW)-->
+      <ion-row col-6 col-sm-6 style="word-wrap:break-all; padding-left: 5px;" class="headerBlue">
+        <ion-label color="primary">MD Register (KW)</ion-label>
+      </ion-row>
+      <ion-row col-6 col-sm-6 style="word-wrap:break-all; padding-left: 5px;" class="headerBlue">
+        <ion-item>
+          <ion-input type="text" placeholder="md register"></ion-input>
+        </ion-item>
+      </ion-row>
+    </ion-row>
+  </ion-grid>
+  <!-- Electronic Meter Display-->
+  <ion-item-divider color="light" padding style="text-align: center;">Physical Inspection</ion-item-divider>
+  <ion-grid>
+    <ion-item-divider color="light" padding>Tempering Indication at Electronic Meter Display</ion-item-divider>
+    <ion-col col-6 col-sm-6>
+      <ion-item>
+          <ion-textarea rows="2" maxLength="500" placeholder="tempering indication register"></ion-textarea>
+      </ion-item>
+    </ion-col>
+  </ion-grid>
+  <!-- Seal Information -->
+  <ion-grid>
+    <ion-item-divider color="light" padding>Tempering Indication at Electronic Meter Display Part 1 (seal)</ion-item-divider>
+    <ion-row col-12 col-sm-12>
+      <ion-col col-2 col-sm-2>
+        <ion-item>
+          <ion-label color="primary">Location</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3 col-sm-3>
+        <ion-item>
+          <ion-label color="primary">Terminal Meter</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3 col-sm-3>
+        <ion-item >
+          <ion-label color="primary">Meter Cover</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3 col-sm-3>
+        <ion-item>
+          <ion-label color="primary">Fuse</ion-label>
+        </ion-item>
+      </ion-col>
+     </ion-row>
+    <!-- End 1st Row-->
+    <ion-row col-12 col-sm-12>
+      <ion-col col-2 col-sm-2 >
+        <ion-item>
+          <ion-label color="primary">Number</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3 col-sm-3>
+        <ion-item>
+          <ion-input type="text" placeholder="terminal meter">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3 col-sm-3>
+          <ion-item>
+              <ion-input type="text" placeholder="meter cover">
+              </ion-input>
+            </ion-item>
+      </ion-col>
+      <ion-col col-3 col-sm-3>
+          <ion-item>
+              <ion-input type="text" placeholder="fuse">
+              </ion-input>
+            </ion-item>
+      </ion-col>
+    </ion-row>
+    <!-- End of 2nd row-->
+
+    <ion-row col-12 col-sm-12>
+        <ion-col col-2 col-sm-2>
+          <ion-item>
+            <ion-label color = "primary">Condition</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-3 col-sm-3>
+          <ion-item>
+            <ion-select>
+              <ion-option value="usk">diusik</ion-option>
+              <ion-option value="baik">baik</ion-option>
+              <ion-option value="na">tiada</ion-option>
+              <ion-option value="plsu">palsu</ion-option>
+            </ion-select>            
+          </ion-item>
+        </ion-col>
+        <ion-col col-3 col-sm-3>
+            <ion-item>
+              <ion-select>
+                <ion-option value="usk">diusik</ion-option>
+                <ion-option value="baik">baik</ion-option>
+                <ion-option value="na">tiada</ion-option>
+                <ion-option value="plsu">palsu</ion-option>
+              </ion-select>                 
+              </ion-item>
+        </ion-col>
+        <ion-col col-3 col-sm-3>
+            <ion-item>
+              <ion-select>
+                <ion-option value="usk">diusik</ion-option>
+                <ion-option value="baik">baik</ion-option>
+                <ion-option value="na">tiada</ion-option>
+                <ion-option value="plsu">palsu</ion-option>
+              </ion-select> 
+              </ion-item>
+            </ion-col>
+      </ion-row>
+
+  </ion-grid>
+
+
+  <ion-grid>
+    <ion-item-divider color="light" padding>Tempering Indication at Electronic Meter Display Part 2</ion-item-divider>
+    <ion-row col-12 col-sm-12>
+      <ion-col col-2 col-sm-2>
+        <ion-item>
+          <ion-label color="primary">TTB</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3 col-sm-3>
+        <ion-item>
+          <ion-label color="primary">Meter Panel</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3 col-sm-3>
+        <ion-item>
+          <ion-label color="primary">CT Panel</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3 col-sm-3>
+        <ion-item>
+          <ion-label color="primary">CT Terminal</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <!-- End 1st Row-->
+    <ion-row col-12 col-sm-12>
+     
+      <ion-col col-2 col-sm-2>
+          <ion-item>
+              <ion-input type="text" placeholder="ttb">
+              </ion-input>
+            </ion-item>
+      </ion-col>
+      <ion-col col-3 col-sm-3>
+          <ion-item>
+              <ion-input type="text" placeholder="meter panel">
+              </ion-input>
+            </ion-item>
+      </ion-col>
+      <ion-col col-3 col-sm-3>
+          <ion-item>
+              <ion-input type="text" placeholder="ct panel">
+              </ion-input>
+            </ion-item>
+      </ion-col>
+      <ion-col col-3 col-sm-3>
+          <ion-item>
+              <ion-input type="text" placeholder="ct terminal">
+              </ion-input>
+            </ion-item>
+      </ion-col>
+    </ion-row>
+    <!-- End of 2nd row-->
+
+    <ion-row col-12 col-sm-12>
+        <ion-col col-2 col-sm-2 >
+          <ion-item>
+            <ion-label color = "primary" >Seal</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-3 col-sm-3>
+          <ion-item>
+            <ion-select>
+              <ion-option value="usk">diusik</ion-option>
+              <ion-option value="baik">baik</ion-option>
+              <ion-option value="na">tiada</ion-option>
+              <ion-option value="plsu">palsu</ion-option>
+            </ion-select>            
+          </ion-item>
+        </ion-col>
+        <ion-col col-3 col-sm-3>
+            <ion-item>
+              <ion-select>
+                <ion-option value="usk">diusik</ion-option>
+                <ion-option value="baik">baik</ion-option>
+                <ion-option value="na">tiada</ion-option>
+                <ion-option value="plsu">palsu</ion-option>
+              </ion-select>                 
+              </ion-item>
+        </ion-col>
+        <ion-col col-3 col-sm-3>
+            <ion-item>
+              <ion-select>
+                <ion-option value="usk">diusik</ion-option>
+                <ion-option value="baik">baik</ion-option>
+                <ion-option value="na">tiada</ion-option>
+                <ion-option value="plsu">palsu</ion-option>
+              </ion-select> 
+              </ion-item>
+        </ion-col>
+      </ion-row>
+
+  </ion-grid>
+
+  <!-- Sticker -->
+  <ion-item-divider color="light" padding style="text-align: center;">Sticker</ion-item-divider>
+  <ion-row>
+  <ion-col col-12 col-sm-12>
+    <ion-item>
+        <ion-label color="primary">Condition</ion-label>
+        <ion-select>
+            <ion-option value="usk">diusik</ion-option>
+            <ion-option value="baik">baik</ion-option>
+            <ion-option value="kyk">koyak</ion-option>
+            <ion-option value="tampal">ditampal semula</ion-option>
+          </ion-select> </ion-item>
+  </ion-col>
+</ion-row>
+
+<!-- Tampering Suspect -->
+<ion-item-divider color="light" padding>Tampering Suspect</ion-item-divider>
+ <!-- Meter -->
+<ion-row>
+  <ion-col col-2 col-sm-2>
+    <ion-item>
+      <ion-label>Meter:</ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col col-10 col-sm-10>
+    <ion-item>
+      <ion-input type="text" placeholder="meter value"></ion-input>
+    </ion-item>
+  </ion-col>
+</ion-row>
+
+<!-- Fuse -->
+<ion-row>
+<ion-col col-2 col-sm-2>
+    <ion-item>
+      <ion-label>Fuse:</ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col col-10 col-sm-10>
+    <ion-item>
+      <ion-input type="text" placeholder="fuse value"></ion-input>
+    </ion-item>
+  </ion-col>
+</ion-row>
+
+<!-- TTB -->
+<ion-row>
+<ion-col col-2 col-sm-2>
+    <ion-item>
+      <ion-label>TTB: </ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col col-10 col-sm-10>
+    <ion-item>
+      <ion-input type="text" placeholder="ttb value"></ion-input>
+    </ion-item>
+  </ion-col>
+</ion-row>
+
+<!-- Current Transformer-->
+<ion-row>
+<ion-col col-2 col-sm-2>
+    <ion-item>
+      <ion-label>Current Transformer: </ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col col-10 col-sm-10>
+    <ion-item>
+      <ion-input type="text" placeholder="current transformer value"></ion-input>
+    </ion-item>
+  </ion-col>
+</ion-row>
+
+<!-- Wiring -->
+<ion-row>
+    <ion-col col-2 col-sm-2>
+        <ion-item>
+          <ion-label>Wiring: </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-10 col-sm-10>
+        <ion-item>
+          <ion-input type="text" placeholder="wiring value"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <!-- Others-->
+    <ion-row>
+        <ion-col col-2 col-sm-2>
+            <ion-item>
+              <ion-label>Others: </ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-10 col-sm-10>
+            <ion-item>
+              <ion-input type="text" placeholder="others"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-item-divider color="light" padding style="text-align: center;">Meter Installation Testing</ion-item-divider>
+<ion-grid>
+    <ion-item-divider color="light" padding >CT Ratio & Current Comparison Test</ion-item-divider>
+    <ion-row>
+        <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label color="primary">Applicable</ion-label>
+            </ion-item>
+          </ion-col>
+        <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-select [(ngModel)]="selected_ctRationDiff" (ionChange)="hideCtRatioNComparisionTest()" interface="popover">
+                <ion-option value="Y">Yes</ion-option>
+                <ion-option value="N">No</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="!ctRatioNCurrentDisp">
+        <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label color="primary">Remarks</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-input id="remark" type="text" placeholder="Please Enter Remark"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <div *ngIf="ctRatioNCurrentDisp">
+    <ion-row >
+      <ion-col col-3 col-sm-3></ion-col>
+      <ion-col col-2 col-sm-2>Red</ion-col>
+      <ion-col col-2 col-sm-2>Yellow</ion-col>
+      <ion-col col-2 col-sm-2>Blue</ion-col>
+      <ion-col col-2 col-sm-2>Total Current</ion-col>
+    </ion-row>
+      <!-- Busbar -->
+    <ion-row>
+        <ion-col col-2 col-sm-2>Primary Current(Busbar)</ion-col>
+        <ion-col col-2 col-sm-2>
+          <ion-item>
+            <ion-input type="text" (change)="primaryTotal()" [(ngModel)]="busbar.busbarR" placeholder="busbar red"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-2 col-sm-2> 
+          <ion-item>
+            <ion-input type="text" (change)="primaryTotal()" [(ngModel)]="busbar.busbarY" placeholder="busbar Yellow"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-2 col-sm-2>
+            <ion-item>
+                <ion-input type="text" (change)="primaryTotal()" [(ngModel)]="busbar.busbarB" placeholder="busbar Blue"></ion-input>
+              </ion-item>
+        </ion-col>
+        <ion-col col-3 col-sm-3>
+            <ion-item>
+                <ion-input type="text"  [(ngModel)]="busbar.busbarTtl"  placeholder="busbar Total"></ion-input>
+              </ion-item>
+        </ion-col>
+    </ion-row>
+    <!-- Display Meter -->
+    <ion-row>
+        <ion-col col-2 col-sm-2>Primary Current (Display Meter)</ion-col>
+        <ion-col col-2 col-sm-2>
+          <ion-item>
+            <ion-input type="text" (change)="primaryTotal()" [(ngModel)]="display.meterR" placeholder="display red"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-2 col-sm-2> 
+          <ion-item>
+            <ion-input type="text" (change)="primaryTotal()" [(ngModel)]="display.meterY" placeholder="display Yellow"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-2 col-sm-2>
+            <ion-item>
+                <ion-input type="text" (change)="primaryTotal()" [(ngModel)]="display.meterB"  placeholder="display Blue"></ion-input>
+              </ion-item>
+        </ion-col>
+        <ion-col col-3 col-sm-3>
+            <ion-item>
+                <ion-input type="text" [(ngModel)]="display.meterTtl" placeholder="display Total"></ion-input>
+              </ion-item>
+        </ion-col>
+    </ion-row>
+
+    <!-- Secondary Current -->
+    <ion-row>
+        <ion-col col-2 col-sm-2>Secondary Current(CT Terminal)</ion-col>
+        <ion-col col-2 col-sm-2>
+          <ion-item>
+            <ion-input type="text" (change)="secondaryTotal()" [(ngModel)]="ct.ctR" placeholder="ct red"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-2 col-sm-2> 
+          <ion-item>
+            <ion-input type="text" (change)="secondaryTotal()" [(ngModel)]="ct.ctY" placeholder="ct Yellow"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-2 col-sm-2>
+            <ion-item>
+                <ion-input type="text" (change)="secondaryTotal()" [(ngModel)]="ct.ctB" placeholder="ct Blue"></ion-input>
+              </ion-item>
+        </ion-col>
+        <ion-col col-3 col-sm-3>
+            <ion-item>
+                <ion-input type="text" [(ngModel)]= "ct.ctTtl" placeholder="ct Total"></ion-input>
+              </ion-item>
+        </ion-col>
+    </ion-row>
+      <!-- Secondary Current (Meter Terminal) -->
+      <ion-row>
+          <ion-col col-2 col-sm-2>Secondary Current (Meter Terminal)</ion-col>
+          <ion-col col-2 col-sm-2>
+            <ion-item>
+              <ion-input type="text" (change)="secondaryTotal()" [(ngModel)]="meter.mtrR" placeholder="meter red"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-2 col-sm-2> 
+            <ion-item>
+              <ion-input type="text"  (change)="secondaryTotal()" [(ngModel)]="meter.mtrY" placeholder="meter Yellow"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-2 col-sm-2>
+              <ion-item>
+                  <ion-input type="text" (change)="secondaryTotal()" [(ngModel)]="meter.mtrB" placeholder="meter Blue"></ion-input>
+                </ion-item>
+          </ion-col>
+          <ion-col col-3 col-sm-3>
+              <ion-item>
+                  <ion-input type="text" [(ngModel)]="meter.mtrTtl" placeholder="meter Total"></ion-input>
+                </ion-item>
+          </ion-col>
+      </ion-row>
+      <!-- CT Ratio-->
+      <ion-row>
+          <ion-col col-2 col-sm-2>CT Ratio</ion-col>
+          <ion-col col-2 col-sm-2>
+            <ion-item>
+              <ion-input type="text" [readonly]="isReadonly" [(ngModel)]="ratio.ctRatioR" placeholder="ratio red"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-2 col-sm-2> 
+            <ion-item>
+              <ion-input type="text" [readonly]="isReadonly" [(ngModel)]="ratio.ctRatioY" placeholder="ratio Yellow"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-2 col-sm-2>
+              <ion-item>
+                  <ion-input type="text" [readonly]="isReadonly" [(ngModel)]="ratio.ctRatioB" placeholder="ratio Blue"></ion-input>
+                </ion-item>
+          </ion-col>
+      </ion-row> 
+<!-- Current Different-->
+<ion-row>
+    <ion-col col-2 col-sm-2>% Current Different</ion-col>
+    <ion-col col-4 col-sm-4>
+      <ion-item>
+        <ion-input type="text" [readonly]="isReadonly" [(ngModel)]="currentDiff.primary" placeholder="CT Diff Primary"></ion-input>
+      </ion-item>
+    </ion-col>
+     <ion-col col-4 col-sm-4>
+        <ion-item>
+            <ion-input type="text" [readonly]="isReadonly" [(ngModel)]="currentDiff.secondary" placeholder="CT Diff Secondary"></ion-input>
+          </ion-item>
+    </ion-col>
+</ion-row>
+</div>
+</ion-grid>
+
+<ion-item-divider color="light" padding >Polarity Test </ion-item-divider>
+<!--  Polarity Test  -->
+<ion-row>
+  <ion-col col-3 col-sm-3></ion-col>
+  <ion-col col-3 col-sm-3 style="left: 12%;">
+    <ion-item >
+      <ion-label>
+        KWH Main
+      </ion-label>
+    </ion-item>
+  </ion-col>
+</ion-row>
+<!-- End for Row Title -->
+<!-- Title for row 1 -->
+<ion-row>
+  <ion-col col-3 col-sm-3>
+    <ion-item>
+      <ion-label>Meter Category</ion-label>
+    </ion-item>
+  </ion-col>
+<!-- Red In -->
+  <ion-col col-2 col-sm-2>
+    <ion-item>
+    <ion-label>
+      Red In
+    </ion-label>
+    
+  </ion-item>
+  </ion-col>
+  <ion-col col-1 col-sm-1>
+  <ion-select>
+    <ion-option value="F">F</ion-option>
+    <ion-option value="R">R</ion-option>
+    <ion-option value="S">S</ion-option>
+  </ion-select> 
+</ion-col>
+  <ion-col col-2 col-sm-2>
+    <ion-item>
+      <ion-label>
+        Yellow In
+      </ion-label>
+    </ion-item>
+    </ion-col>
+    <ion-col col-1 col-sm-1>
+        <ion-select>
+          <ion-option value="F">F</ion-option>
+          <ion-option value="R">R</ion-option>
+          <ion-option value="S">S</ion-option>
+        </ion-select> 
+      </ion-col>
+    <ion-col col-2 col-sm-2>
+      <ion-item>
+        <ion-label>
+          Blue In
+        </ion-label>
+      </ion-item>
+      </ion-col>
+      <ion-col col-1 col-sm-1>
+          <ion-select>
+            <ion-option value="F">F</ion-option>
+            <ion-option value="R">R</ion-option>
+            <ion-option value="S">S</ion-option>
+          </ion-select> 
+        </ion-col>
+</ion-row>
+<!-- Row 2 --> 
+<ion-row>
+    <ion-col col-3 col-sm-3>
+      <ion-item>
+        <ion-label>
+          Electronic(Accept Genius-MK6)
+        </ion-label>
+      </ion-item>
+      </ion-col>
+      <ion-col col-2 col-sm-2>
+        <ion-item>
+          <ion-label>
+            Red(+Yel)In
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-1 col-sm-1>
+          <ion-select>
+            <ion-option value="Inc">F</ion-option>
+            <ion-option value="Dec">R</ion-option>
+            <ion-option value="Rem">S</ion-option>
+          </ion-select> 
+        </ion-col>
+
+      <ion-col col-2 col-sm-2>
+          <ion-item>
+            <ion-label>
+             Yel(+Blu)In
+            </ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-1 col-sm-1>
+            <ion-select>
+              <ion-option value="Inc">F</ion-option>
+              <ion-option value="Dec">R</ion-option>
+              <ion-option value="Rem">S</ion-option>
+            </ion-select> 
+          </ion-col>
+  
+        <ion-col col-2 col-sm-2>
+            <ion-item>
+              <ion-label>
+                Blu(+Red)In
+              </ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-1 col-sm-1>
+              <ion-select>
+                <ion-option value="Inc">F</ion-option>
+                <ion-option value="Dec">R</ion-option>
+                <ion-option value="Rem">S</ion-option>
+              </ion-select> 
+            </ion-col>
+    
+</ion-row>
+
+<!-- Row 3-->
+<ion-row>
+    <ion-col col-3 col-sm-3>
+      <ion-item>
+        <ion-label>
+          Genius MK6
+        </ion-label>
+      </ion-item>
+      </ion-col>
+      <ion-col col-2 col-sm-2>
+        <ion-item>
+          <ion-label>
+            Red In
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-1 col-sm-1>
+          <ion-select>
+            <ion-option value="YR">Y</ion-option>
+            <ion-option value="NR">N</ion-option>
+          </ion-select> 
+        </ion-col>
+
+      <ion-col col-2 col-sm-2>
+          <ion-item>
+            <ion-label>
+             Yellow In
+            </ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-1 col-sm-1>
+            <ion-select>
+                <ion-option value="YY">Y</ion-option>
+                <ion-option value="NY">N</ion-option>
+              </ion-select> 
+              </ion-col>
+  
+        <ion-col col-2 col-sm-2>
+            <ion-item>
+              <ion-label>
+                Blue In
+              </ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-1 col-sm-1>
+              <ion-select>
+                  <ion-option value="YB">Y</ion-option>
+                  <ion-option value="NB">N</ion-option>
+                </ion-select> 
+                  </ion-col>   
+</ion-row>
+
+<ion-item-divider color="light" padding >Fuse Test </ion-item-divider>
+<ion-grid>
+  <ion-row col-12 col-sm-12>
+    <ion-col col-3 col-sm-3>
+      <ion-item>
+        <ion-label>
+          Fuse Contact
+        </ion-label> 
+      </ion-item>
+    </ion-col><ion-col>
+      <ion-item>
+        <ion-input type="text" placeholder="enter fuse contact "></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col col-2 col-sm-2>
+      <ion-item>
+        <ion-label>
+          Neon Glow
+        </ion-label>
+      </ion-item>
+    </ion-col><ion-col>
+      <ion-item>
+        <ion-input type="text" placeholder="enter for neon glow">
+        </ion-input>
+      </ion-item> 
+    </ion-col>
+  </ion-row>
+</ion-grid> 
+
+ <!-- Magnet Test-->
+ <ion-item-divider color="light" padding >Magnet Test </ion-item-divider>
+<ion-grid>
+    <ion-row>
+        <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label color="primary">Applicable</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-select [(ngModel)]="magnet_disp" (ionChange)="hideMagnetTest()" interface="popover">
+              <ion-option value="Y">Yes</ion-option>
+              <ion-option value="N">No</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="! mangnetDisp">
+          <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label color="primary">Remarks</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-input id="remark" type="text" placeholder="Please Enter Remark"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+    <div *ngIf=" mangnetDisp">
+  <ion-row col-12 col-sm-12>
+    <ion-col>
+      <ion-item>
+        <ion-label>
+          Meter
+        </ion-label> 
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item>
+        <ion-input type="text" placeholder="enter meter remarks "></ion-input>
+      </ion-item>
+    </ion-col>
+    </ion-row>
+    <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label>
+          Fuse Carrier
+        </ion-label>
+      </ion-item>
+    </ion-col><ion-col>
+      <ion-item>
+        <ion-input type="text" placeholder="enter for fuse carrier">
+        </ion-input>
+      </ion-item> 
+    </ion-col>
+    </ion-row>
+    <ion-row>
+    <ion-col>
+        <ion-item>
+          <ion-label>
+            Fuse Cartridge
+          </ion-label>
+        </ion-item>
+      </ion-col><ion-col>
+        <ion-item>
+          <ion-input type="text" placeholder="enter for fuse cartridge">
+          </ion-input>
+        </ion-item> 
+      </ion-col>
+  </ion-row> 
+</div>
+  <!-- End-->
+</ion-grid> 
+
+<ion-item-divider color="light" padding >Accuracy Test </ion-item-divider>
+<ion-grid>
+  <ion-row col-8 col-sm-8>
+    <ion-col col-5 col-sm-5>
+      <ion-item>
+        <ion-label>Portable Test Set:</ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col col-5 col-sm-5>
+      <ion-item>
+        <ion-input type="text" placeholder=" enter serial no"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-2 col-sm-2>
+
+    </ion-col>
+    <ion-col col-2 col-sm-2>
+      <ion-item>
+        <ion-label>
+          Red
+        </ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col col-2 col-sm-2>
+        <ion-item>
+          <ion-label>
+            Yellow
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-2 col-sm-2>
+          <ion-item>
+            <ion-label>
+              Blue
+            </ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-2 col-sm-2>
+            <ion-item>
+                <ion-input type="text" (change)="ratioAvg()" [(ngModel)]="error.err1" placeholder=" error1"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+          <ion-row>
+              <ion-col col-2 col-sm-2>
+                <ion-item>
+                  <ion-label>
+                    Voltage
+                  </ion-label>
+                </ion-item>
+                </ion-col>
+                <ion-col col-2 col-sm-2>
+                  <ion-item>
+                    <ion-input type="text"  placeholder="value red">
+                    </ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col col-2 col-sm-2>
+                    <ion-item>
+                        <ion-input type="text" placeholder="value yellow">
+                        </ion-input>
+                      </ion-item>
+                  </ion-col>
+                  <ion-col col-2 col-sm-2>
+                      <ion-item>
+                          <ion-input type="text" placeholder="value blue">
+                          </ion-input>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col col-2 col-sm-2>
+                        <ion-item>
+                            <ion-input type="text" (change)="ratioAvg()" [(ngModel)]="error.err2" placeholder=" error 2"></ion-input>
+                          </ion-item>
+                      </ion-col>
+                        
+          </ion-row>
+
+          <ion-row>
+              <ion-col col-2 col-sm-2>
+                <ion-item>
+                  <ion-label>
+                   Power
+                  </ion-label>
+                </ion-item>
+                </ion-col>
+                <ion-col col-2 col-sm-2>
+                  <ion-item>
+                    <ion-input type="text" placeholder="value red">
+                    </ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col col-2 col-sm-2>
+                    <ion-item>
+                        <ion-input type="text" placeholder="value yellow">
+                        </ion-input>
+                      </ion-item>
+                  </ion-col>
+                  <ion-col col-2 col-sm-2>
+                      <ion-item>
+                          <ion-input type="text" placeholder="value blue">
+                          </ion-input>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col col-2 col-sm-2>
+                        <ion-item>
+                         <ion-input type="text" (change)="ratioAvg()" [(ngModel)]="error.err3" placeholder="error3"></ion-input>
+                        </ion-item>
+                      </ion-col>  
+          </ion-row>
+          <ion-row>
+              <ion-col col-2 col-sm-2>
+                <ion-item>
+                  <ion-label>
+                    Power Factor
+                  </ion-label>
+                </ion-item>
+                </ion-col>
+                <ion-col col-2 col-sm-2>
+                  <ion-item>
+                    <ion-input type="text" placeholder="value red">
+                    </ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col col-2 col-sm-2>
+                    <ion-item>
+                        <ion-input type="text" placeholder="value yellow">
+                        </ion-input>
+                      </ion-item>
+                  </ion-col>
+                  <ion-col col-2 col-sm-2>
+                      <ion-item>
+                          <ion-input type="text" placeholder="value blue">
+                          </ion-input>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col col-2 col-sm-2>
+                        <ion-item>
+                          <ion-input type="text"  [(ngModel)]="error.errAvg" placeholder="average"></ion-input>
+                        </ion-item>
+                      </ion-col>
+          </ion-row>
+
+          <ion-row style="word-wrap:break-all; padding-left: 5px;" class="headerBlue">
+              <ion-col col-2 col-sm-2>
+                <ion-item>
+                  <ion-label>
+                   (B) Manual
+                  </ion-label>
+                </ion-item>
+                </ion-col>
+                <ion-col col-4 col-sm-4>
+                  <ion-item>
+                   <ion-label>Time Calculated</ion-label>
+                    
+                  </ion-item>
+                </ion-col>
+                <ion-col col-4 col-sm-4>
+                    <ion-item>
+                        <ion-label>Time Measure</ion-label>
+                  
+                      </ion-item>
+                  </ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-col col-2 col-sm-2>
+                <ion-item>
+                  <ion-label>
+                   Test1
+                  </ion-label>
+                </ion-item>
+                </ion-col>
+                <ion-col col-4 col-sm-4>
+                  <ion-item>
+                  <ion-input type="text" placeholder=" time calculate"></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col col-4 col-sm-4>
+                    <ion-item>
+                      <ion-input type="text" placeholder="time measure"></ion-input>                
+                      </ion-item>
+                  </ion-col>
+          </ion-row>
+
+          <ion-row>
+              <ion-col col-2 col-sm-2>
+                <ion-item>
+                  <ion-label>
+                   Test2
+                  </ion-label>
+                </ion-item>
+                </ion-col>
+                <ion-col col-4 col-sm-4>
+                  <ion-item>
+                  <ion-input type="text" placeholder=" time calculate"></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col col-4 col-sm-4>
+                    <ion-item>
+                      <ion-input type="text" placeholder="time measure"></ion-input>                
+                      </ion-item>
+                  </ion-col>
+          </ion-row>
+
+          <ion-row>
+              <ion-col col-2 col-sm-2>
+                <ion-item>
+                  <ion-label>
+                   Test3
+                  </ion-label>
+                </ion-item>
+                </ion-col>
+                <ion-col col-4 col-sm-4>
+                  <ion-item>
+                  <ion-input type="text" placeholder=" time calculate"></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col col-4 col-sm-4>
+                    <ion-item>
+                      <ion-input type="text" placeholder="time measure"></ion-input>                
+                      </ion-item>
+                  </ion-col>
+          </ion-row>
+</ion-grid>
+
+<ion-item-divider color="light" padding >Fuse Test </ion-item-divider>
+<ion-row>
+  <ion-item>
+    <ion-label>
+      Tampering Anomoly
+    </ion-label>
+  </ion-item>
+</ion-row>
+<ion-row  col-12 col-sm-12>
+<ion-item>
+    <ion-textarea rows="2" maxLength="250"></ion-textarea>
+</ion-item>
+</ion-row>
+
+<ion-item-divider color="light" padding >Corrective Action </ion-item-divider>
+<ion-row>
+  <ion-item>
+    <ion-label>
+      Corrective Action
+    </ion-label>
+  </ion-item>
+</ion-row>
+<ion-row  col-9 col-sm-9>
+<ion-item>
+<ion-label>Accuracy Test After Correction Action</ion-label>
+</ion-item>
+</ion-row>
+<ion-row>
+  <ion-col col-3 col-sm-3>
+    <ion-item>
+      <ion-input type="text" placeholder="enter error1"></ion-input>
+    </ion-item>
+  </ion-col>
+  <ion-col col-3 col-sm-3>
+      <ion-item>
+          <ion-input type="text" placeholder="enter error2"></ion-input>
+        </ion-item>
+  </ion-col>
+  <ion-col col-3 col-sm-3>
+      <ion-item>
+          <ion-input type="text" placeholder="enter error3"></ion-input>
+        </ion-item>
+  </ion-col>
+</ion-row>
+<ion-row>
+  <ion-col col-4 col-sm-4>
+    <ion-item>
+      <ion-label>Witness Name</ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col col-8 col-sm-8>
+    <ion-item>
+        <ion-input type="text" placeholder="witness name"></ion-input>
+    </ion-item>
+  </ion-col>
+
+</ion-row>
+
+<ion-row>
+    <ion-col col-4 col-sm-4>
+      <ion-item>
+        <ion-label>Name of Examiner</ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col col-8 col-sm-8>
+      <ion-item>
+          <ion-input type="text" placeholder="examiner name"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+      <ion-col col-4 col-sm-4>
+        <ion-item>
+          <ion-label>Ic.no/Pasport</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-8 col-sm-8>
+        <ion-item>
+            <ion-input type="text" placeholder="IC no./pasport"></ion-input>
+        </ion-item>
+      </ion-col>
+    
+    </ion-row>
+
+    <ion-row>
+        <ion-col col-4 col-sm-4>
+          <ion-item>
+            <ion-label>Staff No.</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-8 col-sm-8>
+          <ion-item>
+              <ion-input type="text" placeholder="staff no."></ion-input>
+          </ion-item>
+        </ion-col>
+      
+      </ion-row>
+
+      <ion-row>
+          <ion-col col-4 col-sm-4>
+            <ion-item>
+              <ion-label>Phone No.</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-8 col-sm-8>
+            <ion-item>
+                <ion-input type="text" placeholder="phone no."></ion-input>
+            </ion-item>
+          </ion-col>
+        
+        </ion-row>
+
+        <ion-row>
+            <ion-col col-4 col-sm-4>
+              <ion-item>
+                <ion-label>Position</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-8 col-sm-8>
+              <ion-item>
+                  <ion-input type="text" placeholder="position"></ion-input>
+              </ion-item>
+            </ion-col>
+          
+          </ion-row>
+
+          <ion-row>
+              <ion-col col-4 col-sm-4>
+                <ion-item>
+                  <ion-label>Station</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-8 col-sm-8>
+                <ion-item>
+                    <ion-input type="text" placeholder="station"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-item-divider color="light" padding >Status Form</ion-item-divider>
+            <ion-grid>
+              <ion-row col-4 col-sm-4>
+                <ion-item style="left: 50%">
+                    <ion-label color = "primary" >Form</ion-label>
+                    <ion-select>
+                        <ion-option value="KUPM">KUPM</ion-option>
+                        <ion-option value="KKB">KKB</ion-option>
+                        <ion-option value="Baik">Baik</ion-option>
+                        <ion-option value="KIV">KIV</ion-option>
+                      </ion-select> 
+                  </ion-item>
+                </ion-row>
+            </ion-grid>
+
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+      <div>
+        <ion-row>
+          <ion-col col-4 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+            <button ion-button color="light" round block (click)="goToServiceExecutionPage()">Cancel</button>
+          </ion-col>
+          <ion-col col-4 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+            <button ion-button round block>Save</button>
+          </ion-col>
+          <ion-col col-4 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button round block>Download Pdf</button>
+            </ion-col>
+  
+        </ion-row>
+      </div>
+    </ion-toolbar>
+  </ion-footer>

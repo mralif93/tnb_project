@@ -1,0 +1,228 @@
+page-wo-home {
+  // .label-ios-primary, .item-input .label-ios-primary, .item-select .label-ios-primary, .item-datetime .label-ios-primary{
+  //     color: blue;
+  //     font-weight: bold;
+  //     width: 200px;
+  // }
+
+  .pageTitle {
+    // padding-top: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    align-items: left;
+  }
+  .menuBackArrow {
+    color: white;
+    font-weight: bold;
+    font-size: 22px;
+  }
+
+  .toggle {
+    display: block;
+    margin: 2em auto;
+  }
+
+  .classA {
+    background-color: #fffffa;
+  }
+
+  .classB {
+    background-color: #c4d8e2;
+  }
+
+  .classInprg {
+    background-color: rgba(255, 251, 0, 0.966);
+    // color: rgba(255, 251, 0, 0.735);
+    // font-size: large;
+    // font-weight: bold;
+  }
+
+  .classAppr {
+    background-color: rgb(0, 255, 13);
+    // color: rgb(12, 122, 7);
+    // font-size: large;
+    // font-weight: bold;
+  }
+
+  .classKiv {
+    background-color: rgb(255, 0, 106);
+    // color: rgb(16, 3, 206);
+    // font-size: large;
+    // font-weight: bold;
+  }
+
+  .classPcbnt {
+    background-color: rgb(255, 140, 0);
+  }
+
+  .classReview {
+    background-color: rgb(175, 139, 235);
+  }
+
+  .classIconProcessing {
+    color: rgba(255, 251, 0, 0.735);
+  }
+
+  .classIconAfterdownload {
+    color: rgb(12, 122, 7);
+  }
+
+  .classIconBeforeDownload {
+    color: rgba(5, 91, 152, 0.646);
+  }
+
+  //Pagination in Wo Home
+  .pagination {
+    display: inline-block;
+  }
+
+  .pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+  }
+
+  .pagination a.active {
+    background-color: #0000ff;
+    color: white;
+    border: 1px solid #0000ff;
+  }
+
+  .pagination a:hover:not(.active) {
+    background-color: #ddd;
+  }
+
+  .non-display {
+    display: none;
+  }
+
+  .display {
+    // display: block;
+    text-align: center;
+  }
+
+  .disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+    background-color: #ddd;
+  }
+
+  .iconBeforeDownload {
+    zoom: 2;
+    color: darkred;
+  }
+
+  .iconDownloading {
+    zoom: 1.5;
+  }
+
+  .iconAfterDownload {
+    zoom: 2;
+    color: seagreen;
+  }
+
+  .iconBeforeCheck {
+    zoom: 2;
+    color: darkred;
+  }
+
+  .iconCheck {
+    zoom: 1.5;
+  }
+
+  .iconAfterCheck {
+    zoom: 2;
+    color: seagreen;
+  }
+
+  .dropdown {
+    display: block;
+    width: 100%;
+    border: 1px solid #bcbcbc;
+    font-family: inherit;
+    padding: 6px 12px;
+    border-radius: 2px;
+    background-position: left 8px center;
+    height: auto;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 23px;
+    color: #141414;
+    padding-top: 10px;
+    background-color: #fff;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+      0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  }
+
+  .woHme-check {
+    top: 27px;
+    left: 30px;
+    border-radius: 2px;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    border-width: 2px;
+    border-style: solid;
+  }
+
+  .scrollFabButton {
+    background-color: #0000ff;
+    opacity: 0.3;
+  }
+
+  .pin-icon {
+    width: 60px;
+  }
+
+  .offline_btn {
+    font-size: 15px;
+  }
+
+  .toolbar-ios .segment-ios {
+    padding: 5px;
+  }
+
+  .toolbar-ios .segment-button {
+    max-width: none;
+  }
+
+  .errorRespond {
+    color: red;
+    background-color: antiquewhite;
+  }
+
+  .successRespond {
+    color: limegreen;
+    background-color: azure;
+  }
+
+  .successRespondLabel {
+    // color: limegreen;
+    opacity: 1;
+    background-color: azure;
+  }
+
+  .card-ios {
+    border-radius: 10px !important;
+    margin-top: 15px !important;
+    border: 1px solid lightgrey;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  }
+
+  .icon-success {
+    // zoom: 1.5;
+    color: darkgreen;
+    // padding-left: 5px;
+  }
+
+  .icon-failed {
+    // zoom: 1.5;
+    color: darkred;
+    // padding-left: 5px;
+  }
+}

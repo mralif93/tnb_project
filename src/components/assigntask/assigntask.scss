@@ -1,0 +1,31 @@
+assigntask {
+
+    background-color: white;
+
+    .text-input[disabled] {
+        opacity: 1;
+    }
+
+    .item-input .label-md, .item-select .label-md, .item-datetime .label-md {
+        color: #000000;
+    }
+
+    .cardView {
+        padding: 15px;
+        overflow-y: scroll;
+        height: 320px;
+        background-color: #FAFBFD;
+    }
+
+    .statusField {
+        background-color: #FDFA08;
+    }
+
+    .classA {
+        background-color: #fffffA;
+    }
+
+    .classB {
+        background-color: #C4D8E2;
+    }
+}

@@ -1,0 +1,155 @@
+<!-- Generated template for the AssigntaskComponent component -->
+<div style='height: 800px;'>
+  <ion-grid class="headerStyle">
+    <ion-row>
+      <ion-col col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12>
+        <div class="pageTitle"> Change Request </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid style="height: 538px;">
+    <ion-row *ngIf="messageDisplay">
+      <ion-col col-12 style="text-align: center; color: #ff0000;">
+        {{ errorMsg }}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6 col-lg-6 col-md-6 col-xs-6 col-sm-6>
+        <ion-row>
+          <ion-item>
+            <ion-label stacked><b style="  font-size: 17px; color: black;">Reservation Number</b></ion-label>
+            <ion-input [(ngModel)]="item.rsNum" class="su-input" type="text"  readonly style="color: gray;"></ion-input>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+      <ion-col col-6 col-lg-6 col-md-6 col-xs-6 col-sm-6>
+        <ion-row>
+          <ion-item>
+            <ion-label stacked><b style="  font-size: 17px; color: black;">Item Number</b></ion-label>
+            <ion-input [(ngModel)]="item.rspos" class="su-input" type="text" readonly style="color: gray;"></ion-input>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  
+    <ion-row>
+      <ion-col col-6 col-lg-6 col-md-6 col-xs-6 col-sm-6>
+        <ion-row>
+          <ion-item>
+            <ion-label stacked><b style="  font-size: 17px; color: black;">Material Number</b></ion-label>
+            <ion-input [(ngModel)]="item.matnr"  class="su-input" type="text" readonly style="color: gray;"></ion-input>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+      <ion-col col-6 col-lg-6 col-md-6 col-xs-6 col-sm-6>
+        <ion-row>
+          <ion-item>
+            <ion-label stacked><b style="  font-size: 17px; color: black;">Site ID</b></ion-label>
+            <ion-input [(ngModel)]="item.gsber"  class="su-input" type="text"  readonly style="color: gray;"></ion-input>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  
+    <ion-row>
+      <ion-col col-6 col-lg-6 col-md-6 col-xs-6 col-sm-6>
+        <ion-row>
+          <ion-item>
+            <ion-label stacked><b style="  font-size: 17px; color: black;">Storage Location</b></ion-label>
+            <ion-input [(ngModel)]="item.lgort"  class="su-input" type="text"  readonly style="color: gray;"></ion-input>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+      <ion-col col-6 col-lg-6 col-md-6 col-xs-6 col-sm-6>
+        <ion-row>
+          <ion-item>
+            <ion-label stacked><b style="  font-size: 17px; color: black;">Withdrawn Quantity</b></ion-label>
+            <ion-input [(ngModel)]="item.enmng"  class="su-input" type="text"  readonly style="color: gray;"></ion-input>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  
+    <ion-row>
+      <ion-col col-6 col-lg-6 col-md-6 col-xs-6 col-sm-6>
+        <ion-row>
+          <ion-item>
+            <ion-label stacked><b style="  font-size: 17px; color: black;">Required Quantity </b><span style="color: red">*</span></ion-label>
+            <ion-input [(ngModel)]="item.bdmng" type="text" (keyup)="validationCheck()"></ion-input>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+      <ion-col col-6 col-lg-6 col-md-6 col-xs-6 col-sm-6>
+        <ion-row>
+          <ion-item>
+            <ion-label stacked><b style="  font-size: 17px; color: black;">Zone </b><span style="color: red">*</span></ion-label>
+            <ion-select [(ngModel)]="item.zxone">
+              <ion-option *ngFor="let zoneItem of zoneItems" [value]="zoneItem.json.value" [selected]="zoneItem.json.value === item.zxone" disabled>{{ zoneItem.json.description }}</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-6 col-lg-6 col-md-6 col-xs-6 col-sm-6>
+        <ion-row>
+          <ion-item>
+            <ion-label stacked><b style="  font-size: 17px; color: black;">Reporting To </b><span style="color: red">*</span></ion-label>
+            <ion-select [(ngModel)]="item.zrpt">
+              <ion-option *ngFor="let reportingItem of reportingItems" [value]="reportingItem.json.value" [selected]="reportingItem.json.value === reporting_to">{{ reportingItem.json.description }}</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+      <ion-col col-6 col-lg-6 col-md-6 col-xs-6 col-sm-6>
+        <ion-row>
+          <ion-item>
+            <ion-label stacked><b style="  font-size: 17px; color: black;">Created By</b>  </ion-label>
+            <ion-input [(ngModel)]="item.usNam" class="su-input" type="text" [value]="item.usNam" readonly></ion-input> 
+            <!-- <ion-input [value] ="createdByDisplayName"  readonly></ion-input> -->
+          </ion-item>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-6 col-lg-6 col-md-6 col-xs-6 col-sm-6>
+        <ion-row>
+          <ion-item>
+            <ion-label stacked><b style="  font-size: 17px; color: black;">Receiptient Id </b><span style="color: red">*</span></ion-label>
+            <select-searchable
+              item-content
+              [(ngModel)]="item.wempf"
+              [items]="this.recipientItem"
+              itemValueField="laborcode"
+              itemTextField="compositeName"
+              [canSearch]="true">
+            </select-searchable>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+      <ion-col col-6 col-lg-6 col-md-6 col-xs-6 col-sm-6>
+        <ion-row>
+          <ion-item>
+            <ion-label stacked><b style="  font-size: 17px;  color: black;">Requested Date</b><span style="color: red">*</span></ion-label>
+            <ion-datetime displayFormat="DD/MM/YYYY" picker-format="DD MMMM YYYY" [min]="minDate" max="2039" [(ngModel)]="bdter " type="date"></ion-datetime>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-item style="padding-top: 12px;">
+        <ion-label><b style="  font-size: 17px;">Final Issue </b><span style="color: red">*</span></ion-label>
+        <ion-checkbox slot="end" [(ngModel)]="item.kzear"></ion-checkbox>
+      </ion-item>
+    </ion-row>
+    <ion-row>
+      <ion-col style="text-align: center; padding-top: 35px; ">
+        <button ion-button style="padding: 15px;" (click)="changeRequestSubmit()"> Submit to ERMS </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</div>

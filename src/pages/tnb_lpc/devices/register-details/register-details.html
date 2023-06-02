@@ -1,0 +1,1614 @@
+<ion-header mode="md">
+  <ion-navbar color="primary">
+    <ion-title>Device Informations</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon [color]="gv.testMobile ? 'danger' : 'light'" name="md-planet" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-item-divider color="light"
+      *ngIf="(attr.ta0functionclass === functClass.NMTR || attr.ta0functionclass === functClass.RMTR || attr.ta0functionclass === functClass.SMTR || attr.ta0functionclass === functClass.SMTR_CM)">
+      <ion-row align-items-center  *ngIf="(attr.ta0existingdevice === true)">
+        <ion-col col-12 col-sm-12 col-md-7 (click)="showInformationSection(1)" class="pointer" style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-icon name="information-circle"></ion-icon>&nbsp; <strong>METER INFORMATIONS</strong>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+          <div *ngIf="item.json.ta0billingind == 'I'">
+            <button ion-button round style="float: right;width: 100%;" (click)="getIEEStatus()" [disabled]="(gv.testMobile) ? true : false">ODR</button>
+          </div>
+        </ion-col> 
+        <ion-col col-12 col-sm-12 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+          <button ion-button round style="float: right;width: 100%;" (click)="getDeviceStatusPMR()" [disabled]="(gv.testMobile || item.json.worktype === soTypes.ZMMR ) ? true : false">Get Reading</button>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-1 style="word-wrap:  break-all; padding-left: 5px;text-align: right;" (click)="showInformationSection(1)" class="pointer">
+          <ion-icon name="arrow-forward" style="zoom: 1.5;" *ngIf="!showInformation"></ion-icon>
+          <ion-icon name="arrow-down" style="zoom: 1.5;" *ngIf="showInformation"></ion-icon>
+        </ion-col>
+      </ion-row>
+      <ion-row align-items-center  *ngIf="(attr.ta0existingdevice === false)">
+        <ion-col col-12 col-sm-12 col-md-9 (click)="showInformationSection(1)" class="pointer" style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-icon name="information-circle"></ion-icon>&nbsp; <strong>METER INFORMATIONS</strong>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+          <button ion-button round style="float: right;" (click)="getDeviceStatusPMR()" [disabled]="(gv.testMobile || item.json.worktype === soTypes.ZMMR ) ? true : false">Get Reading</button>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-1 style="word-wrap:  break-all; padding-left: 5px;text-align: right;" (click)="showInformationSection(1)" class="pointer">
+          <ion-icon name="arrow-forward" style="zoom: 1.5;" *ngIf="!showInformation"></ion-icon>
+          <ion-icon name="arrow-down" style="zoom: 1.5;" *ngIf="showInformation"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-item-divider>
+    <ion-item-divider color="light" (click)="showInformationSection(1)" class="pointer"
+      *ngIf="attr.ta0functionclass === functClass.CTTFR || attr.ta0functionclass === functClass.CTDIR || attr.ta0functionclass === functClass.PTTFR || attr.ta0functionclass === functClass.VTDIR">
+      <ion-row align-items-center>
+        <ion-col col-12 col-sm-12 col-md-10 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-icon name="information-circle"></ion-icon>&nbsp; <strong>TRANSFORMER INFORMATIONS</strong>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-2 style="word-wrap:  break-all; padding-left: 5px;text-align: right;">
+          <ion-icon name="arrow-forward" style="zoom: 1.5;" *ngIf="!showInformation"></ion-icon>
+          <ion-icon name="arrow-down" style="zoom: 1.5;" *ngIf="showInformation"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-item-divider>
+    <div *ngIf="showInformation">
+      <!-- CT Info Screen Start -->
+      <div *ngIf="attr.ta0functionclass === functClass.CTTFR || attr.ta0functionclass === functClass.CTDIR">
+        <ion-grid
+          style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
+          <ion-item-divider color="light">
+            <ion-row align-items-center>
+              <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+                Current Transformer, CT
+              </ion-col>
+            </ion-row>
+          </ion-item-divider>
+          <!--  *ngIf="attr.deviceType === 'CT'" -->
+
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Serial Number</ion-label>
+                <ion-input [(ngModel)]="attr.ta0serialnum" type="text" readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Asset Number</ion-label>
+                <ion-input [(ngModel)]="attr.assetnum" type="text" readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Controlling Device</ion-label>
+                <ion-input type="text" [value]="attr.ta0controllingdevice" readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Purpose</ion-label>
+                <ion-input type="text"
+                  *ngIf="attr.ta0functionclass === functClass.CTTFR || attr.ta0functionclass === functClass.CTDIR"
+                  [value]="functClass.CTTFR_DESC" readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Brand</ion-label>
+                <ion-input type="text" [(ngModel)]="attr.ta0modelid" readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Class</ion-label>
+                <ion-input type="text" readonly="true" text-right value="{{ 
+                  attr.ta0class == '0001' ? '0.2' :
+                  attr.ta0class == '0002' ? '0.5' :
+                  attr.ta0class == '0003' ? '5' :
+                  attr.ta0class == '0004' ? '10' :
+                  attr.ta0class == '0005' ? '5' :
+                  attr.ta0class == '0006' ? '1' : ''
+               }}"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">VA</ion-label>
+                <ion-input type="text" [(ngModel)]="attr.ta0va" readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Current Ratio</ion-label>
+                <!-- Reason: No need to show value saved in maximo (Alif - 23/01/2019) -->
+                <!-- <ion-input [(ngModel)]="attr.ta0currentratio" type="text" readonly="true" text-right></ion-input> -->
+                <ion-input [(ngModel)]="attr.loc_ta0currentratio" type="text" readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Phase</ion-label>
+                <ion-input type="text" [(ngModel)]="attr.ta0ctptphase" readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label style="min-width: 115px;" color="primary">Winding Group</ion-label>
+              <div item-end>
+                <ion-select [(ngModel)]="attr.loc_windingGroup" interface="popover" disabled="true">
+                  <ion-option *ngFor="let key of windingGroupList" value="{{key.json.ta0windinggroup}}"> {{
+                    key.json.ta0windinggroup
+                    }} - {{ key.json.description }} </ion-option>
+                </ion-select>
+              </div>
+            </ion-item>
+          </ion-row>
+        </ion-grid>
+      </div>
+      <!-- CT Info Screen End -->
+
+      <!-- PT Info Screen Start -->
+      <div *ngIf="attr.ta0functionclass === functClass.PTTFR || attr.ta0functionclass === functClass.VTDIR">
+        <ion-grid
+          style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
+          <ion-item-divider color="light">
+            <ion-row align-items-center>
+              <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+                Potential Transformer, PT
+              </ion-col>
+            </ion-row>
+          </ion-item-divider>
+          <!--  *ngIf="attr.deviceType === 'PT'" -->
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Serial Number</ion-label>
+                <ion-input [(ngModel)]="attr.ta0serialnum" type="text" readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Asset Number</ion-label>
+                <ion-input [(ngModel)]="attr.assetnum" type="text" readonly="true" text-right></ion-input>
+              </ion-item>
+              <!--<ion-item>
+                <ion-label color="primary">Controlling Device</ion-label>
+                <ion-input [(ngModel)]="attr.ta0controllingdevice" type="text" readonly="true" style="text-align-last: right;"></ion-input>
+              </ion-item>-->
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Controlling Device</ion-label>
+                <ion-input type="text" [(ngModel)]="attr.ta0controllingdevice" readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Purpose</ion-label>
+                <ion-input type="text"
+                  *ngIf="attr.ta0functionclass === functClass.PTTFR || attr.ta0functionclass === functClass.VTDIR"
+                  [value]="functClass.PTTFR_DESC || functClass.VTTFR_DESC" readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Brand</ion-label>
+                <ion-input type="text" [(ngModel)]="attr.ta0modelid" readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Class</ion-label>
+                <ion-input type="text" readonly="true" text-right value="{{ 
+                    attr.ta0class == '0001' ? '0.2' :
+                    attr.ta0class == '0002' ? '0.5' :
+                    attr.ta0class == '0003' ? '5' :
+                    attr.ta0class == '0004' ? '10' :
+                    attr.ta0class == '0005' ? '5' :
+                    attr.ta0class == '0006' ? '1' : ''
+                 }}"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">VA</ion-label>
+                <ion-input type="text" [(ngModel)]="attr.ta0va" readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Voltage Ratio</ion-label>
+                <!-- Reason: No need to show value saved in maximo (Alif - 23/01/2019) -->
+                <!-- <ion-input [(ngModel)]="attr.ta0voltageratio" type="text" readonly="true" text-right></ion-input> -->
+                <ion-input [(ngModel)]="attr.loc_ta0voltageratio" type="text" readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Phase</ion-label>
+                <ion-input type="text" [(ngModel)]="attr.ta0ctptphase" readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label style="min-width: 115px;" color="primary">Winding Group</ion-label>
+                <ion-select [(ngModel)]="attr.loc_windingGroup" interface="popover" disabled="true" text-right>
+                  <ion-option *ngFor="let key of windingGroupPtList" value="{{key.json.ta0windinggroup}}"> {{
+                    key.json.ta0windinggroup
+                    }} - {{ key.json.description }} </ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+      <!-- PT Info Screen End -->
+
+      <!-- Meter, Modem & Simcard Info Screen Start -->
+      <div
+        *ngIf="(attr.ta0functionclass === functClass.NMTR || attr.ta0functionclass === functClass.RMTR || attr.ta0functionclass === functClass.SMTR || attr.ta0functionclass === functClass.SMTR_CM)">
+        <ion-grid
+          style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
+          <ion-item-divider color="light">
+            <ion-row align-items-center>
+              <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+                Meter, Modem & Simcard
+              </ion-col>
+            </ion-row>
+          </ion-item-divider>
+          <!--  *ngIf="attr.deviceType === 'meter'" -->
+
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Serial Number</ion-label>
+                <ion-input [(ngModel)]="attr.ta0serialnum" type="text" readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Asset Number</ion-label>
+                <ion-input [(ngModel)]="attr.assetnum" type="text" readonly="true" text-right></ion-input>
+              </ion-item>
+              <!--<ion-item>
+                <ion-label color="primary">Controlling Device</ion-label>
+                <ion-input [(ngModel)]="attr.ta0controllingdevice" type="text" readonly="true" style="text-align-last: right;"></ion-input>
+              </ion-item>-->
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Controlling Device</ion-label>
+                <ion-input [(ngModel)]="attr.ta0controllingdevice" type="text" readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Purpose</ion-label>
+                <ion-input type="text"
+                  *ngIf="(attr.ta0functionclass === functClass.NMTR || attr.ta0functionclass === functClass.RMTR || attr.ta0functionclass === functClass.SMTR || attr.ta0functionclass === functClass.SMTR_CM) && (attr.ta0allocationtype === dCons.DEV_ALLOC_MAIN_METER || attr.ta0allocationtype === dCons.DEV_ALLOC_FEEDER_METER || attr.ta0allocationtype === dCons.DEV_ALLOC_SUB_METER ||  attr.ta0allocationtype === dCons.DEV_ALLOC_SUB_FEEDER_METER)"
+                  value="{{ 
+                  attr.ta0allocationtype == '90' ? 'Main Meter' : 
+                  attr.ta0allocationtype == '91' ? 'Feeder Meter' : 
+                  attr.ta0allocationtype == '94' ? 'Sub Meter' : 
+                  attr.ta0allocationtype == '96' ? 'Sub Feeder Meter' : 'Main Meter'}}" readonly="true" text-right>
+                </ion-input>
+                <ion-input type="text"
+                  *ngIf="(attr.ta0functionclass === functClass.NMTR || attr.ta0functionclass === functClass.RMTR || attr.ta0functionclass === functClass.SMTR || attr.ta0functionclass === functClass.SMTR_CM) && (attr.ta0allocationtype === dCons.DEV_ALLOC_CHECK_METER || attr.ta0allocationtype === dCons.DEV_ALLOC_CHECK_FEEDER_METER || attr.ta0allocationtype === dCons.DEV_ALLOC_CHECK_SUB_METER || attr.ta0allocationtype === dCons.DEV_ALLOC_CHECK_SUB_FEEDER_METER)"
+                  value="{{
+                  attr.ta0allocationtype == '92' ? 'Check Meter' : 
+                  attr.ta0allocationtype == '93' ? 'Check Feeder' : 
+                  attr.ta0allocationtype == '95' ? 'Check Sub Meter' : 
+                  attr.ta0allocationtype == '97' ? 'Check Sub Feeder' : 'Check Meter' }}" readonly="true" text-right>
+                </ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Brand</ion-label>
+                <ion-input type="text" [(ngModel)]="attr.ta0modelid" readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Class</ion-label>
+                <ion-input type="text" [(ngModel)]="attr.ta0class" readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Current Ratio</ion-label>
+                <ion-input [(ngModel)]="attr.ta0currentratio" type="text" readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Voltage Ratio</ion-label>
+                <ion-input [(ngModel)]="attr.ta0voltageratio" type="text" readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Multiplication Factor (MF)</ion-label>
+                <ion-input [(ngModel)]="attr.ta0mf" type="text" readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Label of Suppliers</ion-label>
+                <ion-input type="text" readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Modem Serial No.</ion-label>
+                <ion-input type="text" value="{{modem}}" readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Simcard Serial No.</ion-label>
+                <ion-input type="text" value="{{simcard}}" readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">IP/ Data No.</ion-label>
+                <ion-input [(ngModel)]="ta0simcardip" type="text" (keyup)="checkUserInputIp($event)" readonly="true"
+                  text-right></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row *ngIf="item.json.worktype === 'ZMMR'">
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary" class="setLabelSpace" text-wrap>Meter Reading Type</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-8 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-select [(ngModel)]="mrtype" (ionChange)="goToRegisterMrType($event)" [disabled]="mrtypeDisable"
+                  [selectOptions]="{title: 'Meter Reading Type'}"
+                  [ngClass]="(mrtype === 'undefined' || mrtype === '') ? 'redHighlightText' : 'blackHighlightText'">
+                  <ion-option value="01" [selected]="mrtype == '01'">01 (Meter reading by utility - SAP)</ion-option>
+                  <ion-option value="03" [selected]="mrtype == '03'">03 (Automatic estimation - SAP)</ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row *ngIf="(mrtype !== '01') && (mrtype !== '') && item.json.worktype === 'ZMMR'">
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary" class="setLabelSpace" text-wrap>Meter Reading Note</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-8 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-select [(ngModel)]="mrnote" (ionChange)="goToRegisterMrNode($event)"
+                  [ngClass]="(mrnote === 'undefined' || mrnote === '') ? 'redHighlightText' : 'blackHighlightText'"
+                  [selectOptions]="{title: 'Meter Reading Note'}">
+                  <ion-option *ngFor="let mrn of mrNodes" [value]="mrn.json.value"
+                    [selected]="mrnote == mrn.json.value">
+                    {{ mrn.json.value }} ( {{ mrn.json.description }} ) </ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </div>
+
+    <!-- Meter, Modem & Simcard Action Section End -->
+    <ion-item-divider color="light" class="pointer" (click)="showActionSection(1)"
+      *ngIf="((item.json.worktype === soTypes.ZINL || (item.json.worktype === soTypes.ZINR && hideShowRegister)) && (attr.ta0functionclass === functClass.NMTR || attr.ta0functionclass === functClass.RMTR || attr.ta0functionclass === functClass.SMTR || attr.ta0functionclass === functClass.SMTR_CM)) || ((meterExisting && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0removeind) || (meterExisting && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0installind) || (meterExisting && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0installind === true && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0existingdevice === true) || (meterExisting && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0replaceind) ||
+    (modemExisting && item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0removeind)  || (modemExisting && item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0installind) || (modemExisting && item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0replaceind) ||
+    (simcardExisting && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0removeind) || (simcardExisting && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0installind) || (simcardExisting && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0replaceind) || 
+    (ctExisting && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0installind ) || (ctExisting && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0removeind) || (ctExisting && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0replaceind) ||
+    (ptExisting && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0installind) || (ptExisting && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0removeind) || (ptExisting && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0replaceind))">
+      <ion-row align-items-center>
+        <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-icon name="swap"></ion-icon>&nbsp; <strong>ACTION SECTION</strong>
+        </ion-col>
+        <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;text-align: right;">
+          <ion-icon name="arrow-forward" style="zoom: 1.5;" *ngIf="!showAction"></ion-icon>
+          <ion-icon name="arrow-down" style="zoom: 1.5;" *ngIf="showAction"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-item-divider>
+
+    <div *ngIf="showAction">
+      <!-- Meter Action Start -->
+      <ion-grid
+        *ngIf="(meterExisting && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0removeind) || (meterExisting && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0installind) || (meterExisting && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0installind === true && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0existingdevice === true) || (meterExisting && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0replaceind)"
+        style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
+        <ion-item-divider
+          *ngIf="(meterExisting && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0removeind) || (meterExisting && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0installind && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0existingdevice === false) || (meterExisting && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0replaceind)"
+          color="light">
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+              Meter
+            </ion-col>
+          </ion-row>
+        </ion-item-divider>
+        <ion-row
+          *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0installind || item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0removeind || item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0replaceind">
+          <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item
+              *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0installind === true && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0existingdevice === false">
+              <ion-label>Install</ion-label>
+              <ion-checkbox color="dark" checked="true" disabled="true"></ion-checkbox>
+            </ion-item>
+            <ion-item
+              *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0removeind === true && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0existingdevice === true">
+              <ion-label>Remove</ion-label>
+              <ion-checkbox color="dark" checked="true" disabled="true"></ion-checkbox>
+            </ion-item>
+            <ion-item
+              *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0existingdevice === false">
+              <ion-label>Replace</ion-label>
+              <ion-checkbox color="dark" checked="true" disabled="true"></ion-checkbox>
+            </ion-item>
+            <ion-item
+              *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0existingdevice === true">
+              <ion-label>Replace</ion-label>
+              <ion-checkbox color="dark" checked="true" disabled="true"></ion-checkbox>
+            </ion-item>
+            <!-- <ion-item *ngIf="showRemoSts">
+          <ion-label>Remove</ion-label>
+          <ion-checkbox color="dark" checked="attr.ta0removeind" [(ngModel)]="attr.ta0removeind" (ionChange)="checkActionChange(attr.ta0removeind, 'remove')"></ion-checkbox>
+        </ion-item> -->
+          </ion-col>
+        </ion-row>
+        <ion-row
+          *ngIf="(meterExisting && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0removeind) || (meterExisting && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0installind && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0existingdevice === false) || (meterExisting && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0replaceind)">
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label color="primary">Device Status</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-select [(ngModel)]="systemStatusMeterValue" interface="alert"
+                (ionChange)="checkingSystemStatus($event, 'meter')"
+                [ngClass]="(systemStatusMeterValue === undefined) ? 'redHighlightText' : 'blackHighlightText'"
+                [selectOptions]="{ title:'Device Status' }"
+                [disabled]="((item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0installind === true && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0existingdevice === false) || 
+                (item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0existingdevice === false)) ? 'true' : 'false'">
+                <!--   <ion-option *ngFor="let key of ta0dswnGroupList" value="{{key.json.value}}"> {{ key.json.value }} - {{ key.json.description }} </ion-option> -->
+                <ion-option value="AVLB"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0installind === true && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0existingdevice === false">
+                  AVLB
+                  &nbsp;-&nbsp; Device is available</ion-option>
+                <ion-option value="INST"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0installind === true && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0existingdevice === false">
+                  INST
+                  &nbsp;-&nbsp; Device is installed</ion-option>
+                <ion-option value="ZRTN"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0installind === true && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0existingdevice === false">
+                  ZRTN
+                  &nbsp;-&nbsp; Returned to Vendor</ion-option>
+                <ion-option value="ZREM"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0removeind === true && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0existingdevice === true">
+                  ZREM
+                  &nbsp;-&nbsp; Device is removed</ion-option>
+                <ion-option value="ZEVI"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0removeind === true && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0existingdevice === true">
+                  ZEVI
+                  &nbsp;-&nbsp; Evidence for theft case</ion-option>
+                <ion-option value="ZMIS"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0removeind === true && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0existingdevice === true">
+                  ZMIS
+                  &nbsp;-&nbsp; Device is missing</ion-option>
+                <!-- Replace Option -->
+                <ion-option value="AVLB"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0existingdevice === false">
+                  AVLB
+                  &nbsp;-&nbsp; Device is available</ion-option>
+                <ion-option value="INST"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0existingdevice === false">
+                  INST
+                  &nbsp;-&nbsp; Device is installed</ion-option>
+                <ion-option value="ZREM"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0existingdevice === true">
+                  ZREM
+                  &nbsp;-&nbsp; Device is removed</ion-option>
+                <ion-option value="ZEVI"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0existingdevice === true">
+                  ZEVI
+                  &nbsp;-&nbsp; Evidence for theft case</ion-option>
+                <ion-option value="ZMIS"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[maIndex].ta0existingdevice === true">
+                  ZMIS
+                  &nbsp;-&nbsp; Device is missing</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="showRemovalMeterStatus && systemStatusMeterValue === 'ZREM'">
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label color="primary">Removal Status</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-select [(ngModel)]="deviceStatusMeterValue" [selectOptions]="{ title:'Removal Status' }"
+                interface="alert"
+                [ngClass]="(deviceStatusMeterValue == '' || deviceStatusMeterValue == undefined) ? 'redHighlightText' : 'blackHighlightText'"
+                multiple="true">
+                <!-- <ion-option *ngFor="let key of ta0dswonGroupList" value="{{key.json.value}}"> {{ key.json.value }} - {{ key.json.description }} </ion-option> -->
+                <ion-option value="ZAGE">ZAGE &nbsp;-&nbsp; Aged</ion-option>
+                <ion-option value="ZCRS">ZCRS &nbsp;-&nbsp; 'Flying' Meter</ion-option>
+                <ion-option value="ZFMD">ZFMD &nbsp;-&nbsp; Faulty-Manufacturer Defect</ion-option>
+                <ion-option value="ZFPD">ZFPD &nbsp;-&nbsp; Faulty-Physically Damaged</ion-option>
+                <ion-option value="ZGC">ZGC &nbsp;-&nbsp; Good Condition</ion-option>
+                <ion-option value="ZCPF">ZCPF &nbsp;-&nbsp; Communication Port Faulty</ion-option>
+                <ion-option value="ZMDB">ZMDB &nbsp;-&nbsp; Display Blank </ion-option>
+                <ion-option value="ZBUR">ZBUR &nbsp;-&nbsp; Burnt</ion-option>
+                <ion-option value="ZOOA">ZOOA &nbsp;-&nbsp; Out of Accuracy</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <!-- Meter Action End -->
+
+      <!-- Modem Action Start -->
+      <ion-grid
+        *ngIf="(modemExisting && item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0removeind)  || (modemExisting && item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0installind) || (modemExisting && item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0replaceind)"
+        style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
+        <ion-item-divider color="light"
+          *ngIf="(modemExisting && item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0removeind)  || (modemExisting && item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0installind && item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0existingdevice === false) || (modemExisting && item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0replaceind)">
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+              Modem
+            </ion-col>
+          </ion-row>
+        </ion-item-divider>
+        <ion-row
+          *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0installind || item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0removeind || item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0replaceind">
+          <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item
+              *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0installind === true && item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0existingdevice === false">
+              <ion-label>Install</ion-label>
+              <ion-checkbox color="dark" checked="true" disabled="true"></ion-checkbox>
+            </ion-item>
+            <ion-item
+              *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0removeind === true &&  item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0existingdevice === true">
+              <ion-label>Remove</ion-label>
+              <ion-checkbox color="dark" checked="true" disabled="true"></ion-checkbox>
+            </ion-item>
+            <ion-item
+              *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0existingdevice === true">
+              <ion-label>Replace</ion-label>
+              <ion-checkbox color="dark" checked="true" disabled="true"></ion-checkbox>
+            </ion-item>
+            <ion-item
+              *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0existingdevice === false">
+              <ion-label>Replace</ion-label>
+              <ion-checkbox color="dark" checked="true" disabled="true"></ion-checkbox>
+            </ion-item>
+            <!-- <ion-item *ngIf="showRemoSts">
+          <ion-label>Remove</ion-label>
+          <ion-checkbox color="dark" checked="attr.ta0removeind" [(ngModel)]="attr.ta0removeind" (ionChange)="checkActionChange(attr.ta0removeind, 'remove')"></ion-checkbox>
+        </ion-item> -->
+          </ion-col>
+        </ion-row>
+        <ion-row
+          *ngIf="(modemExisting && item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0removeind)  || (modemExisting && item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0installind && item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0existingdevice === false) || (modemExisting && item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0replaceind)">
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label color="primary">Device Status</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-select [(ngModel)]="systemStatusModemValue" interface="alert"
+                (ionChange)="checkingSystemStatus($event, 'modem')"
+                [ngClass]="(systemStatusModemValue === undefined) ? 'redHighlightText' : 'blackHighlightText'"
+                [selectOptions]="{ title:'Device Status' }"
+                [disabled]="((item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0installind === true && item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0existingdevice === false) || 
+                (item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0existingdevice === false)) ? 'true' : 'false'">
+                <!--   <ion-option *ngFor="let key of ta0dswnGroupList" value="{{key.json.value}}"> {{ key.json.value }} - {{ key.json.description }} </ion-option> -->
+                <!-- Install and Remove Option -->
+                <ion-option value="AVLB"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0installind === true && item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0existingdevice === false">
+                  AVLB
+                  &nbsp;-&nbsp; Device is available</ion-option>
+                <ion-option value="INST"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0installind === true && item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0existingdevice === false">
+                  INST
+                  &nbsp;-&nbsp; Device is installed</ion-option>
+                <ion-option value="ZRTN"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0installind === true && item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0existingdevice === false">
+                  ZRTN
+                  &nbsp;-&nbsp; Returned to Vendor</ion-option>
+                <ion-option value="ZREM"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0removeind === true && item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0existingdevice === true">
+                  ZREM
+                  &nbsp;-&nbsp; Device is removed</ion-option>
+                <ion-option value="ZEVI"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0removeind === true && item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0existingdevice === true">
+                  ZEVI
+                  &nbsp;-&nbsp; Evidence for theft case</ion-option>
+                <ion-option value="ZMIS"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0removeind === true && item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0existingdevice === true">
+                  ZMIS
+                  &nbsp;-&nbsp; Device is missing</ion-option>
+                <!-- Replace Option -->
+                <ion-option value="AVLB"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0existingdevice === false">
+                  AVLB
+                  &nbsp;-&nbsp; Device is available</ion-option>
+                <ion-option value="INST"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0existingdevice === false">
+                  INST
+                  &nbsp;-&nbsp; Device is installed</ion-option>
+                <ion-option value="ZREM"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0existingdevice === true">
+                  ZREM
+                  &nbsp;-&nbsp; Device is removed</ion-option>
+                <ion-option value="ZEVI"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0existingdevice === true">
+                  ZEVI
+                  &nbsp;-&nbsp; Evidence for theft case</ion-option>
+                <ion-option value="ZMIS"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[modemIndex].ta0existingdevice === true">
+                  ZMIS
+                  &nbsp;-&nbsp; Device is missing</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="showRemovalModemStatus && systemStatusModemValue === 'ZREM'">
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label color="primary">Removal Status</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-select [(ngModel)]="deviceStatusModemValue" [selectOptions]="{ title:'Removal Status' }"
+                interface="alert"
+                [ngClass]="(deviceStatusModemValue == undefined || deviceStatusModemValue == '') ? 'redHighlightText' : 'blackHighlightText'"
+                multiple="true">
+                <!-- <ion-option *ngFor="let key of ta0dswonGroupList" value="{{key.json.value}}"> {{ key.json.value }} - {{ key.json.description }} </ion-option> -->
+                <ion-option value="ZAGE">ZAGE &nbsp;-&nbsp; Aged</ion-option>
+                <ion-option value="ZCRS">ZCRS &nbsp;-&nbsp; 'Flying' Meter</ion-option>
+                <ion-option value="ZFMD">ZFMD &nbsp;-&nbsp; Faulty-Manufacturer Defect</ion-option>
+                <ion-option value="ZFPD">ZFPD &nbsp;-&nbsp; Faulty-Physically Damaged</ion-option>
+                <ion-option value="ZGC">ZGC &nbsp;-&nbsp; Good Condition</ion-option>
+                <ion-option value="ZCPF">ZCPF &nbsp;-&nbsp; Communication Port Faulty</ion-option>
+                <ion-option value="ZMDB">ZMDB &nbsp;-&nbsp; Display Blank </ion-option>
+                <ion-option value="ZBUR">ZBUR &nbsp;-&nbsp; Burnt</ion-option>
+                <ion-option value="ZOOA">ZOOA &nbsp;-&nbsp; Out of Accuracy</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <!-- Modem Action End -->
+
+      <!-- Simcard Action Start -->
+      <ion-grid
+        *ngIf="(simcardExisting && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0removeind) || (simcardExisting && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0installind) || (simcardExisting && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0replaceind)"
+        style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
+        <ion-item-divider color="light"
+          *ngIf="(simcardExisting && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0removeind) || (simcardExisting && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0installind && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0existingdevice === false) || (simcardExisting && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0replaceind)">
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+              Simcard
+            </ion-col>
+          </ion-row>
+        </ion-item-divider>
+        <ion-row
+          *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0installind || item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0removeind || item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0replaceind">
+          <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item
+              *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0installind === true && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0existingdevice === false">
+              <ion-label>Install</ion-label>
+              <ion-checkbox color="dark" checked="true" disabled="true"></ion-checkbox>
+            </ion-item>
+            <ion-item
+              *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0removeind === true && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0existingdevice === true">
+              <ion-label>Remove</ion-label>
+              <ion-checkbox color="dark" checked="true" disabled="true"></ion-checkbox>
+            </ion-item>
+            <ion-item
+              *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0existingdevice === false">
+              <ion-label>Replace</ion-label>
+              <ion-checkbox color="dark" checked="true" disabled="true"></ion-checkbox>
+            </ion-item>
+            <ion-item
+              *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0existingdevice === true">
+              <ion-label>Replace</ion-label>
+              <ion-checkbox color="dark" checked="true" disabled="true"></ion-checkbox>
+            </ion-item>
+
+          </ion-col>
+        </ion-row>
+        <ion-row
+          *ngIf="(simcardExisting && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0removeind) || (simcardExisting && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0installind && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0existingdevice === false) || (simcardExisting && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0replaceind)">
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label color="primary">Device Status</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-select [(ngModel)]="systemStatusSimcardValue" interface="alert"
+                (ionChange)="checkingSystemStatus($event, 'simcard')"
+                [ngClass]="(systemStatusSimcardValue === undefined) ? 'redHighlightText' : 'blackHighlightText'"
+                [selectOptions]="{ title:'Device Status' }"
+                [disabled]="((item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0installind === true && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0existingdevice === false) || 
+                (item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0existingdevice === false)) ? 'true' : 'false'">
+                <!--   <ion-option *ngFor="let key of ta0dswnGroupList" value="{{key.json.value}}"> {{ key.json.value }} - {{ key.json.description }} </ion-option> -->
+                <!-- Install and Remove Option -->
+                <ion-option value="AVLB"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0installind === true && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0existingdevice === false">
+                  AVLB
+                  &nbsp;-&nbsp; Device is available</ion-option>
+                <ion-option value="INST"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0installind === true && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0existingdevice === false">
+                  INST
+                  &nbsp;-&nbsp; Device is installed</ion-option>
+                <ion-option value="ZRTN"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0installind === true && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0existingdevice === false">
+                  ZRTN
+                  &nbsp;-&nbsp; Returned to Vendor</ion-option>
+                <ion-option value="ZREM"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0removeind === true && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0existingdevice === true">
+                  ZREM
+                  &nbsp;-&nbsp; Device is removed</ion-option>
+                <ion-option value="ZEVI"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0removeind === true && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0existingdevice === true">
+                  ZEVI
+                  &nbsp;-&nbsp; Evidence for theft case</ion-option>
+                <ion-option value="ZMIS"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0removeind === true && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0existingdevice === true">
+                  ZMIS
+                  &nbsp;-&nbsp; Device is missing</ion-option>
+                <!-- Replace Option -->
+                <ion-option value="AVLB"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0existingdevice === false">
+                  AVLB
+                  &nbsp;-&nbsp; Device is available</ion-option>
+                <ion-option value="INST"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0existingdevice === false">
+                  INST
+                  &nbsp;-&nbsp; Device is installed</ion-option>
+                <ion-option value="ZREM"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0existingdevice === true">
+                  ZREM
+                  &nbsp;-&nbsp; Device is removed</ion-option>
+                <ion-option value="ZEVI"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0existingdevice === true">
+                  ZEVI
+                  &nbsp;-&nbsp; Evidence for theft case</ion-option>
+                <ion-option value="ZMIS"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[simcardIndex].ta0existingdevice === true">
+                  ZMIS
+                  &nbsp;-&nbsp; Device is missing</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="showRemovalSimcardStatus && systemStatusSimcardValue === 'ZREM'">
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label color="primary">Removal Status</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-select [(ngModel)]="deviceStatusSimcardValue" [selectOptions]="{ title:'Removal Status' }"
+                interface="alert"
+                [ngClass]="(deviceStatusSimcardValue == undefined || deviceStatusSimcardValue == '') ? 'redHighlightText' : 'blackHighlightText'"
+                multiple="true">
+                <!-- <ion-option *ngFor="let key of ta0dswonGroupList" value="{{key.json.value}}"> {{ key.json.value }} - {{ key.json.description }} </ion-option> -->
+                <ion-option value="ZAGE">ZAGE &nbsp;-&nbsp; Aged</ion-option>
+                <ion-option value="ZCRS">ZCRS &nbsp;-&nbsp; 'Flying' Meter</ion-option>
+                <ion-option value="ZFMD">ZFMD &nbsp;-&nbsp; Faulty-Manufacturer Defect</ion-option>
+                <ion-option value="ZFPD">ZFPD &nbsp;-&nbsp; Faulty-Physically Damaged</ion-option>
+                <ion-option value="ZGC">ZGC &nbsp;-&nbsp; Good Condition</ion-option>
+                <ion-option value="ZCPF">ZCPF &nbsp;-&nbsp; Communication Port Faulty</ion-option>
+                <ion-option value="ZMDB">ZMDB &nbsp;-&nbsp; Display Blank </ion-option>
+                <ion-option value="ZBUR">ZBUR &nbsp;-&nbsp; Burnt</ion-option>
+                <ion-option value="ZOOA">ZOOA &nbsp;-&nbsp; Out of Accuracy</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <!-- Simcard Action End -->
+
+      <!-- CT Action Start -->
+      <ion-grid
+        *ngIf="(ctExisting && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0installind ) || (ctExisting && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0removeind) || (ctExisting && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0replaceind)"
+        style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
+        <ion-item-divider color="light"
+          *ngIf="item.json.soWorkType != soTypes.ZINL && ((item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0installind && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0existingdevice === false) || item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0removeind || item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0replaceind)">
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+              Current Transformer, CT
+            </ion-col>
+          </ion-row>
+        </ion-item-divider>
+        <ion-row
+          *ngIf="(ctExisting && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0installind) || (ctExisting && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0removeind) || (ctExisting && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0replaceind)">
+          <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item
+              *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0installind === true && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0existingdevice === false">
+              <ion-label>Install</ion-label>
+              <ion-checkbox color="dark" checked="true" disabled="true"></ion-checkbox>
+            </ion-item>
+            <ion-item
+              *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0removeind === true && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0existingdevice === true">
+              <ion-label>Remove</ion-label>
+              <ion-checkbox color="dark" checked="true" disabled="true"></ion-checkbox>
+            </ion-item>
+            <ion-item
+              *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0existingdevice === false">
+              <ion-label>Replace</ion-label>
+              <ion-checkbox color="dark" checked="true" disabled="true"></ion-checkbox>
+            </ion-item>
+            <ion-item
+              *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0existingdevice === true">
+              <ion-label>Replace</ion-label>
+              <ion-checkbox color="dark" checked="true" disabled="true"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row
+          *ngIf="(ctExisting && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0installind && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0existingdevice === false) || (ctExisting && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0removeind) || (ctExisting && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0replaceind)">
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label color="primary">Device Status</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-select [(ngModel)]="systemStatusCtValue" interface="alert"
+                (ionChange)="checkingSystemStatus($event, 'ct')"
+                [ngClass]="(systemStatusCtValue === undefined) ? 'redHighlightText' : 'blackHighlightText'"
+                [selectOptions]="{ title:'Device Status' }"
+                [disabled]="((item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0installind === true && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0existingdevice === false) || 
+                (item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0existingdevice === false)) ? 'true' : 'false'">
+                <!--   <ion-option *ngFor="let key of ta0dswnGroupList" value="{{key.json.value}}"> {{ key.json.value }} - {{ key.json.description }} </ion-option> -->
+                <!-- Install and Remove -->
+                <ion-option value="AVLB"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0installind === true && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0existingdevice === false">
+                  AVLB
+                  &nbsp;-&nbsp; Device is available</ion-option>
+                <ion-option value="INST"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0installind === true && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0existingdevice === false">
+                  INST
+                  &nbsp;-&nbsp; Device is installed</ion-option>
+                <ion-option value="ZRTN"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0installind === true && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0existingdevice === false">
+                  ZRTN
+                  &nbsp;-&nbsp; Returned to Vendor</ion-option>
+                <ion-option value="ZREM"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0removeind === true && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0existingdevice === true">
+                  ZREM
+                  &nbsp;-&nbsp; Device is removed</ion-option>
+                <ion-option value="ZEVI"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0removeind === true && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0existingdevice === true">
+                  ZEVI
+                  &nbsp;-&nbsp; Evidence for theft case</ion-option>
+                <ion-option value="ZMIS"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0removeind === true && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0existingdevice === true">
+                  ZMIS
+                  &nbsp;-&nbsp; Device is missing</ion-option>
+                <!-- Replace Option -->
+                <ion-option value="AVLB"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0existingdevice === false">
+                  AVLB
+                  &nbsp;-&nbsp; Device is available</ion-option>
+                <ion-option value="INST"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0existingdevice === false">
+                  INST
+                  &nbsp;-&nbsp; Device is installed</ion-option>
+                <ion-option value="ZREM"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0existingdevice === true">
+                  ZREM
+                  &nbsp;-&nbsp; Device is removed</ion-option>
+                <ion-option value="ZEVI"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0existingdevice === true">
+                  ZEVI
+                  &nbsp;-&nbsp; Evidence for theft case</ion-option>
+                <ion-option value="ZMIS"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[ctIndex].ta0existingdevice === true">
+                  ZMIS
+                  &nbsp;-&nbsp; Device is missing</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="showRemovalCtStatus && systemStatusCtValue === 'ZREM'">
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label color="primary">Removal Status</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-select [(ngModel)]="deviceStatusCtValue" [selectOptions]="{ title:'Removal Status' }"
+                interface="alert"
+                [ngClass]="(deviceStatusCtValue == undefined || deviceStatusCtValue == '') ? 'redHighlightText' : 'blackHighlightText'"
+                multiple="true">
+                <!-- <ion-option *ngFor="let key of ta0dswonGroupList" value="{{key.json.value}}"> {{ key.json.value }} - {{ key.json.description }} </ion-option> -->
+                <ion-option value="ZAGE">ZAGE &nbsp;-&nbsp; Aged</ion-option>
+                <ion-option value="ZCRS">ZCRS &nbsp;-&nbsp; 'Flying' Meter</ion-option>
+                <ion-option value="ZFMD">ZFMD &nbsp;-&nbsp; Faulty-Manufacturer Defect</ion-option>
+                <ion-option value="ZFPD">ZFPD &nbsp;-&nbsp; Faulty-Physically Damaged</ion-option>
+                <ion-option value="ZGC">ZGC &nbsp;-&nbsp; Good Condition</ion-option>
+                <ion-option value="ZCPF">ZCPF &nbsp;-&nbsp; Communication Port Faulty</ion-option>
+                <ion-option value="ZMDB">ZMDB &nbsp;-&nbsp; Display Blank </ion-option>
+                <ion-option value="ZBUR">ZBUR &nbsp;-&nbsp; Burnt</ion-option>
+                <ion-option value="ZOOA">ZOOA &nbsp;-&nbsp; Out of Accuracy</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <!-- CT Action End -->
+
+      <!-- PT Action Start -->
+      <ion-grid
+        *ngIf="(ptExisting && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0installind) || (ptExisting && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0removeind) || (ptExisting && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0replaceind)"
+        style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
+        <ion-item-divider color="light"
+          *ngIf="item.json.soWorkType != soTypes.ZINL && ((item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0installind && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0existingdevice === false) || item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0removeind || item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0replaceind)">
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+              Potential Transformer, PT
+            </ion-col>
+          </ion-row>
+        </ion-item-divider>
+        <ion-row
+          *ngIf="(ptExisting && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0installind) || (ptExisting && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0removeind) || (ptExisting && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0replaceind)">
+          <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item
+              *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0installind === true && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0existingdevice === false">
+              <ion-label>Install</ion-label>
+              <ion-checkbox color="dark" checked="true" disabled="true"></ion-checkbox>
+            </ion-item>
+            <ion-item
+              *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0removeind == true && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0existingdevice === true">
+              <ion-label>Remove</ion-label>
+              <ion-checkbox color="dark" checked="true" disabled="true"></ion-checkbox>
+            </ion-item>
+            <ion-item
+              *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0existingdevice === false">
+              <ion-label>Replace</ion-label>
+              <ion-checkbox color="dark" checked="true" disabled="true"></ion-checkbox>
+            </ion-item>
+            <ion-item
+              *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0existingdevice === true">
+              <ion-label>Replace</ion-label>
+              <ion-checkbox color="dark" checked="true" disabled="true"></ion-checkbox>
+            </ion-item>
+            <!-- <ion-item *ngIf="showRemoSts">
+          <ion-label>Remove</ion-label>
+          <ion-checkbox color="dark" checked="attr.ta0removeind" [(ngModel)]="attr.ta0removeind" (ionChange)="checkActionChange(attr.ta0removeind, 'remove')"></ion-checkbox>
+        </ion-item> -->
+          </ion-col>
+        </ion-row>
+        <ion-row
+          *ngIf="(ptExisting && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0installind && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0existingdevice === false) || (ptExisting && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0removeind) || (ptExisting && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0replaceind)">
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label color="primary">Device Status</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-select [(ngModel)]="systemStatusPtValue" interface="alert"
+                (ionChange)="checkingSystemStatus($event, 'pt')"
+                [ngClass]="(systemStatusPtValue === undefined) ? 'redHighlightText' : 'blackHighlightText'"
+                [selectOptions]="{ title:'Device Status' }"
+                [disabled]="((item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0installind === true && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0existingdevice === false) || 
+                (item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0existingdevice === false)) ? 'true' : 'false'">
+                <!--   <ion-option *ngFor="let key of ta0dswnGroupList" value="{{key.json.value}}"> {{ key.json.value }} - {{ key.json.description }} </ion-option> -->
+                <!-- Instal and Remove Option -->
+                <ion-option value="AVLB"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0installind === true && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0existingdevice === false">
+                  AVLB
+                  &nbsp;-&nbsp; Device is available</ion-option>
+                <ion-option value="INST"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0installind === true && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0existingdevice === false">
+                  INST
+                  &nbsp;-&nbsp; Device is installed</ion-option>
+                <ion-option value="ZRTN"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0installind === true && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0existingdevice === false">
+                  ZRTN
+                  &nbsp;-&nbsp; Returned to Vendor</ion-option>
+                <ion-option value="ZREM"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0removeind === true && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0existingdevice === true">
+                  ZREM
+                  &nbsp;-&nbsp; Device is removed</ion-option>
+                <ion-option value="ZEVI"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0removeind === true && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0existingdevice === true">
+                  ZEVI
+                  &nbsp;-&nbsp; Evidence for theft case</ion-option>
+                <ion-option value="ZMIS"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0removeind === true && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0existingdevice === true">
+                  ZMIS
+                  &nbsp;-&nbsp; Device is missing</ion-option>
+                <!-- Replace Option -->
+                <ion-option value="AVLB"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0existingdevice === false">
+                  AVLB
+                  &nbsp;-&nbsp; Device is available</ion-option>
+                <ion-option value="INST"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0existingdevice === false">
+                  INST
+                  &nbsp;-&nbsp; Device is installed</ion-option>
+                <ion-option value="ZREM"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0existingdevice === true">
+                  ZREM
+                  &nbsp;-&nbsp; Device is removed</ion-option>
+                <ion-option value="ZEVI"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0existingdevice === true">
+                  ZEVI
+                  &nbsp;-&nbsp; Evidence for theft case</ion-option>
+                <ion-option value="ZMIS"
+                  *ngIf="item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0replaceind === true && item.json.ta0feeder[fIndex].multiassetlocci[ptIndex].ta0existingdevice === true">
+                  ZMIS
+                  &nbsp;-&nbsp; Device is missing</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="showRemovalPtStatus && systemStatusPtValue === 'ZREM'">
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label color="primary">Removal Status</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-select [(ngModel)]="deviceStatusPtValue" [selectOptions]="{ title:'Removal Status' }"
+                interface="alert"
+                [ngClass]="(deviceStatusPtValue == undefined || deviceStatusPtValue == '') ? 'redHighlightText' : 'blackHighlightText'"
+                multiple="true">
+                <!-- <ion-option *ngFor="let key of ta0dswonGroupList" value="{{key.json.value}}"> {{ key.json.value }} - {{ key.json.description }} </ion-option> -->
+                <ion-option value="ZAGE">ZAGE &nbsp;-&nbsp; Aged</ion-option>
+                <ion-option value="ZCRS">ZCRS &nbsp;-&nbsp; 'Flying' Meter</ion-option>
+                <ion-option value="ZFMD">ZFMD &nbsp;-&nbsp; Faulty-Manufacturer Defect</ion-option>
+                <ion-option value="ZFPD">ZFPD &nbsp;-&nbsp; Faulty-Physically Damaged</ion-option>
+                <ion-option value="ZGC">ZGC &nbsp;-&nbsp; Good Condition</ion-option>
+                <ion-option value="ZCPF">ZCPF &nbsp;-&nbsp; Communication Port Faulty</ion-option>
+                <ion-option value="ZMDB">ZMDB &nbsp;-&nbsp; Display Blank </ion-option>
+                <ion-option value="ZBUR">ZBUR &nbsp;-&nbsp; Burnt</ion-option>
+                <ion-option value="ZOOA">ZOOA &nbsp;-&nbsp; Out of Accuracy</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <!-- PT Action End -->
+
+      <!--Connection PT & CT Start -->
+      <ion-row *ngIf="item.json.ta0newvoltage > 3 ">
+        <!-- <ion-col *ngIf="item.json.soWorkType === soTypes.ZIST || item.json.soWorkType === soTypes.ZUDN || item.json.soWorkType === soTypes.ZSRO || item.json.soWorkType === soTypes.ZUNL || item.json.soWorkType === soTypes.ZRPL|| item.json.soWorkType === soTypes.ZRPM"> -->
+        <ion-col
+          *ngIf="item.json.soWorkType === soTypes.ZIST || item.json.soWorkType === soTypes.ZUDN || item.json.soWorkType === soTypes.ZSRO || item.json.soWorkType === soTypes.ZRMV  || item.json.soWorkType === soTypes.ZRPC ">
+
+          <ion-item-divider color="light">Connection State PT & CT </ion-item-divider>
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Is PT connected directly ('direct')?</ion-label>
+              </ion-item>
+              <ion-list radio-group [(ngModel)]="ta0ptcontype" (ionChange)="ptCon($event)">
+                <ion-item>
+                  <ion-label color="primary">Direct</ion-label>
+                  <ion-radio value="Direct"></ion-radio>
+                </ion-item>
+                <ion-item>
+                  <ion-label color="primary">Indirect</ion-label>
+                  <ion-radio value="Indirect"></ion-radio>
+                </ion-item>
+              </ion-list>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Is CT connected directly ('direct')?</ion-label>
+              </ion-item>
+              <ion-list radio-group [(ngModel)]="ta0ctcontype" (ionChange)="ctCon($event)">
+                <ion-item>
+                  <ion-label color="primary">Direct</ion-label>
+                  <ion-radio value="Direct"></ion-radio>
+                </ion-item>
+                <ion-item>
+                  <ion-label color="primary">Indirect</ion-label>
+                  <ion-radio value="Indirect"></ion-radio>
+                </ion-item>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+      <!--Connection PT & CT End -->
+
+      <!-- Already comment, opened by shankar on 5th sep 2018 -->
+      <!-- Remove WMAT from ZINR by alif on 20th dec 2018 -->
+      <!-- soTypes.ZINR === item.json.worktype -->
+      <ion-item-divider color="light"
+        *ngIf="(soTypes.ZINL === item.json.worktype) && (attr.ta0functionclass === functClass.NMTR || attr.ta0functionclass === functClass.RMTR || attr.ta0functionclass === functClass.SMTR || attr.ta0functionclass === functClass.SMTR_CM)">
+        <ion-row>
+          <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+            Wrong Meter Attributes
+          </ion-col>
+        </ion-row>
+      </ion-item-divider>
+      <ion-row
+        *ngIf="(soTypes.ZINL === item.json.worktype) && (attr.ta0functionclass === functClass.NMTR || attr.ta0functionclass === functClass.RMTR || attr.ta0functionclass === functClass.SMTR || attr.ta0functionclass === functClass.SMTR_CM)">
+        <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label color="primary">Wrong Meter Attributes Indicator</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-select [(ngModel)]="ta0wrgmtrind" interface="popover" (ionChange)="onHideShowRegister($event)">
+              <ion-option value="true" [selected]="ta0wrgmtrind === true">Yes</ion-option>
+              <ion-option value="false" [selected]="ta0wrgmtrind === false">No</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div
+      *ngIf="hideShowRegister && showContainer && (attr.ta0functionclass === functClass.NMTR || attr.ta0functionclass === functClass.SMTR || attr.ta0functionclass === functClass.SMTR_CM || attr.ta0functionclass === functClass.RMTR)">
+      <ion-item-divider color="light" (click)="showRegisterSection(1)" class="pointer">
+        <ion-row align-items-center>
+          <ion-col col-12 col-sm-12 col-md-10 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-icon name="speedometer"></ion-icon>&nbsp; <strong>REGISTER SECTION</strong>
+          </ion-col>
+          <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;text-align: right;">
+            <ion-icon name="arrow-forward" style="zoom: 1.5;" *ngIf="!showRegister"></ion-icon>
+            <ion-icon name="arrow-down" style="zoom: 1.5;" *ngIf="showRegister"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-item-divider>
+      <div *ngIf="showRegister">
+        <ion-grid>
+          <ion-list>
+            <ion-item>
+              <ion-row>
+                <ion-col col-1><strong>Reset</strong></ion-col>
+                <ion-col col-5><strong>Meter Type</strong></ion-col>
+                <ion-col col-2><strong>Meter Reading</strong></ion-col>
+                <ion-col col-2><strong>RF</strong></ion-col>
+                <ion-col col-2><strong>MF</strong></ion-col>
+              </ion-row>
+            </ion-item>
+            <div *ngFor="let register of attr.ta0registers; let j = index;">
+              <div *ngFor="let reading of register.ta0meterreading;">
+                <div *ngIf="reading.ta0readingtype === 'LMR' || reading.ta0readingtype === 'TMR'">
+                  <ion-item [ngClass]="j%2 != 0 ? 'classA' : 'classB'">
+                    <ion-row>
+                      <ion-col col-1><code *ngIf="reading.ta0readingtype === 'LMR'">n</code><code
+                          *ngIf="reading.ta0readingtype === 'TMR'">n-1</code></ion-col>
+                      <ion-col col-5>{{ register.ta0registertype }} &nbsp; - &nbsp; {{ register.ta0registertypedesc }}
+                      </ion-col>
+                      <ion-col col-2>{{ reading.ta0reading }}</ion-col>
+                      <ion-col col-2>{{ register.ta0registerfactor }}</ion-col>
+                      <ion-col col-2>{{ attr.ta0mf }}</ion-col>
+                    </ion-row>
+                  </ion-item>
+                </div>
+              </div>
+            </div>
+          </ion-list>
+        </ion-grid>
+      </div>
+      <div *ngIf="item.json.worktype === soTypes.ZINL && showContainer  && attr.ta0replaceind === true">
+        <div *ngIf="showRegister">
+          <ion-grid
+            style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
+            *ngFor="let register of attr.ta0registers; let j = index">
+            <ion-item-divider color="light">
+              <ion-row>
+                <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+                  Section {{ j + 1 }}
+                </ion-col>
+              </ion-row>
+            </ion-item-divider>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Register Code</ion-label>
+                  <ion-input id="test2" type="text" [(ngModel)]="register.ta0registertype" placeholder="Register Type"
+                    readonly="true" text-right></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Register Type</ion-label>
+                  <ion-input id="test2" type="text" [(ngModel)]="register.ta0registertypedesc"
+                    placeholder="Register Type Description" readonly="true" text-right></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Unit of Measurement</ion-label>
+                  <ion-input id="test2" type="text" [(ngModel)]="register.ta0uom" placeholder="Unit of Measurement"
+                    readonly="true" text-right></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Register Factor (RF)</ion-label>
+                  <ion-input id="test2" type="text" [(ngModel)]="register.ta0registerfactor"
+                    placeholder="Register Factor " readonly="true" text-right></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Total Factor (TF)</ion-label>
+                  <ion-input id="test2" type="text" [(ngModel)]="register.loc_reg_totalFactor"
+                    placeholder="Total Factor" readonly="true" text-right></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Dial Before (DB)</ion-label>
+                  <ion-input id="test2" type="text" [(ngModel)]="register.ta0dialbefore" placeholder="Dial Before"
+                    readonly="true" text-right></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Dial After (DA)</ion-label>
+                  <ion-input id="test2" type="text" [(ngModel)]="register.ta0dialafter" placeholder="Dial After"
+                    readonly="true" text-right></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <!-- Proposed Reading -->
+            <ion-grid
+              style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
+              *ngFor="let meterRead of register.ta0meterreading; let k = index">
+              <ion-row *ngIf="meterRead.ta0readingtype === 'PMR'">
+                <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-item>
+                    <ion-label color="primary">Proposed Reading </ion-label>
+                    <ion-input type="number" [(ngModel)]="meterRead.ta0reading" placeholder="Please Enter" readonly=true
+                      text-right></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-item>
+                    <ion-label color="primary">Proposed Reading Date</ion-label>
+                    <ion-input type="text" value="{{ meterRead.ta0readingdate  | date: gv.dateFormat  }}"
+                      placeholder="Please Enter" readonly=true text-right></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+
+              <!-- TMR Reading -->
+              <ion-row
+                *ngIf="meterRead.ta0readingtype === 'TMR' && item.json.worktype === soTypes.ZINL && item.json.ta0newvoltage > 3">
+                <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-item>
+                    <ion-label color="primary"> MRO Reading (n-1)</ion-label>
+                    <ion-input type="text" value="{{ meterRead.ta0reading }}" readonly=true text-right></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-item>
+                    <ion-label color="primary"> MRO Reading Date (n-1)</ion-label>
+                    <ion-input type="text" value="{{ meterRead.ta0mrodate  | date: gv.dateFormat  }}"
+                      placeholder="Please Enter" readonly=true text-right></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+
+              <!-- Last MRO Reading -->
+              <ion-row *ngIf="meterRead.ta0readingtype === 'LMR'">
+                <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-item>
+                    <ion-label color="primary">Last MRO Reading (n)</ion-label>
+                    <ion-input type="text" value="{{ meterRead.ta0reading }}" readonly=true text-right></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-item>
+                    <ion-label color="primary">Last MRO Reading Date (n)</ion-label>
+                    <ion-input type="text" value="{{ meterRead.ta0mrodate   | date: gv.dateFormat  }}" readonly=true
+                      text-right></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+
+              <!-- Actual Meter Reading -->
+              <ion-row *ngIf="meterRead.ta0readingtype === 'AMR'">
+                <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;"
+                  *ngIf="(soTypes.ZMMR !== item.json.worktype)">
+                  <ion-item>
+                    <ion-label color="primary" *ngIf="item.json.worktype === soTypes.ZRMV">Last Reading</ion-label>
+                    <ion-label color="primary" *ngIf="item.json.worktype !== soTypes.ZRMV">New Reading</ion-label>
+                    <ion-input type="text" [(ngModel)]="meterRead.ta0reading" placeholder="Please Enter" text-right
+                      (keyup)="checkUserInputNewReading($event, meterRead.ta0usage, meterRead, register.ta0dialafter,register.ta0dialbefore)"
+                      [ngClass]="(meterRead.ta0reading == '' || meterRead.ta0reading == undefined && !validateViRemark) ? 'redHighlightText' : 'blackHighlightText'">
+                    </ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;"
+                  *ngIf="(soTypes.ZMMR === item.json.worktype)">
+                  <ion-item>
+                    <ion-label color="primary">Last Reading</ion-label>
+                    <ion-input type="text" [(ngModel)]="meterRead.ta0reading" placeholder="Please Enter" text-right
+                      (keyup)="checkUserInputNewReading($event, meterRead.ta0usage, meterRead, register.ta0dialafter,register.ta0dialbefore)"
+                      [ngClass]="(meterRead.ta0reading == '' || meterRead.ta0reading == undefined && !validateViRemark) ? 'redHighlightText' : 'blackHighlightText'"
+                      (ionChange)="calculateUsage(register, meterRead.ta0reading, meterRead.ta0usage)">
+                    </ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;"
+                  *ngIf="(soTypes.ZMMR === item.json.worktype)">
+                  <ion-item>
+                    <ion-label color="primary"> Calculation Usage</ion-label>
+                    <ion-input type="number" [(ngModel)]="meterRead.ta0usage" readonly="true" text-right></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-grid>
+        </div>
+      </div>
+    </div>
+
+    <div
+      *ngIf="hideShowRegister && !showContainer && (attr.ta0functionclass === functClass.NMTR || attr.ta0functionclass === functClass.SMTR || attr.ta0functionclass === functClass.SMTR_CM || attr.ta0functionclass === functClass.RMTR)">
+      <ion-item-divider color="light" (click)="showRegisterSection(1)" class="pointer">
+        <ion-row align-items-center>
+          <ion-col col-12 col-sm-12 col-md-10 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-icon name="speedometer"></ion-icon>&nbsp; <strong>REGISTER SECTION</strong>
+          </ion-col>
+          <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;text-align: right;">
+            <ion-icon name="arrow-forward" style="zoom: 1.5;" *ngIf="!showRegister"></ion-icon>
+            <ion-icon name="arrow-down" style="zoom: 1.5;" *ngIf="showRegister"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-item-divider>
+      <div *ngIf="showRegister">
+        <ion-grid
+          style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
+          *ngFor="let register of attr.ta0registers; let j = index">
+          <ion-item-divider color="light">
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+                Section {{ j + 1 }}
+              </ion-col>
+            </ion-row>
+          </ion-item-divider>
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Register Code</ion-label>
+                <ion-input id="test2" type="text" [(ngModel)]="register.ta0registertype" placeholder="Register Type"
+                  readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Register Type</ion-label>
+                <ion-input id="test2" type="text" [(ngModel)]="register.ta0registertypedesc"
+                  placeholder="Register Type Description" readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Unit of Measurement</ion-label>
+                <ion-input id="test2" type="text" [(ngModel)]="register.ta0uom" placeholder="Unit of Measurement"
+                  readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Register Factor (RF)</ion-label>
+                <ion-input id="test2" type="text" [(ngModel)]="register.ta0registerfactor"
+                  placeholder="Register Factor " readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Total Factor (TF)</ion-label>
+                <ion-input id="test2" type="text" [(ngModel)]="register.loc_reg_totalFactor" placeholder="Total Factor"
+                  readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Dial Before (DB)</ion-label>
+                <ion-input id="test2" type="text" [(ngModel)]="register.ta0dialbefore" placeholder="Dial Before"
+                  readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Dial After (DA)</ion-label>
+                <ion-input id="test2" type="text" [(ngModel)]="register.ta0dialafter" placeholder="Dial After"
+                  readonly="true" text-right></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-grid
+            style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
+            *ngFor="let meterRead of register.ta0meterreading; let k = index">
+            <ion-row *ngIf="meterRead.ta0readingtype === 'PMR'">
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Proposed Reading </ion-label>
+                  <ion-input type="number" [(ngModel)]="meterRead.ta0reading" placeholder="Please Enter" readonly=true
+                    text-right></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Proposed Reading Date</ion-label>
+                  <ion-input type="text" value="{{ meterRead.ta0readingdate  | date: gv.dateFormat  }}"
+                    placeholder="Please Enter" readonly=true text-right></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row
+              *ngIf="meterRead.ta0readingtype === 'TMR' && item.json.worktype === soTypes.ZINL && item.json.ta0newvoltage > 3">
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary"> MRO Reading (n-1)</ion-label>
+                  <ion-input type="text" value="{{ meterRead.ta0reading }}" readonly=true text-right></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary"> MRO Reading Date (n-1)</ion-label>
+                  <ion-input type="text" value="{{ meterRead.ta0mrodate  | date: gv.dateFormat  }}"
+                    placeholder="Please Enter" readonly=true text-right></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row *ngIf="meterRead.ta0readingtype === 'LMR'">
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Last MRO Reading (n)</ion-label>
+                  <ion-input type="text" value="{{ meterRead.ta0reading }}" readonly=true text-right></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Last MRO Reading Date (n)</ion-label>
+                  <ion-input type="text" value="{{ meterRead.ta0mrodate   | date: gv.dateFormat  }}" readonly=true
+                    text-right></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row *ngIf="meterRead.ta0readingtype === 'AMR'">
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;"
+                *ngIf="(soTypes.ZMMR !== item.json.worktype)">
+                <ion-item>
+                  <ion-label color="primary" *ngIf="item.json.worktype === soTypes.ZRMV">Last Reading</ion-label>
+                  <ion-label color="primary" *ngIf="item.json.worktype !== soTypes.ZRMV">New Reading</ion-label>
+                  <ion-input type="text" [(ngModel)]="meterRead.ta0reading" placeholder="Please Enter" text-right
+                    (keyup)="checkUserInputNewReading($event, meterRead.ta0usage, meterRead, register.ta0dialafter,register.ta0dialbefore)"
+                    [ngClass]="(meterRead.ta0reading == '' || meterRead.ta0reading == undefined && !validateViRemark) ? 'redHighlightText' : 'blackHighlightText'">
+                  </ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;"
+                *ngIf="(soTypes.ZMMR === item.json.worktype)">
+                <ion-item>
+                  <ion-label color="primary">Last Reading</ion-label>
+                  <ion-input type="text" [(ngModel)]="meterRead.ta0reading" placeholder="Please Enter" text-right
+                    (keyup)="checkUserInputNewReading($event, meterRead.ta0usage, meterRead, register.ta0dialafter,register.ta0dialbefore)"
+                    [ngClass]="(meterRead.ta0reading == '' || meterRead.ta0reading == undefined && !validateViRemark) ? 'redHighlightText' : 'blackHighlightText'"
+                    (ionChange)="calculateUsage(register, meterRead.ta0reading, meterRead.ta0usage)">
+                  </ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;"
+                *ngIf="(soTypes.ZMMR === item.json.worktype)">
+                <ion-item>
+                  <ion-label color="primary"> Calculation Usage</ion-label>
+                  <ion-input type="number" [(ngModel)]="meterRead.ta0usage" readonly="true" text-right></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-grid>
+      </div>
+    </div>
+  </ion-grid>
+</ion-content>
+
+<ion-footer mode="md">
+  <ion-toolbar mode="md">
+    <ion-row>
+      <ion-col col-6 col-sm-6 col-md-6>
+        <button ion-button round block mode="md" (click)="saveRegisterDetails()">
+          Save
+        </button>
+      </ion-col>
+      <ion-col col-6 col-sm-6 col-md-6>
+        <button ion-button round block mode="md" (click)="goBack()">
+          Cancel
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,277 @@
+<ion-header mode="md">
+  <ion-navbar color="primary">
+    <ion-title>Device Scanning Details</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon [color]="gv.testMobile ? 'danger' : 'light'" name="md-planet" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<!-- <ion-header>
+    <ion-grid class="headerStyle">
+        <ion-row>
+            <ion-col col-2 col-md-2 col-sm-2 style="text-align: left; padding-top: 0px;">
+                <button ion-button menuToggle clear>
+                    <ion-icon name="menu" class="menuBackArrow"></ion-icon>
+                </button>
+            </ion-col>
+            <ion-col col-8 col-md-8 col-sm-8>
+                <div class="pageTitle">Device Scanning Details</div>
+            </ion-col>
+            <ion-col col-2 col-sm-2 style="word-wrap: break-all; text-align: right; padding-top: 0px; width:12px">
+                    <ion-col col-2 col-sm-2>
+                        <ion-fab top right style="top: 0%">
+                            <button ion-fab mini class="flash">
+                              <ion-icon class="flash_plnt" name="planet" [style.color]="gv.testMobile ? 'red':'green'"> {{ gv.testMobile ? 'Offline':'Online' }} </ion-icon>
+                            </button>
+                          </ion-fab>
+                    </ion-col>
+                    <ion-col col-2 col-sm-2 >
+                        <button ion-button color="primary" style="float: right;" (click)="goBack()">Back</button>
+                </ion-col>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header> -->
+
+<ion-content padding>
+  <ion-row>
+    <ion-col>
+      <ion-toggle style="float:right;" checked="true" (ionChange)="changeshowExcess()"></ion-toggle>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-6 col-lg-6 col-md-6 col-xs-6 col-sm-6>
+      <ion-row>
+        <ion-item>
+          <ion-label stacked>Gir Order Number</ion-label>
+          <ion-input [(ngModel)]="girVarItem.ta0girnum" type="text" disabled="true"></ion-input>
+        </ion-item>
+      </ion-row>
+    </ion-col>
+    <ion-col col-6 col-lg-6 col-md-6 col-xs-6 col-sm-6>
+      <ion-row>
+        <ion-item style="float: right;">
+          <ion-label stacked>Reservation Number</ion-label>
+          <ion-input [(ngModel)]="girVarItem.ta0reservationnum" type="text" disabled="true"></ion-input>
+        </ion-item>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col col-6 col-lg-6 col-md-6 col-xs-6 col-sm-6>
+      <ion-row>
+        <ion-item>
+          <ion-label stacked>Material Number</ion-label>
+          <ion-input [(ngModel)]="girVarItem.ta0materialnum" type="text" disabled="true"></ion-input>
+        </ion-item>
+      </ion-row>
+    </ion-col>
+    <ion-col col-6 col-lg-6 col-md-6 col-xs-6 col-sm-6>
+      <ion-row>
+        <ion-item style="float: right;">
+          <ion-label stacked>Material Description</ion-label>
+          <ion-input [(ngModel)]="girVarItem.description" type="text" disabled="true"></ion-input>
+        </ion-item>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+
+  <ion-row *ngIf="showExcessDetails">
+    <ion-col col-6 col-lg-6 col-md-6 col-xs-6 col-sm-6>
+      <ion-row>
+        <ion-item>
+          <ion-label stacked>Reservation Item</ion-label>
+          <ion-input [(ngModel)]="girVarItem.ta0itemlinenum" type="text" disabled="true"></ion-input>
+        </ion-item>
+      </ion-row>
+    </ion-col>
+    <ion-col col-6 col-lg-6 col-md-6 col-xs-6 col-sm-6>
+      <ion-row>
+        <ion-item style="float: right;">
+          <ion-label stacked>Site Id</ion-label>
+          <ion-input [(ngModel)]="girVarItem.siteid" type="text" disabled="true"></ion-input>
+        </ion-item>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="showExcessDetails">
+    <ion-col col-6 col-lg-6 col-md-6 col-xs-6 col-sm-6>
+      <ion-row>
+        <ion-item>
+          <ion-label stacked>Header Text</ion-label>
+          <ion-input [(ngModel)]="girVarItem.ta0headertext" type="text"></ion-input>
+        </ion-item>
+      </ion-row>
+    </ion-col>
+    <ion-col col-6 col-lg-6 col-md-6 col-xs-6 col-sm-6>
+      <ion-row>
+        <ion-item style="float: right;">
+          <ion-label stacked>Item Text</ion-label>
+          <ion-input [(ngModel)]="girVarItem.ta0itemtext" type="text"></ion-input>
+        </ion-item>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="showExcessDetails">
+    <ion-col col-6 col-lg-6 col-md-6 col-xs-6 col-sm-6>
+      <ion-row>
+        <ion-item>
+          <ion-label stacked>Unloading Point</ion-label>
+          <ion-input [(ngModel)]="girVarItem.ta0unloadingpoint" type="text"></ion-input>
+        </ion-item>
+      </ion-row>
+    </ion-col>
+    <!-- CR003 New Valuation Type -->
+    <ion-col col-6 col-lg-6 col-md-6 col-xs-6 col-sm-6>
+      <ion-item>
+        <ion-label stacked>Valuation Type</ion-label>
+        <ion-select [(ngModel)]="valuationType" placeholder="Please select value">
+          <ion-option *ngFor="let data of valuationTypeList" [value]="data.json.value" >{{data.json.description}}</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row class="heading-gap">
+    <ion-col col-6 col-lg-6 col-md-6 col-xs-6 col-sm-6>
+      <ion-row>
+        <ion-item>
+          <ion-label stacked>Goods Recipient Name</ion-label>
+          <ion-input [(ngModel)]="girVarItem.ta0goodrecipientname" type="text" disabled="true"></ion-input>
+        </ion-item>
+      </ion-row>
+    </ion-col>
+    <ion-col col-6 col-lg-6 col-md-6 col-xs-6 col-sm-6>
+      <ion-row>
+        <ion-item style="float: right;">
+          <ion-label stacked [color]="validGoodRecipientId">Goods Recipient</ion-label>
+          <select-searchable item-content [(ngModel)]="girVarItem.ta0issueto" [items]="this.laborItem"
+            itemValueField="laborcode" itemTextField="compositeName" [canSearch]="true"
+            (onChange)="laborCodeChange($event)">
+          </select-searchable>
+        </ion-item>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col col-6 col-lg-6 col-md-6 col-xs-6 col-sm-6>
+      <ion-row>
+        <ion-item style="float: right;">
+          <ion-label stacked>Quantity</ion-label>
+          <ion-input [(ngModel)]="girVarItem.ta0quantity" type="number" (keyup)="quantityValidation()">
+          </ion-input>
+        </ion-item>
+      </ion-row>
+    </ion-col>
+    <ion-col col-6 col-lg-6 col-md-6 col-xs-6 col-sm-6></ion-col>
+  </ion-row>
+
+  <ion-row style="margin-bottom: -16px;" *ngIf="showExcessDetails">
+    <ion-col col-6 style="padding-left: 21px;">
+      <ion-checkbox [(ngModel)]="scanToggle" (ionChange)="scanToggleChange()" style="float: left;"></ion-checkbox>
+      <span>
+        <ion-label style="font-size: 10px; float: left; margin-top: 3px; padding-left: 13px; color: green;">Do
+          you like to scan the devices... </ion-label>
+      </span>
+    </ion-col>
+    <ion-col col-6></ion-col>
+  </ion-row>
+  <ion-row *ngIf="showExcessDetails">
+    <ion-col col-11 col-lg-11 col-md-11 col-xs-11 col-sm-11>
+      <ion-item style="float: right;" *ngIf="!scanToggle">
+        <ion-label stacked> Enter Serial Number of Device </ion-label>
+        <ion-input type="text" [(ngModel)]="ta0serialnum"></ion-input>
+      </ion-item>
+      <ion-item style="float: right;" *ngIf="scanToggle">
+        <ion-label stacked> Scan Serial Number of Device </ion-label>
+        <ion-input type="text" [(ngModel)]="ta0serialnum" (keypress)="scanningDevices($event)"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col col-1 col-lg-1 col-md-1 col-xs-1 col-sm-1 style="margin: 22px 0px 0px 0px;">
+      <button ion-button style="float: right;" *ngIf="!scanToggle" (click)="addDeviceEnter()">
+        Okay
+      </button>
+      <button ion-button (click)="barcodeScan()" style="float: right;">
+        <ion-icon name="barcode" item-right></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="showDeviceStatus">
+    <ion-col col-12 col-lg-12 col-md-12 col-xs-12 col-sm-12>
+      <ion-list>
+        <ion-item>
+          <ion-card style="padding: 15px;">
+            <ion-card-header (click)="accordionListCheck()">
+              <ion-row>
+                <ion-col col-9>
+                  <b>List of Devices</b> ( Valid Count: <span style="color: green;">{{validCount}}</span>, In Valid
+                  Device Count: <span style="color: red;">{{inValidCount}}</span> )
+                </ion-col>
+                <ion-col col-3>
+                  <span style="float: right;">
+                    <ion-icon [name]="accListDevice ? 'arrow-down':'arrow-up'"></ion-icon>
+                  </span>
+                </ion-col>
+              </ion-row>
+            </ion-card-header>
+            <ion-card-content *ngIf="accListDevice">
+              <ion-list>
+                <ion-item *ngFor="let device of girVarItem.ta0goodsissueitem; let i = index;"
+                  [style.background-color]="i%2 != 0 ? '#fffffA':'#C4D8E2'">
+                  <ion-row [style.background-color]="i%2 != 0 ? '#fffffA':'#C4D8E2'">
+                    <ion-col col-1 text-wrap [style.background-color]="i%2 != 0 ? '#fffffA':'#C4D8E2'"
+                      [ngClass]="deleteCheck[i] ? 'deviceLabel AppDelete':'deviceLabel'">
+                      {{ i+1 }}.
+                    </ion-col>
+                    <ion-col col-5 text-wrap [style.background-color]="i%2 != 0 ? '#fffffA':'#C4D8E2'"
+                      [ngClass]="deleteCheck[i] ? 'deviceLabel AppDelete':'deviceLabel'">
+                      {{ device.ta0serialnum }}
+                    </ion-col>
+                    <ion-col col-5 text-wrap [style.background-color]="i%2 != 0 ? '#fffffA':'#C4D8E2'"
+                      [ngClass]="deleteCheck[i] ? 'deviceLabel AppDelete':'deviceLabel'" style="text-align: center;">
+                      {{ device.ta0remarks }}
+                    </ion-col>
+                    <ion-col col-1 class="text-right" [style.background-color]="i%2 != 0 ? '#fffffA':'#C4D8E2'">
+                      <button ion-button
+                        *ngIf="(device.ta0validated === 'true' ? true : (device.ta0validated === 'false' ? false : device.ta0validated)) && (device.ta0validasset === 'true' ? true : (device.ta0validasset === 'false' ? false : device.ta0validasset))"
+                        color="secondary" class="text-right" (click)="deleteDevices(i)">
+                        <ion-icon [name]="deleteCheck[i]? 'close':'trash'" item-center>
+                        </ion-icon>
+                      </button>
+                      <button ion-button
+                        *ngIf="(device.ta0validated === 'true' ? true : (device.ta0validated === 'false' ? false : device.ta0validated)) && !(device.ta0validasset === 'true' ? true : (device.ta0validasset === 'false' ? false : device.ta0validasset))"
+                        color="danger" class="text-right" (click)="deleteDevices(i)">
+                        <ion-icon [name]="deleteCheck[i]? 'close':'trash'" item-center>
+                        </ion-icon>
+                      </button>
+                      <button ion-button
+                        *ngIf="!(device.ta0validated === 'true' ? true : (device.ta0validated === 'false' ? false : device.ta0validated))"
+                        color="primary" class="text-right" (click)="deleteDevices(i)">
+                        <ion-icon [name]="deleteCheck[i]? 'close':'trash'" item-center>
+                        </ion-icon>
+                      </button>
+                    </ion-col>
+                  </ion-row>
+                </ion-item>
+                <ion-item>
+                  <button ion-button (click)="validSave()" style="padding: 15px;">Save</button>
+                  <button ion-button style="float: right; padding: 15px;" (click)="validateDevices()">Validate</button>
+                </ion-item>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col style="text-align: center;">
+      <button *ngIf="submitValid" ion-button (click)="submitValidation()" style="padding: 15px;">Submit</button>
+      <button ion-button (click)="cancelGirProcess()" style="padding: 15px;">Cancel Gir Process</button>
+    </ion-col>
+  </ion-row>
+</ion-content>

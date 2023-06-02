@@ -1,0 +1,288 @@
+// http://ionicframework.com/docs/theming/
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+// .pageTitle {
+//   // padding-top: 10px;
+//   font-weight: bold;
+//   font-size: 20px;
+//   align-items: left;
+//   text-align: center;
+// }
+
+// .modal-wrapper {
+//   height: 700px;
+// }
+
+.alert-success {
+  .alert-wrapper {
+    background-color: #d4edda;
+  }
+
+  .alert-title {
+    color: green;
+  }
+
+  button.alert-button.ok-button {
+    border-radius: 2px;
+    overflow: hidden;
+    height: 3.6rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: green;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+      0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    -webkit-transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+      -webkit-box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+      -webkit-box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1), background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+      color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1), background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+      color 300ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    margin: 0.4rem 0.2rem;
+    padding: 0 1.1em;
+  }
+}
+
+.alert-error {
+  .alert-wrapper {
+    background-color: rgb(248, 215, 218);
+  }
+
+  .alert-title {
+    color: red;
+  }
+
+  button.alert-button.ok-button {
+    border-radius: 2px;
+    overflow: hidden;
+    height: 3.6rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: red;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+      0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    -webkit-transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+      -webkit-box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+      -webkit-box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1), background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+      color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1), background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+      color 300ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    margin: 0.4rem 0.2rem;
+    padding: 0 1.1em;
+  }
+}
+
+.alert-warning {
+  .alert-wrapper {
+    background-color: #fff3cd;
+  }
+
+  button.alert-button.ok-button {
+    color: #000;
+  }
+}
+
+// .menuBackArrow {
+//   color: white;
+//   font-weight: bold;
+//   font-size: 22px;
+// }
+
+// .headerStyle {
+//   padding-bottom: 5px;
+//   padding-top: 10px;
+//   background-color: blue;
+//   color: white;
+// }
+
+// // #select-option {
+// //   margin-right: auto;
+// //   width: 100%;
+// // }
+
+// .pageTitle {
+//   // padding-top: 10px;
+//   font-weight: bold;
+//   font-size: 20px;
+//   align-items: left;
+// }
+
+// .toastMessage .toast-message {
+//   text-align: center;
+// }
+
+// .ion-icon {
+//   padding: 3px 10px 0px 0px;
+// }
+
+// .backbutton {
+//   width: 100%;
+//   text-align: left;
+// }
+
+// .ion-col {
+//   position: fixed;
+//   padding-bottom: 0 !important;
+// }
+
+// .input-cover {
+//   position: static;
+// }
+
+// .scroll-content {
+//   padding-bottom: 0 !important;
+// }
+
+// Text wrap for ion-select
+// IOS
+.alert-ios .alert-checkbox-label {
+  white-space: normal !important;
+}
+
+.alert-ios .alert-radio-label {
+  white-space: normal !important;
+}
+
+// ANDROID
+.alert-md .alert-checkbox-label {
+  white-space: normal !important;
+}
+
+// .item-divider {
+//   color: black;
+//   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+// }
+
+// .sealHeader {
+//   padding-bottom: 5px;
+//   padding-top: 10px;
+//   color: white;
+//   background-color: #0d47a1;
+// }
+
+// .popover-ios .popover-content {
+//   border-radius: 10px;
+//   width: 350px;
+//   min-width: 0;
+//   min-height: 0;
+//   max-height: 90%;
+//   color: #000;
+//   background: #fff;
+// }
+
+// ion-icon {
+//   &[class*="custom-"] {
+//     mask-size: 1em;
+//     // mask-size: 42%;
+//     mask-position: 50% 50%;
+//     mask-repeat: no-repeat;
+//     background: currentColor;
+
+//    /*  width: 10em;
+//     height: 3em; */
+//   }
+
+//   &[class*="custom-connected"] {
+//     mask-image: url(../assets/icon/connect.svg);
+//   }
+//   &[class*="custom-disconnect"] {
+//     mask-image: url(../assets/icon/disconnect.svg);
+//   }
+// }
+
+// @keyframes animateBlink{
+//   0%{
+//     color: black;
+//   }
+
+//   100%{
+//     color: green;
+//   }
+// }
+
+// @-webkit-keyframes animateBlink {
+//   0%{
+//     color: black;
+//   }
+
+//   100%{
+//     color: rgb(10, 255, 10);
+//   }
+// }
+
+// .userDetailsSection{
+//   border-radius: 15px;
+//   border: 10px solid #FF4500;
+// }
+
+// .statusBlinking{
+//  -webkit-animation:animateBlink 2s infinite ;
+//   animation: animateBlink 2s infinite;
+// }
+
+/* Start : Icon Online/Offline at Header Setting */
+.flash {
+  height: 28px !important;
+  padding: 12px 12px 12px 12px;
+  background-color: white;
+}
+
+@keyframes flash {
+  50% {
+    opacity: 0;
+  }
+}
+
+.flash_plnt {
+  animation: flash 1s linear infinite;
+  padding-right: 5px;
+  font-size: 15px;
+}
+
+.popover-ios .popover-content {
+  border-radius: 10px;
+  width: 300px;
+  min-width: 0;
+  min-height: 0;
+  max-height: 90%;
+  color: #000;
+  background: #fff;
+}
+
+.alert-finishdatetime {
+  .custom-message {
+    background-color: aqua;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .custom-error {
+    font-weight: normal;
+    font-size: 15px;
+  }
+}
+
+/* End : Icon Online/Offline at Header Setting */

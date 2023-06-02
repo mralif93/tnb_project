@@ -1,0 +1,434 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="md-menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Device Register Details</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon [color]="gv.testMobile ? 'danger' : 'light'" name="md-planet" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- Start: New Section -->
+  <ion-list ion-row>
+    <!-- Start: Header List -->
+    <ion-item-divider>
+      <ion-icon name="md-cube" item-start></ion-icon>
+      Device Details
+      <button mode="md" ion-button outline item-end (click)="updateAssetDetails(registerDetailItems)" *ngIf="isValid"
+        [disabled]="gv.testMobile">
+        Get Device Status
+      </button>
+    </ion-item-divider>
+    <!-- End: Header List -->
+
+    <!-- Start: Asset Number -->
+    <ion-item col-12 col-sm-12 col-md-6>
+      <h2>Asset Number</h2>
+      <p>{{ registerDetailItems.data.json.assetnum ? registerDetailItems.data.json.assetnum : '-' }}</p>
+    </ion-item>
+    <!-- End: Asset Number -->
+
+    <!-- Start: Serial Number -->
+    <ion-item col-12 col-sm-12 col-md-6>
+      <h2>Serial Number</h2>
+      <p>{{ registerDetailItems.data.json.serialnum ? registerDetailItems.data.json.serialnum : '-' }}</p>
+    </ion-item>
+    <!-- End: Serial Number -->
+
+    <!-- Start: Device Category -->
+    <ion-item col-12 col-sm-12 col-md-6>
+      <h2>Device Category</h2>
+      <p>{{ registerDetailItems.data.json.itemnum ? registerDetailItems.data.json.itemnum : '-' }}</p>
+    </ion-item>
+    <!-- End: Device Category -->
+
+    <!-- Start: Function Class -->
+    <ion-item col-12 col-sm-12 col-md-6>
+      <h2>Function Class</h2>
+      <p>{{ registerDetailItems.data.json.ta0functionclass ? registerDetailItems.data.json.ta0functionclass : '-' }}</p>
+    </ion-item>
+    <!-- End: Function Class -->
+
+    <!-- Start: MF -->
+    <ion-item col-12 col-sm-12 col-md-6>
+      <h2>MF</h2>
+      <p>{{ registerDetailItems.data.json.ta0mf ? registerDetailItems.data.json.ta0mf : '-' }}</p>
+    </ion-item>
+    <!-- End: MF -->
+
+    <!-- Start: MF -->
+    <ion-item col-12 col-sm-12 col-md-6>
+      <h2>AMI</h2>
+      <p>{{ registerDetailItems.data.json.ta0ami ? registerDetailItems.data.json.ta0ami : '-' }}</p>
+    </ion-item>
+    <!-- End: MF -->
+
+    <!-- Start: AMS -->
+    <ion-item col-12 col-sm-12 col-md-6>
+      <h2>AMS</h2>
+      <p>{{ registerDetailItems.data.json.ta0ams ? registerDetailItems.data.json.ta0ams : '-' }}</p>
+    </ion-item>
+    <!-- End: AMS -->
+
+    <!-- Start: AMCG -->
+    <ion-item col-12 col-sm-12 col-md-6>
+      <h2>AMCG</h2>
+      <p>{{ registerDetailItems.data.json.ta0amcg ? registerDetailItems.data.json.ta0amcg : '-' }}</p>
+    </ion-item>
+    <!-- End: AMCG -->
+
+    <!-- Start: Register Group -->
+    <ion-item col-12 col-sm-12 col-md-6 *ngIf="registerDetailItems.data.json.ta0registers">
+      <h2>Register Group</h2>
+      <p>
+        {{ registerDetailItems.data.json.ta0registers[0].ta0registergroup ? registerDetailItems.data.json.ta0registers[0].ta0registergroup : '-' }}
+      </p>
+    </ion-item>
+    <!-- End: Register Group -->
+
+    <!-- Start: Manufacturer -->
+    <ion-item col-12 col-sm-12 col-md-6>
+      <h2>Manufacturer</h2>
+      <p>{{ registerDetailItems.data.json.ta0manufacturer ? registerDetailItems.data.json.ta0manufacturer : '-' }}</p>
+    </ion-item>
+    <!-- End: Manufacturer -->
+
+    <!-- Start: Model -->
+    <ion-item col-12 col-sm-12 col-md-6>
+      <h2>Model</h2>
+      <p>{{ registerDetailItems.data.json.ta0model ? registerDetailItems.data.json.ta0model : '-' }}</p>
+    </ion-item>
+    <!-- End: Model -->
+
+    <!-- Start: Current Ratio -->
+    <ion-item col-12 col-sm-12 col-md-6>
+      <h2>Current Ratio</h2>
+      <p>{{ registerDetailItems.data.json.ta0currentratio ? registerDetailItems.data.json.ta0currentratio : '-' }}</p>
+    </ion-item>
+    <!-- End: Current Ratio -->
+
+    <!-- Start: Voltage Ratio -->
+    <ion-item col-12 col-sm-12 col-md-6>
+      <h2>Voltage Ratio</h2>
+      <p>{{ registerDetailItems.data.json.ta0voltageratio ? registerDetailItems.data.json.ta0voltageratio : '-' }}</p>
+    </ion-item>
+    <!-- End: Voltage Ratio -->
+
+    <!-- Start: Device Status -->
+    <ion-item col-12 col-sm-12 col-md-6>
+      <h2>Device Status</h2>
+      <p>{{ registerDetailItems.data.json.ta0systemstatus ? registerDetailItems.data.json.ta0systemstatus : '-' }}</p>
+    </ion-item>
+    <!-- End: Device Status -->
+
+    <!-- Start: Construction Date -->
+    <ion-item col-12 col-sm-12 col-md-6>
+      <h2>Construction Date</h2>
+      <p>{{ registerDetailItems.data.json.installdate ? registerDetailItems.data.json.installdate : '-' }}</p>
+    </ion-item>
+    <!-- End: Construction Date -->
+
+    <!-- Start: VA -->
+    <ion-item col-12 col-sm-12 col-md-6>
+      <h2>VA</h2>
+      <p>{{ registerDetailItems.data.json.ta0va ? registerDetailItems.data.json.ta0va : '-' }}</p>
+    </ion-item>
+    <!-- End: VA -->
+
+    <!-- Start: CT PT Info -->
+    <ion-item col-12 col-sm-12 col-md-6>
+      <h2>CT PT Info</h2>
+      <p>{{ registerDetailItems.data.json.ta0ctptinfo ? registerDetailItems.data.json.ta0ctptinfo : '-' }}</p>
+    </ion-item>
+    <!-- End: CT PT Info -->
+
+    <!-- Start: Device Voltage -->
+    <ion-item col-12 col-sm-12 col-md-6>
+      <h2>Device Voltage</h2>
+      <p>{{ registerDetailItems.data.json.ta0devicevoltage ? registerDetailItems.data.json.ta0devicevoltage : '-' }}</p>
+    </ion-item>
+    <!-- End: Device Voltage -->
+
+    <!-- Start: IP / Data No. -->
+    <ion-item col-12 col-sm-12 col-md-6>
+      <h2>IP / Data No.</h2>
+      <p>{{ registerDetailItems.data.json.ta0simcardip ? registerDetailItems.data.json.ta0simcardip : '-' }}</p>
+    </ion-item>
+    <!-- End: IP / Data No. -->
+
+
+    <!-- Start: Register Header List -->
+    <ion-item-divider
+      *ngIf="registerDetailItems.data.json.ta0registers && this.registerDetailItems.data.json.ta0functionclass !== 'CTTFR'">
+      <ion-icon name="ios-speedometer" item-start>
+      </ion-icon>
+      Register Details
+    </ion-item-divider>
+    <!-- End: Register Header List -->
+
+    <span ion-row style="width:100%"
+      *ngIf="registerDetailItems.data.json.ta0registers && this.registerDetailItems.data.json.ta0functionclass !== 'CTTFR'">
+      <!-- Start: Register List -->
+      <ion-item col-12 col-sm-12 col-md-6
+        *ngFor="let item of registerDetailItems.data.json.ta0registers; let j = index;">
+        <h2>
+          {{ item.ta0registernum ? item.ta0registernum:'-' }} : {{ item.ta0registertype ? item.ta0registertype:'-' }}
+        </h2>
+        <p>{{ item.ta0registertypedesc ? item.ta0registertypedesc:'-' }} : {{ item.ta0uom ? item.ta0uom:'-' }}</p>
+        <p>Factor : {{ item.ta0registerfactor ? item.ta0registerfactor:'-' }}</p>
+        <p>
+          Dial Before : {{ item.ta0dialbefore ? item.ta0dialbefore:'-' }} |
+          Dial After : {{ item.ta0dialafter ? item.ta0dialafter:'-' }}
+        </p>
+        <ion-icon name="md-speedometer" item-end></ion-icon>
+      </ion-item>
+      <!-- End: Register List -->
+    </span>
+
+
+  </ion-list>
+  <!-- End: New Section -->
+
+  <!-- <ion-card>
+    <ion-card-header>
+      <ion-row>
+        <ion-col style="align-self: center;">
+          <ion-item text-uppercase>
+            <ion-label color="primary"><strong>Device Details</strong></ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col *ngIf="(isValid)">
+          <button ion-button color="primary" (click)="updateAssetDetails(registerDetailItems)"
+            [disabled]="gv.testMobile ?  true : false" style="float: right; border-radius: 6px;">
+            Get Device Status
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-6 *ngIf="registerDetailItems.data.json.assetnum">
+          <ion-item>
+            <ion-label color="primary" stacked>Asset Number</ion-label>
+            <ion-input type="text" style="border-bottom: 1px solid #dadada;"
+              [value]="registerDetailItems.data.json.assetnum ? registerDetailItems.data.json.assetnum:'-'" disabled>
+            </ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-6 *ngIf="registerDetailItems.data.json.serialnum">
+          <ion-item>
+            <ion-label color="primary" stacked>Serial Number</ion-label>
+            <ion-input type="text" style="border-bottom: 1px solid #dadada;"
+              [value]="registerDetailItems.data.json.serialnum ? registerDetailItems.data.json.serialnum:'-'" disabled>
+            </ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-6 *ngIf="registerDetailItems.data.json.itemnum">
+          <ion-item>
+            <ion-label color="primary" stacked>Device Category</ion-label>
+            <ion-input type="text" style="border-bottom: 1px solid #dadada;"
+              [value]="registerDetailItems.data.json.itemnum ? registerDetailItems.data.json.itemnum:'-'" disabled>
+            </ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-6 *ngIf="registerDetailItems.data.json.ta0functionclass">
+          <ion-item>
+            <ion-label color="primary" stacked>Function Class</ion-label>
+            <ion-input type="text" style="border-bottom: 1px solid #dadada;"
+              [value]="registerDetailItems.data.json.ta0functionclass ? registerDetailItems.data.json.ta0functionclass:'-'"
+              disabled></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-6 *ngIf="registerDetailItems.data.json.ta0mf">
+          <ion-item>
+            <ion-label color="primary" stacked>MF</ion-label>
+            <ion-input type="text" style="border-bottom: 1px solid #dadada;"
+              [value]="registerDetailItems.data.json.ta0mf ? registerDetailItems.data.json.ta0mf:'-'" disabled>
+            </ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-6 *ngIf="registerDetailItems.data.json.ta0ami">
+          <ion-item>
+            <ion-label color="primary" stacked>AMI</ion-label>
+            <ion-input type="text" style="border-bottom: 1px solid #dadada;"
+              [value]="registerDetailItems.data.json.ta0ami ? registerDetailItems.data.json.ta0ami:'-'" disabled>
+            </ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-6 *ngIf="registerDetailItems.data.json.ta0ams">
+          <ion-item>
+            <ion-label color="primary" stacked>AMS</ion-label>
+            <ion-input type="text" style="border-bottom: 1px solid #dadada;"
+              [value]="registerDetailItems.data.json.ta0ams? registerDetailItems.data.json.ta0ams:'-'" disabled>
+            </ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-6 *ngIf="registerDetailItems.data.json.ta0amcg">
+          <ion-item>
+            <ion-label color="primary" stacked>AMCG</ion-label>
+            <ion-input type="text" style="border-bottom: 1px solid #dadada;"
+              [value]="registerDetailItems.data.json.ta0amcg ? registerDetailItems.data.json.ta0amcg:'-'" disabled>
+            </ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-6 *ngIf="registerDetailItems.data.json.ta0registers">
+          <ion-item *ngIf="registerDetailItems.data.json.ta0registers[0].ta0registergroup">
+            <ion-label color="primary" stacked>Register Group</ion-label>
+            <ion-input type="text" style="border-bottom: 1px solid #dadada;"
+              [value]="registerDetailItems.data.json.ta0registers[0].ta0registergroup ? registerDetailItems.data.json.ta0registers[0].ta0registergroup:'-'"
+              disabled></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-6 *ngIf="registerDetailItems.data.json.ta0manufacturer">
+          <ion-item>
+            <ion-label color="primary" stacked>Manufacturer</ion-label>
+            <ion-input type="text" style="border-bottom: 1px solid #dadada;"
+              [value]="registerDetailItems.data.json.ta0manufacturer ? registerDetailItems.data.json.ta0manufacturer:'-'"
+              disabled></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-6 *ngIf="registerDetailItems.data.json.ta0model">
+          <ion-item>
+            <ion-label color="primary" stacked>Model</ion-label>
+            <ion-input type="text" style="border-bottom: 1px solid #dadada;"
+              [value]="registerDetailItems.data.json.ta0model ? registerDetailItems.data.json.ta0model:'-'" disabled>
+            </ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-6 *ngIf="registerDetailItems.data.json.ta0currentratio">
+          <ion-item>
+            <ion-label color="primary" stacked>Current Ratio</ion-label>
+            <ion-input type="text" style="border-bottom: 1px solid #dadada;"
+              [value]="registerDetailItems.data.json.ta0currentratio ? registerDetailItems.data.json.ta0currentratio:'-'"
+              disabled></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-6 *ngIf="registerDetailItems.data.json.ta0voltageratio">
+          <ion-item>
+            <ion-label color="primary" stacked>Voltage Ratio</ion-label>
+            <ion-input type="text" style="border-bottom: 1px solid #dadada;"
+              [value]="registerDetailItems.data.json.ta0voltageratio ? registerDetailItems.data.json.ta0voltageratio:'-'"
+              disabled></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-6 *ngIf="registerDetailItems.data.json.ta0systemstatus">
+          <ion-item>
+            <ion-label color="primary" stacked>Device Status</ion-label>
+            <ion-input type="text" style="border-bottom: 1px solid #dadada;"
+              [value]="registerDetailItems.data.json.ta0systemstatus ? registerDetailItems.data.json.ta0systemstatus:'-'"
+              disabled></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-6 *ngIf="registerDetailItems.data.json.installdate">
+          <ion-item>
+            <ion-label color="primary" stacked>Construction Date</ion-label>
+            <ion-input type="text" style="border-bottom: 1px solid #dadada;"
+              [value]="registerDetailItems.data.json.installdate ? registerDetailItems.data.json.installdate:'-'"
+              disabled></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-6 *ngIf="registerDetailItems.data.json.ta0ctptinfo">
+          <ion-item>
+            <ion-label color="primary" stacked>CT PT Info</ion-label>
+            <ion-input type="text" style="border-bottom: 1px solid #dadada;"
+              [value]="registerDetailItems.data.json.ta0ctptinfo ? registerDetailItems.data.json.ta0ctptinfo:'-'"
+              disabled></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-6 *ngIf="registerDetailItems.data.json.ta0va">
+          <ion-item>
+            <ion-label color="primary" stacked>VA</ion-label>
+            <ion-input type="text" style="border-bottom: 1px solid #dadada;"
+              [value]="registerDetailItems.data.json.ta0va ? registerDetailItems.data.json.ta0va:'-'" disabled>
+            </ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-6 *ngIf="registerDetailItems.data.json.ta0devicevoltage">
+          <ion-item>
+            <ion-label color="primary" stacked>Device Voltage</ion-label>
+            <ion-input type="text" style="border-bottom: 1px solid #dadada;"
+              [value]="registerDetailItems.data.json.ta0devicevoltage ? registerDetailItems.data.json.ta0devicevoltage:'-'"
+              disabled></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-6 *ngIf="registerDetailItems.data.json.ta0simcardip">
+          <ion-item>
+            <ion-label color="primary" stacked>IP/ Data No.</ion-label>
+            <ion-input type="text" style="border-bottom: 1px solid #dadada;"
+              [value]="registerDetailItems.data.json.ta0simcardip ? registerDetailItems.data.json.ta0simcardip : '-'"
+              disabled></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+  <br />
+
+  <ion-card
+    *ngIf="registerDetailItems.data.json.ta0registers && this.registerDetailItems.data.json.ta0functionclass !== 'CTTFR'">
+    <ion-card-header>
+      <ion-row>
+        <ion-col style="align-self: center;" *ngIf="registerDetailItems.data.json.ta0registers.length > 0">
+          <ion-item text-uppercase>
+            <ion-label color="primary"><strong>Register Details</strong></ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col style="align-self: center;" *ngIf="!registerDetailItems.data.json.ta0registers.length > 0">
+          <ion-item>
+            <ion-label color="primary">This asset not having register details.</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item-divider color="light" *ngIf="registerDetailItems.data.json.ta0registers">
+        <ion-item no-lines style="background-color: transparent !important;">
+          <strong>REGISTER DETAILS</strong>
+        </ion-item>
+        <ion-item no-lines style="background-color: transparent !important;"
+          *ngIf="!registerDetailItems.data.json.ta0registers.length > 0">
+          This asset not having register details.
+        </ion-item>
+      </ion-item-divider>
+      <ion-grid *ngIf="registerDetailItems.data.json.ta0registers">
+        <ion-item no-lines>
+          <ion-row>
+            <ion-col col-1 text-wrap text-center><strong style="margin-left: -20px;">Type</strong></ion-col>
+            <ion-col col-3 text-wrap><strong>Description</strong></ion-col>
+            <ion-col col-2 text-wrap text-center><strong>Number</strong></ion-col>
+            <ion-col col-2 text-wrap text-center><strong>Factor</strong></ion-col>
+            <ion-col col-2 text-wrap text-center><strong>Dial Before</strong></ion-col>
+            <ion-col col-1 text-wrap text-center><strong>Dial After</strong></ion-col>
+            <ion-col col-1 text-wrap><strong>UOM</strong></ion-col>
+          </ion-row>
+        </ion-item>
+        <ion-list *ngIf="registerDetailItems.data.json.ta0registers.length > 0">
+          <div *ngFor="let item of registerDetailItems.data.json.ta0registers; let j = index;">
+            <ion-item no-lines [ngClass]="j%2 != 0 ? 'classA' : 'classB'">
+              <ion-row>
+                <ion-col col-1 text-wrap>{{ item.ta0registertype ? item.ta0registertype:'-' }}</ion-col>
+                <ion-col col-3 text-wrap>{{ item.ta0registertypedesc ? item.ta0registertypedesc:'-' }}</ion-col>
+                <ion-col col-2 text-wrap text-center>{{ item.ta0registernum ? item.ta0registernum:'-' }}</ion-col>
+                <ion-col col-2 text-wrap text-center>{{ item.ta0registerfactor ? item.ta0registerfactor:'-' }}
+                </ion-col>
+                <ion-col col-2 text-wrap text-center>{{ item.ta0dialbefore ? item.ta0dialbefore:'-' }}</ion-col>
+                <ion-col col-1 text-wrap text-center>{{ item.ta0dialafter ? item.ta0dialafter:'-' }}</ion-col>
+                <ion-col col-1 text-wrap>{{ item.ta0uom ? item.ta0uom:'-' }}</ion-col>
+              </ion-row>
+            </ion-item>
+          </div>
+        </ion-list>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card> -->
+
+</ion-content>

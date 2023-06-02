@@ -1,0 +1,191 @@
+page-seal-service-execution {
+    .label-ios-primary, .item-input .label-ios-primary, .item-select .label-ios-primary, .item-datetime .label-ios-primary{
+        color: blue;
+        font-weight: bold;
+        width: 200px;
+    }
+
+    .pageTitle{
+        // padding-top: 10px;
+        font-weight:  bold;
+        font-size:  20px;
+        align-items:  left;
+    }
+
+
+    .accordion-list {
+        background: color($colors, light);
+        height: 100%;
+    }
+    .section {
+        background: #fff;
+        color: #000;
+        margin-bottom: 4px;
+    }
+    .section-active {
+        background: #9fa7ee;
+        color: #000;
+    }
+ 
+    .child {
+        background: #e8e7e6;
+        background-color:  white;
+        color: #000;
+        margin-bottom: 4px;
+    }
+    .child-item {
+        background: #4167ad;
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-bottom: 0px;
+        padding-top: 0px;
+        background-color: rgb(242, 250, 214);
+        border: 2px;
+    }
+
+    .strikethrough {
+        text-decoration:line-through
+      }
+
+    .completeColor {
+        background-color: green;
+    }
+    
+    .complete-color {
+        color: green;
+        zoom: 2;
+    }
+
+    .uncomplete-color {
+        color: #488aff;
+        zoom: 2;
+    }
+
+    .child-even-item {
+        background: white;
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-bottom: 0px;
+        padding-top: 0px;
+        background-color: white;
+        border: 2px;
+    }
+    .label {
+        margin: 0px;
+        background-color: #F1F2EE;
+    }
+
+    .header-list-item {
+        margin-bottom: 1px;
+        border-inline-end: #000
+    }
+
+    .label label-md {
+        background-color: white;
+    }
+
+    .list {
+        margin-bottom: 4px;
+    }
+
+    .right-align {
+        float: right;
+    }
+
+    .over-hand { 
+        cursor: pointer; 
+    }
+
+    .flash {
+        // box-shadow: none;
+        // width: 100px !important; 
+        // border-radius: 5%; 
+        // color: #000000; 
+        height: 18px !important; 
+        padding: 15px;
+        background-color: white;
+        // top: -10px;       
+    }
+    
+    @keyframes flash {  
+        50% { opacity: 0; }
+    }
+    
+    .flash_plnt {
+        animation: flash 2s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+        padding-right: 5px; font-size: 15px;
+    }
+
+    .offline_btn {
+        font-size: 15px;
+    }
+
+    .wrap-text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .btn-transformer-complete {
+        display: block;
+        background:green;
+        padding: 10px;
+        text-align: center;
+        border-radius: 10px;
+        color: white;
+    }
+
+    .btn-transformer-uncomplete {
+        display: block;
+        background: #488aff;
+        padding: 10px;
+        text-align: center;
+        border-radius: 10px;
+        color: white;
+    }
+
+    .btn-transformer-complete:hover, .btn-transformer-complete:focus {
+        background-color: #27ae60;
+    }
+
+    .btn-transformer-uncomplete:hover, .btn-transformer-uncomplete:focus {
+        background-color: #6fa4ff;
+    }
+
+    .pointer {
+        cursor: pointer;
+    }
+
+    .fab {
+        contain: initial;
+    }
+
+    ion-fab {
+        button {
+            box-shadow: 0 4px 10px #6b6b6b;
+        }
+    
+        ion-fab-list button[ion-fab] {
+            text-align: center;
+            overflow: visible;
+    
+            div.label {
+              position: absolute;
+              right: 48px;
+              background: rgba(248, 248, 248, 1);
+              height: 24px;
+              line-height: 16px;
+              padding-left: 8px;
+              padding-right: 8px;
+              padding-top: 5px;
+              padding-bottom: 5px;
+              border-radius: 5px;
+              box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.14), 0 4px 5px rgba(0, 0, 0, 0.1);
+            }
+        }
+    
+        .button-inner {
+            overflow: visible;
+        }
+    }
+
+}

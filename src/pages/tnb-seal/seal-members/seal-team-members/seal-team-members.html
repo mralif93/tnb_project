@@ -1,0 +1,45 @@
+<!--
+  Generated template for the SealTeamMembersPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Team Members</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-item-divider color="light">
+    <ion-row align-items-center>
+      <ion-col col-12 col-sm-12 col-md-9 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-icon name="people"></ion-icon>&nbsp; <strong text-uppercase>Members Selection</strong>
+      </ion-col>
+      <ion-col col-12 col-sm-12 col-md-3 style="text-align: right;">
+        <button ion-button small round mode="md" style="opacity: unset;" text-end>Reset</button>
+      </ion-col>
+    </ion-row>
+  </ion-item-divider>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>List of Team Members</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row>
+        <ion-col>
+          <ion-label color="primary">Search</ion-label>
+          <select-searchable item-content [(ngModel)]="ta0members" [items]="this.listOfMembers"
+            itemValueField="laborcode" itemTextField="compositeName" [canSearch]="true">
+          </select-searchable>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

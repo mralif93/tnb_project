@@ -1,0 +1,132 @@
+<ion-header>
+  <!-- <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>My Assigned Work</ion-title>
+    <button ion-button icon-only (click)="presentPopover($event)">
+      <ion-icon name="more"></ion-icon>
+    </button>
+  </ion-navbar> -->
+
+
+
+  <ion-grid class="headerStyle">
+    <ion-row>
+      <ion-col col-2 col-sm-3 style="text-align: left;padding-top: 0px;">
+        <button ion-button menuToggle clear>
+          <ion-icon name="menu" class="menuBackArrow"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-8 col-sm-5>
+        <div class="pageTitle">My Assigned Work 
+        </div>
+      </ion-col>
+      <ion-col col-4 col-sm-4 style="word-wrap: break-all; text-align: right; padding-top: 0px; width:12px">
+          <ion-col col-2 col-sm-2>
+              <ion-fab top right style="top: 0%">
+                  <button ion-fab mini class="flash">
+                    <ion-icon class="flash_plnt" name="planet" [style.color]="gv.testMobile ? 'red':'green'"> {{ gv.testMobile ? 'Offline':'Online' }} </ion-icon>
+                  </button>
+                </ion-fab>
+          </ion-col>
+        <ion-col col-2 col-sm-2  (click)="presentPopover($event)">
+        <button ion-button icon-only clear>
+          <ion-icon name="more" class="menuBackArrow"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+
+<ion-content>
+
+  <ion-searchbar (ionInput)="filterSOType($event.target.value)"></ion-searchbar>
+
+  <!--button ion-button (click)="goServiceOrderForm()" >Service Order Form</button>
+  <button ion-button (click)="goFeederForm()" >Go to Feeder Form</button -->
+
+  <ion-grid style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
+    <div *ngIf="items != null && items != 'undefined' && items != '';else other_content">
+      <ion-list>
+        <ion-item-sliding #item *ngFor="let attr of items; let j = index">
+          <ion-item text-wrap detail-push style="padding-left: 5px;" (click)="goToWorkOrderDetail(attr)" [ngClass]="j%2 != 0 ? 'classA' : 'classB'">
+            <div text-wrap>
+              <ion-row>
+                <ion-col col-6 col-sm-6 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                  <h2>
+                    <b> {{j + 1}} &nbsp;&nbsp; {{ attr.json.wonum }} - {{ attr.json.ta0bcrmnum }}</b>
+                  </h2>
+
+                </ion-col>
+                <ion-col col-6 col-sm-6 col-md-3>
+                  <b> {{attr.json.worktype }} </b>
+                </ion-col>
+
+                <ion-col col-6 col-sm-6 col-md-4 style="word-wrap:  break-all; padding-left: 5px;" [ngClass]="(attr.json.status == 'APPR' ? 'classAppr' : '') ||  (attr.json.status == 'INPRG' ? 'classInprg' : '') || (attr.json.status == 'KIV' ? 'classKiv' : '')">
+                  {{attr.json.status }} - {{attr.json.status_description }}
+                </ion-col>
+                <ion-col col-6 col-sm-6 col-md-1 style="text-align: right;">
+                  <ion-icon name="star" *ngIf="attr.json.ta0favourite == 'Y'"> </ion-icon>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+
+                <ion-col col-6 col-sm-6 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                  <div *ngIf="attr.json.changeby != null">
+                    ASSIGNED - {{ attr.json.changeby }}
+                  </div>
+
+                </ion-col>
+                <ion-col col-6 col-sm-6 col-md-3>
+                  SITE-ID - {{attr.json.siteid }}
+                </ion-col>
+
+                <ion-col col-6 col-sm-6 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                  Scheduled - {{ attr.json.schedstart | date: gv.dateFormat }} {{ attr.json.schedstart | date: gv.timeFormat }}
+                </ion-col>
+
+
+
+              </ion-row>
+
+              <ion-row>
+                <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+                  <div *ngIf="attr.json.woserviceaddress != null">
+                    <div *ngFor="let address of attr.json.woserviceaddress;">
+                      <div *ngIf="address.formattedaddress != null"> {{ address.formattedaddress }} </div>
+                    </div>
+                  </div>
+                </ion-col>
+              </ion-row>
+
+            </div>
+
+          </ion-item>
+          <ion-item-options side="right">
+            <button ion-button *ngIf="attr.json.ta0favourite != 'Y'" (click)="pinSelectItem(attr, j, 'pin')">
+              <ion-icon name="star"> &nbsp; Pin</ion-icon>
+
+            </button>
+            <button ion-button *ngIf="attr.json.ta0favourite == 'Y'" (click)="pinSelectItem(attr, j, 'unpin')">
+              <ion-icon name="star"> &nbsp; Unpin</ion-icon>
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+    </div>
+    <ng-template #other_content>
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label>No Record Found!</ion-label>>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ng-template>
+
+  </ion-grid>
+
+
+</ion-content>

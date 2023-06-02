@@ -1,0 +1,615 @@
+<ion-header mode="md">
+  <ion-navbar color="primary">
+    <ion-title>Inspection Summary</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon [color]="gv.testMobile ? 'danger' : 'light'" name="md-planet" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <!-- Start: User OPC (1Phase/3Phase) Section -->
+  <span *ngIf="opc">
+
+    <ion-card mode="md">
+      <ion-card-header color="primary">
+        WITNESS SECTION
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row>
+          <ion-col col-sm-12 col-md-12 col-12>
+            <ion-item>
+              <ion-label>Customer agrees to sign</ion-label>
+              <ion-toggle [(ngModel)]="customerSignature" style="float: right;"
+                (ionChange)="changeUiViewCustomerOpcSignature($event)">
+              </ion-toggle>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <span *ngIf="customerSignature == false">
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-12>
+              <ion-item>
+                <ion-label stacked>Remarks</ion-label>
+                <ion-textarea rows="4" type="text" maxlength="40" placeholder="Please enter remarks"
+                  [(ngModel)]="witness.ta0witnessname">
+                </ion-textarea>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </span>
+
+        <span *ngIf="customerSignature == true">
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-12>
+              <ion-item>
+                <ion-label stacked>Name</ion-label>
+                <ion-input type="text" placeholder="e.g. Aiman Harun" [(ngModel)]="witness.ta0witnessname"
+                  (keyup)="outputSpeAplhaNumeric($event,'name')">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-3 col-sm-3 col-md-3>
+              <ion-item>
+                <ion-label stacked>Sign By</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-7 col-sm-7 col-md-7>
+              <ion-item text-center no-lines>
+                <signature-pad [options]="signaturePadOptions" id="signatureCanvas1" #SignaturePad1></signature-pad>
+              </ion-item>
+            </ion-col>
+            <ion-col col-2 col-sm-2 col-md-2>
+              <ion-item no-lines align-self-center>
+                <button ion-button round color="buttonlightColor" (click)="clearSign('witness')">Clear</button>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label stacked>IC No. / Passport</ion-label>
+                <ion-input type="text" placeholder="xxxxxx-xx-xxxx" [(ngModel)]="witness.ta0witnessicpassport"
+                  (keyup)="outputAplhaNumeric($event,'icpassport')">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <ion-item>
+                <ion-label stacked>Phone No.</ion-label>
+                <ion-input type="text" placeholder="xxx-xxxxxxxx" [(ngModel)]="witness.ta0witnessphone">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </span>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card mode="md">
+      <ion-card-header color="primary">
+        OFFICER SECTION
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label stacked>Name</ion-label>
+              <ion-input type="text" placeholder="Auto Populate" [(ngModel)]="gv.displayname" [readonly]="true">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-3 col-sm-3 col-md-3>
+            <ion-item>
+              <ion-label stacked>Sign By</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-7 col-sm-7 col-md-7>
+            <ion-item>
+              <signature-pad [options]="signaturePadOptions" id="signatureCanvas2" #SignaturePad2></signature-pad>
+            </ion-item>
+          </ion-col>
+          <ion-col col-2 col-sm-2 col-md-2>
+            <ion-item no-lines align-self-center>
+              <button ion-button round mode="md" color="buttonlightColor" (click)="clearSign('examiner')">Clear</button>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-6 col-sm-12 col-md-6>
+            <ion-item>
+              <ion-label stacked>Staff No.</ion-label>
+              <ion-input type="text" placeholder="Auto Populate" [(ngModel)]="gv.username" [readonly]="true">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6 col-sm-12 col-md-6>
+            <ion-item>
+              <ion-label stacked>Position</ion-label>
+              <ion-input type="text" maxlength="11" placeholder="Auto Populate" [(ngModel)]="gv.employeetype"
+                [readonly]="true"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-6 col-sm-12 col-md-6>
+            <ion-item>
+              <ion-label stacked>Station</ion-label>
+              <ion-select [(ngModel)]="examinerDepartment" [selectOptions]="{title: 'Station'}"
+                placeholder="- Choose -">
+                <ion-option *ngFor="let station of stations" [value]="station.json.value"
+                  [selected]="station.json.value === examinerDepartment">{{ station.json.description }}
+                </ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </span>
+  <!-- End: User OPC (1Phase/3Phase) Section -->
+
+  <!-- Start: User LV Section -->
+  <span *ngIf="lv">
+    <ion-card mode="md">
+      <ion-card-header color="primary">
+        WITNESS SECTION
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row>
+          <ion-col col-sm-12 col-md-12 col-12>
+            <ion-item>
+              <ion-label>Customer agrees to sign</ion-label>
+              <ion-toggle [(ngModel)]="customerSignature" style="float: right;"
+                (ionChange)="changeUiViewCustomerLvSignature($event)">
+              </ion-toggle>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <span *ngIf="customerSignature == false">
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-12>
+              <ion-item>
+                <ion-label stacked>Remarks</ion-label>
+                <ion-textarea rows="4" type="text" maxlength="40" placeholder="Please Enter Remark"
+                  [(ngModel)]="witness.ta0witnessname"
+                  [ngClass]="(witness.ta0witnessname == '' || witness.ta0witnessname == undefined && !allowSave) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-textarea>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </span>
+
+        <span *ngIf="customerSignature == true">
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-12>
+              <ion-item>
+                <ion-label stacked>Name</ion-label>
+                <ion-input type="text" placeholder="e.g. Maimunah" [(ngModel)]="witness.ta0witnessname"
+                  (keyup)="outputSpeAplhaNumeric($event,'name')">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-3 col-sm-3 col-md-3>
+              <ion-item>
+                <ion-label stacked>Sign By</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-7 col-sm-7 col-md-7>
+              <ion-item text-center no-lines>
+                <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad1></signature-pad>
+              </ion-item>
+            </ion-col>
+            <ion-col col-2 col-sm-2 col-md-2>
+              <ion-item no-lines align-self-center>
+                <button ion-button round mode="md" color="buttonlightColor"
+                  (click)="clearSign('witness')">Clear</button>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6>
+              <ion-item>
+                <ion-label stacked>IC No. / Passport No.</ion-label>
+                <ion-input type="text" placeholder="e.g. xxxxxx-xx-xxxx" [(ngModel)]="witness.ta0witnessicpassport"
+                  (keyup)="outputAplhaNumeric($event,'icpassport')">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6>
+              <ion-item>
+                <ion-label stacked>Phone No.</ion-label>
+                <ion-input type="text" placeholder="e.g. xxx-xxxxxxxx" [(ngModel)]="witness.ta0witnessphone">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </span>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card mode="md">
+      <ion-card-header color="primary">
+        OFFFICER SECTION
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label stacked>Name</ion-label>
+              <ion-input type="text" placeholder="Auto Populate" [(ngModel)]="gv.displayname" [readonly]="true">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-3 col-sm-3 col-md-3>
+            <ion-item>
+              <ion-label stacked>Sign By</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-7 col-sm-7 col-md-7>
+            <ion-item>
+              <signature-pad [options]="signaturePadOptions" id="signatureCanvas2" #SignaturePad2></signature-pad>
+            </ion-item>
+          </ion-col>
+          <ion-col col-2 col-sm-2 col-md-2>
+            <ion-item no-lines align-self-center>
+              <button ion-button round mode="md" color="buttonlightColor" (click)="clearSign('examiner')">Clear</button>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-6 col-sm-12 col-md-6>
+            <ion-item>
+              <ion-label stacked>Staff No.</ion-label>
+              <ion-input type="text" placeholder="Auto Populate" [(ngModel)]="gv.username" [readonly]="true">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6 col-sm-12 col-md-6>
+            <ion-item>
+              <ion-label stacked>Position</ion-label>
+              <ion-input type="text" maxlength="11" placeholder="Auto Populate" [(ngModel)]="gv.employeetype"
+                [readonly]="true"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-6 col-sm-12 col-md-6>
+            <ion-item>
+              <ion-label stacked>Station</ion-label>
+              <ion-select [(ngModel)]="examinerDepartment" [selectOptions]="{title: 'Station'}"
+                placeholder="Please select">
+                <ion-option *ngFor="let station of stations" [value]="station.json.value"
+                  [selected]="station.json.value === examinerDepartment">{{ station.json.description }}
+                </ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </span>
+  <!-- End: User LV Section -->
+
+  <!-- Start: User MVHV Section -->
+  <span *ngIf="mvhv">
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label color="primary">Findings</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-select [(ngModel)]="this.formData.ta4staff_findings" [selectOptions]="{ title: 'Findings' }">
+            <ion-option value="kupm">KUPM</ion-option>
+            <ion-option value="kkb">KKB</ion-option>
+            <ion-option value="baik">BAIK</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label color="primary">Remarks</ion-label>
+        </ion-item>
+      </ion-col>
+      <!-- <ion-col>
+            <ion-item>
+              <ion-input type="text" [(ngModel)]="formData.ta4staff_remarks" placeholder="Enter Remarks"></ion-input>
+            </ion-item>
+          </ion-col> -->
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-textarea type="textarea" style="border:1px" rows="4" placeholder="Please Enter"
+            [(ngModel)]="formData.ta4staff_remarks"></ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-3 col-sm-3 col-md-3>
+        <ion-item>
+          <ion-label color="primary">Executed By</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-7 col-sm-7 col-md-7>
+        <ion-item text-center [ngClass]="(!mandatoryField) ? 'redHighlightText' : 'blackHighlightText'">
+          <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad1></signature-pad>
+        </ion-item>
+      </ion-col>
+      <ion-col col- col-sm- col-md->
+        <ion-item no-lines>
+          <button ion-button round mode="md" color="buttonlightColor" (click)="clearSign('staff')">Clear</button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-sm-12 col-md-4 col-4>
+        <ion-item>
+          <ion-label color="primary">Name</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-input type="text" [(ngModel)]="formData.ta4staff_name" readonly="true" placeholder="Auto Populate">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-sm-12 col-md-2 col-2>
+        <ion-item>
+          <ion-label color="primary">Staff No.</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-input type="text" [(ngModel)]="formData.ta4staff_id" readonly="true" placeholder="Auto Populate">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-sm-12 col-md-2 col-2>
+        <ion-item>
+          <ion-label color="primary">Date</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-input type="text" [(ngModel)]="formData.ta4staff_date" readonly="true" placeholder="Auto Populate">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <!-- Witness Customer Signature & Cop -->
+    <ion-item-divider color="light">
+      <ion-row>
+        <ion-col>
+          <ion-icon name="ribbon"></ion-icon>&nbsp; <strong>Witness Customer Signature & Cop</strong>
+        </ion-col>
+      </ion-row>
+    </ion-item-divider>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label color="primary">Customer agrees to sign</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-select [(ngModel)]="formData.ta4agree" (ionChange)="UserSelection()" interface="popover">
+            <ion-option value="Yes">Yes</ion-option>
+            <ion-option value="No">No</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <div *ngIf="userSelect">
+      <ion-row>
+        <ion-col col-3 col-sm-3 col-md-3>
+          <ion-item>
+            <ion-label color="primary">Sign By</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-7 col-sm-7 col-md-7>
+          <ion-item text-center no-lines>
+            <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad2></signature-pad>
+          </ion-item>
+        </ion-col>
+        <ion-col col-2 col-sm-2 col-md-2>
+          <ion-item no-lines>
+            <button ion-button round mode="md" color="buttonlightColor" (click)="clearSign('witness')"
+              pull-right>Clear</button>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-sm-12 col-md-4 col-4>
+          <ion-item>
+            <ion-label color="primary">Name</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-input type="text" [(ngModel)]="formData.ta4wit_name" placeholder="Enter Name"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-sm-12 col-md-4 col-4>
+          <ion-item>
+            <ion-label color="primary">IC No. / Passport No.</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-input type="text" [(ngModel)]="formData.ta4wit_no" placeholder="Enter Number"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+    </div>
+    <div *ngIf="!userSelect">
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label color="primary">Remarks</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-textarea [(ngModel)]="formData.ta4witRemarks" rows="4" placeholder="Enter Value"></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+    </div>
+
+    <!-- Remark & Approved By -->
+    <ion-item-divider color="light">
+      <ion-row>
+        <ion-col>
+          <ion-icon name="ribbon"></ion-icon>&nbsp; <strong>Remarks & Approved By</strong>
+        </ion-col>
+      </ion-row>
+    </ion-item-divider>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label color="primary">Remarks</ion-label>
+        </ion-item>
+      </ion-col>
+      <!-- <ion-col>
+            <ion-item>
+              <ion-input type="text" [(ngModel)]="formData.ta4exe_remarks" placeholder="Enter Remarks"></ion-input>
+            </ion-item>
+          </ion-col> -->
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-textarea type="textarea" style="border:1px" rows="5" placeholder="Please Enter"
+            [(ngModel)]="formData.ta4exe_remarks"></ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-3 col-sm-3 col-md-3>
+        <ion-item>
+          <ion-label color="primary">Approved By</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-7 col-sm-7 col-md-7>
+        <ion-item text-center no-lines>
+          <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad3></signature-pad>
+        </ion-item>
+      </ion-col>
+      <ion-col col-2 col-sm-2 col-md-2>
+        <ion-item no-lines align-self-center>
+          <button ion-button round mode="md" color="buttonlightColor" (click)="clearSign('executive')">Clear</button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12 col-sm-12 col-md-3>
+        <ion-item>
+          <ion-label color="primary">Executive</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-select [selectOptions]="{ title: 'Executive' }" placeholder="-- Choose --" [(ngModel)]="executiveID"
+            (ionChange)="setExecutiveDetails($event)">
+            <ion-option [value]="user.json.userid" *ngFor="let user of executiveList; let i = index"
+              style="white-space: normal;" [selected]="(user.json.userid == executiveID) ? 'true' : 'false'">
+              {{ user.json.name }} ({{ user.json.userid }})
+            </ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-sm-12 col-md-2 col-2>
+        <ion-item>
+          <ion-label color="primary">ID</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-input type="text" [(ngModel)]="formData.ta4exe_id" placeholder="Enter value"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-sm-12 col-md-2 col-2>
+        <ion-item>
+          <ion-label color="primary">Name</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-input type="text" [(ngModel)]="formData.ta4exe_name" placeholder="Enter value"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-sm-12 col-md-2 col-2>
+        <ion-item>
+          <ion-label color="primary">Position</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-input type="text" [(ngModel)]="formData.ta4exe_position" placeholder="Enter value"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-sm-12 col-md-2 col-2>
+        <ion-item>
+          <ion-label color="primary">Date</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-sm-12 col-md-2 col-2>
+        <ion-item>
+          <ion-input type="text" [(ngModel)]="formData.ta4exe_date" readonly="true" value="{{ date }}"
+            placeholder="Auto Populate"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </span>
+  <!-- End: User MVHV Section -->
+
+</ion-content>
+
+<ion-footer mode="md">
+  <ion-toolbar mode="md">
+    <ion-row>
+      <ion-col>
+        <button ion-button round block mode="md" (click)="saveData()">
+          Save
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button round block mode="md" (click)="goBack()">
+          Cancel
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

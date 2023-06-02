@@ -1,0 +1,79 @@
+page-create-note {
+
+    .okay-button {
+        float: right;
+        padding-top: 20px;
+    }
+
+    .classA { 
+        background-color: #fffffA;
+    }
+
+    .classB{ 
+        background-color:#C4D8E2;
+    }
+
+    .reg-button {
+        height: 2.6rem;
+        float: right;
+        color: #0000FF;
+        background-color: #ffffff;
+    }
+
+    .wrap-reg {
+        border: 1px solid black;
+        padding: 20px;
+        border-style: dotted;
+    }
+
+    .save-btn {
+        float: right; 
+        padding-top: 15px;
+    }
+
+    .save-btn {
+        float: right; 
+        padding-top: 15px;
+    }
+
+    .wrap-reg {
+        border: 1px solid black;
+        padding: 20px;
+        border-style: dotted;
+    }
+
+    .pagination a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color .3s;
+        border: 1px solid #ddd;
+        margin: 0 4px;
+    }
+    
+    .pagination a.active {
+        background-color: #0000FF;
+        color: white;
+        border: 1px solid #0000FF;
+    }
+    
+    .pagination a:hover:not(.active) {background-color: #ddd;}
+
+    .non-display {
+        display: none;
+    }
+
+    .display {
+        display: block;
+        text-align: center;
+    }
+
+    .disabled {
+        cursor: not-allowed;
+        opacity: 0.65;
+        background-color: #ddd;
+    }
+
+    .ion-1x { font-size: 17px !important;}
+}

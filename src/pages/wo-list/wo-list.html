@@ -1,0 +1,53 @@
+<ion-header mode="md">
+  <ion-navbar color="primary">
+    <ion-title>Service Order Download</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon color="light" name="md-planet" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header>Search</ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label>Service Order Type</ion-label>
+              <ion-select multiple="true">
+                <ion-option value="1">ZIST</ion-option>
+                <ion-option value="2">ZINL</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-label>Site ID</ion-label>
+              <ion-select>
+                <ion-option value="1">6160</ion-option>
+                <ion-option value="2">6122</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-item>
+            <ion-label>Total</ion-label>
+            <ion-select>
+              <ion-option value="1">50</ion-option>
+              <ion-option value="2">100</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-row>
+      </ion-list>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

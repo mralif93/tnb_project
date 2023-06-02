@@ -1,0 +1,4257 @@
+<ion-header mode="md">
+  <ion-navbar color="primary">
+    <ion-title>Compliance Form</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon [color]="gv.testMobile ? 'danger' : 'light'" name="md-planet" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<!-- <ion-header>
+  <ion-grid class="sealHeader">
+    <ion-row>
+      <ion-col col-3 col-sm-3 col-md-3 style="text-align: left;">
+        <button ion-button clear class="backbutton" (click)="goBack()">
+          <ion-icon name="arrow-back" class="menuBackArrow backbutton"> Back </ion-icon>
+        </button>
+      </ion-col>
+      <header [pageTitle]="pageTitle" col-9 col-md-9 col-sm-9>
+      </header> -->
+<!--   <ion-col col-7 col-md-7 col-sm-7 align-self-center>
+        <div class="pageTitle" style="padding-top: 12px;">Compliance Form
+        </div>
+      </ion-col>
+      <ion-col col-1 col-sm-1 col-md-1 align-self-center style="text-align: right;">
+        <div *ngIf='gv.testMobile'>
+          <ion-icon class="flash_plnt" name="custom-connected" [style.color]="gv.testMobile ? 'red':'#00e600'">
+            {{ gv.testMobile ? 'Offline':'Online' }}
+          </ion-icon>
+        </div>
+        <div *ngIf='!gv.testMobile'>
+          <ion-icon class="flash_plnt" name="custom-disconnect" [style.color]="gv.testMobile ? 'red':'#00e600'">
+            {{ gv.testMobile ? 'Offline':'Online' }}
+          </ion-icon>
+        </div>
+      </ion-col> -->
+<!--       <ion-col col-2 col-sm-4 style="text-align: right;padding-top: 0px;">
+          <button ion-button icon-only clear (click)="presentPopover($event)">
+            <ion-icon name="more"></ion-icon>
+          </button>
+        </ion-col> -->
+<!-- </ion-row>
+  </ion-grid>
+</ion-header> -->
+
+<ion-content padding>
+
+  <!-- Start: Pemeriksaan dan Pengujian Pepasangan Meter -->
+  <ion-list *ngIf='formType === "pengujian_pemeriksaan"'>
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="bookmark" item-start></ion-icon>
+      <strong>Pengujian dan Pemeriksaan</strong>
+    </ion-item-divider>
+
+    <ion-item>
+      <ion-label ion-col col-md-2 color="primary">Date</ion-label>
+      <ion-input ion-col col-md-6 type="text" placeholder="Choose Date" value="{{ inspectNTest.ta4datetime }}"
+        readonly="true" style="padding-left: 1px;">
+      </ion-input>
+      <ion-icon name="calendar" item-end (click)="presentPopover($event,'installTest')"></ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-2 color="primary">To</ion-label>
+      <ion-input ion-col col-md-10 type="text" placeholder="Auto Populate" value="{{ inspectNTest.ta4custname }}">
+      </ion-input>
+    </ion-item>
+
+    <ion-item text-wrap>
+      <ion-label ion-col col-md-2 color="primary">Address</ion-label>
+      <ion-textarea style="margin-left: -2px;" rows="3" placeholder="Auto Populate"
+        [(ngModel)]="inspectNTest.ta4custaddress">
+      </ion-textarea>
+    </ion-item>
+
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="filing" item-start></ion-icon>
+      <strong>Surat Pemberitahuan Pemeriksaan dan Pengujian Pepasangan Meter TNB</strong>
+    </ion-item-divider>
+
+    <ion-item no-lines>
+      <ion-label text-wrap style="text-align: justify;letter-spacing: 1px;">
+        Ingin dimaklumkan bahawa pihak TNB sedang menjalankan pemeriksaan dan pengujian terhadap pepasangan meter TNB di
+        premis tuan/puan bagi memastikan ia berfungsi dalam keadaan yang baik.
+      </ion-label>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label text-wrap style="text-align: justify;letter-spacing: 1px;">
+        Kerjasama tuan/puan adalah sangat diperlukan semasa proses pemeriksaan dan pengujian dilakukan.
+      </ion-label>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label text-wrap style="text-align: justify;letter-spacing: 1px;">
+        Sekiranya terdapat sebarang pertanyaan, sila hubungi pihak TNB di talian 1300-88-5454.
+      </ion-label>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label text-wrap style="text-align: justify;letter-spacing: 1px;">
+        Sekian dimaklumkan, terima kasih.
+      </ion-label>
+    </ion-item>
+
+    <!-- 008
+    <ion-item no-lines>
+      <ion-label text-center style="font-style: italic;letter-spacing: 1px;">
+        <strong>"PENGGERAK KEMAJUAN NEGARA"</strong>
+      </ion-label>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label text-center style="font-style: italic;letter-spacing: 1px;">
+        <strong>"BETTER. BRIGHTER"</strong>
+      </ion-label>
+    </ion-item>
+    -->
+    <!-- 008 start -->
+    <ion-item no-lines>
+      <ion-label text-center style="font-style: italic;letter-spacing: 1px;">
+        <strong>"BETTER WORLD. BRIGHTER LIVES"</strong>
+      </ion-label>
+    </ion-item>
+    <!-- 008 end -->
+
+    <ion-item no-lines style="letter-spacing: 1px;">
+      <ion-label>Yang Benar,</ion-label>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-fab>
+        <button ion-fab mini mode="md" (click)="clearSign('InspectNTestManager')">
+          <ion-icon name="md-refresh"></ion-icon>
+        </button>
+      </ion-fab>
+      <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad1>
+      </signature-pad>
+    </ion-item>
+
+    <ion-item>
+      <p *ngIf="staffNameSelect" style="margin-top: 10px;font-style: italic;font-size: 14px;color: red;">
+        *Pegawai Bertugas diperlukan.
+      </p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-3 color="primary">Pegawai Bertugas</ion-label>
+      <ion-select ion-col col-md-9 [(ngModel)]="inspectNTest.executiveDetails" [selectOptions]="executiveDetails"
+        (ionChange)="getExecutiveDetails()" placeholder="Pegawai Bertugas"
+        style="width: -webkit-fill-available;padding-left: 13px;padding-right: 13px;">
+        <ion-option *ngFor="let executive of executiveList ; let j = index" value="{{ executive.json.userid }}"
+          (ionSelect)="myIndex = j">
+          {{ executive.json.name }} ({{ executive.json.userid }})
+        </ion-option>
+
+        <!-- <ion-option *ngFor="let persons of exactData ; let j = index" value="{{ persons }}" (ionSelect)="myIndex = j">
+          {{ persons }}
+        </ion-option> -->
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-3 color="primary">Pangkat</ion-label>
+      <ion-input ion-col col-md-9 [(ngModel)]="inspectNTest.ta4position" type="text" placeholder="Pangkat">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-3 color="primary">Jabatan</ion-label>
+      <ion-textarea ion-col col-md-9 [(ngModel)]="inspectNTest.ta4department" rows="3" placeholder="Jabatan">
+      </ion-textarea>
+    </ion-item>
+
+    <ion-list ion-row radio-group style="margin: 0;" [(ngModel)]="inspectNTest.ta4attendance"
+      (ionChange)="checkforRadio()">
+      <ion-item-divider class="item-divider-header">
+        <ion-icon name="remove-circle" item-start></ion-icon>
+        <strong>Untuk Kegunaan TNB</strong>
+      </ion-item-divider>
+
+      <ion-item ion-col col-md-12>
+        <ion-label color="primary">Sila pilih kedatangan pengguna</ion-label>
+      </ion-item>
+
+      <ion-item ion-col col-md-6>
+        <ion-label>Pengguna Hadir</ion-label>
+        <ion-radio value="pre"></ion-radio>
+      </ion-item>
+
+      <ion-item ion-col col-md-6>
+        <ion-label>Pengguna Tidak Hadir</ion-label>
+        <ion-radio value="abs"></ion-radio>
+      </ion-item>
+    </ion-list>
+
+    <ion-item no-lines ion-col col-md-12>
+      <ion-label>Disahkan oleh:</ion-label>
+    </ion-item>
+
+    <ion-item no-lines>
+      <p *ngIf="checkSign2" style="margin: 0px 0px 10px 0px;;font-style: italic;font-size: 14px;color: red;">
+        *Tandatangan Digital diperlukan!
+      </p>
+      <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad2></signature-pad>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-3 color="primary">Nama Pekerja</ion-label>
+      <ion-input ion-col col-md-9 type="text" readonly="true" value="{{ inspectNTest.ta4staffname }}"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-3 color="primary">No. Pekerja</ion-label>
+      <ion-input ion-col col-md-9 type="text" readonly="true" value="{{ inspectNTest.ta4staffno }}"></ion-input>
+    </ion-item>
+
+  </ion-list>
+  <!-- End: Pemeriksaan dan Pengujian Pepasangan Meter -->
+
+  <!-- Start: Pengujian dan Pepasangan Meter -->
+  <ion-list ion-row *ngIf="formType === 'pepasanganMeter'">
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="bookmark" item-start></ion-icon>
+      <strong>Pepasangan Meter TNB</strong>
+    </ion-item-divider>
+
+    <ion-item>
+      <ion-label ion-col col-md-2 color="primary">Tarikh</ion-label>
+      <ion-input ion-col col-md-9 type="test" placeholder="Tarikh" readonly="true"
+        value="{{ installationInspection.ta4indatetime }}"></ion-input>
+      <ion-icon name="calendar" item-end (click)="presentPopover($event,'meterInstallInspect')"></ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-2 color="primary">Name</ion-label>
+      <ion-input ion-col col-md-10 type="text" placeholder="Auto Populate"
+        value="{{ installationInspection.ta4custname }}"></ion-input>
+    </ion-item>
+
+    <ion-item text-wrap>
+      <ion-label ion-col col-md-2 color="primary">Alamat</ion-label>
+      <ion-textarea style="margin-left: -2px;" rows="3" value="{{ installationInspection.ta4custaddress }}"
+        placeholder="Auto Populate">
+      </ion-textarea>
+    </ion-item>
+
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="filing" item-start></ion-icon>
+      <strong>Pemakluman Semakan Pepasangan Meter Elektrik oleh TNB</strong>
+    </ion-item-divider>
+
+    <ion-item text-wrap no-lines>
+      <ion-label ion-col col-md-6>Pelanggan TNB Yang Dihormati,</ion-label>
+    </ion-item>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;">
+      <ion-label ion-col col-md-12>
+        Dimaklumkan bahawa pemeriksaan dan pengujian telah dibuat ke atas pepasangan meter yang merekodkan penggunaan
+        elektrik ke premis yang beralamat <strong>{{ installationInspection.ta4custaddress }}</strong> dengan No. Akaun
+        <strong>{{ installationInspection.ta4accountno }}</strong> jam
+        <strong>{{ installationInspection.ta4indatetime }}</strong> sehingga
+        <strong>{{ installationInspection.ta4endtime }}</strong>.
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-4 color="primary">Tukar Masa</ion-label>
+      <ion-datetime ion-col col-md-8 style="margin-left: -22px;" displayFormat="HH:mm" pickerFormat="HH:mm"
+        [(ngModel)]="installationInspection.ta4endtime" placeholder="Choose time"></ion-datetime>
+    </ion-item>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;">
+      <ion-label ion-col col-md-12>
+        Untuk maklumat anda, nombor siri beg eviden adalah:
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-4 color="primary">No. Siri Beg Eviden</ion-label>
+      <ion-input ion-col col-md-8 [(ngModel)]="installationInspection.ta4serialNum" placeholder="Masukkan No. Siri">
+      </ion-input>
+    </ion-item>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;margin-top: 12px;">
+      <ion-label ion-col col-md-12>
+        Hasil pengujian menunjukkan meter berkenaan tidak merekodkan bacaan penggunaan elektrik yang sebenar dan ini
+        telah diterangkan kepada tuan/puan. Ingin dimaklumkan bahawa tuntutan amaun terkurang caj akan dibuat oleh TNB
+        dan akan dimajukan kepada tuan/puan.
+      </ion-label>
+    </ion-item>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;">
+      <ion-label ion-col col-md-12>
+        Sekiranya terdapat sebarang pertanyaan, tuan/puan boleh menghubungi:
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-3 color="primary">Pejabat</ion-label>
+      <ion-input ion-col col-md-9 type="text" placeholder="Pejabat" value="Kedai Tenaga yang berdekatan"></ion-input>
+    </ion-item>
+
+    <ion-item text-wrap>
+      <ion-label ion-col col-md-3 color="primary">Alamat</ion-label>
+      <ion-textarea ion-col col-md-9 placeholder="Alamat" value="{{ installationInspection.ta4officeaddress }}">
+      </ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-3 color="primary">No. Telefon</ion-label>
+      <ion-input ion-col col-md-9 type="text" placeholder="Phone No."
+        value="{{ installationInspection.ta4officephone }}"></ion-input>
+    </ion-item>
+
+    <ion-item no-lines text-wrap style="line-height: 30px; text-align: justify;margin-top: 12px;">
+      <ion-label ion-col col-md-12>
+        Terima Kasih.
+      </ion-label>
+    </ion-item>
+
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="contact" item-start></ion-icon>
+      <strong>Part A: Maklumat Pekerja/Pemeriksa</strong>
+    </ion-item-divider>
+
+    <ion-item no-lines>
+      <ion-label>Tandatangan Pekerja/Pemeriksa:</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad1></signature-pad>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-3 color="primary">Nama</ion-label>
+      <ion-input ion-col col-md-8 type="text" placeholder="Nama" readonly="true"
+        value="{{ installationInspection.ta4staffname }}">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-3 color="primary">No. Pekerja</ion-label>
+      <ion-input ion-col col-md-8 type="text" placeholder="Name" readonly="true"
+        value="{{ installationInspection.ta4staffno }}">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-3 color="primary">Jabatan</ion-label>
+      <ion-input ion-col col-md-8 type="text" placeholder="Jabatan" readonly="true" value="Seal Unit Metering">
+      </ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="officeNameSelect && !installationInspection.ta4department">
+      <p style="margin: 0px 0px 10px 0px;;font-style: italic;font-size: 14px;color: red;">
+        *Jabatan perlukan!
+      </p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-3 color="primary">Pejabat</ion-label>
+      <ion-input ion-col col-md-8 type="text" [(ngModel)]="installationInspection.ta4department" placeholder="Pejabat">
+      </ion-input>
+    </ion-item>
+
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="contact" item-start></ion-icon>
+      <strong>Part B: Maklumat Pengguna/Saksi</strong>
+    </ion-item-divider>
+
+    <ion-list class="custom-item-radio-border-bottom" ion-row radio-group no-lines
+      [(ngModel)]="installationInspection.ta4agree" style="margin: 0;width: -webkit-fill-available;">
+      <ion-item ion-col col-md-6>
+        <ion-label>Pengguna beri kerjasama</ion-label>
+        <ion-radio (click)="typeform()" value="true"></ion-radio>
+      </ion-item>
+      <ion-item ion-col col-md-6>
+        <ion-label>Pengguna enggan beri kerjasama</ion-label>
+        <ion-radio (click)="typeform()" value="false"></ion-radio>
+      </ion-item>
+    </ion-list>
+
+    <ion-item no-lines *ngIf='!formSelected'>
+      <ion-label>Diterima Oleh (T/T):</ion-label>
+    </ion-item>
+
+    <ion-item *ngIf='!formSelected'>
+      <ion-fab>
+        <button ion-fab mini mode="md" (click)="clearSign('installInspectWitness')">
+          <ion-icon name="md-refresh"></ion-icon>
+        </button>
+      </ion-fab>
+      <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad2></signature-pad>
+    </ion-item>
+
+    <ion-item *ngIf='!formSelected'>
+      <ion-label ion-col col-md-2 color="primary">Name</ion-label>
+      <ion-input ion-col col-md-9 type="text" placeholder="Name" value="{{ installationInspection.ta4witnessname }}">
+      </ion-input>
+    </ion-item>
+
+    <ion-item *ngIf='!formSelected'>
+      <ion-label ion-col col-md-2 color="primary">No. Telefon</ion-label>
+      <ion-input ion-col col-md-9 type="text" placeholder="Name" [(ngModel)]="installationInspection.ta4witnessphone">
+      </ion-input>
+    </ion-item>
+
+    <ion-item *ngIf='!formSelected'>
+      <ion-label ion-col col-md-2 color="primary">Tarikh/Masa</ion-label>
+      <ion-datetime ion-col col-md-9 style="margin-left: 16px;" displayFormat="DD/MM/YYYY HH:mm"
+        placeholder="Pilih Tarikh/Masa" pickerFormat="DD/MM/YYYY HH:mm" [(ngModel)]="installationInspection.ta4datetime"
+        (ionChange)="formatTimeDisplay()"></ion-datetime>
+    </ion-item>
+
+  </ion-list>
+  <!-- End: Pengujian dan Pepasangan Meter -->
+
+  <!-- Start: Pengumpulan Bukti -->
+  <ion-list ion-row *ngIf="formType === 'borangBukit'">
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="bookmark" item-start></ion-icon>
+      <strong>Pengambilan Bahan-bahan Bukti</strong>
+    </ion-item-divider>
+
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="filing" item-start></ion-icon>
+      <strong>Surat Pemberitahuan Pengambilan Bahan-bahan Bukti</strong>
+    </ion-item-divider>
+
+    <ion-item ion-col col-md-8>
+      <ion-label ion-col col-md-4 color="primary">No. Akaun</ion-label>
+      <ion-input ion-col col-md-8 type="number" placeholder="No. Akaun" readonly="true" text-right
+        value="{{ evidenceCollect.ta4accountno }}"></ion-input>
+    </ion-item>
+
+    <ion-item ion-col col-md-4>
+      <ion-label ion-col col-md-6 color="primary">Kod Stesen</ion-label>
+      <ion-input ion-col col-md-6 type="number" placeholder="Kod Stesen" readonly="true" text-right
+        value="{{ evidenceCollect.station }}">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-4 color="primary">Nama Pengguna</ion-label>
+      <ion-input ion-col col-md-9 type="text" placeholder="Nama Pengguna Berdaftar" readonly="true" text-right
+        value="{{ evidenceCollect.ta4custname }}"></ion-input>
+    </ion-item>
+
+    <ion-item text-wrap style="line-height: 30px; text-align: justify;">
+      <ion-label ion-col col-md-12>
+        Adalah saya: <strong>{{ evidenceCollect.ta4staffname }}</strong>
+      </ion-label>
+    </ion-item>
+
+    <ion-item text-wrap style="line-height: 30px; text-align: justify;">
+      <ion-label ion-col col-md-12>
+        No. Pekerja: <strong>{{ evidenceCollect.ta4staffno }}</strong> mengaku telah mengambil perkara-perkara tersebut
+        di bawah ini:-
+      </ion-label>
+    </ion-item>
+
+    <ion-list ion-row style="width: -webkit-fill-available;margin: 0px">
+      <ion-list-header
+        style="margin: 25px 0px 0px 16px;padding: 0px 0px 0px 18px;border: 0.55px solid lightgray;border-radius: 10px;">
+        Senarai Bukti
+        <button ion-button round item-end style="padding: 12px;" (click)="addEviItem()" mode="md">Tambah</button>
+      </ion-list-header>
+
+      <span *ngFor="let item of evidenceCollect.evidenceItem; let j = index"
+        style="width: -webkit-fill-available;border: 0.55px solid lightgrey;border-radius: 10px;margin: 10px 1px 7px 17px;">
+        <ion-item style="border-radius: 10px 10px 0px 0px;">
+          <ion-label><strong>Bil. {{ j+1 }}</strong></ion-label>
+          <ion-icon name="trash" color="danger" item-end (click)="deleteEviItem(j)" *ngIf="j > 0"></ion-icon>
+        </ion-item>
+
+        <ion-item *ngIf="itemValEvi || eviTempDmg">
+          <p *ngIf="itemValEvi" style="color: red;font-size: 14px;font-style: italic;letter-spacing: 1px;">
+            *Nama bukti diperlukan!
+          </p>
+          <p *ngIf="eviTempDmg" style="color: red;font-size: 14px;font-style: italic;letter-spacing: 1px;">
+            *Keterangan bukti diperlukan!
+          </p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label ion-col col-md-2 color="primary">Bahan Bukti</ion-label>
+          <ion-input ion-col col-md-10 mode="md" type="text" placeholder="Nama" [(ngModel)]="item.ta4item">
+          </ion-input>
+        </ion-item>
+
+        <ion-item style="border-radius: 0px 0px 25px 25px;">
+          <ion-label ion-col col-md-2 color="primary">Keterangan</ion-label>
+          <ion-textarea [(ngModel)]="item.ta4describe" rows="4" placeholder="Keterangan"></ion-textarea>
+        </ion-item>
+      </span>
+
+      <span *ngIf="eviItem"
+        style="width: -webkit-fill-available;border: 0.55px solid red;border-radius: 10px;margin: 10px 1px 7px 17px;padding: 0px 0px 1px 0px;">
+        <ion-item no-lines style="border-radius: 10px 10px 25px 25px;">
+          <ion-icon name="close-circle" color="danger" item-start></ion-icon>
+          <ion-label style="color: red;font-size: 14px;font-style: italic;letter-spacing: 1px;">*Sila tambah
+            sekuranga-kurangnya satu (1) bukti..</ion-label>
+        </ion-item>
+      </span>
+
+      <span *ngIf="!evidenceCollect.evidenceItem && !eviItem"
+        style="width: -webkit-fill-available;border: 0.55px solid lightgrey;border-radius: 10px;margin: 10px 1px 7px 17px;padding: 0px 0px 1px 0px;">
+        <ion-item no-lines style="border-radius: 10px 10px 25px 25px;">
+          <ion-icon name="close-circle" color="danger" item-start></ion-icon>
+          <ion-label>Tiada bukti.</ion-label>
+        </ion-item>
+      </span>
+    </ion-list>
+
+    <ion-item text-wrap style="line-height: 30px; text-align: justify;">
+      <ion-label ion-col col-md-12>
+        daripada permis yang beralamat <strong>{{ evidenceCollect.ta4custaddress }}</strong>.
+      </ion-label>
+    </ion-item>
+
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="contact" item-start></ion-icon>
+      <strong>Bhg A: Maklumat Pekerja</strong>
+    </ion-item-divider>
+
+    <ion-item>
+      <signature-pad [options]="signaturePadOptions" id="signatureCanvas1" #SignaturePad1>
+      </signature-pad>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-4 color="primary">Nama</ion-label>
+      <ion-input ion-col col-md-8 type="text" placeholder="Nama" value="{{ evidenceCollect.ta4staffname }}"
+        readonly="true"></ion-input>
+      <ion-icon name="contact" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-4 color="primary">No. Pekerja</ion-label>
+      <ion-input ion-col col-md-8 type="text" placeholder="No. Pekerja" value="{{ evidenceCollect.ta4staffno }}"
+        readonly="true"></ion-input>
+      <ion-icon name="card" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-4 color="primary">No. Kad Pengenalan</ion-label>
+      <ion-input ion-col col-md-8 type="text" placeholder="No. Kad Pengenalan"
+        [(ngModel)]="evidenceCollect.ta4staffindenkard" readonly="false"></ion-input>
+      <ion-icon name="card" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-4 color="primary">Jawatan</ion-label>
+      <ion-input ion-col col-md-8 type="text" placeholder="Jawatan" value="Juruteknik" readonly="true">
+      </ion-input>
+      <ion-icon name="medal" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item *ngIf="stationEvi">
+      <p style="color: red;font-size: 14px;font-style: italic;letter-spacing: 1px;">
+        *Stesen diperlukan!
+      </p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-4 color="primary">Stesen</ion-label>
+      <ion-select ion-col col-md-8 [(ngModel)]="evidenceCollect.officeAddress" placeholder="Station"
+        [selectOptions]="OfficeAddress" (ionChange)="officeAdrssSelect()" style="margin-left: -23px;">
+        <ion-option value="KUALA LUMPUR">Kuala Lumpur</ion-option>
+        <ion-option value="SELATAN">Selatan</ion-option>
+        <ion-option value="UTARA">Utara</ion-option>
+        <ion-option value="SELANGOR">Selangor</ion-option>
+        <ion-option value="TIMUR">Timur</ion-option>
+      </ion-select>
+      <ion-icon name="pin" item-end style="margin-right: 12px;"></ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-4 color="primary">Tarikh/Masa</ion-label>
+      <ion-input ion-col col-md-8 type="text" placeholder="Tarikh/Masa"
+        value="{{ evidenceCollect.ta4datetime }} - {{ evidenceCollect.ta4starttime }}" readonly="true"></ion-input>
+      <ion-icon name="time" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="contact" item-start></ion-icon>
+      <strong>Bhg B: Maklumat Saksi</strong>
+    </ion-item-divider>
+
+    <ion-item>
+      <ion-fab>
+        <button ion-fab mini mode="md" (click)="clearSign('evidenceWitness')">
+          <ion-icon name="md-refresh"></ion-icon>
+        </button>
+      </ion-fab>
+      <signature-pad [options]="signaturePadOptions" id="signatureCanvas2" #SignaturePad2>
+      </signature-pad>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-4 color="primary">Nama</ion-label>
+      <ion-input ion-col col-md-8 type="text" placeholder="Nama" [(ngModel)]="evidenceCollect.ta4witnessname">
+      </ion-input>
+      <ion-icon name="contact" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-4 color="primary">No. Kad Pengenalan</ion-label>
+      <ion-input ion-col col-md-8 type="text" placeholder="No. Kad Pengenalan"
+        [(ngModel)]="evidenceCollect.ta4witnessidenkard">
+      </ion-input>
+      <ion-icon name="card" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item text-wrap>
+      <ion-label ion-col col-md-4 color="primary">Alamat</ion-label>
+      <ion-textarea ion-col rows="3" value="{{ evidenceCollect.ta4custaddress }}"></ion-textarea>
+      <ion-icon name="pin" item-end style="margin-right: 12px;"></ion-icon>
+    </ion-item>
+
+    <ion-item col-md-6>
+      <ion-label ion-col col-md-4 color="primary">Tarikh</ion-label>
+      <ion-input type="text" placeholder="Tarikh" value="{{ evidenceCollect.ta4indatetime }}" readonly="true">
+      </ion-input>
+      <ion-icon name="calendar" item-end (click)="presentPopover($event,'evidenceDate2')"></ion-icon>
+    </ion-item>
+
+    <ion-item col-md-6>
+      <ion-label ion-col col-md-4 color="primary">Masa</ion-label>
+      <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" style="margin-left: -11px;"
+        [(ngModel)]="evidenceCollect.ta4endtime" placeholder="Masa"></ion-datetime>
+      <ion-icon name="time" item-end></ion-icon>
+    </ion-item>
+
+  </ion-list>
+  <!-- End: Pengumpulan Bukti -->
+
+  <!-- Start: Gangguan Sementara -->
+  <ion-list ion-row *ngIf='formType === "notisGanggungan"'>
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="bookmark" item-start></ion-icon>
+      <strong>Pemberhentian/Ganggaun Sementara Bekalan Elektrik</strong>
+    </ion-item-divider>
+
+    <ion-item>
+      <ion-label ion-col col-md-2 color="primary">Tarikh</ion-label>
+      <ion-input ion-col col-md-6 type="text" placeholder="Sila pilih tarikh" value="{{ tempCeassation.ta4datetime }}"
+        readonly="true" style="padding-left: 1px;">
+      </ion-input>
+      <ion-icon name="calendar" item-end (click)="presentPopover($event,'installTest')"></ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-2 color="primary">Kepada</ion-label>
+      <ion-input ion-col col-md-10 type="text" placeholder="Auto Populate" value="{{ tempCeassation.ta4custname }}">
+      </ion-input>
+    </ion-item>
+
+    <ion-item-divider class="item-divider-header" text-wrap>
+      <ion-icon name="filing" item-start></ion-icon>
+      <strong>Notis Pemberitahuan Pemberhentian/Gangguan Sementara Bekalan Elektri bgi Tujuan Pemeriksaan dan Pengujian
+        Pepasangan Meter TNB</strong>
+    </ion-item-divider>
+
+    <ion-item text-wrap no-lines>
+      <ion-label ion-col col-md-6>Pelanggan TNB Yang Dihormati,</ion-label>
+    </ion-item>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;">
+      <ion-label ion-col col-md-12>
+        Ingin dimaklumkan bahawa pihak TNB sedang menjalankan pemeriksaan dan pengujian terhadap pepasangan meter TNB di
+        premis tuan/puan bagi memastikan ia berfungsi dalam keadaan yang baik.
+      </ion-label>
+    </ion-item>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;">
+      <ion-label ion-col col-md-12>
+        Untuk tujuan tersebut, adalah dimaklumkan bahawa bekalan elektrik di premis
+        tuan/puan akan diberhentikan/diganggu sementara pada <strong>{{ tempCeassation.ta4indatetime }}</strong> bermula
+        <strong>{{ tempCeassation.ta4starttime }}</strong> sehingga <strong>{{ tempCeassation.ta4endtime }}</strong>.
+      </ion-label>
+    </ion-item>
+
+    <ion-row col-md-12 style="margin-left: 15px;">
+      <ion-col col-md-7
+        [class]="((dateCess || fromInspectDate || ToinspectDate) && (!tempCeassation.ta4indatetime || !tempCeassation.ta4starttime || !tempCeassation.ta4endtime)) ? 'custom-form-box-red' : 'custom-form-box'">
+        <ion-item text-wrap style="border-radius: 10px 10px 0px 0px;"
+          *ngIf="(dateCess || fromInspectDate || ToinspectDate) && (!tempCeassation.ta4indatetime || !tempCeassation.ta4starttime || !tempCeassation.ta4endtime)">
+          <p style="margin-top: 10px;font-style: italic;font-size: 14px;color: red;">
+            *Tarikh dan masa diperlukan.
+          </p>
+        </ion-item>
+
+        <ion-item style="border-radius: 10px 10px 0px 0px;">
+          <ion-label fixed color="primary">*Tarikh</ion-label>
+          <ion-input type="text" value="{{ tempCeassation.ta4indatetime }}" readonly="true" placeholder="Tarikh">
+          </ion-input>
+          <!-- (click)="presentPopover($event,'inspectDateFrom')" -->
+          <!-- <ion-icon name="calendar" item-end (click)="presentPopover($event,'inspectDateFrom')"></ion-icon> -->
+        </ion-item>
+
+        <ion-item>
+          <ion-label fixed color="primary">*Mula</ion-label>
+          <ion-datetime [(ngModel)]="tempCeassation.ta4starttime" displayFormat="HH:mm" placeholder="Masa Mula">
+          </ion-datetime>
+          <ion-icon name="time" item-end></ion-icon>
+        </ion-item>
+
+        <ion-item no-lines style="border-radius: 0px 0px 10px 10px;">
+          <ion-label fixed color="primary">*Akhir</ion-label>
+          <ion-datetime [(ngModel)]="tempCeassation.ta4endtime" displayFormat="HH:mm" placeholder="Masa Akhir">
+          </ion-datetime>
+          <ion-icon name="time" item-end></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;">
+      <ion-label ion-col col-md-12>
+        Kerjasama tuan/puan adalah sangat diperlukan. <br> Sekian dimaklumkan, terima kasih.
+      </ion-label>
+    </ion-item>
+
+    <!-- 008
+    <ion-item no-lines>
+      <ion-label text-center style="font-style: italic;letter-spacing: 1px;">
+        <strong>“PENGGERAK KEMAJUAN NEGARA”</strong>
+      </ion-label>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label text-center style="font-style: italic;letter-spacing: 1px;">
+        <strong>“BETTER BRIGHTER”</strong>
+      </ion-label>
+    </ion-item>
+    -->
+    <!-- 008 start -->
+    <ion-item no-lines>
+      <ion-label text-center style="font-style: italic;letter-spacing: 1px;">
+        <strong>"BETTER WORLD. BRIGHTER LIVES"</strong>
+      </ion-label>
+    </ion-item>
+    <!-- 008 end -->
+
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="contact" item-start></ion-icon>
+      <strong>Bhg A: Maklumat Pekerja</strong>
+    </ion-item-divider>
+
+    <ion-item>
+      <signature-pad [options]="signaturePadOptions" id="signatureCanvas1" #SignaturePad1></signature-pad>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed color="primary">Nama</ion-label>
+      <ion-input type="text" placeholder="Nama" value="{{ tempCeassation.ta4staffname }}" readonly="true"></ion-input>
+      <ion-icon name="contact" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed color="primary">No. Pekerja</ion-label>
+      <ion-input type="text" placeholder="No. Pekerja" value="{{ tempCeassation.ta4staffno }}" readonly="true">
+      </ion-input>
+      <ion-icon name="card" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;">
+      <ion-checkbox [(ngModel)]="tempCeassation.ta4agree" (click)='assignDetailsFormB()'></ion-checkbox>
+      <ion-label ion-col col-md-12>
+        Adalah dengan ini saya memahami kandungan notis ini dan <strong>{{ formB }}</strong> supaya bekalan elektrik
+        diberhentikan/diganggu sementara bagi tujuan seperti dinyatakan di atas.
+      </ion-label>
+    </ion-item>
+
+    <ion-item-divider *ngIf='tempCeassation.ta4agree' class="item-divider-header">
+      <ion-icon name="contact" item-start></ion-icon>
+      <strong>Bhg B: Maklumat Pengguna/Pemilik/Wakil</strong>
+    </ion-item-divider>
+
+    <ion-item *ngIf='tempCeassation.ta4agree'>
+      <ion-fab>
+        <button ion-fab mini mode="md" (click)="clearSign('cessationCustomer')">
+          <ion-icon name="md-refresh"></ion-icon>
+        </button>
+      </ion-fab>
+      <signature-pad [options]="signaturePadOptions" id="signatureCanvas2" #SignaturePad2></signature-pad>
+    </ion-item>
+
+    <ion-item *ngIf='tempCeassation.ta4agree'>
+      <ion-label ion-col col-md-3 color="primary">Nama</ion-label>
+      <ion-input type="text" [(ngModel)]="tempCeassation.ta4witnessname" placeholder="Nama (Pengguna/Pemilik/Wakil)"
+        readonly="false"></ion-input>
+      <ion-icon name="contact" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item *ngIf='tempCeassation.ta4agree'>
+      <ion-label ion-col col-md-3 color="primary">No. Kad Pengenalan</ion-label>
+      <ion-input type="text" [(ngModel)]="tempCeassation.ta4witnessidenkard" placeholder="No. Kad Pengenalan"
+        readonly="false"></ion-input>
+      <ion-icon name="card" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item *ngIf='tempCeassation.ta4agree'>
+      <ion-label ion-col col-md-3 color="primary">Tarikh/Masa</ion-label>
+      <ion-datetime [(ngModel)]="tempCeassation.datetime" placeholder="Tarikh/Masa" displayFormat="DD/MM/YYYY HH:mm"
+        pickerFormat="DD/MM/YYYY HH:mm" (ionChange)='formatTimeDisplay()'>
+      </ion-datetime>
+      <ion-icon name="time" item-end></ion-icon>
+    </ion-item>
+
+    <ion-row
+      style="width: -webkit-fill-available;border: 1px solid slategrey;border-radius: 17px;margin: 8px;padding: 10px;letter-spacing: 1px;font-size: 15px;"
+      *ngIf='!tempCeassation.ta4agree'>
+      <ion-item-divider class="item-divider-header" style="letter-spacing: 1px;font-size: 15px;">
+        <ion-icon name="paper" item-start></ion-icon>
+        <strong>Borang B</strong>
+      </ion-item-divider>
+
+      <ion-item text-wrap no-lines text-center text-uppercase style="letter-spacing: 1px;font-size: 15px;">
+        <ion-label>peraturan-peraturan Bekalan Pemegang Lesen</ion-label>
+      </ion-item>
+
+      <ion-item text-wrap no-lines text-center style="letter-spacing: 1px;font-size: 15px;">
+        <ion-label>Borang B</ion-label>
+      </ion-item>
+
+      <ion-item text-wrap no-lines text-center style="letter-spacing: 1px;font-size: 15px;">
+        <ion-label>[sub-peraturan 6A(2)]</ion-label>
+      </ion-item>
+
+      <ion-item text-wrap no-lines text-center text-uppercase style="letter-spacing: 1px;font-size: 15px;">
+        <ion-label>Malaysia</ion-label>
+      </ion-item>
+
+      <ion-item text-wrap no-lines text-center text-uppercase style="letter-spacing: 1px;font-size: 15px;">
+        <ion-label>Negeri {{ formBCess.ta4statename || '-' }}</ion-label>
+      </ion-item>
+
+      <ion-item col-md-6 offset-md-3 [class]="(formBState && !formBCess.ta4statename) ? 'custom-box-red' : 'custom-box'"
+        style="letter-spacing: 1px;font-size: 15px;">
+        <ion-label fixed color="primary" style="text-align: center;">Negeri</ion-label>
+        <ion-select ion-col col-md-8 [(ngModel)]="formBCess.ta4statename" placeholder="Choose"
+          style="text-align: center;">
+          <ion-option value="Perak">Perak</ion-option>
+          <ion-option value="Perlis">Perlis</ion-option>
+          <ion-option value="Terengganu">Terengganu</ion-option>
+          <ion-option value="Kelantan">Kelantan</ion-option>
+          <ion-option value="Kedah">Kedah</ion-option>
+          <ion-option value="Selangor">Selangor</ion-option>
+          <ion-option value="Sabah">Sabah</ion-option>
+          <ion-option value="Sarawak">Sarawak</ion-option>
+          <ion-option value="Wilayah Persekutuan">Wilayah Persekutuan</ion-option>
+          <ion-option value="Melaka">Melaka</ion-option>
+          <ion-option value="Negeri Sembilan">Negeri Sembilan</ion-option>
+          <ion-option value="Johor">Johor</ion-option>
+          <ion-option value="Pahang">Pahang</ion-option>
+          <ion-option value="Putrajaya">Putrajaya</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item no-lines style="letter-spacing: 1px;font-size: 15px;">
+        <ion-label text-wrap no-lines text-center text-uppercase>Akta Bekalan Elektrik 1990</ion-label>
+      </ion-item>
+
+      <ion-item col-md-7 no-lines style="letter-spacing: 1px;font-size: 15px;">
+        <ion-label>Kepada :</ion-label>
+      </ion-item>
+
+      <ion-item col-md-7 style="letter-spacing: 1px;font-size: 15px;">
+        <ion-input type="text" placeholder="Auto Populate" value="{{ formBCess.ta4custname }}" readonly="true">
+        </ion-input>
+      </ion-item>
+
+      <ion-item col-md-7 text-wrap style="letter-spacing: 1px;font-size: 15px;">
+        <ion-textarea rows="3" placeholder="Auto Populate" value="{{ formBCess.ta4custaddress }}" readonly="true"
+          style="text-align: justify;">
+        </ion-textarea>
+      </ion-item>
+
+      <ion-item col-md-7 style="letter-spacing: 1px;font-size: 15px;">
+        <ion-label>Tuan/Puan/Cik/Tetuan,</ion-label>
+      </ion-item>
+
+      <ion-item-divider class="item-divider-header">
+        <ion-icon name="filing" item-start></ion-icon>
+        <strong>Notis Pemberhentian/Gangguan Sementara Bekalan Elektrik</strong>
+      </ion-item-divider>
+
+      <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 15px;">
+        <ion-label ion-col col-md-12>
+          Dimaklumkan bahawa bekalan elektrik di <strong>{{ formBCess.tenant || '...' }}</strong> (alamat
+          pengguna/kawasan yang akan terjejas) akan diberhentikan / diganggu sementara pada
+          <strong>{{ formBCess.ta4datetime || '...'}}</strong> (tarikh) dari
+          <strong>{{ formBCess.ta4starttime  || '...'}}</strong> (masa mula) sehingga
+          <strong>{{ formBCess.ta4endtime || '...' }}</strong> (masa akhir) bagi tujuan
+          <strong>{{ formBCess.ta4purpose || '...' }}</strong> (sila masukkan tujuan).
+        </ion-label>
+      </ion-item>
+
+      <ion-row col-md-12 style="margin-left: 15px;margin-bottom: 20px;">
+        <ion-col col-md-9
+          [class]="((formBDate || formBStartInteruptTime || formBEndInteruptTime || formBPurpose) && (!formBCess.ta4datetime || !formBCess.ta4starttime || !formBCess.ta4endtime || !formBCess.ta4purpose)) ? 'custom-form-box-red' : 'custom-form-box'">
+          <ion-item
+            *ngIf="(formBDate || formBStartInteruptTime || formBEndInteruptTime || formBPurpose) && (!formBCess.ta4datetime || !formBCess.ta4starttime || !formBCess.ta4endtime || !formBCess.ta4purpose)"
+            text-wrap style="letter-spacing: 1px;font-size: 15px;;border-radius: 10px 10px 0px 0px;">
+            <p style="margin-top: 10px;font-style: italic;font-size: 14px;color: red;">
+              *Tarikh, masa dan tujuan diperlukan.
+            </p>
+          </ion-item>
+
+          <ion-item style="letter-spacing: 1px;font-size: 15px;border-radius: 10px 10px 0px 0px;">
+            <ion-label fixed color="primary">*Tarikh</ion-label>
+            <ion-input type="text" value="{{ formBCess.ta4datetime }}" readonly="true" placeholder="Tarikh"
+              (click)="presentPopover($event,'FormBInteruptDate')">
+            </ion-input>
+            <ion-icon name="calendar" item-end (click)="presentPopover($event,'FormBInteruptDate')"></ion-icon>
+          </ion-item>
+
+          <ion-item style="letter-spacing: 1px;font-size: 15px;">
+            <ion-label fixed color="primary">*Mula</ion-label>
+            <ion-datetime [(ngModel)]="formBCess.ta4starttime" displayFormat="HH:mm" placeholder="Masa Mula">
+            </ion-datetime>
+            <ion-icon name="time" item-end></ion-icon>
+          </ion-item>
+
+          <ion-item style="letter-spacing: 1px;font-size: 15px;">
+            <ion-label fixed color="primary">*Akhir</ion-label>
+            <ion-datetime [(ngModel)]="formBCess.ta4endtime" displayFormat="HH:mm" placeholder="Masa Akhir">
+            </ion-datetime>
+            <ion-icon name="time" item-end></ion-icon>
+          </ion-item>
+
+          <ion-item no-lines style="letter-spacing: 1px;font-size: 15px;border-radius: 0px 0px 10px 10px;">
+            <ion-label fixed color="primary">*Tujuan</ion-label>
+            <ion-textarea rows="5" [(ngModel)]="formBCess.ta4purpose" placeholder="Tujuan"></ion-textarea>
+            <ion-icon name="journal" item-end></ion-icon>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-item style="letter-spacing: 1px;font-size: 15px;">
+        <ion-label fixed color="primary">Pemegang Lesen</ion-label>
+        <ion-input type="text" placeholder="Auto Populate" readonly="true" value="TNB"></ion-input>
+        <ion-icon name="card" item-end></ion-icon>
+      </ion-item>
+
+      <ion-item style="letter-spacing: 1px;font-size: 15px;">
+        <ion-label fixed color="primary">Daerah</ion-label>
+        <ion-input type="text" placeholder="Auto Populate" readonly="true" value="{{ siteId_region }}"></ion-input>
+        <ion-icon name="map" item-end></ion-icon>
+      </ion-item>
+
+      <ion-item style="align-items: center;letter-spacing: 1px;font-size: 15px;">
+        <ion-label fixed color="primary" style="align-self: normal;">Alamat</ion-label>
+        <ion-textarea rows="3" text-wrap placeholder="Auto Populate" readonly="true"
+          value="{{ formBCess.ta4officeaddress }}">
+        </ion-textarea>
+        <ion-icon name="pin" item-end style="margin-right: 10px;"></ion-icon>
+      </ion-item>
+
+      <ion-item style="letter-spacing: 1px;font-size: 15px;">
+        <ion-label fixed color="primary">No. Tel.</ion-label>
+        <ion-input type="text" placeholder="Auto Populate" readonly="true" value="{{ formBCess.ta4officephone }}">
+        </ion-input>
+        <ion-icon name="call" item-end></ion-icon>
+      </ion-item>
+
+      <ion-item style="letter-spacing: 1px;font-size: 15px;">
+        <ion-label fixed color="primary">Tarikh</ion-label>
+        <ion-input type="text" placeholder="Tarikh" readonly="true" value="{{ formBCess.ta4indatetime }}"
+          (click)="presentPopover($event,'formBdated')">
+        </ion-input>
+        <ion-icon name="calendar" item-end (click)="presentPopover($event,'formBdated')"></ion-icon>
+      </ion-item>
+    </ion-row>
+
+  </ion-list>
+  <!-- End: Gangguan Sementara -->
+
+  <!-- Start: Borang A -->
+  <ion-list ion-row *ngIf='formType === "borangA"'>
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="bookmark" item-start></ion-icon>
+      <strong>Jadual Borang A</strong>
+    </ion-item-divider>
+
+    <ion-item no-lines>
+      <ion-label text-wrap no-lines text-center text-uppercase>Jadual</ion-label>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label text-wrap no-lines text-center text-uppercase><strong>Borang A</strong></ion-label>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label text-wrap no-lines text-center text-uppercase>(sub-peraturan 6A(1))</ion-label>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label text-wrap no-lines text-center text-uppercase>Malaysia</ion-label>
+    </ion-item>
+
+    <ion-item text-wrap no-lines text-center text-uppercase>
+      <ion-label>NEGERI {{ formCust.ta4statename || '...' }}</ion-label>
+    </ion-item>
+
+    <ion-item col-md-6 offset-md-3 [class]="(stateSelect2 && !formCust.ta4statename) ? 'custom-box-red' : 'custom-box'">
+      <ion-label fixed color="primary" style="text-align: center;">Negeri</ion-label>
+      <ion-select ion-col col-md-8 [(ngModel)]="formCust.ta4statename" placeholder="Choose" style="text-align: center;">
+        <ion-option value="Perak">Perak</ion-option>
+        <ion-option value="Perlis">Perlis</ion-option>
+        <ion-option value="Terengganu">Terengganu</ion-option>
+        <ion-option value="Kelantan">Kelantan</ion-option>
+        <ion-option value="Kedah">Kedah</ion-option>
+        <ion-option value="Selangor">Selangor</ion-option>
+        <ion-option value="Sabah">Sabah</ion-option>
+        <ion-option value="Sarawak">Sarawak</ion-option>
+        <ion-option value="Wilayah Persekutuan">Wilayah Persekutuan</ion-option>
+        <ion-option value="Melaka">Melaka</ion-option>
+        <ion-option value="Negeri Sembilan">Negeri Sembilan</ion-option>
+        <ion-option value="Johor">Johor</ion-option>
+        <ion-option value="Pahang">Pahang</ion-option>
+        <ion-option value="Putrajaya">Putrajaya</ion-option>
+        <ion-option value="Pulau Pinang">Pulau Pinang</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label text-wrap no-lines text-center text-uppercase>Akta Bekalan Elektrik 1990</ion-label>
+    </ion-item>
+
+    <ion-item col-md-7 no-lines>
+      <ion-label>Kepada :</ion-label>
+    </ion-item>
+
+    <ion-item col-md-7>
+      <ion-input type="text" placeholder="Auto Populate" value="{{ formCust.ta4custname || '-' }}" readonly="true">
+      </ion-input>
+    </ion-item>
+
+    <ion-item col-md-7 text-wrap>
+      <ion-textarea rows="3" placeholder="Auto Populate" value="{{ formCust.ta4custaddress || '-'}}" readonly="true"
+        style="text-align: justify;">
+      </ion-textarea>
+    </ion-item>
+
+    <ion-item col-md-7>
+      <ion-input type="text" placeholder="Auto Populate"
+        value="{{ formCust.station || '...'}} - {{ formCust.ta4accountno || '...'}}" readonly="true">
+      </ion-input>
+    </ion-item>
+
+    <ion-item col-md-7>
+      <ion-label>Tuan/Puan/Cik/Tetuan,</ion-label>
+    </ion-item>
+
+    <ion-item-divider text-wrap class="item-divider-header">
+      <ion-icon name="filing" item-start></ion-icon>
+      <strong>Notis Pemotongan Bekalan Elektrik Di Bawah Subseksyen 38(1) Akta Belakan Elektrik 1990</strong>
+    </ion-item-divider>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 15px;">
+      <ion-label ion-col col-md-12>
+        Sila ambil perhatian pada <strong>{{ formCust.ta4datetime | date: gv.dateFormat || '...'}} -
+          {{ formCust.ta4datetime | date: gv.time24Format || '...'}}</strong> (date/time) satu pemeriksaan telah
+        dilakukan terhadap pepasangan kami di premis tuan. Hasil pemeriksaan, kami mendapati bahawa pepasangan tersebut
+        telah diusik atau diubahsuai dalam keadaan yang dinyatakan berikut di bawah:
+      </ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="ano && !formCust.ta4anamoly" text-wrap
+      [class]="(ano && !formCust.ta4anamoly) ? 'custom-box-red' : 'custom-box'"
+      style="letter-spacing: 1px;font-size: 15px;margin: 0px 8px 0px 20px;padding: 0px 12px 0px 12px;text-align: justify;">
+      <p style="font-style: italic;font-size: 14px;color: red;">
+        *Diperlukan kenyataan anomali. <br>
+        *Untuk melakukan penukaran, sila ubah di 'Anomaly Remarks Section' at 'Service Details'.
+      </p>
+    </ion-item>
+
+    <p style="padding-left: 20px;line-height: 30px;letter-spacing: 1px;font-weight: bold;white-space: pre-line;">
+      {{ formCust.ta4anamoly || '...' }}
+    </p>
+
+    <ion-row col-md-12 style="margin-left: 15px;margin-bottom: 20px;">
+      <ion-col col-md-8 [class]="(datetimeformA && !formCust.ta4datetime) ? 'custom-box-red' : 'custom-box'"
+        style="padding: 0px 0px 0px 0px;">
+        <ion-item *ngIf="datetimeformA && !formCust.ta4datetime" text-wrap
+          style="letter-spacing: 1px;font-size: 15px;border-radius: 10px 10px 0px 0px;">
+          <p style="font-style: italic;font-size: 14px;color: red;">
+            *Diperlukan tarik/masa.
+          </p>
+        </ion-item>
+
+        <ion-item no-lines style="border-radius: 10px 10px 10px 10px;padding-bottom: 1px;">
+          <ion-label fixed color="primary">*Tarikh/Masa</ion-label>
+          <ion-datetime [(ngModel)]="formCust.ta4datetime" placeholder="Date" displayFormat="DD/MM/YYYY - HH:mm"
+            pickerFormat="DD/MM/YYYY HH:mm" (ionChange)='formatTimeDisplay()' text-right>
+          </ion-datetime>
+          <ion-icon name="time" item-end></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-item no-lines style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 15px;">
+      <ion-label ion-col col-md-12 text-wrap>
+        Berdasarkan keterangan di atas, pihak kami berpendapat bahawa suatu kesalahan telah dilakukan di bawah Akta
+        Bekalan Elektrik 1990 (”Akta”) seperti berikut:
+      </ion-label>
+    </ion-item>
+
+    <ion-list no-lines style="margin: 10px 13px 10px 20px;border: 1px solid lightgrey;border-radius: 10px;">
+      <ion-item style="border-radius: 10px 10px 0px 0px;">
+        <ion-checkbox [(ngModel)]="formCust.subsection1" (ionChange)="checkboxSlct()"></ion-checkbox>
+        <ion-label>Semua</ion-label>
+      </ion-item>
+      <ion-item-divider>Subseksyen 37(1)*</ion-item-divider>
+      <ion-item text-wrap style="text-align: justify;">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss1tampers" value="sectinAct1" (ionChange)="CheckValueSentForCheckbox()">
+        </ion-checkbox>
+        <ion-label>
+          mengganggu atau melaraskan apa-apa pepasangan atau bahagiannya atau mengilang atau mengimport atau menjual
+          apa-apa kelengkapan sehingga menyebabkan atau mungkin menyebabkan bahaya kepada nyawa atau anggota badan
+          manusia atau kerosakan pada mana-mana kelengkapan atau harta lain:
+        </ion-label>
+      </ion-item>
+      <ion-item-divider>Subseksyen 37(3)* - mengikut apa-apa cara dengan curang:-</ion-item-divider>
+      <ion-item>
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3abstracts" (ionChange)="CheckValueSentForCheckbox()"></ion-checkbox>
+        <ion-label>Mengambil tenaga</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3consumer" (ionChange)="CheckValueSentForCheckbox()"></ion-checkbox>
+        <ion-label>Mengguna habis tenaga</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3uses" (ionChange)="CheckValueSentForCheckbox()"></ion-checkbox>
+        <ion-label>Mengguna tenaga</ion-label>
+      </ion-item>
+      <ion-item text-wrap style="text-align: justify;">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3afterindex" (ionChange)="CheckValueSentForCheckbox()"></ion-checkbox>
+        <ion-label>
+          Mengubah pinda indeks apa-apa meter atau alat yang digunakan di atas atau berkaitan dengan apa-apa pepasangan
+          mana-mana pepasangan berlesen untuk merekodkan keluaran atau penggunahabisan tenaga; atau
+        </ion-label>
+      </ion-item>
+      <ion-item text-wrap style="text-align: justify;">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3prevents" (ionChange)="CheckValueSentForCheckbox()"></ion-checkbox>
+        <ion-label>
+          Menghalang apa-apa meter atau alat sedemikian daripada merekodkan dengan sempurnanya keluaran atau
+          penggunahabisan tenaga
+        </ion-label>
+      </ion-item>
+      <ion-item-divider>Subseksyen 37(14)*</ion-item-divider>
+      <ion-item text-wrap style="text-align: justify;border-radius: 0px 0px 10px 10px;">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss14damages" (ionChange)="CheckValueSentForCheckbox()"></ion-checkbox>
+        <ion-label>
+          Merosakkan apa-apa meter atau alat lain yang digunakan atas atau berkaitan dengan mana-mana pepasangan
+          berlesen bagi merekodkan keluaran atau penggunahabisan tenaga.
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-item no-lines style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 15px;">
+      <ion-label ion-col col-md-12 text-wrap>
+        Sila ambil perhatian bahawa di bawah subseksyen 38(1) Akta, tuan adalah diberi notis bahawa bekalan elektrik di
+        premis seperti di atas akan dipotong pada <strong>{{ formCust.ta4starttime || '...' }}</strong> (tarikh). Sila
+        ambil perhatian juga bahawa pihak kami akan membuat tuntutan apa-apa kerugian dan perbelanjaan oleh pihak kami
+        berikutan kesalahan yang dilakukan seperti di atas. Pihak kami akan mengemukakan pernyataan tuntutan kepada tuan
+        dalam masa terdekat.
+      </ion-label>
+    </ion-item>
+
+    <ion-row col-md-12 style="margin-left: 15px;margin-bottom: 20px;">
+      <ion-col col-md-8 class="custom-form-box">
+        <ion-item style="border-radius: 10px 10px 10px 10px;">
+          <ion-label fixed color="primary" text-wrap>Tarikh Pemotongan</ion-label>
+          <ion-input type="text" placeholder="Tarikh Pemotongan" readonly="true" value="{{ formCust.ta4starttime }}">
+          </ion-input>
+          <!-- (click)="presentPopover($event,'DateDisconnection')" -->
+          <!-- <ion-icon name="calendar" item-end (click)="presentPopover($event,'DateDisconnection')"></ion-icon> -->
+        </ion-item>
+
+        <ion-item>
+          <ion-label fixed color="primary">Daerah</ion-label>
+          <ion-input type="text" placeholder="Daerah" readonly="false" value="{{ siteId_region }}"></ion-input>
+        </ion-item>
+
+        <ion-item text-wrap>
+          <ion-label fixed color="primary">Alamat</ion-label>
+          <ion-textarea rows="3" placeholder="Alamat" readonly="false" value="{{ formCust.ta4officeaddress }}">
+          </ion-textarea>
+        </ion-item>
+
+        <ion-item no-lines style="border-radius: 0px 0px 10px 10px;">
+          <ion-label fixed color="primary" text-wrap>Tarikh Pemeriksaan</ion-label>
+          <ion-input type="text" placeholder="Tarikh Pemeriksaan" readonly="true" value="{{ formCust.ta4indatetime }}"
+            (click)="presentPopover($event,'formAStaffDate')"></ion-input>
+          <ion-icon name="calendar" item-end (click)="presentPopover($event,'formAStaffDate')"></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-list ion-row
+      [class]="((datetimeformA && deliveryD && deliveryT && deliveryN && receiverN) && (!deliver.ta4indatetime || !deliver.ta4starttime || !deliver.ta4witnessname || !deliver.ta4staffname)) ? 'custom-formA-box-red' : 'custom-formA-box'">
+      <ion-item-divider style="border-radius: 10px 10px 0px 0px;">Penyerahan Notis Borang A</ion-item-divider>
+
+      <ion-item
+        *ngIf="(datetimeformA && deliveryD && deliveryT && deliveryN && receiverN) && (!deliver.ta4indatetime || !deliver.ta4starttime || !deliver.ta4witnessname || !deliver.ta4staffname)"
+        text-wrap style="letter-spacing: 1px;font-size: 15px;border-radius: 10px 10px 10px 10px;">
+        <p style="font-style: italic;font-size: 14px;color: red;">
+          *Diperlukan tarikh dan masa. <br>
+          *Diperlukan receiver name, receiver signature fields. <br>
+          *Diperlukan delivery name, delivery fields.
+        </p>
+      </ion-item>
+
+      <ion-item col-md-12>
+        <ion-label fixed color="primary">*Tarikh</ion-label>
+        <ion-input mode="md" type="text" placeholder="Tarikh" readonly="true" value="{{ deliver.ta4indatetime }}"
+          (click)="presentPopover($event,'deliveryDate')"></ion-input>
+        <ion-icon name="calendar" item-end (click)="presentPopover($event,'deliveryDate')"></ion-icon>
+      </ion-item>
+
+      <ion-item col-md-12>
+        <ion-label fixed color="primary">*Masa</ion-label>
+        <ion-datetime mode="md" [(ngModel)]="deliver.ta4starttime" displayFormat="HH:mm" placeholder="Masa">
+        </ion-datetime>
+        <ion-icon name="time" item-end></ion-icon>
+      </ion-item>
+
+      <ion-item-divider>Penerima</ion-item-divider>
+
+      <ion-item>
+        <ion-label fixed color="primary">Nama</ion-label>
+        <ion-input mode="md" type="text" placeholder="Nama" readonly="true" value="{{ deliver.ta4witnessname }}">
+        </ion-input>
+      </ion-item>
+
+      <ion-item style="align-items: start;">
+        <ion-label fixed color="primary">T/Tangan</ion-label>
+        <ion-label style="margin-left: 15px;">
+          <ion-fab>
+            <button ion-fab mini mode="md" (click)="clearSign('deliverWitness')">
+              <ion-icon name="md-refresh"></ion-icon>
+            </button>
+          </ion-fab>
+          <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad1></signature-pad>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-divider>Penyerah</ion-item-divider>
+
+      <ion-item style="align-items: start;">
+        <ion-label fixed color="primary">Nama</ion-label>
+        <ion-input type="text" placeholder="Name" readonly="true" value="{{ deliver.ta4staffname }}"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed color="primary">T/Tangan</ion-label>
+        <ion-label style="margin-left: 15px;">
+          <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad2></signature-pad>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-divider>Catatan</ion-item-divider>
+
+      <ion-item no-lines style="align-items: start;border-radius: 0px 0px 10px 10px;">
+        <ion-textarea [(ngModel)]="deliver.ta4describe" rows="4" placeholder="Remarks"></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <ion-list ion-row
+      style="margin: 10px 13px 10px 20px;border: 1px solid lightgrey;border-radius: 10px;width: -webkit-fill-available;">
+      <ion-item-divider style="border-radius: 10px 10px 0px 0px;">Pemotongan Bekalan</ion-item-divider>
+      <ion-item col-md-6>
+        <ion-label fixed color="primary">Tarikh</ion-label>
+        <ion-input mode="md" type="text" placeholder="Tarikh" readonly="true" value="{{ disconnect.ta4datetime }}"
+          (click)="presentPopover($event,'disconnetDate')"></ion-input>
+        <ion-icon name="calendar" item-end (click)="presentPopover($event,'disconnetDate')"></ion-icon>
+      </ion-item>
+
+      <ion-item col-md-6>
+        <ion-label fixed color="primary">Masa</ion-label>
+        <ion-datetime mode="md" [(ngModel)]="disconnect.ta4starttime" displayFormat="HH:mm" placeholder="Masa"
+          [pickerOptions]="customOptionsDiscon">
+        </ion-datetime>
+        <ion-icon name="time" item-end></ion-icon>
+      </ion-item>
+
+      <ion-item-divider>Pemotongan</ion-item-divider>
+
+      <ion-item>
+        <ion-label fixed color="primary">Nama</ion-label>
+        <ion-input mode="md" type="text" placeholder="Nama" readonly="true" value="{{ disconnect.ta4staffname }}">
+        </ion-input>
+      </ion-item>
+
+      <ion-item style="align-items: start;">
+        <ion-label fixed color="primary">T/Tangan</ion-label>
+        <ion-label style="margin-left: 15px;">
+          <ion-fab>
+            <button ion-fab mini mode="md" (click)="clearSign('disconnectStaff')">
+              <ion-icon name="md-refresh"></ion-icon>
+            </button>
+          </ion-fab>
+          <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad3></signature-pad>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-divider>Catatan</ion-item-divider>
+
+      <ion-item style="border-radius: 0px 0px 10px 10px;">
+        <ion-textarea [(ngModel)]="disconnect.ta4describe" rows="5" placeholder="Catatan"></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <ion-list ion-row
+      style="margin: 10px 13px 10px 20px;border: 1px solid lightgrey;border-radius: 10px;width: -webkit-fill-available;">
+      <ion-item-divider style="border-radius: 10px 10px 0px 0px;">Penyambungan Semula Bekalan</ion-item-divider>
+      <ion-item col-md-6>
+        <ion-label fixed color="primary">Tarikh</ion-label>
+        <ion-input mode="md" type="text" placeholder="Tarikh" readonly="true" value="{{ reconnect.ta4datetime }}"
+          (click)="presentPopover($event,'reconnectDate')"></ion-input>
+        <ion-icon name="calendar" item-end (click)="presentPopover($event,'reconnectDate')"></ion-icon>
+      </ion-item>
+
+      <ion-item col-md-6>
+        <ion-label fixed color="primary">Masa</ion-label>
+        <ion-datetime mode="md" [(ngModel)]="reconnect.ta4starttime" displayFormat="HH:mm" placeholder="Masa"
+          [pickerOptions]="customOptionsRecon">
+        </ion-datetime>
+        <ion-icon name="time" item-end></ion-icon>
+      </ion-item>
+
+      <ion-item-divider>Penyambungan</ion-item-divider>
+
+      <ion-item>
+        <ion-label fixed color="primary">Nama</ion-label>
+        <ion-input mode="md" type="text" placeholder="Nama" readonly="true" value="{{ reconnect.ta4staffname }}">
+        </ion-input>
+      </ion-item>
+
+      <ion-item style="align-items: start;">
+        <ion-label fixed color="primary">T/Tangan</ion-label>
+        <ion-label style="margin-left: 15px;">
+          <ion-fab>
+            <button ion-fab mini mode="md" (click)="clearSign('reconnectStaff')">
+              <ion-icon name="md-refresh"></ion-icon>
+            </button>
+          </ion-fab>
+          <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad4></signature-pad>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-divider>Catatan</ion-item-divider>
+
+      <ion-item no-lines style="border-radius: 0px 0px 10px 10px;">
+        <ion-textarea [(ngModel)]="reconnect.ta4describe" rows="5" placeholder="Catatan"></ion-textarea>
+      </ion-item>
+    </ion-list>
+  </ion-list>
+  <!-- End: Borang A -->
+
+  <!-- Start: Borang A Pelanggan -->
+  <ion-list ion-row *ngIf='formType === "borangACopy"'>
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="bookmark" item-start></ion-icon>
+      <strong>Jadual Borang A</strong>
+    </ion-item-divider>
+
+    <ion-item no-lines>
+      <ion-label text-wrap no-lines text-center text-uppercase>Jadual</ion-label>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label text-wrap no-lines text-center text-uppercase><strong>Borang A</strong></ion-label>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label text-wrap no-lines text-center text-uppercase>(sub-peraturan 6A(1))</ion-label>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label text-wrap no-lines text-center text-uppercase>Malaysia</ion-label>
+    </ion-item>
+
+    <ion-item text-wrap no-lines text-center text-uppercase>
+      <ion-label>Negeri {{ formCust.ta4statename || '-' }}</ion-label>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label text-wrap no-lines text-center text-uppercase>Akta Bekalan Elektrik 1990</ion-label>
+    </ion-item>
+
+    <ion-item col-md-7 no-lines>
+      <ion-label>Kepada :</ion-label>
+    </ion-item>
+
+    <ion-item col-md-7>
+      <ion-input type="text" placeholder="Auto Populate" value="{{ formCust.ta4custname }}" readonly="true">
+      </ion-input>
+    </ion-item>
+
+    <ion-item col-md-7 text-wrap>
+      <ion-textarea rows="3" placeholder="Auto Populate" value="{{ formCust.ta4custaddress }}" readonly="true"
+        style="text-align: justify;">
+      </ion-textarea>
+    </ion-item>
+
+    <ion-item col-md-7>
+      <ion-input type="text" placeholder="Auto Populate" value="{{ formCust.station }} - {{ formCust.ta4accountno }}"
+        readonly="true">
+      </ion-input>
+    </ion-item>
+
+    <ion-item col-md-7>
+      <ion-label>Tuan/Puan/Cik/Tetuan,</ion-label>
+    </ion-item>
+
+    <ion-item-divider text-wrap class="item-divider-header">
+      <ion-icon name="filing" item-start></ion-icon>
+      <strong>Notis Pemotongan Bekalan Elektrik Di Bawah Subseksyen 38(1) Akta Bekalan Elektrik 1990</strong>
+    </ion-item-divider>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 15px;">
+      <ion-label ion-col col-md-12>
+        Sila ambil perhation pada <strong>{{ formCust.ta4datetime | date: gv.dateFormat || '...'}} -
+          {{ formCust.ta4datetime | date: gv.timeFormat || '...'}}</strong> (tarikh/masa) satu pemeriksaan telah
+        dilakukan terhadap pepasangan kami di premis tuan. Hasil pemeriksaan, kami mendapati bahawa pepasangan tersebut
+        telah diusik atau diubahsuai dalam keadaan yang dinyatakan berikut di bawah:
+      </ion-label>
+    </ion-item>
+
+    <p style="padding-left: 20px;line-height: 30px;letter-spacing: 1px;font-weight: bold;white-space: pre-line;">
+      {{ formCust.ta4anamoly || '...' }}
+    </p>
+
+    <ion-item no-lines style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 15px;">
+      <ion-label ion-col col-md-12 text-wrap>
+        Berdasarkan keterangan di atas, pihak kami berpendapat bahawa suatu kesalahan telah dilakukan di bawah Akta
+        Bekalan Elektrik 1990 ("Akta") seperti berikut:
+      </ion-label>
+    </ion-item>
+
+    <ion-list no-lines style="margin: 10px 13px 10px 20px;border: 1px solid lightgrey;border-radius: 10px;">
+      <ion-item-divider style="border-radius: 10px 10px 0px 0px;letter-spacing: 1px;font-size: 15px;">
+        Subseksyen 37(1)*
+      </ion-item-divider>
+      <ion-item text-wrap style="text-align: justify;letter-spacing: 1px;font-size: 15px;">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss1tampers" value="sectinAct1" disabled="{{ selectDisabled }}">
+        </ion-checkbox>
+        <ion-label style="opacity: 1;">
+          Mengganggu atau melaraskan apa-apa pepasangan atau bahagiannya atau mengilang atau mengimport atau menjual
+          apa-apa kelengkapan sehingga menyebabkan atau mungkin menyebabkan bahaya kepada nyawa atau anggota badan
+          manusia atau kerosakan pada mana-mana kelengkapan atau harta lain:
+        </ion-label>
+      </ion-item>
+      <ion-item-divider style="letter-spacing: 1px;font-size: 15px;">Subseksyen 37(3)* - mengikut apa-apa cara dengan
+        curang:-
+      </ion-item-divider>
+      <ion-item style="letter-spacing: 1px;font-size: 15px;">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3abstracts" disabled="{{ selectDisabled }}"></ion-checkbox>
+        <ion-label style="opacity: 1;">Mengambil tenaga</ion-label>
+      </ion-item>
+      <ion-item style="letter-spacing: 1px;font-size: 15px;">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3consumer" disabled="{{ selectDisabled }}"></ion-checkbox>
+        <ion-label style="opacity: 1;">Mengguna habis tenaga</ion-label>
+      </ion-item>
+      <ion-item style="letter-spacing: 1px;font-size: 15px;">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3uses" disabled="{{ selectDisabled }}"></ion-checkbox>
+        <ion-label style="opacity: 1;">Mengguna tenaga</ion-label>
+      </ion-item>
+      <ion-item text-wrap style="text-align: justify;letter-spacing: 1px;font-size: 15px;">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3afterindex" disabled="{{ selectDisabled }}"></ion-checkbox>
+        <ion-label style="opacity: 1;">
+          Mengubah pinda indeks apa-apa meter atau alat yang digunakan di atas atau berkaitan dengan apa-apa
+          pepasangan mana-mana pepasangan berlesen untuk merekodkan keluaran atau penggunahabisan tenaga; atau
+        </ion-label>
+      </ion-item>
+      <ion-item text-wrap style="text-align: justify;letter-spacing: 1px;font-size: 15px;">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3prevents" disabled="{{ selectDisabled }}"></ion-checkbox>
+        <ion-label style="opacity: 1;">
+          Menghalang apa-apa meter atau alat sedemikian daripada merekodkan dengan sempurnanya keluaran atau
+          penggunahabisan tenaga
+        </ion-label>
+      </ion-item>
+      <ion-item-divider style="letter-spacing: 1px;font-size: 15px;">Subsection 37(14)*</ion-item-divider>
+      <ion-item text-wrap
+        style="text-align: justify;border-radius: 0px 0px 10px 10px;letter-spacing: 1px;font-size: 15px;">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss14damages" disabled="{{ selectDisabled }}"></ion-checkbox>
+        <ion-label style="opacity: 1;">
+          Merosakkan apa-apa meter atau alat lain yang digunakan atas atau berkaitan dengan mana-mana pepasangan
+          berlesen bagi merekodkan keluaran atau penggunahabisan tenaga.
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-item no-lines style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 15px;">
+      <ion-label ion-col col-md-12 text-wrap>
+        Sila ambil perhatian bahawa di bawah subseksyen 38(1) Akta, tuan adalah diberi notis bahawa bekalan elektrik di
+        premis seperti di atas akan dipotong pada <strong>{{ formCust.ta4starttime || '...' }}</strong> (tarikh).
+      </ion-label>
+    </ion-item>
+
+    <ion-item no-lines style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 15px;">
+      <ion-label ion-col col-md-12 text-wrap>
+        Sila ambil perhatian juga bahawa pihak kami akan membuat tuntutan apa-apa kerugian dan perbelanjaan oleh pihak
+        kami berikutan kesalahan yang dilakukan seperti di atas. Pihak kami akan mengemukakan pernyataan tuntutan kepada
+        tuan dalam masa terdekat.
+      </ion-label>
+    </ion-item>
+
+    <ion-row col-md-12 style="margin-left: 15px;margin-bottom: 20px;">
+      <ion-col
+        style="border: 0.55px solid lightgrey;border-radius: 10px;padding: 5px 12px 12px 0px;margin-right: 20px;">
+        <ion-item text-wrap>
+          <ion-label fixed color="primary">Alamat</ion-label>
+          <ion-textarea rows="3" placeholder="Alamat" readonly="true" value="{{ formCust.ta4officeaddress }}">
+          </ion-textarea>
+        </ion-item>
+
+        <ion-item>
+          <ion-label fixed color="primary">Tarikh</ion-label>
+          <ion-input type="text" placeholder="Tarikh" readonly="true" value="{{ formCust.ta4indatetime }}"></ion-input>
+          <ion-icon name="calendar" item-end></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+  </ion-list>
+  <!-- End: Borang A Pelanggan -->
+
+  <!-- Start: Sesi Penjelasan Tanpa Prejudis -->
+  <ion-list ion-row *ngIf='formType === "tanpa_prejudis"'>
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="bookmark" item-start></ion-icon>
+      <strong>Sesi Perjelasan Tanpa Prejudis</strong>
+    </ion-item-divider>
+
+    <ion-item col-md-7 style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 16px;" no-lines>
+      <ion-label>Kepada :</ion-label>
+    </ion-item>
+
+    <ion-item col-md-7 style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 16px;">
+      <ion-input type="text" placeholder="Auto Populate" value="{{ prejude.ta4custname }}" readonly="true">
+      </ion-input>
+    </ion-item>
+
+    <ion-item col-md-7 style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 16px;" text-wrap>
+      <ion-textarea rows="3" placeholder="Auto Populate" value="{{ prejude.ta4custaddress }}" readonly="true"
+        style="text-align: justify;">
+      </ion-textarea>
+    </ion-item>
+
+    <ion-item col-md-7 style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 16px;">
+      <ion-label>Pengguna TNB yang Dihormati,</ion-label>
+    </ion-item>
+
+    <ion-item-divider text-wrap class="item-divider-header" style="text-align: justify;">
+      <ion-icon name="filing" item-start></ion-icon>
+      <strong>Surat Pemakluman (Sesi Perjelasan Tanpa Prejudis) Berhubung Tindakan Pemotongan Bekalan Elektrik dan
+        Tuntutan Kerugian Hasil dan Perbelanjaan serta Caj Berkaitan</strong>
+    </ion-item-divider>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;letter-spacing: 0.6px;font-size: 16px;">
+      <ion-label ion-col col-md-12>
+        Ingin dimaklumkan bahawa pihak TNB telah menjalankan pemeriksaan dan pengujian terhadap pepasangan meter TNB di
+        premis tuan/puan bagi memastikan ia berfungsi dalam keadaan yang baik. Hasil pemeriksaan tersebut mendapati
+        pepasangan meter TNB tidak merekodkan bacaan penggunaan elektrik yang sebenar.
+      </ion-label>
+    </ion-item>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;letter-spacing: 0.6px;font-size: 16px;">
+      <ion-label ion-col col-md-12>
+        Berdasarkan peruntukan Seksyen 38 Akta Bekalan Elektrik 1990, pihak TNB akan melakukan pemotongan bekalan
+        elektrik ke premis tuan/puan seperti notis pemotongan (Borang A) yang diserahkan bersama dengan notis ini dan
+        juga akan membuat tuntutan kerugian hasil dan perbelanjaan serta caj berkaitan.
+      </ion-label>
+    </ion-item>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;letter-spacing: 0.6px;font-size: 16px;">
+      <ion-label ion-col col-md-12>
+        Oleh itu, tuan/puan dijemput hadir ke pejabat <strong>SEKSYEN JAMINAN HASIL</strong> yang beralamat di negeri
+        <strong>{{ siteId_region }}, {{ prejude.ta4officeaddress }}</strong> selepas tiga (3) hari bekerja daripada
+        tarikh pemeriksaan bagi sesi penjelasan tanpa prejudis berhubung tindakan yang akan TNB lakukan. Tuan/puan juga
+        digalakkan membawa bukti dan dokumen-dokumen sokongan untuk tujuan sesi penjelasan.
+      </ion-label>
+    </ion-item>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 16px;">
+      <ion-label ion-col col-md-12>
+        Sekiranya terdapat sebarang pertanyaan, sila hubungi pihak TNB di talian
+        <strong>{{ prejude.ta4officephone }}</strong>.
+      </ion-label>
+    </ion-item>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 16px;">
+      <ion-label ion-col col-md-12>
+        Sekian, terima kasih.
+      </ion-label>
+    </ion-item>
+
+    <ion-item col-md-12 text-wrap no-lines
+      style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 16px;">
+      <ion-label style="margin-left: 6px;">
+        <strong>SEKSYEN JAMINAN HASIL</strong> <br>
+        <strong>UNIT PENGURUSAN HASIL</strong> <br>
+        <strong>JABATAN PERKHIDMATAN PENGGUNA</strong> <br>
+        <strong>BAHAGIAN PEMBAHAGIAN, TNB</strong>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <!-- End: Sesi Penjelasan Tanpa Prejudis -->
+
+  <!-- <ion-grid *ngIf='formType === "borangA"'>
+    <ion-item-divider style="background-color: #f3e5f5" text-uppercase>Jadual Borang A</ion-item-divider>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-center text-uppercase>jadual</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-center text-uppercase><strong>borang a</strong></ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-center>(subperaturan 6A(1))</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-center text-uppercase>malaysia</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-right text-uppercase>negeri</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-select [(ngModel)]="formCust.ta4statename" placeholder="Select State" interface="popover" required
+            text-left>
+            <ion-option value="Perak">Perak</ion-option>
+            <ion-option value="Perlis">Perlis</ion-option>
+            <ion-option value="Terengganu">Terengganu</ion-option>
+            <ion-option value="Kelantan">Kelantan</ion-option>
+            <ion-option value="Kedah">Kedah</ion-option>
+            <ion-option value="Selangor">Selangor</ion-option>
+            <ion-option value="Sabah">Sabah</ion-option>
+            <ion-option value="Sarawak">Sarawak</ion-option>
+            <ion-option value="Wilayah Persekutuan">Wilayah Persekutuan</ion-option>
+            <ion-option value="Melaka">Melaka</ion-option>
+            <ion-option value="Negeri Sembilan">Negeri Sembilan</ion-option>
+            <ion-option value="Johor">Johor</ion-option>
+            <ion-option value="Pahang">Pahang</ion-option>
+            <ion-option value="Putrajaya">Putrajaya</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-row>
+          <ion-item *ngIf="stateSelect2">
+            <ion-label class="validationErrorText">* Please select state</ion-label>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label item-start>To:</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label> {{this.formCust.ta4custname}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-row>
+          <ion-item>
+            <ion-label text-wrap>{{this.formCust.ta4custaddress}}</ion-label>
+          </ion-item>
+        </ion-row>
+        <ion-row>
+          <ion-item>
+            <ion-label>{{formCust.station}}-{{formCust.ta4accountno}}</ion-label>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>Tuan/Puan/Cik/Tetuan,</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <div text-uppercase item-content style="font-size: 18px;">
+            <strong>
+              NOTIS PEMOTONGAN BEKALAN ELEKTRIK DI BAWAH SUBSEKSYEN 38(1) AKTA BEKALAN
+              ELEKTRIK
+              1990.
+            </strong>
+          </div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row col-12 col-md-12 col-sm-12>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label style="letter-spacing: 1px;"> Sila ambil perhatian pada</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-datetime displayFormat="DD/MM/YYYY HH:mm" pickerFormat="DD/MM/YYYY HH:mm"
+            [(ngModel)]="formCust.ta4datetime" (ionChange)='formatTimeDisplay()' placeholder="Date/Time">
+          </ion-datetime>
+        </ion-item>
+        <ion-row>
+          <ion-item *ngIf="datetimeformA">
+            <ion-label class="validationErrorText">*Sila buat pilihan tarikh dan masa tersebut.</ion-label>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label> satu pemeriksaan telah dilakukan terhadap pepasangan kami di premis tuan.</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start style="letter-spacing: 1px;"> Hasil pemeriksaan, kami mendapati bahawa pepasangan
+            tersebut telah diusik atau diubahsuai dalam keadaan yang dinyatakan berikut di bawah:</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row col-12 col-sm-12 col-md-12>
+      <ion-col>
+        <ion-item>
+          <ion-textarea [(ngModel)]="formCust.ta4anamoly" readonly="true" placeholder="Please Enter" type="text">
+          </ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="ano">
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label class="validationErrorText">*Anamoly could not be leave empty</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start style="letter-spacing: 1px;">Berdasarkan keterangan di atas, pihak kami
+            berpendapat bahawa suatu kesalahan telah dilakukan di bawah Akta Bekalan Elektrik 1990 (”Akta”) seperti
+            berikut:</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap: break-all; text-align: center;">
+        <ion-item style="border-radius: 10px;background-color: #8B8E92; border: 5px">
+          <ion-label> Pilih Semua </ion-label>
+          <ion-checkbox [(ngModel)]="formCust.subsection1" (ionChange)="checkboxSlct()"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style=" word-wrap:  break-all;">
+        <ion-item style="border-radius: 10px;background-color: #8B8E92; border: 5px">
+          <ion-label> Subseksyen & Penerangan </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headerBlue">
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all; text-align: center;padding-left: 5px;"
+        class="headerBlue">
+        <ion-item-divider style="background-color: #f3e5f5" text-wrap> Subseksyen (Act)</ion-item-divider>
+        <ion-checkbox style="margin-top: 20px;" [(ngModel)]="formCust.ta4ss1tampers" value="sectinAct1"
+          (ionChange)=" CheckValueSentForCheckbox()"></ion-checkbox>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+        <ion-item-divider style="background-color: #f3e5f5">Subseksyen 37(1)*</ion-item-divider>
+        <div style="margin-top: 20px;">
+          mengganggu atau melaraskan apa-apa pepasangan atau bahagiannya atau mengilang
+          atau mengimport atau menjual apa-apa kelengkapan sehingga menyebabkan atau
+          mungkin menyebabkan bahaya kepada nyawa atau anggota badan manusia atau
+          kerosakan pada mana-mana kelengkapan atau harta lain:
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headerBlue">
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all;text-align: center; padding-left: 5px;"
+        class="headerBlue">
+        <ion-item-divider style="background-color: #f3e5f5" text-wrap>Subseksyen 37(3)*</ion-item-divider>
+        <ion-checkbox style="margin-top: 20px;" [(ngModel)]="formCust.ta4ss3abstracts"
+          (ionChange)=" CheckValueSentForCheckbox()"></ion-checkbox>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+        <ion-item-divider style="background-color: #f3e5f5">mengikut apa-apa cara dengan curang :-</ion-item-divider>
+        <div style="margin-top: 20px;">
+          (a) mengambil tenaga </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headerBlue">
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all; text-align: center; padding-left: 5px;"
+        class="headerBlue">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3consumer" (ionChange)=" CheckValueSentForCheckbox()"></ion-checkbox>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+        <div> (b) mengguna habis tenaga</div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headerBlue">
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all;text-align: center; padding-left: 5px;"
+        class="headerBlue">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3uses" (ionChange)=" CheckValueSentForCheckbox()"></ion-checkbox>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+        <div>(c) mengguna tenaga </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headerBlue">
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all;text-align: center; padding-left: 5px;"
+        class="headerBlue">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3afterindex" (ionChange)=" CheckValueSentForCheckbox()"></ion-checkbox>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+        <div> (d) mengubah pinda indeks apa-apa meter atau alat yang digunakan di atas atau berkaitan dengan apa-apa
+          pepasangan mana-mana pepasangan berlesen untuk merekodkan keluaran atau penggunahabisan tenaga; atau </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headerBlue">
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all; text-align: center; padding-left: 5px;"
+        class="headerBlue">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3prevents" (ionChange)=" CheckValueSentForCheckbox()"></ion-checkbox>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+        <div> (e) menghalang apa-apa meter atau alat sedemikian daripada merekodkan dengan sempurnanya keluaran atau
+          penggunahabisan tenaga </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headerBlue">
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all; text-align: center; padding-left: 5px;"
+        class="headerBlue">
+        <ion-item-divider style="background-color: #f3e5f5" text-wrap>Subseksyen 37(14)*</ion-item-divider>
+
+        <ion-checkbox style="margin-top: 20px;" [(ngModel)]="formCust.ta4ss14damages"
+          (ionChange)=" CheckValueSentForCheckbox()"></ion-checkbox>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+        <ion-item-divider style="background-color: #f3e5f5">Penerangan*</ion-item-divider>
+        <div style="margin-top: 20px;">merosakkan apa-apa meter atau alat lain yang digunakan atas atau berkaitan dengan
+          mana-mana pepasangan berlesen bagi merekodkan keluaran atau penggunahabisan tenaga. </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start style="letter-spacing: 1px;">Sila ambil perhatian bahawa di bawah subseksyen
+            38(1) Akta, tuan adalah diberi notis bahawa bekalan elektrik di premis seperti di atas akan dipotong pada
+          </div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input type="text" placeholder="Select Date" value="{{formCust.ta4starttime}}" [readonly]="true">
+          </ion-input>
+        </ion-item>
+        <ion-row>
+          <ion-item *ngIf="datetimeformA">
+            <ion-label class="validationErrorText">* Please insert date</ion-label>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+      <ion-col col-2 col-sm-2 col-2 col-sm-2 col-md-2>
+        <button ion-button color="buttonlightColor" (click)="presentPopover($event,'DateDisconnection')">
+          <ion-icon name="calendar"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-item>
+        <ion-label text-wrap>Sila ambil perhatian juga bahawa pihak kami akan membuat tuntutan apa-apa kerugian dan
+          perbelanjaan oleh pihak kami berikutan kesalahan yang dilakukan seperti di atas. Pihak kami akan mengemukakan
+          pernyataan tuntutan kepada tuan dalam masa terdekat.</ion-label>
+      </ion-item>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-label>Daerah</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-8 col-sm-8 col-md-8 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-label>{{siteId_region}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-label text-wrap>Alamat pejabat</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-8 col-sm-8 col-md-8 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item *ngIf="officeAddressSelect">
+          <ion-label class="validationErrorText">*Select office address</ion-label>
+        </ion-item>
+        <ion-item text-wrap>
+          <ion-textarea [(ngModel)]="formCust.ta4officeaddress" [readonly]="true">
+          </ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-label> Tarikh </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-input type="text" placeholder="Select Date" value="{{formCust.ta4indatetime}}" [readonly]="true">
+          </ion-input>
+        </ion-item>
+        <ion-row>
+          <ion-item *ngIf="datedSelected">
+            <ion-label class="validationErrorText">* Please insert date</ion-label>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+      <ion-col col-2 col-sm-2 col-2 col-sm-2 col-md-2 style="text-align: right">
+        <button ion-button color="buttonlightColor" (click)="presentPopover($event,'formAStaffDate')">
+          <ion-icon name="calendar"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12 col-sm-12 style="word-wrap:  break-all; text-align: center; padding-left: 5px;">
+        <ion-item-divider style="background-color: #f3e5f5">Penyerahan Notis Borang A</ion-item-divider>
+      </ion-col>
+      <ion-row col-12 col-sm-12 class="headerBlue">
+        <ion-col col-3 col-sm-3 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+          Tarikh
+        </ion-col>
+        <ion-col class="headerBlue">
+          <ion-input type="text" placeholder="Select Date" value="{{deliver.ta4indatetime}}" [readonly]="true">
+          </ion-input>
+          <ion-item *ngIf="deliveryD">
+            <ion-label class="validationErrorText">*Date cannot be empty</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-2 col-sm-2 col-2 col-sm-2 col-md-2 style="text-align: right">
+          <button ion-button color="buttonlightColor" (click)="presentPopover($event,'deliveryDate')">
+            <ion-icon name="calendar"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row col-12 col-sm-12 class="headerBlue">
+        <ion-col col-3 col-sm-3 class="headerBlue">
+          Masa
+        </ion-col>
+        <ion-col class="headerBlue">
+          <ion-datetime displayFormat="HH:mm" placeholder="Select Time" [(ngModel)]="deliver.ta4starttime">
+          </ion-datetime>
+          <ion-item *ngIf="deliveryT">
+            <ion-col class="validationErrorText">*Time cannot be empty</ion-col>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row col-12 col-sm-12 class="headerBlue">
+        <ion-col col-push-8 col-sm-3 class="headerBlue">
+          <ion-row>
+            <ion-label>
+              Nama Penerima &
+            </ion-label>
+          </ion-row>
+          <ion-row>
+            <ion-label>
+              T/Tangan Penerima
+            </ion-label>
+          </ion-row>
+        </ion-col>
+        <ion-col class="headerBlue">
+          <ion-input type="text" placeholder="Enter Name Receiver" [readonly]="true"
+            [(ngModel)]="deliver.ta4witnessname" #name="ngModel" required></ion-input>
+          <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad1></signature-pad>
+          <ion-item *ngIf="receiverN ">
+            <ion-col class="validationErrorText">*Receiver details cannot be empty</ion-col>
+          </ion-item>
+        </ion-col>
+        <ion-col col-push-4 col-sm-2 col-md-2>
+          <ion-item>
+            <button ion-button color="buttonlightColor" (click)="clearSign('deliverWitness')">Clear</button>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row col-12 col-sm-12 class="headerBlue">
+        <ion-col col-push-8 col-sm-3 class="headerBlue">
+          <ion-row>
+            <ion-label>
+              Nama Penyerah &
+            </ion-label>
+          </ion-row>
+          <ion-row>
+            <ion-label>
+              T/Tangan Penyerah
+            </ion-label>
+          </ion-row>
+        </ion-col>
+        <ion-col class="headerBlue">
+          <ion-input placeholder="Enter Name Deliver" [(ngModel)]="deliver.ta4staffname"></ion-input>
+          <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad2></signature-pad>
+          <ion-item *ngIf="deliveryN">
+            <ion-col class="validationErrorText">*Deliver name cannot be empty</ion-col>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row col-12 col-sm-12 class="headerBlue">
+        <ion-col col-3 col-sm-3 class="headerBlue">
+          Catatan
+        </ion-col>
+        <ion-col class="headerBlue">
+          <ion-input type="text" placeholder="Insert remarks if any" [(ngModel)]="deliver.ta4describe"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-col col-12 col-sm-12 style="word-wrap:  break-all; text-align: center; padding-left: 5px;">
+        <ion-item-divider style="background-color: #f3e5f5">Pemotongan Bekalan</ion-item-divider>
+      </ion-col>
+      <ion-row col-12 col-sm-12 class="headerBlue">
+        <ion-col col-3 col-sm-3 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+          Tarikh
+        </ion-col>
+        <ion-col class="headerBlue">
+          <ion-input type="text" placeholder="Select Date" value="{{disconnect.ta4datetime}}" [readonly]="true">
+          </ion-input>
+          <ion-item *ngIf="supplyD">
+            <ion-col class="validationErrorText">*Supply date cannot be empty</ion-col>
+          </ion-item>
+        </ion-col>
+        <ion-col col-2 col-sm-2 col-2 col-sm-2 col-md-2 style="text-align: right">
+          <button ion-button color="buttonlightColor" (click)="presentPopover($event,'disconnetDate')">
+            <ion-icon name="calendar"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row col-12 col-sm-12 class="headerBlue">
+        <ion-col col-3 col-sm-3 class="headerBlue">
+          Masa
+        </ion-col>
+        <ion-col class="headerBlue">
+          <ion-datetime displayFormat="HH:mm" placeholder="Select Time" [(ngModel)]="disconnect.ta4starttime">
+          </ion-datetime>
+          <ion-item *ngIf="supplyT">
+            <ion-col class="validationErrorText">*Supply time cannot be empty</ion-col>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row col-12 col-sm-12 class="headerBlue">
+        <ion-col col-push-8 col-sm-3 class="headerBlue">
+          <ion-row>
+            <ion-label text-wrap>
+              Nama Pemotongan Bekalan &
+            </ion-label>
+          </ion-row>
+          <ion-row>
+            <ion-label text-wrap>
+              T/Tangan Pemotongan Bekalan
+            </ion-label>
+          </ion-row>
+        </ion-col>
+        <ion-col class="headerBlue">
+          <ion-input placeholder="Enter Name Disconnector" [(ngModel)]="disconnect.ta4staffname"></ion-input>
+          <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad3></signature-pad>
+          <ion-item *ngIf="supplyN">
+            <ion-col class="validationErrorText">*Supply name cannot be empty</ion-col>
+          </ion-item>
+        </ion-col>
+        <ion-col col-push-4 col-sm-2 col-md-2>
+          <ion-item>
+            <button ion-button color="buttonlightColor" (click)="clearSign('disconnectStaff')">Clear</button>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row col-12 col-sm-12 class="headerBlue">
+        <ion-col col-3 col-sm-3 class="headerBlue">
+          Catatan
+        </ion-col>
+        <ion-col class="headerBlue">
+          <ion-textarea placeholder="Insert remarks if any" [(ngModel)]="disconnect.ta4describe"></ion-textarea>
+        </ion-col>
+      </ion-row>
+
+      <ion-col col-12 col-sm-12 style="word-wrap:  break-all; text-align: center; padding-left: 5px;">
+        <ion-item-divider style="background-color: #f3e5f5">Penyambungan Semula Bekalan</ion-item-divider>
+      </ion-col>
+
+      <ion-row col-12 col-sm-12 class="headerBlue">
+        <ion-col col-3 col-sm-3 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+          Tarikh
+        </ion-col>
+        <ion-col class="headerBlue">
+          <ion-input type="text" placeholder="Select Date" value="{{reconnect.ta4datetime}}" [readonly]="true">
+          </ion-input>
+        </ion-col>
+        <ion-col col-2 col-sm-2 col-2 col-sm-2 col-md-2 style="text-align: right">
+          <button ion-button color="buttonlightColor" (click)="presentPopover($event,'reconnectDate')">
+            <ion-icon name="calendar"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row col-12 col-sm-12 class="headerBlue">
+        <ion-col col-3 col-sm-3 class="headerBlue">
+          Masa
+        </ion-col>
+        <ion-col class="headerBlue">
+          <ion-datetime displayFormat="HH:mm" placeholder="Select Time" [(ngModel)]="reconnect.ta4starttime">
+          </ion-datetime>
+        </ion-col>
+      </ion-row>
+      <ion-row col-12 col-sm-12 class="headerBlue">
+        <ion-col col-push-8 col-sm-3 class="headerBlue">
+          <ion-row>
+            <ion-label text-wrap>
+              Nama Penyambung Bekalan &
+            </ion-label>
+          </ion-row>
+          <ion-row>
+            <ion-label text-wrap>
+              T/Tangan Penyambung Bekalan
+            </ion-label>
+          </ion-row>
+        </ion-col>
+        <ion-col class="headerBlue">
+          <ion-input placeholder="Enter Name Reconnector" [(ngModel)]="reconnect.ta4staffname"></ion-input>
+          <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad4></signature-pad>
+        </ion-col>
+        <ion-col col-auto col-sm-2 col-md-2>
+          <ion-item>
+            <button ion-button color="buttonlightColor" (click)="clearSign('reconnectStaff')">Clear</button>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row col-12 col-sm-12 class="headerBlue">
+        <ion-col col-3 col-sm-3 class="headerBlue">
+          Catatan
+        </ion-col>
+        <ion-col class="headerBlue">
+          <ion-textarea placeholder="Insert remarks if any" [(ngModel)]="reconnect.ta4describe"></ion-textarea>
+        </ion-col>
+      </ion-row>
+    </ion-row>
+  </ion-grid> -->
+
+  <!-- <ion-grid *ngIf='formType === "borangACopy"'>
+    <ion-item-divider style="background-color: #f3e5f5">JADUAL BORANG A</ion-item-divider>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-center text-uppercase>JADUAL</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-center text-uppercase><strong>BORANG A</strong></ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-center>(subperaturan 6A(1))</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-center text-uppercase>malaysia</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-center text-uppercase>negeri {{formCust.ta4statename}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-left>Kepada:</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <div item-content text-wrap>{{formCust.ta4custaddress}}</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <div item-content>{{formCust.ta4custname}}</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-item>
+        <ion-label>{{formCust.station}} - {{formCust.ta4accountno}}</ion-label>
+      </ion-item>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>Tuan/Puan/Cik/Tetuan,</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <div text-uppercase item-content style="font-size: 18px;">
+            <strong>
+              NOTIS PEMOTONGAN BEKALAN ELEKTRIK DI BAWAH SUBSEKSYEN 38(1) AKTA BEKALAN
+              ELEKTRIK
+              1990.
+            </strong>
+          </div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label style="letter-spacing: 1px;"> Sila ambil perhatian pada </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-datetime displayFormat="DD/MM/YYYY HH:mm" pickerFormat="DD/MM/YYYY HH:mm"
+            [(ngModel)]="formCust.ta4datetime" disabled></ion-datetime>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start style="letter-spacing: 1px;">satu pemeriksaan telah dilakukan terhadap pepasangan
+            kami di premis tuan. Hasil pemeriksaan, kami mendapati bahawa pepasangan tersebut telah diusik atau
+            diubahsuai dalam keadaan yang dinyatakan berikut di bawah:</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>{{formCust.ta4anamoly}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start style="letter-spacing: 1px;">Berdasarkan keterangan di atas, pihak kami
+            berpendapat bahawa suatu kesalahan telah dilakukan di bawah Akta Bekalan Elektrik 1990 (”Akta”) seperti
+            berikut:</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headerBlue">
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all; text-align: center; padding-left: 5px;"
+        class="headerBlue">
+        Pilih
+        <ion-checkbox [(ngModel)]="formCust.subsection1" disabled="{{selectDisabled}}"></ion-checkbox>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+        <ion-label> Subseksyen & Penerangan </ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headerBlue">
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all; text-align: center;padding-left: 5px;"
+        class="headerBlue">
+        <ion-item-divider style="background-color: #f3e5f5"> Subseksyen("Akta")</ion-item-divider>
+        <ion-checkbox style="margin-top: 20px;" [(ngModel)]="formCust.ta4ss1tampers" disabled="{{selectDisabled}}">
+        </ion-checkbox>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+        <ion-item-divider style="background-color: #f3e5f5">Subseksyen 37(1)*</ion-item-divider>
+        <div color="primary">
+          mengganggu atau melaraskan apa-apa pepasangan atau bahagiannya atau mengilang
+          atau mengimport atau menjual apa-apa kelengkapan sehingga menyebabkan atau
+          mungkin menyebabkan bahaya kepada nyawa atau anggota badan manusia atau
+          kerosakan pada mana-mana kelengkapan atau harta lain: </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headerBlue">
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all;text-align: center; padding-left: 5px;"
+        class="headerBlue">
+        <ion-item-divider style="background-color: #f3e5f5">Subseksyen 37(3)*</ion-item-divider>
+        <ion-checkbox style="margin-top: 20px;" [(ngModel)]="formCust.ta4ss3abstracts" disabled="{{selectDisabled}}">
+        </ion-checkbox>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+        <ion-item-divider style="background-color: #f3e5f5">mengikut apa-apa cara dengan curang </ion-item-divider>
+        <div style="margin-top: 20px;">
+          (a) mengambil tenaga </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headerBlue">
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all; text-align: center; padding-left: 5px;"
+        class="headerBlue">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3consumer" disabled="{{selectDisabled}}"></ion-checkbox>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+        <div> (b) mengguna habis tenaga</div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headerBlue">
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all;text-align: center; padding-left: 5px;"
+        class="headerBlue">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3uses" disabled="{{selectDisabled}}"></ion-checkbox>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+        <div>(c) mengguna tenaga </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headerBlue">
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all;text-align: center; padding-left: 5px;"
+        class="headerBlue">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3afterindex" disabled="{{selectDisabled}}"></ion-checkbox>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+        <div> (d) mengubah pinda indeks apa-apa meter atau alat yang digunakan di atas atau berkaitan
+          <br> dengan apa-apa pepasangan mana-mana pepasangan berlesen untuk
+          <br> merekodkan keluaran atau penggunahabisan tenaga; atau </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headerBlue">
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all; text-align: center; padding-left: 5px;"
+        class="headerBlue">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3prevents" disabled="{{selectDisabled}}"></ion-checkbox>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+        <div> (e) menghalang apa-apa meter atau alat sedemikian daripada merekodkan dengan sempurnanya keluaran atau
+          <br> penggunahabisan tenaga </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headerBlue">
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all; text-align: center; padding-left: 5px;"
+        class="headerBlue">
+        <ion-item-divider>Subseksyen 37(14)*</ion-item-divider>
+
+        <ion-checkbox style="margin-top: 20px;" [(ngModel)]="formCust.ta4ss14damages" disabled="{{selectDisabled}}">
+        </ion-checkbox>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+        <ion-item-divider style="background-color: #f3e5f5">Peneragan*</ion-item-divider>
+        <div style="margin-top: 20px;">merosakkan apa-apa meter atau alat lain yang digunakan atas atau berkaitan dengan
+          mana-mana pepasangan berlesen bagi merekodkan keluaran atau penggunahabisan tenaga. </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start style="letter-spacing: 1px;">Sila ambil perhatian bahawa di bawah subseksyen
+            38(1) Akta, tuan adalah diberi notis bahawa bekalan elektrik di premis seperti di atas akan dipotong pada
+            {{formCust.ta4starttime}}</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines text-wrap>
+          Sila ambil perhatian juga bahawa pihak kami akan membuat tuntutan apa-apa kerugian dan perbelanjaan oleh pihak
+          kami berikutan kesalahan yang dilakukan seperti di atas. Pihak kami akan mengemukakan pernyataan tuntutan
+          kepada tuan dalam masa terdekat
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label item-start>Alamat :</ion-label>
+          <div item-content item-end>{{formCust.ta4officeaddress}}</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label item-start> Tarikh :</ion-label>
+          <div item-content item-end>{{formCust.ta4indatetime}}</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+
+  <!-- <ion-grid *ngIf='formType === "notisGanggungan"'>
+    <ion-item-divider style="color: black ;background-color: #f3e5f5">NOTIS PEMBERITAHUAN PEMBERHENTIAN/GANGGUAN
+      SEMENTARA BEKALAN ELEKTRIK
+    </ion-item-divider>
+
+    <ion-row>
+      <ion-col col-4 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item no-lines>
+          <ion-label> Tarikh </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-push-2 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-input type="text" placeholder="Select Date" value="{{tempCeassation.ta4datetime}}" [readonly]="true">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-sm-1 col-md-1 style="text-align: right">
+        <button color="buttonlightColor" ion-button (click)="presentPopover($event,'inspectDateFrom2')">
+          <ion-icon name="calendar"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label item-start>
+            Kepada :
+          </ion-label>
+          <div item-content> {{tempCeassation.ta4custname}} </div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start> Pelanggan TNB Yang Dihormati,</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <div item-content text-center text-uppercase style="font-size: 18px;">
+            <strong>
+              NOTIS PEMBERITAHUAN PEMBERHENTIAN/GANGGUAN SEMENTARA BEKALAN ELEKTRIK BAGI TUJUAN PEMERIKSAAN DAN
+              PENGUJIAN PEPASANGAN METER TNB.
+            </strong>
+          </div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start>Ingin dimaklumkan bahawa pihak TNB sedang menjalankan pemeriksaan dan pengujian
+            terhadap pepasangan meter TNB di premis tuan/puan bagi memastikan ia berfungsi dalam keadaan yang baik.
+          </div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start>Untuk tujuan tersebut, adalah dimaklumkan bahawa bekalan elektrik di premis
+            tuan/puan akan diberhentikan/diganggu sementara pada </div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-push-6 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item no-lines>
+          <ion-label>Tarikh</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-pull-4 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-input type="text" placeholder="Select Date" value="{{tempCeassation.ta4indatetime}}" [readonly]="true">
+          </ion-input>
+        </ion-item>
+        <ion-item *ngIf="fromInspectDate">
+          <ion-label class="validationErrorText">*Tarikh perlu dimasukkan.
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-pull-2 col-sm-1 col-1 col-sm-1 col-md-1 style="text-align: right">
+        <button color="buttonlightColor" ion-button (click)="presentPopover($event,'inspectDateFrom')">
+          <ion-icon name="calendar"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-push-8 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item no-lines>
+          <ion-label>Bermula (masa)</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-pull-4 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-datetime placeholder="Select Time" displayFormat="HH:mm" [(ngModel)]="tempCeassation.ta4starttime">
+          </ion-datetime>
+        </ion-item>
+        <ion-item *ngIf="dateCess">
+          <ion-label class="validationErrorText">*Masa perlu dimasukkan.</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-push-8 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item no-lines>
+          <ion-label>Sehingga </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-pull-5 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-datetime placeholder="Select Time" displayFormat="HH:mm" [(ngModel)]="tempCeassation.ta4endtime">
+          </ion-datetime>
+        </ion-item>
+        <ion-item *ngIf="ToinspectDate">
+          <ion-label class="validationErrorText">*Masa perlu dimasukkan.
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start>Kerjasama tuan/puan adalah sangat diperlukan.</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start>Sekian dimaklumkan, terima kasih.</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-center text-uppercase style=" font-weight: bold;">“PENGGERAK KEMAJUAN NEGARA”</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-center text-uppercase style="font-weight: bold;">“BETTER BRIGHTER”</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item no-lines>
+          <ion-label> T/Tangan Pekerja</ion-label>
+        </ion-item>
+      </ion-col>
+
+      <ion-col>
+        <signature-pad width=800 height=200 [options]="signaturePadOptions" id="signatureCanvas1" #SignaturePad1>
+        </signature-pad>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label item-start>Nama Pekerja :</ion-label>
+          <div item-content>{{tempCeassation.ta4staffname}}</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label item-start>No. Pekerja :</ion-label>
+          <div item-content> {{tempCeassation.ta4staffno}}</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label text-wrap style="min-width: 75%;color: black;">Adalah dengan ini saya memahami kandungan notis ini
+            dan {{formB}}
+          </ion-label>
+          <ion-checkbox [(ngModel)]="tempCeassation.ta4agree" (click)='assignDetailsFormB()'>
+          </ion-checkbox>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label text-wrap>
+            supaya bekalan elektrik diberhentikan/diganggu sementara bagi tujuan seperti dinyatakan di atas.
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-grid *ngIf='!tempCeassation.ta4agree'>
+      <ion-item-divider style="background-color: #f3e5f5">Borang B</ion-item-divider>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <ion-label text-wrap text-center text-uppercase>PERATURAN-PERATURAN BEKALAN PEMEGANG LESEN</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <ion-label text-center><strong>Borang B</strong></ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <ion-label text-center>[subperaturan 6A(2)]</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <ion-label text-center text-uppercase>malaysia</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 col-sm-6 col-md-6>
+          <ion-item no-lines>
+            <ion-label text-right text-uppercase>Negeri</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6 col-sm-6 col-md-6 text-left>
+          <ion-item>
+            <ion-select [(ngModel)]="formBCess.ta4statename" interface="popover" placeholder="Select State">
+              <ion-option value="Perak">Perak</ion-option>
+              <ion-option value="Perlis">Perlis</ion-option>
+              <ion-option value="Terengganu">Terengganu</ion-option>
+              <ion-option value="Kelantan">Kelantan</ion-option>
+              <ion-option value="Kedah">Kedah</ion-option>
+              <ion-option value="Selangor">Selangor</ion-option>
+              <ion-option value="Sabah">Sabah</ion-option>
+              <ion-option value="Sarawak">Sarawak</ion-option>
+              <ion-option value="Wilayah Persekutuan">Wilayah Persekutuan</ion-option>
+              <ion-option value="Melaka">Melaka</ion-option>
+              <ion-option value="Negeri Sembilan">Negeri Sembilan</ion-option>
+              <ion-option value="Johor">Johor</ion-option>
+              <ion-option value="Pahang">Pahang</ion-option>
+              <ion-option value="Putrajaya">Putrajaya</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-item *ngIf="formBState">
+          <ion-label class="validationErrorText">*Please Select State
+          </ion-label>
+        </ion-item>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <ion-label text-center text-uppercase>AKTA BEKALAN ELEKTRIK 1990</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <ion-label>Kepada :</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>{{formBCess.ta4custname}}</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label text-wrap>{{formBCess.ta4custaddress}}</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <ion-label>Tuan/Puan/Cik/Tetuan,</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-title text-uppercase text-center>NOTIS PEMBERHENTIAN / GANGGUAN SEMENTARA BEKALAN ELEKTRIK.
+            </ion-title>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines style="text-align: justify;">
+            <div item-content item-start>
+              Dimaklumkan bahawa bekalan elektrik di {{formBCess.tenant}} (alamat pengguna / kawasan yang akan terjejas)
+              akan diberhentikan / diganggu sementara pada
+            </div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-md-3>
+          <ion-item>
+            <ion-input type="text" placeholder="select Date" value="{{formBCess.ta4datetime}}" [readonly]="true">
+            </ion-input>
+            {{formBCess.ta4datetime}}
+          </ion-item>
+        </ion-col>
+        <ion-col col-md-1>
+          <button ion-button color="buttonlightColor" (click)="presentPopover($event,'FormBInteruptDate')">
+            <ion-icon name="calendar"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col col-md-3>
+          <ion-item>
+            <ion-datetime displayFormat="HH:mm" placeholder="Bermula" [(ngModel)]="formBCess.ta4starttime">
+            </ion-datetime>
+          </ion-item>
+        </ion-col>
+        <ion-col col-md-2>
+          <ion-item no-lines text-center>
+            <ion-label>hingga</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-md-3>
+          <ion-item>
+            <ion-datetime displayFormat="HH:mm" placeholder="Berakhir" [(ngModel)]="formBCess.ta4endtime">
+            </ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col *ngIf="formBDate">
+          <ion-item>
+            <ion-label class="validationErrorText">*Inspectation Date could not be empty
+            </ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col *ngIf="formBStartInteruptTime">
+          <ion-item>
+            <ion-label class="validationErrorText">*Interupted to time could not be empty
+            </ion-label>
+          </ion-item>
+        </ion-col>
+
+        <ion-col *ngIf="formBEndInteruptTime">
+          <ion-item>
+            <ion-label class="validationErrorText">*Interupted to time could not be empty
+            </ion-label>
+          </ion-item>
+        </ion-col>
+
+      </ion-row>
+      <ion-row>
+        <ion-col col-md-4>
+          <ion-item no-lines>
+            <ion-label>bagi tujuan</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-md-8>
+          <ion-item>
+            <ion-input [(ngModel)]="formBCess.ta4purpose" type="text" placeholder="Masukkan tujuan"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col *ngIf="formBPurpose">
+          <ion-item>
+            <ion-label class="validationErrorText">*Purpose could not be empty
+            </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-md-4>
+          <ion-item no-lines>
+            <ion-label text-wrap>
+              Nama Pemegang Lesen:
+            </ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col item-end>
+          <ion-item>
+            <ion-label>TNB</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col col-md-4>
+          <ion-item no-lines>
+            <ion-label>Negeri:</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-md-8>
+          <ion-item>
+            <ion-label>{{ siteId_region }}</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-md-4>
+          <ion-item no-lines>
+            <ion-label>Alamat</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-md-8>
+          <ion-item text-wrap>
+            <ion-textarea [(ngModel)]="formBCess.ta4officeaddress" readonly="true">
+            </ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-md-4>
+          <ion-item no-lines>
+            <ion-label>Nombor Telefon:</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-md-8>
+          <ion-item>
+            <ion-input [(ngModel)]="formBCess.ta4officephone" readonly="true">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-md-4>
+          <ion-item no-lines>
+            <ion-label>Tarikh:</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-md-7>
+          <ion-item>
+            <ion-label placeholder="Select Date">{{formBCess.ta4indatetime}}</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-md-1>
+          <button ion-button color="buttonlightColor" (click)="presentPopover($event,'formBdated')">
+            <ion-icon name="calendar"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col *ngIf="formBDated">
+          <ion-item>
+            <ion-label class="validationErrorText">*Dated could not be empty
+            </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-item-divider style="background-color: #f3e5f5"> End for Form B</ion-item-divider>
+    </ion-grid>
+    <ion-row>
+      <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item no-lines>
+          <ion-label> Nama Pengguna/Pemilik/Wakil</ion-label>
+        </ion-item>
+      </ion-col>
+
+      <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+        <signature-pad width=800 height=200 [options]="signaturePadOptions" id="signatureCanvas2" #SignaturePad2>
+        </signature-pad>
+        <button ion-button color="buttonlightColor" (click)="clearSign('cessationCustomer')">Clear</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item no-lines>
+          <ion-label>Nama Pengguna/Pemilik/Wakil </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-input [(ngModel)]="tempCeassation.ta4witnessname" type="text" placeholder="Please Enter"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>No. Kad Pengenalan </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-input [(ngModel)]="tempCeassation.ta4witnessidenkard" type="text" placeholder="Please Enter"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>Tarikh/Masa</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-datetime displayFormat="DD/MM/YYYY HH:mm" pickerFormat="DD/MM/YYYY HH:mm"
+            [(ngModel)]="tempCeassation.datetime" placeholder="Please Enter date and time"
+            (ionChange)='formatTimeDisplay()'></ion-datetime>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+
+  <!-- <ion-grid *ngIf='formType === "borangBukit"'>
+    <ion-item-divider style="background-color: #f3e5f5">PENGAMBILAN BAHAN-BAHAN BUKTI
+    </ion-item-divider>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-title text-uppercase text-center>
+            SURAT PEMBERITAHUAN PENGAMBILAN BAHAN-BAHAN BUKTI
+          </ion-title>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label> No Akaun</ion-label>
+          <div item-content>{{evidenceCollect.ta4accountno}}</div>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>Kod Stesen </ion-label>
+          <div item-content>{{evidenceCollect.station}}</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label text-wrap>Nama Pengguna :</ion-label>
+          <div item-content>{{evidenceCollect.ta4custname}}</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Adalah saya :</ion-label>
+          <div item-content>{{evidenceCollect.ta4staffname}}</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>No Pekerja :</ion-label>
+          <div item-content>{{evidenceCollect.ta4staffno}} mengaku telah mengambil perkara-perkara tersebut di bawah ini
+            :-</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <div class="headerBlue">
+      <ion-row>
+        <ion-col (click)="addEviItem()" col-4 col-sm-2 col-md-2>
+          <ion-item>
+            <ion-label text-uppercase>Bil
+              <ion-icon name="add-circle" color="buttonlightColor" style="padding-left: 30px" *ngIf="shoeEviItem">
+              </ion-icon>
+            </ion-label>
+          </ion-item>
+          <ion-item *ngIf="eviItem">
+            <ion-label class="validationErrorText">* Evidence item cannot be empty</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-4 col-sm-2 col-md-2>
+          <ion-item>
+            <ion-label text-wrap text-uppercase>Bahan Bukti</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label text-uppercase text-wrap>MAKLUMAT BAHAN BUKTI</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-1 col-sm-1 col-md-1>
+          <ion-item no-lines>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let item of evidenceCollect.evidenceItem; let j = index">
+        <ion-col style="word-wrap:  break-all; padding-left: 5px;" col-4 col-sm-2 col-md-2>
+          <ion-item>
+            <ion-label>BIL {{ j + 1 }}</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col style="word-wrap:  break-all; padding-left: 5px;" col-4 col-sm-2 col-md-2>
+          <ion-item>
+            <ion-input [(ngModel)]="item.ta4item" type="text" placeholder="Please enter item"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="itemValEvi">
+            <ion-label class="validationErrorText">* Evidence item data cannot be empty</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-input [(ngModel)]="item.ta4describe" type="text" placeholder="description evidence"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="eviTempDmg">
+            <ion-label class="validationErrorText">* Evidence item damage data could not leave empty</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-1 col-md-1 col-sm-1 style="word-wrap:  break-all; padding-left: 5px; text-align:right"
+          (click)="deleteEviItem(j)" *ngIf="j > 0">
+          <ion-icon name="trash" color="buttonlightColor"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </div>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label col-6 text-wrap>daripada premis yang beralamat </ion-label>
+          <ion-label col-6 text-wrap> {{evidenceCollect.ta4custaddress}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-item-divider style="background-color: #f3e5f5">
+        Part A: Maklumat Pekerja
+      </ion-item-divider>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label> T/Tangan Pengambil: </ion-label>
+        </ion-item>
+      </ion-col>
+
+      <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <signature-pad width=800 height=200 [options]="signaturePadOptions" id="signatureCanvas1" #SignaturePad1>
+          </signature-pad>
+        </ion-item>
+
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>Nama :</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>{{evidenceCollect.ta4staffname}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>No. Pekerja :</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>{{evidenceCollect.ta4staffno}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>No Kad Pengenalan: </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-input [(ngModel)]="evidenceCollect.ta4staffindenkard" type="text" placeholder="Please Enter ID No.">
+          </ion-input>
+        </ion-item>
+        <ion-row>
+          <ion-item *ngIf="IcnoStff">
+            <ion-label class="validationErrorText">* Staff identification cannot be leave empty</ion-label>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>
+            Jawatan
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>Juruteknik</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>
+            Stesen
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-select [(ngModel)]="evidenceCollect.officeAddress" [selectOptions]="OfficeAddress"
+            (ionChange)="officeAdrssSelect()">
+            <ion-option value="KUALA LUMPUR">Kuala Lumpur</ion-option>
+            <ion-option value="SELATAN">Selatan</ion-option>
+            <ion-option value="UTARA">Utara</ion-option>
+            <ion-option value="SELANGOR">Selangor</ion-option>
+            <ion-option value="TIMUR">Timur</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-row>
+        <ion-item *ngIf="stationEvi">
+          <ion-label [ngClass]="'validationErrorText'">* Please Select Station</ion-label>
+        </ion-item>
+      </ion-row>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>Tarikh</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-4 col-sm-4 col-md-4>
+        <ion-item>
+          <ion-input type="text" placeholder="select Date" value="{{ evidenceCollect.ta4datetime }}" [readonly]="true">
+          </ion-input>
+        </ion-item>
+        <ion-row>
+          <ion-item *ngIf="dateCurrentEvi">
+            <ion-label class="validationErrorText">*Current date cannot be empty</ion-label>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+      <ion-col col-2 col-sm-2 col-md-2>
+        <button ion-button color="buttonlightColor" (click)="presentPopover($event,'evidenceDate')">
+          <ion-icon name="calendar"></ion-icon>
+        </button>
+      </ion-col>
+
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>Masa</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="evidenceCollect.ta4starttime"
+            placeholder="Enter time"></ion-datetime>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-item-divider style="background-color: #f3e5f5">
+        Part B: Maklumat Saksi
+      </ion-item-divider>
+    </ion-row>
+    <ion-row>
+      <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-label> T/Tangan Saksi</ion-label>
+        </ion-item>
+      </ion-col>
+
+      <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <signature-pad width=800 height=200 [options]="signaturePadOptions" id="signatureCanvas2" #SignaturePad2>
+          </signature-pad>
+          <button ion-button color="buttonlightColor" (click)="clearSign('evidenceWitness')">Clear</button>
+        </ion-item>
+
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item no-lines>
+          <ion-label>Nama:</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-input [(ngModel)]="evidenceCollect.ta4witnessname" type="text" placeholder="Please Enter witness name">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-push-8>
+        <ion-item no-lines>
+          <ion-label>Alamat</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-pull-4>
+        <ion-item>
+          <ion-label text-wrap>{{evidenceCollect.ta4custaddress}} </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>No Kad Pengenalan </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-input [(ngModel)]="evidenceCollect.ta4witnessidenkard" type="text" placeholder="Please Enter ID No.">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>Tarikh:</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-4 col-sm-4 col-md-4>
+        <ion-item>
+          <ion-input type="text" placeholder="select Date" value="{{evidenceCollect.ta4indatetime }}" [readonly]="true">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-2 col-sm-2 col-md-2>
+        <button ion-button color="buttonlightColor" (click)="presentPopover($event,'evidenceDate2')">
+          <ion-icon name="calendar"></ion-icon>
+        </button>
+      </ion-col>
+
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>Masa</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="evidenceCollect.ta4endtime"
+            placeholder="Enter time"></ion-datetime>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+
+  <!-- <ion-grid *ngIf='formType === "pengujian_pemeriksaan"'>
+    <ion-item-divider text-wrap style="background-color: #f3e5f5" text-uppercase>Pengujian dan Pemeriksaan
+    </ion-item-divider>
+    <ion-row col-12 col-sm-12 col-md-12>
+      <ion-col>
+        <ion-item>
+          <ion-label item-start>Tarikh :</ion-label>
+          <ion-label item-content item-end>{{inspectNTest.ta4datetime}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Kepada :</ion-label>
+          <div item-content>
+            <ion-label>{{inspectNTest.ta4custname}}</ion-label>
+            <ion-label text-wrap>{{inspectNTest.ta4custaddress}}</ion-label>
+          </div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          Pelanggan TNB Yang Dihormati,
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12 col-sm-12 col-md-12>
+        <ion-item>
+          <ion-title text-uppercase text-center>
+            SURAT PEMBERITAHUAN PEMERIKSAAN DAN PENGUJIAN PEPASANGAN METER TNB
+          </ion-title>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row col-12 col-sm-12 col-md-12>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start style="letter-spacing: 1px;">Ingin dimaklumkan bahawa pihak TNB sedang
+            menjalankan pemeriksaan dan pengujian terhadap pepasangan meter TNB di premis tuan/puan bagi memastikan ia
+            berfungsi dalam keadaan yang baik.</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row col-12 col-sm-12 col-md-12>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start style="letter-spacing: 1px;">Kerjasama tuan/puan adalah sangat diperlukan semasa
+            proses pemeriksaan dan pengujian dilakukan.</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row col-12 col-sm-12 col-md-12>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start style="letter-spacing: 1px;">Sekiranya terdapat sebarang pertanyaan, sila hubungi
+            pihak TNB di talian 1300-88-5454.</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row col-12 col-sm-12 col-md-12>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start style="letter-spacing: 1px;">Sekian dimaklumkan, terima kasih.</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row col-12 col-sm-12 col-md-12>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-uppercase style="text-align: center;"><strong>"PENGGERAK KEMAJUAN NEGARA"</strong>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row col-12 col-sm-12 col-md-12>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-uppercase style="text-align: center;"><strong>"BETTER. BRIGHTER"</strong>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row col-12 col-sm-12 col-md-12>
+      <ion-col>
+        <ion-item no-lines>
+          <label>Yang Benar,</label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-label> T/Tangan Pegawai</ion-label>
+        </ion-item>
+      </ion-col>
+
+      <ion-col>
+        <ion-item>
+          <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad1></signature-pad>
+        </ion-item>
+        <ion-item>
+          <ion-label text-wrap color="primary">This is an electronic-generated document. No signature is required.
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <button ion-button color="buttonlightColor" (click)="clearSign('InspectNTestManager')">Clear</button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start>(o/b General Manager/Manager)</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-push-8 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-label>Pegawai bertugas</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-pull-4 col-sm-8 col-md-8 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-select placeholder="Please Select" [(ngModel)]="inspectNTest.staffNameCheck"
+            [selectOptions]="executiveDetails" (ionChange)="getPosition()">
+            <ion-option *ngFor="let persons  of exactData ; let j = index" value="{{persons}}"
+              (ionSelect)="myIndex = j">
+              {{persons}}
+            </ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item *ngIf="staffNameSelect">
+          <ion-label class="validationErrorText">*Please select staff </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-push-8 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-label>Pangkat</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-pull-4 col-sm-8 col-md-8 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-input placeholder="Please Enter" [(ngModel)]="inspectNTest.ta4position">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-push-8 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-label> Alamat Jabatan</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-pull-4 col-sm-8 col-md-8 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-textarea placeholder="Please Enter" [(ngModel)]="inspectNTest.ta4department">
+          </ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12 col-sm-12 style="word-wrap:  break-all; text-align: center; padding-left: 5px;">
+        <ion-item-divider style="background-color: #f3e5f5">Untuk Kegunaan TNB</ion-item-divider>
+      </ion-col>
+      <div col-12 col-sm-12>
+        <ion-title>Sila Pilih Kedatangan Pengguna</ion-title>
+        <ion-list radio-group [(ngModel)]="inspectNTest.ta4attendance" (ionChange)="checkforRadio()">
+          <ion-item>
+            <ion-label>Pengguna Hadir</ion-label>
+            <ion-radio value="pre"> </ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Pengguna Tidak Hadir</ion-label>
+            <ion-radio value="abs"> </ion-radio>
+          </ion-item>
+        </ion-list>
+        <ion-item *ngIf="attendence">
+          <ion-label class="validationErrorText">*Please select attendence </ion-label>
+        </ion-item>
+      </div>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-6 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item no-lines>
+          <ion-label> Disahkan oleh: </ion-label>
+        </ion-item>
+      </ion-col>
+
+      <ion-col>
+        <ion-item>
+          <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad2></signature-pad>
+        </ion-item>
+        <ion-item *ngIf="checkSign2">
+          <ion-label class="validationErrorText">*Please sign first </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label item-start>Nama Pekerja :</ion-label>
+          <div item-content>{{inspectNTest.ta4staffname}}</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label item-start> No.Pekerja :</ion-label>
+          <div item-content>{{inspectNTest.ta4staffno}}</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+
+  <!-- <ion-grid *ngIf='formType === "pepasanganMeter"'>
+    <ion-item-divider style="background-color: #f3e5f5" text-uppercase>Pepasangan Meter TNB</ion-item-divider>
+    <ion-list radio-group [(ngModel)]="installationInspection.ta4agree">
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Pengguna Beri kerjasama</ion-label>
+            <ion-radio (click)="typeform()" value="true"></ion-radio>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label>Pengguna Enggan Beri kerjasama</ion-label>
+            <ion-radio (click)="typeform()" value="false"></ion-radio>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-list>
+    <div *ngIf='!formSelected'>
+      <ion-row>
+        <ion-col col-4 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item no-lines>
+            <ion-label> Tarikh</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-push-4 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-input type="text" placeholder="select Date" value="{{installationInspection.ta4indatetime}}"
+              [readonly]="true">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-sm-1 col-md-1 style="text-align: right">
+          <button color="buttonlightColor" ion-button (click)="presentPopover($event,'meterInstallInspect')">
+            <ion-icon name="calendar"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Nama Pelanggan</ion-label>
+            <ion-label item-content item-end text-wrap>{{installationInspection.ta4custname}}</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Alamat Pelanggan</ion-label>
+            <ion-label item-content item-end text-wrap>{{installationInspection.ta4custaddress}}</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <div item-start item-content>Pelanggan TNB Yang Dihormati,</div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-title text-center text-uppercase>Pemakluman Semakan Pepasangan Meter Elektrik oleh TNB</ion-title>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <div item-content item-start>Dimaklumkan bahawa pemeriksaan dan pengujian telah dibuat ke atas pepasangan
+              meter yang merekodkan penggunaan elektrik ke premis yang beralamat
+              {{installationInspection.ta4custaddress}}
+            </div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <div item-content item-start>dengan No. Akaun {{installationInspection.ta4accountno}} pada
+              {{installationInspection.ta4indatetime}} jam
+              {{installationInspection.ta4endtime}}</div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-push-8 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label>Masa Semasa</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-pull-4 col-sm-8 col-md-8 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="installationInspection.ta4endtime"
+              placeholder="Please Enter time"></ion-datetime>
+          </ion-item>
+          <ion-item *ngIf="crrTime">
+            <ion-label class="validationErrorText">*Current time cannot be empty </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <ion-label text-wrap>
+              Untuk maklumat anda, nombor siri beg eviden adalah:
+            </ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-input [(ngModel)]="installationInspection.ta4serialNum" placeholder="Enter serial number"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <div item-content item-start style="letter-spacing: 1px;">Hasil pengujian menunjukkan meter berkenaan tidak
+              merekodkan bacaan penggunaan elektrik yang sebenar dan ini telah diterangkan kepada tuan/puan. Ingin
+              dimaklumkan bahawa tuntutan amaun terkurang caj akan dibuat oleh TNB dan akan dimajukan kepada tuan/puan.
+            </div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <div item-content item-start style="letter-spacing: 1px;">Sekiranya terdapat sebarang pertanyaan, tuan/puan
+              boleh menghubungi .</div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-push-8 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item no-lines>
+            <ion-label> Negeri Pejabat</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-pull-4 col-sm-8 col-md-8 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label> {{siteId_region}}</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-push-8 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item no-lines>
+            <ion-label>Alamat Pejabat</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-pull-4 col-sm-8 col-md-8 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item *ngIf="officeAddressSelect">
+            <ion-label class="validationErrorText">*Office address could be empty</ion-label>
+          </ion-item>
+          <ion-item text-wrap>
+            <ion-textarea [(ngModel)]="installationInspection.ta4officeaddress">
+            </ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-push-8 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item no-lines>
+            <ion-label> Nombor Pejabat</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-push-4 col-sm-8 col-md-8 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-input [(ngModel)]="installationInspection.ta4officephone" readonly="true">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <div item-content item-start style="letter-spacing: 1px;"> Sekian,terima kasih.</div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div *ngIf='formSelected'>
+      <ion-row>
+        <ion-col col-4 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item no-lines>
+            <ion-label> Tarikh</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-push-4 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-input type="text" placeholder="select Date" value="{{installationInspection.ta4indatetime}}"
+              [readonly]="true">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-sm-1 col-md-1 style="text-align: right">
+          <button color="buttonlightColor" ion-button (click)="presentPopover($event,'meterInstallInspect')">
+            <ion-icon name="calendar"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Nama Pelanggan</ion-label>
+            <ion-label item-content item-end text-wrap>{{installationInspection.ta4custname}}</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Alamat Pelanggan</ion-label>
+            <ion-label item-content item-end text-wrap>{{installationInspection.ta4custaddress}}</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <div item-start item-content>Pelanggan TNB Yang Dihormati,</div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-title text-center text-uppercase>Pemakluman Semakan Pepasangan Meter Elektrik oleh TNB</ion-title>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <div item-content item-start>Dimaklumkan bahawa pemeriksaan dan pengujian telah dibuat ke atas pepasangan
+              meter yang merekodkan penggunaan elektrik ke premis yang beralamat
+              {{installationInspection.ta4custaddress}}
+            </div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <div item-content item-start>dengan No. Akaun {{installationInspection.ta4accountno}} pada
+              {{installationInspection.ta4indatetime}} jam
+              {{installationInspection.ta4endtime}}</div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-push-8 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label>Masa Semasa</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-pull-4 col-sm-8 col-md-8 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="installationInspection.ta4endtime"
+              placeholder="Please Enter time"></ion-datetime>
+          </ion-item>
+          <ion-item *ngIf="crrTime">
+            <ion-label class="validationErrorText">*Current time cannot be empty </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <ion-label text-wrap>
+              Untuk maklumat anda, nombor siri beg eviden adalah:
+            </ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-input [(ngModel)]="installationInspection.ta4serialNum" placeholder="Enter serial number"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <div item-content item-start style="letter-spacing: 1px;">Hasil pengujian menunjukkan meter berkenaan tidak
+              merekodkan bacaan penggunaan elektrik yang sebenar dan ini telah diterangkan kepada tuan/puan. Ingin
+              dimaklumkan bahawa tuntutan amaun terkurang caj akan dibuat oleh TNB dan akan dimajukan kepada tuan/puan.
+            </div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <div item-content item-start style="letter-spacing: 1px;">Sekiranya terdapat sebarang pertanyaan, tuan/puan
+              boleh menghubungi .</div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-push-8 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item no-lines>
+            <ion-label> Pejabat Negeri</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-pull-4 col-sm-8 col-md-8 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label> {{siteId_region}}</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-push-8 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item no-lines>
+            <ion-label>Alamat Pejabat</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-pull-4 col-sm-8 col-md-8 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item *ngIf="officeAddressSelect">
+            <ion-label class="validationErrorText">*Office address could be empty</ion-label>
+          </ion-item>
+          <ion-item text-wrap>
+            <ion-textarea [(ngModel)]="installationInspection.ta4officeaddress">
+            </ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-push-8 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item no-lines>
+            <ion-label> Nombor Pejabat</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-pull-4 col-sm-8 col-md-8 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-input [(ngModel)]="installationInspection.ta4officephone" readonly="true">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <div item-content item-start style="letter-spacing: 1px;"> Sekian,terima kasih.</div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div>
+    <ion-row>
+      <ion-item-divider style="background-color: #f3e5f5">
+        Part A: Pekerja/ Pemeriksa Maklumat
+      </ion-item-divider>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item no-lines>
+          <ion-label>T/T Pemeriksa</ion-label>
+        </ion-item>
+      </ion-col>
+
+      <ion-col>
+        <ion-item>
+          <signature-pad width=800 height=200 [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad1>
+          </signature-pad>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label item-start>Nama Pemeriksa :</ion-label>
+          <div item-content>{{installationInspection.ta4staffname}}</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label item-start>No. Pekerja :</ion-label>
+          <div item-content>{{installationInspection.ta4staffno}}</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label item-start>Jabatan :</ion-label>
+          <div item-content> Seal Unit Metering</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>Nama Pejabat</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-input [(ngModel)]="installationInspection.ta4department" type="text" placeholder="Insert name">
+          </ion-input>
+        </ion-item>
+        <ion-item *ngIf="officeNameSelect">
+          <ion-label class="validationErrorText">*Office name could not be empty </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <div *ngIf='!formSelected'>
+      <ion-row>
+        <ion-item-divider style="background-color: #f3e5f5">
+          Part B: Maklumat Saksi
+        </ion-item-divider>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item no-lines>
+            <ion-label>Diterima Oleh (T/T) :</ion-label>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <signature-pad width=800 height=200 [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad2>
+            </signature-pad>
+            <button ion-button color="buttonlightColor" (click)="clearSign('installInspectWitness')">Clear</button>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item no-lines>
+            <ion-label>Nama: </ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-input [(ngModel)]="installationInspection.ta4witnessname" type="text" placeholder="Insert name"
+              required>
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item no-lines>
+            <ion-label>No.Tel</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-input [(ngModel)]="installationInspection.ta4witnessphone" placeholder="Insert tel no."></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item no-lines>
+            <ion-label>Tarikh/Masa</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-datetime displayFormat="DD/MM/YYYY HH:mm" pickerFormat="DD/MM/YYYY HH:mm"
+              placeholder="Select Date/Time" [(ngModel)]="installationInspection.ta4datetime"
+              (ionChange)="formatTimeDisplay()"></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div>
+
+  </ion-grid> -->
+
+  <!-- <ion-grid *ngIf='formType === "tanpa_prejudis"'>
+    <ion-item-divider style="background-color: #f3e5f5" text-uppercase>SESI PENJELASAN TANPA PREJUDIS
+    </ion-item-divider>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>Kepada :</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>{{prejude.ta4custname}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-wrap>{{prejude.ta4custaddress}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start style="letter-spacing: 1px;padding-left: 10px; padding-top: 20px;">
+            <strong> Pengguna TNB Yang Dihormati
+            </strong></div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12 col-sm-12 col-md-12>
+        <ion-item>
+          <div text-uppercase item-content style="font-size: 18px;">
+            <strong>
+              SURAT PEMAKLUMAN (SESI PENJELASAN TANPA PREJUDIS) BERHUBUNG TINDAKAN PEMOTONGAN BEKALAN ELEKTRIK DAN
+              TUNTUTAN KERUGIAN HASIL DAN PERBELANJAAN SERTA CAJ BERKAITAN.
+            </strong>
+          </div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12 col-sm-12 col-md-12>
+        <ion-item no-lines>
+          <div item-content style="letter-spacing: 1px;">
+            Ingin dimaklumkan bahawa pihak TNB telah menjalankan pemeriksaan dan pengujian terhadap pepasangan meter TNB
+            di premis tuan/puan bagi memastikan ia berfungsi dalam keadaan yang baik. Hasil pemeriksaan tersebut
+            mendapati pepasangan meter TNB tidak merekodkan bacaan penggunaan elektrik yang sebenar.
+          </div>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content style="letter-spacing: 1px;">
+            Berdasarkan peruntukan Seksyen 38 Akta Bekalan Elektrik 1990, pihak TNB akan melakukan pemotongan bekalan
+            elektrik ke premis tuan/puan seperti notis pemotongan (Borang A) yang diserahkan bersama dengan notis ini
+            dan juga akan membuat tuntutan kerugian hasil dan perbelanjaan serta caj berkaitan.
+          </div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start style="letter-spacing: 1px;padding-left: 10px;">
+            Oleh itu, tuan/puan dijemput hadir ke pejabat SEKSYEN JAMINAN HASIL yang beralamat di negeri.
+          </div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-item>
+        <ion-label>{{siteId_region}}</ion-label>
+      </ion-item>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item text-wrap>
+          <ion-textarea readonly="true" [(ngModel)]="prejude.ta4officeaddress">
+          </ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content style="letter-spacing: 1px;">
+            selepas 3 hari bekerja daripada tarikh pemeriksaan bagi sesi penjelasan tanpa prejudis berhubung tindakan
+            yang akan TNB lakukan. Tuan/puan juga digalakkan membawa bukti dan dokumen-dokumen sokongan untuk tujuan
+            sesi penjelasan.
+          </div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-wrap style="letter-spacing: 1px; padding-left: 10px;  margin-right: 8px;"> Sekiranya terdapat
+            sebarang
+            pertanyaan, sila hubungi pihak TNB di talian {{prejude.ta4officephone}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label style="letter-spacing: 1px; padding-left: 10px;"> Sekian, terima kasih.</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>
+            <strong text-uppercase>SEKSYEN JAMINAN HASIL</strong></ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>
+            <strong text-uppercase>UNIT PENGURUSAN HASIL </strong></ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>
+            <strong text-uppercase>JABATAN PERKHIDMATAN PENGGUNA </strong></ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>
+            <strong text-uppercase>BAHAGIAN PEMBAHAGIAN, TNB</strong></ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+
+  <!-- <ion-col col-12 col-sm-12 style="word-wrap:  break-all; padding-left: 5px;">
+    <ion-item>
+      <ion-title text-center>Choose language for PDF download</ion-title>
+    </ion-item>
+  </ion-col>
+  <ion-list radio-group [(ngModel)]="pdfLanguage" (ionChange)="hidebuttonPdfDownload()">
+    <ion-row col-12 col-sm-12 col-md-12>
+      <ion-col>
+        <ion-item>
+          <ion-label>Bahasa</ion-label>
+          <ion-radio value="bhs"></ion-radio>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>English</ion-label>
+          <ion-radio value="eng"></ion-radio>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-list> -->
+
+  <ion-list ion-row radio-group style="width: -webkit-fill-available;" [(ngModel)]="pdfLanguage"
+    (ionChange)="hidebuttonPdfDownload()">
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="paper" item-start></ion-icon>
+      <strong>Pemilihan bahasa dalam PDF</strong>
+    </ion-item-divider>
+
+    <ion-col col-md-6>
+      <ion-item>
+        <ion-label>Malay</ion-label>
+        <ion-radio value="bhs"></ion-radio>
+      </ion-item>
+    </ion-col>
+
+    <ion-col col-md-6>
+      <ion-item>
+        <ion-label>English</ion-label>
+        <ion-radio value="eng"></ion-radio>
+      </ion-item>
+    </ion-col>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer mode="md">
+  <ion-toolbar>
+    <ion-row *ngIf="downPdf && (pdfLanguage == 'bhs' || pdfLanguage == 'eng') ">
+      <ion-col>
+        <button ion-button round block mode="md" (click)="saveData()">
+          Save
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button round block mode="md" (click)="previewPdf()">
+          Preview
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>
+
+<!-- <ion-footer>
+  <ion-toolbar color="darkColor">
+    <div *ngIf="downPdf && (pdfLanguage == 'bhs' || pdfLanguage == 'eng') ">
+      <ion-row>
+        <ion-col>
+          <button color="footer" ion-button round block (click)="saveData()">Save</button>
+        </ion-col>
+        <ion-col>
+          <button color="footer" ion-button round block (click)="previewPdf()">Preview</button>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-toolbar>
+
+  <div *ngIf="!downPdf">
+  </div>
+</ion-footer> -->

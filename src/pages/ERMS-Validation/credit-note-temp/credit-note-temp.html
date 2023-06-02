@@ -1,0 +1,262 @@
+<ion-header>
+  <ion-grid class="headerStyle">
+    <ion-row>
+      <ion-col col-2 col-md-2 col-sm-2 style="text-align: left; padding-top: 0px;">
+        <button ion-button menuToggle clear>
+          <ion-icon name="menu" class="menuBackArrow"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-8 col-md-8 col-sm-8>
+        <div class="pageTitle">Device Scanning Details</div>
+      </ion-col>
+      <ion-col col-2 col-sm-2 style="word-wrap: break-all; text-align: right; padding-top: 0px; width:12px">
+        <ion-col col-2 col-sm-2>
+          <ion-fab top right style="top: 0%">
+            
+          </ion-fab>
+        </ion-col>
+        <ion-col col-2 col-sm-2>
+          <button ion-button color="primary" style="float: right;" (click)="goBack()">Back</button>
+        </ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+
+<ion-content padding>
+  <ion-row>
+    <ion-col col-6 col-lg-6 col-xs-6 col-sm-6 >
+      <ion-row>
+        <ion-label stacked class="ion-1x" style=" color: rgb(130, 130, 130);">RCN Number</ion-label>
+        <ion-label stacked class="ion-1x" style=" color: rgb(130, 130, 130);">{{ creditnum }}</ion-label>
+      </ion-row>
+    </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="category ==='D1' " >
+    <ion-col col-6 col-lg-6 col-xs-6 col-sm-6 >
+      <ion-row>
+        <ion-label stacked class="ion-1x" style=" color: rgb(130, 130, 130);">Reservation Number</ion-label>
+        <ion-label stacked class="ion-1x" style=" color: rgb(130, 130, 130);">{{ reservenum }}</ion-label>
+      </ion-row>
+    </ion-col>
+    <ion-col col-6 col-lg-6 col-xs-6 col-sm-6>
+        <ion-row>
+          <ion-label stacked class="ion-1x" style=" color: rgb(130, 130, 130);">Reservation Item #</ion-label>
+          <ion-label stacked class="ion-1x" style=" color: rgb(130, 130, 130);">{{ reservItemnum }}</ion-label>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+  <ion-row>
+    <ion-col col-lg-6>
+        <ion-row>
+          <ion-label stacked class="ion-1x" style=" color: rgb(130, 130, 130);">Category Type</ion-label>
+          <ion-label stacked class="ion-1x" style=" color: rgb(130, 130, 130);">{{ disCategory }}</ion-label>
+        </ion-row>
+      </ion-col>
+      <ion-col col-lg-6>
+           <ion-row>
+            <ion-label stacked class="ion-1x" style=" color: rgb(130, 130, 130);">Return Type</ion-label>
+            <ion-label stacked class="ion-1x" style=" color: rgb(130, 130, 130);">{{ disReturnType }}</ion-label>
+          </ion-row> 
+        </ion-col>
+  </ion-row>
+  <br />
+  <ion-row style="margin-bottom: -16px;">
+    <ion-col col-6>
+      <ion-checkbox [(ngModel)]="scanToggle" (ionChange)="scanToggleChange()" style="float: left;"></ion-checkbox>
+      <span>
+        <ion-label style="font-size: 17px; float: left; margin-top: 3px; padding-left: 13px; color: green;">Do you like
+          to scan the devices... </ion-label>
+      </span>
+    </ion-col>
+    <ion-col col-6></ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col col-11 col-lg-11 col-md-11 col-xs-11 col-sm-11>
+      <ion-item style="float: right;" *ngIf="!scanToggle">
+        <ion-label stacked class="ion-1x"> Enter Serial Number of Device </ion-label>
+        <ion-input type="text" [(ngModel)]="serialnum"></ion-input>
+      </ion-item>
+      <ion-item style="float: right;" *ngIf="scanToggle">
+        <ion-label stacked> Scan Serial Number of Device </ion-label>
+        <ion-input type="text" [(ngModel)]="serialnum" (keypress)="scanningDevices($event)" [disabled]=scanToggle>
+        </ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col col-1 col-lg-1 col-md-1 col-xs-1 col-sm-1 style="margin: 22px 0px 0px 0px;" *ngIf = "status==='DRAFT'" >
+      <button ion-button style="float: right;"  [disabled]=" disabledOkayButton "
+        *ngIf="!scanToggle" (click)="addDevice()">
+        Okay
+      </button>
+     
+      <button ion-button (click)="barcodeScan()" style="float: right;"  [disabled]="status !== 'DRAFT' " *ngIf="scanToggle" >
+        <ion-icon name="barcode" item-right></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
+
+  <div *ngIf="lowerToggle">
+    <ion-row>
+      <ion-col col-4 col-lg-4 col-md-4 col-xs-4 col-sm-4>
+        <ion-label stacked> </ion-label>
+      </ion-col>
+      <ion-col col-4 col-lg-4 col-md-4 col-xs-4 col-sm-4 style="text-align: right;"> 
+        <!-- <ion-label stacked class="ion-1x"> Devices selected : {{ selectedlistCheck.length  }} </ion-label> -->
+      </ion-col>
+      <ion-col col-4 col-lg-4 col-md-4 col-xs-4 col-sm-4 style="text-align: right;">
+        <ion-label stacked class="ion-1x"> Business Area : {{ siteid  }} </ion-label>
+      </ion-col>
+    </ion-row>
+    <br />
+    <ion-row *ngIf="pagination">
+      <ion-col col-12 col-md-12 col-sm-12 style="text-align: center;">
+        <div class="pagination">
+          <a href="javascript:;" [ngClass]="(prevPage)?'disabled':''"  (click)="setprevious()">&laquo;</a>
+          <a href="javascript:;" *ngFor='let page of paginationList; let i=index;' [ngClass]="(currentPage===(i+1))?'active':''" (click)="activePagination(page)"> {{ page }}</a>
+          <a href="javascript:;" [ngClass]="(nextPage)?'disabled':''" (click)="setnext()" >&raquo;</a>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-grid>
+      <ion-item>
+        <ion-label>
+          <ion-row>
+            <!-- <ion-col col-1 text-wrap>
+              <ion-label stacked class="ion-1x"> Sel </ion-label>
+            </ion-col> -->
+            <!-- <ion-col col-1 text-wrap>
+              <ion-label stacked class="ion-1x"> No.</ion-label>
+            </ion-col> -->
+            <ion-col col-3 text-wrap>
+              <ion-label stacked class="ion-2x">No. &nbsp; Serial No </ion-label>
+            </ion-col>
+            <ion-col col-2 text-wrap style="text-align: left;">
+              <ion-label stacked class="ion-2x"> Material </ion-label>
+            </ion-col>
+            <ion-col col-2 text-wrap *ngIf=  "category ==='R1'"  >
+              <ion-label stacked class="ion-2x"> Description </ion-label>
+            </ion-col>
+            <ion-col col-3 text-wrap *ngIf=  "category ==='D1' && returntype ==='30' "  >
+              <ion-label stacked class="ion-2x"> Description </ion-label>
+            </ion-col>
+            <ion-col col-2 text-wrap *ngIf=  "category ==='D1' && returntype ==='31' "  >
+              <ion-label stacked class="ion-2x"> Description </ion-label>
+            </ion-col>
+            <ion-col col-2 text-wrap *ngIf=  "category ==='C1'"  >
+              <ion-label stacked class="ion-2x"> Description </ion-label>
+            </ion-col>
+            <ion-col col-2 text-wrap *ngIf ="category ==='R1'" >
+              <ion-label stacked class="ion-2x"> Dev. Status </ion-label>
+            </ion-col>
+            <ion-col col-2 text-wrap *ngIf ="returntype ==='31'">
+              <ion-label stacked class="ion-2x"> Dev. Status </ion-label>
+            </ion-col>
+            <ion-col col-1 text-wrap  *ngIf="(returntype === '11' &&  (category !=='R1' ) ) ||  (returntype === '12'  &&   (category !=='R1')  ) " style="text-align: right;">
+              <ion-label stacked class="ion-2x">  Warr. </ion-label>
+            </ion-col>
+            <ion-col col-2 text-wrap style="text-align: right;" *ngIf=  "category ==='C1'"  >
+              <ion-label stacked class="ion-2x" > Status </ion-label>
+            </ion-col>
+            <ion-col col-1 text-wrap style="text-align: right;" *ngIf=  "category ==='R1'" >
+              <ion-label stacked class="ion-3x" > Status </ion-label>
+            </ion-col>
+            <ion-col col-2 text-wrap style="text-align: right;" *ngIf=  "category ==='D1' && returntype ==='30'" >
+              <ion-label stacked class="ion-3x" > Status </ion-label>
+            </ion-col>
+            <ion-col col-1 text-wrap style="text-align: right;" *ngIf=  "category ==='D1' && returntype ==='31'" >
+              <ion-label stacked class="ion-3x" > Status </ion-label>
+            </ion-col>
+            <ion-col col-1 text-wrap style="text-align: right;" *ngIf="(returntype !== '10'   ) " >
+              <ion-label stacked class="ion-3x"> Val. Type </ion-label>
+            </ion-col>
+            <ion-col col-1 text-wrap style="text-align: right;" *ngIf="(returntype === '10'   ) " >
+              &nbsp;
+            </ion-col>
+            <ion-col col-1 text-wrap style="text-align: right;">
+              <ion-label stacked class="ion-2x"> Rmv </ion-label>
+            </ion-col>
+          </ion-row>
+        </ion-label>
+      </ion-item>
+
+      <ion-item *ngFor='let device of listta0cnline; let i = index;' [ngClass]="i%2 != 0 ? 'classA' : 'classB'">
+        <ion-label>
+          <ion-row>
+            <ion-col col-3 text-wrap *ngIf="13 > device.serialnum.length " stacked class="ion-2x"> 
+              {{ device.cnlinenum }}.  &nbsp;&nbsp;&nbsp;{{ device.serialnum }}
+            </ion-col>
+            <ion-col col-3 text-wrap *ngIf=" device.serialnum.length >= 13"  stacked class="ion-3x"> 
+              {{ device.cnlinenum }}.  &nbsp;&nbsp;&nbsp;{{ device.serialnum }}
+            </ion-col>
+            <ion-col col-2 text-wrap style="text-align: left;">
+              {{ device.material }}
+            </ion-col>
+            <ion-col col-2 text-wrap *ngIf=  "category ==='R1'"  >
+              {{ device.description }}
+            </ion-col>
+            <ion-col col-3 text-wrap *ngIf=  "category ==='D1' && returntype ==='30' "  >
+              {{ device.description }}
+            </ion-col>
+            <ion-col col-2 text-wrap *ngIf=  "category ==='D1' && returntype ==='31' "  >
+              {{ device.description }}
+            </ion-col>
+            <ion-col col-2 text-wrap *ngIf=  "category ==='C1'"  >
+              {{ device.description }}
+            </ion-col>
+            <ion-col col-2 text-wrap *ngIf ="category ==='R1'" >
+              {{ device.devicestatus }}
+            </ion-col>
+            <ion-col col-2 text-wrap *ngIf ="returntype ==='31'" >
+              {{ device.devicestatus }}
+            </ion-col>
+            <ion-col col-1 text-wrap  *ngIf="(returntype === '11' &&  (category !=='R1' ) ) ||  (returntype === '12'  &&   (category !=='R1')  ) " style="text-align: right;">
+            {{ warrantytext(device.iswarranty) }}
+            </ion-col>
+            <ion-col col-2 text-wrap style="text-align: right;"  *ngIf=  "category ==='C1'" stacked class="ion-2x" >
+              {{ device.status }}
+            </ion-col>
+            <ion-col col-1 text-wrap style="text-align: right;"  *ngIf=  "category ==='R1'" stacked class="ion-2x" >
+              {{ device.status }}
+            </ion-col>
+            <ion-col col-2 text-wrap style="text-align: right;" *ngIf=  "category ==='D1' && returntype ==='30'" stacked class="ion-2x" >
+              {{ device.status }}
+            </ion-col>
+            <ion-col col-1 text-wrap style="text-align: right;" *ngIf=  "category ==='D1' && returntype ==='31'" stacked class="ion-2x" >
+              {{ device.status }}
+            </ion-col>
+            <ion-col col-1 text-wrap style="text-align: right;"  stacked class="ion-3x"  *ngIf="(returntype !== '10')"  >
+              {{ device.valuationtype }}
+            </ion-col>
+            <ion-col col-1 text-wrap style="text-align: right;"  stacked class="ion-3x"  *ngIf="(returntype === '10') "  >
+              &nbsp;
+            </ion-col>
+            <ion-col col-1 text-wrap   style="text-align: right;" >
+              <button ion-button  (click)="deleteDevice(device, i)"  [disabled]="status !== 'DRAFT' " >
+                <ion-icon name="trash" item-center></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>      
+        </ion-label>
+      </ion-item>
+    </ion-grid>
+    <ion-row *ngIf="pagination">
+      <ion-col col-12 col-md-12 col-sm-12 style="text-align: center;">
+        <div class="pagination">
+          <a href="javascript:;" [ngClass]="(prevPage)?'disabled':''"  (click)="setprevious()">&laquo;</a>
+          <a href="javascript:;" *ngFor='let page of paginationList; let i=index;' [ngClass]="(currentPage===(i+1))?'active':''" (click)="activePagination(page)"> {{ page }}</a>
+          <a href="javascript:;" [ngClass]="(nextPage)?'disabled':''" (click)="setnext()" >&raquo;</a>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="text-align: right;">
+        <button ion-button style="padding: 15px;" (click)="saveToMaximoData()"  *ngIf="status === 'DRAFT'"     >Submit</button>
+        <button ion-button style="padding: 15px;" (click)="previewPdf()"  *ngIf="status !== 'DRAFT'  ||  status === 'INPRG'"   >Pdf</button> 
+        <button ion-button style="padding: 15px;" (click)="goBack()">Cancel</button>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

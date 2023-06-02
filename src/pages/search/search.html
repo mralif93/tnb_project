@@ -1,0 +1,170 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="md-menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Dashboard</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon [color]="gv.testMobile ? 'danger' : 'light'" name="md-planet" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <!-- Start: New Section -->
+  <ion-list ion-row>
+    <!-- Start: Header List -->
+    <ion-item-divider>
+      <ion-icon name="md-podium" item-start></ion-icon>
+      Graph of Service Order
+    </ion-item-divider>
+    <!-- End: Header List -->
+
+    <ion-item no-lines>
+      <div *ngIf="showButtonCover">
+        <div style="display: block" *ngIf="gv.departContent == 'lpc'">
+          <canvas baseChart [datasets]="barChartDataLpc" [labels]="barChartLabels" [options]="barChartOptions"
+            [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+        </div>
+        <div style="display: block" *ngIf="gv.departContent == 'seal'">
+          <canvas baseChart [datasets]="barChartDataSeal" [labels]="barChartLabels" [options]="barChartOptions"
+            [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+        </div>
+      </div>
+    </ion-item>
+
+    <!-- Start: Header List -->
+    <ion-item-divider>
+      <ion-icon name="md-list-box" item-start></ion-icon>
+      Table of Service Order
+    </ion-item-divider>
+    <!-- End: Header List -->
+
+    <ion-item col-6 col-sm-6 col-md-6 *ngFor="let type of worktype; let i = index;">
+      <h2>{{ type }}</h2>
+      <p *ngIf="gv.departContent === 'seal'">Count : {{ barChartDataSeal[0].data[i] }}</p>
+      <p *ngIf="gv.departContent === 'lpc'">Count : {{ barChartDataLpc[0].data[i] }}</p>
+      <ion-icon name="logo-buffer" item-end></ion-icon>
+    </ion-item>
+  </ion-list>
+
+  <!-- End: New Section -->
+
+
+
+  <!--   <ion-searchbar (ionInput)="filterTechnologies($event.target.value)"></ion-searchbar>-->
+  <!-- <ion-card>
+    <ion-card-header>
+      <ion-row>
+        <ion-col style="align-self: center;">
+          <ion-item text-uppercase>
+            <ion-label color="primary"><strong>Chart</strong></ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+    <ion-card-content>
+      <div *ngIf="showButtonCover">
+        <div style="display: block" *ngIf="gv.departContent != 'seal'">
+          <canvas baseChart [datasets]="barChartDataLpc" [labels]="barChartLabels" [options]="barChartOptions"
+            [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+        </div>
+        <div style="display: block" *ngIf="gv.departContent == 'seal'">
+          <canvas baseChart [datasets]="barChartDataSeal" [labels]="barChartLabels" [options]="barChartOptions"
+            [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+        </div> -->
+  <!-- <button (click)="randomize()">Update</button> -->
+  <!-- </div>
+    </ion-card-content>
+  </ion-card> -->
+
+
+  <!--
+    <div *ngIf="showButtonCover">
+        <ion-row *ngFor="let trio of getTriples()">
+          <ion-col *ngFor="let item of trio" col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+            <button ion-button round (click)="goToWorkOrderHome(item.key)">
+              <h4>
+                <b> &nbsp;{{item.key }} &nbsp;</b>{{item.value }}</h4>
+            </button>
+          </ion-col>
+        </ion-row>
+      </div>
+  
+
+
+  <ion-grid style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
+    <ion-list>
+      <ion-item *ngFor="let attr of newWorktype; let j = index" [ngClass]="j%2 != 0 ? 'classA' : 'classB'" (click)="goToWorkOrderHome(attr.key)">
+
+        <div text-wrap>
+          <ion-row>
+            <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <h2>
+                <b>{{j + 1}} - {{attr.key }} </b>
+              </h2>
+            </ion-col>
+            <ion-col col-6 col-sm-6 col-md-6>
+              <b> {{attr.value }} </b>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-grid>
+ -->
+
+  <!-- Service Order Details in Table Format -->
+  <!-- Created : Alif (08.08.2019) -->
+
+  <!-- <ion-card>
+    <ion-card-header>
+      <ion-row>
+        <ion-col style="align-self: center;">
+          <ion-item text-uppercase>
+            <ion-label color="primary"><strong>Dashboard</strong></ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row>
+        <ion-col col-12 col-sm-10 col-md-10>
+          <ion-item>
+            <ion-label color="primary">SO Type</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-sm-2 col-md-2>
+          <ion-item>
+            <ion-label color="primary">Total</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <span *ngFor="let type of worktype; let i = index;">
+        <ion-row [ngClass]="i%2 != 0 ? 'classA' : 'classB'">
+          <ion-col col-12 col-sm-10 col-md-10>
+            <ion-item>
+              <ion-label>{{ type }}</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-2 col-md-2 align-self-center>
+            <ion-item>
+              <ion-label *ngIf="gv.departContent === 'seal'">{{ barChartDataSeal[0].data[i] }}</ion-label>
+              <ion-label *ngIf="gv.departContent !== 'seal'">{{ barChartDataLpc[0].data[i] }}</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </span>
+    </ion-card-content>
+  </ion-card> -->
+
+</ion-content>

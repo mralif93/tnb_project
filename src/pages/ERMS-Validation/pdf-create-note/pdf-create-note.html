@@ -1,0 +1,371 @@
+<!--
+  Generated template for the PidarTestPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-grid class="headerStyle">
+    <ion-row>
+      <ion-col col-2 col-sm-3 style="text-align: left;padding-top: 0px;">
+        <button ion-button menuToggle clear>
+          <ion-icon name="menu" class="menuBackArrow"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-8 col-sm-5>
+        <div class="pageTitle">Return Credit Note
+        </div>
+      </ion-col>
+      <ion-col col-4 col-sm-4 style="word-wrap: break-all; text-align: right; padding-top: 0px; width:12px">
+        <ion-col col-2 col-sm-2>
+          <ion-fab top right style="top: 0%">
+            <button ion-fab mini class="flash">
+              <ion-icon class="flash_plnt" name="planet" [style.color]="gv.testMobile ? 'red':'green'">
+                {{ gv.testMobile ? 'Offline':'Online' }} </ion-icon>
+            </button>
+          </ion-fab>
+        </ion-col>
+        <ion-col col-2 col-sm-2 (click)="presentPopover($event)">
+          <button ion-button icon-only clear>
+            <button ion-button color="primary" style="float: right;" (click)="goBack()">Back</button>
+          </button>
+        </ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+<ion-content>
+
+  <ion-grid style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
+    <ion-row>
+      <ion-col col-6 col-lg-6 col-md-6 col-xs-6 col-sm-6>
+        <ion-row>
+          <ion-label stacked class="ion-1x" style=" color: rgb(130, 130, 130);">RCN Number</ion-label>
+          <ion-label stacked class="ion-1x" style=" color: rgb(130, 130, 130);">{{ta0cnobjstr.creditnum}}</ion-label>
+        </ion-row>
+      </ion-col>
+      <ion-col col-6 col-lg-6 col-md-6 col-xs-6 col-sm-6 *ngIf="ta0cnobjstr.category ==='D1' ">
+        <ion-row>
+          <ion-label stacked class="ion-1x" style=" color: rgb(130, 130, 130);">Reservation Number</ion-label>
+          <ion-label stacked class="ion-1x" style=" color: rgb(130, 130, 130);">{{ta0cnobjstr.reservenum}}</ion-label>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-6 col-lg-6 col-md-6 col-xs-6 col-sm-6>
+        <ion-row>
+
+          <ion-label stacked class="ion-1x" style=" color: rgb(130, 130, 130);">Category </ion-label>
+          <ion-label stacked class="ion-1x" style=" color: rgb(130, 130, 130);">
+            {{convertStringCat(ta0cnobjstr.category)}}
+          </ion-label>
+
+
+        </ion-row>
+      </ion-col>
+      <ion-col col-6 col-lg-6 col-md-6 col-xs-6 col-sm-6>
+        <ion-row>
+          <ion-label stacked class="ion-1x" style=" color: rgb(130, 130, 130);">Return Type</ion-label>
+          <ion-label stacked class="ion-1x" style=" color: rgb(130, 130, 130);">
+            {{convertStringReturn(ta0cnobjstr.returntype)}}</ion-label>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <br />
+  <br />
+  <br />
+  <ion-item-divider color="light">
+    <ion-row>
+      <ion-col>
+
+        <ion-icon name="md-speedometer"></ion-icon>&nbsp; <strong>Device List</strong>
+      </ion-col>
+    </ion-row>
+  </ion-item-divider>
+
+
+  <ion-grid>
+    <ion-item>
+      <ion-label>
+        <ion-row>
+          <!-- <ion-col col-1 text-wrap>
+                    <ion-label stacked class="ion-1x"> Sel </ion-label>
+                  </ion-col> -->
+          <!-- <ion-col col-1 text-wrap>
+                    <ion-label stacked class="ion-1x"> No.</ion-label>
+                  </ion-col> -->
+          <ion-col col-3 text-wrap>
+            <ion-label stacked class="ion-2x">No. &nbsp; Serial No </ion-label>
+          </ion-col>
+          <ion-col col-2 text-wrap style="text-align: left;">
+            <ion-label stacked class="ion-2x"> Material </ion-label>
+          </ion-col>
+          <ion-col col-2 text-wrap *ngIf="ta0cnobjstr.category ==='R1'">
+            <ion-label stacked class="ion-2x"> Description </ion-label>
+          </ion-col>
+          <ion-col col-3 text-wrap *ngIf="ta0cnobjstr.category ==='D1' && ta0cnobjstr.returntype ==='30' ">
+            <ion-label stacked class="ion-2x"> Description </ion-label>
+          </ion-col>
+          <ion-col col-2 text-wrap *ngIf="ta0cnobjstr.category ==='D1' && ta0cnobjstr.returntype ==='31' ">
+            <ion-label stacked class="ion-2x"> Description </ion-label>
+          </ion-col>
+          <ion-col col-2 text-wrap *ngIf="ta0cnobjstr.category ==='C1'">
+            <ion-label stacked class="ion-2x"> Description </ion-label>
+          </ion-col>
+          <ion-col col-2 text-wrap *ngIf="ta0cnobjstr.category ==='R1'">
+            <ion-label stacked class="ion-2x"> Dev. Status </ion-label>
+          </ion-col>
+          <ion-col col-2 text-wrap *ngIf="ta0cnobjstr.returntype ==='31'">
+            <ion-label stacked class="ion-2x"> Dev. Status </ion-label>
+          </ion-col>
+          <ion-col col-1 text-wrap
+            *ngIf="(ta0cnobjstr.returntype === '11' &&  (ta0cnobjstr.category !=='R1' ) ) ||  (ta0cnobjstr.returntype === '12'  &&   (ta0cnobjstr.category !=='R1')  ) "
+            style="text-align: right;">
+            <ion-label stacked class="ion-2x"> Warr. </ion-label>
+          </ion-col>
+          <ion-col col-2 text-wrap style="text-align: right;" *ngIf="ta0cnobjstr.category ==='C1'">
+            <ion-label stacked class="ion-2x"> Status </ion-label>
+          </ion-col>
+          <ion-col col-1 text-wrap style="text-align: right;" *ngIf="ta0cnobjstr.category ==='R1'">
+            <ion-label stacked class="ion-2x"> Status </ion-label>
+          </ion-col>
+          <ion-col col-2 text-wrap style="text-align: right;"
+            *ngIf="ta0cnobjstr.category ==='D1' && ta0cnobjstr.returntype ==='30'">
+            <ion-label stacked class="ion-2x"> Status </ion-label>
+          </ion-col>
+          <ion-col col-1 text-wrap style="text-align: right;"
+            *ngIf="ta0cnobjstr.category ==='D1' && ta0cnobjstr.returntype ==='31'">
+            <ion-label stacked class="ion-2x"> Status </ion-label>
+          </ion-col>
+          <ion-col col-1 text-wrap style="text-align: right;">
+            <ion-label stacked class="ion-2x"> Val. Type </ion-label>
+          </ion-col>
+
+        </ion-row>
+      </ion-label>
+    </ion-item>
+
+    <ion-item *ngFor='let device of ta0cnobjstr.ta0cnline; let j = index' [ngClass]="i%2 != 0 ? 'classA' : 'classB'">
+      <ion-label>
+        <ion-row>
+          <ion-col col-3 text-wrap>
+            {{ device.cnlinenum }}. &nbsp;&nbsp;&nbsp;{{ device.serialnum }}
+          </ion-col>
+          <ion-col col-2 text-wrap style="text-align: left;">
+            {{ device.material }}
+          </ion-col>
+          <ion-col col-2 text-wrap *ngIf="ta0cnobjstr.category ==='R1'">
+            {{ device.description }}
+          </ion-col>
+          <ion-col col-3 text-wrap *ngIf="ta0cnobjstr.category ==='D1' && ta0cnobjstr.returntype ==='30' ">
+            {{ device.description }}
+          </ion-col>
+          <ion-col col-2 text-wrap *ngIf="ta0cnobjstr.category ==='D1' && ta0cnobjstr.returntype ==='31' ">
+            {{ device.description }}
+          </ion-col>
+          <ion-col col-2 text-wrap *ngIf="ta0cnobjstr.category ==='C1'">
+            {{ device.description }}
+          </ion-col>
+          <ion-col col-2 text-wrap *ngIf="ta0cnobjstr.category ==='R1'">
+            {{ device.devicestatus }}
+          </ion-col>
+          <ion-col col-2 text-wrap *ngIf="ta0cnobjstr.returntype ==='31'">
+            {{ device.devicestatus }}
+          </ion-col>
+          <ion-col col-1 text-wrap
+            *ngIf="(ta0cnobjstr.returntype === '11' &&  (ta0cnobjstr.category !=='R1' ) ) ||  (ta0cnobjstr.returntype === '12'  &&   (ta0cnobjstr.category !=='R1')  ) "
+            style="text-align: right;">
+            {{ warrantytext(device.iswarranty) }}
+          </ion-col>
+          <ion-col col-2 text-wrap style="text-align: right;" *ngIf="ta0cnobjstr.category ==='C1'">
+            {{ device.status }}
+          </ion-col>
+          <ion-col col-1 text-wrap style="text-align: right;" *ngIf="ta0cnobjstr.category ==='R1'">
+            {{ device.status }}
+          </ion-col>
+          <ion-col col-2 text-wrap style="text-align: right;"
+            *ngIf="ta0cnobjstr.category ==='D1' && ta0cnobjstr.returntype ==='30'">
+            {{ device.status }}
+          </ion-col>
+          <ion-col col-1 text-wrap style="text-align: right;"
+            *ngIf="ta0cnobjstr.category ==='D1' && ta0cnobjstr.returntype ==='31'">
+            {{ device.status }}
+          </ion-col>
+          <ion-col col-1 text-wrap style="text-align: right;">
+            {{ device.valuationtype }}
+          </ion-col>
+
+        </ion-row>
+      </ion-label>
+    </ion-item>
+  </ion-grid>
+  <br />
+  <br />
+  <br />
+
+  <ion-item-divider color="light">
+    <ion-row>
+      <ion-col>
+        <ion-icon name="ribbon"></ion-icon>&nbsp; <strong>Disediakan Oleh</strong>
+      </ion-col>
+    </ion-row>
+  </ion-item-divider>
+
+  <ion-row>
+    <ion-col col-3 col-sm-3 col-md-3>
+      <ion-item>
+        <ion-label color="primary">Disediakan Oleh</ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col col-7 col-sm-7 col-md-7>
+      <ion-item text-center no-lines>
+        <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad1></signature-pad>
+      </ion-item>
+    </ion-col>
+    <!-- <ion-col col- col-sm- col-md->
+      <ion-item no-lines>
+        <button ion-button round mode="md" color="buttonlightColor" (click)="clearSign('staff')">Clear</button>
+        
+      </ion-item>
+    </ion-col> -->
+
+    <ion-col col-2 col-sm-2 col-md-2>
+      <ion-item no-lines align-self-center>
+        <button ion-button round mode="md" color="buttonlightColor" (click)="clearSign('staff')">Clear</button>
+      </ion-item>
+      <ion-item no-lines align-self-center>
+        <button ion-button round mode="md" color="buttonlightColor" (click)="drawComplete1()">Done</button>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-sm-12 col-md-4 col-4>
+      <ion-item>
+        <ion-label color="primary">Name</ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item>
+        <ion-input type="text" [(ngModel)]="displayname" readonly="true" placeholder="Auto Populate">
+        </ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-sm-12 col-md-2 col-2>
+      <ion-item>
+        <ion-label color="primary">Staff No.</ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item>
+        <!-- <ion-input type="text" [(ngModel)]="formData.ta4staff_id" readonly="true" placeholder="Auto Populate"> 
+        </ion-input>-->
+      </ion-item>
+    </ion-col>
+    <ion-col col-sm-12 col-md-2 col-2>
+      <ion-item>
+        <ion-label color="primary">Date</ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item>
+        <ion-input type="text" readonly="true" value="{{ dateN }}" placeholder="Auto Populate"></ion-input>
+
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <!-- Remark & Approved By -->
+  <ion-item-divider color="light">
+    <ion-row>
+      <ion-col>
+        <ion-icon name="ribbon"></ion-icon>&nbsp; <strong>Remarks & Approved By</strong>
+      </ion-col>
+    </ion-row>
+  </ion-item-divider>
+
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <!-- <ion-textarea type="textarea" style="border:1px" rows="5" placeholder="Please Enter"
+          [(ngModel)]="formData.ta4exe_remarks"></ion-textarea> -->
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-3 col-sm-3 col-md-3>
+      <ion-item>
+        <ion-label color="primary">Approved By</ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col col-7 col-sm-7 col-md-7>
+      <ion-item text-center no-lines>
+        <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad3></signature-pad>
+      </ion-item>
+    </ion-col>
+    <ion-col col-2 col-sm-2 col-md-2>
+      <ion-item no-lines align-self-center>
+        <button ion-button round mode="md" color="buttonlightColor" (click)="clearSign('executive')">Clear</button>
+      </ion-item>
+      <ion-item no-lines align-self-center>
+        <button ion-button round mode="md" color="buttonlightColor" (click)="drawComplete2()">Done</button>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row style="padding-bottom: 20px;">
+    <ion-col col-sm-12 col-md-2 col-2>
+      <ion-item>
+        <ion-label color="primary">Name</ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item>
+        <!-- <ion-input type="text" [(ngModel)]="formData.ta4exe_name" placeholder="Enter value"></ion-input> -->
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row style="padding-bottom: 20px;">
+    <ion-col col-sm-12 col-md-2 col-2>
+      <ion-item>
+        <ion-label color="primary">ID</ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item>
+        <!-- <ion-input type="text" [(ngModel)]="formData.ta4exe_id" placeholder="Enter value"></ion-input> -->
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row style="padding-bottom: 20px;">
+    <ion-col col-sm-12 col-md-2 col-2>
+      <ion-item>
+        <ion-label color="primary">Position</ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item>
+        <!-- <ion-input type="text" [(ngModel)]="formData.ta4exe_position" placeholder="Enter value"></ion-input> -->
+      </ion-item>
+    </ion-col>
+    <ion-col col-sm-12 col-md-2 col-2>
+      <ion-item>
+        <ion-label color="primary">Date</ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item>
+        <ion-input type="text" readonly="true" value="{{ dateN }}" placeholder="Auto Populate"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <button ion-button (click)="createPdf()">Create PDF</button>
+  <!-- button ion-button  (click)="generatePdf()">Generate PDF</button -->
+  <button ion-button (click)="downloadPdf()" color="secondary" [disabled]="!pdfObj">Save PDF</button>
+
+
+</ion-content>

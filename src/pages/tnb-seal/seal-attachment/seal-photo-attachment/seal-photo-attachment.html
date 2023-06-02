@@ -1,0 +1,280 @@
+<ion-header mode="md">
+  <ion-navbar color="primary">
+    <ion-title>Attachment</ion-title>
+    <ion-buttons end style="padding-right: 20px;">
+      <button ion-button icon-only>
+        <ion-icon [color]="gv.testMobile ? 'danger' : 'light'" name="md-planet" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end style="padding-right: 20px;">
+      <button ion-button icon-only (click)="getPictures()">
+        <ion-icon color="light" name="md-attach"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end style="padding-right: 20px;">
+      <button ion-button icon-only (click)="takePhoto()">
+        <ion-icon color="light" name="md-camera"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-segment [(ngModel)]="segmentSection" mode="md">
+    <ion-segment-button value="Image">Image</ion-segment-button>
+    <ion-segment-button value="Pdf">Pdf</ion-segment-button>
+    <ion-segment-button value="Pd"> Phase Diagram</ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+<ion-content>
+
+  <ion-slides pager *ngIf="segmentSection == 'Image'">
+    <ion-slide pager *ngFor="let attach of attachment | photo:attachment; let id = index">
+      <ion-row>
+        <ion-col>
+          <img [src]="attach.href" />
+        </ion-col>
+      </ion-row>
+
+      <ion-card>
+        <ion-card-content>
+          <ion-row>
+            <ion-col>
+              <ion-item mode="md">
+                <ion-label stacked class="maxwidth">Type of Image</ion-label>
+                <ion-select [(ngModel)]="attach.describedBy.title" multiple="false" placeholder="Please select">
+                  <ion-option value="PR">Premis</ion-option>
+                  <ion-option value="MINS">Pepasangan Meter</ion-option>
+                  <ion-option value="MD">Paparan Meter</ion-option>
+                  <ion-option value="SNSMTR">Sil dan Pelekat (Meter)</ion-option>
+                  <ion-option value="ANMLYM">Anomali (Meter)</ion-option>
+                  <ion-option value="OTHRINS">Pemasangan (Lain)</ion-option>
+                  <ion-option value="SNSOTHR">Sil dan Pelekat (Lain)</ion-option>
+                  <ion-option value="ANMLMOTHR">Anomali (Lain)</ion-option>
+                  <ion-option value="CRTVACT">Tindakan Pembetulan</ion-option>
+                  <ion-option value="CRTVACTDM">Tindakan Pembetulan (Paparan Meter)</ion-option>
+                  <ion-option value="WTNSS">Saksi</ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <ion-item mode="md">
+                <ion-label stacked class="maxwidth">Category/Doctype</ion-label>
+                <ion-select [(ngModel)]="attach.describedBy.docType" multiple="false" placeholder="Please select">
+                  <ion-option value="PI">Premise Image</ion-option>
+                  <ion-option value="RI">Raw Image</ion-option>
+                  <ion-option value="AI">Anomaly Image</ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item mode="md">
+                <ion-label stacked>Description:</ion-label>
+                <ion-textarea [(ngModel)]="attach.describedBy.description" placeholder="Please enter description">
+                </ion-textarea>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col style="text-align: end;">
+              <button ion-button icon-start round color="danger" (click)="deletePhoto(attach.href)">
+                <ion-icon name="trash"></ion-icon>
+                Delete
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- <ion-row *ngFor="let attach of attachment | photo:attachment; let id = index" class="block"
+        style="background-color: #f6fbff">
+        <img [src]="attach.href" width="100%" height="50%" />
+  
+        <ion-col>
+          <ion-row style="padding-top: 50px;padding-bottom: 60px;">
+            <ion-col>
+              <ion-item>
+                <ion-label stacked class="maxwidth">Type of Image</ion-label>
+                <ion-select [(ngModel)]="attach.describedBy.title" multiple="false" placeholder="Please select">
+                  <ion-option value="PR">Premis</ion-option>
+                  <ion-option value="MINS">Pepasangan Meter</ion-option>
+                  <ion-option value="MD">Paparan Meter</ion-option>
+                  <ion-option value="SNSMTR">Sil dan Pelekat (Meter)</ion-option>
+                  <ion-option value="ANMLYM">Anomali (Meter)</ion-option>
+                  <ion-option value="OTHRINS">Pemasangan (Lain)</ion-option>
+                  <ion-option value="SNSOTHR">Sil dan Pelekat (Lain)</ion-option>
+                  <ion-option value="ANMLMOTHR">Anomali (Lain)</ion-option>
+                  <ion-option value="CRTVACT">Tindakan Pembetulan</ion-option>
+                  <ion-option value="CRTVACTDM">Tindakan Pembetulan (Paparan Meter)</ion-option>
+                  <ion-option value="WTNSS">Saksi</ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <ion-item>
+                <ion-label stacked class="maxwidth">Category/Doctype</ion-label>
+                <ion-select [(ngModel)]="attach.describedBy.docType" multiple="false" placeholder="Please select">
+                  <ion-option value="PI">Premise Image</ion-option>
+                  <ion-option value="RI">Raw Image</ion-option>
+                  <ion-option value="AI">Anomaly Image</ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row no-padding>
+            <ion-item>
+              <ion-label>
+                Description:
+              </ion-label>
+              <ion-textarea [(ngModel)]="attach.describedBy.description"></ion-textarea>
+            </ion-item>
+          </ion-row>
+          <ion-row no-padding>
+            <ion-col>
+              <button ion-button clear small color="danger" icon-start (click)="deletePhoto(attach.href)">
+                <ion-icon name="trash" class="deleteIcon"></ion-icon>
+                Delete
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-slide>
+        </ion-slide>
+  
+      </ion-row> -->
+      <!--  <ion-slide>
+      </ion-slide> -->
+    </ion-slide>
+  </ion-slides>
+
+  <ion-slides pages *ngIf="segmentSection == 'Pdf'">
+    <ion-slide pager *ngFor="let pdf of attachment | pdfAttachment:pdf; let id = index">
+      <ion-row>
+        <ion-col>
+          <img [src]="pdf.href" />
+        </ion-col>
+      </ion-row>
+
+      <ion-card>
+        <ion-card-content>
+          <ion-row>
+            <ion-col>
+              <ion-item mode="md">
+                <ion-label stacked class="maxwidth">Filename</ion-label>
+                <ion-input value="{{ pdf.describedBy.title }}" disabled="true"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+
+  <!-- <ion-slides pages *ngIf="segmentSection == 'Pdf'">
+    <ion-col>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>No.</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label>File Name</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngFor="let pdf of attachment | pdfAttachment:pdf; let id = index">
+        <ion-col>
+          <ion-item>
+            <ion-label> {{ id+1 }}.</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label> {{ pdf.describedBy.title}}</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <a ion-button [href]="pdf.describedBy.href" [target]="_blank">Open</a>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+  </ion-slides> -->
+
+  <ion-slides pager="true" pages *ngIf="segmentSection == 'Pd'">
+    <ion-row *ngFor="let pdDd of attachment | phasorDiagram:attachment; let id = index" class="block"
+      style="background-color: #f6fbff">
+      <ion-slide>
+        <ion-col>
+          <img [src]="pdDd.href" style="max-height: 350px; max-width: 50%;" />
+        </ion-col>
+        <ion-col>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label stacked class="maxwidth">Category/Doctype</ion-label>
+                <ion-select [(ngModel)]="pdDd.describedBy.docType" multiple="false" placeholder="Please select">
+                  <ion-option value="PD">Phase Diagram</ion-option>
+                  <ion-option value="DD">Reading Details</ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+
+            <ion-col>
+              <ion-item>
+                <ion-label stacked class="maxwidth">Feeder Section</ion-label>
+                <ion-select multiple="false" [(ngModel)]="pdDd.describedBy.ta4feederidref" placeholder="Please select">
+                  <span *ngIf="optionFeeder[0].ta0feederid == null">
+                    <ion-option *ngFor="let option of optionFeeder; let i = index" value="{{ option.ta0feederid }}"
+                      [selected]="option.ta0feedercode === pdDd.describedBy.ta4feederidref" disabled="true">
+                      {{ option.description }}</ion-option>
+                  </span>
+                  <span *ngIf="optionFeeder[0].ta0feederid != null">
+                    <ion-option *ngFor="let option of optionFeeder; let i = index" value="{{ option.ta0feederid }}"
+                      [selected]="option.ta0feedercode === pdDd.describedBy.ta4feederidref">
+                      {{ option.description }} - {{ option.ta0feedercode }}</ion-option>
+                  </span>
+
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row no-padding>
+            <ion-item>
+              <ion-label stacked>
+                Description:
+              </ion-label>
+              <ion-textarea [(ngModel)]="pdDd.describedBy.description"></ion-textarea>
+            </ion-item>
+          </ion-row>
+          <ion-row no-padding>
+            <button ion-button clear small color="danger" icon-start (click)="deletePhoto(pdDd.href)">
+              <ion-icon name="trash" class="deleteIcon"></ion-icon>
+              Delete
+            </button>
+          </ion-row>
+        </ion-col>
+      </ion-slide>
+    </ion-row>
+  </ion-slides>
+
+</ion-content>
+
+<ion-footer mode="md">
+  <ion-toolbar mode="md">
+    <ion-row>
+      <ion-col>
+        <button ion-button round block mode="md" (click)="saveAttachment()">
+          Save
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button round block mode="md" (click)="goBack()">
+          Cancel
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

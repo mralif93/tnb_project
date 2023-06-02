@@ -1,0 +1,106 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "cordova-plugin-telerik-imagepicker",
+        "scope": null,
+        "escapedName": "cordova-plugin-telerik-imagepicker",
+        "name": "cordova-plugin-telerik-imagepicker",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/Users/developer/Desktop/dssb_project/ionic_workspace/SoExecution"
+    ]
+  ],
+  "_from": "cordova-plugin-telerik-imagepicker@latest",
+  "_hasShrinkwrap": false,
+  "_id": "cordova-plugin-telerik-imagepicker@2.3.3",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/cordova-plugin-telerik-imagepicker",
+  "_nodeVersion": "10.15.3",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/cordova-plugin-telerik-imagepicker_2.3.3_1563217097089_0.9724586731066889"
+  },
+  "_npmUser": {
+    "name": "itsanujraghuvanshi",
+    "email": "itsanujraghuvanshi@gmail.com"
+  },
+  "_npmVersion": "6.4.1",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "cordova-plugin-telerik-imagepicker",
+    "scope": null,
+    "escapedName": "cordova-plugin-telerik-imagepicker",
+    "name": "cordova-plugin-telerik-imagepicker",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-telerik-imagepicker/-/cordova-plugin-telerik-imagepicker-2.3.3.tgz",
+  "_shasum": "67c309eda940d980bdfa4b833edc575ab4797fd6",
+  "_shrinkwrap": null,
+  "_spec": "cordova-plugin-telerik-imagepicker",
+  "_where": "/Users/developer/Desktop/dssb_project/ionic_workspace/SoExecution",
+  "bugs": {
+    "url": "https://github.com/Telerik-Verified-Plugins/ImagePicker/issues"
+  },
+  "cordova": {
+    "id": "cordova-plugin-telerik-imagepicker",
+    "platforms": [
+      "ios",
+      "android",
+      "wp8"
+    ]
+  },
+  "cordova_name": "ImagePicker",
+  "dependencies": {},
+  "description": "This plugin allows selection of multiple images from the camera roll / gallery in a phonegap app",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "integrity": "sha512-eL16EIxDueDo+dky5lNuzC+bDbKHPLPDfd/mtNpaCTNoT6iZqFd9/qJwSMnidXqCeExJZkN4ACsEHmtUA+vQ7Q==",
+    "shasum": "67c309eda940d980bdfa4b833edc575ab4797fd6",
+    "tarball": "https://registry.npmjs.org/cordova-plugin-telerik-imagepicker/-/cordova-plugin-telerik-imagepicker-2.3.3.tgz",
+    "fileCount": 82,
+    "unpackedSize": 251268,
+    "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJdLMzJCRA9TVsSAnZWagAArmMQAJ3ylnkUJVgx04BHv3Tf\nfYpjNhhNMIEp23MUk85xR3+Sx0zyUopFhc+6d+AYesC6R+A/p1b/7TV0g6Be\nCuWUGb8XmcZ3hLukH/v9F3+/wcErcv0Dc5oo5FqpBLzV0j3ierNmL5H74Yy5\nL5dnqT8Jp/omqFUVV6Tj/nQ4zDmburC5096Aa2xn3OcWSDU3WKmLGCFaUnTk\nUSJlA2e1xK12H0m6cNGWkeKdD/PKbFwCaTqZKv/b6LITV12OCtb2kNmsrbZ+\nkWep4/WIuKBownUD9/KFYdN9N2yIyW6KxhKWyfuYY5ZVQijzi85ZXZzsg+3W\nodH9O0ZtY28SEIq8cQBnkTE2YSt+nfxklJzHWifYKeR8hIg/1ZoVfjNOMTPy\nEwTfyi2vq8hhpP5CMKrWuorLD2J5CasMtkPUbJ249eN6zGj6woHYhsBQ+bFe\ndibfd561b5RCyekOH2AxHnrpsNrM8U2pBzuvKgswTlTUMubCUchl1FDNgX9W\niErtFZl7e6fReQZ6CoCBrmVopYROUcB1nPy7TvN9qQA1UshF29IgzYBzC3Ge\nJZg35TCdi0YpDyXaCTrm2+zzAKnxiL4dKOvEbCvkbV0RK6sWRArPMhwNNQ3D\nlfSPicQjL9D1qgM6AhS7b4JB69wxRWXvYPUuWsyp3hOlErzv/dqMnrrunkNX\n0TV+\r\n=P1Mh\r\n-----END PGP SIGNATURE-----\r\n"
+  },
+  "engines": {
+    "name": "cordova",
+    "version": ">=3.5.0"
+  },
+  "gitHead": "9a0d78b117663c9fc56202147a391df54dc6b0fc",
+  "homepage": "https://github.com/Telerik-Verified-Plugins/ImagePicker#readme",
+  "issue": "",
+  "keywords": [],
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "eddyverbruggen",
+      "email": "eddyverbruggen@gmail.com"
+    },
+    {
+      "name": "itsanujraghuvanshi",
+      "email": "itsanujraghuvanshi@gmail.com"
+    }
+  ],
+  "name": "cordova-plugin-telerik-imagepicker",
+  "optionalDependencies": {},
+  "platforms": [
+    "android",
+    "ios"
+  ],
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Telerik-Verified-Plugins/ImagePicker.git"
+  },
+  "version": "2.3.3"
+}

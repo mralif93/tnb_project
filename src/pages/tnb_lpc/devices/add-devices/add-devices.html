@@ -1,0 +1,1788 @@
+<ion-header mode="md">
+  <ion-navbar color="primary">
+    <ion-title>Add Devices</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon [color]="gv.testMobile ? 'danger' : 'light'" name="md-planet" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-item-divider color="light">
+      <ion-row align-items-center>
+        <ion-col col-sm-12 col-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item no-lines style="background-color: transparent">
+            Feeder Set - {{indexVal + 1}}
+          </ion-item>
+        </ion-col>
+        <ion-col col-sm-12 col-12 col-md-2 style="word-wrap:  break-all; padding-left: 5px; margin-left: -20px;"
+          *ngIf="item.json.worktype !== soTypes.ZRMV || item.json.worktype !== soTypes.ZRCE">
+          <ion-item no-lines style="background-color: transparent">
+            Action
+          </ion-item>
+        </ion-col>
+        <!--select all meter,modem,sim,ct and pt at ZRCE and ZRMV-->
+        <ion-col col-sm-12 col-12 col-md-1 style="word-wrap:  break-all; margin-left: -40px;">
+          <ion-item no-lines style="background-color: transparent;"
+            *ngIf="item.json.worktype === soTypes.ZRMV || item.json.worktype === soTypes.ZRCE">
+            <ion-checkbox (click)="selectAll()" style="float: left;"></ion-checkbox> Remove All
+          </ion-item>
+        </ion-col>
+        <ion-col col-sm-12 col-12 col-md-2 style="word-wrap:  break-all; padding-left: 5px; margin-left: -20px;"
+          *ngIf="item.json.worktype === soTypes.ZRMV || item.json.worktype === soTypes.ZRCE">
+          <ion-item no-lines style="background-color: transparent">
+            Select All
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-item-divider>
+    <div>
+      <!-- Main Meter start -->
+      <ion-grid
+        style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
+        *ngFor="let attr of mainDeviceArray; let j = index">
+        <!-- <ion-item-divider color="light" *ngIf="attr.deviceType === 'Main'">Meter, Modem & Simcard</ion-item-divider> -->
+        <ion-item-divider color="light" (click)="showMainSection(1)" *ngIf="attr.assetnum !== '' && j == 0"
+          class="pointer">
+          <ion-row align-items-center>
+            <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 5px;">
+              <strong>MAIN METER, MODEM & SIMCARD</strong>
+            </ion-col>
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
+              <!--  <button ion-button round (click)="openDataValidationPage(attr, indexVal)">
+              <ion-icon name="information">&nbsp;Info</ion-icon>
+            </button> -->
+              <ion-icon name="arrow-forward" style="zoom: 1.5;" *ngIf="!showMain"></ion-icon>
+              <ion-icon name="arrow-down" style="zoom: 1.5;" *ngIf="showMain"></ion-icon>
+            </ion-col>
+          </ion-row>
+        </ion-item-divider>
+        <div *ngIf="showMain">
+          <div [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'"
+            *ngIf="item.json.worktype === soTypes.ZIST || (mainDeviceArray[0].assetnum !== undefined && item.json.worktype !== soTypes.ZIST || (j === 1 && (item.json.worktype === soTypes.ZRPC ||  item.json.worktype === soTypes.ZUDN)))">
+            <ion-row>
+              <!-- Label -->
+              <ion-col col-4 col-md-4 col-sm-10 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-label color="primary">Device Serial Number</ion-label>
+              </ion-col>
+              <!-- <ion-col col-1 col-sm-1 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
+          <button ion-button (click)="openDataValidationPage(attr.asset, indexVal)">
+            <ion-icon name="information">Info</ion-icon>
+          </button>
+        </ion-col> -->
+              <!-- Checkbox -->
+              <ion-col col-1 col-md-1 col-sm-2 style="word-wrap: break-all;padding-left: 5px;">
+                <ion-item *ngIf="item.json.worktype == soTypes.ZRMV" [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                  <ion-checkbox [(ngModel)]="attr.ta0removeind" [disabled]="(mainDeviceArray.length > 1) ? true : false"
+                    label="T"></ion-checkbox>
+                </ion-item>
+                <ion-item
+                  *ngIf="((item.json.worktype == soTypes.ZUDN && item.json.ta0feeder[indexVal].ta0existing == true) || item.json.worktype === soTypes.ZRPC)  && j == 0"
+                  [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                  <ion-checkbox [(ngModel)]="attr.ta0removeind" [disabled]="(mainDeviceArray.length > 1) ? true : false"
+                    (ionChange)="addNewDeviceField(dCons.DEVICE_TYPE_NAME_MAIN, dCons.DEVICE_TYPE_NAME_MAIN)" label="T">
+                  </ion-checkbox>
+                </ion-item>
+                <ion-item
+                  *ngIf="(item.json.worktype === soTypes.ZSRO || item.json.worktype === soTypes.ZRPM || item.json.worktype === soTypes.ZCER || item.json.worktype === soTypes.ZINL) && j == 0"
+                  [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                  <ion-checkbox [(ngModel)]="attr.ta0replaceind"
+                    [disabled]="(mainDeviceArray.length > 1) ? true : false"
+                    (ionChange)="addNewDeviceField(dCons.DEVICE_TYPE_NAME_MAIN, dCons.DEVICE_TYPE_NAME_MAIN)" label="S">
+                  </ion-checkbox>
+                </ion-item>
+                <ion-label *ngIf="j == 1" style="word-wrap:  break-all; padding-left: 5px; text-align:center"> P
+                </ion-label>
+              </ion-col>
+              <!--Input Box-->
+              <ion-col col-4 col-md-4 col-sm-9 style="word-wrap:  break-all; padding-left: 5px;">
+                <!-- {{ attr.ta0existingdevice }} -->
+                <!-- {{ attr.ta0existingdevice }} - {{ attr.ta0removeind }} - {{ j }} -->
+                <!-- [ngClass]="{classA: validateDevice, classB: !validateDevice}" -->
+                <ion-input [(ngModel)]="attr.ta0serialnum" type="text" placeholder="Please Enter"
+                  [ngClass]="(attr.assetnum === ''|| validationRequired === true) ? 'blackHighlightText':'redHighlightText '"
+                  [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false">
+                </ion-input>
+                <!-- (change)="checkAssetsAvailability(mainDeviceArray, j, 'meter', 'main')" -->
+                <!-- <ion-icon name="barcode"></ion-icon> -->
+              </ion-col>
+              <!--Button-->
+              <ion-col col-3 col-md-3 col-sm-3 style="word-wrap:  break-all; padding-left: 5px; text-align: right;">
+                <button ion-button
+                  [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                  (click)="searchDevice(mainDeviceArray, j, item.json.siteid, dCons.DEV_ALLOC_MAIN_METER, 'meter', 'main')">
+                  <ion-icon name="search" item-right></ion-icon>
+                </button>
+                <button ion-button
+                  [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                  (click)="barcodeScan(mainDeviceArray, j, 'meter', 'main')">
+                  <ion-icon name="barcode" item-right></ion-icon>
+                </button>
+                <button ion-button [ngClass]="((attr.ta0existingdevice == true) && (j == 0)) ? 'non-display' : ''"
+                  (click)="removeDeviceResult(mainDeviceArray, j, 'meter', 'main', item.json.worktype)">
+                  <ion-icon name="trash" item-right></ion-icon>
+                </button>
+              </ion-col>
+            </ion-row>
+            <!-- Register Information Start -->
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-label color="primary">Register Group</ion-label>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-7 style="word-wrap:  break-all; padding-left: 0px;">
+                <ion-input [(ngModel)]="attr.ta0registergroup" type="text" placeholder="Please Enter"
+                  [ngClass]="(attr.assetnum === ''|| validationRequired === true) ? 'blackHighlightText':'redHighlightText '"
+                  [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false">
+                </ion-input>
+              </ion-col>
+            </ion-row>
+            <!-- Register Information End -->
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-label color="primary">Device Allocation Type</ion-label>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-7 style="word-wrap:  break-all; padding-left: 0px;">
+                <ion-select [(ngModel)]="attr.ta0allocationtype" interface="popover"
+                  [ngClass]="(allocationType === false) ? 'redHighlightText ':' blackHighlightText'"
+                  placeholder="Please select" (ionChange)="checkAssetsAvailability(mainDeviceArray, j, 'meter', 'main')"
+                  [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j == 1)) ? true : false">
+                  <!--
+                remove this disabled function on 6 oct 2018, because mvhv can also have multiple 90 main meter.                
+                [disabled]="item.json.loc_allocationtype_status === false ? 'false' : 'true'" -->
+
+                  <div
+                    *ngIf="(item.json.worktype !== soTypes.ZINL && item.json.worktype !== soTypes.ZSRO && item.json.worktype !== soTypes.ZCER && item.json.worktype !== soTypes.ZINR)">
+                    <ion-option value="90">90 - Main Meter</ion-option>
+                    <ion-option value="91" [disabled]="item.json.ta0installationvoltage <= dCons.VOL_LEVEL_OPC_3PH">91 -
+                      Feeder Meter</ion-option>
+                    <ion-option value="94" [disabled]="item.json.ta0installationvoltage <= dCons.VOL_LEVEL_OPC_3PH">94 -
+                      Sub Meter</ion-option>
+                    <ion-option value="96" [disabled]="item.json.ta0installationvoltage <= dCons.VOL_LEVEL_OPC_3PH">96 -
+                      Sub Feeder Meter</ion-option>
+                  </div>
+                  <div
+                    *ngIf="(item.json.worktype === soTypes.ZINL || item.json.worktype === soTypes.ZSRO || item.json.worktype === soTypes.ZCER || item.json.worktype === soTypes.ZINR)">
+                    <ion-option value="90">90 - Main Meter</ion-option>
+                    <ion-option value="91">91 - Feeder Meter</ion-option>
+                    <ion-option value="94">94 - Sub Meter</ion-option>
+                    <ion-option value="96">96 - Sub Feeder Meter</ion-option>
+                  </div>
+                </ion-select>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-5>
+                <ion-label color="primary">Aggregation Mode</ion-label>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-7>
+                <ion-select [(ngModel)]="attr.ta0sumsuballocationtype" interface="popover" placeholder="Please select"
+                  [disabled]="(attr.ta0existingdevice == false && j == 1) ? true : false"
+                  [ngClass]="(attr.ta0sumsuballocationtype === '' || attr.ta0sumsuballocationtype === null) ? 'redHighlightText ':' blackHighlightText'">
+                  <ion-option value="98">98 - Summation</ion-option>
+                  <ion-option value="99">99 - Subtraction</ion-option>
+                </ion-select>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-5 col-sm-11 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-label color="primary">Controlling Device (Serial No)</ion-label>
+              </ion-col>
+              <ion-col col-4 col-sm-9 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-input [(ngModel)]="attr.ta0controllingdevice" maxlength="20" type="text" placeholder="Please Enter"
+                  [ngClass]="'blackHighlightText'"></ion-input>
+                <!-- Comment for user to select controlling device -->
+                <!-- By    : Alif       -->
+                <!-- Date  : 30-10-2018 -->
+                <!-- [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false" -->
+              </ion-col>
+
+              <!-- Fist Search -->
+              <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all; padding-left: 5px; text-align: right;"
+                *ngIf="(mainDeviceArray.length <= 1) ? true : false">
+                <button ion-button (click)="searchControllingDevice(attr)">
+                  <ion-icon name="search" item-right></ion-icon>
+                </button>
+                <!-- Comment for user to select controlling device -->
+                <!-- By    : Alif       -->
+                <!-- Date  : 30-10-2018 -->
+                <!-- [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false" -->
+                <button ion-button (click)="barcodeScan(mainDeviceArray, j, 'meter', 'main', 'control')">
+                  <ion-icon name="barcode" item-right></ion-icon>
+                </button>
+                <!-- Comment for user to select controlling device -->
+                <!-- By    : Alif       -->
+                <!-- Date  : 30-10-2018 -->
+                <!-- [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false" -->
+              </ion-col>
+
+              <!-- Second Search controlling device -->
+              <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all; padding-left: 5px; text-align: right;"
+                *ngIf="(mainDeviceArray.length > 1)  ? true : false">
+                <button ion-button (click)="searchControllingDevice(attr)"
+                  [ngClass]="((attr.ta0existingdevice == true) && (j == 0)) ? 'non-display' : ''">
+                  <ion-icon name="search" item-right></ion-icon>
+                  <!-- Comment for user to select controlling device -->
+                  <!-- By    : Alif       -->
+                  <!-- Date  : 30-10-2018 -->
+                  <!-- [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false" -->
+                </button>
+                <button ion-button (click)="barcodeScan(mainDeviceArray, j, 'meter', 'main', 'control')">
+                  <ion-icon name="barcode" item-right></ion-icon>
+                  <!-- Comment for user to select controlling device -->
+                  <!-- By    : Alif       -->
+                  <!-- Date  : 30-10-2018 -->
+                  <!-- [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false" -->
+                </button>
+              </ion-col>
+
+            </ion-row>
+          </div>
+        </div>
+      </ion-grid>
+      <!-- Main Meter end -->
+    </div>
+
+    <div *ngIf="showMain">
+      <!-- Main Modem start -->
+      <ion-grid
+        style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
+        *ngFor="let attr of mainModemArray; let j = index">
+        <div [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+          <ion-row
+            *ngIf="item.json.worktype === soTypes.ZIST || item.json.worktype === soTypes.ZISR || (mainModemArray[0].assetnum !== undefined  && item.json.worktype !== soTypes.ZIST) || (j === 1 && (item.json.worktype === soTypes.ZRPC ||  item.json.worktype === soTypes.ZUDN)) ">
+            <ion-col col-4 col-md-4 col-sm-10 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-label color="primary">Modem Serial No.</ion-label>
+            </ion-col>
+            <ion-col col-1 col-md-1 col-sm-2 style="word-wrap: break-all;padding-left: 5px;">
+              <ion-item *ngIf="item.json.worktype === soTypes.ZRMV || item.json.worktype === soTypes.ZRCE"
+                [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                <ion-checkbox [disabled]="(mainModemArray.length > 1) ? true : false" [(ngModel)]="attr.ta0removeind">
+                  Remove</ion-checkbox>
+              </ion-item>
+              <ion-item
+                *ngIf="((item.json.worktype == soTypes.ZUDN && item.json.ta0feeder[indexVal].ta0existing == true) || item.json.worktype === soTypes.ZRPC)  && j == 0"
+                [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                <ion-checkbox [disabled]="(mainModemArray.length > 1) ? true : false" [(ngModel)]="attr.ta0removeind"
+                  (ionChange)="addNewDeviceField(dCons.DEVICE_TYPE_NAME_MODEM, dCons.DEVICE_TYPE_NAME_MAIN)">Remove
+                </ion-checkbox>
+              </ion-item>
+              <ion-item
+                *ngIf="(item.json.worktype === soTypes.ZSRO || item.json.worktype === soTypes.ZRPM || item.json.worktype === soTypes.ZCER || item.json.worktype === soTypes.ZINL || item.json.worktype === soTypes.ZINR) && j == 0"
+                [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                <ion-checkbox [disabled]="(mainModemArray.length > 1) ? true : false" [(ngModel)]="attr.ta0replaceind"
+                  (ionChange)="addNewDeviceField(dCons.DEVICE_TYPE_NAME_MODEM, dCons.DEVICE_TYPE_NAME_MAIN)">Remove
+                </ion-checkbox>
+              </ion-item>
+              <ion-label *ngIf="j == 1" style="word-wrap:  break-all; padding-left: 5px; text-align:center"> P
+              </ion-label>
+            </ion-col>
+            <ion-col col-4 col-md-4 col-sm-9 *ngIf="item.json.worktype === soTypes.ZISR"
+              style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-input [(ngModel)]="attr.ta0serialnum" type="text"
+                [ngClass]="(attr.loc_validate) ? 'redHighlightText' : 'blackHighlightText'"
+                [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                placeholder="Please Enter"></ion-input>
+            </ion-col>
+            <ion-col col-3 col-md-3 col-sm-3 *ngIf="item.json.worktype === soTypes.ZISR"
+              style="word-wrap:  break-all; padding-left: 5px; text-align: right;">
+              <button ion-button
+                [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                (click)="searchDevice(mainModemArray, j, item.json.siteid, dCons.DEV_ALLOC_MODEM, 'modem', 'main')">
+                <ion-icon name="search" item-right></ion-icon>
+              </button>
+              <button
+                [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                ion-button (click)="barcodeScan(mainModemArray, j, 'modem', 'main')">
+                <ion-icon name="barcode" item-right></ion-icon>
+              </button>
+              <button ion-button [ngClass]="((attr.ta0existingdevice == true) && (j == 0)) ? 'non-display' : ''"
+                (click)="removeDeviceResult(mainModemArray, j, 'modem', 'main', item.json.worktype)">
+                <ion-icon name="trash" item-right></ion-icon>
+              </button>
+            </ion-col>
+            <ion-col col-4 col-md-4 col-sm-9 *ngIf="item.json.worktype !== soTypes.ZISR"
+              style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-input [(ngModel)]="attr.ta0serialnum" type="text"
+                [ngClass]="(attr.loc_validate) ? 'redHighlightText' : 'blackHighlightText'"
+                (change)="checkAssetsAvailability(mainModemArray, j, 'modem', 'main')"
+                [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                placeholder="Please Enter"></ion-input>
+            </ion-col>
+            <ion-col col-3 col-md-3 col-sm-3 *ngIf="item.json.worktype !== soTypes.ZISR"
+              style="word-wrap:  break-all; padding-left: 5px; text-align: right;">
+              <button ion-button
+                [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                (click)="searchDevice(mainModemArray, j, item.json.siteid, dCons.DEV_ALLOC_MODEM, 'modem', 'main')">
+                <ion-icon name="search" item-right></ion-icon>
+              </button>
+              <button
+                [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                ion-button (click)="barcodeScan(mainModemArray, j, 'modem', 'main')">
+                <ion-icon name="barcode" item-right></ion-icon>
+              </button>
+              <button ion-button [ngClass]="((attr.ta0existingdevice == true) && (j == 0)) ? 'non-display' : ''"
+                (click)="removeDeviceResult(mainModemArray, j, 'modem', 'main', item.json.worktype)">
+                <ion-icon name="trash" item-right></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-grid>
+      <!-- Main Modem End -->
+      <!-- Sim Card Start -->
+      <ion-grid
+        style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
+        *ngFor="let attr of mainSimcardArray; let j = index">
+        <div [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+          <ion-row
+            *ngIf="item.json.worktype === soTypes.ZIST || item.json.worktype === soTypes.ZISR || (mainSimcardArray[0].assetnum !== undefined && item.json.worktype !== soTypes.ZIST) || (j === 1 && (item.json.worktype === soTypes.ZRPC ||  item.json.worktype === soTypes.ZUDN))">
+            <ion-col col-4 col-sm-10 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-label color="primary">Simcard Serial No.</ion-label>
+            </ion-col>
+            <ion-col col-1 col-sm-2 col-md-1 style="word-wrap: break-all;padding-left: 5px;">
+              <ion-item *ngIf="item.json.worktype === soTypes.ZRMV || item.json.worktype === soTypes.ZRCE"
+                [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                <ion-checkbox [disabled]="(mainSimcardArray.length > 1) ? true : false" [(ngModel)]="attr.ta0removeind">
+                  Remove</ion-checkbox>
+              </ion-item>
+              <ion-item
+                *ngIf="((item.json.worktype == soTypes.ZUDN && item.json.ta0feeder[indexVal].ta0existing == true) || item.json.worktype === soTypes.ZRPC)  && j == 0"
+                [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                <ion-checkbox [disabled]="(mainSimcardArray.length > 1) ? true : false" [(ngModel)]="attr.ta0removeind"
+                  (ionChange)="addNewDeviceField(dCons.DEVICE_TYPE_NAME_SIMCARD, dCons.DEVICE_TYPE_NAME_MAIN)">Remove
+                </ion-checkbox>
+              </ion-item>
+              <ion-item
+                *ngIf="(item.json.worktype === soTypes.ZSRO || item.json.worktype === soTypes.ZRPM || item.json.worktype === soTypes.ZCER || item.json.worktype === soTypes.ZINL || item.json.worktype === soTypes.ZINR) && j == 0"
+                [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                <ion-checkbox [disabled]="(mainSimcardArray.length > 1) ? true : false" [(ngModel)]="attr.ta0replaceind"
+                  (ionChange)="addNewDeviceField(dCons.DEVICE_TYPE_NAME_SIMCARD, dCons.DEVICE_TYPE_NAME_MAIN)">Remove
+                </ion-checkbox>
+              </ion-item>
+              <ion-label *ngIf="j == 1" style="word-wrap:  break-all; padding-left: 5px; text-align:center"> P
+              </ion-label>
+            </ion-col>
+            <ion-col col-4 col-sm-9 col-md-4 *ngIf="item.json.worktype === soTypes.ZISR"
+              style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-input [(ngModel)]="attr.ta0serialnum" type="text"
+                [ngClass]="(attr.loc_validate) ? 'redHighlightText' : 'blackHighlightText'"
+                [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                placeholder="Please Enter"></ion-input>
+            </ion-col>
+            <ion-col col-3 col-sm-3 col-md-3 *ngIf="item.json.worktype === soTypes.ZISR"
+              style="word-wrap:  break-all; padding-left: 5px; text-align: right;">
+              <button ion-button
+                [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                (click)="searchDevice(mainSimcardArray, j, item.json.siteid, dCons.DEV_ALLOC_SIM_CARD, 'sim', 'main')">
+                <ion-icon name="search" item-right></ion-icon>
+              </button>
+              <button
+                [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                ion-button (click)="barcodeScan(mainSimcardArray, j, 'sim', 'main')">
+                <ion-icon name="barcode" item-right></ion-icon>
+              </button>
+              <button ion-button [ngClass]="((attr.ta0existingdevice == true) && (j == 0)) ? 'non-display' : ''"
+                (click)="removeDeviceResult(mainSimcardArray, j, 'sim', 'main', item.json.worktype)">
+                <ion-icon name="trash" item-right></ion-icon>
+              </button>
+            </ion-col>
+            <ion-col col-4 col-sm-9 col-md-4 *ngIf="item.json.worktype !== soTypes.ZISR"
+              style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-input [(ngModel)]="attr.ta0serialnum" type="text"
+                [ngClass]="(attr.loc_validate) ? 'redHighlightText' : 'blackHighlightText'"
+                (change)="checkAssetsAvailability(mainSimcardArray, j, 'sim', 'main')"
+                [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                placeholder="Please Enter"></ion-input>
+            </ion-col>
+            <ion-col col-3 col-sm-3 col-md-3 *ngIf="item.json.worktype !== soTypes.ZISR"
+              style="word-wrap:  break-all; padding-left: 5px; text-align: right;">
+              <button ion-button
+                [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                (click)="searchDevice(mainSimcardArray, j, item.json.siteid, dCons.DEV_ALLOC_SIM_CARD, 'sim', 'main')">
+                <ion-icon name="search" item-right></ion-icon>
+              </button>
+              <button
+                [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                ion-button (click)="barcodeScan(mainSimcardArray, j, 'sim', 'main')">
+                <ion-icon name="barcode" item-right></ion-icon>
+              </button>
+              <button ion-button [ngClass]="((attr.ta0existingdevice == true) && (j == 0)) ? 'non-display' : ''"
+                (click)="removeDeviceResult(mainSimcardArray, j, 'sim', 'main', item.json.worktype)">
+                <ion-icon name="trash" item-right></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-grid>
+      <!-- Sim Card End -->
+    </div>
+
+    <div *ngIf="checkMeterAvailable">
+      <!-- Check Meter start -->
+      <ion-grid
+        style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
+        *ngFor="let attr of checkDeviceArray; let j = index">
+        <ion-item-divider color="light" (click)="showCheckSection(1)" *ngIf="attr.assetnum !== '' && j == 0"
+          class="pointer">
+          <ion-row align-items-center>
+            <ion-col col-10 col-sm-10 col-md-10 style="word-wrap: break-all; padding-left: 5px;">
+              <strong>CHECK METER, MODEM & SIMCARD</strong>
+            </ion-col>
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap: break-all; padding-left: 5px; text-align:right">
+              <!--  <ion-icon name="information" (click)="openDataValidationPage(attr, indexVal)">&nbsp;Info</ion-icon> -->
+              <ion-icon name="arrow-forward" style="zoom: 1.5;" *ngIf="!showCheck"></ion-icon>
+              <ion-icon name="arrow-down" style="zoom: 1.5;" *ngIf="showCheck"></ion-icon>
+            </ion-col>
+          </ion-row>
+        </ion-item-divider>
+        <div *ngIf="showCheck && checkMeterAvailable">
+          <div [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'"
+            *ngIf="item.json.worktype === soTypes.ZIST || (checkDeviceArray[0].assetnum !== undefined && item.json.worktype !== soTypes.ZIST)  || (j === 1 && (item.json.worktype === soTypes.ZRPC ||  item.json.worktype === soTypes.ZUDN))">
+            <ion-row>
+              <ion-col col-4 col-sm-10 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-label color="primary">Device Serial Number</ion-label>
+              </ion-col>
+              <ion-col col-1 col-sm-2 col-md-1 style="word-wrap: break-all;padding-left: 5px;">
+                <ion-item *ngIf="item.json.worktype == soTypes.ZRMV" [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                  <ion-checkbox [disabled]="(checkDeviceArray.length > 1) ? true : false"
+                    [(ngModel)]="attr.ta0removeind">Remove</ion-checkbox>
+                </ion-item>
+                <ion-item
+                  *ngIf="((item.json.worktype == soTypes.ZUDN && item.json.ta0feeder[indexVal].ta0existing == true) || item.json.worktype === soTypes.ZRPC)  && j == 0"
+                  [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                  <ion-checkbox [disabled]="(checkDeviceArray.length > 1) ? true : false"
+                    [(ngModel)]="attr.ta0removeind"
+                    (ionChange)="addNewDeviceField(dCons.DEVICE_TYPE_NAME_CHECK, dCons.DEVICE_TYPE_NAME_CHECK)">Remove
+                  </ion-checkbox>
+                </ion-item>
+                <ion-item
+                  *ngIf="(item.json.worktype === soTypes.ZSRO || item.json.worktype === soTypes.ZRPM || item.json.worktype === soTypes.ZCER || item.json.worktype === soTypes.ZINL) && j == 0"
+                  [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                  <ion-checkbox [disabled]="(checkDeviceArray.length > 1) ? true : false"
+                    [(ngModel)]="attr.ta0replaceind"
+                    (ionChange)="addNewDeviceField(dCons.DEVICE_TYPE_NAME_CHECK, dCons.DEVICE_TYPE_NAME_CHECK)">Remove
+                  </ion-checkbox>
+                </ion-item>
+                <ion-label *ngIf="j == 1" style="word-wrap:  break-all; padding-left: 5px; text-align:center"> P
+                </ion-label>
+              </ion-col>
+              <ion-col col-4 col-sm-9 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-input [(ngModel)]="attr.ta0serialnum" type="text" placeholder="Please Enter"
+                  [ngClass]="(attr.loc_validate) ? 'redHighlightText' : 'blackHighlightText'"
+                  [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                  (ionChange)="checkAssetsAvailability(checkDeviceArray, j, 'meter', 'check')"></ion-input>
+                <!-- <ion-icon name="barcode"></ion-icon>  -->
+              </ion-col>
+              <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all; padding-left: 5px; text-align: right;">
+                <button ion-button
+                  [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                  (click)="searchDevice(checkDeviceArray, j, item.json.siteid, dCons.DEV_ALLOC_CHECK_METER, 'meter', 'check')">
+                  <ion-icon name="search" item-right></ion-icon>
+                </button>
+                <button
+                  [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                  ion-button (click)="barcodeScan(checkDeviceArray, j, 'meter', 'check')">
+                  <ion-icon name="barcode" item-right></ion-icon>
+                </button>
+                <button ion-button [ngClass]="((attr.ta0existingdevice == true) && (j == 0)) ? 'non-display' : ''"
+                  (click)="removeDeviceResult(checkDeviceArray, j, 'meter', 'check', item.json.worktype)">
+                  <ion-icon name="trash" item-right></ion-icon>
+                </button>
+              </ion-col>
+            </ion-row>
+            <ion-row
+              *ngIf="(item.json.worktype !== soTypes.ZINL && item.json.worktype !== soTypes.ZSRO && item.json.worktype !== soTypes.ZCER && item.json.worktype !== soTypes.ZINR)">
+              <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-label color="primary">Device Allocation Type</ion-label>
+              </ion-col>
+              <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 0px;">
+                <ion-select [(ngModel)]="attr.ta0allocationtype" interface="popover" [ngClass]="'blackHighlightText'"
+                  [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false">
+                  <ion-option value="92" (ionSelect)="checkAssetsAvailability(checkDeviceArray, j, 'meter', 'check')">92
+                    - Check Meter</ion-option>
+                  <ion-option value="93" (ionSelect)="checkAssetsAvailability(checkDeviceArray, j, 'meter', 'check')">93
+                    - Check Feeder Meter</ion-option>
+                  <ion-option value="95" (ionSelect)="checkAssetsAvailability(checkDeviceArray, j, 'meter', 'check')">95
+                    - Check Sub Meter</ion-option>
+                  <ion-option value="97" (ionSelect)="checkAssetsAvailability(checkDeviceArray, j, 'meter', 'check')">97
+                    - Check Sub Feeder Meter</ion-option>
+                </ion-select>
+              </ion-col>
+            </ion-row>
+
+            <ion-row
+              *ngIf="(item.json.worktype === soTypes.ZINL || item.json.worktype === soTypes.ZSRO || item.json.worktype === soTypes.ZCER || item.json.worktype === soTypes.ZINR)">
+              <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-label color="primary">Device Allocation Type</ion-label>
+              </ion-col>
+              <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 0px;">
+                <ion-select [(ngModel)]="attr.ta0allocationtype" interface="popover" [ngClass]="'blackHighlightText'"
+                  [disabled]="true">
+                  <ion-option value="92" (ionSelect)="checkAssetsAvailability(checkDeviceArray, j, 'meter', 'check')">92
+                    - Check Meter</ion-option>
+                  <ion-option value="93" (ionSelect)="checkAssetsAvailability(checkDeviceArray, j, 'meter', 'check')">93
+                    - Check Feeder Meter</ion-option>
+                  <ion-option value="95" (ionSelect)="checkAssetsAvailability(checkDeviceArray, j, 'meter', 'check')">95
+                    - Check Sub Meter</ion-option>
+                  <ion-option value="97" (ionSelect)="checkAssetsAvailability(checkDeviceArray, j, 'meter', 'check')">97
+                    - Check Sub Feeder Meter</ion-option>
+                </ion-select>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-5>
+                <ion-label color="primary">Aggregation Mode</ion-label>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-7>
+                <ion-select [(ngModel)]="attr.ta0sumsuballocationtype" interface="popover" placeholder="Please select"
+                  [disabled]="(attr.ta0existingdevice == false && j == 1) ? true : false"
+                  [ngClass]="(attr.ta0sumsuballocationtype === '' || attr.ta0sumsuballocationtype === null) ? 'redHighlightText ':' blackHighlightText'">
+                  <ion-option value="98">98 - Summation</ion-option>
+                  <ion-option value="99">99 - Subtraction</ion-option>
+                </ion-select>
+              </ion-col>
+            </ion-row>
+          </div>
+        </div>
+      </ion-grid>
+      <!-- Check Meter end -->
+    </div>
+
+    <div *ngIf="showCheck && checkMeterAvailable">
+      <!-- Check Modem Start -->
+      <ion-grid
+        style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
+        *ngFor="let attr of checkModemArray; let j = index">
+        <div [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+          <ion-row
+            *ngIf="item.json.worktype === soTypes.ZIST || item.json.worktype === soTypes.ZISR || (checkModemArray[0].assetnum !== undefined && item.json.worktype !== soTypes.ZIST)  || (j === 1 && (item.json.worktype === soTypes.ZRPC ||  item.json.worktype === soTypes.ZUDN))">
+            <ion-col col-4 col-sm-10 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-label color="primary"> Modem Serial No.</ion-label>
+            </ion-col>
+            <ion-col col-1 col-sm-2 col-md-1 style="word-wrap: break-all;padding-left: 5px;">
+              <ion-item *ngIf="item.json.worktype == soTypes.ZRMV || item.json.worktype === soTypes.ZRCE"
+                [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                <ion-checkbox [disabled]="(checkModemArray.length > 1) ? true : false" [(ngModel)]="attr.ta0removeind">
+                  Remove</ion-checkbox>
+              </ion-item>
+              <ion-item
+                *ngIf="((item.json.worktype == soTypes.ZUDN && item.json.ta0feeder[indexVal].ta0existing == true) || item.json.worktype === soTypes.ZRPC)  && j == 0"
+                [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                <ion-checkbox [disabled]="(checkModemArray.length > 1) ? true : false" [(ngModel)]="attr.ta0removeind"
+                  (ionChange)="addNewDeviceField(dCons.DEVICE_TYPE_NAME_MODEM, dCons.DEVICE_TYPE_NAME_CHECK)">Remove
+                </ion-checkbox>
+              </ion-item>
+              <ion-item
+                *ngIf="(item.json.worktype === soTypes.ZSRO || item.json.worktype === soTypes.ZRPM || item.json.worktype === soTypes.ZCER || item.json.worktype === soTypes.ZINL || item.json.worktype === soTypes.ZINR) && j == 0"
+                [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                <ion-checkbox [disabled]="(checkModemArray.length > 1) ? true : false" [(ngModel)]="attr.ta0replaceind"
+                  (ionChange)="addNewDeviceField(dCons.DEVICE_TYPE_NAME_MODEM, dCons.DEVICE_TYPE_NAME_CHECK)">Remove
+                </ion-checkbox>
+              </ion-item>
+              <ion-label *ngIf="j == 1" style="word-wrap:  break-all; padding-left: 5px; text-align:center"> P
+              </ion-label>
+            </ion-col>
+            <ion-col col-4 col-sm-9 col-md-4 *ngIf="item.json.worktype === soTypes.ZISR"
+              style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-input [(ngModel)]="attr.ta0serialnum" type="text"
+                [ngClass]="(attr.loc_validate) ? 'redHighlightText' : 'blackHighlightText'"
+                [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                placeholder="Please Enter"></ion-input>
+            </ion-col>
+            <ion-col col-3 col-sm-3 col-md-3 *ngIf="item.json.worktype === soTypes.ZISR"
+              style="word-wrap:  break-all; padding-left: 5px; text-align: right;">
+              <button ion-button
+                [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                (click)="searchDevice(checkModemArray, j, item.json.siteid, dCons.DEV_ALLOC_MODEM, 'modem', 'check')">
+                <ion-icon name="search" item-right></ion-icon>
+              </button>
+              <button
+                [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                ion-button (click)="barcodeScan(checkModemArray, j, 'modem', 'check')">
+                <ion-icon name="barcode" item-right></ion-icon>
+              </button>
+              <button ion-button [ngClass]="((attr.ta0existingdevice == true) && (j == 0)) ? 'non-display' : ''"
+                (click)="removeDeviceResult(checkModemArray, j, 'modem', 'check', item.json.worktype)">
+                <ion-icon name="trash" item-right></ion-icon>
+              </button>
+            </ion-col>
+            <ion-col col-4 col-sm-9 col-md-4 *ngIf="item.json.worktype !== soTypes.ZISR"
+              style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-input [(ngModel)]="attr.ta0serialnum" type="text"
+                [ngClass]="(attr.loc_validate) ? 'redHighlightText' : 'blackHighlightText'"
+                [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                (change)="checkAssetsAvailability(checkModemArray, j, 'modem', 'check')" placeholder="Please Enter">
+              </ion-input>
+            </ion-col>
+            <ion-col col-3 col-sm-3 col-md-3 *ngIf="item.json.worktype !== soTypes.ZISR"
+              style="word-wrap:  break-all; padding-left: 5px; text-align: right;">
+              <button ion-button
+                [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                (click)="searchDevice(checkModemArray, j, item.json.siteid, dCons.DEV_ALLOC_MODEM, 'modem', 'check')">
+                <ion-icon name="search" item-right></ion-icon>
+              </button>
+              <button
+                [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                ion-button (click)="barcodeScan(checkModemArray, j, 'modem', 'check')">
+                <ion-icon name="barcode" item-right></ion-icon>
+              </button>
+              <button ion-button [ngClass]="((attr.ta0existingdevice == true) && (j == 0)) ? 'non-display' : ''"
+                (click)="removeDeviceResult(checkModemArray, j, 'modem', 'check', item.json.worktype)">
+                <ion-icon name="trash" item-right></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-grid>
+      <!-- Check Modem End -->
+      <!-- Check Sim Card Start -->
+      <ion-grid
+        style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
+        *ngFor="let attr of checkSimcardArray; let j = index">
+        <div [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+          <ion-row
+            *ngIf="item.json.worktype === soTypes.ZIST || item.json.worktype === soTypes.ZISR || (checkSimcardArray[0].assetnum !== undefined && item.json.worktype !== soTypes.ZIST)  || (j === 1 && (item.json.worktype === soTypes.ZRPC ||  item.json.worktype === soTypes.ZUDN))">
+            <ion-col col-4 col-sm-10 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-label color="primary">Simcard Serial No. </ion-label>
+            </ion-col>
+            <ion-col col-1 col-sm-2 col-md-1 style="word-wrap: break-all;padding-left: 5px;">
+              <ion-item *ngIf="item.json.worktype === soTypes.ZRMV || item.json.worktype === soTypes.ZRCE"
+                [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                <ion-checkbox [disabled]="(checkSimcardArray.length > 1) ? true : false"
+                  [(ngModel)]="attr.ta0removeind">Remove</ion-checkbox>
+              </ion-item>
+              <ion-item
+                *ngIf="((item.json.worktype == soTypes.ZUDN && item.json.ta0feeder[indexVal].ta0existing == true) || item.json.worktype === soTypes.ZRPC)  && j == 0"
+                [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                <ion-checkbox [disabled]="(checkSimcardArray.length > 1) ? true : false" [(ngModel)]="attr.ta0removeind"
+                  (ionChange)="addNewDeviceField(dCons.DEVICE_TYPE_NAME_SIMCARD, dCons.DEVICE_TYPE_NAME_CHECK)">Remove
+                </ion-checkbox>
+              </ion-item>
+              <ion-item
+                *ngIf="(item.json.worktype === soTypes.ZSRO || item.json.worktype === soTypes.ZRPM || item.json.worktype === soTypes.ZCER || item.json.worktype === soTypes.ZINL || item.json.worktype === soTypes.ZINR) && j == 0"
+                [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                <ion-checkbox [disabled]="(checkSimcardArray.length > 1) ? true : false"
+                  [(ngModel)]="attr.ta0replaceind"
+                  (ionChange)="addNewDeviceField(dCons.DEVICE_TYPE_NAME_SIMCARD, dCons.DEVICE_TYPE_NAME_CHECK)">Remove
+                </ion-checkbox>
+              </ion-item>
+              <ion-label *ngIf="j == 1" style="word-wrap:  break-all; padding-left: 5px; text-align:center"> P
+              </ion-label>
+            </ion-col>
+            <ion-col col-4 col-sm-9 col-md-4 *ngIf="item.json.worktype === soTypes.ZISR"
+              style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-input [(ngModel)]="attr.ta0serialnum" type="text"
+                [ngClass]="(attr.loc_validate) ? 'redHighlightText' : 'blackHighlightText'"
+                [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                placeholder="Please Enter"></ion-input>
+            </ion-col>
+            <ion-col col-3 col-sm-3 col-md-3 *ngIf="item.json.worktype === soTypes.ZISR"
+              style="word-wrap:  break-all; padding-left: 5px; text-align: right;">
+              <button ion-button
+                [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                (click)="searchDevice(checkSimcardArray, j, item.json.siteid, dCons.DEV_ALLOC_SIM_CARD, 'sim', 'check')">
+                <ion-icon name="search" item-right></ion-icon>
+              </button>
+              <button
+                [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                ion-button (click)="barcodeScan(checkSimcardArray, j, 'sim', 'check')">
+                <ion-icon name="barcode" item-right></ion-icon>
+              </button>
+              <button ion-button [ngClass]="((attr.ta0existingdevice == true) && (j == 0)) ? 'non-display' : ''"
+                (click)="removeDeviceResult(checkSimcardArray, j, 'sim', 'check', item.json.worktype)">
+                <ion-icon name="trash" item-right></ion-icon>
+              </button>
+            </ion-col>
+            <ion-col col-4 col-sm-9 col-md-4 *ngIf="item.json.worktype !== soTypes.ZISR"
+              style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-input [(ngModel)]="attr.ta0serialnum" type="text"
+                [ngClass]="(attr.loc_validate) ? 'redHighlightText' : 'blackHighlightText'"
+                [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                (change)="checkAssetsAvailability(checkSimcardArray, j, 'sim', 'check')" placeholder="Please Enter">
+              </ion-input>
+            </ion-col>
+            <ion-col col-3 col-sm-3 col-md-3 *ngIf="item.json.worktype !== soTypes.ZISR"
+              style="word-wrap:  break-all; padding-left: 5px; text-align: right;">
+              <button ion-button
+                [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                (click)="searchDevice(checkSimcardArray, j, item.json.siteid, dCons.DEV_ALLOC_SIM_CARD, 'sim', 'check')">
+                <ion-icon name="search" item-right></ion-icon>
+              </button>
+              <button
+                [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                ion-button (click)="barcodeScan(checkSimcardArray, j, 'sim', 'check')">
+                <ion-icon name="barcode" item-right></ion-icon>
+              </button>
+              <button ion-button [ngClass]="((attr.ta0existingdevice == true) && (j == 0)) ? 'non-display' : ''"
+                (click)="removeDeviceResult(checkSimcardArray, j, 'sim', 'check', item.json.worktype)">
+                <ion-icon name="trash" item-right></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-grid>
+      <!-- Check Sim Card End -->
+    </div>
+
+    <div
+      *ngIf="showCt && (item.json.worktype === soTypes.ZIST || item.json.worktype === soTypes.ZRMV || item.json.worktype === soTypes.ZUDN || item.json.worktype === soTypes.ZRPC|| item.json.worktype === soTypes.ZSRO || item.json.worktype === soTypes.ZINL || item.json.worktype === soTypes.ZINR || item.json.worktype === soTypes.ZISR)">
+      <!-- Current Transformer, Design start  -->
+      <ion-item-divider color="light" class="pointer" (click)="showCtTransformerSection(1)">
+        <ion-row align-items-center>
+          <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 5px;">
+            <strong>CURRENT TRANSFORMER, CT</strong>
+          </ion-col>
+          <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
+            <!--  <ion-icon name="information" (click)="openDataValidationPage(attr, indexVal)">&nbsp;Info</ion-icon> -->
+            <ion-icon name="arrow-forward" style="zoom: 1.5;" *ngIf="!ctSection"></ion-icon>
+            <ion-icon name="arrow-down" style="zoom: 1.5;" *ngIf="ctSection"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-item-divider>
+      <div *ngIf="ctSection">
+        <ion-grid
+          style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
+          <ion-item-divider color="light"
+            *ngIf="item.json.worktype === soTypes.ZIST || (ctDevice0Array[0].assetnum !== undefined && item.json.worktype !== soTypes.ZIST) || (ctDevice0Array[1] !== 'undefined' && (item.json.worktype === soTypes.ZRPC ||  item.json.worktype === soTypes.ZUDN))">
+            <ion-row align-items-center>
+              <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <!-- Current Transformer - {{ j + 1 }} -->
+                Current Transformer 1
+              </ion-col>
+              <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:left"
+                (click)="openDataValidationPage(attr, indexVal)">
+                <!-- <ion-icon name="information">&nbsp;Info</ion-icon> -->
+              </ion-col>
+            </ion-row>
+          </ion-item-divider>
+          <!--<div *ngFor="let attr of ctDevice0Array; let j = index" [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">-->
+          <div *ngFor="let attr of ctDevice0Array; let j = index">
+            <div [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'"
+              *ngIf="item.json.worktype === soTypes.ZIST || item.json.worktype === soTypes.ZISR || (ctDevice0Array[0].assetnum !== undefined && item.json.worktype !== soTypes.ZIST) || (j === 1 && (item.json.worktype === soTypes.ZRPC ||  item.json.worktype === soTypes.ZUDN))">
+              <ion-row>
+                <ion-col col-4 col-sm-10 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-label color="primary">Device Serial Number</ion-label>
+                </ion-col>
+                <ion-col col-1 col-sm-2 col-md-1 style="word-wrap: break-all;padding-left: 5px;">
+                  <ion-item *ngIf="item.json.worktype == soTypes.ZRMV" [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                    <ion-checkbox [disabled]="(ctDevice0Array.length > 1) ? true : false"
+                      [(ngModel)]="attr.ta0removeind">Remove</ion-checkbox>
+                  </ion-item>
+                  <ion-item
+                    *ngIf="((item.json.worktype == soTypes.ZUDN && item.json.ta0feeder[indexVal].ta0existing == true) || item.json.worktype === soTypes.ZRPC) && j == 0"
+                    [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                    <ion-checkbox [disabled]="(ctDevice0Array.length > 1) ? true : false"
+                      [(ngModel)]="attr.ta0removeind"
+                      (ionChange)="addNewDeviceField(dCons.DEVICE_TYPE_NAME_CT, dCons.DEVICE_TYPE_NAME_CT, 'ct_0')">
+                      Remove</ion-checkbox>
+                  </ion-item>
+                  <ion-item
+                    *ngIf="(item.json.worktype === soTypes.ZSRO || item.json.worktype === soTypes.ZRPM || item.json.worktype === soTypes.ZINL) && j == 0"
+                    [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                    <ion-checkbox [disabled]="(ctDevice0Array.length > 1) ? true : false"
+                      [(ngModel)]="attr.ta0replaceind"
+                      (ionChange)="addNewDeviceField(dCons.DEVICE_TYPE_NAME_CT, dCons.DEVICE_TYPE_NAME_CT, 'ct_0')">
+                      Remove</ion-checkbox>
+                  </ion-item>
+                  <ion-label *ngIf="j == 1" style="word-wrap:  break-all; padding-left: 5px; text-align:center"> P
+                  </ion-label>
+                </ion-col>
+                <ion-col col-4 col-sm-9 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-input [(ngModel)]="attr.ta0serialnum" (keyup)="checkAssetNumberInputType($event,'CT1',attr)"
+                    type="text" maxlength="18"
+                    [ngClass]="(attr.loc_validate) ? 'redHighlightText' : 'blackHighlightText'"
+                    (change)="checkAssetsAvailability(ctDevice0Array, j, 'ct', 'R')"
+                    (change)="checkingAssetnumArrayList(ctDevice0Array[j].assetnum, 'ct_0', j, 'transformer')"
+                    [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                    placeholder="Please Enter"></ion-input>
+                </ion-col>
+                <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all; padding-left: 5px; text-align: right;">
+                  <button ion-button
+                    *ngIf="deviceVoltage === '03' || (item.json.worktype === soTypes.ZUDN) && (item.json.ta0newvoltage === '03')"
+                    [ngClass]="((item.json.worktype === soTypes.ZUDN) && (item.json.ta0newvoltage > 3)) ? 'non-display' : ''"
+                    [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                    (click)="searchDevice(ctDevice0Array, j, item.json.siteid, dCons.DEV_ALLOC_MEASUREMENT_TRANSFEORMER, 'ct', 'R')">
+                    <ion-icon name="search" item-right></ion-icon>
+                  </button>
+                  <button
+                    [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                    ion-button (click)="barcodeScan(ctDevice0Array, j, 'ct', 'R')">
+                    <ion-icon name="barcode" item-right></ion-icon>
+                  </button>
+                  <button ion-button [ngClass]="((attr.ta0existingdevice == true) && (j == 0)) ? 'non-display' : ''"
+                    (click)="removeDeviceResult(ctDevice0Array, j, 'ct', 'R', item.json.worktype)">
+                    <ion-icon name="trash" item-right></ion-icon>
+                  </button>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-label color="primary">Brand</ion-label>
+                </ion-col>
+                <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-input [(ngModel)]="attr.ta0modelid" type="text" maxlength="20"
+                    (ionChange)="checkLengthOfCharacter(attr)"
+                    [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                    placeholder="Please Enter (max to 20 characters only)" [ngClass]="'blackHighlightText'"></ion-input>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-label color="primary">VA</ion-label>
+                </ion-col>
+                <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-input [(ngModel)]="attr.ta0va" type="text" maxlength="40"
+                    [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                    (keyup)="checkUserInputType($event,'VA1', j)" placeholder="Please Enter"
+                    [ngClass]="'blackHighlightText'"></ion-input>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-label color="primary">Class</ion-label>
+                </ion-col>
+                <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+                  <!-- Reason: No need to show value saved in maximo (Alif - 23/01/2019) -->
+                  <!-- <ion-input [(ngModel)]="attr.ta0class" type="text" [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                    placeholder="Please Enter" [ngClass]="'blackHighlightText'"></ion-input> -->
+                  <ion-input [(ngModel)]="attr.loc_ta0class" type="text"
+                    [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                    placeholder="Please Enter" [ngClass]="'blackHighlightText'"></ion-input>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-label color="primary">Current Ratio</ion-label>
+                </ion-col>
+                <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+                  <!-- Reason: No need to show value saved in maximo (Alif - 23/01/2019) -->
+                  <!-- <ion-input [(ngModel)]="attr.ta0currentratio" type="text" [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                    (keyup)="CRInputType($event,'currentRatio1', j)" placeholder="Please Enter" [ngClass]="'blackHighlightText'"></ion-input> -->
+                  <ion-input [(ngModel)]="attr.loc_ta0currentratio" type="text"
+                    [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                    (keyup)="CRInputType($event,'currentRatio1', j)" placeholder="Please Enter"
+                    [ngClass]="'blackHighlightText'"></ion-input>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-12 col-sm-12 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-label color="primary">Winding Group</ion-label>
+                </ion-col>
+                <ion-col col-12 col-sm-12 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+                  <!-- *ngIf="attr.deviceType === 'CT'" -->
+                  <ion-select [(ngModel)]="attr.loc_windingGroup" interface="alert"
+                    [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                    [ngClass]="'blackHighlightText'" placeholder="Please select"
+                    (ionChange)="selectWindingGroup($event, 'ct_0')" [selectOptions]="{title: 'Winding Group'}">
+                    <ion-option *ngFor="let key of windingGroupList" value="{{key.json.ta0windinggroup}}"> {{
+                      key.json.ta0windinggroup
+                      }} - {{ key.json.description }} </ion-option>
+                  </ion-select>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-row col-12 col-sm-12 radio-group [(ngModel)]="attr.ta0ctptphase" (ionChange)="validateCt('ct1',j)">
+                  <ion-col col-5 col-sm-5 col-md-5>
+                    <ion-label color="primary">Phase
+                    </ion-label>
+                  </ion-col>
+                  <ion-col>
+                    <ion-item>
+                      <ion-label [ngClass]="(phaseColorR === true) ? 'redHighlightText' : ''">R</ion-label>
+                      <ion-radio value="R"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col>
+                    <ion-item>
+                      <ion-label [ngClass]="(phaseColorY === true) ? 'redHighlightText' : ''">Y</ion-label>
+                      <ion-radio value="Y"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col>
+                    <ion-item>
+                      <ion-label [ngClass]="(phaseColorB === true ) ? 'redHighlightText' : ''">B</ion-label>
+                      <ion-radio value="B"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+              </ion-row>
+            </div>
+          </div>
+        </ion-grid>
+
+        <ion-grid
+          style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
+          <ion-item-divider color="light"
+            *ngIf="item.json.worktype === soTypes.ZIST || (ctDevice1Array[0].assetnum !== undefined && item.json.worktype !== soTypes.ZIST) || (ctDevice1Array[1] !== 'undefined' && (item.json.worktype === soTypes.ZRPC ||  item.json.worktype === soTypes.ZUDN))">
+            <ion-row align-items-center>
+              <ion-col col-8 col-sm-8 col-md-8 style="word-wrap:  break-all; padding-left: 5px; ">
+                Current Transformer 2
+              </ion-col>
+              <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:left"
+                (click)="openDataValidationPage(attr, indexVal)">
+                <!--  <ion-icon name="information">&nbsp;Info</ion-icon> -->
+              </ion-col>
+              <div *ngIf="item.json.worktype == soTypes.ZIST">
+                <!-- <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right" (click)="deleteCtPt('CT')">
+              <ion-icon name="trash" *ngIf="j != 0"></ion-icon>
+            </ion-col> -->
+              </div>
+            </ion-row>
+          </ion-item-divider>
+          <div *ngFor="let attr of ctDevice1Array; let j = index">
+            <div [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'"
+              *ngIf="item.json.worktype === soTypes.ZIST || item.json.worktype === soTypes.ZISR || (ctDevice1Array[0].assetnum !== undefined && item.json.worktype !== soTypes.ZIST) || (j === 1 && (item.json.worktype === soTypes.ZRPC ||  item.json.worktype === soTypes.ZUDN))">
+              <ion-row>
+                <ion-col col-4 col-sm-10 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-label color="primary">Device Serial Number</ion-label>
+                </ion-col>
+                <ion-col col-1 col-sm-1 col-md-1 style="word-wrap: break-all;padding-left: 5px;">
+                  <ion-item *ngIf="item.json.worktype === soTypes.ZRMV"
+                    [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                    <ion-checkbox [disabled]="(ctDevice1Array.length > 1) ? true : false"
+                      [(ngModel)]="attr.ta0removeind">Remove</ion-checkbox>
+                  </ion-item>
+                  <ion-item
+                    *ngIf="((item.json.worktype == soTypes.ZUDN && item.json.ta0feeder[indexVal].ta0existing == true) || item.json.worktype === soTypes.ZRPC) && j == 0"
+                    [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                    <ion-checkbox [disabled]="(ctDevice1Array.length > 1) ? true : false"
+                      [(ngModel)]="attr.ta0removeind" style="text-align: center;"
+                      (ionChange)="addNewDeviceField(dCons.DEVICE_TYPE_NAME_CT, dCons.DEVICE_TYPE_NAME_CT, 'ct_1')">
+                      Remove</ion-checkbox>
+                  </ion-item>
+                  <ion-item
+                    *ngIf="(item.json.worktype === soTypes.ZSRO || item.json.worktype === soTypes.ZRPM || item.json.worktype === soTypes.ZINL) && j == 0"
+                    [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                    <ion-checkbox [disabled]="(ctDevice1Array.length > 1) ? true : false"
+                      [(ngModel)]="attr.ta0replaceind"
+                      (ionChange)="addNewDeviceField(dCons.DEVICE_TYPE_NAME_CT, dCons.DEVICE_TYPE_NAME_CT, 'ct_1')">
+                      Remove</ion-checkbox>
+                  </ion-item>
+                  <ion-label *ngIf="j == 1" style="word-wrap:  break-all; padding-left: 5px; text-align:center"> P
+                  </ion-label>
+                </ion-col>
+                <ion-col col-4 col-sm-9 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-input [(ngModel)]="ctDevice1Array[j].ta0serialnum"
+                    (keyup)="checkAssetNumberInputType($event,'CT2',attr)" maxlength="18" type="text"
+                    [ngClass]="'blackHighlightText'" (change)="checkAssetsAvailability(ctDevice1Array, j, 'ct', 'Y')"
+                    (change)="checkingAssetnumArrayList(ctDevice1Array[j].assetnum, 'ct_1', j, 'transformer')"
+                    [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                    placeholder="Please Enter"></ion-input>
+                  <!-- <ion-icon name="barcode"></ion-icon> -->
+                </ion-col>
+                <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all; padding-left: 5px; text-align: right;">
+                  <button ion-button
+                    *ngIf="deviceVoltage === '03' || (item.json.worktype === soTypes.ZUDN) && (item.json.ta0newvoltage === '03')"
+                    [ngClass]="((item.json.worktype === soTypes.ZUDN) && (item.json.ta0newvoltage > 3)) ? 'non-display' : ''"
+                    [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                    (click)="searchDevice(ctDevice1Array, j, item.json.siteid, dCons.DEV_ALLOC_MEASUREMENT_TRANSFEORMER, 'ct', 'Y')">
+                    <ion-icon name="search" item-right></ion-icon>
+                  </button>
+                  <button
+                    [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                    ion-button (click)="barcodeScan(ctDevice1Array, j, 'ct', 'Y')">
+                    <ion-icon name="barcode" item-right></ion-icon>
+                  </button>
+                  <button ion-button [ngClass]="((attr.ta0existingdevice == true) && (j == 0)) ? 'non-display' : ''"
+                    (click)="removeDeviceResult(ctDevice1Array, j, 'ct', 'Y', item.json.worktype)">
+                    <ion-icon name="trash" item-right></ion-icon>
+                  </button>
+                  <!--<button [ngClass]="(attr.ta0existingdevice == false && (j == 0 || j ==1)) ? 'display' : 'non-display'" ion-button>-->
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-label color="primary">Brand</ion-label>
+                </ion-col>
+                <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-input [(ngModel)]="attr.ta0modelid" type="text" maxlength="20"
+                    (ionChange)="checkLengthOfCharacter(attr)"
+                    [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                    placeholder="Please Enter (max to 20 characters only)" [ngClass]="'blackHighlightText'"></ion-input>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-label color="primary">VA</ion-label>
+                </ion-col>
+                <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-input [(ngModel)]="attr.ta0va" maxlength="40" type="text"
+                    [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                    (keyup)="checkUserInputType($event,'VA', j)" placeholder="Please Enter"
+                    [ngClass]="'blackHighlightText'"></ion-input>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-label color="primary">Class</ion-label>
+                </ion-col>
+                <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+                  <!-- Reason: No need to show value saved in maximo (Alif - 23/01/2019) -->
+                  <!-- <ion-input [(ngModel)]="attr.ta0class" type="text" [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                    placeholder="Please Enter" [ngClass]="'blackHighlightText'"></ion-input> -->
+                  <ion-input [(ngModel)]="attr.loc_ta0class" type="text"
+                    [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                    placeholder="Please Enter" [ngClass]="'blackHighlightText'"></ion-input>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-label color="primary">Current Ratio</ion-label>
+                </ion-col>
+                <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+                  <!-- Reason: No need to show value saved in maximo (Alif - 23/01/2019) -->
+                  <!-- <ion-input [(ngModel)]="attr.ta0currentratio" type="text" [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                    (keyup)="CRInputType($event,'currentRatio', j)" placeholder="Please Enter" [ngClass]="'blackHighlightText'"></ion-input> -->
+                  <ion-input [(ngModel)]="attr.loc_ta0currentratio" type="text"
+                    [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                    (keyup)="CRInputType($event,'currentRatio', j)" placeholder="Please Enter"
+                    [ngClass]="'blackHighlightText'"></ion-input>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-12 col-sm-12 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-label color="primary">Winding Group</ion-label>
+                </ion-col>
+                <ion-col col-12 col-sm-12 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+                  <!-- *ngIf="attr.deviceType === 'CT'" -->
+                  <ion-select [(ngModel)]="attr.loc_windingGroup" interface="alert"
+                    [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                    (ionChange)="selectWindingGroup($event, 'ct_1')" [selectOptions]="{title: 'Winding Group'}"
+                    [ngClass]="'blackHighlightText'" placeholder="Please select">
+                    <ion-option *ngFor="let key of windingGroupList" value="{{key.json.ta0windinggroup}}"> {{
+                      key.json.ta0windinggroup }} - {{ key.json.description }} </ion-option>
+                  </ion-select>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-row col-12 col-sm-12 radio-group [(ngModel)]="attr.ta0ctptphase" (ionChange)="validateCt('ct2',j)">
+                  <ion-col col-5 col-sm-5 col-md-5>
+                    <ion-label color="primary">Phase
+                    </ion-label>
+                  </ion-col>
+                  <ion-col>
+                    <ion-item>
+                      <ion-label [ngClass]="(ctColorR2 === true) ? 'redHighlightText' : ''">R</ion-label>
+                      <ion-radio value="R"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col>
+                    <ion-item>
+                      <ion-label [ngClass]="(ctColorY2 === true) ? 'redHighlightText' : ''">Y</ion-label>
+                      <ion-radio value="Y"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col>
+                    <ion-item>
+                      <ion-label [ngClass]="(ctColorB2 === true) ? 'redHighlightText' : ''">B</ion-label>
+                      <ion-radio value="B"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+              </ion-row>
+            </div>
+          </div>
+        </ion-grid>
+
+        <ion-grid
+          style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
+          <ion-item-divider color="light"
+            *ngIf="item.json.worktype === soTypes.ZIST || (ctDevice2Array[0].assetnum !== undefined && item.json.worktype !== soTypes.ZIST)  ||  (ctDevice2Array[1] !== 'undefined' && (item.json.worktype === soTypes.ZRPC ||  item.json.worktype === soTypes.ZUDN))">
+            <ion-row align-items-center>
+              <ion-col col-8 col-sm-8 col-md-8 style="word-wrap:  break-all; padding-left: 5px; ">
+                Current Transformer 3
+              </ion-col>
+              <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:left"
+                (click)="openDataValidationPage(attr, indexVal)">
+                <!--  <ion-icon name="information">&nbsp;Info</ion-icon> -->
+              </ion-col>
+            </ion-row>
+          </ion-item-divider>
+          <div *ngFor="let attr of ctDevice2Array; let j = index">
+            <div [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'"
+              *ngIf="item.json.worktype === soTypes.ZIST || item.json.worktype === soTypes.ZISR || (ctDevice2Array[0].assetnum !== undefined && item.json.worktype !== soTypes.ZIST) ||  (j === 1 && (item.json.worktype === soTypes.ZRPC ||  item.json.worktype === soTypes.ZUDN))">
+              <ion-row>
+                <ion-col col-4 col-sm-10 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-label color="primary">Device Serial Number</ion-label>
+                </ion-col>
+                <ion-col col-1 col-sm-2 col-md-1 style="word-wrap: break-all;padding-left: 5px;">
+                  <ion-item *ngIf="item.json.worktype === soTypes.ZRMV"
+                    [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                    <ion-checkbox [disabled]="(ctDevice2Array.length > 1) ? true : false"
+                      [(ngModel)]="attr.ta0removeind">Remove</ion-checkbox>
+                  </ion-item>
+                  <ion-item
+                    *ngIf="((item.json.worktype == soTypes.ZUDN && item.json.ta0feeder[indexVal].ta0existing == true) || item.json.worktype === soTypes.ZRPC) && j == 0"
+                    [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                    <ion-checkbox [disabled]="(ctDevice2Array.length > 1) ? true : false"
+                      [(ngModel)]="attr.ta0removeind"
+                      (ionChange)="addNewDeviceField(dCons.DEVICE_TYPE_NAME_CT, dCons.DEVICE_TYPE_NAME_CT, 'ct_2')">
+                      Remove</ion-checkbox>
+                  </ion-item>
+                  <ion-item
+                    *ngIf="(item.json.worktype === soTypes.ZSRO || item.json.worktype === soTypes.ZRPM || item.json.worktype === soTypes.ZINL) && j == 0"
+                    [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                    <ion-checkbox [disabled]="(ctDevice2Array.length > 1) ? true : false"
+                      [(ngModel)]="attr.ta0replaceind"
+                      (ionChange)="addNewDeviceField(dCons.DEVICE_TYPE_NAME_CT, dCons.DEVICE_TYPE_NAME_CT, 'ct_2')">
+                      Remove</ion-checkbox>
+                  </ion-item>
+                  <ion-label *ngIf="j == 1" style="word-wrap:  break-all; padding-left: 5px; text-align:center"> P
+                  </ion-label>
+                </ion-col>
+                <ion-col col-4 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-input [(ngModel)]="attr.ta0serialnum" (keyup)="checkAssetNumberInputType($event,'CT3',attr)"
+                    maxlength="18" type="text" [ngClass]="'blackHighlightText'"
+                    (change)="checkAssetsAvailability(ctDevice2Array, j, 'ct', 'B')"
+                    (change)="checkingAssetnumArrayList(ctDevice2Array[j].assetnum, 'ct_2', j, 'transformer')"
+                    [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                    placeholder="Please Enter"></ion-input>
+                  <!-- <ion-icon name="barcode"></ion-icon> -->
+                </ion-col>
+                <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all; padding-left: 5px; text-align: right;">
+                  <button ion-button
+                    *ngIf="deviceVoltage === '03' || (item.json.worktype === soTypes.ZUDN) && (item.json.ta0newvoltage === '03')"
+                    [ngClass]="((item.json.worktype === soTypes.ZUDN) && (item.json.ta0newvoltage > 3)) ? 'non-display' : ''"
+                    [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                    (click)="searchDevice(ctDevice2Array, j, item.json.siteid, dCons.DEV_ALLOC_MEASUREMENT_TRANSFEORMER, 'ct', 'B')">
+                    <ion-icon name="search" item-right></ion-icon>
+                  </button>
+                  <button
+                    [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                    ion-button (click)="barcodeScan(ctDevice2Array, j, 'ct', 'B')">
+                    <ion-icon name="barcode" item-right></ion-icon>
+                  </button>
+                  <button ion-button [ngClass]="((attr.ta0existingdevice == true) && (j == 0)) ? 'non-display' : ''"
+                    (click)="removeDeviceResult(ctDevice2Array, j, 'ct', 'B', item.json.worktype)">
+                    <ion-icon name="trash" item-right></ion-icon>
+                  </button>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-label color="primary">Brand</ion-label>
+                </ion-col>
+                <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-input [(ngModel)]="attr.ta0modelid" type="text" maxlength="20"
+                    (ionChange)="checkLengthOfCharacter(attr)"
+                    [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                    placeholder="Please Enter (max to 20 characters only)" [ngClass]="'blackHighlightText'"></ion-input>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-label color="primary">VA</ion-label>
+                </ion-col>
+                <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-input [(ngModel)]="attr.ta0va" type="text"
+                    [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                    placeholder="Please Enter" maxlength="40" (keyup)="checkUserInputType($event,'VA3', j)"
+                    [ngClass]="'blackHighlightText'"></ion-input>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-label color="primary">Class</ion-label>
+                </ion-col>
+                <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+                  <!-- Reason: No need to show value saved in maximo (Alif - 23/01/2019) -->
+                  <!-- <ion-input [(ngModel)]="attr.ta0class" type="text" [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                    placeholder="Please Enter" [ngClass]="'blackHighlightText'"></ion-input> -->
+                  <ion-input [(ngModel)]="attr.loc_ta0class" type="text"
+                    [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                    placeholder="Please Enter" [ngClass]="'blackHighlightText'"></ion-input>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-label color="primary">Current Ratio</ion-label>
+                </ion-col>
+                <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+                  <!-- Reason: No need to show value saved in maximo (Alif - 23/01/2019) -->
+                  <!-- <ion-input [(ngModel)]="attr.ta0currentratio" type="text" [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                    (keyup)="CRInputType($event,'currentRatio3', j)" placeholder="Please Enter" [ngClass]="'blackHighlightText'"></ion-input> -->
+                  <ion-input [(ngModel)]="attr.loc_ta0currentratio" type="text"
+                    [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                    (keyup)="CRInputType($event,'currentRatio3', j)" placeholder="Please Enter"
+                    [ngClass]="'blackHighlightText'"></ion-input>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-12 col-sm-12 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-label color="primary">Winding Group</ion-label>
+                </ion-col>
+                <ion-col col-12 col-sm-12 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+                  <!-- *ngIf="attr.deviceType === 'CT'" -->
+                  <!-- <ion-item> -->
+                  <ion-select [(ngModel)]="attr.loc_windingGroup" interface="alert"
+                    [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                    [ngClass]="'blackHighlightText'" placeholder="Please select"
+                    (ionChange)="selectWindingGroup($event, 'ct_2')" [selectOptions]="{title: 'Winding Group'}">
+                    <ion-option *ngFor="let key of windingGroupList" value="{{key.json.ta0windinggroup}}">
+                      {{ key.json.ta0windinggroup }} - {{ key.json.description }}
+                    </ion-option>
+                  </ion-select>
+                  <!-- </ion-item> -->
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-row col-12 col-sm-12 radio-group [(ngModel)]="attr.ta0ctptphase" (ionChange)="validateCt('ct3',j)">
+                  <ion-col col-5 col-sm-5 col-md-5>
+                    <ion-label color="primary">Phase
+                    </ion-label>
+                  </ion-col>
+                  <ion-col>
+                    <ion-item>
+                      <ion-label [ngClass]="(ctColorR3 === true) ? 'redHighlightText' : ''">R</ion-label>
+                      <ion-radio value="R"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col>
+                    <ion-item>
+                      <ion-label [ngClass]="(ctColorY3 === true) ? 'redHighlightText' : ''">Y</ion-label>
+                      <ion-radio value="Y"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col>
+                    <ion-item>
+                      <ion-label [ngClass]="(ctColorB3 === true) ? 'redHighlightText' : ''">B</ion-label>
+                      <ion-radio value="B"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+              </ion-row>
+            </div>
+          </div>
+        </ion-grid>
+      </div>
+      <!-- Current Transformer, Design end  -->
+
+      <!-- Voltage Transformer, Design start  -->
+      <div id="pt" *ngIf="showPT">
+        <ion-item-divider color="light" class="pointer" (click)="showPtTransformerSection(1)">
+          <ion-row align-items-center>
+            <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 5px;">
+              <strong>VOLTAGE TRANSFORMER, PT</strong>
+            </ion-col>
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
+              <!--  <ion-icon name="information" (click)="openDataValidationPage(attr, indexVal)">&nbsp;Info</ion-icon> -->
+              <ion-icon name="arrow-forward" style="zoom: 1.5;" *ngIf="!ptSection"></ion-icon>
+              <ion-icon name="arrow-down" style="zoom: 1.5;" *ngIf="ptSection"></ion-icon>
+            </ion-col>
+            <!-- <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right" (click)="addCtPt('PT')">
+            <ion-icon name="add" *ngIf="showAddPT"></ion-icon>
+          </ion-col> -->
+          </ion-row>
+        </ion-item-divider>
+        <div *ngIf="ptSection">
+          <ion-grid
+            style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
+            <ion-item-divider color="light"
+              *ngIf="item.json.worktype === soTypes.ZIST || (ptDevice0Array[0].assetnum !== undefined && item.json.worktype !== soTypes.ZIST)  || (ptDevice0Array[1] !== 'undefined'  && (item.json.worktype === soTypes.ZRPC ||  item.json.worktype === soTypes.ZUDN))">
+              <ion-row align-items-center>
+                <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 5px; ">
+                  Voltage Transformer 1
+                </ion-col>
+                <!-- <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right" (click)="deleteCtPt('PT')">
+              <ion-icon name="trash" *ngIf="j != 0"></ion-icon>
+            </ion-col> -->
+              </ion-row>
+            </ion-item-divider>
+            <div *ngFor="let attr of ptDevice0Array; let j = index">
+              <div [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'"
+                *ngIf="item.json.worktype === soTypes.ZIST || item.json.worktype === soTypes.ZISR|| (ptDevice0Array[0].assetnum !== undefined && item.json.worktype !== soTypes.ZIST)  || (j === 1 && (item.json.worktype === soTypes.ZRPC ||  item.json.worktype === soTypes.ZUDN))">
+                <ion-row>
+                  <ion-col col-4 col-sm-10 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-label color="primary">Device Serial Number</ion-label>
+                  </ion-col>
+                  <ion-col col-1 col-sm-2 col-md-1 style="word-wrap: break-all;padding-left: 5px;">
+                    <ion-item *ngIf="item.json.worktype == soTypes.ZRMV"
+                      [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                      <ion-checkbox [disabled]="(ptDevice0Array.length > 1) ? true : false"
+                        [(ngModel)]="attr.ta0removeind">Remove</ion-checkbox>
+                    </ion-item>
+                    <ion-item
+                      *ngIf="(item.json.worktype == soTypes.ZUDN  || item.json.worktype === soTypes.ZRPC) && j == 0"
+                      [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                      <ion-checkbox [disabled]="(ptDevice0Array.length > 1) ? true : false"
+                        [(ngModel)]="attr.ta0removeind"
+                        (ionChange)="addNewDeviceField(dCons.DEVICE_TYPE_NAME_PT, dCons.DEVICE_TYPE_NAME_PT, 'pt_0')">
+                        Remove</ion-checkbox>
+                    </ion-item>
+                    <ion-item
+                      *ngIf="(item.json.worktype === soTypes.ZSRO || item.json.worktype === soTypes.ZRPM || item.json.worktype === soTypes.ZINL) && j == 0"
+                      [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                      <ion-checkbox [disabled]="(ptDevice0Array.length > 1) ? true : false"
+                        [(ngModel)]="attr.ta0replaceind"
+                        (ionChange)="addNewDeviceField(dCons.DEVICE_TYPE_NAME_PT, dCons.DEVICE_TYPE_NAME_PT, 'pt_0')">
+                        Remove</ion-checkbox>
+                    </ion-item>
+                    <ion-label *ngIf="j == 1" style="word-wrap:  break-all; padding-left: 5px; text-align:center"> P
+                    </ion-label>
+                  </ion-col>
+                  <ion-col col-4 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-input [(ngModel)]="attr.ta0serialnum" (keyup)="checkAssetNumberInputType($event,'PT1',attr)"
+                      maxlength="18" type="text" placeholder="Please Enter" [ngClass]="'blackHighlightText'"
+                      (change)="checkingAssetnumArrayList(ptDevice0Array[j].assetnum, 'pt_0', j, 'transformer')"
+                      [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? 'true' : 'false'">
+                    </ion-input>
+                    <!-- <ion-icon name="barcode"></ion-icon>  -->
+                  </ion-col>
+                  <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all; padding-left: 5px; text-align: right;">
+                    <button
+                      [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                      ion-button (click)="barcodeScan(ptDevice0Array, j, 'pt', 'R')">
+                      <ion-icon name="barcode" item-right></ion-icon>
+                    </button>
+                    <button ion-button [ngClass]="((attr.ta0existingdevice == true) && (j == 0)) ? 'non-display' : ''"
+                      (click)="removeDeviceResult(ptDevice0Array, j, 'pt', 'R', item.json.worktype)">
+                      <ion-icon name="trash" item-right></ion-icon>
+                    </button>
+                    <!--<button [ngClass]="(attr.ta0existingdevice == false && (j == 0 || j ==1)) ? 'display' : 'non-display'" ion-button>-->
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-label color="primary">Brand</ion-label>
+                  </ion-col>
+                  <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-input [(ngModel)]="attr.ta0modelid" type="text" maxlength="20"
+                      (ionChange)="checkLengthOfCharacter(attr)"
+                      [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                      placeholder="Please Enter (max to 20 characters only)" [ngClass]="'blackHighlightText'">
+                    </ion-input>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-label color="primary">VA</ion-label>
+                  </ion-col>
+                  <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-input [(ngModel)]="attr.ta0va" type="text" maxlength="40"
+                      [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                      (keyup)="checkUserInputPT($event,'VA', j)" placeholder="Please Enter"
+                      [ngClass]="'blackHighlightText'"></ion-input>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-label color="primary">Class</ion-label>
+                  </ion-col>
+                  <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+                    <!-- Reason: No need to show value saved in maximo (Alif - 23/01/2019) -->
+                    <!-- <ion-input [(ngModel)]="attr.ta0class" type="text" [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                      placeholder="Please Enter" [ngClass]="'blackHighlightText'"></ion-input> -->
+                    <ion-input [(ngModel)]="attr.loc_ta0class" type="text"
+                      [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                      placeholder="Please Enter" [ngClass]="'blackHighlightText'"></ion-input>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-label color="primary">Voltage Ratio</ion-label>
+                  </ion-col>
+                  <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-input [(ngModel)]="attr.loc_ta0voltageratio" type="text"
+                      [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                      (keyup)="PTCurrentRatio($event,'currentRatio', j)" placeholder="Please Enter"
+                      [ngClass]="'blackHighlightText'"></ion-input>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-label color="primary">Winding Group</ion-label>
+                  </ion-col>
+                  <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-select [(ngModel)]="attr.loc_windingGroup" interface="alert"
+                      [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                      [ngClass]="'blackHighlightText'" placeholder="Please select"
+                      (ionChange)="assignCheckWindingGroup($event, attr)"
+                      (ionChange)="selectWindingGroup($event, 'pt_0')" [selectOptions]="{title: 'Winding Group'}">
+                      <ion-option *ngFor="let key of windingGroupPtList" value="{{key.json.ta0windinggroup}}"> {{
+                        key.json.ta0windinggroup
+                        }} - {{ key.json.description }} </ion-option>
+                    </ion-select>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-row col-12 col-sm-12 radio-group [(ngModel)]="attr.ta0ctptphase"
+                    (ionChange)="validatePt('pt1',j)">
+                    <ion-col col-5 col-sm-5 col-md-5>
+                      <ion-label color="primary">
+                        Phase
+                      </ion-label>
+                    </ion-col>
+                    <ion-col>
+                      <ion-item>
+                        <ion-label [ngClass]="(PtColorR === true) ? 'redHighlightText' : ''">R</ion-label>
+                        <ion-radio value="R"></ion-radio>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col>
+                      <ion-item>
+                        <ion-label [ngClass]="(PtColorY === true) ? 'redHighlightText' : ''">Y</ion-label>
+                        <ion-radio value="Y"></ion-radio>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col>
+                      <ion-item>
+                        <ion-label [ngClass]="(PtColorB === true) ? 'redHighlightText' : ''">B</ion-label>
+                        <ion-radio value="B"></ion-radio>
+                      </ion-item>
+                    </ion-col>
+                  </ion-row>
+                </ion-row>
+              </div>
+            </div>
+          </ion-grid>
+
+          <ion-grid
+            style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
+            <ion-item-divider color="light"
+              *ngIf="item.json.worktype === soTypes.ZIST || (ptDevice1Array[0].assetnum !== undefined && item.json.worktype !== soTypes.ZIST)  ||  (ptDevice1Array[1] !== 'undefined'  && (item.json.worktype === soTypes.ZRPC ||  item.json.worktype === soTypes.ZUDN))">
+              <ion-row align-items-center>
+                <ion-col col-8 col-sm-8 col-md-8 style="word-wrap:  break-all; padding-left: 5px; ">
+                  Voltage Transformer 2
+                </ion-col>
+                <!-- <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right" (click)="deleteCtPt('PT')">
+              <ion-icon name="trash" *ngIf="j != 0"></ion-icon>
+            </ion-col> -->
+              </ion-row>
+            </ion-item-divider>
+            <div *ngFor="let attr of ptDevice1Array; let j = index">
+              <div [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'"
+                *ngIf="item.json.worktype === soTypes.ZIST || item.json.worktype === soTypes.ZISR || (ptDevice1Array[0].assetnum !== undefined && item.json.worktype !== soTypes.ZIST)  || (j === 1 && (item.json.worktype === soTypes.ZRPC ||  item.json.worktype === soTypes.ZUDN))">
+                <ion-row>
+                  <ion-col col-4 col-sm-10 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-label color="primary">Device Serial Number</ion-label>
+                  </ion-col>
+                  <ion-col col-1 col-sm-2 col-md-1 style="word-wrap: break-all;padding-left: 5px;">
+                    <ion-item *ngIf="item.json.worktype == soTypes.ZRMV"
+                      [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                      <ion-checkbox [disabled]="(ptDevice1Array.length > 1) ? true : false"
+                        [(ngModel)]="attr.ta0removeind">Remove</ion-checkbox>
+                    </ion-item>
+                    <ion-item
+                      *ngIf="(item.json.worktype == soTypes.ZUDN  || item.json.worktype === soTypes.ZRPC) && j == 0"
+                      [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                      <ion-checkbox [disabled]="(ptDevice1Array.length > 1) ? true : false"
+                        [(ngModel)]="attr.ta0removeind"
+                        (ionChange)="addNewDeviceField(dCons.DEVICE_TYPE_NAME_PT, dCons.DEVICE_TYPE_NAME_PT, 'pt_1')">
+                        Remove</ion-checkbox>
+                    </ion-item>
+                    <ion-item
+                      *ngIf="(item.json.worktype === soTypes.ZSRO || item.json.worktype === soTypes.ZRPM || item.json.worktype === soTypes.ZINL) && j == 0"
+                      [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                      <ion-checkbox [disabled]="(ptDevice1Array.length > 1) ? true : false"
+                        [(ngModel)]="attr.ta0replaceind"
+                        (ionChange)="addNewDeviceField(dCons.DEVICE_TYPE_NAME_PT, dCons.DEVICE_TYPE_NAME_PT, 'pt_1')">
+                        Remove</ion-checkbox>
+                    </ion-item>
+                    <ion-label
+                      *ngIf="j == 1 && (item.json.worktype == soTypes.ZUDN  || item.json.worktype === soTypes.ZRPC)"
+                      style="word-wrap:  break-all; padding-left: 5px; text-align:center">
+                      P </ion-label>
+                    <ion-label
+                      *ngIf="j == 1 && (item.json.worktype !== soTypes.ZUDN  && item.json.worktype !== soTypes.ZRPC)"
+                      style="word-wrap:  break-all; padding-left: 5px; text-align:center">
+                    </ion-label>
+                  </ion-col>
+                  <ion-col col-4 col-sm-9 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-input [(ngModel)]="attr.ta0serialnum" (keyup)="checkAssetNumberInputType($event,'PT2',attr)"
+                      maxlength="18" type="text" placeholder="Please Enter" [ngClass]="'blackHighlightText'"
+                      (change)="checkingAssetnumArrayList(ptDevice1Array[j].assetnum, 'pt_1', j, 'transformer')"
+                      [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? 'true' : 'false'">
+                    </ion-input>
+                    <!-- <ion-icon name="barcode"></ion-icon>  -->
+                  </ion-col>
+                  <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all; padding-left: 5px; text-align: right;">
+                    <button
+                      [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                      ion-button (click)="barcodeScan(ptDevice1Array, j, 'pt', 'Y')">
+                      <ion-icon name="barcode" item-right></ion-icon>
+                    </button>
+                    <button ion-button [ngClass]="((attr.ta0existingdevice == true) && (j == 0)) ? 'non-display' : ''"
+                      (click)="removeDeviceResult(ptDevice1Array, j, 'pt', 'Y', item.json.worktype)">
+                      <ion-icon name="trash" item-right></ion-icon>
+                    </button>
+                    <!--<button [ngClass]="(attr.ta0existingdevice == false && (j == 0 || j ==1)) ? 'display' : 'non-display'" ion-button>-->
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-label color="primary">Brand</ion-label>
+                  </ion-col>
+                  <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-input [(ngModel)]="attr.ta0modelid" type="text" maxlength="20"
+                      (ionChange)="checkLengthOfCharacter(attr)"
+                      [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                      placeholder="Please Enter (max to 20 characters only)" [ngClass]="'blackHighlightText'">
+                    </ion-input>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-label color="primary">VA</ion-label>
+                  </ion-col>
+                  <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-input [(ngModel)]="attr.ta0va" type="text" maxlength="40"
+                      [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                      (keyup)="checkUserInputPT($event,'VA2', j)" placeholder="Please Enter"
+                      [ngClass]="'blackHighlightText'"></ion-input>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-label color="primary">Class</ion-label>
+                  </ion-col>
+                  <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-input [(ngModel)]="attr.loc_ta0class" type="text"
+                      [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                      placeholder="Please Enter" [ngClass]="'blackHighlightText'"></ion-input>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-label color="primary">Voltage Ratio</ion-label>
+                  </ion-col>
+                  <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-input [(ngModel)]="attr.loc_ta0voltageratio" type="text"
+                      [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                      (keyup)="PTCurrentRatio($event,'currentRatio2', j)" placeholder="Please Enter"
+                      [ngClass]="'blackHighlightText'"></ion-input>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-label color="primary">Winding Group</ion-label>
+                  </ion-col>
+                  <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-select [(ngModel)]="attr.loc_windingGroup" interface="alert"
+                      [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                      [ngClass]="'blackHighlightText'" placeholder="Please select"
+                      (ionChange)="assignCheckWindingGroup($event, attr)"
+                      (ionChange)="selectWindingGroup($event, 'pt_1')" [selectOptions]="{title: 'Winding Group'}">
+                      <ion-option *ngFor="let key of windingGroupPtList" value="{{key.json.ta0windinggroup}}"> {{
+                        key.json.ta0windinggroup
+                        }} - {{ key.json.description }} </ion-option>
+                    </ion-select>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-row col-12 col-sm-12 radio-group [(ngModel)]="attr.ta0ctptphase"
+                    (ionChange)="validatePt('pt2',j)">
+                    <ion-col col-5 col-sm-5 col-md-5>
+                      <ion-label color="primary">
+                        Phase
+                      </ion-label>
+                    </ion-col>
+                    <ion-col>
+                      <ion-item>
+                        <ion-label [ngClass]="(PtColorR2 === true) ? 'redHighlightText' : ''">R</ion-label>
+                        <ion-radio value="R"></ion-radio>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col>
+                      <ion-item>
+                        <ion-label [ngClass]="(PtColorY2 === true) ? 'redHighlightText' : ''">Y</ion-label>
+                        <ion-radio value="Y"></ion-radio>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col>
+                      <ion-item>
+                        <ion-label [ngClass]="(PtColorB2 === true) ? 'redHighlightText' : ''">B</ion-label>
+                        <ion-radio value="B"></ion-radio>
+                      </ion-item>
+                    </ion-col>
+                  </ion-row>
+                </ion-row>
+              </div>
+            </div>
+          </ion-grid>
+
+          <ion-grid
+            style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
+            <ion-item-divider color="light"
+              *ngIf="item.json.worktype === soTypes.ZIST || (ptDevice2Array[0].assetnum !== undefined && item.json.worktype !== soTypes.ZIST)  || (ptDevice2Array[1] !== 'undefined'  && (item.json.worktype === soTypes.ZRPC ||  item.json.worktype === soTypes.ZUDN))">
+              <ion-row align-items-center>
+                <ion-col col-8 col-sm-8 col-md-8 style="word-wrap:  break-all; padding-left: 5px; ">
+                  Voltage Transformer 3
+                </ion-col>
+                <!-- <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right" (click)="deleteCtPt('PT')">
+              <ion-icon name="trash" *ngIf="j != 0"></ion-icon>
+            </ion-col> -->
+              </ion-row>
+            </ion-item-divider>
+            <div *ngFor="let attr of ptDevice2Array; let j = index">
+              <div [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'"
+                *ngIf="item.json.worktype === soTypes.ZIST || item.json.worktype === soTypes.ZISR || (ptDevice2Array[0].assetnum !== undefined && item.json.worktype !== soTypes.ZIST)  || (j === 1 && (item.json.worktype === soTypes.ZRPC ||  item.json.worktype === soTypes.ZUDN))">
+                <ion-row>
+                  <ion-col col-4 col-sm-10 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-label color="primary">Device Serial Number</ion-label>
+                  </ion-col>
+                  <ion-col col-1 col-sm-2 col-md-1 style="word-wrap: break-all;padding-left: 5px;">
+                    <ion-item *ngIf="item.json.worktype == soTypes.ZRMV"
+                      [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                      <ion-checkbox [(ngModel)]="attr.ta0removeind"
+                        [disabled]="(ptDevice2Array.length > 1) ? true : false">Remove</ion-checkbox>
+                    </ion-item>
+                    <ion-item
+                      *ngIf="(item.json.worktype == soTypes.ZUDN  || item.json.worktype === soTypes.ZRPC) && j == 0"
+                      [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                      <ion-checkbox [(ngModel)]="attr.ta0removeind"
+                        [disabled]="(ptDevice2Array.length > 1) ? true : false"
+                        (ionChange)="addNewDeviceField(dCons.DEVICE_TYPE_NAME_PT, dCons.DEVICE_TYPE_NAME_PT, 'pt_2')">
+                        Remove</ion-checkbox>
+                    </ion-item>
+                    <ion-item
+                      *ngIf="(item.json.worktype === soTypes.ZSRO || item.json.worktype === soTypes.ZRPM || item.json.worktype === soTypes.ZINL) && j == 0"
+                      [ngClass]="(j == 1) ? 'new-Feed' : 'exist-Feed'">
+                      <ion-checkbox [(ngModel)]="attr.ta0replaceind"
+                        [disabled]="(ptDevice2Array.length > 1) ? true : false"
+                        (ionChange)="addNewDeviceField(dCons.DEVICE_TYPE_NAME_PT, dCons.DEVICE_TYPE_NAME_PT, 'pt_2')">
+                        Remove</ion-checkbox>
+                    </ion-item>
+                    <ion-label *ngIf="j == 1" style="word-wrap:  break-all; padding-left: 5px; text-align:center"> P
+                    </ion-label>
+                  </ion-col>
+                  <ion-col col-4 col-sm-9 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-input [(ngModel)]="attr.ta0serialnum" (keyup)="checkAssetNumberInputType($event,'PT3',attr)"
+                      maxlength="18" type="text" placeholder="Please Enter" [ngClass]="'blackHighlightText'"
+                      (change)="checkingAssetnumArrayList(ptDevice2Array[j].assetnum, 'pt_2', j, 'transformer')"
+                      [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? 'true' : 'false'">
+                    </ion-input>
+                    <!-- (change)="checkingAssetnumArrayList(ptDevice2Array[j].assetnum, 'pt_2', j, 'transformer')" -->
+                    <!-- <ion-icon name="barcode"></ion-icon>  -->
+                  </ion-col>
+                  <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all; padding-left: 5px; text-align: right;">
+                    <button
+                      [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                      ion-button (click)="barcodeScan(ptDevice2Array, j, 'pt', 'B')">
+                      <ion-icon name="barcode" item-right></ion-icon>
+                    </button>
+                    <button ion-button [ngClass]="((attr.ta0existingdevice == true) && (j == 0)) ? 'non-display' : ''"
+                      (click)="removeDeviceResult(ptDevice2Array, j, 'pt', 'B', item.json.worktype)">
+                      <ion-icon name="trash" item-right></ion-icon>
+                    </button>
+                    <!--<button [ngClass]="(attr.ta0existingdevice == false && (j == 0 || j ==1)) ? 'display' : 'non-display'" ion-button>-->
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-label color="primary">Brand</ion-label>
+                  </ion-col>
+                  <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-input [(ngModel)]="attr.ta0modelid" type="text" maxlength="20"
+                      (ionChange)="checkLengthOfCharacter(attr)"
+                      [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                      placeholder="Please Enter (max to 20 characters only)" [ngClass]="'blackHighlightText'">
+                    </ion-input>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-label color="primary">VA</ion-label>
+                  </ion-col>
+                  <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-input [(ngModel)]="attr.ta0va" type="text" maxlength="40"
+                      [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                      (keyup)="checkUserInputPT($event,'VA3', j)" placeholder="Please Enter"
+                      [ngClass]="'blackHighlightText'"></ion-input>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-label color="primary">Class</ion-label>
+                  </ion-col>
+                  <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+                    <!-- Reason: No need to show value saved in maximo (Alif - 23/01/2019) -->
+                    <!-- <ion-input [(ngModel)]="attr.ta0class" type="text" [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                      placeholder="Please Enter" [ngClass]="'blackHighlightText'"></ion-input> -->
+                    <ion-input [(ngModel)]="attr.loc_ta0class" type="text"
+                      [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                      placeholder="Please Enter" [ngClass]="'blackHighlightText'"></ion-input>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-label color="primary">Voltage Ratio</ion-label>
+                  </ion-col>
+                  <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-input [(ngModel)]="attr.loc_ta0voltageratio" type="text"
+                      [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                      (keyup)="PTCurrentRatio($event,'currentRatio3', j)" placeholder="Please Enter"
+                      [ngClass]="'blackHighlightText'"></ion-input>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-label color="primary">Winding Group</ion-label>
+                  </ion-col>
+                  <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-select [(ngModel)]="attr.loc_windingGroup" interface="alert"
+                      [disabled]="((attr.ta0existingdevice == true || attr.ta0existingdevice == false) && (j == 0 || j ==1)) ? true : false"
+                      [ngClass]="'blackHighlightText'" placeholder="Please select"
+                      (ionChange)="assignCheckWindingGroup($event, attr)"
+                      (ionChange)="selectWindingGroup($event, 'pt_2')" [selectOptions]="{title: 'Winding Group'}">
+                      <ion-option *ngFor="let key of windingGroupPtList" value="{{ key.json.ta0windinggroup }}">
+                        {{ key.json.ta0windinggroup }} - {{ key.json.description }} </ion-option>
+                    </ion-select>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-row col-12 col-sm-12 radio-group [(ngModel)]="attr.ta0ctptphase"
+                    (ionChange)="validatePt('pt3',j)">
+                    <ion-col col-5 col-sm-5 col-md-5>
+                      <ion-label color="primary">
+                        Phase
+                      </ion-label>
+                    </ion-col>
+                    <ion-col>
+                      <ion-item>
+                        <ion-label [ngClass]="(PtColorR3 === true) ? 'redHighlightText' : ''">R</ion-label>
+                        <ion-radio value="R"></ion-radio>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col>
+                      <ion-item>
+                        <ion-label [ngClass]="(PtColorY3 === true) ? 'redHighlightText' : ''">Y</ion-label>
+                        <ion-radio value="Y"></ion-radio>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col>
+                      <ion-item>
+                        <ion-label [ngClass]="(PtColorB3 === true) ? 'redHighlightText' : ''">B</ion-label>
+                        <ion-radio value="B"></ion-radio>
+                      </ion-item>
+                    </ion-col>
+                  </ion-row>
+                </ion-row>
+              </div>
+            </div>
+          </ion-grid>
+        </div>
+      </div>
+      <!-- Voltage Transformer, Design end  -->
+    </div>
+  </ion-grid>
+</ion-content>
+
+<ion-footer mode="md">
+  <ion-toolbar mode="md">
+    <ion-row>
+      <ion-col col-6 col-sm-6 col-md-6>
+        <button ion-button round block mode="md" (click)="saveDeviceDetails()">
+          Save
+        </button>
+      </ion-col>
+      <ion-col col-6 col-sm-6 col-md-6>
+        <button ion-button round block mode="md" (click)="goBack()">
+          Cancel
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

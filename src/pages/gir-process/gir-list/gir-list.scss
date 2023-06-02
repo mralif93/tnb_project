@@ -1,0 +1,35 @@
+page-gir-list {
+  .reg-button {
+    height: 2.6rem;
+    float: right;
+    color: #0000ff;
+    background-color: #ffffff;
+  }
+
+  .classA {
+    background-color: #fffffa;
+  }
+
+  .classB {
+    background-color: lightcyan;
+  }
+
+  .heading-gap {
+    padding-bottom: 25px;
+  }
+
+  .offline_btn {
+    font-size: 15px;
+  }
+
+  .row1 {
+    border-style: solid;
+    border-width: 1px 0px 1px 0px;
+    border-color: #dedede;
+  }
+  .col1 {
+    border-style: solid;
+    border-width: 0px 1px 0px 1px;
+    border-color: #dedede;
+  }
+}

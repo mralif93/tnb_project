@@ -1,0 +1,118 @@
+page-login {
+
+    .login-background {
+        //background-image: url("/assets/imgs/tnb_final.jpg") no-repeat fixed center;
+        background-image: url('../assets/imgs/tnb_background.jpeg');
+        background-size: cover;
+      }
+
+    // .round {
+    //     border-radius: 10px;
+    //     overflow: hidden;
+    //     width: 100px;
+    //     height: 100px;
+    //     text-align: center;
+    // }
+    // .round img {
+    //     display: block;
+    //     align-items: center;
+    //     height: 100%;
+    //     width: 100%; 
+    //     min-width: 100%;
+    //     min-height: 100%;
+    //     background-color: antiquewhite;
+        
+    // }
+
+    // .item-md {
+    //     padding-left: 16px;
+    //     padding-right: 0;
+    //     position: relative;
+    //     font-size: 1.6rem;
+    //     font-weight: normal;
+    //     text-transform: none;
+    //     color: #000;
+    //     background-color: antiquewhite;
+    //     -webkit-box-shadow: none;
+    //     box-shadow: none;
+    //     -webkit-transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    //     transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    // }
+
+    // .toolbar-title {
+    //   white-space: normal !important;
+    // }
+
+
+
+
+
+    //css start for horizontal progress bar.
+
+// $primary: #f1c40f;
+// $secondary: #ecf0f1;
+// $background: #2c3e50;
+
+
+// .progressbar {
+//   counter-reset: step;
+//   margin-top: 15px;
+//   padding: 0;
+//   counter-increment: step 0;
+//   li {
+//     list-style-type: none;
+//     float: left;
+//     width: 22.33%;
+//     position: relative;
+//     text-align: center;
+//     letter-spacing: 2px;
+//     &:before {
+//       content: counter(step);
+//       counter-increment: step;
+//       width: 20px;
+//       height: 20px;
+//       line-height: 20px;
+//       border: 3px solid $secondary;
+//       display: block;
+//       text-align: center;
+//       margin: 0 auto 10px auto;
+//       border-radius: 50%;
+//       background-color: $background;
+//       letter-spacing: 0px;
+//     }
+//     &:after {
+//       content: '';
+//       position: absolute;
+//       width: 100%;
+//       height: 3px;
+//       background-color: $secondary;
+//       top: 12px;
+//       left: -50%;
+//       z-index: -1;
+//     }
+//     &:first-child:after {
+//       content: none;
+//     }
+//     &.active {
+//       color: $primary;
+//       &:before {
+//         border-color: $primary;
+//       }
+//     }
+//     &.active + li:after {
+//       background-color: $primary;
+//     }
+//   }
+// }
+
+.toolbar {
+  .toolbar-title {
+    font-size: 1.2rem;
+    color: white;
+    text-align: center;
+  }
+}
+  
+
+// end ..
+}

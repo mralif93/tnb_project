@@ -1,0 +1,222 @@
+<ion-header mode="md">
+  <ion-navbar color="primary">
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="md-menu" color="light"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Display Open Reservation</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon [color]="gv.testMobile ? 'danger' : 'light'" name="md-planet" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<!-- <ion-header>
+  <ion-grid class="headerStyle">
+    <ion-row>
+      <ion-col col-2 col-md-2 col-sm-2 style="text-align: left; padding-top: 0px;">
+        <button ion-button menuToggle clear>
+          <ion-icon name="menu" class="menuBackArrow"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-8 col-md-8 col-sm-8>
+        <div class="pageTitle">Display Open Reservation</div>
+      </ion-col>
+      <ion-col col-2 col-sm-2 style="word-wrap: break-all; text-align: right; padding-top: 0px; width:12px">
+        <ion-col col-2 col-sm-2 >
+          <button ion-button color="primary" style="float: right;" (click)="goBack()">Back</button>
+      </ion-col>
+  </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header> -->
+
+<ion-content padding>
+  <ion-row>
+    <ion-col col-4 col-lg-4 col-md-4 col-xs-4 col-sm-4>
+      <ion-row>
+        <ion-item>
+          <ion-label stacked class="ion-1x"><b style=" font-size: 17px;color: black;">Goods Recipient</b> <span
+              style="color: red">*</span></ion-label>
+          <select-searchable item-content [(ngModel)]="recipient" [items]="this.recipientItem"
+            itemValueField="laborcode" itemTextField="compositeName" [canSearch]="true">
+          </select-searchable>
+        </ion-item>
+      </ion-row>
+    </ion-col>
+    <ion-col col-4 col-lg-4 col-md-4 col-xs-4 col-sm-4>
+      <ion-row>
+        <ion-item>
+          <ion-label stacked class="ion-1x"><b style=" font-size: 17px;color: black;">Site ID</b> <span
+              style="color: red">*</span></ion-label>
+          <ion-select [(ngModel)]="siteid">
+            <ion-option *ngFor="let siteItem of siteItems" [value]="siteItem.siteid">{{ siteItem.siteid }} &nbsp; -
+              &nbsp; {{ siteItem.description }}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-row>
+    </ion-col>
+    <ion-col col-4 col-lg-4 col-md-4 col-xs-4 col-sm-4>
+      <ion-row>
+        <ion-item>
+          <ion-label stacked class="ion-1x"><b style=" font-size: 17px;color: black;">Created By</b> <span
+              style="color: red">*</span></ion-label>
+          <ion-input [(ngModel)]="created_by" type="text" [value]="createdByDisplayName" disabled></ion-input>
+        </ion-item>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col col-11 col-lg-11 col-md-11 col-xs-11 col-sm-11>
+      <ion-row>
+        <ion-item>
+          <ion-label stacked class="ion-1x"><b style=" font-size: 17px;color: black;">Material Number</b> <span
+              style="color: red">*</span></ion-label>
+          <select-searchable item-content [(ngModel)]="material_id" [items]="this.materialItems"
+            itemValueField="materialnum" itemTextField="compositeName" [canSearch]="true">
+          </select-searchable>
+        </ion-item>
+      </ion-row>
+    </ion-col>
+    <ion-col col-1 col-lg-1 col-md-1 col-xs-1 col-sm-1>
+      <ion-row class="okay-button">
+        <button ion-button style="float: right;" (click)="addMaterial()">
+          <ion-icon name="add-circle" style="font-size: 35px;"></ion-icon>
+        </button>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+
+  <ion-card *ngIf="valueIndicator">
+    <ion-card-header>
+      <ion-row (click)="showDeviceContentFn()">
+        <ion-col col-9>
+          <b>List of Materials</b>
+        </ion-col>
+        <ion-col col-3>
+          <span style="float: right;">
+            <ion-icon [name]="showDeviceContent? 'arrow-down':'arrow-up'"></ion-icon>
+          </span>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+    <ion-card-content *ngIf="showDeviceContent" style="padding-bottom: 29px;">
+      <ion-row>
+        <ion-col col-12 *ngFor="let device of storeMaterialList; let i = index;" style="margin-bottom: -29px;">
+          <ion-row style="padding: 0px;">
+            <ion-card [ngClass]="i%2 != 0 ? 'classA' : 'classB'">
+              <ion-card-header>
+                <ion-row (click)="showDeviceCompleteDetailFn(i)">
+                  <ion-col col-1 style="padding: 15px;">
+                    {{i+1}}.
+                  </ion-col>
+                  <ion-col col-10 style="padding: 15px;" *ngIf="device.respCode != '0'">
+                    <ion-row>
+                      <ion-col col-12>
+                        <span style=" font-size: 17px;color: black;"><b>Material Number :</b> {{ device.matnr }} (
+                          {{ device.description }} ) </span>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row style="margin-left: -7px;" *ngIf="validDisplayResultCheck[i]">
+                      <ion-col col-6>
+                        <ion-row>
+                          <ion-col col-12><span style=" font-size: 14px;color: black;"><b>Reservation number:
+                              </b>{{ device.rsNum }}</span></ion-col>
+                        </ion-row>
+                      </ion-col>
+                      <ion-col col-6>
+                        <ion-row>
+                          <ion-col col-12><span style=" font-size: 14px;color: black;"><b>Required Quantity:
+                              </b>{{ device.bdmng }}</span></ion-col>
+                        </ion-row>
+                      </ion-col>
+                    </ion-row>
+                  </ion-col>
+                  <ion-col col-10 style="padding: 15px;" *ngIf="!validDisplayResultCheck[i] && device.respCode == '0'"
+                    text-wrap>
+                    <span> {{ device.zlog }} </span>
+                  </ion-col>
+                  <ion-col col-1>
+                    <span style="float: right;" *ngIf="!afterValidInd[i]">
+                      <button ion-button (click)="deleteMaterial(i)">
+                        <ion-icon name="trash" item-center></ion-icon>
+                      </button>
+                    </span>
+                    <span style="float: right; padding: 10px;" *ngIf="afterValidInd[i] && device.respCode == '1'">
+                      <ion-icon [name]="showDeviceCompleteDetails[i]? 'arrow-down':'arrow-up'"></ion-icon>
+                    </span>
+                  </ion-col>
+                </ion-row>
+              </ion-card-header>
+              <ion-card-content *ngIf="showDeviceCompleteDetails[i] && afterValidInd[i]">
+                <div *ngIf="validDisplayResultCheck[i]">
+                  <ion-row>
+                    <ion-col col-6>
+                      <ion-row>
+                        <ion-col col-6><span style=" font-size: 17px;color: black;"><b>Item number: </b></span>
+                        </ion-col>
+                        <ion-col col-6 text-wrap><span>{{ device.rspos }}</span></ion-col>
+                      </ion-row>
+                    </ion-col>
+                    <ion-col col-6>
+                      <ion-row>
+                        <ion-col col-6><span style=" font-size: 17px;color: black;"><b>Site ID: </b></span></ion-col>
+                        <ion-col col-6 text-wrap><span>{{ device.gsber }}</span></ion-col>
+                      </ion-row>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col col-6>
+                      <ion-row>
+                        <ion-col col-6><span style=" font-size: 17px;color: black;"><b>Storage Location: </b></span>
+                        </ion-col>
+                        <ion-col col-6 text-wrap><span>ST_{{ device.lgort }}</span></ion-col>
+                      </ion-row>
+                    </ion-col>
+                    <ion-col col-6>
+                      <ion-row>
+                        <ion-col col-6><span style=" font-size: 17px;color: black;"><b>WithDrawn Quantity: </b></span>
+                        </ion-col>
+                        <ion-col col-6 text-wrap><span>{{ device.enmng }}</span></ion-col>
+                      </ion-row>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col col-6>
+                      <ion-row>
+                        <ion-col col-6><span style=" font-size: 17px;color: black;"><b>Created By: </b></span></ion-col>
+                        <ion-col col-6 text-wrap><span> {{ createdByDisplayName}} </span></ion-col>
+                      </ion-row>
+                    </ion-col>
+                    <ion-col col-6>
+                      <ion-row>
+                        <ion-col col-6><span style=" font-size: 17px;color: black;"><b>Status: </b></span></ion-col>
+                        <ion-col col-6 text-wrap><span>{{ device.zlog }}</span></ion-col>
+                      </ion-row>
+                    </ion-col>
+                  </ion-row>
+                </div>
+                <ion-row style="float: right;" *ngIf="validDisplayResultCheck[i]">
+                  <ion-col>
+                    <button ion-button
+                      (click)="(afterValidInd[i] && visibleChangeRequest[i]) ? callChangeRequest(i):callValidReservation(device.rsNum, device.matnr, i)">
+                      {{ (afterValidInd[i] && visibleChangeRequest[i]) ? 'Change Request':'Validate' }} </button>
+                  </ion-col>
+                </ion-row>
+              </ion-card-content>
+            </ion-card>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top: 25px;">
+        <ion-col style="text-align: center;">
+          <button ion-button style="padding: 15px;" (click)="validationToSubmit()">Get Data From ERMS</button>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

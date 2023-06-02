@@ -1,0 +1,61 @@
+<!-- Generated template for the AssigntaskComponent component -->
+<div style='height: 620px;'>
+  <ion-grid class="headerStyle">
+    <ion-row>
+      <ion-col col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12>
+        <div class="pageTitle"> Assign Service Order</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-item>
+      <ion-label stacked>Technician Id</ion-label>
+      <!--ion-select (ionChange)="laborCodeChange($event)" [(ngModel)]="labourId">
+        <ion-option *ngFor="let tech of laborItem">{{ tech.laborcode }}</ion-option>
+      </ion-select>-->
+      <select-searchable item-content [(ngModel)]="labourId" [items]="this.laborItem" itemValueField="laborcode"
+        itemTextField="compositeName" [canSearch]="true" (onChange)="laborCodeChange($event)">
+      </select-searchable>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Technician Name</ion-label>
+      <ion-input type="text" [(ngModel)]="techName" disabled></ion-input>
+    </ion-item>
+  </ion-grid>
+
+  <ion-grid style="height: 345px;">
+    <ion-card class="cardView">
+      <ion-card-header>
+        Service Order List
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item *ngFor="let attr of items; let i = index;" [ngClass]="i%2 != 0 ? 'classA':'classB'">
+            <ion-row>
+              <ion-col col-8>
+                <p><b>{{ i + 1 }} &nbsp;&nbsp; {{ attr.json.wonum }} - {{ attr.json.ta0bcrmnum }}</b></p>
+                <p><b>Scheduled</b> - {{ attr.json.schedstart | date: gv.dateFormat }} {{ attr.json.schedstart | date:
+                  gv.timeFormat }}</p>
+                <p class="statusField"><b>Status</b> - {{ attr.json.status }}</p>
+              </ion-col>
+              <ion-col col-4>
+                <p><b>Work Type</b> - {{attr.json.worktype }}</p>
+                <p><b>Assigned</b> - {{ attr.json.changeby }}</p>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </ion-grid>
+
+  <ion-grid style="padding-bottom: 20px;">
+    <ion-row>
+      <ion-col>
+        <button ion-button style="float: right;" (click)="dismiss()">Cancel</button>
+        <button ion-button style="float: right;" (click)="assignTasktoTechnician()">Submit</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

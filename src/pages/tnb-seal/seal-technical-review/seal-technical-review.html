@@ -1,0 +1,585 @@
+<ion-header mode="md">
+  <ion-navbar color="primary">
+    <!-- <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="md-menu" color="light"></ion-icon>
+      </button>
+    </ion-buttons> -->
+    <ion-title>Technical Review</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon [color]="gv.testMobile ? 'danger' : 'light'" name="md-planet" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- Customer Details Section -->
+  <!-- <ion-item-divider>
+    <ion-row>
+      <ion-col>
+        <ion-icon name="md-contact"></ion-icon>&nbsp;Customer Details Section
+      </ion-col>
+    </ion-row>
+  </ion-item-divider>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label color="primary" stacked>Account No.</ion-label>
+        <ion-input type="text" [(ngModel)]="ta4review.acctNoValue" readonly="true"
+          value="{{ items.json.ta0accountnum || '-' }}"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item>
+        <ion-label color="primary" stacked>Customer Name</ion-label>
+        <ion-input type="text" [(ngModel)]="ta4review.customerNameValue" readonly="true"
+          value="{{ (items.json.ta0bptenantname) ? items.json.ta0bptenantname : items.json.ta0bpname || '-' }}">
+        </ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item *ngFor="let address of items.json.woserviceaddress">
+        <ion-label color="primary" stacked>Full Address</ion-label>
+        <ion-textarea type="text" [(ngModel)]="ta4review.customerAddressValue" rows="4" readonly="true"
+          placeholder="Auto Populate Customer Address" value="{{ address.formattedaddress || '' }}"></ion-textarea>
+      </ion-item>
+    </ion-col>
+  </ion-row> -->
+
+  <ion-list style="border: 0.55px solid lightgrey;border-radius: 10px;">
+    <ion-list-header style="background-color: #f3e5f5;border-radius: 10px 10px 0px 0px;margin-top: 0px;">
+      <ion-icon name="contacts" item-start></ion-icon>
+      Customer Details Section
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label fixed color="primary">Account No.</ion-label>
+      <ion-input [(ngModel)]="ta4review.acctNoValue" type="number" placeholder="Account No."
+        value="{{ items.json.ta0accountnum || '-' }}" readonly></ion-input>
+    </ion-item>
+    <!--
+    <ion-item>
+      <ion-label fixed color="primary">Customer</ion-label>
+      <ion-input [(ngModel)]="ta4review.customerNameValue" type="text" placeholder="Customer Name"
+        value="{{ (items.json.ta0bptenantname) ? items.json.ta0bptenantname : items.json.ta0bpname || '-' }}" readonly>
+      </ion-input>
+    </ion-item>
+    -->
+    <ion-item>
+      <ion-label fixed color="primary">Customer</ion-label>
+      <ion-input [(ngModel)]="ta4review.customerNameValue" type="text" placeholder="Customer Name"
+        value="{{ items.json.ta0bpname || '-' }}" readonly>
+      </ion-input>
+    </ion-item>
+    <ion-item *ngFor="let address of items.json.woserviceaddress">
+      <ion-label fixed color="primary">Address</ion-label>
+      <ion-textarea [(ngModel)]="ta4review.customerAddressValue" type="text" rows="4" placeholder="Customer Address"
+        readonly="true" value="{{ address.formattedaddress || '' }}"></ion-textarea>
+    </ion-item>
+
+  </ion-list>
+
+  <!-- Confirmation of Anomalies & Reason Section -->
+  <!-- <div *ngFor="let attr of newArray ; let j=index"> -->
+  <!-- <ion-item-divider>
+      <ion-row>
+        <ion-col>
+          <ion-icon ios="md-ribbon" md="md-ribbon"></ion-icon>&nbsp;Feeder - {{j+1}} Confirmation of Anomalies & Reason
+        </ion-col>
+      </ion-row>
+    </ion-item-divider>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label color="primary">Meter Inspection Forms</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Meter: {{attr.ta0ts_meter}}</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>Fuse: {{attr.ta0ts_fuse}}</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>TTB: {{attr.ta0ts_ttb}}</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>Wiring: {{attr.ta0ts_wiring}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Form: {{attr.ta0ts_anamoly}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item style="background: #FFCCCC;border-radius: 10px;">
+          <ion-label text-center>Average Error</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <div *ngIf='attr.ta0testind === "M"'>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label color="primary">Accuracy Type</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label>Manual</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label color="primary">Average % Error</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label>{{attr.ta0at_avg}}</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div *ngIf='attr.ta0testind === "P"'>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Portable Test Set :</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label>{{attr.ta0at_pteserialnum}}</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label color="primary">%Error Average</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label>{{attr.ta0at_avg}}</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div> -->
+
+  <!-- Corrective / Follow Up Action -->
+  <!-- <ion-item-divider>
+      <ion-row>
+        <ion-col>
+          <ion-icon ios="md-paper" md="md-paper"></ion-icon>&nbsp;&nbsp;Corrective / Follow Up Action
+        </ion-col>
+      </ion-row>
+    </ion-item-divider>
+    <ion-row>
+      <ion-col col-sm-12 col-md-12 col-12>
+        <ion-item no-lines>
+          1. Meter disturbed were replaced with new meter. <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;{{ listNewMeters || '-' }} <br />
+          2. {{ this.ta4review.correctiveActionLine2 || '-' }}
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label color="primary">Corrective Action :</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>{{attr.ta0at_corrective_action}}</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label color="primary">Corrective Action Description :</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>{{attr.ta0at_corrective_action_desc}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label color="primary">Meter Serial No.</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>{{attr.serialNum}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row> -->
+  <!-- </div> -->
+
+  <!-- Confirmation of Anomalies & Reason Section -->
+  <!-- <ion-item-divider>
+    <ion-row>
+      <ion-col>
+        <ion-icon name="md-ribbon"></ion-icon>&nbsp;&nbsp;Confirmation of Anomalies & Reason
+      </ion-col>
+    </ion-row>
+  </ion-item-divider>
+  <ion-row>
+    <ion-col>
+      <ion-item text-wrap no-lines style="text-align: justify;">
+        {{ combineEng }} <br /><br />
+        2. {{ combineReng }}
+      </ion-item>
+    </ion-col>
+  </ion-row> -->
+
+  <ion-list style="border: 0.55px solid lightgrey;border-radius: 10px;">
+    <ion-list-header style="background-color: #f3e5f5;border-radius: 10px 10px 0px 0px;margin-top: 0px;">
+      <ion-icon name="logo-buffer" item-start></ion-icon>
+      Confirmation of Anomalies & Reason
+    </ion-list-header>
+
+    <ion-item text-wrap style="text-align: justify;">
+      <ion-label>{{ combineEng }}</ion-label>
+    </ion-item>
+    <ion-item text-wrap style="text-align: justify;">
+      <ion-label>2. {{ combineReng }}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!-- <span *ngFor="let attr of data; let j = index">
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label color="primary">Serial No : {{ attr.old.ta0serialnum }}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines *ngFor="let seal of data.seal; let k = index">
+
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </span> -->
+
+  <!-- Corrective / Follow Up Action -->
+  <!-- <ion-item-divider>
+    <ion-row>
+      <ion-col>
+        <ion-icon name="md-paper"></ion-icon>&nbsp;&nbsp;Corrective / Follow Up Action
+      </ion-col>
+    </ion-row>
+  </ion-item-divider>
+  <ion-row>
+    <ion-col col-sm-12 col-md-12 col-12>
+      <ion-item no-lines *ngIf="combineNewEng == ''">
+        1. Meter disturbed were replaced with new meter. <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;{{ listNewMeters || '-' }} <br />
+        2. {{ this.ta4review.correctiveActionLine2 || '-' }}
+      </ion-item>
+      <ion-item no-lines *ngIf="combineNewEng != ''">
+        {{ combineNewEng  }} <br /><br />
+        {{ combineNewEng2 }}
+      </ion-item>
+    </ion-col>
+  </ion-row> -->
+
+  <ion-list style="border: 0.55px solid lightgrey;border-radius: 10px;">
+    <ion-list-header style="background-color: #f3e5f5;border-radius: 10px 10px 0px 0px;margin-top: 0px;">
+      <ion-icon name="logo-buffer" item-start></ion-icon>
+      Corrective / Follow Up Action
+    </ion-list-header>
+
+    <ion-item *ngIf="combineNewEng == ''">
+      <ion-label>1. Meter disturbed were replaced with new meter.</ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="combineNewEng == '' && listNewMeters">
+      <ion-label>{{ listNewMeters || '-' }}</ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="combineNewEng == ''">
+      <ion-label>2. {{ this.ta4review.correctiveActionLine2 || '-' }}</ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="combineNewEng != ''" text-wrap style="text-align: justify;">
+      <ion-label>{{ combineNewEng  }}</ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="combineNewEng != ''" text-wrap style="text-align: justify;">
+      <ion-label>{{ combineNewEng2  }}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!-- Other Notes -->
+  <!-- <ion-item-divider>
+    <ion-row>
+      <ion-col>
+        <ion-icon name="md-paper"></ion-icon>&nbsp;&nbsp;Other Notes
+      </ion-col>
+    </ion-row>
+  </ion-item-divider>
+  <ion-row>
+    <ion-col>
+      <ion-item no-lines text-wrap>
+        1. Need to be referred as a Meter Installation Tampering case. <br />
+        2. Please monitor this account as <b><i>High Risk Customer (HRC)</i></b> in BCRM. <br />
+        3. Please set up an adjustment bill based on an error ({{ combineAverageError }}).
+      </ion-item>
+    </ion-col>
+  </ion-row> -->
+  <!-- Need to closed (User Requested: 26/07/2019) -->
+  <!-- <ion-row>
+    <ion-col col-sm-12 col-md-8 col-8>
+      <ion-item>
+        <ion-label stacked color="primary">Police Report No.</ion-label>
+        <ion-input type="text" [(ngModel)]="ta4review.otherNotesReportNo" placeholder="Police Report No."></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col col-sm-12 col-md-4 col-4>
+      <ion-item>
+        <ion-label stacked color="primary">Report Date</ion-label>
+        <ion-datetime [(ngModel)]="ta4review.otherNotesReportDate" displayFormat="DD/MM/YYYY" pickerFormat="DD:MMM:YYYY"
+          placeholder="Select date"></ion-datetime>
+      </ion-item>
+    </ion-col>
+  </ion-row> -->
+
+  <ion-list style="border: 0.55px solid lightgrey;border-radius: 10px;">
+    <ion-list-header style="background-color: #f3e5f5;border-radius: 10px 10px 0px 0px;margin-top: 0px;">
+      <ion-icon name="logo-buffer" item-start></ion-icon>
+      Other Notes
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>1. Need to be referred as a Meter Installation Tampering case.</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>2. Please monitor this account as <b><i>High Risk Customer (HRC)</i></b> in BCRM.</ion-label>
+    </ion-item>
+
+    <ion-item text-wrap style="text-align: justify;">
+      <ion-label>3. Please set up an adjustment bill based on an error ({{ combineAverageError || '-'}}).</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!-- Examination Team Member -->
+  <!-- <ion-item-divider>
+    <ion-row>
+      <ion-col>
+        <ion-icon name="md-contacts"></ion-icon>&nbsp;&nbsp;Examination Team Member
+      </ion-col>
+    </ion-row>
+  </ion-item-divider>
+  <ion-row>
+    <ion-col col-sm-12 col-md-1 col-1>
+      <ion-item no-lines>
+
+      </ion-item>
+    </ion-col>
+    <ion-col col-sm-12 col-md-5 col-5>
+      <ion-item>
+        <ion-label color="primary" text-uppercase>Name</ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col col-sm-12 col-md-2 col-2>
+      <ion-item>
+        <ion-label color="primary" text-uppercase>Staff No</ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col col-sm-12 col-md-4 col-4>
+      <ion-item>
+        <ion-label color="primary" text-uppercase>Position</ion-label>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngFor="let person of ta4members; let j = index">
+    <ion-col col-sm-12 col-md-1 col-1>
+      <ion-item text-wrap no-lines>
+        {{ j + 1 }}
+      </ion-item>
+    </ion-col>
+    <ion-col col-sm-12 col-md-5 col-5 col-2 align-self-end>
+      <ion-item text-wrap>
+        {{ person.fullname || '-' }}
+      </ion-item>
+    </ion-col>
+    <ion-col col-sm-12 col-md-2 col-2 align-self-end>
+      <ion-item text-wrap>
+        {{ person.laborcode || '-' }}
+      </ion-item>
+    </ion-col>
+    <ion-col col-sm-12 col-md-3 col-3 align-self-end>
+      <ion-item text-wrap>
+        Technician
+      </ion-item>
+    </ion-col>
+  </ion-row> -->
+
+  <ion-list style="border: 0.55px solid lightgrey;border-radius: 10px;">
+    <ion-list-header style="background-color: #f3e5f5;border-radius: 10px 10px 0px 0px;margin-top: 0px;">
+      <ion-icon name="contacts" item-start></ion-icon>
+      Examination Team Member
+    </ion-list-header>
+
+    <ion-item *ngFor="let person of ta4members; let j = index">
+      <ion-icon name="contact" item-start></ion-icon>
+      <h2>{{ person.laborcode || '-' }} - {{ person.fullname || '-' }}</h2>
+      <p *ngIf="j === 0">Team Lead</p>
+      <p *ngIf="j != 0">Technician</p>
+    </ion-item>
+  </ion-list>
+
+
+  <!-- <ion-item-divider>
+    <ion-row>
+      <ion-col>
+        <ion-icon name="md-person"></ion-icon>&nbsp;&nbsp;Executive Details Section
+      </ion-col>
+    </ion-row>
+  </ion-item-divider>
+  <ion-row>
+    <ion-col col-12 col-sm-12 col-md-12>
+      <ion-item>
+        <ion-label color="primary" stacked>List of Executive's</ion-label>
+        <ion-select [selectOptions]="{ title: 'Executive' }" placeholder="-- Choose --"
+          (ionChange)="setExecutiveDetails($event)">
+          <ion-option value="{{ user.userid }}" *ngFor="let user of executiveList; let i = index">{{ user.name  }} -
+            {{ user.position }}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label color="primary" stacked>Name of Executive</ion-label>
+        <ion-input [(ngModel)]="ta4review.exeNameValue" disabled="true" placeholder="Auto Populate"
+          value="{{ gv.displayname || '' }}">
+        </ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-sm-12 col-md-8 col-8>
+      <ion-item>
+        <ion-label color="primary" stacked>Position</ion-label>
+        <ion-input [(ngModel)]="ta4review.exePositionValue" placeholder="Enter value"
+          value="{{ ta4review.exePositionValue || '' }}">
+        </ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col col-sm-12 col-md-4 col-4>
+      <ion-item>
+        <ion-label color="primary" stacked>Date</ion-label>
+        <ion-input [(ngModel)]="ta4review.exeDate" placeholder="Auto Populate" disabled="true"
+          value="{{ techReview.ta4currentDate || '' }}">
+        </ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row style="padding-bottom: 10px;">
+    <ion-col col-2 col-md-2 col-sm-12>
+      <ion-item no-lines>
+        <ion-label color="primary">Signature:</ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col col-8 col-md-8 col-sm-12>
+      <ion-item no-lines>
+        <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad1></signature-pad>
+      </ion-item>
+    </ion-col>
+    <ion-col col-2 col-md-2 col-sm-12>
+      <ion-item no-lines>
+        <button ion-button color="buttonlightColor" (click)="clearSign()">Clear</button>
+      </ion-item>
+    </ion-col>
+  </ion-row> -->
+
+  <ion-list style="border: 0.55px solid lightgrey;border-radius: 10px;">
+    <ion-list-header style="background-color: #f3e5f5;border-radius: 10px 10px 0px 0px;margin-top: 0px;">
+      <ion-icon name="logo-buffer" item-start></ion-icon>
+      Executive Details Section
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label fixed color="primary" style="min-width: 150px;">List of Executive's</ion-label>
+      <ion-select [selectOptions]="{ title: 'Executive' }" (ionChange)="setExecutiveDetails($event)"
+        placeholder="Choose" style="min-width: 78%;">
+        <ion-option value="{{ i }}" *ngFor="let user of executiveList; let i = index" text-wrap>
+          {{ user.json.name  }} - {{ user.json.position }}
+        </ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed color="primary" style="min-width: 150px;">Executive</ion-label>
+      <ion-input [(ngModel)]="ta4review.exeNameValue" disabled="true" placeholder="Name"
+        value="{{ gv.displayname || '' }}">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed color="primary" style="min-width: 150px;">Position</ion-label>
+      <ion-input [(ngModel)]="ta4review.exePositionValue" disabled="true" placeholder="Position"
+        value="{{ ta4review.exePositionValue || '' }}">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed color="primary" style="min-width: 150px;">Date</ion-label>
+      <ion-input [(ngModel)]="ta4review.exeDate" placeholder="Auto Populate" disabled="true"
+        value="{{ techReview.ta4currentDate || '' }}">
+      </ion-input>
+    </ion-item>
+    
+    <ion-item style="align-items: start;">
+      <ion-label fixed color="primary" style="min-width: 165px;">Signature</ion-label>
+      <ion-label>
+        <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad1></signature-pad>
+        <button ion-button float-right (click)="clearSign()"><ion-icon name="md-refresh"></ion-icon></button>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer mode="md">
+  <ion-toolbar mode="md">
+    <ion-row>
+      <ion-col><button ion-button round block mode="md" (click)="saveData()">Save</button></ion-col>
+      <ion-col><button ion-button round block mode="md" (click)="previewDocument()">Preview</button></ion-col>
+      <ion-col><button ion-button round block mode="md" (click)="goBack()">Cancel</button></ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

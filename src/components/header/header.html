@@ -1,0 +1,23 @@
+<!-- Generated template for the HeaderComponent component -->
+<ion-row style=" background-color: #0d47a1;">
+  <ion-col col-9 col-md-9 col-sm-9>
+    <div class="pageTitle" style="padding-top: 12px;">{{pageName}}
+    </div>
+  </ion-col>
+  <ion-col col-2 col-md-2 col-sm-2>
+
+    <div *ngIf='gv.testMobile'>
+      <ion-icon class="flash_plnt" name="custom-connected" style="font-size:20px"
+        [style.color]="gv.testMobile ? 'red':'#00e600'">
+        {{ gv.testMobile ? 'Offline':'Online' }}
+      </ion-icon>
+    </div>
+    <div *ngIf='!gv.testMobile'>
+      <ion-icon class="flash_plnt" name="custom-disconnect" style="font-size:20px"
+        [style.color]="gv.testMobile ? 'red':'#00e600'">
+        {{ gv.testMobile ? 'Offline':'Online' }}
+      </ion-icon>
+    </div>
+  </ion-col>
+
+</ion-row>

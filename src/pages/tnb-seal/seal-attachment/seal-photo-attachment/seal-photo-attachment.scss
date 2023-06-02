@@ -1,0 +1,19 @@
+page-seal-photo-attachment {  
+
+  ion-slide {
+    background-color: #f6fbff;
+  }
+
+  ion-slide img {
+    height: 50vh !important;
+    width: auto !important;
+  }
+
+  .card-ios {
+    border-radius: 10px !important;
+    margin-top: 15px !important;
+    border: 1px solid lightgrey;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  }
+
+}

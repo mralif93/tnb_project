@@ -1,0 +1,829 @@
+<ion-header mode="md">
+  <ion-navbar color="primary">
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="md-menu" color="light"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>My Assigned Work</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="changeScenario()" style="padding-right: 20px;">
+        <ion-icon [color]="gv.testMobile ? 'danger' : 'light'" name="md-planet" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons>
+    <!-- <ion-buttons end>
+      <button ion-button icon-only style="padding-right: 20px;" (click)="updateGPSCoordinate($event)">
+        <ion-icon color="light" name="navigate" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons> -->
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon name="more" color="light"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-toolbar>
+    <ion-segment mode="md" [(ngModel)]="refSegment" (click)="segmentClick()">
+      <ion-segment-button value="workorder" [ngClass]="refSegment == 'workorder' ? 'Segment-actived' : ''">
+        Service Order
+      </ion-segment-button>
+      <ion-segment-button value="pin" [ngClass]="refSegment == 'pin' ? 'Segment-actived' : ''">
+        My Favourite
+      </ion-segment-button>
+      <ion-segment-button value="pending" [ngClass]="refSegment == 'pending'? 'Segment-actived' : ''">
+        Upload BCRM
+      </ion-segment-button>
+      <ion-segment-button value="pendsyncup" [ngClass]="refSegment == 'pendsyncup'? 'Segment-actived':''">
+        Pending Sync Up
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar mode="md" color="primary" [showCancelButton]="true" [(ngModel)]="searchTerm"
+      (ionInput)="filterSOType($event.target.value)"
+      placeholder="Search (SO Type, BCRM Number, Site ID, SO Number, Status, SN Code)">
+    </ion-searchbar>
+  </ion-toolbar>
+  <ion-row>
+    <ion-col col-sm-12 col-md-1 col-1 align-self-end>
+      <button ion-button color="light" style="width: 100%;" (click)="multiSelect()">
+        <ion-icon [name]="selectText"></ion-icon>
+      </button>
+    </ion-col>
+    <ion-col col-sm-12 col-md-5 col-5>
+      <ion-item no-lines>
+        <ion-label color="primary" stacked>SO Type</ion-label>
+        <ion-select [(ngModel)]="soType" (ionChange)="goToWorkOrderHome($event)" multiple="{{gv.ctrl_dropdownHomePage}}"
+          [selectOptions]="{ title:'SO Type' }">
+          <ion-option *ngFor="let item of gv.newWorktype" [value]="item.key" [selected]="item.key == 'ALL'">
+            {{item.key}}&nbsp;({{item.value}})</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+    <ion-col col-sm-12 col-md-5 col-5>
+      <ion-item no-lines>
+        <ion-label color="primary" stacked>Sorting</ion-label>
+        <ion-select [(ngModel)]="sortOrderList" (ionChange)="makeSortResultFun()" multiple="false"
+          [selectOptions]="{ title:'Sorting' }">
+          <ion-option value="wonum">SO Number</ion-option>
+          <ion-option value="worktype">SO Type</ion-option>
+          <ion-option value="status">Status</ion-option>
+          <ion-option value="reportdate">Creation Date</ion-option>
+          <ion-option value="woeq13">Assigned Date</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+    <ion-col col-sm-12 col-md-1 col-1 style="word-wrap: break-all;" align-self-end>
+      <button ion-button color="light" (click)="makeSortOrderChange()" style="width: 100%;">
+        <ion-icon name="{{ sortTitle }}"></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-header>
+
+<!-- <ion-header>
+  <ion-grid class="headerStyle">
+    <ion-row>
+      <ion-col col-3 col-sm-3 col-md-3 align-self-center style="text-align: left;">
+        <button ion-button menuToggle clear>
+          <ion-icon name="menu" class="menuBackArrow"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-5 col-sm-5 col-md-5 align-self-center>
+        <div class="pageTitle">
+          My Assigned Work
+        </div>
+      </ion-col>
+      <ion-col col-3 col-sm-3 col-md-3 align-self-center style="text-align: right;" (click)="changeScenario()">
+        <button ion-button small round mode="md" disabled="true" class="flash" style="opacity: unset;">
+          <ion-icon class="flash_plnt" name="planet" [style.color]="gv.testMobile ? 'red':'green'">
+            {{ gv.testMobile ? 'Offline':'Online' }}
+          </ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-1 col-sm-1 col-md-1 align-self-center style="text-align: right;" (click)="presentPopover($event)">
+        <button ion-button icon-only clear>
+          <ion-icon name="more" class="menuBackArrow"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="refSegment" (click)="segmentClick()">
+      <ion-segment-button value="workorder" [ngClass]="refSegment == 'workorder' ? 'Segment-actived' : ''">
+        Service Order </ion-segment-button>
+      <ion-segment-button value="pin" [ngClass]="refSegment == 'pin' ? 'Segment-actived' : ''">
+        My Favourite
+      </ion-segment-button>
+      <ion-segment-button value="pending" [ngClass]="refSegment == 'pending'? 'Segment-actived' : ''">
+        Upload BCRM
+      </ion-segment-button>
+      <ion-segment-button value="pendsyncup" [ngClass]="refSegment == 'pendsyncup'? 'Segment-actived':''">
+        Pending Sync Up
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+  <ion-row>
+    <ion-col col-1 col-sm-12 col-md-1 align-self-center justify-content-center *ngIf="selectCheck">
+      <ion-checkbox [(ngModel)]="selectAllBool" (click)="selectAll($event)"
+        style="float: left; margin: 8px 16px 8px 13px;">
+      </ion-checkbox>
+    </ion-col>
+    <ion-col col-2 col-sm-12 col-md-2>
+      <button ion-button color="default" (click)="multiSelect()" style="float: left;">
+        <ion-icon [name]="selectText" style="padding-right: 12px;"></ion-icon>Select
+      </button>
+    </ion-col>
+    <ion-col align-self-center>
+      <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterSOType($event.target.value)"
+        placeholder="Search (SO Type, BCRM Number, Site ID, SO Number, Status, SN Code)">
+      </ion-searchbar>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-sm-12 col-md-3 col-3>
+      <ion-item no-lines>
+        <ion-label color="primary" stacked>SO Type</ion-label>
+        <ion-select interface="popover" [(ngModel)]="soType" (ionChange)="goToWorkOrderHome($event)"
+          multiple="{{gv.ctrl_dropdownHomePage}}" [selectOptions]="{ title:'SO Type' }">
+          <ion-label>Work Order List</ion-label>
+          <ion-option *ngFor="let item of gv.newWorktype" [value]="item.key" [selected]="item.key == 'ALL'">
+            {{item.key}}&nbsp;({{item.value}})</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+    <ion-col col-6 col-sm-12 col-md-5 align-self-center style="padding-top:10px;">
+      <ion-item no-lines>
+        <ion-label color="primary" size="20px;" style="text-align: center;"> Service Order List </ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col col-sm-12 col-md-3 col-3>
+      <ion-item no-lines>
+        <ion-label color="primary" stacked>Sorting</ion-label>
+        <ion-select interface="popover" [(ngModel)]="sortOrderList" (ionChange)="makeSortResultFun()">
+          <ion-option value="wonum">SO Number</ion-option>
+          <ion-option value="worktype">SO Type</ion-option>
+          <ion-option value="status">Status</ion-option>
+          <ion-option value="reportdate">Creation Date</ion-option>
+          <ion-option value="woeq13">Assigned Date</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+    <ion-col col-1 col-sm-12 col-md-1 style="word-wrap: break-all;" align-self-end>
+      <button ion-button color="light" (click)="makeSortOrderChange()" style="width: 100%;">
+        <ion-icon name="{{ sortTitle }}"></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-header> -->
+
+<ion-content>
+  <ion-fab bottom right>
+    <button ion-fab mini class="scrollFabButton" color="primary" (click)="scrollToTop()">
+      <ion-icon name="arrow-up"></ion-icon>
+    </button>
+  </ion-fab>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull down to download">
+    </ion-refresher-content>
+  </ion-refresher>
+  <div [ngSwitch]="refSegment">
+    <ion-row>
+      <ion-col ion-col col-md-3 align-self-center>
+        <ion-item no-lines *ngIf="selectCheck">
+          <ion-checkbox item-start [(ngModel)]="selectAllBool" (ionChange)="selectAll($event)"></ion-checkbox>
+          <ion-label>Select All</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-md-9 [ngClass]="(isValid && refSegment == 'workorder') ? 'display':'non-display'">
+        <ion-item no-lines class="pagination">
+          <a href="javascript:;" [ngClass]="(prevbtndisabled)?'disabled':''" (click)="setprevious()">&laquo;</a>
+          <a href="javascript:;" [ngClass]="(page===gv.pageCurrentIndex)?'active':''" (click)="setpagination(page -1)"
+            *ngFor="let page of gv.pages; let index = index">{{ page }}</a>
+          <a href="javascript:;" [ngClass]="(nextbtndisabled)?'disabled':''" (click)="setnext()">&raquo;</a>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-list *ngIf="refSegment != 'pendsyncup'">
+      <ion-card *ngFor='let attr of gv.initItems; let j = index;'>
+        <ion-item-divider
+          (click)="(!selectCheck && (showDiv == true || attr.json.ta0download == 'N' || attr.json.ta0download == '' || attr.json.ta0download == 'undefined' || attr.json.ta0download == null || attr.json.ta0download === 'Y') ) ? goToWorkOrderDetail(attr) :  ''">
+          <ion-checkbox *ngIf="selectCheck" (click)="onChangeCheckBoxes(attr.json.wonum, attr)"
+            [checked]="selectedItem.includes(attr.json.wonum)" item-start></ion-checkbox>
+          <ion-label item-start>
+            <strong>
+              {{ gv.offset + j + 1 }}. &nbsp;&nbsp; {{ attr.json.wonum }} - {{ attr.json.ta0bcrmnum }}
+            </strong>
+          </ion-label>
+          <ion-label item-end text-left>
+            <strong>{{ attr.json.worktype }}</strong>
+          </ion-label>
+          <ion-label item-end text-center style="border-radius: 10px;margin: 5px;padding: 5px;"
+            [ngClass]="(attr.json.status == 'APPR' ? 'classAppr' : '') ||  (attr.json.status == 'INPRG' ? 'classInprg' : '') || (attr.json.status == 'KIV' ? 'classKiv' : '') || (attr.json.status == 'PCBNT' ? 'classPcbnt' : '') || (attr.json.status == 'COMP' ? 'classReview' : '')">
+            {{ attr.json.status }} -
+            {{ attr.json.status === 'APPR' ? 'Approved' : attr.json.status === 'INPRG' ? 'In Progress' : attr.json.status === 'CLSD' ? 'Closed' : attr.json.status === 'TECO' ? 'Complete' : attr.json.status === 'COMP' ? 'Review' : attr.json.status === 'KIV' ? ( attr.json.hasOwnProperty('ta0wouserstatus') ? attr.json.ta0wouserstatus[0].ta0status :'KIV') : attr.json.status === 'PCBNT' ? 'PCBNT' : '' }}
+            {{ attr.json.status === 'KIV' && attr.json.hasOwnProperty('ta0wouserstatus') && attr.json.ta0wouserstatus.length >1 ? attr.json.ta0wouserstatus[1].ta0status :'' }}
+            {{ attr.json.status === 'KIV' && attr.json.hasOwnProperty('ta0wouserstatus') && attr.json.ta0wouserstatus.length >2 ? attr.json.ta0wouserstatus[2].ta0status :'' }}
+            {{ attr.json.status === 'KIV' && attr.json.hasOwnProperty('ta0wouserstatus') && attr.json.ta0wouserstatus.length >3 ? attr.json.ta0wouserstatus[3].ta0status :'' }}
+          </ion-label>
+        </ion-item-divider>
+
+        <ion-item mode="md"
+          (click)="(!selectCheck && ( showDiv == true || attr.json.ta0download == 'N' || attr.json.ta0download == '' || attr.json.ta0download == 'undefined' || attr.json.ta0download == null || attr.json.ta0download === 'Y') ) ? goToWorkOrderDetail(attr) :  ''">
+          <ion-label *ngIf="attr.json.lead != null">
+            <strong>Assigned : </strong>
+            {{ attr.json.lead }}
+          </ion-label>
+          <ion-label *ngIf="attr.json.lead == null">
+            <strong>Unassigned</strong>
+          </ion-label>
+          <ion-label item-end text-right>
+            <strong>Site ID : </strong>
+            {{attr.json.siteid }}
+          </ion-label>
+          <ion-label item-end text-right>
+            <strong>SN : </strong>
+            {{ attr.json.ta0sncode }}
+          </ion-label>
+        </ion-item>
+
+        <ion-item mode="md" *ngIf="attr.json.ta0srnum != null"
+          (click)="(!selectCheck && ( showDiv == true || attr.json.ta0download == 'N' || attr.json.ta0download == '' || attr.json.ta0download == 'undefined' || attr.json.ta0download == null || attr.json.ta0download === 'Y') ) ? goToWorkOrderDetail(attr) :  ''">
+          <ion-label>
+            <strong>SR No : </strong>
+            {{ attr.json.ta0srnum }}
+          </ion-label>         
+          <ion-label *ngIf="attr.json.ta0crmdoctype != null" item-end text-left>
+            <strong>CRM Doc Type : </strong>
+            {{ attr.json.ta0crmdoctype }}
+          </ion-label>  
+          <ion-label *ngIf="attr.json.ta0crmapptdate != null" item-end text-right>
+            <strong>CRM Appt. Date : </strong>
+            {{ attr.json.ta0crmapptdate | date: gv.dateFormat }} -
+            {{ attr.json.ta0crmapptdate | date: gv.timeFormat }}
+          </ion-label>         
+        </ion-item>
+
+        <ion-item mode="md"
+          (click)="(!selectCheck && ( showDiv == true || attr.json.ta0download == 'N' || attr.json.ta0download == '' || attr.json.ta0download == 'undefined' || attr.json.ta0download == null || attr.json.ta0download === 'Y') ) ? goToWorkOrderDetail(attr) :  ''">
+          <ion-label *ngIf="gv.employeeTypeLogin">
+            <strong>Change By : </strong>
+            {{ attr.json.changeby }}
+          </ion-label>
+          <ion-label>
+            <strong>CA No. : </strong>
+            {{ attr.json.ta0accountnum }}
+          </ion-label>
+          <ion-label item-end text-right>
+            <strong>
+              Voltage :
+            </strong>
+            {{ attr.json.ta0installationvoltage == '01' ? 'Single Phase' :
+                 attr.json.ta0installationvoltage == '02' ? '3 Phase' :
+                 attr.json.ta0installationvoltage == '03' ? '400V LPC' : 
+                 attr.json.ta0installationvoltage == '04' ? '6.6kV LPC' : 
+                 attr.json.ta0installationvoltage == '05' ? '11kV' :
+                 attr.json.ta0installationvoltage == '06' ? '22kV' :
+                 attr.json.ta0installationvoltage == '07' ? '33kV' :
+                 attr.json.ta0installationvoltage == '08' ? '66kV' :
+                 attr.json.ta0installationvoltage == '09' ? '132kV' :
+                 attr.json.ta0installationvoltage == '10' ? '275kV' : 
+                 attr.json.ta0installationvoltage == '11' ? '500kV' : '' }}
+          </ion-label>
+        </ion-item>
+
+        <ion-item mode="md"
+          (click)="(!selectCheck && ( showDiv == true || attr.json.ta0download == 'N' || attr.json.ta0download == '' || attr.json.ta0download == 'undefined' || attr.json.ta0download == null || attr.json.ta0download === 'Y') ) ? goToWorkOrderDetail(attr) :  ''"
+          text-wrap style="align-items: center;">
+          <h2><strong>Customer Name : </strong></h2>
+          <h2>{{ attr.json.ta0bpname }}</h2>
+
+          <ion-spinner name="dots" item-end style="zoom: 1;"
+            *ngIf="attr.json.ta0download == 'L' || attr.json.ta0checking == 'L'">
+          </ion-spinner>
+        </ion-item>
+
+        <ion-item mode="md" no-lines *ngFor=" let address of attr.json.woserviceaddress;" text-wrap
+          (click)="(!selectCheck && ( showDiv == true || attr.json.ta0download == 'N' || attr.json.ta0download == '' || attr.json.ta0download == 'undefined' || attr.json.ta0download == null || attr.json.ta0download === 'Y') ) ? goToWorkOrderDetail(attr) :  ''">
+          <h2 *ngIf="address.formattedaddress != null"><strong>Address: </strong></h2>
+          <h2 *ngIf="address.formattedaddress != null">{{ address.formattedaddress }}</h2>
+        </ion-item>
+
+        <ion-row style="border-top: 1px solid #c8c7cc;">
+          <button ion-item no-lines detail-none col-md-4 style="border-right: 1px solid #c8c7cc;"
+            (click)="(attr.json.ta0download == 'Y') ? goToWorkOrderDetail(attr) : downloadFeederDetails(attr, attr.json.wonum, 'single')"
+            [ngClass]="(attr.json.ta0download == 'Y') ? 'icon-success' : 'icon-failed'">
+            <ion-icon [name]="(attr.json.ta0download == 'Y') ? 'cloud-done' : 'cloud-download-outline'" item-start>
+            </ion-icon>
+            Download
+          </button>
+          <button ion-item no-lines detail-none col-md-4 style="border-right: 1px solid #c8c7cc;"
+            (click)="checkingWorkOrderStatus(attr, attr.json.wonum, attr.json.siteid)"
+            [ngClass]="(attr.json.ta0checking == 'Y') ? 'icon-success' : 'icon-failed'">
+            <ion-icon name="md-sync" item-start>
+            </ion-icon>
+            Check Status
+          </button>
+          <button ion-item no-lines detail-none col-md-4
+            (click)="(attr.json.ta0favourite == 'Y') ? pinSelectItem(attr, j, 'unpin') : pinSelectItem(attr, j, 'pin')"
+            [ngClass]="(attr.json.ta0favourite == 'Y') ? 'icon-success' : 'icon-failed'">
+            <ion-icon [name]="(attr.json.ta0favourite == 'Y') ? 'ios-heart' : 'ios-heart-outline'" item-start>
+            </ion-icon>
+            Favourite
+          </button>
+        </ion-row>
+
+        <ion-list-header style="border-top: 1px solid #c8c7cc;background-color: #f7f7f7;"
+          *ngIf="(attr.json.ta0inststatus !== null && attr.json.ta0inststatus !== undefined && attr.json.ta0inststatus !== '') || attr.json.ta0bcrmresponsestatus === 'E'"
+          (click)="viewOpenCloseStatus(j)">
+          <ion-icon name="information-circle" item-start></ion-icon>
+          Responds Status
+          <ion-icon name="arrow-dropright" *ngIf="!statusview" item-end></ion-icon>
+          <ion-icon name="arrow-dropdown" *ngIf="statusview" item-end></ion-icon>
+        </ion-list-header>
+
+        <!-- <span
+          *ngIf="(statusview && statusIndex === j) || (attr.json.ta0inststatus !== null && attr.json.ta0inststatus !== undefined && attr.json.ta0inststatus !== '')"> -->
+        <ion-item text-wrap
+          *ngIf="(attr.json.ta0inststatus !== null && attr.json.ta0inststatus !== undefined && attr.json.ta0inststatus !== '')"
+          [ngClass]="(attr.json.ta0checking == 'Y' || (attr.json.ta0inststatus !== null && attr.json.ta0inststatus !== undefined && attr.json.ta0inststatus !== '')) ? 'successRespond' : ''">
+          <h2><strong>Installation Status</strong></h2>
+          <p style="color: black;white-space: pre-line;">{{ attr.json.ta0inststatus || "-" }}</p>
+        </ion-item>
+
+        <ion-row
+          *ngIf="(attr.json.ta0inststatus !== null && attr.json.ta0inststatus !== undefined && attr.json.ta0inststatus !== '')"
+          style="border-bottom: 0.2px solid grey;">
+          <ion-item no-lines
+            [ngClass]="(attr.json.ta0checking == 'Y' || (attr.json.ta0inststatus !== null && attr.json.ta0inststatus !== undefined && attr.json.ta0inststatus !== '')) ? 'successRespondLabel' : ''">
+            <ion-label>
+              <strong>Last updated :</strong>&nbsp;
+              {{ attr.json.ta0inststatusdate | date: gv.dateFormat }} -
+              {{ attr.json.ta0inststatusdate | date: gv.timeFormat }}
+            </ion-label>
+          </ion-item>
+        </ion-row>
+
+        <ion-item text-wrap no-lines *ngIf="attr.json.ta0bcrmresponsestatus === 'E'"
+          [ngClass]="(attr.json.ta0bcrmresponsestatus === 'E') ? 'errorRespond' : ''">
+          <h2><strong>BCRM Status</strong></h2>
+          <p style="color:black;text-align:justify;white-space: pre-line;">
+            {{ attr.json.ta0bcrmresponsecode }}
+          </p>
+        </ion-item>
+
+        <ion-list-header style="color: red;background-color: antiquewhite;"
+          *ngIf="attr.json.ta0syncresponsemsg !== null && attr.json.ta0syncresponsemsg !== '' && attr.json.ta0syncresponsemsg !== undefined">
+          <ion-icon name="information-circle" item-start></ion-icon>
+          Sync Up Responds
+          <ion-icon name="arrow-dropright" item-end></ion-icon>
+          <!-- <ion-icon name="arrow-dropdown" item-end></ion-icon> -->
+        </ion-list-header>
+
+        <ion-item text-wrap no-lines
+          *ngIf="attr.json.ta0syncresponsemsg !== null && attr.json.ta0syncresponsemsg !== '' && attr.json.ta0syncresponsemsg !== undefined">
+          <p style="color:black;text-align:justify;white-space: pre-line;">
+            {{ attr.json.ta0syncresponsemsg }}
+          </p>
+        </ion-item>
+        <!-- </span> -->
+      </ion-card>
+    </ion-list>
+
+    <ion-list *ngIf="refSegment == 'pendsyncup' && (syncData != null && syncData != 'undefined' && syncData != '')">
+      <ion-card *ngFor='let attr of syncData; let j = index;'>
+        <ion-item-divider
+          (click)="(!selectCheck && ( showDiv == true || attr.json.ta0download == 'N' || attr.json.ta0download == '' || attr.json.ta0download == 'undefined' || attr.json.ta0download == null || attr.json.ta0download === 'Y') ) ? goToWorkOrderDetail(attr) :  ''">
+          <ion-checkbox *ngIf="selectCheck" (click)="onChangeCheckBoxes(attr.json.wonum, attr)"
+            [checked]="selectedItem.includes(attr.json.wonum)" item-start></ion-checkbox>
+          <ion-label item-start>
+            <strong>
+              {{ gv.offset + j + 1 }}. &nbsp;&nbsp; {{ attr.json.wonum }} - {{ attr.json.ta0bcrmnum }}
+            </strong>
+          </ion-label>
+          <ion-label item-end text-left>
+            <strong>{{ attr.json.worktype }}</strong>
+          </ion-label>
+          <ion-label item-end text-center style="border-radius: 10px;margin: 10px;padding: 5px;"
+            [ngClass]="(attr.json.status == 'APPR' ? 'classAppr' : '') ||  (attr.json.status == 'INPRG' ? 'classInprg' : '') || (attr.json.status == 'KIV' ? 'classKiv' : '') || (attr.json.status == 'PCBNT' ? 'classPcbnt' : '') || (attr.json.status == 'COMP' ? 'classReview' : '')">
+            {{ attr.json.status }} -
+            {{ attr.json.status === 'APPR' ? 'Approved' : attr.json.status === 'INPRG' ? 'In Progress' : attr.json.status === 'CLSD' ? 'Closed' : attr.json.status === 'TECO' ? 'Complete' : attr.json.status === 'COMP' ? 'Review' : attr.json.status === 'KIV' ? 'KIV' : attr.json.status === 'PCBNT' ? 'PCBNT' : '' }}
+          </ion-label>
+        </ion-item-divider>
+
+        <ion-item mode="md"
+          (click)="(!selectCheck && ( showDiv == true || attr.json.ta0download == 'N' || attr.json.ta0download == '' || attr.json.ta0download == 'undefined' || attr.json.ta0download == null || attr.json.ta0download === 'Y') ) ? goToWorkOrderDetail(attr) :  ''">
+          <ion-label *ngIf="attr.json.lead != null">
+            <strong>Assigned : </strong>
+            {{ attr.json.lead }}
+          </ion-label>
+          <ion-label *ngIf="attr.json.lead == null">
+            <strong>Unassigned</strong>
+          </ion-label>
+          <ion-label item-end text-right>
+            <strong>Site ID : </strong>
+            {{attr.json.siteid }}
+          </ion-label>
+          <ion-label item-end text-right>
+            <strong>SN : </strong>
+            {{ attr.json.ta0sncode }}
+          </ion-label>
+        </ion-item>
+
+        <ion-item mode="md"
+          (click)="(!selectCheck && ( showDiv == true || attr.json.ta0download == 'N' || attr.json.ta0download == '' || attr.json.ta0download == 'undefined' || attr.json.ta0download == null || attr.json.ta0download === 'Y') ) ? goToWorkOrderDetail(attr) :  ''">
+          <ion-label *ngIf="gv.employeeTypeLogin">
+            <strong>Change By : </strong>
+            {{ attr.json.changeby }}
+          </ion-label>
+          <ion-label>
+            <strong>CA No. : </strong>
+            {{ attr.json.ta0accountnum }}
+          </ion-label>
+          <ion-label item-end text-right>
+            <strong>
+              Voltage :
+            </strong>
+            {{ attr.json.ta0installationvoltage == '01' ? 'Single Phase' :
+                 attr.json.ta0installationvoltage == '02' ? '3 Phase' :
+                 attr.json.ta0installationvoltage == '03' ? '400V LPC' : 
+                 attr.json.ta0installationvoltage == '04' ? '6.6kV LPC' : 
+                 attr.json.ta0installationvoltage == '05' ? '11kV' :
+                 attr.json.ta0installationvoltage == '06' ? '22kV' :
+                 attr.json.ta0installationvoltage == '07' ? '33kV' :
+                 attr.json.ta0installationvoltage == '08' ? '66kV' :
+                 attr.json.ta0installationvoltage == '09' ? '132kV' :
+                 attr.json.ta0installationvoltage == '10' ? '275kV' : 
+                 attr.json.ta0installationvoltage == '11' ? '500kV' : '' }}
+          </ion-label>
+        </ion-item>
+
+        <ion-item mode="md"
+          (click)="(!selectCheck && ( showDiv == true || attr.json.ta0download == 'N' || attr.json.ta0download == '' || attr.json.ta0download == 'undefined' || attr.json.ta0download == null || attr.json.ta0download === 'Y') ) ? goToWorkOrderDetail(attr) :  ''"
+          text-wrap style="align-items: center;">
+          <h2><strong>Customer Name : </strong></h2>
+          <h2>{{ attr.json.ta0bpname }}</h2>
+
+          <ion-spinner name="dots" item-end style="zoom: 1;"
+            *ngIf="attr.json.ta0download == 'L' || attr.json.ta0checking == 'L'">
+          </ion-spinner>
+        </ion-item>
+
+
+        <ion-item mode="md" no-lines *ngFor=" let address of attr.json.woserviceaddress;" text-wrap
+          (click)="(!selectCheck && ( showDiv == true || attr.json.ta0download == 'N' || attr.json.ta0download == '' || attr.json.ta0download == 'undefined' || attr.json.ta0download == null || attr.json.ta0download === 'Y') ) ? goToWorkOrderDetail(attr) :  ''">
+          <h2 *ngIf="address.formattedaddress != null"><strong>Address: </strong></h2>
+          <h2 *ngIf="address.formattedaddress != null">{{ address.formattedaddress }}</h2>
+        </ion-item>
+
+        <ion-row style="border-top: 1px solid #c8c7cc;">
+          <button ion-item no-lines detail-none col-md-4 style="border-right: 1px solid #c8c7cc;"
+            (click)="(attr.json.ta0download == 'Y') ? goToWorkOrderDetail(attr) : downloadFeederDetails(attr, attr.json.wonum, 'single')"
+            [ngClass]="(attr.json.ta0download == 'Y') ? 'icon-success' : 'icon-failed'">
+            <ion-icon [name]="(attr.json.ta0download == 'Y') ? 'cloud-done' : 'cloud-download-outline'" item-start>
+            </ion-icon>
+            Download
+          </button>
+          <button ion-item no-lines detail-none col-md-4 style="border-right: 1px solid #c8c7cc;"
+            (click)="checkingWorkOrderStatus(attr, attr.json.wonum, attr.json.siteid)"
+            [ngClass]="(attr.json.ta0checking == 'Y') ? 'icon-success' : 'icon-failed'">
+            <ion-icon name="md-sync" item-start>
+            </ion-icon>
+            Check Status
+          </button>
+          <button ion-item no-lines detail-none col-md-4
+            (click)="(attr.json.ta0favourite == 'Y') ? pinSelectItem(attr, j, 'unpin') : pinSelectItem(attr, j, 'pin')"
+            [ngClass]="(attr.json.ta0favourite == 'Y') ? 'icon-success' : 'icon-failed'">
+            <ion-icon [name]="(attr.json.ta0favourite == 'Y') ? 'ios-heart' : 'ios-heart-outline'" item-start>
+            </ion-icon>
+            Favourite
+          </button>
+        </ion-row>
+
+
+        <ion-list-header style="border-top: 1px solid #c8c7cc;background-color: #f7f7f7;"
+          *ngIf="(attr.json.ta0inststatus !== null && attr.json.ta0inststatus !== undefined && attr.json.ta0inststatus !== '') || attr.json.ta0bcrmresponsestatus === 'E'">
+          <ion-icon name="information-circle" item-start></ion-icon>
+          Responds Status
+          <!-- <ion-icon name="arrow-dropright" item-end></ion-icon> -->
+          <ion-icon name="arrow-dropdown" item-end></ion-icon>
+        </ion-list-header>
+
+        <ion-item text-wrap
+          *ngIf="(attr.json.ta0inststatus !== null && attr.json.ta0inststatus !== undefined && attr.json.ta0inststatus !== '')"
+          [ngClass]="(attr.json.ta0checking == 'Y' || (attr.json.ta0inststatus !== null && attr.json.ta0inststatus !== undefined && attr.json.ta0inststatus !== '')) ? 'successRespond' : ''">
+          <h2><strong>Installation Status</strong></h2>
+          <p style="color: black;white-space: pre-line;">{{ attr.json.ta0inststatus || "-" }}</p>
+        </ion-item>
+
+        <ion-row
+          *ngIf="(attr.json.ta0inststatus !== null && attr.json.ta0inststatus !== undefined && attr.json.ta0inststatus !== '')"
+          style="border-bottom: 0.2px solid grey;">
+          <ion-item no-lines
+            [ngClass]="(attr.json.ta0checking == 'Y' || (attr.json.ta0inststatus !== null && attr.json.ta0inststatus !== undefined && attr.json.ta0inststatus !== '')) ? 'successRespondLabel' : ''">
+            <ion-label>
+              <strong>Last updated :</strong>&nbsp;
+              {{ attr.json.ta0inststatusdate | date: gv.dateFormat }} -
+              {{ attr.json.ta0inststatusdate | date: gv.timeFormat }}
+            </ion-label>
+          </ion-item>
+        </ion-row>
+
+        <ion-item text-wrap no-lines *ngIf="attr.json.ta0bcrmresponsestatus === 'E'"
+          [ngClass]="(attr.json.ta0bcrmresponsestatus === 'E') ? 'errorRespond' : ''">
+          <h2><strong>BCRM Status</strong></h2>
+          <p style="color:black;text-align:justify;white-space: pre-line;">
+            {{ attr.json.ta0bcrmresponsecode }}
+          </p>
+        </ion-item>
+
+        <ion-list-header style="color: red;background-color: antiquewhite;"
+          *ngIf="attr.json.ta0syncresponsemsg !== null && attr.json.ta0syncresponsemsg !== '' && attr.json.ta0syncresponsemsg !== undefined">
+          <ion-icon name="information-circle" item-start></ion-icon>
+          Sync Up Responds
+          <ion-icon name="arrow-dropright" item-end></ion-icon>
+          <!-- <ion-icon name="arrow-dropdown" item-end></ion-icon> -->
+        </ion-list-header>
+
+        <ion-item text-wrap no-lines
+          *ngIf="attr.json.ta0syncresponsemsg !== null && attr.json.ta0syncresponsemsg !== '' && attr.json.ta0syncresponsemsg !== undefined">
+          <p style="color:black;text-align:justify;white-space: pre-line;">
+            {{ attr.json.ta0syncresponsemsg }}
+          </p>
+        </ion-item>
+      </ion-card>
+    </ion-list>
+
+    <!-- <ion-grid style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
+      *ngIf="refSegment != 'pendsyncup'">
+      <div *ngIf="gv.initItems != null && gv.initItems != 'undefined' && gv.initItems != '';else other_content">
+        <ion-list>
+          <ion-item-sliding #item *ngFor='let attr of gv.initItems; let j = index;'>
+            <ion-item text-wrap detail-push style="padding-left: 5px;"
+              (click)="(!selectCheck && (showDiv == true || attr.json.ta0download == 'N' || attr.json.ta0download == '' || attr.json.ta0download == 'undefined' || attr.json.ta0download == null || attr.json.ta0download === 'Y' || attr.json.ta0checking == 'N' || attr.json.ta0checking == '' || attr.json.ta0checking == 'undefined' || attr.json.ta0checking == null || attr.json.ta0checking === 'Y')) ? goToWorkOrderDetail(attr) :  ''"
+              [ngClass]="j%2 != 0 ? 'classA' : 'classB'">
+              <ion-label style="cursor: pointer;" (click)="onChangeCheckBoxes(attr.json.wonum, attr)">
+                <ion-row>
+                  <ion-col col-12>
+                    <ion-row text-wrap>
+                      <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all;">
+                        <h2 (click)="clearonedirtyfile(attr)">
+                          <b> {{ gv.offset + j + 1 }} &nbsp;&nbsp; {{ attr.json.wonum }} -
+                            {{ attr.json.ta0bcrmnum }}</b>
+                        </h2>
+                      </ion-col>
+                      <ion-col col-5 col-sm-5 col-md-2>
+                        <b> {{attr.json.worktype }} </b>
+                      </ion-col>
+                      <ion-col col-6 col-sm-6 col-md-3 style="word-wrap:  break-all"
+                        [ngClass]="(attr.json.status == 'APPR' ? 'classAppr' : '') ||  (attr.json.status == 'INPRG' ? 'classInprg' : '') || (attr.json.status == 'KIV' ? 'classKiv' : '') || (attr.json.status == 'PCBNT' ? 'classPcbnt' : '') || (attr.json.status == 'COMP' ? 'classReview' : '')">
+                        {{ attr.json.status }} -
+                        {{ attr.json.status === 'APPR' ? 'Approved' : attr.json.status === 'INPRG' ? 'In Progress' : attr.json.status === 'CLSD' ? 'Closed' : attr.json.status === 'TECO' ? 'Complete' : attr.json.status === 'COMP' ? 'Review' : attr.json.status === 'KIV' ? 'KIV' : attr.json.status === 'PCBNT' ? 'PCBNT' : ''}}
+                      </ion-col>
+                      <ion-col col-1 col-sm-1 col-md-1 style="text-align: right;">
+                        <ion-icon name="pin" *ngIf="attr.json.ta0favourite == 'Y'"> </ion-icon>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row text-wrap>
+                      <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-top: 20px;">
+                        <span *ngIf="attr.json.lead != null">ASSIGNED - {{ attr.json.lead }}</span>
+                        <span *ngIf="attr.json.lead == null">UNASSIGNED</span>
+                      </ion-col>
+                      <ion-col style="padding-top: 20px;">
+                        SITE-ID - {{attr.json.siteid }}
+                      </ion-col>
+                      <ion-col col-2 col-sm-2 col-md-2 style="text-align: left; padding-top: 20px;">
+                        SN - {{attr.json.ta0sncode }}
+                      </ion-col>
+                      <ion-col col-6 col-sm-6 col-md-1 style="text-align: center;">
+                        <ion-icon *ngIf="attr.json.ta0download == 'Y'"
+                          [ngClass]="(attr.json.ta0download == 'Y' ? 'iconAfterDownload' : '')" stop-event="click"
+                          name="cloud-done"></ion-icon>
+                        <ion-icon name="cloud-download" stop-event="click" class="iconBeforeDownload"
+                          *ngIf="attr.json.ta0download == 'N' || attr.json.ta0download == '' || attr.json.ta0download == 'undefined' || attr.json.ta0download == null"
+                          (click)="downloadFeederDetails(attr, attr.json.wonum, 'single')"></ion-icon>
+                        <ion-spinner name="crescent" [ngClass]="(attr.json.ta0download == 'L' ? 'iconDownloading' : '')"
+                          *ngIf="attr.json.ta0download == 'L'"></ion-spinner>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row text-wrap *ngIf="gv.employeeTypeLogin">
+                      <ion-col col-6 col-sm-6 col-md-6><span *ngIf="attr.json.changeby != null">CHANGE BY -
+                          {{ attr.json.changeby }}</span></ion-col>
+                    </ion-row>
+                    <ion-row text-wrap>
+                      <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+                        CA NUMBER - {{ attr.json.ta0accountnum }}
+                      </ion-col>
+                      <ion-col col-6 col-sm-6 col-md-3>
+                        {{ attr.json.ta0installationvoltage == '01' ? 'Single Phase' :
+                        attr.json.ta0installationvoltage == '02' ? '3 Phase' :
+                        attr.json.ta0installationvoltage == '03' ? '400V LPC' : 
+                        attr.json.ta0installationvoltage == '04' ? '6.6kV LPC' : 
+                        attr.json.ta0installationvoltage == '05' ? '11kV' :
+                        attr.json.ta0installationvoltage == '06' ? '22kV' :
+                        attr.json.ta0installationvoltage == '07' ? '33kV' :
+                        attr.json.ta0installationvoltage == '08' ? '66kV' :
+                        attr.json.ta0installationvoltage == '09' ? '132kV' :
+                        attr.json.ta0installationvoltage == '10' ? '275kV' : 
+                        attr.json.ta0installationvoltage == '11' ? '500kV' : ''}}
+                      </ion-col>
+                      <ion-col col-6 col-sm-6 col-md-1 style="text-align: center;">
+                        <ion-icon name="md-sync"
+                          *ngIf="attr.json.ta0checking == 'N' || attr.json.ta0checking == '' || attr.json.ta0checking == 'undefined' || attr.json.ta0checking == null"
+                          class="iconBeforeCheck" stop-event="click">
+                        </ion-icon>
+                        <ion-spinner name="dots" *ngIf="attr.json.ta0checking == 'L'"
+                          [ngClass]="(attr.json.ta0checking == 'L' ? 'iconCheck' : '')">
+                        </ion-spinner>
+                        <ion-icon name="md-sync" *ngIf="attr.json.ta0checking == 'Y'" class="iconAfterCheck"
+                          stop-event="click"></ion-icon>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row col-12 col-sm-12 col-md-12 style="word-wrap: break-all; padding-left: 0px;" text-wrap
+                      *ngIf="attr.json.woserviceaddress != null">
+                      <ion-col>CUSTOMER - {{attr.json.ta0bpname}}</ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col>
+                        <div *ngFor="let address of attr.json.woserviceaddress;">
+                          <div *ngIf="address.formattedaddress != null"> {{ address.formattedaddress }} </div>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+
+                    <ion-row text-wrap *ngIf="attr.json.ta0bcrmresponsestatus === 'E'">
+                      <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px; color: red">
+                        <div> {{ attr.json.ta0bcrmresponsecode }} </div>
+                        <div> Sync Up Error : {{ attr.json.ta0syncresponsemsg }} </div>
+                      </ion-col>
+                    </ion-row>
+                  </ion-col>
+                </ion-row>
+              </ion-label>
+              <ion-checkbox *ngIf="selectCheck" (click)="onChangeCheckBoxes(attr.json.wonum, attr)"
+                [checked]="selectedItem.includes(attr.json.wonum)"></ion-checkbox>
+            </ion-item>
+            <ion-item-options side="right" class="options-right">
+              <button ion-button (click)="checkingWorkOrderStatus(attr, attr.json.wonum, attr.json.siteid)">
+                <ion-icon name="md-sync" class="pin-icon">Check</ion-icon>
+              </button>
+              <button ion-button *ngIf="attr.json.ta0favourite != 'Y'" (click)="pinSelectItem(attr, j, 'pin')">
+                <ion-icon name="pin" class="pin-icon">Pin</ion-icon>
+              </button>
+              <button ion-button *ngIf="attr.json.ta0favourite == 'Y'" (click)="pinSelectItem(attr, j, 'unpin')">
+                <ion-icon name="pin" class="pin-icon">Unpin</ion-icon>
+              </button>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </div>
+      <ng-template #other_content>
+        <ion-row>
+          <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label>No Record Found!</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ng-template>
+    </ion-grid> -->
+
+    <!-- <ion-grid
+      style="margin-top: 0px; word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
+      *ngIf="refSegment == 'pendsyncup'">
+      <div *ngIf="syncData != null && syncData != 'undefined' && syncData != '';else other_content">
+        <ion-list>
+          <ion-item-sliding #item *ngFor='let attr of syncData; let j = index;'>
+            <ion-item text-wrap detail-push style="padding-left: 5px;"
+              (click)="(!selectCheck && ( showDiv == true || attr.json.ta0download == 'N' || attr.json.ta0download == '' || attr.json.ta0download == 'undefined' || attr.json.ta0download == null || attr.json.ta0download === 'Y') ) ? goToWorkOrderDetail(attr) :  ''"
+              [ngClass]="j%2 != 0 ? 'classA' : 'classB'">
+              <ion-label style="cursor: pointer;" (click)="onChangeCheckBoxes(attr.json.wonum, attr)">
+                <ion-row>
+                  <ion-col col-12>
+                    <ion-row text-wrap>
+                      <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all;">
+                        <h2 (click)="clearonedirtyfile(attr)">
+                          <b> {{ gv.offset + j + 1 }} &nbsp;&nbsp; {{ attr.json.wonum }} -
+                            {{ attr.json.ta0bcrmnum }}</b>
+                        </h2>
+                      </ion-col>
+                      <ion-col col-5 col-sm-5 col-md-2>
+                        <b> {{attr.json.worktype }} </b>
+                      </ion-col>
+                      <ion-col col-6 col-sm-6 col-md-3 style="word-wrap:  break-all"
+                        [ngClass]="(attr.json.status == 'APPR' ? 'classAppr' : '') ||  (attr.json.status == 'INPRG' ? 'classInprg' : '') || (attr.json.status == 'KIV' ? 'classKiv' : '') || (attr.json.status == 'PCBNT' ? 'classPcbnt' : '') || (attr.json.status == 'COMP' ? 'classReview' : '')">
+                        {{ attr.json.status }} -
+                        {{ attr.json.status === 'APPR' ? 'Approved' : attr.json.status === 'INPRG' ? 'In Progress' : attr.json.status === 'CLSD' ? 'Closed' : attr.json.status === 'TECO' ? 'Complete' : attr.json.status === 'COMP' ? 'Review' : attr.json.status === 'KIV' ? 'KIV' : attr.json.status === 'PCBNT' ? 'PCBNT' : ''}}
+                      </ion-col>
+                      <ion-col col-1 col-sm-1 col-md-1 style="text-align: right;">
+                        <ion-icon name="pin" *ngIf="attr.json.ta0favourite == 'Y'"> </ion-icon>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row text-wrap>
+                      <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-top: 20px;">
+                        <span *ngIf="attr.json.lead != null">ASSIGNED - {{ attr.json.lead }}</span>
+                        <span *ngIf="attr.json.lead == null">UNASSIGNED</span>
+                      </ion-col>
+                      <ion-col style="padding-top: 20px;">
+                        SITE-ID - {{attr.json.siteid }}
+                      </ion-col>
+                      <ion-col col-2 col-sm-2 col-md-2 style="text-align: left; padding-top: 20px;">
+                        SN - {{attr.json.ta0sncode }}
+                      </ion-col>
+                      <ion-col col-6 col-sm-6 col-md-1 style="text-align: right;">
+                        <ion-icon *ngIf="attr.json.ta0download == 'Y'"
+                          [ngClass]="(attr.json.ta0download == 'Y' ? 'iconAfterDownload' : '')" stop-event="click"
+                          name="cloud-done"></ion-icon>
+                        <ion-icon name="cloud-download" stop-event="click" class="iconBeforeDownload"
+                          *ngIf="attr.json.ta0download == 'N' || attr.json.ta0download == '' || attr.json.ta0download == 'undefined' || attr.json.ta0download == null"
+                          (click)="downloadFeederDetails(attr, attr.json.wonum, 'single')"></ion-icon>
+                        <ion-spinner name="crescent" [ngClass]="(attr.json.ta0download == 'L' ? 'iconDownloading' : '')"
+                          *ngIf="attr.json.ta0download == 'L'"></ion-spinner>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row text-wrap *ngIf="gv.employeeTypeLogin">
+                      <ion-col col-6 col-sm-6 col-md-6><span *ngIf="attr.json.changeby != null">CHANGE BY -
+                          {{ attr.json.changeby }}</span></ion-col>
+                    </ion-row>
+                    <ion-row text-wrap>
+                      <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+                        CA NUMBER - {{ attr.json.ta0accountnum }}
+                      </ion-col>
+                      <ion-col col-6 col-sm-6 col-md-3>
+                        {{ attr.json.ta0installationvoltage == '01' ? 'Single Phase' :
+                        attr.json.ta0installationvoltage == '02' ? '3 Phase' :
+                        attr.json.ta0installationvoltage == '03' ? '400V LPC' : 
+                        attr.json.ta0installationvoltage == '04' ? '6.6kV LPC' : 
+                        attr.json.ta0installationvoltage == '05' ? '11kV' :
+                        attr.json.ta0installationvoltage == '06' ? '22kV' :
+                        attr.json.ta0installationvoltage == '07' ? '33kV' :
+                        attr.json.ta0installationvoltage == '08' ? '66kV' :
+                        attr.json.ta0installationvoltage == '09' ? '132kV' :
+                        attr.json.ta0installationvoltage == '10' ? '275kV' : 
+                        attr.json.ta0installationvoltage == '11' ? '500kV' : ''}}
+                      </ion-col>
+                    </ion-row>
+                    <ion-row col-12 col-sm-12 col-md-12 style="word-wrap: break-all; padding-left: 0px;" text-wrap
+                      *ngIf="attr.json.woserviceaddress != null">
+                      <ion-col>CUSTOMER - {{attr.json.ta0bpname}}</ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col>
+                        <div *ngFor="let address of attr.json.woserviceaddress;">
+                          <div *ngIf="address.formattedaddress != null"> {{ address.formattedaddress }} </div>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+
+                    <ion-row text-wrap *ngIf="attr.json.ta0bcrmresponsestatus === 'E'">
+                      <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px; color: red">
+                        <div> {{ attr.json.ta0bcrmresponsecode }} </div>
+                      </ion-col>
+                    </ion-row>
+                  </ion-col>
+                </ion-row>
+              </ion-label>
+              <ion-checkbox *ngIf="selectCheck" (click)="onChangeCheckBoxes(attr.json.wonum, attr)"
+                [checked]="selectedItem.includes(attr.json.wonum)"></ion-checkbox>
+            </ion-item>
+            <ion-item-options side='right' class='options-right'>
+              <button ion-button *ngIf="attr.json.ta0favourite != 'Y'" (click)="pinSelectItem(attr, j, 'pin')">
+                <ion-icon name="pin" class="pin-icon"> Pin</ion-icon>
+              </button>
+              <button ion-button *ngIf="attr.json.ta0favourite == 'Y'" (click)="pinSelectItem(attr, j, 'unpin')">
+                <ion-icon name="pin" class="pin-icon"> Unpin</ion-icon>
+              </button>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </div>
+      <ng-template #other_content>
+        <ion-row>
+          <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label>No Record Found!</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ng-template>
+    </ion-grid> -->
+
+    <ion-grid [ngClass]="(isValid && refSegment == 'workorder')?'display':'non-display'">
+      <ion-row>
+        <ion-col col-12 col-md-12 col-sm-12>
+          <div class="pagination">
+            <a href="javascript:;" [ngClass]="(prevbtndisabled)?'disabled':''" (click)="setprevious()">&laquo;</a>
+            <a href="javascript:;" [ngClass]="(page===gv.pageCurrentIndex)?'active':''" (click)="setpagination(page -1)"
+              *ngFor="let page of gv.pages let index = index">{{
+                page}}</a>
+            <a href="javascript:;" [ngClass]="(nextbtndisabled)?'disabled':''" (click)="setnext()">&raquo;</a>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
+<ion-footer *ngIf="popupValue === 'checkEdit'">
+  <button ion-button round block (click)="synData(gv.initItems)" class="saveBtn">Synch Data</button>
+</ion-footer>

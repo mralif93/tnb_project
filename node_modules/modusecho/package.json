@@ -1,0 +1,76 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "/Users/developer/Desktop/dssb_project/ionic_workspace/cordova-plugin-example-master",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "/Users/developer/Desktop/dssb_project/ionic_workspace/cordova-plugin-example-master",
+        "spec": "/Users/developer/Desktop/dssb_project/ionic_workspace/cordova-plugin-example-master",
+        "type": "directory"
+      },
+      "/Users/developer/Desktop/dssb_project/ionic_workspace/SoExecution"
+    ]
+  ],
+  "_from": "../cordova-plugin-example-master",
+  "_id": "modusecho@0.0.2",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/modusecho",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "/Users/developer/Desktop/dssb_project/ionic_workspace/cordova-plugin-example-master",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "/Users/developer/Desktop/dssb_project/ionic_workspace/cordova-plugin-example-master",
+    "spec": "/Users/developer/Desktop/dssb_project/ionic_workspace/cordova-plugin-example-master",
+    "type": "directory"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "file:../cordova-plugin-example-master",
+  "_shasum": "63010eda458952c60e9c246eb158b8d2b894155f",
+  "_shrinkwrap": null,
+  "_spec": "/Users/developer/Desktop/dssb_project/ionic_workspace/cordova-plugin-example-master",
+  "_where": "/Users/developer/Desktop/dssb_project/ionic_workspace/SoExecution",
+  "author": {
+    "name": "Modus Create"
+  },
+  "bugs": {
+    "url": "https://github.com/ModusCreateOrg/cordova-plugin-example/issues"
+  },
+  "cordova": {
+    "id": "com-moduscreate-plugins-echo",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "dependencies": {},
+  "description": "Modus Create Demo Cordova Plugin",
+  "devDependencies": {},
+  "homepage": "https://github.com/ModusCreateOrg/cordova-plugin-example#readme",
+  "keywords": [
+    "cordova",
+    "demo",
+    "modus",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-browser"
+  ],
+  "license": "MIT",
+  "name": "modusecho",
+  "optionalDependencies": {},
+  "readme": "![No longer maintained](https://img.shields.io/badge/Maintenance-OFF-red.svg)\n### [DEPRECATED] This repository is no longer maintained\n> While this project is fully functional, the dependencies are no longer up to date. You are still welcome to explore, learn, and use the code provided here.\n>\n> Modus is dedicated to supporting the community with innovative ideas, best-practice patterns, and inspiring open source solutions. Check out the latest [Modus Labs](https://labs.moduscreate.com?utm_source=github&utm_medium=readme&utm_campaign=deprecated) projects.\n\n[![Modus Labs](https://res.cloudinary.com/modus-labs/image/upload/h_80/v1531492623/labs/logo-black.png)](https://labs.moduscreate.com?utm_source=github&utm_medium=readme&utm_campaign=deprecated)\n\n---\n# Cordova Plugin Example\n\nExample Cordova plugin for iOS and Android to support [this blog post](http://moduscreate.com/plugin-authoring-cordova-6-ios-android/).\n\nA simple Cordova plugin based on the echo plugin example from the [Cordova documentation](https://cordova.apache.org/docs/en/latest/guide/hybrid/plugins/index.html).\n\n* `echo` method: Extends that example to display a native Toast on Android, and a native dialog like view on iOS.\n* `echojs` method: Basic demo showing that plugins can also be used to organize and distribute useful JavaScript, and don't need native implementations necessarily.\n\niOS doesn't have a Toast type UI component, hat tip to [this Stack Overflow thread](http://stackoverflow.com/questions/18680891/displaying-a-message-in-ios-which-has-the-same-functionality-as-toast-in-android) for providing a simplistic alternative that doesn't introduce any extra dependencies and allows us to demonstrate a native interface without having to get lost in implementing something complex.\n\nNow also supports the browser platform as detailed in [this blog post](http://moduscreate.com/supporting-the-browser-platform-in-a-cordova-plugin/).\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ModusCreateOrg/cordova-plugin-example.git"
+  },
+  "version": "0.0.2"
+}

@@ -1,0 +1,4301 @@
+<!--
+/* 
+ * Modification History :
+ * Date         version     Modified By   Method            Description
+ * 2021-03-23   008         Andy Chang    pdfDocumentEng    update compliance form
+ * 
+ */
+ -->
+
+<ion-header mode="md">
+  <ion-navbar color="primary">
+    <ion-title>Compliance Form</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon [color]="gv.testMobile ? 'danger' : 'light'" name="md-planet" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<!-- <ion-header>
+  <ion-grid class="sealHeader">
+    <ion-row>
+      <ion-col col-3 col-sm-3 col-md-3 align-self-center style="text-align: left;">
+        <button ion-button clear class="backbutton" (click)="goBack()">
+          <ion-icon name="arrow-back" class="menuBackArrow backbutton"> Back </ion-icon>
+        </button>
+      </ion-col>
+      <header [pageTitle]="pageTitle" col-9 col-md-9 col-sm-9>
+      </header> -->
+<!--   <ion-col col-7 col-md-7 col-sm-7 align-self-center>
+        <div class="pageTitle">Compliance Form
+        </div>
+      </ion-col>
+      <ion-col col-1 col-sm-1 col-md-1 align-self-center style="text-align: right;">
+        <div *ngIf='gv.testMobile'>
+          <ion-icon class="flash_plnt" name="custom-connected" [style.color]="gv.testMobile ? 'red':'#00e600'">
+            {{ gv.testMobile ? 'Offline':'Online' }}
+          </ion-icon>
+        </div>
+        <div *ngIf='!gv.testMobile'>
+          <ion-icon class="flash_plnt" name="custom-disconnect" [style.color]="gv.testMobile ? 'red':'#00e600'">
+            {{ gv.testMobile ? 'Offline':'Online' }}
+          </ion-icon>
+        </div>
+      </ion-col> -->
+<!--       <ion-col col-2 col-sm-4 style="text-align: right;padding-top: 0px;">
+        <button ion-button icon-only clear (click)="presentPopover($event)">
+          <ion-icon name="more"></ion-icon>
+        </button>
+      </ion-col> -->
+<!-- </ion-row>
+  </ion-grid>
+</ion-header> -->
+
+
+<ion-content padding>
+
+  <!-- Start: Installation, Inspection & Testing -->
+  <ion-list ion-row *ngIf="formType === 'inspect&Test'">
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="bookmark" item-start></ion-icon>
+      <strong>Installation, Inspection & Testing</strong>
+    </ion-item-divider>
+
+    <ion-item>
+      <ion-label ion-col col-md-2 color="primary">Date</ion-label>
+      <ion-input ion-col col-md-6 type="text" placeholder="Choose Date" value="{{ inspectNTest.ta4datetime }}"
+        readonly="true" style="padding-left: 1px;">
+      </ion-input>
+      <ion-icon name="calendar" item-end (click)="presentPopover($event,'installTest')"></ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-2 color="primary">To</ion-label>
+      <ion-input ion-col col-md-10 type="text" placeholder="Auto Populate" value="{{ inspectNTest.ta4custname }}">
+      </ion-input>
+    </ion-item>
+
+    <ion-item text-wrap>
+      <ion-label ion-col col-md-2 color="primary">Address</ion-label>
+      <ion-textarea style="margin-left: -2px;" rows="3" placeholder="Auto Populate"
+        [(ngModel)]="inspectNTest.ta4custaddress">
+      </ion-textarea>
+    </ion-item>
+
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="filing" item-start></ion-icon>
+      <strong>Notification Letter of TNB Meter Installation, Inspection and Testing</strong>
+    </ion-item-divider>
+
+    <ion-item no-lines>
+      <ion-label text-wrap style="text-align: justify;letter-spacing: 1px;">
+        Please be informed that TNB is conducting inspections and testing of TNB meter installation at your premises to
+        ensure it is working in good condition.
+      </ion-label>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-label text-wrap style="text-align: justify;letter-spacing: 1px;">
+        Your kind cooperation during the inspection and testing process is much appreciated.
+      </ion-label>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-label text-wrap style="text-align: justify;letter-spacing: 1px;">
+        For any enquiries, you may contact us at 1300-88-5454.
+      </ion-label>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-label text-wrap style="text-align: justify;letter-spacing: 1px;">
+        Thank you.
+      </ion-label>
+    </ion-item>
+    <!-- 008
+    <ion-item no-lines>
+      <ion-label text-center style="font-style: italic;letter-spacing: 1px;">
+        <strong>"POWERING THE NATION"</strong>
+      </ion-label>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-label text-center style="font-style: italic;letter-spacing: 1px;">
+        <strong>"BETTER. BRIGHTER"</strong>
+      </ion-label>
+    </ion-item>
+    -->
+    <!-- 008 start -->
+    <ion-item no-lines>
+      <ion-label text-center style="font-style: italic;letter-spacing: 1px;">
+        <strong>"BETTER WORLD. BRIGHTER LIVES"</strong>
+      </ion-label>
+    </ion-item>
+    <!-- 008 end -->
+    <ion-item no-lines style="letter-spacing: 1px;">
+      <ion-label>Yours Sincerely,</ion-label>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-fab>
+        <button ion-fab mini mode="md" (click)="clearSign('InspectNTestManager')">
+          <ion-icon name="md-refresh"></ion-icon>
+        </button>
+      </ion-fab>
+      <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad1>
+      </signature-pad>
+    </ion-item>
+    <ion-item>
+      <p *ngIf="staffNameSelect" style="margin-top: 10px;font-style: italic;font-size: 14px;color: red;">
+        *Person in charge is required!
+      </p>
+    </ion-item>
+    <ion-item>
+      <ion-label ion-col col-md-3 color="primary">Person In Charge</ion-label>
+      <ion-select ion-col col-md-9 [(ngModel)]="inspectNTest.executiveDetails" [selectOptions]="executiveDetails"
+        (ionChange)="getExecutiveDetails()" placeholder="Person in Charge"
+        style="width: -webkit-fill-available;padding-left: 13px;padding-right: 13px;">
+        <ion-option *ngFor="let executive of executiveList ; let j = index" value="{{ executive.json.userid }}"
+          (ionSelect)="myIndex = j">
+          {{ executive.json.name }} ({{ executive.json.userid }})
+        </ion-option>
+        <!-- <ion-option *ngFor="let persons  of exactData ; let j=index" value="{{ persons }}" (ionSelect)="myIndex = j">
+          {{ persons }}
+        </ion-option> -->
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label ion-col col-md-3 color="primary">Position</ion-label>
+      <ion-input ion-col col-md-9 [(ngModel)]="inspectNTest.ta4position" type="text" placeholder="Position">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label ion-col col-md-3 color="primary">Department</ion-label>
+      <ion-textarea ion-col col-md-9 [(ngModel)]="inspectNTest.ta4department" rows="3" placeholder="Department">
+      </ion-textarea>
+    </ion-item>
+
+    <ion-list ion-row radio-group style="margin: 0;" [(ngModel)]="inspectNTest.ta4attendance"
+      (ionChange)="checkforRadio()">
+      <ion-item-divider class="item-divider-header">
+        <ion-icon name="remove-circle" item-start></ion-icon>
+        <strong>For TNB Use</strong>
+      </ion-item-divider>
+
+      <ion-item ion-col col-md-12>
+        <ion-label color="primary">Please select customer attendance</ion-label>
+      </ion-item>
+
+      <ion-item ion-col col-md-6>
+        <ion-label>Customer present</ion-label>
+        <ion-radio value="pre"></ion-radio>
+      </ion-item>
+
+      <ion-item ion-col col-md-6>
+        <ion-label>Customer absent</ion-label>
+        <ion-radio value="abs"></ion-radio>
+      </ion-item>
+    </ion-list>
+
+    <ion-item no-lines ion-col col-md-12>
+      <ion-label>Verify By:</ion-label>
+    </ion-item>
+
+    <ion-item no-lines>
+      <p *ngIf="checkSign2" style="margin: 0px 0px 10px 0px;;font-style: italic;font-size: 14px;color: red;">
+        *Signature is required!
+      </p>
+      <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad2></signature-pad>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-3 color="primary">Staff Name</ion-label>
+      <ion-input ion-col col-md-9 type="text" readonly="true" value="{{ inspectNTest.ta4staffname }}"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-3 color="primary">Staff No.</ion-label>
+      <ion-input ion-col col-md-9 type="text" readonly="true" value="{{ inspectNTest.ta4staffno }}"></ion-input>
+    </ion-item>
+
+  </ion-list>
+  <!-- End: Installation, Inspection & Testing -->
+
+  <!-- Start: Installation & Inspection -->
+  <ion-list ion-row *ngIf="formType === 'installationInspection'">
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="bookmark" item-start></ion-icon>
+      <strong>Installation & Inspection</strong>
+    </ion-item-divider>
+
+    <ion-item>
+      <ion-label ion-col col-md-2 color="primary">Date</ion-label>
+      <ion-input ion-col col-md-9 type="test" placeholder="Choose date" readonly="true"
+        value="{{ installationInspection.ta4indatetime }}"></ion-input>
+      <ion-icon name="calendar" item-end (click)="presentPopover($event,'meterInstallInspect')"></ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-2 color="primary">Name</ion-label>
+      <ion-input ion-col col-md-10 type="text" placeholder="Auto Populate"
+        value="{{ installationInspection.ta4custname }}"></ion-input>
+    </ion-item>
+
+    <ion-item text-wrap>
+      <ion-label ion-col col-md-2 color="primary">Address</ion-label>
+      <ion-textarea style="margin-left: -2px;" rows="3" value="{{ installationInspection.ta4custaddress }}"
+        placeholder="Auto Populate">
+      </ion-textarea>
+    </ion-item>
+
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="filing" item-start></ion-icon>
+      <strong>Notice of TNB Meter Installation & Inspection</strong>
+    </ion-item-divider>
+
+    <ion-item text-wrap no-lines>
+      <ion-label ion-col col-md-6>Dear valued TNB Customer,</ion-label>
+    </ion-item>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;">
+      <ion-label ion-col col-md-12>
+        Please be informed we have conducted inspections and testing of meter installation that records the usage of
+        electricity to the premises at address <strong>{{ installationInspection.ta4custaddress }}</strong> with
+        Contract Account No. <strong>{{ installationInspection.ta4accountno }}</strong> on
+        <strong>{{ installationInspection.ta4indatetime }}</strong> at
+        <strong>{{ installationInspection.ta4endtime }}</strong>.
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-4 color="primary">Change Time</ion-label>
+      <ion-datetime ion-col col-md-8 style="margin-left: -22px;" displayFormat="HH:mm" pickerFormat="HH:mm"
+        [(ngModel)]="installationInspection.ta4endtime" placeholder="Choose time"></ion-datetime>
+    </ion-item>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;">
+      <ion-label ion-col col-md-12>
+        For your information:
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-4 color="primary">Evidence Bag Serial No.</ion-label>
+      <ion-input ion-col col-md-8 [(ngModel)]="installationInspection.ta4serialNum" placeholder="Enter serial number">
+      </ion-input>
+    </ion-item>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;margin-top: 12px;">
+      <ion-label ion-col col-md-12>
+        The inspection results show that the meter does not record actual eletricity electricity consumption readings as
+        has been explained previously to you. Please be informed that TNB will claim the underbill charge from you.
+      </ion-label>
+    </ion-item>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;">
+      <ion-label ion-col col-md-12>
+        For any enquiries, you may contact us at:
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-3 color="primary">Office</ion-label>
+      <ion-input ion-col col-md-9 type="text" placeholder="Office" value="Kedai Tenaga yang berdekatan"></ion-input>
+    </ion-item>
+
+    <ion-item text-wrap>
+      <ion-label ion-col col-md-3 color="primary">Address</ion-label>
+      <ion-textarea ion-col col-md-9 placeholder="Address" value="{{ installationInspection.ta4officeaddress }}">
+      </ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-3 color="primary">Phone No.</ion-label>
+      <ion-input ion-col col-md-9 type="text" placeholder="Phone No."
+        value="{{ installationInspection.ta4officephone }}"></ion-input>
+    </ion-item>
+
+    <ion-item no-lines text-wrap style="line-height: 30px; text-align: justify;margin-top: 12px;">
+      <ion-label ion-col col-md-12>
+        Thank you.
+      </ion-label>
+    </ion-item>
+
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="contact" item-start></ion-icon>
+      <strong>Part A: Staff/Examiner Details</strong>
+    </ion-item-divider>
+
+    <ion-item no-lines>
+      <ion-label>Staff/Examiner Signature:</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad1></signature-pad>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-3 color="primary">Name</ion-label>
+      <ion-input ion-col col-md-8 type="text" placeholder="Name" readonly="true"
+        value="{{ installationInspection.ta4staffname }}">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-3 color="primary">Staff No.</ion-label>
+      <ion-input ion-col col-md-8 type="text" placeholder="Name" readonly="true"
+        value="{{ installationInspection.ta4staffno }}">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-3 color="primary">Unit</ion-label>
+      <ion-input ion-col col-md-8 type="text" placeholder="Name" readonly="true" value="Seal Unit Metering"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="officeNameSelect && !installationInspection.ta4department">
+      <p style="margin: 0px 0px 10px 0px;;font-style: italic;font-size: 14px;color: red;">
+        *Office is required!
+      </p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-3 color="primary">Office</ion-label>
+      <ion-input ion-col col-md-8 type="text" [(ngModel)]="installationInspection.ta4department" placeholder="Office">
+      </ion-input>
+    </ion-item>
+
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="contact" item-start></ion-icon>
+      <strong>Part B: Customer/Witness Details</strong>
+    </ion-item-divider>
+
+    <ion-list class="custom-item-radio-border-bottom" ion-row radio-group no-lines
+      [(ngModel)]="installationInspection.ta4agree" style="margin: 0;width: -webkit-fill-available;">
+      <ion-item ion-col col-md-6>
+        <ion-label>Customer cooperate</ion-label>
+        <ion-radio (click)="typeform()" value="true"></ion-radio>
+      </ion-item>
+      <ion-item ion-col col-md-6>
+        <ion-label>Customer does not cooperate</ion-label>
+        <ion-radio (click)="typeform()" value="false"></ion-radio>
+      </ion-item>
+    </ion-list>
+
+    <ion-item no-lines *ngIf='!formSelected'>
+      <ion-label>Accepted By:</ion-label>
+    </ion-item>
+
+    <ion-item *ngIf='!formSelected'>
+      <ion-fab>
+        <button ion-fab mini mode="md" (click)="clearSign('installInspectWitness')">
+          <ion-icon name="md-refresh"></ion-icon>
+        </button>
+      </ion-fab>
+      <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad2></signature-pad>
+    </ion-item>
+
+    <ion-item *ngIf='!formSelected'>
+      <ion-label ion-col col-md-2 color="primary">Name</ion-label>
+      <ion-input ion-col col-md-9 type="text" placeholder="Name" value="{{ installationInspection.ta4witnessname }}">
+      </ion-input>
+    </ion-item>
+
+    <ion-item *ngIf='!formSelected'>
+      <ion-label ion-col col-md-2 color="primary">Tel No.</ion-label>
+      <ion-input ion-col col-md-9 type="text" [(ngModel)]="installationInspection.ta4witnessphone" placeholder="Name"
+        value="{{ installationInspection.ta4witnessphone }}">
+      </ion-input>
+    </ion-item>
+
+    <ion-item *ngIf='!formSelected'>
+      <ion-label ion-col col-md-2 color="primary">Date/Time</ion-label>
+      <ion-datetime ion-col col-md-9 style="margin-left: 16px;" displayFormat="DD/MM/YYYY HH:mm"
+        placeholder="Choose Date/Time" pickerFormat="DD/MM/YYYY HH:mm" [(ngModel)]="installationInspection.ta4datetime"
+        (ionChange)="formatTimeDisplay()"></ion-datetime>
+    </ion-item>
+
+  </ion-list>
+  <!-- End: Installation & Inspection -->
+
+  <!-- Start: Evidence Collection -->
+  <ion-list ion-row *ngIf="formType === 'formEvidenceCollect'">
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="bookmark" item-start></ion-icon>
+      <strong>Evidence Collection</strong>
+    </ion-item-divider>
+
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="filing" item-start></ion-icon>
+      <strong>Notification Letter of Evidence Collection</strong>
+    </ion-item-divider>
+
+    <ion-item ion-col col-md-8>
+      <ion-label ion-col col-md-4 color="primary">Contract Account</ion-label>
+      <ion-input ion-col col-md-8 type="number" placeholder="Contract Account" readonly="true" text-right
+        value="{{ evidenceCollect.ta4accountno }}"></ion-input>
+    </ion-item>
+
+    <ion-item ion-col col-md-4>
+      <ion-label ion-col col-md-4 color="primary">Station</ion-label>
+      <ion-input ion-col col-md-8 type="number" placeholder="Station Code" readonly="true" text-right
+        value="{{ evidenceCollect.station }}">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-4 color="primary">Customer Name</ion-label>
+      <ion-input ion-col col-md-9 type="text" placeholder="Registered Customer Name" readonly="true" text-right
+        value="{{ evidenceCollect.ta4custname }}"></ion-input>
+    </ion-item>
+
+    <ion-item text-wrap style="line-height: 30px; text-align: justify;">
+      <ion-label ion-col col-md-12>
+        I: <strong>{{ evidenceCollect.ta4staffname }}</strong>
+      </ion-label>
+    </ion-item>
+
+    <ion-item text-wrap style="line-height: 30px; text-align: justify;">
+      <ion-label ion-col col-md-12>
+        Staff No.: <strong>{{ evidenceCollect.ta4staffno }}</strong> claming to have taken the following items :-
+      </ion-label>
+    </ion-item>
+
+    <ion-list ion-row style="width: -webkit-fill-available;margin: 0px">
+      <ion-list-header
+        style="margin: 25px 0px 0px 16px;padding: 0px 0px 0px 18px;border: 0.55px solid lightgray;border-radius: 10px;">
+        List of Evidence's
+        <button ion-button round item-end style="padding: 12px;" (click)="addEviItem()" mode="md">Add</button>
+      </ion-list-header>
+
+      <span *ngFor="let item of evidenceCollect.evidenceItem; let j = index"
+        style="width: -webkit-fill-available;border: 0.55px solid lightgrey;border-radius: 10px;margin: 10px 1px 7px 17px;">
+        <ion-item style="border-radius: 10px 10px 0px 0px;">
+          <ion-label><strong>Item No. {{ j+1 }}</strong></ion-label>
+          <ion-icon name="trash" color="danger" item-end (click)="deleteEviItem(j)" *ngIf="j > 0"></ion-icon>
+        </ion-item>
+
+        <ion-item *ngIf="itemValEvi || eviTempDmg">
+          <p *ngIf="itemValEvi" style="color: red;font-size: 14px;font-style: italic;letter-spacing: 1px;">
+            *Name of evidence is empty!
+          </p>
+          <p *ngIf="eviTempDmg" style="color: red;font-size: 14px;font-style: italic;letter-spacing: 1px;">
+            *Description of evidence is empty!
+          </p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label ion-col col-md-2 color="primary">Item</ion-label>
+          <ion-input ion-col col-md-10 mode="md" type="text" placeholder="Name" [(ngModel)]="item.ta4item">
+          </ion-input>
+        </ion-item>
+
+        <ion-item style="border-radius: 0px 0px 25px 25px;">
+          <ion-label ion-col col-md-2 color="primary">Description</ion-label>
+          <ion-textarea [(ngModel)]="item.ta4describe" rows="4" placeholder="Description"></ion-textarea>
+        </ion-item>
+      </span>
+
+      <span *ngIf="eviItem"
+        style="width: -webkit-fill-available;border: 0.55px solid red;border-radius: 10px;margin: 10px 1px 7px 17px;padding: 0px 0px 1px 0px;">
+        <ion-item no-lines style="border-radius: 10px 10px 25px 25px;">
+          <ion-icon name="close-circle" color="danger" item-start></ion-icon>
+          <ion-label style="color: red;font-size: 14px;font-style: italic;letter-spacing: 1px;">*Please add atleast
+            one(1) evidence..</ion-label>
+        </ion-item>
+      </span>
+
+      <span *ngIf="!evidenceCollect.evidenceItem && !eviItem"
+        style="width: -webkit-fill-available;border: 0.55px solid lightgrey;border-radius: 10px;margin: 10px 1px 7px 17px;padding: 0px 0px 1px 0px;">
+        <ion-item no-lines style="border-radius: 10px 10px 25px 25px;">
+          <ion-icon name="close-circle" color="danger" item-start></ion-icon>
+          <ion-label>No evidence's</ion-label>
+        </ion-item>
+      </span>
+    </ion-list>
+
+    <ion-item text-wrap style="line-height: 30px; text-align: justify;">
+      <ion-label ion-col col-md-12>
+        from the premises located at <strong>{{ evidenceCollect.ta4custaddress }}</strong>.
+      </ion-label>
+    </ion-item>
+
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="contact" item-start></ion-icon>
+      <strong>Part A: Staff Details</strong>
+    </ion-item-divider>
+
+    <ion-item>
+      <signature-pad [options]="signaturePadOptions" id="signatureCanvas1" #SignaturePad1>
+      </signature-pad>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-4 color="primary">Name</ion-label>
+      <ion-input ion-col col-md-8 type="text" placeholder="Name" value="{{ evidenceCollect.ta4staffname }}"
+        readonly="true"></ion-input>
+      <ion-icon name="contact" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-4 color="primary">Staff No.</ion-label>
+      <ion-input ion-col col-md-8 type="text" placeholder="Staff No." value="{{ evidenceCollect.ta4staffno }}"
+        readonly="true"></ion-input>
+      <ion-icon name="card" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-4 color="primary">Identification No.</ion-label>
+      <ion-input ion-col col-md-8 type="text" placeholder="Identification No."
+        [(ngModel)]="evidenceCollect.ta4staffindenkard" readonly="false"></ion-input>
+      <ion-icon name="card" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-4 color="primary">Designation</ion-label>
+      <ion-input ion-col col-md-8 type="text" placeholder="Identification No." value="Technician" readonly="true">
+      </ion-input>
+      <ion-icon name="medal" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item *ngIf="stationEvi">
+      <p style="color: red;font-size: 14px;font-style: italic;letter-spacing: 1px;">
+        *Station is empty!
+      </p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-4 color="primary">Station</ion-label>
+      <ion-select ion-col col-md-8 [(ngModel)]="evidenceCollect.officeAddress" placeholder="Station"
+        [selectOptions]="OfficeAddress" (ionChange)="officeAdrssSelect()" style="margin-left: -23px;">
+        <ion-option value="KUALA LUMPUR">Kuala Lumpur</ion-option>
+        <ion-option value="SELATAN">Selatan</ion-option>
+        <ion-option value="UTARA">Utara</ion-option>
+        <ion-option value="SELANGOR">Selangor</ion-option>
+        <ion-option value="TIMUR">Timur</ion-option>
+      </ion-select>
+      <ion-icon name="pin" item-end style="margin-right: 12px;"></ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-4 color="primary">Date/Time</ion-label>
+      <ion-input ion-col col-md-8 type="text" placeholder="Date/Time"
+        value="{{ evidenceCollect.ta4datetime }} - {{ evidenceCollect.ta4starttime }}" readonly="true"></ion-input>
+      <ion-icon name="time" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="contact" item-start></ion-icon>
+      <strong>Part B: Witness Details</strong>
+    </ion-item-divider>
+
+    <ion-item>
+      <ion-fab>
+        <button ion-fab mini mode="md" (click)="clearSign('evidenceWitness')">
+          <ion-icon name="md-refresh"></ion-icon>
+        </button>
+      </ion-fab>
+      <signature-pad [options]="signaturePadOptions" id="signatureCanvas2" #SignaturePad2>
+      </signature-pad>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-4 color="primary">Name</ion-label>
+      <ion-input ion-col col-md-8 type="text" placeholder="Name" [(ngModel)]="evidenceCollect.ta4witnessname">
+      </ion-input>
+      <ion-icon name="contact" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-4 color="primary">Identification No.</ion-label>
+      <ion-input ion-col col-md-8 type="text" placeholder="Identification No."
+        [(ngModel)]="evidenceCollect.ta4witnessidenkard">
+      </ion-input>
+      <ion-icon name="card" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item text-wrap>
+      <ion-label ion-col col-md-4 color="primary">Address</ion-label>
+      <ion-textarea ion-col rows="3" value="{{ evidenceCollect.ta4custaddress }}"></ion-textarea>
+      <ion-icon name="pin" item-end style="margin-right: 12px;"></ion-icon>
+    </ion-item>
+
+    <ion-item col-md-6>
+      <ion-label ion-col col-md-4 color="primary">Date</ion-label>
+      <ion-input type="text" placeholder="Date/Time" value="{{ evidenceCollect.ta4indatetime }}" readonly="true">
+      </ion-input>
+      <ion-icon name="calendar" item-end (click)="presentPopover($event,'evidenceDate2')"></ion-icon>
+    </ion-item>
+
+    <ion-item col-md-6>
+      <ion-label ion-col col-md-4 color="primary">Time</ion-label>
+      <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" style="margin-left: -11px;"
+        [(ngModel)]="evidenceCollect.ta4endtime" placeholder="Enter time"></ion-datetime>
+      <ion-icon name="time" item-end></ion-icon>
+    </ion-item>
+
+
+  </ion-list>
+  <!-- End: Evidence Collection -->
+
+  <!-- Start: Cessation/Temporary Interruption of Electricity Supply-->
+  <ion-list ion-row *ngIf='formType === "tempCeassation"'>
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="bookmark" item-start></ion-icon>
+      <strong>Cessation/Temporary Interruption of Electricity Supply</strong>
+    </ion-item-divider>
+
+    <ion-item>
+      <ion-label ion-col col-md-2 color="primary">Date</ion-label>
+      <ion-input ion-col col-md-6 type="text" placeholder="Choose Date" value="{{ tempCeassation.ta4datetime }}"
+        readonly="true" style="padding-left: 1px;">
+      </ion-input>
+      <ion-icon name="calendar" item-end (click)="presentPopover($event,'installTest')"></ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <ion-label ion-col col-md-2 color="primary">To</ion-label>
+      <ion-input ion-col col-md-10 type="text" placeholder="Auto Populate" value="{{ tempCeassation.ta4custname }}">
+      </ion-input>
+    </ion-item>
+
+    <ion-item-divider class="item-divider-header" text-wrap>
+      <ion-icon name="filing" item-start></ion-icon>
+      <strong>Notification Notice Cessation/Temporary Interruption of Electricity Supply for The Purpose of Testing &
+        Inspections of TNB's Meter Installation</strong>
+    </ion-item-divider>
+
+    <ion-item text-wrap no-lines>
+      <ion-label ion-col col-md-6>Dear valued TNB Customer,</ion-label>
+    </ion-item>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;">
+      <ion-label ion-col col-md-12>
+        Please be informed that TNB is conducting testing and inspections of TNB's meter installations at your premises
+        to ensure that it works properly.
+      </ion-label>
+    </ion-item>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;">
+      <ion-label ion-col col-md-12>
+        In view of the same, please be informed that the electricity supply at your premises will be
+        cessationed/temporarily interrupted on <strong>{{ tempCeassation.ta4indatetime }}</strong> from
+        <strong>{{ tempCeassation.ta4starttime }}</strong> until <strong>{{ tempCeassation.ta4endtime }}</strong>.
+      </ion-label>
+    </ion-item>
+
+    <ion-row col-md-12 style="margin-left: 15px;">
+      <ion-col col-md-7
+        [class]="((dateCess || fromInspectDate || ToinspectDate) && (!tempCeassation.ta4indatetime || !tempCeassation.ta4starttime || !tempCeassation.ta4endtime)) ? 'custom-form-box-red' : 'custom-form-box'">
+        <ion-item text-wrap style="border-radius: 10px 10px 0px 0px;"
+          *ngIf="(dateCess || fromInspectDate || ToinspectDate) && (!tempCeassation.ta4indatetime || !tempCeassation.ta4starttime || !tempCeassation.ta4endtime)">
+          <p style="margin-top: 10px;font-style: italic;font-size: 14px;color: red;">
+            *Required date and time field.
+          </p>
+        </ion-item>
+
+        <ion-item style="border-radius: 10px 10px 0px 0px;">
+          <ion-label fixed color="primary">*Date</ion-label>
+          <ion-input type="text" value="{{ tempCeassation.ta4indatetime }}" readonly="true" placeholder="Date"
+            (click)="presentPopover($event,'inspectDateFrom')">
+          </ion-input>
+          <ion-icon name="calendar" item-end (click)="presentPopover($event,'inspectDateFrom')"></ion-icon>
+        </ion-item>
+
+        <ion-item>
+          <ion-label fixed color="primary">*From</ion-label>
+          <ion-datetime [(ngModel)]="tempCeassation.ta4starttime" displayFormat="HH:mm" placeholder="Start Time">
+          </ion-datetime>
+          <ion-icon name="time" item-end></ion-icon>
+        </ion-item>
+
+        <ion-item no-lines style="border-radius: 0px 0px 10px 10px;">
+          <ion-label fixed color="primary">*To</ion-label>
+          <ion-datetime [(ngModel)]="tempCeassation.ta4endtime" displayFormat="HH:mm" placeholder="End Time">
+          </ion-datetime>
+          <ion-icon name="time" item-end></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;">
+      <ion-label ion-col col-md-12>
+        Your kind cooperation is much appreciated. <br> Thank you.
+      </ion-label>
+    </ion-item>
+    <!-- 008
+    <ion-item no-lines>
+      <ion-label text-center style="font-style: italic;letter-spacing: 1px;">
+        <strong>"POWERING THE NATION"</strong>
+      </ion-label>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label text-center style="font-style: italic;letter-spacing: 1px;">
+        <strong>"BETTER. BRIGHTER"</strong>
+      </ion-label>
+    </ion-item>
+    -->
+    <!-- 008 start -->
+    <ion-item no-lines>
+      <ion-label text-center style="font-style: italic;letter-spacing: 1px;">
+        <strong>"BETTER WORLD. BRIGHTER LIVES"</strong>
+      </ion-label>
+    </ion-item>
+    <!-- 008 end -->
+
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="contact" item-start></ion-icon>
+      <strong>Part A: Staff Details</strong>
+    </ion-item-divider>
+
+    <ion-item>
+      <signature-pad [options]="signaturePadOptions" id="signatureCanvas1" #SignaturePad1></signature-pad>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed color="primary">Name</ion-label>
+      <ion-input type="text" placeholder="Name" value="{{ tempCeassation.ta4staffname }}" readonly="true"></ion-input>
+      <ion-icon name="contact" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed color="primary">Staff No.</ion-label>
+      <ion-input type="text" placeholder="Staff No." value="{{ tempCeassation.ta4staffno }}" readonly="true">
+      </ion-input>
+      <ion-icon name="card" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;">
+      <ion-checkbox [(ngModel)]="tempCeassation.ta4agree" (click)='assignDetailsFormB()'></ion-checkbox>
+      <ion-label ion-col col-md-12>
+        I hereby fully understand the contents of this notice and <strong>{{ formB }}</strong> that the electricity
+        supply to be cessationed/temporarily interupted for the abovesaid purposes.
+      </ion-label>
+    </ion-item>
+
+    <ion-item-divider *ngIf='tempCeassation.ta4agree' class="item-divider-header">
+      <ion-icon name="contact" item-start></ion-icon>
+      <strong>Part B: Customer/Owner/Representative Details</strong>
+    </ion-item-divider>
+
+    <ion-item *ngIf='tempCeassation.ta4agree'>
+      <ion-fab>
+        <button ion-fab mini mode="md" (click)="clearSign('cessationCustomer')">
+          <ion-icon name="md-refresh"></ion-icon>
+        </button>
+      </ion-fab>
+      <signature-pad [options]="signaturePadOptions" id="signatureCanvas2" #SignaturePad2></signature-pad>
+    </ion-item>
+
+    <ion-item *ngIf='tempCeassation.ta4agree'>
+      <ion-label ion-col col-md-3 color="primary">Name</ion-label>
+      <ion-input type="text" [(ngModel)]="tempCeassation.ta4witnessname"
+        placeholder="Name (Customer/Owner/Representative)" readonly="false"></ion-input>
+      <ion-icon name="contact" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item *ngIf='tempCeassation.ta4agree'>
+      <ion-label ion-col col-md-3 color="primary">Identification No.</ion-label>
+      <ion-input type="text" [(ngModel)]="tempCeassation.ta4witnessidenkard" placeholder="Identification No."
+        readonly="false"></ion-input>
+      <ion-icon name="card" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item *ngIf='tempCeassation.ta4agree'>
+      <ion-label ion-col col-md-3 color="primary">Date/Time</ion-label>
+      <ion-datetime [(ngModel)]="tempCeassation.datetime" placeholder="Date/Time" displayFormat="DD/MM/YYYY HH:mm"
+        pickerFormat="DD/MM/YYYY HH:mm" (ionChange)='formatTimeDisplay()'>
+      </ion-datetime>
+      <ion-icon name="time" item-end></ion-icon>
+    </ion-item>
+
+    <ion-row
+      style="width: -webkit-fill-available;border: 1px solid slategrey;border-radius: 17px;margin: 8px;padding: 10px;letter-spacing: 1px;font-size: 15px;"
+      *ngIf='!tempCeassation.ta4agree'>
+      <ion-item-divider class="item-divider-header" style="letter-spacing: 1px;font-size: 15px;">
+        <ion-icon name="paper" item-start></ion-icon>
+        <strong>Form B</strong>
+      </ion-item-divider>
+
+      <ion-item text-wrap no-lines text-center text-uppercase style="letter-spacing: 1px;font-size: 15px;">
+        <ion-label>Licensee Supply Regulations 1990</ion-label>
+      </ion-item>
+
+      <ion-item text-wrap no-lines text-center style="letter-spacing: 1px;font-size: 15px;">
+        <ion-label>Form B</ion-label>
+      </ion-item>
+
+      <ion-item text-wrap no-lines text-center style="letter-spacing: 1px;font-size: 15px;">
+        <ion-label>[sub-regulation 6A(2)]</ion-label>
+      </ion-item>
+
+      <ion-item text-wrap no-lines text-center text-uppercase style="letter-spacing: 1px;font-size: 15px;">
+        <ion-label>Malaysia</ion-label>
+      </ion-item>
+
+      <ion-item text-wrap no-lines text-center text-uppercase style="letter-spacing: 1px;font-size: 15px;">
+        <ion-label>STATE OF {{ formBCess.ta4statename || '-' }}</ion-label>
+      </ion-item>
+
+      <ion-item col-md-6 offset-md-3 [class]="(formBState && !formBCess.ta4statename) ? 'custom-box-red' : 'custom-box'"
+        style="letter-spacing: 1px;font-size: 15px;">
+        <ion-label fixed color="primary" style="text-align: center;">State</ion-label>
+        <ion-select ion-col col-md-8 [(ngModel)]="formBCess.ta4statename" placeholder="Choose"
+          style="text-align: center;">
+          <ion-option value="Perak">Perak</ion-option>
+          <ion-option value="Perlis">Perlis</ion-option>
+          <ion-option value="Terengganu">Terengganu</ion-option>
+          <ion-option value="Kelantan">Kelantan</ion-option>
+          <ion-option value="Kedah">Kedah</ion-option>
+          <ion-option value="Selangor">Selangor</ion-option>
+          <ion-option value="Sabah">Sabah</ion-option>
+          <ion-option value="Sarawak">Sarawak</ion-option>
+          <ion-option value="Wilayah Persekutuan">Wilayah Persekutuan</ion-option>
+          <ion-option value="Melaka">Melaka</ion-option>
+          <ion-option value="Negeri Sembilan">Negeri Sembilan</ion-option>
+          <ion-option value="Johor">Johor</ion-option>
+          <ion-option value="Pahang">Pahang</ion-option>
+          <ion-option value="Putrajaya">Putrajaya</ion-option>
+          <ion-option value="Pulau Pinang">Pulau Pinang</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item no-lines style="letter-spacing: 1px;font-size: 15px;">
+        <ion-label text-wrap no-lines text-center text-uppercase>Electricity Supply Act 1990</ion-label>
+      </ion-item>
+
+      <ion-item col-md-7 no-lines style="letter-spacing: 1px;font-size: 15px;">
+        <ion-label>To :</ion-label>
+      </ion-item>
+
+      <ion-item col-md-7 style="letter-spacing: 1px;font-size: 15px;">
+        <ion-input type="text" placeholder="Auto Populate" value="{{ formBCess.ta4custname }}" readonly="true">
+        </ion-input>
+      </ion-item>
+
+      <ion-item col-md-7 text-wrap style="letter-spacing: 1px;font-size: 15px;">
+        <ion-textarea rows="3" placeholder="Auto Populate" value="{{ formBCess.ta4custaddress }}" readonly="true"
+          style="text-align: justify;">
+        </ion-textarea>
+      </ion-item>
+
+      <ion-item col-md-7 style="letter-spacing: 1px;font-size: 15px;">
+        <ion-label>Sir/Madam/Mr/Messrs,</ion-label>
+      </ion-item>
+
+      <ion-item-divider class="item-divider-header">
+        <ion-icon name="filing" item-start></ion-icon>
+        <strong>Notice of Temporary Cessation/Intrruption of Electricity Supply</strong>
+      </ion-item-divider>
+
+      <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 15px;">
+        <ion-label ion-col col-md-12>
+          Please be informed that the supply of electricity at <strong>{{ formBCess.tenant || '...' }}</strong> (address
+          of consumer/area to be affected) shall be temporarily ceased/interupted on
+          <strong>{{ formBCess.ta4datetime || '...'}}</strong> (date) from
+          <strong>{{ formBCess.ta4starttime  || '...'}}</strong> (start time) to
+          <strong>{{ formBCess.ta4endtime || '...' }}</strong> (end time) for the purpose of
+          <strong>{{ formBCess.ta4purpose || '...' }}</strong> (please specify).
+        </ion-label>
+      </ion-item>
+
+      <ion-row col-md-12 style="margin-left: 15px;margin-bottom: 20px;">
+        <ion-col col-md-9
+          [class]="((formBDate || formBStartInteruptTime || formBEndInteruptTime || formBPurpose) && (!formBCess.ta4datetime || !formBCess.ta4starttime || !formBCess.ta4endtime || !formBCess.ta4purpose)) ? 'custom-form-box-red' : 'custom-form-box'">
+          <ion-item
+            *ngIf="(formBDate || formBStartInteruptTime || formBEndInteruptTime || formBPurpose) && (!formBCess.ta4datetime || !formBCess.ta4starttime || !formBCess.ta4endtime || !formBCess.ta4purpose)"
+            text-wrap style="letter-spacing: 1px;font-size: 15px;;border-radius: 10px 10px 0px 0px;">
+            <p style="margin-top: 10px;font-style: italic;font-size: 14px;color: red;">
+              *Required date, time and purpose fields.
+            </p>
+          </ion-item>
+
+          <ion-item style="letter-spacing: 1px;font-size: 15px;border-radius: 10px 10px 0px 0px;">
+            <ion-label fixed color="primary">*Date</ion-label>
+            <ion-input type="text" value="{{ formBCess.ta4datetime }}" readonly="true" placeholder="Date"
+              (click)="presentPopover($event,'FormBInteruptDate')">
+            </ion-input>
+            <ion-icon name="calendar" item-end (click)="presentPopover($event,'FormBInteruptDate')"></ion-icon>
+          </ion-item>
+
+          <ion-item style="letter-spacing: 1px;font-size: 15px;">
+            <ion-label fixed color="primary">*From</ion-label>
+            <ion-datetime [(ngModel)]="formBCess.ta4starttime" displayFormat="HH:mm" placeholder="Start Time">
+            </ion-datetime>
+            <ion-icon name="time" item-end></ion-icon>
+          </ion-item>
+
+          <ion-item style="letter-spacing: 1px;font-size: 15px;">
+            <ion-label fixed color="primary">*To</ion-label>
+            <ion-datetime [(ngModel)]="formBCess.ta4endtime" displayFormat="HH:mm" placeholder="End Time">
+            </ion-datetime>
+            <ion-icon name="time" item-end></ion-icon>
+          </ion-item>
+
+          <ion-item no-lines style="letter-spacing: 1px;font-size: 15px;border-radius: 0px 0px 10px 10px;">
+            <ion-label fixed color="primary">*Purpose</ion-label>
+            <ion-textarea rows="5" [(ngModel)]="formBCess.ta4purpose" placeholder="Purpose"></ion-textarea>
+            <ion-icon name="journal" item-end></ion-icon>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-item style="letter-spacing: 1px;font-size: 15px;">
+        <ion-label fixed color="primary">Licensee</ion-label>
+        <ion-input type="text" placeholder="Auto Populate" readonly="true" value="TNB"></ion-input>
+        <ion-icon name="card" item-end></ion-icon>
+      </ion-item>
+
+      <ion-item style="letter-spacing: 1px;font-size: 15px;">
+        <ion-label fixed color="primary">Region</ion-label>
+        <ion-input type="text" placeholder="Auto Populate" readonly="true" value="{{ siteId_region }}"></ion-input>
+        <ion-icon name="map" item-end></ion-icon>
+      </ion-item>
+
+      <ion-item style="align-items: center;letter-spacing: 1px;font-size: 15px;">
+        <ion-label fixed color="primary" style="align-self: normal;">Address</ion-label>
+        <ion-textarea rows="3" text-wrap placeholder="Auto Populate" readonly="true"
+          value="{{ formBCess.ta4officeaddress }}">
+        </ion-textarea>
+        <ion-icon name="pin" item-end style="margin-right: 10px;"></ion-icon>
+      </ion-item>
+
+      <ion-item style="letter-spacing: 1px;font-size: 15px;">
+        <ion-label fixed color="primary">Tel. No.</ion-label>
+        <ion-input type="text" placeholder="Auto Populate" readonly="true" value="{{ formBCess.ta4officephone }}">
+        </ion-input>
+        <ion-icon name="call" item-end></ion-icon>
+      </ion-item>
+
+      <ion-item style="letter-spacing: 1px;font-size: 15px;">
+        <ion-label fixed color="primary">Date</ion-label>
+        <ion-input type="text" placeholder="Date" readonly="true" value="{{ formBCess.ta4indatetime }}"
+          (click)="presentPopover($event,'formBdated')">
+        </ion-input>
+        <ion-icon name="calendar" item-end (click)="presentPopover($event,'formBdated')"></ion-icon>
+      </ion-item>
+    </ion-row>
+
+  </ion-list>
+  <!-- End: Cessation/Temporary Interruption of Electricity Supply-->
+
+  <!-- Start: Form A for Staff-->
+  <ion-list ion-row *ngIf='formType === "formACust"'>
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="bookmark" item-start></ion-icon>
+      <strong>Schedule Form A</strong>
+    </ion-item-divider>
+
+    <ion-item no-lines>
+      <ion-label text-wrap no-lines text-center text-uppercase>Schedule</ion-label>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label text-wrap no-lines text-center text-uppercase><strong>Form A</strong></ion-label>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label text-wrap no-lines text-center text-uppercase>(sub-regulation 6A(1))</ion-label>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label text-wrap no-lines text-center text-uppercase>Malaysia</ion-label>
+    </ion-item>
+
+    <ion-item text-wrap no-lines text-center text-uppercase>
+      <ion-label>STATE OF {{ formCust.ta4statename || '...' }}</ion-label>
+    </ion-item>
+
+    <ion-item col-md-6 offset-md-3 [class]="(stateSelect2 && !formCust.ta4statename) ? 'custom-box-red' : 'custom-box'">
+      <ion-label fixed color="primary" style="text-align: center;">State</ion-label>
+      <ion-select ion-col col-md-8 [(ngModel)]="formCust.ta4statename" placeholder="Choose" style="text-align: center;">
+        <ion-option value="Perak">Perak</ion-option>
+        <ion-option value="Perlis">Perlis</ion-option>
+        <ion-option value="Terengganu">Terengganu</ion-option>
+        <ion-option value="Kelantan">Kelantan</ion-option>
+        <ion-option value="Kedah">Kedah</ion-option>
+        <ion-option value="Selangor">Selangor</ion-option>
+        <ion-option value="Sabah">Sabah</ion-option>
+        <ion-option value="Sarawak">Sarawak</ion-option>
+        <ion-option value="Wilayah Persekutuan">Wilayah Persekutuan</ion-option>
+        <ion-option value="Melaka">Melaka</ion-option>
+        <ion-option value="Negeri Sembilan">Negeri Sembilan</ion-option>
+        <ion-option value="Johor">Johor</ion-option>
+        <ion-option value="Pahang">Pahang</ion-option>
+        <ion-option value="Putrajaya">Putrajaya</ion-option>
+        <ion-option value="Pulau Pinang">Pulau Pinang</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label text-wrap no-lines text-center text-uppercase>Electricity Supply Act 1990</ion-label>
+    </ion-item>
+
+    <ion-item col-md-7 no-lines>
+      <ion-label>To :</ion-label>
+    </ion-item>
+
+    <ion-item col-md-7>
+      <ion-input type="text" placeholder="Auto Populate" value="{{ formCust.ta4custname || '-' }}" readonly="true">
+      </ion-input>
+    </ion-item>
+
+    <ion-item col-md-7 text-wrap>
+      <ion-textarea rows="3" placeholder="Auto Populate" value="{{ formCust.ta4custaddress || '-'}}" readonly="true"
+        style="text-align: justify;">
+      </ion-textarea>
+    </ion-item>
+
+    <ion-item col-md-7>
+      <ion-input type="text" placeholder="Auto Populate"
+        value="{{ formCust.station || '...'}} - {{ formCust.ta4accountno || '...'}}" readonly="true">
+      </ion-input>
+    </ion-item>
+
+    <ion-item col-md-7>
+      <ion-label>Sir/Madam/Messers,</ion-label>
+    </ion-item>
+
+    <ion-item-divider text-wrap class="item-divider-header">
+      <ion-icon name="filing" item-start></ion-icon>
+      <strong>Notice of Disconnection of Electricity Supply Under Subsection 38(1) Electricity Supply Act 1990</strong>
+    </ion-item-divider>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 15px;">
+      <ion-label ion-col col-md-12>
+        Please be informed that on <strong>{{ formCust.ta4datetime | date: gv.dateFormat || '...'}} -
+          {{ formCust.ta4datetime | date: gv.time24Format || '...'}}</strong> (date/time) an inspection has been done to
+        our installation at your premise. From the inspection, we noticed that the system had been tampered or modified
+        in the following circumstances below:
+      </ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="ano && !formCust.ta4anamoly" text-wrap
+      [class]="(ano && !formCust.ta4anamoly) ? 'custom-box-red' : 'custom-box'"
+      style="letter-spacing: 1px;font-size: 15px;margin: 0px 8px 0px 20px;padding: 0px 12px 0px 12px;text-align: justify;">
+      <p style="font-style: italic;font-size: 14px;color: red;">
+        *Required anomaly remarks fields. <br>
+        *To update anomaly remarks, please enter value in 'Anomaly Remarks Section' at 'Service Details'.
+      </p>
+    </ion-item>
+
+    <p style="padding-left: 20px;line-height: 30px;letter-spacing: 1px;font-weight: bold;white-space: pre-line;">
+      {{ formCust.ta4anamoly || '...' }}
+    </p>
+
+    <ion-row col-md-12 style="margin-left: 15px;margin-bottom: 20px;">
+      <ion-col col-md-8 [class]="(datetimeformA && !formCust.ta4datetime) ? 'custom-box-red' : 'custom-box'"
+        style="padding: 0px 0px 0px 0px;">
+        <ion-item *ngIf="datetimeformA && !formCust.ta4datetime" text-wrap
+          style="letter-spacing: 1px;font-size: 15px;border-radius: 10px 10px 0px 0px;">
+          <p style="font-style: italic;font-size: 14px;color: red;">
+            *Required date and time fields.
+          </p>
+        </ion-item>
+
+        <ion-item no-lines style="border-radius: 10px 10px 10px 10px;padding-bottom: 1px;">
+          <ion-label fixed color="primary">*Date/Time</ion-label>
+          <ion-datetime [(ngModel)]="formCust.ta4datetime" placeholder="Date" displayFormat="DD/MM/YYYY - HH:mm"
+            pickerFormat="DD/MM/YYYY HH:mm" (ionChange)='formatTimeDisplay()' text-right>
+          </ion-datetime>
+          <ion-icon name="time" item-end></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-item no-lines style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 15px;">
+      <ion-label ion-col col-md-12 text-wrap>
+        Based on the evidence above, we are of the opinion that an offence had been committed under the Electricity
+        Supply Act 1990 ("Act") as follow:
+      </ion-label>
+    </ion-item>
+
+    <ion-list no-lines style="margin: 10px 13px 10px 20px;border: 1px solid lightgrey;border-radius: 10px;">
+      <ion-item style="border-radius: 10px 10px 0px 0px;">
+        <ion-checkbox [(ngModel)]="formCust.subsection1" (ionChange)="checkboxSlct()"></ion-checkbox>
+        <ion-label>Select all</ion-label>
+      </ion-item>
+      <ion-item-divider>Subsection 37(1)*</ion-item-divider>
+      <ion-item text-wrap style="text-align: justify;">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss1tampers" value="sectinAct1" (ionChange)="CheckValueSentForCheckbox()">
+        </ion-checkbox>
+        <ion-label>
+          tampers with or adjusts any installation or part thereof or manufactures or imports or sells any equipment so
+          as to cause or to be likely to cause danger to human life or limb or injury to any equipment or other
+          property:
+        </ion-label>
+      </ion-item>
+      <ion-item-divider>Subsection 37(3)* - in any manner dishonestly:-</ion-item-divider>
+      <ion-item>
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3abstracts" (ionChange)="CheckValueSentForCheckbox()"></ion-checkbox>
+        <ion-label>Abstracts energy</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3consumer" (ionChange)="CheckValueSentForCheckbox()"></ion-checkbox>
+        <ion-label>Energy consumes</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3uses" (ionChange)="CheckValueSentForCheckbox()"></ion-checkbox>
+        <ion-label>Uses energy</ion-label>
+      </ion-item>
+      <ion-item text-wrap style="text-align: justify;">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3afterindex" (ionChange)="CheckValueSentForCheckbox()"></ion-checkbox>
+        <ion-label>
+          Alters the index of any meter or other instrument used on or in connection with any installation of any supply
+          authority or any licensed installation for recording the output or comsumption of energy or
+        </ion-label>
+      </ion-item>
+      <ion-item text-wrap style="text-align: justify;">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3prevents" (ionChange)="CheckValueSentForCheckbox()"></ion-checkbox>
+        <ion-label>
+          Prevents any such meter or instrument from duty recording the output or consumption of energy
+        </ion-label>
+      </ion-item>
+      <ion-item-divider>Subsection 37(14)*</ion-item-divider>
+      <ion-item text-wrap style="text-align: justify;border-radius: 0px 0px 10px 10px;">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss14damages" (ionChange)="CheckValueSentForCheckbox()"></ion-checkbox>
+        <ion-label>
+          Damages any meter or other instrument used on or in connection with any licensed installation, for recording
+          theoutput or comsumption of energy.
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-item no-lines style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 15px;">
+      <ion-label ion-col col-md-12 text-wrap>
+        Please note that under subsection 38 (1) of the Act, you are hereby given a notice that the electricity supply
+        in the above premise shall be disconnected on <strong>{{ formCust.ta4starttime || '...' }}</strong> (date).
+        Please also take note that we will claim any loss and expenses incurred by us due to the offences done as
+        above-mentioned. We will issue a statement of claims to your goodselves in due course.
+      </ion-label>
+    </ion-item>
+
+    <ion-row col-md-12 style="margin-left: 15px;margin-bottom: 20px;">
+      <ion-col col-md-8 class="custom-form-box">
+        <ion-item style="border-radius: 10px 10px 10px 10px;">
+          <ion-label fixed color="primary" text-wrap>Discon. Date</ion-label>
+          <ion-input type="text" placeholder="Disconnection Date" readonly="true" value="{{ formCust.ta4starttime }}">
+          </ion-input>
+          <!-- (click)="presentPopover($event,'DateDisconnection')" -->
+          <!-- <ion-icon name="calendar" item-end (click)="presentPopover($event,'DateDisconnection')"></ion-icon> -->
+        </ion-item>
+
+        <ion-item>
+          <ion-label fixed color="primary">Region</ion-label>
+          <ion-input type="text" placeholder="Region" readonly="false" value="{{ siteId_region }}"></ion-input>
+        </ion-item>
+
+        <ion-item text-wrap>
+          <ion-label fixed color="primary">Address</ion-label>
+          <ion-textarea rows="3" placeholder="Address" readonly="false" value="{{ formCust.ta4officeaddress }}">
+          </ion-textarea>
+        </ion-item>
+
+        <ion-item no-lines style="border-radius: 0px 0px 10px 10px;">
+          <ion-label fixed color="primary" text-wrap>Inspec. Date</ion-label>
+          <ion-input type="text" placeholder="Inspection Date" readonly="true" value="{{ formCust.ta4indatetime }}"
+            (click)="presentPopover($event,'formAStaffDate')"></ion-input>
+          <ion-icon name="calendar" item-end (click)="presentPopover($event,'formAStaffDate')"></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-list ion-row
+      [class]="((datetimeformA && deliveryD && deliveryT && deliveryN && receiverN) && (!deliver.ta4indatetime || !deliver.ta4starttime || !deliver.ta4witnessname || !deliver.ta4staffname)) ? 'custom-formA-box-red' : 'custom-formA-box'">
+      <ion-item-divider style="border-radius: 10px 10px 0px 0px;">Delivery Notice Form A</ion-item-divider>
+
+      <ion-item
+        *ngIf="(datetimeformA && deliveryD && deliveryT && deliveryN && receiverN) && (!deliver.ta4indatetime || !deliver.ta4starttime || !deliver.ta4witnessname || !deliver.ta4staffname)"
+        text-wrap style="letter-spacing: 1px;font-size: 15px;border-radius: 10px 10px 10px 10px;">
+        <p style="font-style: italic;font-size: 14px;color: red;">
+          *Required date, time fields. <br>
+          *Required receiver name, receiver signature fields. <br>
+          *Required delivery name, delivery fields.
+        </p>
+      </ion-item>
+
+      <ion-item col-md-12>
+        <ion-label fixed color="primary">*Date</ion-label>
+        <ion-input mode="md" type="text" placeholder="Date" readonly="true" value="{{ deliver.ta4indatetime }}"
+          (click)="presentPopover($event,'deliveryDate')" clearInput="true"></ion-input>
+        <ion-icon name="calendar" item-end (click)="presentPopover($event,'deliveryDate')"></ion-icon>
+      </ion-item>
+
+      <ion-item col-md-12>
+        <ion-label fixed color="primary">*Time</ion-label>
+        <ion-datetime mode="md" [(ngModel)]="deliver.ta4starttime" displayFormat="HH:mm" placeholder="Time"
+          clearInput="true">
+        </ion-datetime>
+        <ion-icon name="time" item-end></ion-icon>
+      </ion-item>
+
+      <ion-item-divider>Receiver</ion-item-divider>
+
+      <ion-item>
+        <ion-label fixed color="primary">Name</ion-label>
+        <ion-input mode="md" type="text" placeholder="Name" readonly="true" value="{{ deliver.ta4witnessname }}">
+        </ion-input>
+      </ion-item>
+
+      <ion-item style="align-items: start;">
+        <ion-label fixed color="primary">Signature</ion-label>
+        <ion-label style="margin-left: 15px;">
+          <ion-fab>
+            <button ion-fab mini mode="md" (click)="clearSign('deliverWitness')">
+              <ion-icon name="md-refresh"></ion-icon>
+            </button>
+          </ion-fab>
+          <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad1></signature-pad>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-divider>Delivery</ion-item-divider>
+
+      <ion-item style="align-items: start;">
+        <ion-label fixed color="primary">Name</ion-label>
+        <ion-input type="text" placeholder="Name" readonly="true" value="{{ deliver.ta4staffname }}"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed color="primary">Signature</ion-label>
+        <ion-label style="margin-left: 15px;">
+          <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad2></signature-pad>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-divider>Remarks</ion-item-divider>
+
+      <ion-item no-lines style="align-items: start;border-radius: 0px 0px 10px 10px;">
+        <ion-textarea [(ngModel)]="deliver.ta4describe" rows="4" placeholder="Remarks"></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <ion-list ion-row
+      style="margin: 10px 13px 10px 20px;border: 1px solid lightgrey;border-radius: 10px;width: -webkit-fill-available;">
+      <ion-item-divider style="border-radius: 10px 10px 0px 0px;">Supply Disconnection</ion-item-divider>
+      <ion-item col-md-6>
+        <ion-label fixed color="primary">Date</ion-label>
+        <ion-input mode="md" type="text" placeholder="Dated" readonly="true" value="{{ disconnect.ta4datetime }}"
+          (click)="presentPopover($event,'disconnetDate')"></ion-input>
+        <ion-icon name="calendar" item-end (click)="presentPopover($event,'disconnetDate')"></ion-icon>
+      </ion-item>
+
+      <ion-item col-md-6>
+        <ion-label fixed color="primary">Time</ion-label>
+        <ion-datetime mode="md" [(ngModel)]="disconnect.ta4starttime" displayFormat="HH:mm" placeholder="Time"
+          [pickerOptions]="customOptionsDiscon">
+        </ion-datetime>
+        <ion-icon name="time" item-end></ion-icon>
+      </ion-item>
+
+      <ion-item-divider>Disconnector</ion-item-divider>
+
+      <ion-item>
+        <ion-label fixed color="primary">Name</ion-label>
+        <ion-input mode="md" type="text" placeholder="Name" readonly="true" value="{{ disconnect.ta4staffname }}">
+        </ion-input>
+      </ion-item>
+
+      <ion-item style="align-items: start;">
+        <ion-label fixed color="primary">Signature</ion-label>
+        <ion-label style="margin-left: 15px;">
+          <ion-fab>
+            <button ion-fab mini mode="md" (click)="clearSign('disconnectStaff')">
+              <ion-icon name="md-refresh"></ion-icon>
+            </button>
+          </ion-fab>
+          <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad3></signature-pad>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-divider>Remarks</ion-item-divider>
+
+      <ion-item style="border-radius: 0px 0px 10px 10px;">
+        <ion-textarea [(ngModel)]="disconnect.ta4describe" rows="5" placeholder="Remarks"></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <ion-list ion-row
+      style="margin: 10px 13px 10px 20px;border: 1px solid lightgrey;border-radius: 10px;width: -webkit-fill-available;">
+      <ion-item-divider style="border-radius: 10px 10px 0px 0px;">Supply Reconnection</ion-item-divider>
+      <ion-item col-md-6>
+        <ion-label fixed color="primary">Date</ion-label>
+        <ion-input mode="md" type="text" placeholder="Dated" readonly="true" value="{{ reconnect.ta4datetime }}"
+          (click)="presentPopover($event,'reconnectDate')"></ion-input>
+        <ion-icon name="calendar" item-end (click)="presentPopover($event,'reconnectDate')"></ion-icon>
+      </ion-item>
+
+      <ion-item col-md-6>
+        <ion-label fixed color="primary">Time</ion-label>
+        <ion-datetime mode="md" [(ngModel)]="reconnect.ta4starttime" displayFormat="HH:mm" placeholder="Time"
+          [pickerOptions]="customOptionsRecon">
+        </ion-datetime>
+        <ion-icon name="time" item-end></ion-icon>
+      </ion-item>
+
+      <ion-item-divider>Reconnector</ion-item-divider>
+
+      <ion-item>
+        <ion-label fixed color="primary">Name</ion-label>
+        <ion-input mode="md" type="text" placeholder="Name" readonly="true" value="{{ reconnect.ta4staffname }}">
+        </ion-input>
+      </ion-item>
+
+      <ion-item style="align-items: start;">
+        <ion-label fixed color="primary">Signature</ion-label>
+        <ion-label style="margin-left: 15px;">
+          <ion-fab>
+            <button ion-fab mini mode="md" (click)="clearSign('reconnectStaff')">
+              <ion-icon name="md-refresh"></ion-icon>
+            </button>
+          </ion-fab>
+          <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad4></signature-pad>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-divider>Remarks</ion-item-divider>
+
+      <ion-item no-lines style="border-radius: 0px 0px 10px 10px;">
+        <ion-textarea [(ngModel)]="reconnect.ta4describe" rows="5" placeholder="Remarks"></ion-textarea>
+      </ion-item>
+    </ion-list>
+  </ion-list>
+  <!-- End: Form A for Staff-->
+
+  <!-- Start: Form A for Customer -->
+  <ion-list ion-row *ngIf='formType === "formCustCopy"'>
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="bookmark" item-start></ion-icon>
+      <strong>Schedule Form A</strong>
+    </ion-item-divider>
+
+    <ion-item no-lines>
+      <ion-label text-wrap no-lines text-center text-uppercase>Schedule</ion-label>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label text-wrap no-lines text-center text-uppercase><strong>Form A</strong></ion-label>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label text-wrap no-lines text-center text-uppercase>(sub-regulation 6A(1))</ion-label>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label text-wrap no-lines text-center text-uppercase>Malaysia</ion-label>
+    </ion-item>
+
+    <ion-item text-wrap no-lines text-center text-uppercase>
+      <ion-label>STATE OF {{ formCust.ta4statename || '-' }}</ion-label>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label text-wrap no-lines text-center text-uppercase>Electricity Supply Act 1990</ion-label>
+    </ion-item>
+
+    <ion-item col-md-7 no-lines>
+      <ion-label>To :</ion-label>
+    </ion-item>
+
+    <ion-item col-md-7>
+      <ion-input type="text" placeholder="Auto Populate" value="{{ formCust.ta4custname }}" readonly="true">
+      </ion-input>
+    </ion-item>
+
+    <ion-item col-md-7 text-wrap>
+      <ion-textarea rows="3" placeholder="Auto Populate" value="{{ formCust.ta4custaddress }}" readonly="true"
+        style="text-align: justify;">
+      </ion-textarea>
+    </ion-item>
+
+    <ion-item col-md-7>
+      <ion-input type="text" placeholder="Auto Populate" value="{{ formCust.station }} - {{ formCust.ta4accountno }}"
+        readonly="true">
+      </ion-input>
+    </ion-item>
+
+    <ion-item col-md-7>
+      <ion-label>Sir/Madam/Messers,</ion-label>
+    </ion-item>
+
+    <ion-item-divider text-wrap class="item-divider-header">
+      <ion-icon name="filing" item-start></ion-icon>
+      <strong>Notice of Disconnection of Electricity Supply Under Subsection 38(1) Electricity Supply Act 1990</strong>
+    </ion-item-divider>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 15px;">
+      <ion-label ion-col col-md-12>
+        Please be informed that on <strong>{{ formCust.ta4datetime | date: gv.dateFormat || '...'}} -
+          {{ formCust.ta4datetime | date: gv.timeFormat || '...'}}</strong> (date/time) an inspection has been done to
+        our installation at your premise. From the inspection, we noticed that the system had been tampered or modified
+        in the following circumstances below:
+      </ion-label>
+    </ion-item>
+
+    <p style="padding-left: 20px;line-height: 30px;letter-spacing: 1px;font-weight: bold;white-space: pre-line;">
+      {{ formCust.ta4anamoly || '...' }}
+    </p>
+
+    <ion-item no-lines style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 15px;">
+      <ion-label ion-col col-md-12 text-wrap>
+        Based on the evidence above, we are of the opinion that an offence had been committed under the Electricity
+        Supply Act 1990 ("Act") as follow:
+      </ion-label>
+    </ion-item>
+
+    <ion-list no-lines style="margin: 10px 13px 10px 20px;border: 1px solid lightgrey;border-radius: 10px;">
+      <!-- <ion-item style="border-radius: 10px 10px 0px 0px;">
+        <ion-checkbox [(ngModel)]="formCust.subsection1" (ionChange)="checkboxSlct()"></ion-checkbox>
+        <ion-label>Select all</ion-label>
+      </ion-item> -->
+      <ion-item-divider style="border-radius: 10px 10px 0px 0px;letter-spacing: 1px;font-size: 15px;">Subsection 37(1)*
+      </ion-item-divider>
+      <ion-item text-wrap style="text-align: justify;letter-spacing: 1px;font-size: 15px;">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss1tampers" value="sectinAct1" disabled="{{ selectDisabled }}">
+        </ion-checkbox>
+        <ion-label style="opacity: 1;">
+          tampers with or adjusts any installation or part thereof or manufactures or imports or sells any equipment so
+          as to cause or to be likely to cause danger to human life or limb or injury to any equipment or other
+          property:
+        </ion-label>
+      </ion-item>
+      <ion-item-divider style="letter-spacing: 1px;font-size: 15px;">Subsection 37(3)* - in any manner dishonestly:-
+      </ion-item-divider>
+      <ion-item style="letter-spacing: 1px;font-size: 15px;">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3abstracts" disabled="{{ selectDisabled }}"></ion-checkbox>
+        <ion-label style="opacity: 1;">Abstracts energy</ion-label>
+      </ion-item>
+      <ion-item style="letter-spacing: 1px;font-size: 15px;">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3consumer" disabled="{{ selectDisabled }}"></ion-checkbox>
+        <ion-label style="opacity: 1;">Energy consumes</ion-label>
+      </ion-item>
+      <ion-item style="letter-spacing: 1px;font-size: 15px;">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3uses" disabled="{{ selectDisabled }}"></ion-checkbox>
+        <ion-label style="opacity: 1;">Uses energy</ion-label>
+      </ion-item>
+      <ion-item text-wrap style="text-align: justify;letter-spacing: 1px;font-size: 15px;">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3afterindex" disabled="{{ selectDisabled }}"></ion-checkbox>
+        <ion-label style="opacity: 1;">
+          Alters the index of any meter or other instrument used on or in connection with any installation of any supply
+          authority or any licensed installation for recording the output or comsumption of energy or
+        </ion-label>
+      </ion-item>
+      <ion-item text-wrap style="text-align: justify;letter-spacing: 1px;font-size: 15px;">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3prevents" disabled="{{ selectDisabled }}"></ion-checkbox>
+        <ion-label style="opacity: 1;">
+          Prevents any such meter or instrument from duty recording the output or consumption of energy
+        </ion-label>
+      </ion-item>
+      <ion-item-divider style="letter-spacing: 1px;font-size: 15px;">Subsection 37(14)*</ion-item-divider>
+      <ion-item text-wrap
+        style="text-align: justify;border-radius: 0px 0px 10px 10px;letter-spacing: 1px;font-size: 15px;">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss14damages" disabled="{{ selectDisabled }}"></ion-checkbox>
+        <ion-label style="opacity: 1;">
+          Damages any meter or other instrument used on or in connection with any licensed installation, for recording
+          theoutput or comsumption of energy.
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-item no-lines style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 15px;">
+      <ion-label ion-col col-md-12 text-wrap>
+        Please note that under subsection 38 (1) of the Act, you are hereby given a notice that the electricity supply
+        in the above premise shall be disconnected on <strong>{{ formCust.ta4starttime || '...' }}</strong> (date).
+      </ion-label>
+    </ion-item>
+
+    <ion-item no-lines style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 15px;">
+      <ion-label ion-col col-md-12 text-wrap>
+        Please also take note that we will claim any loss and expenses incurred by us due to the offences done as
+        above-mentioned. We will issue a statement of claims to your goodselves in due course.
+      </ion-label>
+    </ion-item>
+
+    <ion-row col-md-12 style="margin-left: 15px;margin-bottom: 20px;">
+      <ion-col
+        style="border: 0.55px solid lightgrey;border-radius: 10px;padding: 5px 12px 12px 0px;margin-right: 20px;">
+        <ion-item text-wrap>
+          <ion-label fixed color="primary">Address</ion-label>
+          <ion-textarea rows="3" placeholder="Address" readonly="true" value="{{ formCust.ta4officeaddress }}">
+          </ion-textarea>
+        </ion-item>
+
+        <ion-item>
+          <ion-label fixed color="primary">Dated</ion-label>
+          <ion-input type="text" placeholder="Dated" readonly="true" value="{{ formCust.ta4indatetime }}"></ion-input>
+          <ion-icon name="calendar" item-end></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+  <!-- End: Form A for Customer -->
+
+  <!-- Start: Session Without Prejudice -->
+  <ion-list *ngIf='formType === "prejudiceForm"'>
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="bookmark" item-start></ion-icon>
+      <strong>Explanation Session Without Prejudice</strong>
+    </ion-item-divider>
+
+    <ion-item col-md-7 style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 16px;" no-lines>
+      <ion-label>To :</ion-label>
+    </ion-item>
+
+    <ion-item col-md-7 style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 16px;">
+      <ion-input type="text" placeholder="Auto Populate" value="{{ prejude.ta4custname }}" readonly="true">
+      </ion-input>
+    </ion-item>
+
+    <ion-item col-md-7 style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 16px;" text-wrap>
+      <ion-textarea rows="3" placeholder="Auto Populate" value="{{ prejude.ta4custaddress }}" readonly="true"
+        style="text-align: justify;">
+      </ion-textarea>
+    </ion-item>
+
+    <ion-item col-md-7 style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 16px;">
+      <ion-label>Dear valued TNB Customer,</ion-label>
+    </ion-item>
+
+    <ion-item-divider text-wrap class="item-divider-header" style="text-align: justify;">
+      <ion-icon name="filing" item-start></ion-icon>
+      <strong>Notification Letter (Explanation Session Without Prejudice) To Electricity Disconnection and Claims of
+        Loss of Revenue and Expenses and Related Changes</strong>
+    </ion-item-divider>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 16px;">
+      <ion-label ion-col col-md-12>
+        Please be informed that TNB is conducting inspections and testing of TNB meter installation at your premises to
+        ensure it is working in good condition. The inspection results show that the meter does not record actual
+        electricity consumption readings.
+      </ion-label>
+    </ion-item>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 16px;">
+      <ion-label ion-col col-md-12>
+        Please note that under subsection 38(1) of Electricity Supply Act 1990, TNB will perform electricity
+        disconnection at your premise as mentioned in disconnection notice (FORM A) that will be given together with
+        this letter and will claim any loss of revenue and expenses and related changes.
+      </ion-label>
+    </ion-item>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 16px;">
+      <ion-label ion-col col-md-12>
+        Therefore, you are invited to the office of <strong>REVENUE ASSURANCE</strong> which is addressed at
+        <strong>{{ siteId_region }}, {{ prejude.ta4officeaddress }}</strong> after three (3) working days from the
+        inspection date for explanation session without prejudice regarding to the actions will be taken by TNB. You
+        also encouraged to bring any proof and supporting documents for this session.
+      </ion-label>
+    </ion-item>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 16px;">
+      <ion-label ion-col col-md-12>
+        For any enquiries, you may contact TNB at <strong>{{ prejude.ta4officephone }}</strong>.
+      </ion-label>
+    </ion-item>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 16px;">
+      <ion-label ion-col col-md-12>
+        Thank you.
+      </ion-label>
+    </ion-item>
+
+    <ion-item col-md-12 text-wrap no-lines
+      style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 16px;">
+      <ion-label style="margin-left: 6px;">
+        <strong>REVENUE ASSURANCE</strong> <br>
+        <strong>REVENUE MANAGEMENT</strong> <br>
+        <strong>CUSTOMER SERVICE</strong> <br>
+        <strong>DISTRIBUTION NETWORK, TNB</strong>
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+  <!-- End: Session Without Prejudice -->
+
+  <!-- FormA for Staff -->
+  <!-- <ion-grid *ngIf='formType === "formACust"'>
+    <ion-item-divider style="background-color: #f3e5f5" text-uppercase>SCHEDULE FORM A</ion-item-divider>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-center text-uppercase>schedule</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-center text-uppercase><strong>form a</strong></ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-center>(sub-regulation 6A(1))</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-center text-uppercase>malaysia</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-right text-uppercase>state</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-select [(ngModel)]="formCust.ta4statename" placeholder="Select State" interface="popover" required
+            text-left>
+            <ion-option value="Perak">Perak</ion-option>
+            <ion-option value="Perlis">Perlis</ion-option>
+            <ion-option value="Terengganu">Terengganu</ion-option>
+            <ion-option value="Kelantan">Kelantan</ion-option>
+            <ion-option value="Kedah">Kedah</ion-option>
+            <ion-option value="Selangor">Selangor</ion-option>
+            <ion-option value="Sabah">Sabah</ion-option>
+            <ion-option value="Sarawak">Sarawak</ion-option>
+            <ion-option value="Wilayah Persekutuan">Wilayah Persekutuan</ion-option>
+            <ion-option value="Melaka">Melaka</ion-option>
+            <ion-option value="Negeri Sembilan">Negeri Sembilan</ion-option>
+            <ion-option value="Johor">Johor</ion-option>
+            <ion-option value="Pahang">Pahang</ion-option>
+            <ion-option value="Putrajaya">Putrajaya</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-row>
+          <ion-item no-lines *ngIf="stateSelect2">
+            <ion-label class="validationErrorText">* Please select state</ion-label>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label item-start>To:</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label> {{this.formCust.ta4custname}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-row>
+          <ion-item>
+            <ion-label text-wrap>{{this.formCust.ta4custaddress}}</ion-label>
+          </ion-item>
+        </ion-row>
+        <ion-row>
+          <ion-item>
+            <ion-label>{{formCust.station}} - {{formCust.ta4accountno}}</ion-label>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>Sir/Madam/Messers,</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <div text-uppercase item-content style="font-size: 18px;">
+            <strong>
+              notice of disconnection of electricity supply under subsection 38(1)
+              electricity
+              supply act 1990.
+            </strong>
+          </div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row col-12 col-md-12 col-sm-12>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label style="letter-spacing: 1px;"> Please be informed that on</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-datetime displayFormat="DD/MM/YYYY HH:mm" pickerFormat="DD/MM/YYYY HH:mm"
+            [(ngModel)]="formCust.ta4datetime" (ionChange)='formatTimeDisplay()' placeholder="Select Date">
+          </ion-datetime>
+        </ion-item>
+        <ion-row>
+          <ion-item no-lines *ngIf="datetimeformA">
+            <ion-label class="validationErrorText">* Please insert date</ion-label>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-wrap> an inspection has been done to our installation at
+            your premise.</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start style="letter-spacing: 1px;"> From the inspection, we
+            noticed that the system had been tampered or modified in the following circumstances below:</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row col-12 col-sm-12 col-md-12>
+      <ion-col>
+        <ion-item>
+          <ion-textarea [(ngModel)]="formCust.ta4anamoly" readonly="true" placeholder="Please Enter" type="text">
+          </ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="ano">
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label class="validationErrorText">*Anamoly could not be leave empty</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start style="letter-spacing: 1px;">Based on the evidence above, we are of the
+            opinion
+            that an offence had been
+            committed under
+            the Electricity Supply Act 1990 ("Act") as follows:</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap: break-all; text-align: center; ">
+        <ion-item style="border-radius: 10px;background-color: #8B8E92; border: 5px">
+          <ion-label> Select All </ion-label>
+          <ion-checkbox [(ngModel)]="formCust.subsection1" (ionChange)="checkboxSlct()"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style=" word-wrap:  break-all;">
+        <ion-item style="border-radius: 10px;background-color: #8B8E92; border: 5px">
+          <ion-label> Section & Description </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headerBlue">
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all; text-align: center;padding-left: 5px;"
+        class="headerBlue">
+        <ion-item-divider style="background-color: #f3e5f5" text-wrap> Section(Act)</ion-item-divider>
+        <ion-checkbox style="margin-top: 20px;" [(ngModel)]="formCust.ta4ss1tampers" value="sectinAct1"
+          (ionChange)=" CheckValueSentForCheckbox()"></ion-checkbox>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+        <ion-item-divider style="background-color: #f3e5f5">Subsection 37(1)*</ion-item-divider>
+        <div style="margin-top: 20px;">
+          Tampers with of adjusts any installation or part thereof or manufactures or imports or sell any
+          equipment so
+          as to cause
+          or to be likely to cause danger to human life of limb or injury to any equipment or other property:
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headerBlue">
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all;text-align: center; padding-left: 5px;"
+        class="headerBlue">
+        <ion-item-divider style="background-color: #f3e5f5" text-wrap>Subsection 37(3)*</ion-item-divider>
+        <ion-checkbox style="margin-top: 20px;" [(ngModel)]="formCust.ta4ss3abstracts"
+          (ionChange)=" CheckValueSentForCheckbox()"></ion-checkbox>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+        <ion-item-divider style="background-color: #f3e5f5">In any manner dishonestly</ion-item-divider>
+        <div style="margin-top: 20px;">
+          Abstracts energy </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headerBlue">
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all; text-align: center; padding-left: 5px;"
+        class="headerBlue">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3consumer" (ionChange)=" CheckValueSentForCheckbox()">
+        </ion-checkbox>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+        <div> Energy consumes</div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headerBlue">
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all;text-align: center; padding-left: 5px;"
+        class="headerBlue">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3uses" (ionChange)=" CheckValueSentForCheckbox()">
+        </ion-checkbox>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+        <div>Uses energy </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headerBlue">
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all;text-align: center; padding-left: 5px;"
+        class="headerBlue">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3afterindex" (ionChange)=" CheckValueSentForCheckbox()">
+        </ion-checkbox>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+        <div> Alters the index of any meter or other instrument used on or in connection
+          <br> with any installation of any supply authority or any licensed installation for
+          <br> recording the output or comsumption of energy or </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headerBlue">
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all; text-align: center; padding-left: 5px;"
+        class="headerBlue">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3prevents" (ionChange)=" CheckValueSentForCheckbox()">
+        </ion-checkbox>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+        <div> Prevents any such meter or instrument from duty recording the output or
+          <br> consumption of energy </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headerBlue">
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all; text-align: center; padding-left: 5px;"
+        class="headerBlue">
+        <ion-item-divider style="background-color: #f3e5f5" text-wrap>Subsection 37(14)*</ion-item-divider>
+
+        <ion-checkbox style="margin-top: 20px;" [(ngModel)]="formCust.ta4ss14damages"
+          (ionChange)=" CheckValueSentForCheckbox()"></ion-checkbox>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+        <ion-item-divider style="background-color: #f3e5f5">Description*</ion-item-divider>
+        <div style="margin-top: 20px;">Damages any meter or other instrument used on or in connection with any
+          licensed
+          installation, for
+          recording the
+          output or comsumption of energy. </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start style="letter-spacing: 1px;">Please note that under subsection 38 (1)
+            of the
+            Act, you are hereby given a
+            notice that the
+            electricity supply in the above premise shall be disconnected on</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input type="text" placeholder="Select Date" value="{{formCust.ta4starttime}}" [readonly]="true">
+          </ion-input>
+        </ion-item>
+        <ion-row>
+          <ion-item no-lines *ngIf="datetimeformA">
+            <ion-label class="validationErrorText">* Please insert date</ion-label>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+      <ion-col col-2 col-sm-2 col-2 col-sm-2 col-md-2>
+        <button ion-button color="buttonlightColor" (click)="presentPopover($event,'DateDisconnection')">
+          <ion-icon name="calendar"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-item>
+        <ion-label text-wrap>Please also take note that we will claim any loss and expenses incurred by us due
+          to the
+          offences
+          done as above-mentioned. We will issue a statement of claims to your goodselves in due course.
+        </ion-label>
+      </ion-item>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-label>Region Zone</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-8 col-sm-8 col-md-8 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-label>
+            {{siteId_region}}
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-label text-wrap>Office Addresss</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-8 col-sm-8 col-md-8 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item text-wrap>
+          <ion-textarea [(ngModel)]="formCust.ta4officeaddress" [readonly]="true">
+          </ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-label> Dated </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-5 col-sm-5 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-input type="text" placeholder="Select Date" value="{{formCust.ta4indatetime}}" [readonly]="true">
+          </ion-input>
+        </ion-item>
+        <ion-row>
+          <ion-item no-lines *ngIf="datedSelected">
+            <ion-label class="validationErrorText">* Please insert date</ion-label>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+      <ion-col col-2 col-sm-2 col-2 col-sm-2 col-md-2 style="text-align: right">
+        <button ion-button color="buttonlightColor" (click)="presentPopover($event,'formAStaffDate')">
+          <ion-icon name="calendar"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12 col-sm-12 style="word-wrap:  break-all; text-align: center; padding-left: 5px;">
+        <ion-item-divider style="background-color: #f3e5f5">Delivery Notice Form A</ion-item-divider>
+      </ion-col>
+      <ion-row col-12 col-sm-12 class="headerBlue">
+        <ion-col col-3 col-sm-3 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+          Date
+        </ion-col>
+        <ion-col class="headerBlue">
+          <ion-input type="text" placeholder="Select Date" value="{{deliver.ta4indatetime}}" [readonly]="true">
+          </ion-input>
+          <ion-item no-lines *ngIf="deliveryD">
+            <ion-label class="validationErrorText">*Date cannot be empty</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-2 col-sm-2 col-2 col-sm-2 col-md-2 style="text-align: right">
+          <button ion-button color="buttonlightColor" (click)="presentPopover($event,'deliveryDate')">
+            <ion-icon name="calendar"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row col-12 col-sm-12 class="headerBlue">
+        <ion-col col-3 col-sm-3 class="headerBlue">
+          Time
+        </ion-col>
+        <ion-col class="headerBlue">
+          <ion-datetime displayFormat="HH:mm" placeholder="Select Time" [(ngModel)]="deliver.ta4starttime">
+
+          </ion-datetime>
+          <ion-item no-lines *ngIf="deliveryT">
+            <ion-col class="validationErrorText">*Time cannot be empty</ion-col>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row col-12 col-sm-12 class="headerBlue">
+        <ion-col col-push-8 col-sm-3 class="headerBlue">
+          <ion-row>
+            <ion-label>
+              Receiver Name &
+            </ion-label>
+          </ion-row>
+          <ion-row>
+            <ion-label>
+              Receiver Signature
+            </ion-label>
+          </ion-row>
+        </ion-col>
+        <ion-col class="headerBlue">
+          <ion-input type="text" placeholder="Enter Name Receiver" [readonly]="true"
+            [(ngModel)]="deliver.ta4witnessname" #name="ngModel" required></ion-input>
+          <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad1></signature-pad>
+          <ion-item no-lines *ngIf="receiverN ">
+            <ion-col class="validationErrorText">*Receiver details cannot be empty</ion-col>
+          </ion-item>
+        </ion-col>
+        <ion-col col-push-4 col-sm-2 col-md-2>
+          <ion-item>
+            <button ion-button color="buttonlightColor" (click)="clearSign('deliverWitness')">Clear</button>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row col-12 col-sm-12 class="headerBlue">
+        <ion-col col-push-8 col-sm-3 class="headerBlue">
+          <ion-row>
+            <ion-label>
+              Delivery Name &
+            </ion-label>
+          </ion-row>
+          <ion-row>
+            <ion-label>
+              Delivery Signature
+            </ion-label>
+          </ion-row>
+        </ion-col>
+        <ion-col class="headerBlue">
+          <ion-input placeholder="Enter Name Deliver" [(ngModel)]="deliver.ta4staffname"></ion-input>
+          <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad2></signature-pad>
+          <ion-item no-lines *ngIf="deliveryN">
+            <ion-col class="validationErrorText">*Deliver name and signature cannot be empty</ion-col>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row col-12 col-sm-12 class="headerBlue">
+        <ion-col col-3 col-sm-3 class="headerBlue">
+          Remarks
+        </ion-col>
+        <ion-col class="headerBlue">
+          <ion-input type="text" placeholder="Insert remarks if any" [(ngModel)]="deliver.ta4describe">
+          </ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-col col-12 col-sm-12 style="word-wrap:  break-all; text-align: center; padding-left: 5px;">
+        <ion-item-divider style="background-color: #f3e5f5">Supply Disconnection</ion-item-divider>
+      </ion-col>
+      <ion-row col-12 col-sm-12 class="headerBlue">
+        <ion-col col-3 col-sm-3 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+          Date
+        </ion-col>
+        <ion-col class="headerBlue">
+          <ion-input type="text" placeholder="select Date" value="{{disconnect.ta4datetime}}" [readonly]="true">
+          </ion-input>
+          <ion-item no-lines *ngIf="supplyD">
+            <ion-col class="validationErrorText">*Supply date cannot be empty</ion-col>
+          </ion-item>
+        </ion-col>
+        <ion-col col-2 col-sm-2 col-2 col-sm-2 col-md-2 style="text-align: right">
+          <button ion-button color="buttonlightColor" (click)="presentPopover($event,'disconnetDate')">
+            <ion-icon name="calendar"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row col-12 col-sm-12 class="headerBlue">
+        <ion-col col-3 col-sm-3 class="headerBlue">
+          Time
+        </ion-col>
+        <ion-col class="headerBlue">
+          <ion-datetime displayFormat="HH:mm" placeholder="Select Time" [(ngModel)]="disconnect.ta4starttime">
+          </ion-datetime>
+          <ion-item no-lines *ngIf="supplyT">
+            <ion-col class="validationErrorText">*Supply time cannot be empty</ion-col>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row col-12 col-sm-12 class="headerBlue">
+        <ion-col col-push-8 col-sm-3 class="headerBlue">
+          <ion-row>
+            <ion-label>
+              Disconnector Name &
+            </ion-label>
+          </ion-row>
+          <ion-row>
+            <ion-label>
+              Disconnector Signature
+            </ion-label>
+          </ion-row>
+        </ion-col>
+        <ion-col class="headerBlue">
+          <ion-input placeholder="Enter Name Disconnector" [(ngModel)]="disconnect.ta4staffname"></ion-input>
+          <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad3></signature-pad>
+          <ion-item no-lines *ngIf="supplyN">
+            <ion-col class="validationErrorText">*Supply name cannot be empty</ion-col>
+          </ion-item>
+        </ion-col>
+        <ion-col col-push-4 col-sm-2 col-md-2>
+          <ion-item>
+            <button ion-button color="buttonlightColor" (click)="clearSign('disconnectStaff')">Clear</button>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row col-12 col-sm-12 class="headerBlue">
+        <ion-col col-3 col-sm-3 class="headerBlue">
+          Remarks
+        </ion-col>
+        <ion-col class="headerBlue">
+          <ion-textarea placeholder="Insert remarks if any" [(ngModel)]="disconnect.ta4describe">
+          </ion-textarea>
+        </ion-col>
+      </ion-row>
+
+      <ion-col col-12 col-sm-12 style="word-wrap:  break-all; text-align: center; padding-left: 5px;">
+        <ion-item-divider style="background-color: #f3e5f5">Supply Reconnection</ion-item-divider>
+      </ion-col>
+
+      <ion-row col-12 col-sm-12 class="headerBlue">
+        <ion-col col-3 col-sm-3 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+          Date
+        </ion-col>
+        <ion-col class="headerBlue">
+          <ion-input type="text" placeholder="Select Date" value="{{reconnect.ta4datetime}}" [readonly]="true">
+          </ion-input>
+        </ion-col>
+        <ion-col col-2 col-sm-2 col-2 col-sm-2 col-md-2 style="text-align: right">
+          <button ion-button color="buttonlightColor" (click)="presentPopover($event,'reconnectDate')">
+            <ion-icon name="calendar"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row col-12 col-sm-12 class="headerBlue">
+        <ion-col col-3 col-sm-3 class="headerBlue">
+          Time
+        </ion-col>
+        <ion-col class="headerBlue">
+          <ion-datetime placeholder="Select Time" displayFormat="HH:mm" [(ngModel)]="reconnect.ta4starttime">
+          </ion-datetime>
+        </ion-col>
+      </ion-row>
+      <ion-row col-12 col-sm-12 class="headerBlue">
+        <ion-col col-push-8 col-sm-3 class="headerBlue">
+          <ion-row>
+            <ion-label text-wrap>
+              Reconnector Name &
+            </ion-label>
+          </ion-row>
+          <ion-row>
+            <ion-label text-wrap>
+              Reconnector Signature
+            </ion-label>
+          </ion-row>
+        </ion-col>
+        <ion-col class="headerBlue">
+          <ion-input placeholder="Enter Name Reconnector" [(ngModel)]="reconnect.ta4staffname"></ion-input>
+          <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad4></signature-pad>
+
+        </ion-col>
+        <ion-col col-push-4 col-sm-2 col-md-2>
+          <ion-item>
+            <button ion-button color="buttonlightColor" (click)="clearSign('reconnectStaff')">Clear</button>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row col-12 col-sm-12 class="headerBlue">
+        <ion-col col-3 col-sm-3 class="headerBlue">
+          Remarks
+        </ion-col>
+        <ion-col class="headerBlue">
+          <ion-textarea placeholder="Insert remarks if any" [(ngModel)]="reconnect.ta4describe">
+          </ion-textarea>
+        </ion-col>
+      </ion-row>
+    </ion-row>
+  </ion-grid> -->
+
+  <!-- FormA for Customer -->
+  <!-- <ion-grid *ngIf='formType === "formCustCopy"'>
+    <ion-item-divider style="background-color: #f3e5f5">SCHEDULE FORM A</ion-item-divider>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-center text-uppercase>schedule</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-center text-uppercase><strong>form a</strong></ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-center>(sub-regulation 6A(1))</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-center text-uppercase>malaysia</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-center text-uppercase>state {{formCust.ta4statename}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-left>To:</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <div item-content text-wrap>{{formCust.ta4custaddress}}</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <div item-content>{{formCust.ta4custname}}</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-item>
+        <ion-label>{{formCust.station}} - {{formCust.ta4accountno}}</ion-label>
+      </ion-item>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>Sir/Madam/Messers,</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <div text-uppercase item-content style="font-size: 18px;">
+            <strong>
+              notice of disconnection of electricity supply under subsection 38(1)
+              electricity
+              supply act 1990.
+            </strong>
+          </div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label style="letter-spacing: 1px;"> Please be informed that on</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-datetime displayFormat="DD/MM/YYYY HH:mm" pickerFormat="DD/MM/YYYY HH:mm"
+            [(ngModel)]="formCust.ta4datetime" disabled></ion-datetime>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start style="letter-spacing: 1px;">an inspection has been done to our
+            installation at
+            your premise. From the
+            inspection, we
+            noticed that the system had been tampered or modified in the following circumstances below:</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>{{formCust.ta4anamoly}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start style="letter-spacing: 1px;">Based on the evidence above, we are of the
+            opinion
+            that an offence had been
+            committed under
+            the Electricity Supply Act 1990 ("Act") as follows:</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headerBlue">
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all; text-align: center; padding-left: 5px;"
+        class="headerBlue">
+        Select All
+        <ion-checkbox [(ngModel)]="formCust.subsection1" disabled="{{selectDisabled}}"></ion-checkbox>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+        <ion-label> Section & Description </ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headerBlue">
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all; text-align: center;padding-left: 5px;"
+        class="headerBlue">
+        <ion-item-divider style="background-color: #f3e5f5"> Section(Act)</ion-item-divider>
+        <ion-checkbox style="margin-top: 20px;" [(ngModel)]="formCust.ta4ss1tampers" disabled="{{selectDisabled}}">
+        </ion-checkbox>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+        <ion-item-divider style="background-color: #f3e5f5">Subsection 37(1)*</ion-item-divider>
+        <div color="primary">
+          Tampers with of adjusts any installation or part thereof or manufactures or imports or sell any
+          equipment so
+          as to cause
+          or to be likely to cause danger to human life of limb or injury to any equipment or other property:
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headerBlue">
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all;text-align: center; padding-left: 5px;"
+        class="headerBlue">
+        <ion-item-divider style="background-color: #f3e5f5">Subsection 37(3)*</ion-item-divider>
+        <ion-checkbox style="margin-top: 20px;" [(ngModel)]="formCust.ta4ss3abstracts" disabled="{{selectDisabled}}">
+        </ion-checkbox>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+        <ion-item-divider style="background-color: #f3e5f5">In any manner dishonestly</ion-item-divider>
+        <div style="margin-top: 20px;">
+          Abstracts energy </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headerBlue">
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all; text-align: center; padding-left: 5px;"
+        class="headerBlue">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3consumer" disabled="{{selectDisabled}}"></ion-checkbox>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+        <div> Energy consumes</div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headerBlue">
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all;text-align: center; padding-left: 5px;"
+        class="headerBlue">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3uses" disabled="{{selectDisabled}}"></ion-checkbox>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+        <div>Uses energy </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headerBlue">
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all;text-align: center; padding-left: 5px;"
+        class="headerBlue">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3afterindex" disabled="{{selectDisabled}}"></ion-checkbox>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+        <div> Alters the index of any meter or other instrument used on or in connection
+          <br> with any installation of any supply authority or any licensed installation for
+          <br> recording the output or comsumption of energy or </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headerBlue">
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all; text-align: center; padding-left: 5px;"
+        class="headerBlue">
+        <ion-checkbox [(ngModel)]="formCust.ta4ss3prevents" disabled="{{selectDisabled}}"></ion-checkbox>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+        <div> Prevents any such meter or instrument from duty recording the output or
+          <br> consumption of energy </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="headerBlue">
+      <ion-col col-3 col-sm-3 col-md-3 style="word-wrap:  break-all; text-align: center; padding-left: 5px;"
+        class="headerBlue">
+        <ion-item-divider>Subsection 37(14)*</ion-item-divider>
+
+        <ion-checkbox style="margin-top: 20px;" [(ngModel)]="formCust.ta4ss14damages" disabled="{{selectDisabled}}">
+        </ion-checkbox>
+      </ion-col>
+      <ion-col col-9 col-sm-9 col-md-9 style="word-wrap:  break-all; padding-left: 5px;" class="headerBlue">
+        <ion-item-divider style="background-color: #f3e5f5">Description*</ion-item-divider>
+        <div style="margin-top: 20px;">Damages any meter or other instrument used on or in connection with any
+          licensed
+          installation, for
+          recording the
+          output or comsumption of energy. </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start style="letter-spacing: 1px;">Please note that under subsection 38 (1)
+            of the
+            Act, you are hereby given a
+            notice that the
+            electricity supply in the above premise shall be disconnected on {{formCust.ta4starttime}}</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label item-start>Addresss :</ion-label>
+          <div item-content item-end>{{formCust.ta4officeaddress}}</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label item-start> Dated :</ion-label>
+          <div item-content item-end>{{formCust.ta4indatetime}}</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+
+  <!-- Ceassation, Interruption-->
+  <!-- <ion-grid *ngIf='formType === "tempCeassation"'>
+    <ion-item-divider style="color: black ;background-color: #f3e5f5">
+      NOTIFICATION OF TEMPORARY CESSATION/INTERRUPTION OF ELECTRICITY SUPPLY
+    </ion-item-divider>
+
+    <ion-row>
+      <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item no-lines>
+          <ion-label>Date</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-4 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-input type="text" placeholder="select Date" value="{{tempCeassation.ta4datetime}}" [readonly]="true">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-1 col-sm-1 col-1 col-sm-1 col-md-1 style="text-align: right">
+        <button color="buttonlightColor" ion-button (click)="presentPopover($event,'inspectDateFrom2')">
+          <ion-icon name="calendar"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label item-start>
+            To :
+          </ion-label>
+          <div item-content> {{tempCeassation.ta4custname}} </div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start> Dear TNB Customer,</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <div item-content text-center text-uppercase style="font-size: 18px;">
+            <strong>
+              notification notice of cessation, temporary interruption of electricity supply for the purpose
+              of
+              testing
+              and inspections of tnb's meter installation.
+            </strong>
+          </div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start>Please be informed that TNB is conducting testing and inspections of
+            TNB's
+            meter
+            installations at your premises to ensure that it works properly.</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start>In view of the same, please be informed that the electricity supply at
+            your
+            premises will be cessationed/temporarily interrupted on</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-push-6 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item no-lines>
+          <ion-label> Inspection Date :</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-pull-4 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-input type="text" placeholder="Select Date" value="{{tempCeassation.ta4indatetime}}" [readonly]="true">
+          </ion-input>
+        </ion-item>
+        <ion-item *ngIf="fromInspectDate">
+          <ion-label class="validationErrorText">*Inspectation Date could not be empty
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-pull-2 col-sm-1 col-1 col-sm-1 col-md-1 style="text-align: right">
+        <button color="buttonlightColor" ion-button (click)="presentPopover($event,'inspectDateFrom')">
+          <ion-icon name="calendar"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-push-8 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item no-lines>
+          <ion-label>From :</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-pull-4 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-datetime placeholder="Select Time" displayFormat="HH:mm" [(ngModel)]="tempCeassation.ta4starttime">
+          </ion-datetime>
+        </ion-item>
+        <ion-item *ngIf="dateCess">
+          <ion-label class="validationErrorText">* Please insert date</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-push-8 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item no-lines>
+          <ion-label>Until :</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-pull-4 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-datetime placeholder="Select Time" displayFormat="HH:mm" [(ngModel)]="tempCeassation.ta4endtime">
+          </ion-datetime>
+        </ion-item>
+        <ion-item *ngIf="ToinspectDate">
+          <ion-label class="validationErrorText">*Until Inspection Time could not be empty
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start>Your kind cooperation is much appreciated.</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start>Thank you.</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-center text-uppercase style=" font-weight: bold;">“POWERING THE NATION”</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-center text-uppercase style="font-weight: bold;">“BETTER BRIGHTER”</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item no-lines>
+          <ion-label> Staff Signature</ion-label>
+        </ion-item>
+      </ion-col>
+
+      <ion-col>
+        <signature-pad width=800 height=200 [options]="signaturePadOptions" id="signatureCanvas1" #SignaturePad1>
+        </signature-pad>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label item-start>Staff Name :</ion-label>
+          <div item-content>{{tempCeassation.ta4staffname}}</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label item-start>Staff No :</ion-label>
+          <div item-content> {{tempCeassation.ta4staffno}}</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label text-wrap style="min-width: 75%;color: black;">I hereby fully understand the contents of
+            this
+            notice and {{formB}}
+          </ion-label>
+          <ion-checkbox [(ngModel)]="tempCeassation.ta4agree" (click)='assignDetailsFormB()'>
+          </ion-checkbox>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label text-wrap>that the electricity
+            supply to be cessationed/temporarily interupted for the abovesaid purposes.</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-grid *ngIf='!tempCeassation.ta4agree'>
+      <ion-item-divider style="background-color: #f3e5f5">Form B</ion-item-divider>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <ion-label text-wrap text-center text-uppercase>licensee supply regulations 1990</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <ion-label text-center><strong>Form B</strong></ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <ion-label text-center>[sub-regulation 6A(2)]</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <ion-label text-center text-uppercase>malaysia</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 col-sm-6 col-md-6>
+          <ion-item no-lines>
+            <ion-label text-right text-uppercase>state of</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6 col-sm-6 col-md-6 text-left>
+          <ion-item>
+            <ion-select [(ngModel)]="formBCess.ta4statename" placeholder="Select State" interface="popover">
+              <ion-option value="Perak">Perak</ion-option>
+              <ion-option value="Perlis">Perlis</ion-option>
+              <ion-option value="Terengganu">Terengganu</ion-option>
+              <ion-option value="Kelantan">Kelantan</ion-option>
+              <ion-option value="Kedah">Kedah</ion-option>
+              <ion-option value="Selangor">Selangor</ion-option>
+              <ion-option value="Sabah">Sabah</ion-option>
+              <ion-option value="Sarawak">Sarawak</ion-option>
+              <ion-option value="Wilayah Persekutuan">Wilayah Persekutuan</ion-option>
+              <ion-option value="Melaka">Melaka</ion-option>
+              <ion-option value="Negeri Sembilan">Negeri Sembilan</ion-option>
+              <ion-option value="Johor">Johor</ion-option>
+              <ion-option value="Pahang">Pahang</ion-option>
+              <ion-option value="Putrajaya">Putrajaya</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-item *ngIf="formBState">
+          <ion-label class="validationErrorText">*Please Select State
+          </ion-label>
+        </ion-item>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <ion-label text-center text-uppercase>electricity supply act 1990</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <ion-label>To :</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>{{formBCess.ta4custname}}</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label text-wrap>{{formBCess.ta4custaddress}}</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <ion-label>Sir/Madam/Mr/Messrs,</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-title text-uppercase text-center>notice of temporary cessation/interuption of electricity
+              supply.
+            </ion-title>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <div item-content item-start>Please be informed that the supply of electricity at
+              {{formBCess.tenant}}
+              (address of consumer/area to be affected) shall be temporarily ceased/interupted on</div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 col-sm-3 col-md-3>
+          <ion-item>
+            <ion-input type="text" placeholder="select Date" value="{{formBCess.ta4datetime}}" [readonly]="true">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-pull-4 col-sm-1 col-md-1>
+          <button ion-button color="buttonlightColor" (click)="presentPopover($event,'FormBInteruptDate')">
+            <ion-icon name="calendar"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col col-pull-4>
+          <ion-item>
+            <ion-datetime displayFormat="HH:mm" placeholder="Insert interupted time"
+              [(ngModel)]="formBCess.ta4starttime"></ion-datetime>
+          </ion-item>
+        </ion-col>
+        <ion-col col-pull-2 col-sm-1 col-md-1>
+          <ion-item no-lines>
+            <ion-label>to</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-datetime displayFormat="HH:mm" placeholder="Insert interupted time" [(ngModel)]="formBCess.ta4endtime">
+            </ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col *ngIf="formBDate">
+          <ion-item>
+            <ion-label class="validationErrorText">*Inspectation Date could not be empty
+            </ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col *ngIf="formBStartInteruptTime">
+          <ion-item>
+            <ion-label class="validationErrorText">*Interupted to time could not be empty
+            </ion-label>
+          </ion-item>
+        </ion-col>
+
+        <ion-col *ngIf="formBEndInteruptTime">
+          <ion-item>
+            <ion-label class="validationErrorText">*Interupted to time could not be empty
+            </ion-label>
+          </ion-item>
+        </ion-col>
+
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 col-sm-6 col-md-6>
+          <ion-item no-lines>
+            <ion-label>for the purpose of</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6 col-sm-6 col-md-6>
+          <ion-item>
+            <ion-input [(ngModel)]="formBCess.ta4purpose" type="text" placeholder="Insert purpose">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col *ngIf="formBPurpose">
+          <ion-item>
+            <ion-label class="validationErrorText">*Purpose could not be empty
+            </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 col-sm-6 col-md-6>
+          <ion-item no-lines>
+            <ion-label text-wrap>
+              Name of Licensee :
+            </ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col item-end>
+          <ion-item no-lines>
+            <ion-label>TNB</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item no-lines>
+            <ion-label>Region Zone</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6 col-sm-6 col-md-6>
+          <ion-item>
+            <ion-label>{{siteId_region}}</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item no-lines>
+            <ion-label> Addresss</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6 col-sm-6 col-md-6>
+          <ion-item text-wrap>
+            <ion-textarea [(ngModel)]="formBCess.ta4officeaddress" readonly="true">
+            </ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item no-lines>
+            <ion-label> Telephone Number :</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6 col-sm-6 col-md-6>
+          <ion-item>
+            <ion-input [(ngModel)]="formBCess.ta4officephone" readonly="true">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row col-12 col-sm-12 col-md-12>
+        <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item no-lines>
+            <ion-label>Dated</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label placeholder="Select Dated">{{formBCess.ta4indatetime}}</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-1 col-sm-1 col-md-1>
+          <button ion-button color="buttonlightColor" (click)="presentPopover($event,'formBdated')">
+            <ion-icon name="calendar"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col *ngIf="formBDated">
+          <ion-item>
+            <ion-label class="validationErrorText">*Dated could not be empty
+            </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-item-divider style="background-color: #f3e5f5"> End for Form B</ion-item-divider>
+    </ion-grid>
+    <ion-row>
+      <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item no-lines>
+          <ion-label> Customer/Owner/Representative Signature</ion-label>
+        </ion-item>
+      </ion-col>
+
+      <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+        <signature-pad width=800 height=200 [options]="signaturePadOptions" id="signatureCanvas2" #SignaturePad2>
+        </signature-pad>
+        <button ion-button color="buttonlightColor" (click)="clearSign('cessationCustomer')">Clear</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item no-lines>
+          <ion-label>Name Customer/Owner/Representative </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-input [(ngModel)]="tempCeassation.ta4witnessname" type="text" placeholder="Please Enter">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>Identification Card No </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-input [(ngModel)]="tempCeassation.ta4witnessidenkard" type="text" placeholder="Please Enter">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>Date/Time </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-datetime displayFormat="DD/MM/YYYY HH:mm" pickerFormat="DD/MM/YYYY HH:mm"
+            [(ngModel)]="tempCeassation.datetime" placeholder="Please Enter date and time"
+            (ionChange)='formatTimeDisplay()'></ion-datetime>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+
+  <!-- Evidence Collection-->
+  <!-- <ion-grid *ngIf='formType === "formEvidenceCollect"'>
+    <ion-item-divider style="background-color: #f3e5f5">NOTIFICATION LETTER OF EVIDENCE COLLECTION
+    </ion-item-divider>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-title text-uppercase text-center>
+            notification letter of evidence collection
+          </ion-title>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label> Contract Account</ion-label>
+          <div item-content>{{evidenceCollect.ta4accountno}}</div>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>Station Code</ion-label>
+          <div item-content>{{evidenceCollect.station}}</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label text-wrap>Customer Name:</ion-label>
+          <div item-content>{{evidenceCollect.ta4custname}}</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>I:</ion-label>
+          <div item-content>{{evidenceCollect.ta4staffname}}</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Staff No:</ion-label>
+          <div item-content>{{evidenceCollect.ta4staffno}} claming to have taken the following items :-</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <div class="headerBlue">
+      <ion-row>
+        <ion-col (click)="addEviItem()" col-4 col-sm-2 col-md-2>
+          <ion-item>
+            <ion-label text-uppercase>Bil
+              <ion-icon name="add-circle" color="buttonlightColor" style="padding-left: 30px" *ngIf="shoeEviItem">
+              </ion-icon>
+            </ion-label>
+          </ion-item>
+          <ion-item *ngIf="eviItem">
+            <ion-label class="validationErrorText"> *Evidence item cannot be empty</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-4 col-sm-2 col-md-2>
+          <ion-item>
+            <ion-label text-wrap text-uppercase>Evidence item</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label text-uppercase text-wrap>Evidence details</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-1 col-sm-1 col-md-1>
+          <ion-item no-lines>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let item of evidenceCollect.evidenceItem; let j = index">
+        <ion-col style="word-wrap:  break-all; padding-left: 5px;" col-4 col-sm-2 col-md-2>
+          <ion-item>
+            <ion-label>BIL {{ j + 1 }}</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col style="word-wrap:  break-all; padding-left: 5px;" col-4 col-sm-2 col-md-2>
+          <ion-item>
+            <ion-input [(ngModel)]="item.ta4item" type="text" placeholder="Please enter item"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="itemValEvi">
+            <ion-label class="validationErrorText">*Evidence item data cannot be empty</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-input [(ngModel)]="item.ta4describe" type="text" placeholder="description evidence">
+            </ion-input>
+          </ion-item>
+          <ion-item *ngIf="eviTempDmg">
+            <ion-label class="validationErrorText">*Evidence item damage data could not leave empty
+            </ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-1 col-md-1 col-sm-1 style="word-wrap:  break-all; padding-left: 5px; text-align:right"
+          (click)="deleteEviItem(j)" *ngIf="j > 0">
+          <ion-icon name="trash" color="buttonlightColor"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </div>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label col-6 text-wrap>from the premises located at</ion-label>
+          <ion-label col-6 text-wrap> {{evidenceCollect.ta4custaddress}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-item-divider style="background-color: #f3e5f5">
+        Part A: Staff Details
+      </ion-item-divider>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label> Staff Signature</ion-label>
+        </ion-item>
+      </ion-col>
+
+      <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <signature-pad width=800 height=200 [options]="signaturePadOptions" id="signatureCanvas1" #SignaturePad1>
+          </signature-pad>
+        </ion-item>
+
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>Name :</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>{{evidenceCollect.ta4staffname}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>Staff No. :</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>{{evidenceCollect.ta4staffno}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>Identification Card No. :</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-input [(ngModel)]="evidenceCollect.ta4staffindenkard" type="text" placeholder="Please Enter ID No.">
+          </ion-input>
+        </ion-item>
+        <ion-row>
+          <ion-item *ngIf="IcnoStff">
+            <ion-label class="validationErrorText"> *Please Insert Staff identification </ion-label>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>
+            Designation
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>Technician</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>
+            Station
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-select [(ngModel)]="evidenceCollect.officeAddress" [selectOptions]="OfficeAddress"
+            (ionChange)="officeAdrssSelect()">
+            <ion-option value="KUALA LUMPUR">Kuala Lumpur</ion-option>
+            <ion-option value="SELATAN">Selatan</ion-option>
+            <ion-option value="UTARA">Utara</ion-option>
+            <ion-option value="SELANGOR">Selangor</ion-option>
+            <ion-option value="TIMUR">Timur</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-row>
+        <ion-item *ngIf="stationEvi">
+          <ion-label [ngClass]="'validationErrorText'"> *Please Select Station</ion-label>
+        </ion-item>
+      </ion-row>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>Current Date</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-4 col-sm-4 col-md-4>
+        <ion-item>
+          <ion-input type="text" placeholder="select Date" value="{{evidenceCollect.ta4datetime }}" [readonly]="true">
+          </ion-input>
+        </ion-item>
+        <ion-row>
+          <ion-item *ngIf="dateCurrentEvi">
+            <ion-label class="validationErrorText"> *Current date cannot be empty</ion-label>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+      <ion-col col-2 col-sm-2 col-md-2>
+        <button ion-button color="buttonlightColor" (click)="presentPopover($event,'evidenceDate')">
+          <ion-icon name="calendar"></ion-icon>
+        </button>
+      </ion-col>
+
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>Current Time</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="evidenceCollect.ta4starttime"
+            placeholder="Enter time"></ion-datetime>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-item-divider style="background-color: #f3e5f5">
+        Part B: Witness Details
+      </ion-item-divider>
+    </ion-row>
+    <ion-row>
+      <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-label> Witness Signature</ion-label>
+        </ion-item>
+      </ion-col>
+
+      <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <signature-pad width=800 height=200 [options]="signaturePadOptions" id="signatureCanvas2" #SignaturePad2>
+          </signature-pad>
+          <button ion-button color="buttonlightColor" (click)="clearSign('evidenceWitness')">Clear</button>
+        </ion-item>
+
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item no-lines>
+          <ion-label>Witness Name:</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-input [(ngModel)]="evidenceCollect.ta4witnessname" type="text" placeholder="Please Enter witness name">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-push-8>
+        <ion-item no-lines>
+          <ion-label>Address</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-pull-4>
+        <ion-item>
+          <ion-label text-wrap>{{evidenceCollect.ta4custaddress}} </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>Identification Card No. :</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-input [(ngModel)]="evidenceCollect.ta4witnessidenkard" type="text" placeholder="Please Enter ID No.">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>Date:</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-4 col-sm-4 col-md-4>
+        <ion-item>
+          <ion-input type="text" placeholder="select Date" value="{{evidenceCollect.ta4indatetime }}" [readonly]="true">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-2 col-sm-2 col-md-2>
+        <button ion-button color="buttonlightColor" (click)="presentPopover($event,'evidenceDate2')">
+          <ion-icon name="calendar"></ion-icon>
+        </button>
+      </ion-col>
+
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>Time</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="evidenceCollect.ta4endtime"
+            placeholder="Enter time"></ion-datetime>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+
+  <!-- Inspection & Testing-->
+  <!-- <ion-grid *ngIf='formType === "inspect&Test"'>
+    <ion-item-divider style="background-color: #f3e5f5" text-uppercase>Installation Inspection and Testing
+    </ion-item-divider>
+
+    <ion-row>
+      <ion-col col-4 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item no-lines>
+          <ion-label>Date :</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-input type="text" placeholder="select Date" value="{{inspectNTest.ta4datetime}}" [readonly]="true">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-1 col-sm-1 col-1 col-sm-1 col-md-1 style="text-align: right">
+        <button color="buttonlightColor" ion-button (click)="presentPopover($event,'installTest')">
+          <ion-icon name="calendar"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>To: </ion-label>
+          <div item-content>
+            <ion-label>{{inspectNTest.ta4custname}}</ion-label>
+            <ion-label text-wrap>{{inspectNTest.ta4custaddress}}</ion-label>
+          </div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-title text-uppercase text-center>
+            notification letter of tnb meter installation inspection and testing
+          </ion-title>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row col-12 col-sm-12 col-md-12>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start style="letter-spacing: 1px;">Please be informed that TNB is conducting
+            inspection and
+            testing of TNB meter installation
+            at your premises to ensure it is working in good condition.</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row col-12 col-sm-12 col-md-12>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start style="letter-spacing: 1px;">Your kind cooperation during the
+            inspection and
+            testing
+            process is much appreciated.</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row col-12 col-sm-12 col-md-12>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start style="letter-spacing: 1px;">For any enquiries, you may contact us at
+            1300-88-5454.</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row col-12 col-sm-12 col-md-12>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start style="letter-spacing: 1px;">Thank you.</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row col-12 col-sm-12 col-md-12>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-uppercase style="text-align: center;"><strong>"POWERING THE NATION"</strong>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row col-12 col-sm-12 col-md-12>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-uppercase style="text-align: center;"><strong>"BETTER. BRIGHTER"</strong>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row col-12 col-sm-12 col-md-12>
+      <ion-col>
+        <ion-item no-lines>
+          <label>Yours Sincerely,</label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-label> Executive Signature :</ion-label>
+        </ion-item>
+      </ion-col>
+
+      <ion-col>
+        <ion-item>
+          <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad1></signature-pad>
+        </ion-item>
+        <ion-item>
+          <ion-label text-wrap color="primary">This is an electronic-generated document. No signature is
+            required.
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <button ion-button color="buttonlightColor" (click)="clearSign('InspectNTestManager')">Clear</button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start>(o/b General Manager/Manager)</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-push-8 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-label>Executive In Charge :</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-pull-4 col-sm-8 col-md-8 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-select placeholder="Please Select" [(ngModel)]="inspectNTest.staffNameCheck"
+            [selectOptions]="executiveDetails" (ionChange)="getPostion()">
+            <ion-option *ngFor="let persons  of exactData ; let j=index" value="{{persons}}" (ionSelect)="myIndex = j">
+              {{persons}}
+            </ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item *ngIf="staffNameSelect">
+          <ion-label class="validationErrorText">*Please select staff </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-push-8 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-label>Position :</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-pull-4 col-sm-8 col-md-8 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-input placeholder="Please Enter" [(ngModel)]="inspectNTest.ta4position">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-push-8 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-label> Department Address :</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-pull-4 col-sm-8 col-md-8 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item>
+          <ion-textarea placeholder="Please Enter" [(ngModel)]="inspectNTest.ta4department">
+          </ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12 col-sm-12 style="word-wrap:  break-all; text-align: center; padding-left: 5px;">
+        <ion-item-divider style="background-color: #f3e5f5">For TNB use</ion-item-divider>
+      </ion-col>
+      <div col-12 col-sm-12>
+        <ion-title>Please Select Customer Attendance</ion-title>
+        <ion-list radio-group [(ngModel)]="inspectNTest.ta4attendance" (ionChange)="checkforRadio()">
+          <ion-item>
+            <ion-label>Customer Present</ion-label>
+            <ion-radio value="pre"> </ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Customer Absent</ion-label>
+            <ion-radio value="abs"> </ion-radio>
+          </ion-item>
+        </ion-list>
+        <ion-item *ngIf="attendence">
+          <ion-label class="validationErrorText">*Please select attendence </ion-label>
+        </ion-item>
+      </div>
+
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-4 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item no-lines>
+          <ion-label> Verify By :</ion-label>
+        </ion-item>
+      </ion-col>
+
+      <ion-col>
+        <ion-item>
+          <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad2></signature-pad>
+        </ion-item>
+        <ion-item *ngIf="checkSign2">
+          <ion-label class="validationErrorText">*Please sign first </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label item-start>Staff Name :</ion-label>
+          <div item-content>{{inspectNTest.ta4staffname}}</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label item-start> Staff No :</ion-label>
+          <div item-content>{{inspectNTest.ta4staffno}}</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+
+  <!-- Installation Inspection-->
+  <!-- <ion-grid *ngIf='formType === "installationInspection"'>
+    <ion-item-divider style="background-color: #f3e5f5" text-uppercase>Installation Inspection
+    </ion-item-divider>
+
+    <ion-list radio-group [(ngModel)]="installationInspection.ta4agree">
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Customer cooperate</ion-label>
+            <ion-radio (click)="typeform()" value="true"></ion-radio>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label>Customer does not cooperate</ion-label>
+            <ion-radio (click)="typeform()" value="false"></ion-radio>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-list>
+    <div *ngIf='!formSelected'>
+      <ion-row>
+        <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item no-lines>
+            <ion-label> Date</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-4 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-input type="text" placeholder="select Date" value="{{installationInspection.ta4indatetime}}"
+              [readonly]="true">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-1 col-sm-1 col-1 col-sm-1 col-md-1 style="text-align: right">
+          <button color="buttonlightColor" ion-button (click)="presentPopover($event,'meterInstallInspect')">
+            <ion-icon name="calendar"></ion-icon>
+          </button>
+        </ion-col>
+
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>customer name :</ion-label>
+            <ion-label item-content item-end text-wrap>{{installationInspection.ta4custname}}</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>customer address :</ion-label>
+            <ion-label item-content item-end text-wrap>{{installationInspection.ta4custaddress}}</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <div item-start item-content>Dear valued TNB customer,</div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-title text-center text-uppercase>notice of tnb meter installation inspection</ion-title>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <div item-content item-start>Please be informed we have conducted inspections and testing of meter
+              installation that
+              records the usage of electricity to the premises at address
+              {{installationInspection.ta4custaddress}}
+            </div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <div item-content item-start>with Contract Account No. {{installationInspection.ta4accountno}} on
+              {{installationInspection.ta4indatetime}} at
+              {{installationInspection.ta4endtime}}</div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-push-8 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label>Current Time :</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-pull-4 col-sm-8 col-md-8 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="installationInspection.ta4endtime"
+              placeholder="Please Enter time"></ion-datetime>
+          </ion-item>
+          <ion-item *ngIf="crrTime">
+            <ion-label class="validationErrorText">*Current time cannot be empty </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <ion-label text-wrap>
+              For your information, evidence bag serial number is
+            </ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-input [(ngModel)]="installationInspection.ta4serialNum" placeholder="Enter serial number">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <div item-content item-start style="letter-spacing: 1px;">The inspection results show that the
+              meter does
+              not
+              record actual electricity consumption readings as has been explained previously to you. Please
+              be
+              informed
+              that TNB will claim the underbill charge from you.</div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <div item-content item-start style="letter-spacing: 1px;">For any enquiries, you may contact us at
+            </div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item no-lines>
+            <ion-label> Office Zone</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-8 col-sm-8 col-md-8 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label> {{siteId_region}}
+            </ion-label>
+          </ion-item>
+          <ion-item *ngIf="zone">
+            <ion-label class="validationErrorText">*Office zone could be leave empty </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-push-8 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item no-lines>
+            <ion-label>Office Address</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-pull-4 col-sm-8 col-md-8 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item *ngIf="officeAddressSelect">
+            <ion-label class="validationErrorText">*Office address could be empty</ion-label>
+          </ion-item>
+          <ion-item text-wrap>
+            <ion-textarea [(ngModel)]="installationInspection.ta4officeaddress">
+            </ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-push-8 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item no-lines>
+            <ion-label> Office No. :</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-pull-4 col-sm-8 col-md-8 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-input [(ngModel)]="installationInspection.ta4officephone" readonly="true">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <div item-content item-start style="letter-spacing: 1px;"> Thank you.</div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div *ngIf='formSelected'>
+      <ion-row>
+        <ion-col col-7 col-sm-7 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item no-lines>
+            <ion-label> Date</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-4 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-input type="text" placeholder="select Date" value="{{installationInspection.ta4indatetime}}"
+              [readonly]="true">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-1 col-sm-1 col-1 col-sm-1 col-md-1 style="text-align: right">
+          <button color="buttonlightColor" ion-button (click)="presentPopover($event,'meterInstallInspect')">
+            <ion-icon name="calendar"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>customer name :</ion-label>
+            <ion-label item-content item-end text-wrap>{{installationInspection.ta4custname}}</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>customer address :</ion-label>
+            <ion-label item-content item-end text-wrap>{{installationInspection.ta4custaddress}}</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <div item-start item-content>Dear valued TNB customer,</div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-title text-center text-uppercase>notice of tnb meter installation inspection</ion-title>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <div item-content item-start>Please be informed we have conducted inspections and testing of meter
+              installation that
+              records the usage of electricity to the premises at address
+              {{installationInspection.ta4custaddress}}
+            </div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <div item-content item-start>with Contract Account No. {{installationInspection.ta4accountno}} on
+              {{installationInspection.ta4indatetime}} at
+              {{installationInspection.ta4endtime}}</div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-push-8 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label>Current Time</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-pull-4 col-sm-8 col-md-8 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="installationInspection.ta4endtime"
+              placeholder="Please Enter time"></ion-datetime>
+          </ion-item>
+          <ion-item *ngIf="crrTime">
+            <ion-label class="validationErrorText">*Current time cannot be empty </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <ion-label text-wrap>
+              For your information, evidence bag serial number is:
+            </ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-input [(ngModel)]="installationInspection.ta4serialNum" placeholder="Enter serial number">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <div item-content item-start style="letter-spacing: 1px;">The inspection results show that the
+              meter does
+              not
+              record actual eletricity electricity consumption readings as has been explained previously to
+              you.
+              Please
+              be informed
+              that TNB will claim the underbill charge from you.</div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <div item-content item-start style="letter-spacing: 1px;">For any enquiries, you may contact us
+              at.</div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item no-lines>
+            <ion-label> Office Zone</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-8 col-sm-8 col-md-8 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            {{siteId_region}}
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-push-8 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item no-lines>
+            <ion-label>Office Addresss</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-pull-4 col-sm-8 col-md-8 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item *ngIf="officeAddressSelect">
+            <ion-label class="validationErrorText">*Office address could be empty</ion-label>
+          </ion-item>
+          <ion-item text-wrap>
+            <ion-textarea [(ngModel)]="installationInspection.ta4officeaddress">
+            </ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-push-8 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item no-lines>
+            <ion-label> Office Phone Number</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-pull-4 col-sm-8 col-md-8 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-input [(ngModel)]="installationInspection.ta4officephone" readonly="true">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <div item-content item-start style="letter-spacing: 1px;">Thank you.</div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div>
+    <ion-row>
+      <ion-item-divider style="background-color: #f3e5f5">
+        Part A: Staff/Examiner Details
+      </ion-item-divider>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-item no-lines>
+          <ion-label>Examiner Signature</ion-label>
+        </ion-item>
+      </ion-col>
+
+      <ion-col>
+        <ion-item>
+          <signature-pad width=800 height=200 [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad1>
+          </signature-pad>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label item-start>Examiner Name :</ion-label>
+          <div item-content>{{installationInspection.ta4staffname}}</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label item-start>Staff No :</ion-label>
+          <div item-content>{{installationInspection.ta4staffno}}</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label item-start>Unit :</ion-label>
+          <div item-content> Seal Unit Metering</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>Cc: Area/Station Manager</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-input [(ngModel)]="installationInspection.ta4department" type="text" placeholder="Insert name">
+          </ion-input>
+        </ion-item>
+        <ion-item *ngIf="officeNameSelect">
+          <ion-label class="validationErrorText">*Office name could not be empty </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <div *ngIf='!formSelected'>
+      <ion-row>
+        <ion-item-divider style="background-color: #f3e5f5">
+          Part B: Witness Details
+        </ion-item-divider>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 col-sm-4 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item no-lines>
+            <ion-label>Accepted By :</ion-label>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <signature-pad width=800 height=200 [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad2>
+            </signature-pad>
+            <button ion-button color="buttonlightColor" (click)="clearSign('installInspectWitness')">Clear</button>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item no-lines>
+            <ion-label>Name :</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-input [(ngModel)]="installationInspection.ta4witnessname" type="text" placeholder="Insert name"
+              required>
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item no-lines>
+            <ion-label>Tel No. :</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-input [(ngModel)]="installationInspection.ta4witnessphone" placeholder="Insert tel no.">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item no-lines>
+            <ion-label>Date/Time :</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-datetime displayFormat="DD/MM/YYYY HH:mm" placeholder="Select Date/Time"
+              pickerFormat="DD/MM/YYYY HH:mm" [(ngModel)]="installationInspection.ta4datetime"
+              (ionChange)="formatTimeDisplay()"></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid> -->
+
+  <!-- Prejudice form -->
+  <!-- <ion-grid *ngIf='formType === "prejudiceForm"'>
+    <ion-item-divider style="background-color: #f3e5f5" text-uppercase>EXPLANATION SESSION WITHOUT PREJUDICE
+    </ion-item-divider>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>To:</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>{{prejude.ta4custname}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-wrap>{{prejude.ta4custaddress}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start style="letter-spacing: 1px;padding-left: 10px; padding-top: 20px;">
+            <strong> Dear valued TNB Customer
+            </strong></div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12 col-sm-12 col-md-12>
+        <ion-item>
+          <div text-uppercase item-content style="font-size: 18px;">
+            <strong>
+              notification letter (explanation session
+              without prejudice) to
+              electricity
+              disconnection and claims of loss of revenue and expenses and related charges.
+            </strong>
+          </div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12 col-sm-12 col-md-12>
+        <ion-item no-lines>
+          <div item-content style="letter-spacing: 1px;">
+            Please be informed that TNB is conducting inspections and testing of TNB meter installation at
+            your
+            premises to ensure it is working in good condition. The inspection results show that the meter
+            does not
+            record actual electricity consumption readings.
+          </div>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content style="letter-spacing: 1px;">
+            Please note that under subsection 38(1) of Electricity Supply Act 1990, TNB will perform
+            electricity
+            disconnection at your premise as mentioned in disconnection notice (FORM A) that will be given
+            together
+            with this letter and will claim any loss of revenue and expenses and related changes.
+          </div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content item-start style="letter-spacing: 1px;padding-left: 10px;">
+            Therefore, you are invited to the office of REVENUE ASSURANCE which is addressed at
+          </div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-item>
+        <ion-label>{{siteId_region}}</ion-label>
+      </ion-item>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item text-wrap>
+          <ion-textarea readonly="true" [(ngModel)]="prejude.ta4officeaddress">
+          </ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <div item-content style="letter-spacing: 1px;">
+            after three (3) working days from the inspection date for explanation session without prejudice
+            regarding
+            to
+            the actions will be taken by TNB. You also encouraged to bring any proof and supporting documents
+            for this
+            session.
+          </div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label text-wrap style="letter-spacing: 1px; padding-left: 10px;  margin-right: 8px;"> For any
+            enquiries,
+            you may
+            contact TNB at {{prejude.ta4officephone}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label style="letter-spacing: 1px; padding-left: 10px;"> Thank you.</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>
+            <strong text-uppercase>REVENUE ASSURANCE</strong></ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>
+            <strong text-uppercase>REVENUE MANAGEMENT </strong></ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>
+            <strong text-uppercase>CUSTOMER SERVICE </strong></ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-label>
+            <strong text-uppercase>DISTRIBUTION NETWORK, tnb</strong></ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+
+  <!-- <ion-col col-12 col-sm-12 style="word-wrap:  break-all; padding-left: 5px;">
+    <ion-item>
+      <ion-title text-center>Choose language for PDF download</ion-title>
+    </ion-item>
+  </ion-col>
+  <ion-list radio-group [(ngModel)]="pdfLanguage" (ionChange)="hidebuttonPdfDownload()">
+    <ion-row col-12 col-sm-12 col-md-12>
+      <ion-col>
+        <ion-item>
+          <ion-label>Bahasa</ion-label>
+          <ion-radio value="bhs"></ion-radio>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>English</ion-label>
+          <ion-radio value="eng"></ion-radio>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-list> -->
+
+  <ion-list ion-row radio-group style="width: -webkit-fill-available;" [(ngModel)]="pdfLanguage"
+    (ionChange)="hidebuttonPdfDownload()">
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="paper" item-start></ion-icon>
+      <strong>Language for PDF</strong>
+    </ion-item-divider>
+
+    <ion-col col-md-6>
+      <ion-item>
+        <ion-label>Bahasa</ion-label>
+        <ion-radio value="bhs"></ion-radio>
+      </ion-item>
+    </ion-col>
+
+    <ion-col col-md-6>
+      <ion-item>
+        <ion-label>English</ion-label>
+        <ion-radio value="eng"></ion-radio>
+      </ion-item>
+    </ion-col>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer mode="md">
+  <ion-toolbar>
+    <ion-row *ngIf="downPdf && (pdfLanguage == 'bhs' || pdfLanguage == 'eng') ">
+      <ion-col>
+        <button ion-button round block mode="md" (click)="saveData()">Save</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button round block mode="md" (click)="previewPdf()">Preview</button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,348 @@
+<ion-header mode="md">
+  <ion-navbar color="primary">
+    <ion-title>Checklist Tampering Case for Meter Installation (KUPM) TNB</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon color="light" name="md-planet" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<!-- <ion-header>
+  <ion-grid class="sealHeader">
+    <ion-row>
+      <ion-col col-3 col-md-3 col-sm-3 style="text-align: left;">
+        <button ion-button clear class="backbutton" (click)="goBack()">
+          <ion-icon name="arrow-back" class="menuBackArrow backbutton"> Back </ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-5 col-md-5 col-sm-5 align-self-center>
+        <div class="pageTitle">Checklist Tampering Case for Meter Installation (KUPM) TNB
+        </div>
+      </ion-col>
+      <ion-col col-3 col-md-3 col-sm-3 align-self-center style="text-align: right;">
+        <button ion-button small round mode="md" disabled="true" class="flash" style="opacity:unset">
+          <ion-icon class="flash_plnt" name="planet" [style.color]="gv.testMobile ? 'red':'green'">
+            {{ gv.testMobile ? 'Offline':'Online' }}
+          </ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header> -->
+
+<ion-content padding>
+  <ion-item-divider color="light" class="pointer" (click)="showAllRemarkCommon(false)">
+    <ion-row align-items-center>
+      <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-icon name="flask"></ion-icon>&nbsp; <strong>DETAILS OF CLIENT</strong>
+      </ion-col>
+    </ion-row>
+  </ion-item-divider>
+
+  <ion-row>
+    <ion-col>
+      <ion-list radio-group [(ngModel)]="checklistMeter.ta4statename" (ionChange)="userDetails($event)">
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label>Owner</ion-label>
+              <ion-radio value="owner"></ion-radio>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-label>Tenant</ion-label>
+              <ion-radio value="tenant"></ion-radio>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-label>Staff</ion-label>
+              <ion-radio value="staff"></ion-radio>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-label>Heir</ion-label>
+              <ion-radio value="heir"></ion-radio>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="userDetailSelect">
+    <ion-col>
+      <ion-item no-lines>
+        <ion-label class="validationErrorText">*Please select user details selection</ion-label>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <br />
+
+  <ion-item-divider color="light" class="pointer" (click)="showAllRemarkCommon(false)">
+    <ion-row align-items-center>
+      <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-icon name="flask"></ion-icon>&nbsp; <strong>CHECKLIST</strong>
+      </ion-col>
+    </ion-row>
+  </ion-item-divider>
+
+  <ion-row style="align-items: baseline;">
+    <ion-col col-sm col-md-8 col-md-8>
+      <ion-item>
+        <ion-label>1. KUPM Description to user.</ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col col-sm col-md-4 col-md-4>
+      <ion-list radio-group [(ngModel)]="checklistMeter.customerDesription" (ionChange)="descriptionUser($event)">
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio value="Y"></ion-radio>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio value="N"></ion-radio>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="descriptionToUser">
+    <ion-col>
+      <ion-item no-lines>
+        <ion-label class="validationErrorText">*Please Select first</ion-label>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row style="align-items: baseline;">
+    <ion-col col-sm col-md-8 col-md-8>
+      <ion-item>
+        <ion-label>2. Notice A description to user Disconect</ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col col-sm col-md-4 col-md-4>
+      <ion-list radio-group [(ngModel)]="checklistMeter.formASelection" (ionChange)="noticeDescription($event)">
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio value="Y"></ion-radio>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio value="N"></ion-radio>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="formA">
+    <ion-col>
+      <ion-item>
+        <ion-label class="validationErrorText">*Please Select first</ion-label>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row style="align-items: baseline;">
+    <ion-col col-sm col-md-8 col-md-8>
+      <ion-item text-wrap>
+        <ion-label>3. Claim calculation will be made as a result of a search case is found</ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col col-sm col-md-4 col-md-4>
+      <ion-list radio-group [(ngModel)]="checklistMeter.claimInformationnTampering"
+        (ionChange)="claimCalculation($event)">
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label>Yes</ion-label>
+              <ion-radio value="Y"></ion-radio>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-label>No</ion-label>
+              <ion-radio value="N"></ion-radio>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="claim">
+    <ion-col>
+      <ion-item>
+        <ion-label class="validationErrorText">*Please Select first</ion-label>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <br />
+
+  <ion-item-divider color="light" class="pointer" (click)="showAllRemarkCommon(false)">
+    <ion-row align-items-center>
+      <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-icon name="flask"></ion-icon>&nbsp; <strong>REMARKS</strong>
+      </ion-col>
+    </ion-row>
+  </ion-item-divider>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-textarea [(ngModel)]="checklistMeter.remark1" rows="6" placeholder="Please Enter"></ion-textarea>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <br />
+
+  <ion-item-divider color="light" class="pointer" (click)="showAllRemarkCommon(false)">
+    <ion-row align-items-center>
+      <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-icon name="flask"></ion-icon>&nbsp; <strong>SIGNATURE OF CLIENT</strong>
+      </ion-col>
+    </ion-row>
+  </ion-item-divider>
+  <ion-row>
+    <ion-col style="left: 25%">
+      <ion-item no-lines>
+        <signature-pad [options]="signaturePadOptions" #SignaturePad1></signature-pad>
+        <button style="left: 10%;" ion-button color="buttonlightColor" (click)="clearSign('customer')">Clear</button>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label color="primary" stacked>Name of Client</ion-label>
+        <ion-input [(ngModel)]="checklistMeter.customername" type="text" placeholder="Enter Name"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label color="primary" stacked>Identification No</ion-label>
+        <ion-input [(ngModel)]="checklistMeter.nricWitness" type="text" placeholder="Enter Identification"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="custId">
+    <ion-item>
+      <ion-label class="validationErrorText">*Please enter identification no.</ion-label>
+    </ion-item>
+  </ion-row>
+
+  <br />
+
+  <ion-row>
+    <ion-col>
+      <ion-list radio-group [(ngModel)]="checklistMeter.subsectionBase5" (ionChange)="customerSign($event)">
+        <ion-row style="align-items: baseline;">
+          <ion-col col-sm-12 col-md-2 col-2>
+            <ion-item text-wrap>
+              <ion-label>Clear</ion-label>
+              <ion-radio value="NA"></ion-radio>
+            </ion-item>
+          </ion-col>
+          <ion-col col-sm-12 col-md-5 col-5>
+            <ion-item text-wrap>
+              <ion-label>No Signature for client</ion-label>
+              <ion-radio value="S"></ion-radio>
+            </ion-item>
+          </ion-col>
+          <ion-col col-sm-12 col-md-5 col-5>
+            <ion-item text-wrap>
+              <ion-label>Client not available</ion-label>
+              <ion-radio value="U"></ion-radio>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+
+  <br />
+
+  <ion-item-divider color="light" class="pointer" (click)="showAllRemarkCommon(false)">
+    <ion-row align-items-center>
+      <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+        <ion-icon name="flask"></ion-icon>&nbsp; <strong>SIGNATURE OF STAFF</strong>
+      </ion-col>
+    </ion-row>
+  </ion-item-divider>
+  <ion-row>
+    <ion-col style="left: 25%">
+      <ion-item no-lines>
+        <signature-pad [options]="signaturePadOptions" #SignaturePad2></signature-pad>
+        <button style="left: 10%;" ion-button color="buttonlightColor" (click)="clearSign('staff')">Clear</button>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label color="primary" stacked>Name:</ion-label>
+        <ion-input [(ngModel)]="checklistMeter.staffname" type="text" placeholder="Enter Name"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label color="primary" stacked>Identification No:</ion-label>
+        <ion-input type="text" [(ngModel)]="checklistMeter.nriceStaff" placeholder="Enter Identification"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="staffId">
+    <ion-item>
+      <ion-label class="validationErrorText">*Please enter identification no.</ion-label>
+    </ion-item>
+  </ion-row>
+  <br />
+</ion-content>
+
+<ion-footer mode="md">
+  <ion-toolbar mode="md">
+    <ion-row>
+      <ion-col>
+        <button ion-button round block mode="md" (click)="saveData()">
+          Save
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button round block mode="md" (click)="previewPdf()">
+          Preview
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>
+
+<!-- <ion-footer>
+  <ion-toolbar color="darkColor">
+    <ion-row>
+      <ion-col>
+        <button color="footer" ion-button round block (click)="saveData()">Save</button>
+      </ion-col>
+      <ion-col>
+        <button color="footer" ion-button round block (click)="previewPdf()">Preview</button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer> -->

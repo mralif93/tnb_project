@@ -1,0 +1,29 @@
+page-about {
+
+    .about-background {
+        //background-image: url("/assets/imgs/tnb_final.jpg") no-repeat fixed center;
+        // background-image: url('../assets/imgs/tnb_about_bg.jpg');
+        background: url('../assets/imgs/logo_tnb.jpg') no-repeat center center fixed;
+        -moz-background-size: contain;
+        -o-background-size: contain;
+        background-color: white;
+        background-size: 70% 70%;
+        height: -webkit-fill-available;
+        padding-bottom: 25%;
+        padding-left: 20%;
+        // opacity: 0.5;
+      }
+
+
+    .pageTitle{
+        padding-top: 10px;
+        font-weight:  bold;
+        font-size:  20px;
+        align-items:  left;
+    
+    }
+
+    .offline_btn {
+        font-size: 15px;
+    }
+}

@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-mobile-signal" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android"><name>MobileSignal</name><js-module name="MobileSignal" src="www/MobileSignal.js"><clobbers target="cordova.plugins.MobileSignal" /></js-module><platform name="ios"><config-file parent="/*" target="config.xml"><feature name="MobileSignal"><param name="ios-package" value="MobileSignal" /></feature></config-file><source-file src="src/ios/MobileSignal.m" /></platform></plugin>

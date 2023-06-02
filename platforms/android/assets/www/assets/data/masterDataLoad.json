@@ -1,0 +1,4776 @@
+{
+	"member": [{
+		"_rowstamp": "2227581",
+		"orgid": "TNB",
+		"ta0userstatus_collectionref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus",
+		"ta0windinggroup": [{
+			"_rowstamp": "5573819",
+			"description": "Low-voltage current transformer",
+			"ta0transformertype": "0",
+			"ta0windinggroup": "C0030513",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/0-86",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMC9DMDAzMDUxMw--"
+		},
+		{
+			"_rowstamp": "5573798",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0030521",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/1-107",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDAzMDUyMQ--"
+		},
+		{
+			"_rowstamp": "5573818",
+			"description": "Low-voltage current transformer",
+			"ta0transformertype": "0",
+			"ta0windinggroup": "C0040513",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/2-87",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMC9DMDA0MDUxMw--"
+		},
+		{
+			"_rowstamp": "5573797",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0040521",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/3-108",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDA0MDUyMQ--"
+		},
+		{
+			"_rowstamp": "5573796",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0050121",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/4-109",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDA1MDEyMQ--"
+		},
+		{
+			"_rowstamp": "5573817",
+			"description": "Low-voltage current transformer",
+			"ta0transformertype": "0",
+			"ta0windinggroup": "C0050513",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/5-88",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMC9DMDA1MDUxMw--"
+		},
+		{
+			"_rowstamp": "5573795",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0050521",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/6-110",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDA1MDUyMQ--"
+		},
+		{
+			"_rowstamp": "5573794",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0075121",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/7-111",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDA3NTEyMQ--"
+		},
+		{
+			"_rowstamp": "5573816",
+			"description": "Low-voltage current transformer",
+			"ta0transformertype": "0",
+			"ta0windinggroup": "C0075513",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/8-89",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMC9DMDA3NTUxMw--"
+		},
+		{
+			"_rowstamp": "5573793",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0075521",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/9-112",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDA3NTUyMQ--"
+		},
+		{
+			"_rowstamp": "5573792",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0080121",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/10-113",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDA4MDEyMQ--"
+		},
+		{
+			"_rowstamp": "5573791",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0100121",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/11-114",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDEwMDEyMQ--"
+		},
+		{
+			"_rowstamp": "5573815",
+			"description": "Low-voltage current transformer",
+			"ta0transformertype": "0",
+			"ta0windinggroup": "C0100513",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/12-90",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMC9DMDEwMDUxMw--"
+		},
+		{
+			"_rowstamp": "5573790",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0100521",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/13-115",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDEwMDUyMQ--"
+		},
+		{
+			"_rowstamp": "5573789",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0150121",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/14-116",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDE1MDEyMQ--"
+		},
+		{
+			"_rowstamp": "5573814",
+			"description": "Low-voltage current transformer",
+			"ta0transformertype": "0",
+			"ta0windinggroup": "C0150512",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/15-91",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMC9DMDE1MDUxMg--"
+		},
+		{
+			"_rowstamp": "5573788",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0150521",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/16-117",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDE1MDUyMQ--"
+		},
+		{
+			"_rowstamp": "5573787",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0200121",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/17-118",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDIwMDEyMQ--"
+		},
+		{
+			"_rowstamp": "5573813",
+			"description": "Low-voltage current transformer",
+			"ta0transformertype": "0",
+			"ta0windinggroup": "C0200512",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/18-92",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMC9DMDIwMDUxMg--"
+		},
+		{
+			"_rowstamp": "5573786",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0200521",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/19-119",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDIwMDUyMQ--"
+		},
+		{
+			"_rowstamp": "5573785",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0250121",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/20-120",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDI1MDEyMQ--"
+		},
+		{
+			"_rowstamp": "5573812",
+			"description": "Low-voltage current transformer",
+			"ta0transformertype": "0",
+			"ta0windinggroup": "C0250512",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/21-93",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMC9DMDI1MDUxMg--"
+		},
+		{
+			"_rowstamp": "5573784",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0250521",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/22-121",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDI1MDUyMQ--"
+		},
+		{
+			"_rowstamp": "5573783",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0300121",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/23-122",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDMwMDEyMQ--"
+		},
+		{
+			"_rowstamp": "5573782",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0300131",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/24-123",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDMwMDEzMQ--"
+		},
+		{
+			"_rowstamp": "5573811",
+			"description": "Low-voltage current transformer",
+			"ta0transformertype": "0",
+			"ta0windinggroup": "C0300512",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/25-94",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMC9DMDMwMDUxMg--"
+		},
+		{
+			"_rowstamp": "5573781",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0300521",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/26-124",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDMwMDUyMQ--"
+		},
+		{
+			"_rowstamp": "5573780",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0350121",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/27-125",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDM1MDEyMQ--"
+		},
+		{
+			"_rowstamp": "5573810",
+			"description": "Low-voltage current transformer",
+			"ta0transformertype": "0",
+			"ta0windinggroup": "C0350512",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/28-95",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMC9DMDM1MDUxMg--"
+		},
+		{
+			"_rowstamp": "5573779",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0350521",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/29-126",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDM1MDUyMQ--"
+		},
+		{
+			"_rowstamp": "5573778",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0400121",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/30-127",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDQwMDEyMQ--"
+		},
+		{
+			"_rowstamp": "5573777",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0400131",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/31-128",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDQwMDEzMQ--"
+		},
+		{
+			"_rowstamp": "5573809",
+			"description": "Low-voltage current transformer",
+			"ta0transformertype": "0",
+			"ta0windinggroup": "C0400512",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/32-96",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMC9DMDQwMDUxMg--"
+		},
+		{
+			"_rowstamp": "5573776",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0400521",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/33-129",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDQwMDUyMQ--"
+		},
+		{
+			"_rowstamp": "5573775",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0450121",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/34-130",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDQ1MDEyMQ--"
+		},
+		{
+			"_rowstamp": "5573774",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0500121",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/35-131",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDUwMDEyMQ--"
+		},
+		{
+			"_rowstamp": "5573773",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0500131",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/36-132",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDUwMDEzMQ--"
+		},
+		{
+			"_rowstamp": "5573808",
+			"description": "Low-voltage current transformer",
+			"ta0transformertype": "0",
+			"ta0windinggroup": "C0500511",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/37-97",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMC9DMDUwMDUxMQ--"
+		},
+		{
+			"_rowstamp": "5573772",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0500521",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/38-133",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDUwMDUyMQ--"
+		},
+		{
+			"_rowstamp": "5573771",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0600121",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/39-134",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDYwMDEyMQ--"
+		},
+		{
+			"_rowstamp": "5573770",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0600131",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/40-135",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDYwMDEzMQ--"
+		},
+		{
+			"_rowstamp": "5573807",
+			"description": "Low-voltage current transformer",
+			"ta0transformertype": "0",
+			"ta0windinggroup": "C0600511",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/41-98",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMC9DMDYwMDUxMQ--"
+		},
+		{
+			"_rowstamp": "5573769",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0600521",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/42-136",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDYwMDUyMQ--"
+		},
+		{
+			"_rowstamp": "5573768",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0700121",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/43-137",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDcwMDEyMQ--"
+		},
+		{
+			"_rowstamp": "5573767",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0750121",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/44-138",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDc1MDEyMQ--"
+		},
+		{
+			"_rowstamp": "5573766",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0800121",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/45-139",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDgwMDEyMQ--"
+		},
+		{
+			"_rowstamp": "5573806",
+			"description": "Low-voltage current transformer",
+			"ta0transformertype": "0",
+			"ta0windinggroup": "C0800511",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/46-99",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMC9DMDgwMDUxMQ--"
+		},
+		{
+			"_rowstamp": "5573765",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0800521",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/47-140",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDgwMDUyMQ--"
+		},
+		{
+			"_rowstamp": "5573764",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C0900521",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/48-141",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMDkwMDUyMQ--"
+		},
+		{
+			"_rowstamp": "5573763",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C1000121",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/49-142",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMTAwMDEyMQ--"
+		},
+		{
+			"_rowstamp": "5573805",
+			"description": "Low-voltage current transformer",
+			"ta0transformertype": "0",
+			"ta0windinggroup": "C1000511",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/50-100",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMC9DMTAwMDUxMQ--"
+		},
+		{
+			"_rowstamp": "5573762",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C1000521",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/51-143",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMTAwMDUyMQ--"
+		},
+		{
+			"_rowstamp": "5573761",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C1200121",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/52-144",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMTIwMDEyMQ--"
+		},
+		{
+			"_rowstamp": "5573804",
+			"description": "Low-voltage current transformer",
+			"ta0transformertype": "0",
+			"ta0windinggroup": "C1200511",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/53-101",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMC9DMTIwMDUxMQ--"
+		},
+		{
+			"_rowstamp": "5573760",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C1200521",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/54-145",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMTIwMDUyMQ--"
+		},
+		{
+			"_rowstamp": "5573759",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C1500121",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/55-146",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMTUwMDEyMQ--"
+		},
+		{
+			"_rowstamp": "5573803",
+			"description": "Low-voltage current transformer",
+			"ta0transformertype": "0",
+			"ta0windinggroup": "C1500511",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/56-102",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMC9DMTUwMDUxMQ--"
+		},
+		{
+			"_rowstamp": "5573758",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C1500521",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/57-147",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMTUwMDUyMQ--"
+		},
+		{
+			"_rowstamp": "5573757",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C1600121",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/58-148",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMTYwMDEyMQ--"
+		},
+		{
+			"_rowstamp": "5573802",
+			"description": "Low-voltage current transformer",
+			"ta0transformertype": "0",
+			"ta0windinggroup": "C1600511",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/59-103",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMC9DMTYwMDUxMQ--"
+		},
+		{
+			"_rowstamp": "5573756",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C1600521",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/60-149",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMTYwMDUyMQ--"
+		},
+		{
+			"_rowstamp": "5573755",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C1800121",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/61-150",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMTgwMDEyMQ--"
+		},
+		{
+			"_rowstamp": "5573754",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C1800521",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/62-151",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMTgwMDUyMQ--"
+		},
+		{
+			"_rowstamp": "5573753",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C2000121",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/63-152",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMjAwMDEyMQ--"
+		},
+		{
+			"_rowstamp": "5573801",
+			"description": "Low-voltage current transformer",
+			"ta0transformertype": "0",
+			"ta0windinggroup": "C2000511",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/64-104",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMC9DMjAwMDUxMQ--"
+		},
+		{
+			"_rowstamp": "5573752",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C2000521",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/65-153",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMjAwMDUyMQ--"
+		},
+		{
+			"_rowstamp": "5573751",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C2400131",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/66-154",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMjQwMDEzMQ--"
+		},
+		{
+			"_rowstamp": "5573800",
+			"description": "Low-voltage current transformer",
+			"ta0transformertype": "0",
+			"ta0windinggroup": "C2500511",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/67-105",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMC9DMjUwMDUxMQ--"
+		},
+		{
+			"_rowstamp": "5573750",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C2500521",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/68-155",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMjUwMDUyMQ--"
+		},
+		{
+			"_rowstamp": "5573799",
+			"description": "Low-voltage current transformer",
+			"ta0transformertype": "0",
+			"ta0windinggroup": "C3000511",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/69-106",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMC9DMzAwMDUxMQ--"
+		},
+		{
+			"_rowstamp": "5573749",
+			"description": "Current transformer",
+			"ta0transformertype": "1",
+			"ta0windinggroup": "C3000521",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/70-156",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMS9DMzAwMDUyMQ--"
+		},
+		{
+			"_rowstamp": "5573748",
+			"description": "Voltage transformer",
+			"ta0transformertype": "2",
+			"ta0windinggroup": "P0011K52",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/71-157",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMi9QMDAxMUs1Mg--"
+		},
+		{
+			"_rowstamp": "5573747",
+			"description": "Voltage transformer",
+			"ta0transformertype": "2",
+			"ta0windinggroup": "P0022K52",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/72-158",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMi9QMDAyMks1Mg--"
+		},
+		{
+			"_rowstamp": "5573746",
+			"description": "Voltage transformer",
+			"ta0transformertype": "2",
+			"ta0windinggroup": "P0025K52",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/73-159",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMi9QMDAyNUs1Mg--"
+		},
+		{
+			"_rowstamp": "5573745",
+			"description": "Voltage transformer",
+			"ta0transformertype": "2",
+			"ta0windinggroup": "P0033K52",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/74-160",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMi9QMDAzM0s1Mg--"
+		},
+		{
+			"_rowstamp": "5573744",
+			"description": "Voltage transformer",
+			"ta0transformertype": "2",
+			"ta0windinggroup": "P0066K52",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/75-161",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMi9QMDA2Nks1Mg--"
+		},
+		{
+			"_rowstamp": "5573743",
+			"description": "Voltage transformer",
+			"ta0transformertype": "2",
+			"ta0windinggroup": "P0132K51",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/76-162",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMi9QMDEzMks1MQ--"
+		},
+		{
+			"_rowstamp": "5573742",
+			"description": "Voltage transformer",
+			"ta0transformertype": "2",
+			"ta0windinggroup": "P0132K52",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/77-163",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMi9QMDEzMks1Mg--"
+		},
+		{
+			"_rowstamp": "5573741",
+			"description": "Voltage transformer",
+			"ta0transformertype": "2",
+			"ta0windinggroup": "P0275K51",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/78-164",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMi9QMDI3NUs1MQ--"
+		},
+		{
+			"_rowstamp": "5573740",
+			"description": "Voltage transformer",
+			"ta0transformertype": "2",
+			"ta0windinggroup": "P0275K52",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/79-165",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMi9QMDI3NUs1Mg--"
+		},
+		{
+			"_rowstamp": "5573739",
+			"description": "Voltage transformer",
+			"ta0transformertype": "2",
+			"ta0windinggroup": "P0500K51",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/80-166",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMi9QMDUwMEs1MQ--"
+		},
+		{
+			"_rowstamp": "5573738",
+			"description": "Voltage transformer",
+			"ta0transformertype": "2",
+			"ta0windinggroup": "P0500K52",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/81-167",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMi9QMDUwMEs1Mg--"
+		},
+		{
+			"_rowstamp": "5573737",
+			"description": "Voltage transformer",
+			"ta0transformertype": "2",
+			"ta0windinggroup": "P06.6K52",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/82-168",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMi9QMDYuNks1Mg--"
+		},
+		{
+			"_rowstamp": "5573736",
+			"description": "Voltage transformer",
+			"ta0transformertype": "2",
+			"ta0windinggroup": "P26.4K52",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup/83-169",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFdJTkRJTkdHUk9VUC9UTkIvMi9QMjYuNEs1Mg--"
+		}],
+		"ta0windinggroup_collectionref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0windinggroup",
+		"ta0amidata": [{
+			"_rowstamp": "5521749",
+			"ta0amcg": "0201",
+			"ta0ams": "ENIP",
+			"ta0ami": "AMI",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0amidata/0-26",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMEFNSURBVEEvVE5CLzAyMDEvQU1JL0VOSVA-"
+		},
+		{
+			"_rowstamp": "5521748",
+			"ta0amcg": "0999",
+			"ta0ams": "ENIP",
+			"ta0ami": "AMI",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0amidata/1-27",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMEFNSURBVEEvVE5CLzA5OTkvQU1JL0VOSVA-"
+		},
+		{
+			"_rowstamp": "5521747",
+			"ta0ami": "AMI",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0amidata/2-28",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMEFNSURBVEEvVE5CL35OVUxMfi9BTUkvfk5VTEx_"
+		},
+		{
+			"_rowstamp": "5521756",
+			"ta0amcg": "0101",
+			"ta0ams": "IEE",
+			"ta0ami": "RMR",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0amidata/3-19",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMEFNSURBVEEvVE5CLzAxMDEvUk1SL0lFRQ--"
+		},
+		{
+			"_rowstamp": "5521755",
+			"ta0amcg": "0999",
+			"ta0ams": "IEE",
+			"ta0ami": "RMR",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0amidata/4-20",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMEFNSURBVEEvVE5CLzA5OTkvUk1SL0lFRQ--"
+		},
+		{
+			"_rowstamp": "5521754",
+			"ta0ami": "RMR",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0amidata/5-21",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMEFNSURBVEEvVE5CL35OVUxMfi9STVIvfk5VTEx_"
+		},
+		{
+			"_rowstamp": "5521751",
+			"ta0amcg": "0401",
+			"ta0ams": "SAGE",
+			"ta0ami": "SAGE",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0amidata/6-24",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMEFNSURBVEEvVE5CLzA0MDEvU0FHRS9TQUdF"
+		},
+		{
+			"_rowstamp": "5521750",
+			"ta0amcg": "0998",
+			"ta0ams": "SAGE",
+			"ta0ami": "SAGE",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0amidata/7-25",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMEFNSURBVEEvVE5CLzA5OTgvU0FHRS9TQUdF"
+		},
+		{
+			"_rowstamp": "5521753",
+			"ta0amcg": "0301",
+			"ta0ams": "TRIL",
+			"ta0ami": "TRIL",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0amidata/8-22",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMEFNSURBVEEvVE5CLzAzMDEvVFJJTC9UUklM"
+		},
+		{
+			"_rowstamp": "5521752",
+			"ta0amcg": "0998",
+			"ta0ams": "TRIL",
+			"ta0ami": "TRIL",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0amidata/9-23",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMEFNSURBVEEvVE5CLzA5OTgvVFJJTC9UUklM"
+		}],
+		"ta0amidata_collectionref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0amidata",
+		"ta0sncode": [{
+			"_rowstamp": "5573245",
+			"ta0sntypedesc": "Smart Meter Disconnection",
+			"ta0sncodedesc": "Smart Meter Disconnection",
+			"ta0sntype": "F5",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/0-161",
+			"worktype": "ZSIN",
+			"ta0sncode": "F501",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRjUwMS9GNQ--"
+		},
+		{
+			"_rowstamp": "5573246",
+			"ta0sntypedesc": "Smart Meter Reconnection",
+			"ta0sncodedesc": "Smart Meter Reconnection",
+			"ta0sntype": "F4",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/1-160",
+			"worktype": "ZSIN",
+			"ta0sncode": "F401",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRjQwMS9GNA--"
+		},
+		{
+			"_rowstamp": "5573247",
+			"ta0sntypedesc": "SMTR Schedule Replacement",
+			"ta0sncodedesc": "Smart Meter Replacement",
+			"ta0sntype": "DE",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/2-159",
+			"worktype": "ZSRP",
+			"ta0sncode": "DE01",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvREUwMS9ERQ--"
+		},
+		{
+			"_rowstamp": "5573248",
+			"ta0sntypedesc": "Smart Meter Inspection",
+			"ta0sncodedesc": "Smart Meter Inspection",
+			"ta0sntype": "DC",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/3-158",
+			"worktype": "ZSIN",
+			"ta0sncode": "DC01",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvREMwMS9EQw--"
+		},
+		{
+			"_rowstamp": "5573249",
+			"ta0sntypedesc": "Device Removal (CE)",
+			"ta0sncodedesc": "Communication equipment removal only",
+			"ta0sntype": "DB",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/4-157",
+			"worktype": "ZRCE",
+			"ta0sncode": "DB01",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvREIwMS9EQg--"
+		},
+		{
+			"_rowstamp": "5573250",
+			"ta0sntypedesc": "Device Inspection (OPC Sampling)",
+			"ta0sncodedesc": "Device accuracy sampling test",
+			"ta0sntype": "DA",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/5-156",
+			"worktype": "ZINS",
+			"ta0sncode": "DA01",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvREEwMS9EQQ--"
+		},
+		{
+			"_rowstamp": "5573251",
+			"ta0sntypedesc": "Device Inspection (CE)",
+			"ta0sncodedesc": "Communication error",
+			"ta0sntype": "D9",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/6-155",
+			"worktype": "ZINR",
+			"ta0sncode": "D901",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDkwMS9EOQ--"
+		},
+		{
+			"_rowstamp": "5573252",
+			"ta0sntypedesc": "Manual Meter Reading",
+			"ta0sncodedesc": "Customer Request Read with Billing",
+			"ta0sntype": "D8",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/7-154",
+			"worktype": "ZMMR",
+			"ta0sncode": "D805",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDgwNS9EOA--"
+		},
+		{
+			"_rowstamp": "5573253",
+			"ta0sntypedesc": "Manual Meter Reading",
+			"ta0sncodedesc": "Manual Meter Read for Load Change",
+			"ta0sntype": "D8",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/8-153",
+			"worktype": "ZMMR",
+			"ta0sncode": "D804",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDgwNC9EOA--"
+		},
+		{
+			"_rowstamp": "5573254",
+			"ta0sntypedesc": "Manual Meter Reading",
+			"ta0sncodedesc": "Manual Meter Read for Product Change",
+			"ta0sntype": "D8",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/9-152",
+			"worktype": "ZMMR",
+			"ta0sncode": "D803",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDgwMy9EOA--"
+		},
+		{
+			"_rowstamp": "5573255",
+			"ta0sntypedesc": "Manual Meter Reading",
+			"ta0sncodedesc": "Unread MRO",
+			"ta0sntype": "D8",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/10-151",
+			"worktype": "ZMMR",
+			"ta0sncode": "D802",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDgwMi9EOA--"
+		},
+		{
+			"_rowstamp": "5573256",
+			"ta0sntypedesc": "Manual Meter Reading",
+			"ta0sncodedesc": "Manual Meter Read",
+			"ta0sntype": "D8",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/11-150",
+			"worktype": "ZMMR",
+			"ta0sncode": "D801",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDgwMS9EOA--"
+		},
+		{
+			"_rowstamp": "5573257",
+			"ta0sntypedesc": "Device Installation (CE)",
+			"ta0sncodedesc": "Communication equipment installation Only",
+			"ta0sntype": "D7",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/12-149",
+			"worktype": "ZISR",
+			"ta0sncode": "D701",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDcwMS9ENw--"
+		},
+		{
+			"_rowstamp": "5573258",
+			"ta0sntypedesc": "Scheduled replacement",
+			"ta0sncodedesc": "Aged device replacement",
+			"ta0sntype": "D6",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/13-148",
+			"worktype": "ZSRO",
+			"ta0sncode": "D601",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDYwMS9ENg--"
+		},
+		{
+			"_rowstamp": "5573259",
+			"ta0sntypedesc": "Device inspection (Meter Team OPC)",
+			"ta0sncodedesc": "Transfer from MRE",
+			"ta0sntype": "D5",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/14-147",
+			"worktype": "ZINO",
+			"ta0sncode": "D507",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDUwNy9ENQ--"
+		},
+		{
+			"_rowstamp": "5573260",
+			"ta0sntypedesc": "Device inspection (Meter Team OPC)",
+			"ta0sncodedesc": "Wrongly Disconnection Issue –GSL5",
+			"ta0sntype": "D5",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/15-146",
+			"worktype": "ZINO",
+			"ta0sncode": "D506",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDUwNi9ENQ--"
+		},
+		{
+			"_rowstamp": "5573261",
+			"ta0sntypedesc": "Device inspection (Meter Team OPC)",
+			"ta0sncodedesc": "Transfer from OPC Sampling",
+			"ta0sntype": "D5",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/16-145",
+			"worktype": "ZINO",
+			"ta0sncode": "D505",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDUwNS9ENQ--"
+		},
+		{
+			"_rowstamp": "5573262",
+			"ta0sntypedesc": "Device inspection (Meter Team OPC)",
+			"ta0sncodedesc": "Unscheduled device inspection (IR)",
+			"ta0sntype": "D5",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/17-144",
+			"worktype": "ZINO",
+			"ta0sncode": "D504",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDUwNC9ENQ--"
+		},
+		{
+			"_rowstamp": "5573263",
+			"ta0sntypedesc": "Device inspection (Meter Team OPC)",
+			"ta0sncodedesc": "Unscheduled device inspection",
+			"ta0sntype": "D5",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/18-143",
+			"worktype": "ZINO",
+			"ta0sncode": "D503",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDUwMy9ENQ--"
+		},
+		{
+			"_rowstamp": "5573264",
+			"ta0sntypedesc": "Device inspection (Meter Team OPC)",
+			"ta0sncodedesc": "Transfer from CE inspection.",
+			"ta0sntype": "D5",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/19-142",
+			"worktype": "ZINO",
+			"ta0sncode": "D502",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDUwMi9ENQ--"
+		},
+		{
+			"_rowstamp": "5573265",
+			"ta0sntypedesc": "Device inspection (Meter Team OPC)",
+			"ta0sncodedesc": "Device accuracy test",
+			"ta0sntype": "D5",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/20-141",
+			"worktype": "ZINO",
+			"ta0sncode": "D501",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDUwMS9ENQ--"
+		},
+		{
+			"_rowstamp": "5573266",
+			"ta0sntypedesc": "Device inspection (Meter Team LPC)",
+			"ta0sncodedesc": "Transfer from MRE",
+			"ta0sntype": "D4",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/21-140",
+			"worktype": "ZINL",
+			"ta0sncode": "D420",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDQyMC9ENA--"
+		},
+		{
+			"_rowstamp": "5573267",
+			"ta0sntypedesc": "Device inspection (Meter Team LPC)",
+			"ta0sncodedesc": "LPC With Estimated Bill",
+			"ta0sntype": "D4",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/22-139",
+			"worktype": "ZINL",
+			"ta0sncode": "D419",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDQxOS9ENA--"
+		},
+		{
+			"_rowstamp": "5573268",
+			"ta0sntypedesc": "Device inspection (Meter Team LPC)",
+			"ta0sncodedesc": "Possible Wrong Reading",
+			"ta0sntype": "D4",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/23-138",
+			"worktype": "ZINL",
+			"ta0sncode": "D418",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDQxOC9ENA--"
+		},
+		{
+			"_rowstamp": "5573269",
+			"ta0sntypedesc": "Device inspection (Meter Team LPC)",
+			"ta0sncodedesc": "LPC Without CMeter Whr Cspt > 100,000KWH",
+			"ta0sntype": "D4",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/24-137",
+			"worktype": "ZINL",
+			"ta0sncode": "D417",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDQxNy9ENA--"
+		},
+		{
+			"_rowstamp": "5573270",
+			"ta0sntypedesc": "Device inspection (Meter Team LPC)",
+			"ta0sncodedesc": "Variation Bet Main & Fdr Meter>= -10% HT",
+			"ta0sntype": "D4",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/25-136",
+			"worktype": "ZINL",
+			"ta0sncode": "D416",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDQxNi9ENA--"
+		},
+		{
+			"_rowstamp": "5573271",
+			"ta0sntypedesc": "Device inspection (Meter Team LPC)",
+			"ta0sncodedesc": "Diff.Bet Main&Check Meter in KVARH > 6%",
+			"ta0sntype": "D4",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/26-135",
+			"worktype": "ZINL",
+			"ta0sncode": "D415",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDQxNS9ENA--"
+		},
+		{
+			"_rowstamp": "5573272",
+			"ta0sntypedesc": "Device inspection (Meter Team LPC)",
+			"ta0sncodedesc": "Diff.Bet M OffPK & C Meter KW >=-20% HT",
+			"ta0sntype": "D4",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/27-134",
+			"worktype": "ZINL",
+			"ta0sncode": "D414",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDQxNC9ENA--"
+		},
+		{
+			"_rowstamp": "5573273",
+			"ta0sntypedesc": "Device inspection (Meter Team LPC)",
+			"ta0sncodedesc": "Diff.Bet M Peak&CheckMeter KW >= -20% HT",
+			"ta0sntype": "D4",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/28-133",
+			"worktype": "ZINL",
+			"ta0sncode": "D413",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDQxMy9ENA--"
+		},
+		{
+			"_rowstamp": "5573274",
+			"ta0sntypedesc": "Device inspection (Meter Team LPC)",
+			"ta0sncodedesc": "Diff.Bet M OffPK &C MeterKWH>=-10%to-99%",
+			"ta0sntype": "D4",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/29-132",
+			"worktype": "ZINL",
+			"ta0sncode": "D412",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDQxMi9ENA--"
+		},
+		{
+			"_rowstamp": "5573275",
+			"ta0sntypedesc": "Device inspection (Meter Team LPC)",
+			"ta0sncodedesc": "Diff.Bet M Peak &C Meter KWH>=-10%to-99%",
+			"ta0sntype": "D4",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/30-131",
+			"worktype": "ZINL",
+			"ta0sncode": "D411",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDQxMS9ENA--"
+		},
+		{
+			"_rowstamp": "5573276",
+			"ta0sntypedesc": "Device inspection (Meter Team LPC)",
+			"ta0sncodedesc": "Multiplying Factor, MF <> 1",
+			"ta0sntype": "D4",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/31-130",
+			"worktype": "ZINL",
+			"ta0sncode": "D410",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDQxMC9ENA--"
+		},
+		{
+			"_rowstamp": "5573277",
+			"ta0sntypedesc": "Device inspection (Meter Team LPC)",
+			"ta0sncodedesc": "Wrongly Disconnection Issue –GSL5",
+			"ta0sntype": "D4",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/32-129",
+			"worktype": "ZINL",
+			"ta0sncode": "D409",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDQwOS9ENA--"
+		},
+		{
+			"_rowstamp": "5573278",
+			"ta0sntypedesc": "Device inspection (Meter Team LPC)",
+			"ta0sncodedesc": "Scheduled device inspection for 1 month after replacement",
+			"ta0sntype": "D4",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/33-128",
+			"worktype": "ZINL",
+			"ta0sncode": "D408",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDQwOC9ENA--"
+		},
+		{
+			"_rowstamp": "5573279",
+			"ta0sntypedesc": "Device inspection (Meter Team LPC)",
+			"ta0sncodedesc": "Scheduled device inspection for 3 month after installation",
+			"ta0sntype": "D4",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/34-127",
+			"worktype": "ZINL",
+			"ta0sncode": "D407",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDQwNy9ENA--"
+		},
+		{
+			"_rowstamp": "5573280",
+			"ta0sntypedesc": "Device inspection (Meter Team LPC)",
+			"ta0sncodedesc": "Scheduled device inspection for LPC_MVHV",
+			"ta0sntype": "D4",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/35-126",
+			"worktype": "ZINL",
+			"ta0sncode": "D406",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDQwNi9ENA--"
+		},
+		{
+			"_rowstamp": "5573281",
+			"ta0sntypedesc": "Device inspection (Meter Team LPC)",
+			"ta0sncodedesc": "Unscheduled device inspection(ER)",
+			"ta0sntype": "D4",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/36-125",
+			"worktype": "ZINL",
+			"ta0sncode": "D405",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDQwNS9ENA--"
+		},
+		{
+			"_rowstamp": "5573282",
+			"ta0sntypedesc": "Device inspection (Meter Team LPC)",
+			"ta0sncodedesc": "Unscheduled device inspection",
+			"ta0sntype": "D4",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/37-124",
+			"worktype": "ZINL",
+			"ta0sncode": "D404",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDQwNC9ENA--"
+		},
+		{
+			"_rowstamp": "5573283",
+			"ta0sntypedesc": "Device inspection (Meter Team LPC)",
+			"ta0sncodedesc": "Transfer from CE inspection.",
+			"ta0sntype": "D4",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/38-123",
+			"worktype": "ZINL",
+			"ta0sncode": "D403",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDQwMy9ENA--"
+		},
+		{
+			"_rowstamp": "5573284",
+			"ta0sntypedesc": "Device inspection (Meter Team LPC)",
+			"ta0sncodedesc": "Device accuracy test",
+			"ta0sntype": "D4",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/39-122",
+			"worktype": "ZINL",
+			"ta0sncode": "D402",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDQwMi9ENA--"
+		},
+		{
+			"_rowstamp": "5573285",
+			"ta0sntypedesc": "Device inspection (Meter Team LPC)",
+			"ta0sncodedesc": "Scheduled device inspection for LPC_LV",
+			"ta0sntype": "D4",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/40-121",
+			"worktype": "ZINL",
+			"ta0sncode": "D401",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDQwMS9ENA--"
+		},
+		{
+			"_rowstamp": "5573286",
+			"ta0sntypedesc": "Device inspection (MRE)",
+			"ta0sncodedesc": "Miscellaneous",
+			"ta0sntype": "D3",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/41-120",
+			"worktype": "ZINM",
+			"ta0sncode": "D307",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDMwNy9EMw--"
+		},
+		{
+			"_rowstamp": "5573287",
+			"ta0sntypedesc": "Device inspection (MRE)",
+			"ta0sncodedesc": "Validate wrongly disconnection issue",
+			"ta0sntype": "D3",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/42-119",
+			"worktype": "ZINM",
+			"ta0sncode": "D306",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDMwNi9EMw--"
+		},
+		{
+			"_rowstamp": "5573288",
+			"ta0sntypedesc": "Device inspection (MRE)",
+			"ta0sncodedesc": "Estimated Bill",
+			"ta0sntype": "D3",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/43-118",
+			"worktype": "ZINM",
+			"ta0sncode": "D305",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDMwNS9EMw--"
+		},
+		{
+			"_rowstamp": "5573289",
+			"ta0sntypedesc": "Device inspection (MRE)",
+			"ta0sncodedesc": "Irregularities raised by meter reader for action by MRE",
+			"ta0sntype": "D3",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/44-117",
+			"worktype": "ZINM",
+			"ta0sncode": "D304",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDMwNC9EMw--"
+		},
+		{
+			"_rowstamp": "5573290",
+			"ta0sntypedesc": "Device inspection (MRE)",
+			"ta0sncodedesc": "Validate implausible MR",
+			"ta0sntype": "D3",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/45-116",
+			"worktype": "ZINM",
+			"ta0sncode": "D303",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDMwMy9EMw--"
+		},
+		{
+			"_rowstamp": "5573291",
+			"ta0sntypedesc": "Device inspection (MRE)",
+			"ta0sncodedesc": "Validate MR",
+			"ta0sntype": "D3",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/46-115",
+			"worktype": "ZINM",
+			"ta0sncode": "D302",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDMwMi9EMw--"
+		},
+		{
+			"_rowstamp": "5573292",
+			"ta0sntypedesc": "Device inspection (MRE)",
+			"ta0sncodedesc": "Validate zero consumption",
+			"ta0sntype": "D3",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/47-114",
+			"worktype": "ZINM",
+			"ta0sncode": "D301",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDMwMS9EMw--"
+		},
+		{
+			"_rowstamp": "5573293",
+			"ta0sntypedesc": "Removal",
+			"ta0sncodedesc": "Remove communication equipment only",
+			"ta0sntype": "D2",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/48-113",
+			"worktype": "ZRMV",
+			"ta0sncode": "D204",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDIwNC9EMg--"
+		},
+		{
+			"_rowstamp": "5573294",
+			"ta0sntypedesc": "Removal",
+			"ta0sncodedesc": "Remove device without replacement",
+			"ta0sntype": "D2",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/49-112",
+			"worktype": "ZRMV",
+			"ta0sncode": "D203",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDIwMy9EMg--"
+		},
+		{
+			"_rowstamp": "5573295",
+			"ta0sntypedesc": "Removal",
+			"ta0sncodedesc": "Remove device from disconnect premise",
+			"ta0sntype": "D2",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/50-111",
+			"worktype": "ZRMV",
+			"ta0sncode": "D202",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDIwMi9EMg--"
+		},
+		{
+			"_rowstamp": "5573296",
+			"ta0sntypedesc": "Removal",
+			"ta0sncodedesc": "Remove device from vacant premise",
+			"ta0sntype": "D2",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/51-110",
+			"worktype": "ZRMV",
+			"ta0sncode": "D201",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDIwMS9EMg--"
+		},
+		{
+			"_rowstamp": "5573297",
+			"ta0sntypedesc": "Device installation for non-billable device",
+			"ta0sncodedesc": "Install non-billable device",
+			"ta0sntype": "D1",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/52-109",
+			"worktype": "ZIST",
+			"ta0sncode": "D101",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvRDEwMS9EMQ--"
+		},
+		{
+			"_rowstamp": "5573298",
+			"ta0sntypedesc": "Smart Meter Disconnection",
+			"ta0sncodedesc": "Smart Meter Disconnection",
+			"ta0sntype": "CM",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/53-108",
+			"worktype": "ZSIN",
+			"ta0sncode": "CM01",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQ00wMS9DTQ--"
+		},
+		{
+			"_rowstamp": "5573299",
+			"ta0sntypedesc": "Smart Meter Reconnection",
+			"ta0sncodedesc": "Smart Meter Reconnection",
+			"ta0sntype": "CL",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/54-107",
+			"worktype": "ZSIN",
+			"ta0sncode": "CL01",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQ0wwMS9DTA--"
+		},
+		{
+			"_rowstamp": "5573300",
+			"ta0sntypedesc": "Smart Meter Reading",
+			"ta0sncodedesc": "Smart Meter Customer Request Read",
+			"ta0sntype": "CK",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/55-106",
+			"worktype": "ZSUR",
+			"ta0sncode": "CK01",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQ0swMS9DSw--"
+		},
+		{
+			"_rowstamp": "5573301",
+			"ta0sntypedesc": "Smart Meter COT",
+			"ta0sncodedesc": "Smart Meter COT Reading Read",
+			"ta0sntype": "CJ",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/56-105",
+			"worktype": "ZSUR",
+			"ta0sncode": "CJ01",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQ0owMS9DSg--"
+		},
+		{
+			"_rowstamp": "5573302",
+			"ta0sntypedesc": "Smart Meter Product Change",
+			"ta0sncodedesc": "Smart Meter Product Change Read",
+			"ta0sntype": "CI",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/57-104",
+			"worktype": "ZSUR",
+			"ta0sncode": "CI01",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQ0kwMS9DSQ--"
+		},
+		{
+			"_rowstamp": "5573303",
+			"ta0sntypedesc": "Smart Meter Load Change Read",
+			"ta0sncodedesc": "Smart Meter Load Change",
+			"ta0sntype": "CH",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/58-103",
+			"worktype": "ZSUR",
+			"ta0sncode": "CH01",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQ0gwMS9DSA--"
+		},
+		{
+			"_rowstamp": "5573304",
+			"ta0sntypedesc": "Smart Meter Move Out",
+			"ta0sncodedesc": "Smart Meter Force Moveout by Dunning",
+			"ta0sntype": "CG",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/59-102",
+			"worktype": "ZSIR",
+			"ta0sncode": "CG02",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQ0cwMi9DRw--"
+		},
+		{
+			"_rowstamp": "5573305",
+			"ta0sntypedesc": "Smart Meter Move Out",
+			"ta0sncodedesc": "Smart Meter Move Out Read",
+			"ta0sntype": "CG",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/60-101",
+			"worktype": "ZSIR",
+			"ta0sncode": "CG01",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQ0cwMS9DRw--"
+		},
+		{
+			"_rowstamp": "5573306",
+			"ta0sntypedesc": "Smart Meter Move In",
+			"ta0sncodedesc": "Smart Meter Move In Read",
+			"ta0sntype": "CF",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/61-100",
+			"worktype": "ZSUR",
+			"ta0sncode": "CF01",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQ0YwMS9DRg--"
+		},
+		{
+			"_rowstamp": "5573307",
+			"ta0sntypedesc": "Customer Request for LPC Inspection",
+			"ta0sncodedesc": "LPC Meter Crossing",
+			"ta0sntype": "CB",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/62-99",
+			"worktype": "ZINL",
+			"ta0sncode": "CB08",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQ0IwOC9DQg--"
+		},
+		{
+			"_rowstamp": "5573308",
+			"ta0sntypedesc": "Customer Request for LPC Inspection",
+			"ta0sncodedesc": "LPC Meter Dislocated",
+			"ta0sntype": "CB",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/63-98",
+			"worktype": "ZINL",
+			"ta0sncode": "CB07",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQ0IwNy9DQg--"
+		},
+		{
+			"_rowstamp": "5573309",
+			"ta0sntypedesc": "Customer Request for LPC Inspection",
+			"ta0sncodedesc": "LPC MIT Inspection",
+			"ta0sntype": "CB",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/64-97",
+			"worktype": "ZINL",
+			"ta0sncode": "CB06",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQ0IwNi9DQg--"
+		},
+		{
+			"_rowstamp": "5573310",
+			"ta0sntypedesc": "Customer Request for LPC Inspection",
+			"ta0sncodedesc": "LPC Illegal Connection",
+			"ta0sntype": "CB",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/65-96",
+			"worktype": "ZINL",
+			"ta0sncode": "CB05",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQ0IwNS9DQg--"
+		},
+		{
+			"_rowstamp": "5573311",
+			"ta0sntypedesc": "Customer Request for LPC Inspection",
+			"ta0sncodedesc": "LPC Device Box/LPC Device Room Related",
+			"ta0sntype": "CB",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/66-95",
+			"worktype": "ZINL",
+			"ta0sncode": "CB04",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQ0IwNC9DQg--"
+		},
+		{
+			"_rowstamp": "5573312",
+			"ta0sntypedesc": "Customer Request for LPC Inspection",
+			"ta0sncodedesc": "LPC Device Relocation",
+			"ta0sntype": "CB",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/67-94",
+			"worktype": "ZINL",
+			"ta0sncode": "CB03",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQ0IwMy9DQg--"
+		},
+		{
+			"_rowstamp": "5573313",
+			"ta0sntypedesc": "Customer Request for LPC Inspection",
+			"ta0sncodedesc": "LPC Device Accuracy Test",
+			"ta0sntype": "CB",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/68-93",
+			"worktype": "ZINL",
+			"ta0sncode": "CB02",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQ0IwMi9DQg--"
+		},
+		{
+			"_rowstamp": "5573314",
+			"ta0sntypedesc": "Customer Request for LPC Inspection",
+			"ta0sncodedesc": "LPC Device Faulty/Burnt/Lost/Stolen",
+			"ta0sntype": "CB",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/69-92",
+			"worktype": "ZINL",
+			"ta0sncode": "CB01",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQ0IwMS9DQg--"
+		},
+		{
+			"_rowstamp": "5573315",
+			"ta0sntypedesc": "Product Change",
+			"ta0sncodedesc": "Product Change Verification",
+			"ta0sntype": "CA",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/70-91",
+			"worktype": "ZINM",
+			"ta0sncode": "CA01",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQ0EwMS9DQQ--"
+		},
+		{
+			"_rowstamp": "5573316",
+			"ta0sntypedesc": "Move out",
+			"ta0sncodedesc": "Smart Meter Move Out",
+			"ta0sntype": "C7",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/71-90",
+			"worktype": "ZRMV",
+			"ta0sncode": "C706",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzcwNi9DNw--"
+		},
+		{
+			"_rowstamp": "5573317",
+			"ta0sntypedesc": "Move out",
+			"ta0sncodedesc": "Force Moveout by Dunning",
+			"ta0sntype": "C7",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/72-89",
+			"worktype": "ZRMV",
+			"ta0sncode": "C705",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzcwNS9DNw--"
+		},
+		{
+			"_rowstamp": "5573318",
+			"ta0sntypedesc": "Move out",
+			"ta0sncodedesc": "COA - Breach of Contract",
+			"ta0sntype": "C7",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/73-88",
+			"worktype": "ZRMV",
+			"ta0sncode": "C704",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzcwNC9DNw--"
+		},
+		{
+			"_rowstamp": "5573319",
+			"ta0sntypedesc": "Move out",
+			"ta0sncodedesc": "FIAH move out",
+			"ta0sntype": "C7",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/74-87",
+			"worktype": "ZRMV",
+			"ta0sncode": "C703",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzcwMy9DNw--"
+		},
+		{
+			"_rowstamp": "5573320",
+			"ta0sntypedesc": "Move out",
+			"ta0sncodedesc": "Street light move out",
+			"ta0sntype": "C7",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/75-86",
+			"worktype": "ZRMV",
+			"ta0sncode": "C702",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzcwMi9DNw--"
+		},
+		{
+			"_rowstamp": "5573321",
+			"ta0sntypedesc": "Move out",
+			"ta0sncodedesc": "Normal move out",
+			"ta0sntype": "C7",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/76-85",
+			"worktype": "ZRMV",
+			"ta0sncode": "C701",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzcwMS9DNw--"
+		},
+		{
+			"_rowstamp": "5573322",
+			"ta0sntypedesc": "Down/Upgrade",
+			"ta0sncodedesc": "Smart Meter Downgrade",
+			"ta0sntype": "C6",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/77-84",
+			"worktype": "ZUDN",
+			"ta0sncode": "C606",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzYwNi9DNg--"
+		},
+		{
+			"_rowstamp": "5573323",
+			"ta0sntypedesc": "Down/Upgrade",
+			"ta0sncodedesc": "Smart Meter Upgrade",
+			"ta0sntype": "C6",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/78-83",
+			"worktype": "ZUDN",
+			"ta0sncode": "C605",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzYwNS9DNg--"
+		},
+		{
+			"_rowstamp": "5573324",
+			"ta0sntypedesc": "Down/Upgrade",
+			"ta0sncodedesc": "Streetlight Downgrade",
+			"ta0sntype": "C6",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/79-82",
+			"worktype": "ZUDN",
+			"ta0sncode": "C604",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzYwNC9DNg--"
+		},
+		{
+			"_rowstamp": "5573325",
+			"ta0sntypedesc": "Down/Upgrade",
+			"ta0sncodedesc": "Streetlight Upgrade",
+			"ta0sntype": "C6",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/80-81",
+			"worktype": "ZUDN",
+			"ta0sncode": "C603",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzYwMy9DNg--"
+		},
+		{
+			"_rowstamp": "5573326",
+			"ta0sntypedesc": "Down/Upgrade",
+			"ta0sncodedesc": "Normal device upgrade",
+			"ta0sntype": "C6",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/81-80",
+			"worktype": "ZUDN",
+			"ta0sncode": "C602",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzYwMi9DNg--"
+		},
+		{
+			"_rowstamp": "5573327",
+			"ta0sntypedesc": "Down/Upgrade",
+			"ta0sncodedesc": "Normal device downgrade",
+			"ta0sntype": "C6",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/82-79",
+			"worktype": "ZUDN",
+			"ta0sncode": "C601",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzYwMS9DNg--"
+		},
+		{
+			"_rowstamp": "5573328",
+			"ta0sntypedesc": "COT",
+			"ta0sncodedesc": "COT – Breach of Contract",
+			"ta0sntype": "C5",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/83-78",
+			"worktype": "ZMMR",
+			"ta0sncode": "C502",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzUwMi9DNQ--"
+		},
+		{
+			"_rowstamp": "5573329",
+			"ta0sntypedesc": "COT",
+			"ta0sncodedesc": "Final Reading",
+			"ta0sntype": "C5",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/84-77",
+			"worktype": "ZMMR",
+			"ta0sncode": "C501",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzUwMS9DNQ--"
+		},
+		{
+			"_rowstamp": "5573330",
+			"ta0sntypedesc": "Move In",
+			"ta0sncodedesc": "Smart Meter New Connection",
+			"ta0sntype": "C4",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/85-76",
+			"worktype": "ZIST",
+			"ta0sncode": "C405",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzQwNS9DNA--"
+		},
+		{
+			"_rowstamp": "5573331",
+			"ta0sntypedesc": "Move In",
+			"ta0sncodedesc": "FIAH new connection",
+			"ta0sntype": "C4",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/86-75",
+			"worktype": "ZIST",
+			"ta0sncode": "C403",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzQwMy9DNA--"
+		},
+		{
+			"_rowstamp": "5573332",
+			"ta0sntypedesc": "Move In",
+			"ta0sncodedesc": "Street light new connection",
+			"ta0sntype": "C4",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/87-74",
+			"worktype": "ZIST",
+			"ta0sncode": "C402",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzQwMi9DNA--"
+		},
+		{
+			"_rowstamp": "5573333",
+			"ta0sntypedesc": "Move In",
+			"ta0sncodedesc": "Normal new connection",
+			"ta0sntype": "C4",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/88-73",
+			"worktype": "ZIST",
+			"ta0sncode": "C401",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzQwMS9DNA--"
+		},
+		{
+			"_rowstamp": "5573334",
+			"ta0sntypedesc": "Product Change Device Change",
+			"ta0sncodedesc": "Smart Meter Product Change",
+			"ta0sntype": "C3",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/89-72",
+			"worktype": "ZRPC",
+			"ta0sncode": "C302",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzMwMi9DMw--"
+		},
+		{
+			"_rowstamp": "5573335",
+			"ta0sntypedesc": "Product Change Device Change",
+			"ta0sncodedesc": "Product Change Device Change",
+			"ta0sntype": "C3",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/90-71",
+			"worktype": "ZRPC",
+			"ta0sncode": "C301",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzMwMS9DMw--"
+		},
+		{
+			"_rowstamp": "5573336",
+			"ta0sntypedesc": "Move in with existing  meter",
+			"ta0sncodedesc": "Move-in initial read",
+			"ta0sntype": "C2",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/91-70",
+			"worktype": "ZMMR",
+			"ta0sncode": "C201",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzIwMS9DMg--"
+		},
+		{
+			"_rowstamp": "5573337",
+			"ta0sntypedesc": "Customer request for OPC inspection",
+			"ta0sncodedesc": "Customer request for Meter Replacement",
+			"ta0sntype": "C1",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/92-69",
+			"worktype": "ZINO",
+			"ta0sncode": "C110",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzExMC9DMQ--"
+		},
+		{
+			"_rowstamp": "5573338",
+			"ta0sntypedesc": "Customer request for OPC inspection",
+			"ta0sncodedesc": "OPC Meter Crossing",
+			"ta0sntype": "C1",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/93-68",
+			"worktype": "ZINO",
+			"ta0sncode": "C109",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzEwOS9DMQ--"
+		},
+		{
+			"_rowstamp": "5573339",
+			"ta0sntypedesc": "Customer request for OPC inspection",
+			"ta0sncodedesc": "OPC Meter Dislocated",
+			"ta0sntype": "C1",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/94-67",
+			"worktype": "ZINO",
+			"ta0sncode": "C108",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzEwOC9DMQ--"
+		},
+		{
+			"_rowstamp": "5573340",
+			"ta0sntypedesc": "Customer request for OPC inspection",
+			"ta0sncodedesc": "OPC Meter Without Cut-Out",
+			"ta0sntype": "C1",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/95-66",
+			"worktype": "ZINO",
+			"ta0sncode": "C107",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzEwNy9DMQ--"
+		},
+		{
+			"_rowstamp": "5573341",
+			"ta0sntypedesc": "Customer request for OPC inspection",
+			"ta0sncodedesc": "OPC MIT Inspection",
+			"ta0sntype": "C1",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/96-65",
+			"worktype": "ZINO",
+			"ta0sncode": "C106",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzEwNi9DMQ--"
+		},
+		{
+			"_rowstamp": "5573342",
+			"ta0sntypedesc": "Customer request for OPC inspection",
+			"ta0sncodedesc": "OPC Illegal Connection",
+			"ta0sntype": "C1",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/97-64",
+			"worktype": "ZINO",
+			"ta0sncode": "C105",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzEwNS9DMQ--"
+		},
+		{
+			"_rowstamp": "5573343",
+			"ta0sntypedesc": "Customer request for OPC inspection",
+			"ta0sncodedesc": "OPC Device Box/OPC Meter Room Related",
+			"ta0sntype": "C1",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/98-63",
+			"worktype": "ZINO",
+			"ta0sncode": "C104",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzEwNC9DMQ--"
+		},
+		{
+			"_rowstamp": "5573344",
+			"ta0sntypedesc": "Customer request for OPC inspection",
+			"ta0sncodedesc": "OPC Device Relocation",
+			"ta0sntype": "C1",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/99-62",
+			"worktype": "ZINO",
+			"ta0sncode": "C103",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzEwMy9DMQ--"
+		},
+		{
+			"_rowstamp": "5573345",
+			"ta0sntypedesc": "Customer request for OPC inspection",
+			"ta0sncodedesc": "OPC Device Accuracy Test",
+			"ta0sntype": "C1",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/100-61",
+			"worktype": "ZINO",
+			"ta0sncode": "C102",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzEwMi9DMQ--"
+		},
+		{
+			"_rowstamp": "5573346",
+			"ta0sntypedesc": "Customer request for OPC inspection",
+			"ta0sncodedesc": "OPC Device Faulty/Burnt/Lost/Stolen",
+			"ta0sntype": "C1",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode/101-60",
+			"worktype": "ZINO",
+			"ta0sncode": "C101",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFNOQ09ERS9UTkIvQzEwMS9DMQ--"
+		}],
+		"ta0sncode_collectionref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0sncode",
+		"ta0userstatus": [{
+			"_rowstamp": "5520755",
+			"description": "Transfer to RAS",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/0-426",
+			"worktype": "ZSRP",
+			"ta0kiv": "TRAS",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RSQVMvWlNSUA--"
+		},
+		{
+			"_rowstamp": "5520756",
+			"description": "Wrong tariff",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/1-425",
+			"worktype": "ZSRP",
+			"ta0kiv": "TCS3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzMvWlNSUA--"
+		},
+		{
+			"_rowstamp": "5520757",
+			"description": "Wrong business code",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/2-424",
+			"worktype": "ZSRP",
+			"ta0kiv": "TCS2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzIvWlNSUA--"
+		},
+		{
+			"_rowstamp": "5520758",
+			"description": "Address incorrect",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/3-423",
+			"worktype": "ZSRP",
+			"ta0kiv": "TCS1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzEvWlNSUA--"
+		},
+		{
+			"_rowstamp": "5520759",
+			"description": "Meter Replaced",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/4-422",
+			"worktype": "ZSRP",
+			"ta0kiv": "MRPD",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL01SUEQvWlNSUA--"
+		},
+		{
+			"_rowstamp": "5520760",
+			"description": "Pending shut down",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/5-421",
+			"worktype": "ZSRP",
+			"ta0kiv": "KIVE",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkUvWlNSUA--"
+		},
+		{
+			"_rowstamp": "5520761",
+			"description": "Permanently closed",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/6-420",
+			"worktype": "ZSRP",
+			"ta0kiv": "KIVD",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkQvWlNSUA--"
+		},
+		{
+			"_rowstamp": "5520762",
+			"description": "Site demolished",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/7-419",
+			"worktype": "ZSRP",
+			"ta0kiv": "KIVC",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkMvWlNSUA--"
+		},
+		{
+			"_rowstamp": "5520763",
+			"description": "No materials/spare parts",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/8-418",
+			"worktype": "ZSRP",
+			"ta0kiv": "KIVB",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkIvWlNSUA--"
+		},
+		{
+			"_rowstamp": "5520764",
+			"description": "Meter cage",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/9-417",
+			"worktype": "ZSRP",
+			"ta0kiv": "KIVA",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkEvWlNSUA--"
+		},
+		{
+			"_rowstamp": "5520765",
+			"description": "Temporary supply",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/10-416",
+			"worktype": "ZSRP",
+			"ta0kiv": "KIV9",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjkvWlNSUA--"
+		},
+		{
+			"_rowstamp": "5520766",
+			"description": "Meter not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/11-415",
+			"worktype": "ZSRP",
+			"ta0kiv": "KIV8",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjgvWlNSUA--"
+		},
+		{
+			"_rowstamp": "5520767",
+			"description": "Inaccessible panel",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/12-414",
+			"worktype": "ZSRP",
+			"ta0kiv": "KIV7",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjcvWlNSUA--"
+		},
+		{
+			"_rowstamp": "5520768",
+			"description": "Customer does not cooperate",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/13-413",
+			"worktype": "ZSRP",
+			"ta0kiv": "KIV6",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjYvWlNSUA--"
+		},
+		{
+			"_rowstamp": "5520769",
+			"description": "Required appointment",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/14-412",
+			"worktype": "ZSRP",
+			"ta0kiv": "KIV5",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjUvWlNSUA--"
+		},
+		{
+			"_rowstamp": "5520770",
+			"description": "Unsafe workplace",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/15-411",
+			"worktype": "ZSRP",
+			"ta0kiv": "KIV4",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjQvWlNSUA--"
+		},
+		{
+			"_rowstamp": "5520771",
+			"description": "Premise not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/16-410",
+			"worktype": "ZSRP",
+			"ta0kiv": "KIV3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjMvWlNSUA--"
+		},
+		{
+			"_rowstamp": "5520772",
+			"description": "Prems no sply(BD/SD/UR)",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/17-409",
+			"worktype": "ZSRP",
+			"ta0kiv": "KIV2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjIvWlNSUA--"
+		},
+		{
+			"_rowstamp": "5520773",
+			"description": "Prems clsd/No PIC/Gate locked",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/18-408",
+			"worktype": "ZSRP",
+			"ta0kiv": "KIV1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjEvWlNSUA--"
+		},
+		{
+			"_rowstamp": "5520774",
+			"description": "Back billing required",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/19-407",
+			"worktype": "ZSIR",
+			"ta0kiv": "BBRQ",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0JCUlEvWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520775",
+			"description": "Wrong Device attributes",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/20-406",
+			"worktype": "ZSIR",
+			"ta0kiv": "WMAT",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1dNQVQvWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520776",
+			"description": "Transfer to RAS",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/21-405",
+			"worktype": "ZSIR",
+			"ta0kiv": "TRAS",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RSQVMvWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520777",
+			"description": "Transfer to Metering",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/22-404",
+			"worktype": "ZSIR",
+			"ta0kiv": "TMTR",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RNVFIvWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520778",
+			"description": "Wrong tariff",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/23-403",
+			"worktype": "ZSIR",
+			"ta0kiv": "TCS3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzMvWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520779",
+			"description": "Wrong business code",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/24-402",
+			"worktype": "ZSIR",
+			"ta0kiv": "TCS2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzIvWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520780",
+			"description": "Address incorrect",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/25-401",
+			"worktype": "ZSIR",
+			"ta0kiv": "TCS1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzEvWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520781",
+			"description": "Non-Device Irregularities",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/26-400",
+			"worktype": "ZSIR",
+			"ta0kiv": "NMIR",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL05NSVIvWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520782",
+			"description": "Metering System OK",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/27-399",
+			"worktype": "ZSIR",
+			"ta0kiv": "MSOK",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL01TT0svWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520783",
+			"description": "Device replacement required",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/28-398",
+			"worktype": "ZSIR",
+			"ta0kiv": "MRPM",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL01SUE0vWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520784",
+			"description": "Device Irregularities",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/29-397",
+			"worktype": "ZSIR",
+			"ta0kiv": "MEIR",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL01FSVIvWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520785",
+			"description": "Pending shut down",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/30-396",
+			"worktype": "ZSIR",
+			"ta0kiv": "KIVM",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVk0vWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520786",
+			"description": "Permanently closed",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/31-395",
+			"worktype": "ZSIR",
+			"ta0kiv": "KIVL",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkwvWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520787",
+			"description": "Site demolished",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/32-394",
+			"worktype": "ZSIR",
+			"ta0kiv": "KIVK",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVksvWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520788",
+			"description": "Station request for manual bil",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/33-393",
+			"worktype": "ZSIR",
+			"ta0kiv": "KIVJ",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkovWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520789",
+			"description": "Celcom Issue",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/34-392",
+			"worktype": "ZSIR",
+			"ta0kiv": "KIVI",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkkvWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520790",
+			"description": "No materials/spare parts",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/35-391",
+			"worktype": "ZSIR",
+			"ta0kiv": "KIVH",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkgvWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520791",
+			"description": "Low signal",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/36-390",
+			"worktype": "ZSIR",
+			"ta0kiv": "KIVG",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkcvWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520792",
+			"description": "Meter cage",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/37-389",
+			"worktype": "ZSIR",
+			"ta0kiv": "KIVF",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkYvWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520793",
+			"description": "Temporary supply",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/38-388",
+			"worktype": "ZSIR",
+			"ta0kiv": "KIVE",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkUvWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520794",
+			"description": "Meter faulty",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/39-387",
+			"worktype": "ZSIR",
+			"ta0kiv": "KIVD",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkQvWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520795",
+			"description": "Comm port faulty",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/40-386",
+			"worktype": "ZSIR",
+			"ta0kiv": "KIVC",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkMvWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520796",
+			"description": "No signal",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/41-385",
+			"worktype": "ZSIR",
+			"ta0kiv": "KIVB",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkIvWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520797",
+			"description": "No modem at site",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/42-384",
+			"worktype": "ZSIR",
+			"ta0kiv": "KIVA",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkEvWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520798",
+			"description": "Different meter at site",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/43-383",
+			"worktype": "ZSIR",
+			"ta0kiv": "KIV9",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjkvWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520799",
+			"description": "Meter not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/44-382",
+			"worktype": "ZSIR",
+			"ta0kiv": "KIV8",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjgvWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520800",
+			"description": "Inaccessible panel",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/45-381",
+			"worktype": "ZSIR",
+			"ta0kiv": "KIV7",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjcvWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520801",
+			"description": "Customer does not cooperate",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/46-380",
+			"worktype": "ZSIR",
+			"ta0kiv": "KIV6",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjYvWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520802",
+			"description": "Required appointment",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/47-379",
+			"worktype": "ZSIR",
+			"ta0kiv": "KIV5",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjUvWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520803",
+			"description": "Unsafe workplace",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/48-378",
+			"worktype": "ZSIR",
+			"ta0kiv": "KIV4",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjQvWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520804",
+			"description": "Premise not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/49-377",
+			"worktype": "ZSIR",
+			"ta0kiv": "KIV3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjMvWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520805",
+			"description": "Prems no sply(BD/SD/UR)",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/50-376",
+			"worktype": "ZSIR",
+			"ta0kiv": "KIV2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjIvWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520806",
+			"description": "Prems clsd/No PIC/Gate locked",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/51-375",
+			"worktype": "ZSIR",
+			"ta0kiv": "KIV1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjEvWlNJUg--"
+		},
+		{
+			"_rowstamp": "5520807",
+			"description": "Back billing required",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/52-374",
+			"worktype": "ZSIN",
+			"ta0kiv": "BBRQ",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0JCUlEvWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520808",
+			"description": "Wrong Device attributes",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/53-373",
+			"worktype": "ZSIN",
+			"ta0kiv": "WMAT",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1dNQVQvWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520809",
+			"description": "Transfer to RAS",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/54-372",
+			"worktype": "ZSIN",
+			"ta0kiv": "TRAS",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RSQVMvWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520810",
+			"description": "Transfer to Metering",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/55-371",
+			"worktype": "ZSIN",
+			"ta0kiv": "TMTR",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RNVFIvWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520811",
+			"description": "Wrong tariff",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/56-370",
+			"worktype": "ZSIN",
+			"ta0kiv": "TCS3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzMvWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520812",
+			"description": "Wrong business code",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/57-369",
+			"worktype": "ZSIN",
+			"ta0kiv": "TCS2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzIvWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520813",
+			"description": "Address incorrect",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/58-368",
+			"worktype": "ZSIN",
+			"ta0kiv": "TCS1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzEvWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520814",
+			"description": "Non-Device Irregularities",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/59-367",
+			"worktype": "ZSIN",
+			"ta0kiv": "NMIR",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL05NSVIvWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520815",
+			"description": "Metering System OK",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/60-366",
+			"worktype": "ZSIN",
+			"ta0kiv": "MSOK",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL01TT0svWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520816",
+			"description": "Device replacement required",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/61-365",
+			"worktype": "ZSIN",
+			"ta0kiv": "MRPM",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL01SUE0vWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520817",
+			"description": "Device Irregularities",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/62-364",
+			"worktype": "ZSIN",
+			"ta0kiv": "MEIR",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL01FSVIvWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520818",
+			"description": "Pending shut down",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/63-363",
+			"worktype": "ZSIN",
+			"ta0kiv": "KIVM",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVk0vWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520819",
+			"description": "Permanently closed",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/64-362",
+			"worktype": "ZSIN",
+			"ta0kiv": "KIVL",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkwvWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520820",
+			"description": "Site demolished",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/65-361",
+			"worktype": "ZSIN",
+			"ta0kiv": "KIVK",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVksvWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520821",
+			"description": "Station request for manual bil",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/66-360",
+			"worktype": "ZSIN",
+			"ta0kiv": "KIVJ",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkovWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520822",
+			"description": "Celcom Issue",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/67-359",
+			"worktype": "ZSIN",
+			"ta0kiv": "KIVI",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkkvWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520823",
+			"description": "No materials/spare parts",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/68-358",
+			"worktype": "ZSIN",
+			"ta0kiv": "KIVH",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkgvWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520824",
+			"description": "Low signal",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/69-357",
+			"worktype": "ZSIN",
+			"ta0kiv": "KIVG",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkcvWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520825",
+			"description": "Meter cage",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/70-356",
+			"worktype": "ZSIN",
+			"ta0kiv": "KIVF",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkYvWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520826",
+			"description": "Temporary supply",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/71-355",
+			"worktype": "ZSIN",
+			"ta0kiv": "KIVE",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkUvWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520827",
+			"description": "Meter faulty",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/72-354",
+			"worktype": "ZSIN",
+			"ta0kiv": "KIVD",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkQvWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520828",
+			"description": "Comm port faulty",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/73-353",
+			"worktype": "ZSIN",
+			"ta0kiv": "KIVC",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkMvWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520829",
+			"description": "No signal",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/74-352",
+			"worktype": "ZSIN",
+			"ta0kiv": "KIVB",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkIvWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520830",
+			"description": "No modem at site",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/75-351",
+			"worktype": "ZSIN",
+			"ta0kiv": "KIVA",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkEvWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520831",
+			"description": "Different meter at site",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/76-350",
+			"worktype": "ZSIN",
+			"ta0kiv": "KIV9",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjkvWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520832",
+			"description": "Meter not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/77-349",
+			"worktype": "ZSIN",
+			"ta0kiv": "KIV8",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjgvWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520833",
+			"description": "Inaccessible panel",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/78-348",
+			"worktype": "ZSIN",
+			"ta0kiv": "KIV7",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjcvWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520834",
+			"description": "Customer does not cooperate",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/79-347",
+			"worktype": "ZSIN",
+			"ta0kiv": "KIV6",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjYvWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520835",
+			"description": "Required appointment",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/80-346",
+			"worktype": "ZSIN",
+			"ta0kiv": "KIV5",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjUvWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520836",
+			"description": "Unsafe workplace",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/81-345",
+			"worktype": "ZSIN",
+			"ta0kiv": "KIV4",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjQvWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520837",
+			"description": "Premise not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/82-344",
+			"worktype": "ZSIN",
+			"ta0kiv": "KIV3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjMvWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520838",
+			"description": "Prems no sply(BD/SD/UR)",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/83-343",
+			"worktype": "ZSIN",
+			"ta0kiv": "KIV2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjIvWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520839",
+			"description": "Prems clsd/No PIC/Gate locked",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/84-342",
+			"worktype": "ZSIN",
+			"ta0kiv": "KIV1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjEvWlNJTg--"
+		},
+		{
+			"_rowstamp": "5520840",
+			"description": "Wrong tariff",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/85-341",
+			"worktype": "ZSUR",
+			"ta0kiv": "TCS3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzMvWlNVUg--"
+		},
+		{
+			"_rowstamp": "5520841",
+			"description": "Wrong business code",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/86-340",
+			"worktype": "ZSUR",
+			"ta0kiv": "TCS2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzIvWlNVUg--"
+		},
+		{
+			"_rowstamp": "5520842",
+			"description": "Address incorrect",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/87-339",
+			"worktype": "ZSUR",
+			"ta0kiv": "TCS1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzEvWlNVUg--"
+		},
+		{
+			"_rowstamp": "5520843",
+			"description": "Meter faulty",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/88-338",
+			"worktype": "ZSUR",
+			"ta0kiv": "KIVA",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkEvWlNVUg--"
+		},
+		{
+			"_rowstamp": "5520844",
+			"description": "Different meter at site",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/89-337",
+			"worktype": "ZSUR",
+			"ta0kiv": "KIV9",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjkvWlNVUg--"
+		},
+		{
+			"_rowstamp": "5520845",
+			"description": "Meter not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/90-336",
+			"worktype": "ZSUR",
+			"ta0kiv": "KIV8",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjgvWlNVUg--"
+		},
+		{
+			"_rowstamp": "5520846",
+			"description": "Inaccessible panel",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/91-335",
+			"worktype": "ZSUR",
+			"ta0kiv": "KIV7",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjcvWlNVUg--"
+		},
+		{
+			"_rowstamp": "5520847",
+			"description": "Customer does not cooperate",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/92-334",
+			"worktype": "ZSUR",
+			"ta0kiv": "KIV6",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjYvWlNVUg--"
+		},
+		{
+			"_rowstamp": "5520848",
+			"description": "Required appointment",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/93-333",
+			"worktype": "ZSUR",
+			"ta0kiv": "KIV5",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjUvWlNVUg--"
+		},
+		{
+			"_rowstamp": "5520849",
+			"description": "Unsafe workplace",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/94-332",
+			"worktype": "ZSUR",
+			"ta0kiv": "KIV4",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjQvWlNVUg--"
+		},
+		{
+			"_rowstamp": "5520850",
+			"description": "Premise not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/95-331",
+			"worktype": "ZSUR",
+			"ta0kiv": "KIV3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjMvWlNVUg--"
+		},
+		{
+			"_rowstamp": "5520851",
+			"description": "Prems no sply(BD/SD/UR)",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/96-330",
+			"worktype": "ZSUR",
+			"ta0kiv": "KIV2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjIvWlNVUg--"
+		},
+		{
+			"_rowstamp": "5520852",
+			"description": "Prems clsd/No PIC/Gate locked",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/97-329",
+			"worktype": "ZSUR",
+			"ta0kiv": "KIV1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjEvWlNVUg--"
+		},
+		{
+			"_rowstamp": "5520853",
+			"description": "Wrong tariff",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/98-328",
+			"worktype": "ZRCE",
+			"ta0kiv": "TCS3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzMvWlJDRQ--"
+		},
+		{
+			"_rowstamp": "5520854",
+			"description": "Wrong business code",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/99-327",
+			"worktype": "ZRCE",
+			"ta0kiv": "TCS2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzIvWlJDRQ--"
+		},
+		{
+			"_rowstamp": "5520855",
+			"description": "Address incorrect",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/100-326",
+			"worktype": "ZRCE",
+			"ta0kiv": "TCS1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzEvWlJDRQ--"
+		},
+		{
+			"_rowstamp": "5520856",
+			"description": "Pending shut down",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/101-325",
+			"worktype": "ZRCE",
+			"ta0kiv": "KIVD",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkQvWlJDRQ--"
+		},
+		{
+			"_rowstamp": "5520857",
+			"description": "Permanently closed",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/102-324",
+			"worktype": "ZRCE",
+			"ta0kiv": "KIVC",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkMvWlJDRQ--"
+		},
+		{
+			"_rowstamp": "5520858",
+			"description": "Site demolished",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/103-323",
+			"worktype": "ZRCE",
+			"ta0kiv": "KIVB",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkIvWlJDRQ--"
+		},
+		{
+			"_rowstamp": "5520859",
+			"description": "Meter cage",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/104-322",
+			"worktype": "ZRCE",
+			"ta0kiv": "KIVA",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkEvWlJDRQ--"
+		},
+		{
+			"_rowstamp": "5520860",
+			"description": "Different meter at site",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/105-321",
+			"worktype": "ZRCE",
+			"ta0kiv": "KIV9",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjkvWlJDRQ--"
+		},
+		{
+			"_rowstamp": "5520861",
+			"description": "Meter not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/106-320",
+			"worktype": "ZRCE",
+			"ta0kiv": "KIV8",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjgvWlJDRQ--"
+		},
+		{
+			"_rowstamp": "5520862",
+			"description": "Inaccessible panel",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/107-319",
+			"worktype": "ZRCE",
+			"ta0kiv": "KIV7",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjcvWlJDRQ--"
+		},
+		{
+			"_rowstamp": "5520863",
+			"description": "Customer does not cooperate",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/108-318",
+			"worktype": "ZRCE",
+			"ta0kiv": "KIV6",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjYvWlJDRQ--"
+		},
+		{
+			"_rowstamp": "5520864",
+			"description": "Required appointment",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/109-317",
+			"worktype": "ZRCE",
+			"ta0kiv": "KIV5",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjUvWlJDRQ--"
+		},
+		{
+			"_rowstamp": "5520865",
+			"description": "Unsafe workplace",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/110-316",
+			"worktype": "ZRCE",
+			"ta0kiv": "KIV4",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjQvWlJDRQ--"
+		},
+		{
+			"_rowstamp": "5520866",
+			"description": "Premise not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/111-315",
+			"worktype": "ZRCE",
+			"ta0kiv": "KIV3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjMvWlJDRQ--"
+		},
+		{
+			"_rowstamp": "5520867",
+			"description": "Prems no sply(BD/SD/UR)",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/112-314",
+			"worktype": "ZRCE",
+			"ta0kiv": "KIV2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjIvWlJDRQ--"
+		},
+		{
+			"_rowstamp": "5520868",
+			"description": "Prems clsd/No PIC/Gate locked",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/113-313",
+			"worktype": "ZRCE",
+			"ta0kiv": "KIV1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjEvWlJDRQ--"
+		},
+		{
+			"_rowstamp": "5520869",
+			"description": "Wrong Device attributes",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/114-312",
+			"worktype": "ZINR",
+			"ta0kiv": "WMAT",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1dNQVQvWklOUg--"
+		},
+		{
+			"_rowstamp": "5520870",
+			"description": "Transfer to RAS",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/115-311",
+			"worktype": "ZINR",
+			"ta0kiv": "TRAS",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RSQVMvWklOUg--"
+		},
+		{
+			"_rowstamp": "5520871",
+			"description": "Transfer to Metering",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/116-310",
+			"worktype": "ZINR",
+			"ta0kiv": "TMTR",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RNVFIvWklOUg--"
+		},
+		{
+			"_rowstamp": "5520872",
+			"description": "Wrong tariff",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/117-309",
+			"worktype": "ZINR",
+			"ta0kiv": "TCS3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzMvWklOUg--"
+		},
+		{
+			"_rowstamp": "5520873",
+			"description": "Wrong business code",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/118-308",
+			"worktype": "ZINR",
+			"ta0kiv": "TCS2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzIvWklOUg--"
+		},
+		{
+			"_rowstamp": "5520874",
+			"description": "Address incorrect",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/119-307",
+			"worktype": "ZINR",
+			"ta0kiv": "TCS1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzEvWklOUg--"
+		},
+		{
+			"_rowstamp": "5520875",
+			"description": "Non-Device Irregularities",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/120-306",
+			"worktype": "ZINR",
+			"ta0kiv": "NMIR",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL05NSVIvWklOUg--"
+		},
+		{
+			"_rowstamp": "5520876",
+			"description": "Metering System OK",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/121-305",
+			"worktype": "ZINR",
+			"ta0kiv": "MSOK",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL01TT0svWklOUg--"
+		},
+		{
+			"_rowstamp": "5520877",
+			"description": "Device replacement required",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/122-304",
+			"worktype": "ZINR",
+			"ta0kiv": "MRPM",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL01SUE0vWklOUg--"
+		},
+		{
+			"_rowstamp": "5520878",
+			"description": "Device Irregularities",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/123-303",
+			"worktype": "ZINR",
+			"ta0kiv": "MEIR",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL01FSVIvWklOUg--"
+		},
+		{
+			"_rowstamp": "5520879",
+			"description": "Pending shut down",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/124-302",
+			"worktype": "ZINR",
+			"ta0kiv": "KIVM",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVk0vWklOUg--"
+		},
+		{
+			"_rowstamp": "5520880",
+			"description": "Permanently closed",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/125-301",
+			"worktype": "ZINR",
+			"ta0kiv": "KIVL",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkwvWklOUg--"
+		},
+		{
+			"_rowstamp": "5520881",
+			"description": "Site demolished",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/126-300",
+			"worktype": "ZINR",
+			"ta0kiv": "KIVK",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVksvWklOUg--"
+		},
+		{
+			"_rowstamp": "5520882",
+			"description": "Station request for manual bil",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/127-299",
+			"worktype": "ZINR",
+			"ta0kiv": "KIVJ",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkovWklOUg--"
+		},
+		{
+			"_rowstamp": "5520883",
+			"description": "Celcom Issue",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/128-298",
+			"worktype": "ZINR",
+			"ta0kiv": "KIVI",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkkvWklOUg--"
+		},
+		{
+			"_rowstamp": "5520884",
+			"description": "No materials/spare parts",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/129-297",
+			"worktype": "ZINR",
+			"ta0kiv": "KIVH",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkgvWklOUg--"
+		},
+		{
+			"_rowstamp": "5520885",
+			"description": "Low signal",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/130-296",
+			"worktype": "ZINR",
+			"ta0kiv": "KIVG",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkcvWklOUg--"
+		},
+		{
+			"_rowstamp": "5520886",
+			"description": "Meter cage",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/131-295",
+			"worktype": "ZINR",
+			"ta0kiv": "KIVF",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkYvWklOUg--"
+		},
+		{
+			"_rowstamp": "5520887",
+			"description": "Temporary supply",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/132-294",
+			"worktype": "ZINR",
+			"ta0kiv": "KIVE",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkUvWklOUg--"
+		},
+		{
+			"_rowstamp": "5520888",
+			"description": "Meter faulty",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/133-293",
+			"worktype": "ZINR",
+			"ta0kiv": "KIVD",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkQvWklOUg--"
+		},
+		{
+			"_rowstamp": "5520889",
+			"description": "Comm port faulty",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/134-292",
+			"worktype": "ZINR",
+			"ta0kiv": "KIVC",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkMvWklOUg--"
+		},
+		{
+			"_rowstamp": "5520890",
+			"description": "No signal",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/135-291",
+			"worktype": "ZINR",
+			"ta0kiv": "KIVB",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkIvWklOUg--"
+		},
+		{
+			"_rowstamp": "5520891",
+			"description": "No modem at site",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/136-290",
+			"worktype": "ZINR",
+			"ta0kiv": "KIVA",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkEvWklOUg--"
+		},
+		{
+			"_rowstamp": "5520892",
+			"description": "Different meter at site",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/137-289",
+			"worktype": "ZINR",
+			"ta0kiv": "KIV9",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjkvWklOUg--"
+		},
+		{
+			"_rowstamp": "5520893",
+			"description": "Meter not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/138-288",
+			"worktype": "ZINR",
+			"ta0kiv": "KIV8",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjgvWklOUg--"
+		},
+		{
+			"_rowstamp": "5520894",
+			"description": "Inaccessible panel",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/139-287",
+			"worktype": "ZINR",
+			"ta0kiv": "KIV7",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjcvWklOUg--"
+		},
+		{
+			"_rowstamp": "5520895",
+			"description": "Customer does not cooperate",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/140-286",
+			"worktype": "ZINR",
+			"ta0kiv": "KIV6",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjYvWklOUg--"
+		},
+		{
+			"_rowstamp": "5520896",
+			"description": "Required appointment",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/141-285",
+			"worktype": "ZINR",
+			"ta0kiv": "KIV5",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjUvWklOUg--"
+		},
+		{
+			"_rowstamp": "5520897",
+			"description": "Unsafe workplace",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/142-284",
+			"worktype": "ZINR",
+			"ta0kiv": "KIV4",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjQvWklOUg--"
+		},
+		{
+			"_rowstamp": "5520898",
+			"description": "Premise not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/143-283",
+			"worktype": "ZINR",
+			"ta0kiv": "KIV3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjMvWklOUg--"
+		},
+		{
+			"_rowstamp": "5521042",
+			"description": "Comm port faulty",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/144-139",
+			"worktype": "ZCER",
+			"ta0kiv": "KIVC",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkMvWkNFUg--"
+		},
+		{
+			"_rowstamp": "5520899",
+			"description": "Prems no sply(BD/SD/UR)",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/145-282",
+			"worktype": "ZINR",
+			"ta0kiv": "KIV2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjIvWklOUg--"
+		},
+		{
+			"_rowstamp": "5520900",
+			"description": "Prems clsd/No PIC/Gate locked",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/146-281",
+			"worktype": "ZINR",
+			"ta0kiv": "KIV1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjEvWklOUg--"
+		},
+		{
+			"_rowstamp": "5520901",
+			"description": "Transfer to RAS",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/147-280",
+			"worktype": "ZISR",
+			"ta0kiv": "TRAS",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RSQVMvWklTUg--"
+		},
+		{
+			"_rowstamp": "5520902",
+			"description": "Transfer to Metering",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/148-279",
+			"worktype": "ZISR",
+			"ta0kiv": "TMTR",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RNVFIvWklTUg--"
+		},
+		{
+			"_rowstamp": "5520903",
+			"description": "Wrong tariff",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/149-278",
+			"worktype": "ZISR",
+			"ta0kiv": "TCS3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzMvWklTUg--"
+		},
+		{
+			"_rowstamp": "5520904",
+			"description": "Wrong business code",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/150-277",
+			"worktype": "ZISR",
+			"ta0kiv": "TCS2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzIvWklTUg--"
+		},
+		{
+			"_rowstamp": "5520905",
+			"description": "Address incorrect",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/151-276",
+			"worktype": "ZISR",
+			"ta0kiv": "TCS1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzEvWklTUg--"
+		},
+		{
+			"_rowstamp": "5520906",
+			"description": "Pending shut down",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/152-275",
+			"worktype": "ZISR",
+			"ta0kiv": "KIVL",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkwvWklTUg--"
+		},
+		{
+			"_rowstamp": "5520907",
+			"description": "Permanently closed",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/153-274",
+			"worktype": "ZISR",
+			"ta0kiv": "KIVK",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVksvWklTUg--"
+		},
+		{
+			"_rowstamp": "5520908",
+			"description": "Site demolished",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/154-273",
+			"worktype": "ZISR",
+			"ta0kiv": "KIVJ",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkovWklTUg--"
+		},
+		{
+			"_rowstamp": "5520909",
+			"description": "Celcom Issue",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/155-272",
+			"worktype": "ZISR",
+			"ta0kiv": "KIVI",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkkvWklTUg--"
+		},
+		{
+			"_rowstamp": "5520910",
+			"description": "No materials/spare parts",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/156-271",
+			"worktype": "ZISR",
+			"ta0kiv": "KIVH",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkgvWklTUg--"
+		},
+		{
+			"_rowstamp": "5520911",
+			"description": "Low signal",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/157-270",
+			"worktype": "ZISR",
+			"ta0kiv": "KIVG",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkcvWklTUg--"
+		},
+		{
+			"_rowstamp": "5520912",
+			"description": "Meter cage",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/158-269",
+			"worktype": "ZISR",
+			"ta0kiv": "KIVF",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkYvWklTUg--"
+		},
+		{
+			"_rowstamp": "5520913",
+			"description": "Temporary supply",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/159-268",
+			"worktype": "ZISR",
+			"ta0kiv": "KIVE",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkUvWklTUg--"
+		},
+		{
+			"_rowstamp": "5520914",
+			"description": "Meter faulty",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/160-267",
+			"worktype": "ZISR",
+			"ta0kiv": "KIVD",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkQvWklTUg--"
+		},
+		{
+			"_rowstamp": "5520915",
+			"description": "Comm port faulty",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/161-266",
+			"worktype": "ZISR",
+			"ta0kiv": "KIVC",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkMvWklTUg--"
+		},
+		{
+			"_rowstamp": "5520916",
+			"description": "No signal",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/162-265",
+			"worktype": "ZISR",
+			"ta0kiv": "KIVB",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkIvWklTUg--"
+		},
+		{
+			"_rowstamp": "5520917",
+			"description": "No modem at site",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/163-264",
+			"worktype": "ZISR",
+			"ta0kiv": "KIVA",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkEvWklTUg--"
+		},
+		{
+			"_rowstamp": "5520918",
+			"description": "Different meter at site",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/164-263",
+			"worktype": "ZISR",
+			"ta0kiv": "KIV9",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjkvWklTUg--"
+		},
+		{
+			"_rowstamp": "5520919",
+			"description": "Meter not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/165-262",
+			"worktype": "ZISR",
+			"ta0kiv": "KIV8",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjgvWklTUg--"
+		},
+		{
+			"_rowstamp": "5520920",
+			"description": "Inaccessible panel",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/166-261",
+			"worktype": "ZISR",
+			"ta0kiv": "KIV7",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjcvWklTUg--"
+		},
+		{
+			"_rowstamp": "5520921",
+			"description": "Customer does not cooperate",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/167-260",
+			"worktype": "ZISR",
+			"ta0kiv": "KIV6",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjYvWklTUg--"
+		},
+		{
+			"_rowstamp": "5520922",
+			"description": "Required appointment",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/168-259",
+			"worktype": "ZISR",
+			"ta0kiv": "KIV5",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjUvWklTUg--"
+		},
+		{
+			"_rowstamp": "5520923",
+			"description": "Unsafe workplace",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/169-258",
+			"worktype": "ZISR",
+			"ta0kiv": "KIV4",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjQvWklTUg--"
+		},
+		{
+			"_rowstamp": "5520924",
+			"description": "Premise not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/170-257",
+			"worktype": "ZISR",
+			"ta0kiv": "KIV3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjMvWklTUg--"
+		},
+		{
+			"_rowstamp": "5520925",
+			"description": "Prems no sply(BD/SD/UR)",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/171-256",
+			"worktype": "ZISR",
+			"ta0kiv": "KIV2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjIvWklTUg--"
+		},
+		{
+			"_rowstamp": "5520926",
+			"description": "Prems clsd/No PIC/Gate locked",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/172-255",
+			"worktype": "ZISR",
+			"ta0kiv": "KIV1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjEvWklTUg--"
+		},
+		{
+			"_rowstamp": "5520927",
+			"description": "Transfer to RAS",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/173-254",
+			"worktype": "ZINS",
+			"ta0kiv": "TRAS",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RSQVMvWklOUw--"
+		},
+		{
+			"_rowstamp": "5520928",
+			"description": "Transfer to Metering",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/174-253",
+			"worktype": "ZINS",
+			"ta0kiv": "TMTR",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RNVFIvWklOUw--"
+		},
+		{
+			"_rowstamp": "5520929",
+			"description": "Wrong tariff",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/175-252",
+			"worktype": "ZINS",
+			"ta0kiv": "TCS3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzMvWklOUw--"
+		},
+		{
+			"_rowstamp": "5520930",
+			"description": "Wrong business code",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/176-251",
+			"worktype": "ZINS",
+			"ta0kiv": "TCS2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzIvWklOUw--"
+		},
+		{
+			"_rowstamp": "5520931",
+			"description": "Address incorrect",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/177-250",
+			"worktype": "ZINS",
+			"ta0kiv": "TCS1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzEvWklOUw--"
+		},
+		{
+			"_rowstamp": "5520932",
+			"description": "Non-Device Irregularities",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/178-249",
+			"worktype": "ZINS",
+			"ta0kiv": "NMIR",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL05NSVIvWklOUw--"
+		},
+		{
+			"_rowstamp": "5520933",
+			"description": "Metering System OK",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/179-248",
+			"worktype": "ZINS",
+			"ta0kiv": "MSOK",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL01TT0svWklOUw--"
+		},
+		{
+			"_rowstamp": "5520934",
+			"description": "Device Irregularities",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/180-247",
+			"worktype": "ZINS",
+			"ta0kiv": "MEIR",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL01FSVIvWklOUw--"
+		},
+		{
+			"_rowstamp": "5520935",
+			"description": "Pending shut down",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/181-246",
+			"worktype": "ZINS",
+			"ta0kiv": "KIVD",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkQvWklOUw--"
+		},
+		{
+			"_rowstamp": "5520936",
+			"description": "Permanently closed",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/182-245",
+			"worktype": "ZINS",
+			"ta0kiv": "KIVC",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkMvWklOUw--"
+		},
+		{
+			"_rowstamp": "5520937",
+			"description": "Site demolished",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/183-244",
+			"worktype": "ZINS",
+			"ta0kiv": "KIVB",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkIvWklOUw--"
+		},
+		{
+			"_rowstamp": "5520938",
+			"description": "No materials/spare parts",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/184-243",
+			"worktype": "ZINS",
+			"ta0kiv": "KIVA",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkEvWklOUw--"
+		},
+		{
+			"_rowstamp": "5520939",
+			"description": "Meter cage",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/185-242",
+			"worktype": "ZINS",
+			"ta0kiv": "KIV9",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjkvWklOUw--"
+		},
+		{
+			"_rowstamp": "5520940",
+			"description": "Meter not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/186-241",
+			"worktype": "ZINS",
+			"ta0kiv": "KIV8",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjgvWklOUw--"
+		},
+		{
+			"_rowstamp": "5520941",
+			"description": "Inaccessible panel",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/187-240",
+			"worktype": "ZINS",
+			"ta0kiv": "KIV7",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjcvWklOUw--"
+		},
+		{
+			"_rowstamp": "5520942",
+			"description": "Customer does not cooperate",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/188-239",
+			"worktype": "ZINS",
+			"ta0kiv": "KIV6",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjYvWklOUw--"
+		},
+		{
+			"_rowstamp": "5520943",
+			"description": "Required appointment",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/189-238",
+			"worktype": "ZINS",
+			"ta0kiv": "KIV5",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjUvWklOUw--"
+		},
+		{
+			"_rowstamp": "5520944",
+			"description": "Unsafe workplace",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/190-237",
+			"worktype": "ZINS",
+			"ta0kiv": "KIV4",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjQvWklOUw--"
+		},
+		{
+			"_rowstamp": "5520945",
+			"description": "Premise not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/191-236",
+			"worktype": "ZINS",
+			"ta0kiv": "KIV3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjMvWklOUw--"
+		},
+		{
+			"_rowstamp": "5520946",
+			"description": "Prems no sply(BD/SD/UR)",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/192-235",
+			"worktype": "ZINS",
+			"ta0kiv": "KIV2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjIvWklOUw--"
+		},
+		{
+			"_rowstamp": "5520947",
+			"description": "Prems clsd/No PIC/Gate locked",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/193-234",
+			"worktype": "ZINS",
+			"ta0kiv": "KIV1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjEvWklOUw--"
+		},
+		{
+			"_rowstamp": "5520948",
+			"description": "Wrong tariff",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/194-233",
+			"worktype": "ZSPC",
+			"ta0kiv": "TCS3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzMvWlNQQw--"
+		},
+		{
+			"_rowstamp": "5520949",
+			"description": "Wrong business code",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/195-232",
+			"worktype": "ZSPC",
+			"ta0kiv": "TCS2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzIvWlNQQw--"
+		},
+		{
+			"_rowstamp": "5520950",
+			"description": "Address incorrect",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/196-231",
+			"worktype": "ZSPC",
+			"ta0kiv": "TCS1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzEvWlNQQw--"
+		},
+		{
+			"_rowstamp": "5520951",
+			"description": "Pending shut down",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/197-230",
+			"worktype": "ZSPC",
+			"ta0kiv": "KIVF",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkYvWlNQQw--"
+		},
+		{
+			"_rowstamp": "5520952",
+			"description": "Commissioning incomplete",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/198-229",
+			"worktype": "ZSPC",
+			"ta0kiv": "KIVE",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkUvWlNQQw--"
+		},
+		{
+			"_rowstamp": "5520953",
+			"description": "Info at site missmatch app",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/199-228",
+			"worktype": "ZSPC",
+			"ta0kiv": "KIVD",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkQvWlNQQw--"
+		},
+		{
+			"_rowstamp": "5520954",
+			"description": "Site not ready",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/200-227",
+			"worktype": "ZSPC",
+			"ta0kiv": "KIVC",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkMvWlNQQw--"
+		},
+		{
+			"_rowstamp": "5520955",
+			"description": "No materials/spare parts",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/201-226",
+			"worktype": "ZSPC",
+			"ta0kiv": "KIVB",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkIvWlNQQw--"
+		},
+		{
+			"_rowstamp": "5520956",
+			"description": "Meter cage",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/202-225",
+			"worktype": "ZSPC",
+			"ta0kiv": "KIVA",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkEvWlNQQw--"
+		},
+		{
+			"_rowstamp": "5520957",
+			"description": "Temporary supply",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/203-224",
+			"worktype": "ZSPC",
+			"ta0kiv": "KIV9",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjkvWlNQQw--"
+		},
+		{
+			"_rowstamp": "5520958",
+			"description": "Meter not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/204-223",
+			"worktype": "ZSPC",
+			"ta0kiv": "KIV8",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjgvWlNQQw--"
+		},
+		{
+			"_rowstamp": "5520959",
+			"description": "Inaccessible panel",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/205-222",
+			"worktype": "ZSPC",
+			"ta0kiv": "KIV7",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjcvWlNQQw--"
+		},
+		{
+			"_rowstamp": "5520960",
+			"description": "Customer does not cooperate",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/206-221",
+			"worktype": "ZSPC",
+			"ta0kiv": "KIV6",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjYvWlNQQw--"
+		},
+		{
+			"_rowstamp": "5520961",
+			"description": "Required appointment",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/207-220",
+			"worktype": "ZSPC",
+			"ta0kiv": "KIV5",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjUvWlNQQw--"
+		},
+		{
+			"_rowstamp": "5520962",
+			"description": "Unsafe workplace",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/208-219",
+			"worktype": "ZSPC",
+			"ta0kiv": "KIV4",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjQvWlNQQw--"
+		},
+		{
+			"_rowstamp": "5520963",
+			"description": "Premise not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/209-218",
+			"worktype": "ZSPC",
+			"ta0kiv": "KIV3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjMvWlNQQw--"
+		},
+		{
+			"_rowstamp": "5520964",
+			"description": "Prems no sply(BD/SD/UR)",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/210-217",
+			"worktype": "ZSPC",
+			"ta0kiv": "KIV2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjIvWlNQQw--"
+		},
+		{
+			"_rowstamp": "5520965",
+			"description": "Prems clsd/No PIC/Gate locked",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/211-216",
+			"worktype": "ZSPC",
+			"ta0kiv": "KIV1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjEvWlNQQw--"
+		},
+		{
+			"_rowstamp": "5520966",
+			"description": "Wrong tariff",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/212-215",
+			"worktype": "ZSRO",
+			"ta0kiv": "TCS3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzMvWlNSTw--"
+		},
+		{
+			"_rowstamp": "5520967",
+			"description": "Wrong business code",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/213-214",
+			"worktype": "ZSRO",
+			"ta0kiv": "TCS2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzIvWlNSTw--"
+		},
+		{
+			"_rowstamp": "5520968",
+			"description": "Address incorrect",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/214-213",
+			"worktype": "ZSRO",
+			"ta0kiv": "TCS1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzEvWlNSTw--"
+		},
+		{
+			"_rowstamp": "5520969",
+			"description": "Meter Replaced",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/215-212",
+			"worktype": "ZSRO",
+			"ta0kiv": "MRPD",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL01SUEQvWlNSTw--"
+		},
+		{
+			"_rowstamp": "5520970",
+			"description": "Pending shut down",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/216-211",
+			"worktype": "ZSRO",
+			"ta0kiv": "KIVE",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkUvWlNSTw--"
+		},
+		{
+			"_rowstamp": "5520971",
+			"description": "Permanently closed",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/217-210",
+			"worktype": "ZSRO",
+			"ta0kiv": "KIVD",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkQvWlNSTw--"
+		},
+		{
+			"_rowstamp": "5520972",
+			"description": "Site demolished",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/218-209",
+			"worktype": "ZSRO",
+			"ta0kiv": "KIVC",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkMvWlNSTw--"
+		},
+		{
+			"_rowstamp": "5520973",
+			"description": "No materials/spare parts",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/219-208",
+			"worktype": "ZSRO",
+			"ta0kiv": "KIVB",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkIvWlNSTw--"
+		},
+		{
+			"_rowstamp": "5520974",
+			"description": "Meter cage",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/220-207",
+			"worktype": "ZSRO",
+			"ta0kiv": "KIVA",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkEvWlNSTw--"
+		},
+		{
+			"_rowstamp": "5520975",
+			"description": "Temporary supply",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/221-206",
+			"worktype": "ZSRO",
+			"ta0kiv": "KIV9",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjkvWlNSTw--"
+		},
+		{
+			"_rowstamp": "5520976",
+			"description": "Meter not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/222-205",
+			"worktype": "ZSRO",
+			"ta0kiv": "KIV8",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjgvWlNSTw--"
+		},
+		{
+			"_rowstamp": "5520977",
+			"description": "Inaccessible panel",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/223-204",
+			"worktype": "ZSRO",
+			"ta0kiv": "KIV7",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjcvWlNSTw--"
+		},
+		{
+			"_rowstamp": "5520978",
+			"description": "Customer does not cooperate",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/224-203",
+			"worktype": "ZSRO",
+			"ta0kiv": "KIV6",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjYvWlNSTw--"
+		},
+		{
+			"_rowstamp": "5520979",
+			"description": "Required appointment",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/225-202",
+			"worktype": "ZSRO",
+			"ta0kiv": "KIV5",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjUvWlNSTw--"
+		},
+		{
+			"_rowstamp": "5520980",
+			"description": "Unsafe workplace",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/226-201",
+			"worktype": "ZSRO",
+			"ta0kiv": "KIV4",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjQvWlNSTw--"
+		},
+		{
+			"_rowstamp": "5520981",
+			"description": "Premise not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/227-200",
+			"worktype": "ZSRO",
+			"ta0kiv": "KIV3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjMvWlNSTw--"
+		},
+		{
+			"_rowstamp": "5520982",
+			"description": "Prems no sply(BD/SD/UR)",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/228-199",
+			"worktype": "ZSRO",
+			"ta0kiv": "KIV2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjIvWlNSTw--"
+		},
+		{
+			"_rowstamp": "5520983",
+			"description": "Prems clsd/No PIC/Gate locked",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/229-198",
+			"worktype": "ZSRO",
+			"ta0kiv": "KIV1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjEvWlNSTw--"
+		},
+		{
+			"_rowstamp": "5520984",
+			"description": "Wrong device attributes",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/230-197",
+			"worktype": "ZINO",
+			"ta0kiv": "WMAT",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1dNQVQvWklOTw--"
+		},
+		{
+			"_rowstamp": "5520985",
+			"description": "Transfer to RAS",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/231-196",
+			"worktype": "ZINO",
+			"ta0kiv": "TRAS",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RSQVMvWklOTw--"
+		},
+		{
+			"_rowstamp": "5520986",
+			"description": "Wrong tariff",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/232-195",
+			"worktype": "ZINO",
+			"ta0kiv": "TCS3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzMvWklOTw--"
+		},
+		{
+			"_rowstamp": "5520987",
+			"description": "Wrong business code",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/233-194",
+			"worktype": "ZINO",
+			"ta0kiv": "TCS2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzIvWklOTw--"
+		},
+		{
+			"_rowstamp": "5520988",
+			"description": "Address incorrect",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/234-193",
+			"worktype": "ZINO",
+			"ta0kiv": "TCS1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzEvWklOTw--"
+		},
+		{
+			"_rowstamp": "5520989",
+			"description": "Non-Device Irregularities",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/235-192",
+			"worktype": "ZINO",
+			"ta0kiv": "NMIR",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL05NSVIvWklOTw--"
+		},
+		{
+			"_rowstamp": "5520990",
+			"description": "Metering System OK",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/236-191",
+			"worktype": "ZINO",
+			"ta0kiv": "MSOK",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL01TT0svWklOTw--"
+		},
+		{
+			"_rowstamp": "5520991",
+			"description": "Device replacement required",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/237-190",
+			"worktype": "ZINO",
+			"ta0kiv": "MRPM",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL01SUE0vWklOTw--"
+		},
+		{
+			"_rowstamp": "5520992",
+			"description": "Device Irregularities",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/238-189",
+			"worktype": "ZINO",
+			"ta0kiv": "MEIR",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL01FSVIvWklOTw--"
+		},
+		{
+			"_rowstamp": "5520993",
+			"description": "Pending shut down",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/239-188",
+			"worktype": "ZINO",
+			"ta0kiv": "KIVD",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkQvWklOTw--"
+		},
+		{
+			"_rowstamp": "5520994",
+			"description": "Permanently closed",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/240-187",
+			"worktype": "ZINO",
+			"ta0kiv": "KIVC",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkMvWklOTw--"
+		},
+		{
+			"_rowstamp": "5520995",
+			"description": "Site demolished",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/241-186",
+			"worktype": "ZINO",
+			"ta0kiv": "KIVB",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkIvWklOTw--"
+		},
+		{
+			"_rowstamp": "5520996",
+			"description": "No materials/spare parts",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/242-185",
+			"worktype": "ZINO",
+			"ta0kiv": "KIVA",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkEvWklOTw--"
+		},
+		{
+			"_rowstamp": "5520997",
+			"description": "Meter cage",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/243-184",
+			"worktype": "ZINO",
+			"ta0kiv": "KIV9",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjkvWklOTw--"
+		},
+		{
+			"_rowstamp": "5520998",
+			"description": "Meter not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/244-183",
+			"worktype": "ZINO",
+			"ta0kiv": "KIV8",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjgvWklOTw--"
+		},
+		{
+			"_rowstamp": "5520999",
+			"description": "Inaccessible panel",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/245-182",
+			"worktype": "ZINO",
+			"ta0kiv": "KIV7",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjcvWklOTw--"
+		},
+		{
+			"_rowstamp": "5521000",
+			"description": "Customer does not cooperate",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/246-181",
+			"worktype": "ZINO",
+			"ta0kiv": "KIV6",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjYvWklOTw--"
+		},
+		{
+			"_rowstamp": "5521001",
+			"description": "Required appointment",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/247-180",
+			"worktype": "ZINO",
+			"ta0kiv": "KIV5",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjUvWklOTw--"
+		},
+		{
+			"_rowstamp": "5521002",
+			"description": "Unsafe workplace",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/248-179",
+			"worktype": "ZINO",
+			"ta0kiv": "KIV4",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjQvWklOTw--"
+		},
+		{
+			"_rowstamp": "5521003",
+			"description": "Premise not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/249-178",
+			"worktype": "ZINO",
+			"ta0kiv": "KIV3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjMvWklOTw--"
+		},
+		{
+			"_rowstamp": "5521004",
+			"description": "Prems no sply(BD/SD/UR)",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/250-177",
+			"worktype": "ZINO",
+			"ta0kiv": "KIV2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjIvWklOTw--"
+		},
+		{
+			"_rowstamp": "5521005",
+			"description": "Prems clsd/No PIC/Gate locked",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/251-176",
+			"worktype": "ZINO",
+			"ta0kiv": "KIV1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjEvWklOTw--"
+		},
+		{
+			"_rowstamp": "5521006",
+			"description": "Back billing required",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/252-175",
+			"worktype": "ZINO",
+			"ta0kiv": "BBRQ",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0JCUlEvWklOTw--"
+		},
+		{
+			"_rowstamp": "5521007",
+			"description": "Wrong meter attributes",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/253-174",
+			"worktype": "ZINL",
+			"ta0kiv": "WMAT",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1dNQVQvWklOTA--"
+		},
+		{
+			"_rowstamp": "5521008",
+			"description": "Transfer to RAS",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/254-173",
+			"worktype": "ZINL",
+			"ta0kiv": "TRAS",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RSQVMvWklOTA--"
+		},
+		{
+			"_rowstamp": "5521009",
+			"description": "Wrong tariff",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/255-172",
+			"worktype": "ZINL",
+			"ta0kiv": "TCS3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzMvWklOTA--"
+		},
+		{
+			"_rowstamp": "5521010",
+			"description": "Wrong business code",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/256-171",
+			"worktype": "ZINL",
+			"ta0kiv": "TCS2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzIvWklOTA--"
+		},
+		{
+			"_rowstamp": "5521011",
+			"description": "Address incorrect",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/257-170",
+			"worktype": "ZINL",
+			"ta0kiv": "TCS1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzEvWklOTA--"
+		},
+		{
+			"_rowstamp": "5521012",
+			"description": "Non-Device Irregularities",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/258-169",
+			"worktype": "ZINL",
+			"ta0kiv": "NMIR",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL05NSVIvWklOTA--"
+		},
+		{
+			"_rowstamp": "5521013",
+			"description": "Metering System OK",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/259-168",
+			"worktype": "ZINL",
+			"ta0kiv": "MSOK",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL01TT0svWklOTA--"
+		},
+		{
+			"_rowstamp": "5521014",
+			"description": "Device replacement required",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/260-167",
+			"worktype": "ZINL",
+			"ta0kiv": "MRPM",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL01SUE0vWklOTA--"
+		},
+		{
+			"_rowstamp": "5521015",
+			"description": "Device Irregularities",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/261-166",
+			"worktype": "ZINL",
+			"ta0kiv": "MEIR",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL01FSVIvWklOTA--"
+		},
+		{
+			"_rowstamp": "5521016",
+			"description": "Pending shut down",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/262-165",
+			"worktype": "ZINL",
+			"ta0kiv": "KIVD",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkQvWklOTA--"
+		},
+		{
+			"_rowstamp": "5521017",
+			"description": "Permanently closed",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/263-164",
+			"worktype": "ZINL",
+			"ta0kiv": "KIVC",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkMvWklOTA--"
+		},
+		{
+			"_rowstamp": "5521018",
+			"description": "Site demolished",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/264-163",
+			"worktype": "ZINL",
+			"ta0kiv": "KIVB",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkIvWklOTA--"
+		},
+		{
+			"_rowstamp": "5521019",
+			"description": "No materials/spare parts",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/265-162",
+			"worktype": "ZINL",
+			"ta0kiv": "KIVA",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkEvWklOTA--"
+		},
+		{
+			"_rowstamp": "5521020",
+			"description": "Meter cage",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/266-161",
+			"worktype": "ZINL",
+			"ta0kiv": "KIV9",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjkvWklOTA--"
+		},
+		{
+			"_rowstamp": "5521021",
+			"description": "Meter not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/267-160",
+			"worktype": "ZINL",
+			"ta0kiv": "KIV8",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjgvWklOTA--"
+		},
+		{
+			"_rowstamp": "5521022",
+			"description": "Inaccessible panel",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/268-159",
+			"worktype": "ZINL",
+			"ta0kiv": "KIV7",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjcvWklOTA--"
+		},
+		{
+			"_rowstamp": "5521023",
+			"description": "Customer does not cooperate",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/269-158",
+			"worktype": "ZINL",
+			"ta0kiv": "KIV6",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjYvWklOTA--"
+		},
+		{
+			"_rowstamp": "5521024",
+			"description": "Required appointment",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/270-157",
+			"worktype": "ZINL",
+			"ta0kiv": "KIV5",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjUvWklOTA--"
+		},
+		{
+			"_rowstamp": "5521025",
+			"description": "Unsafe workplace",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/271-156",
+			"worktype": "ZINL",
+			"ta0kiv": "KIV4",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjQvWklOTA--"
+		},
+		{
+			"_rowstamp": "5521026",
+			"description": "Premise not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/272-155",
+			"worktype": "ZINL",
+			"ta0kiv": "KIV3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjMvWklOTA--"
+		},
+		{
+			"_rowstamp": "5521027",
+			"description": "Prems no sply(BD/SD/UR)",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/273-154",
+			"worktype": "ZINL",
+			"ta0kiv": "KIV2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjIvWklOTA--"
+		},
+		{
+			"_rowstamp": "5521028",
+			"description": "Prems clsd/No PIC/Gate locked",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/274-153",
+			"worktype": "ZINL",
+			"ta0kiv": "KIV1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjEvWklOTA--"
+		},
+		{
+			"_rowstamp": "5521029",
+			"description": "Back billing required",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/275-152",
+			"worktype": "ZINL",
+			"ta0kiv": "BBRQ",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0JCUlEvWklOTA--"
+		},
+		{
+			"_rowstamp": "5521030",
+			"description": "Wrong tariff",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/276-151",
+			"worktype": "ZCER",
+			"ta0kiv": "TCS3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzMvWkNFUg--"
+		},
+		{
+			"_rowstamp": "5521031",
+			"description": "Wrong business code",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/277-150",
+			"worktype": "ZCER",
+			"ta0kiv": "TCS2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzIvWkNFUg--"
+		},
+		{
+			"_rowstamp": "5521032",
+			"description": "Address incorrect",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/278-149",
+			"worktype": "ZCER",
+			"ta0kiv": "TCS1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzEvWkNFUg--"
+		},
+		{
+			"_rowstamp": "5521033",
+			"description": "Pending shut down",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/279-148",
+			"worktype": "ZCER",
+			"ta0kiv": "KIVL",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkwvWkNFUg--"
+		},
+		{
+			"_rowstamp": "5521034",
+			"description": "Permanently closed",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/280-147",
+			"worktype": "ZCER",
+			"ta0kiv": "KIVK",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVksvWkNFUg--"
+		},
+		{
+			"_rowstamp": "5521035",
+			"description": "Site demolished",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/281-146",
+			"worktype": "ZCER",
+			"ta0kiv": "KIVJ",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkovWkNFUg--"
+		},
+		{
+			"_rowstamp": "5521036",
+			"description": "Celcom Issue",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/282-145",
+			"worktype": "ZCER",
+			"ta0kiv": "KIVI",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkkvWkNFUg--"
+		},
+		{
+			"_rowstamp": "5521037",
+			"description": "No materials/spare parts",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/283-144",
+			"worktype": "ZCER",
+			"ta0kiv": "KIVH",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkgvWkNFUg--"
+		},
+		{
+			"_rowstamp": "5521038",
+			"description": "Low signal",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/284-143",
+			"worktype": "ZCER",
+			"ta0kiv": "KIVG",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkcvWkNFUg--"
+		},
+		{
+			"_rowstamp": "5521039",
+			"description": "Meter cage",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/285-142",
+			"worktype": "ZCER",
+			"ta0kiv": "KIVF",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkYvWkNFUg--"
+		},
+		{
+			"_rowstamp": "5521040",
+			"description": "Temporary supply",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/286-141",
+			"worktype": "ZCER",
+			"ta0kiv": "KIVE",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkUvWkNFUg--"
+		},
+		{
+			"_rowstamp": "5521041",
+			"description": "Meter faulty",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/287-140",
+			"worktype": "ZCER",
+			"ta0kiv": "KIVD",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkQvWkNFUg--"
+		},
+		{
+			"_rowstamp": "5521043",
+			"description": "No signal",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/288-138",
+			"worktype": "ZCER",
+			"ta0kiv": "KIVB",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkIvWkNFUg--"
+		},
+		{
+			"_rowstamp": "5521044",
+			"description": "No modem at site",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/289-137",
+			"worktype": "ZCER",
+			"ta0kiv": "KIVA",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkEvWkNFUg--"
+		},
+		{
+			"_rowstamp": "5521045",
+			"description": "Different meter at site",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/290-136",
+			"worktype": "ZCER",
+			"ta0kiv": "KIV9",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjkvWkNFUg--"
+		},
+		{
+			"_rowstamp": "5521046",
+			"description": "Meter not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/291-135",
+			"worktype": "ZCER",
+			"ta0kiv": "KIV8",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjgvWkNFUg--"
+		},
+		{
+			"_rowstamp": "5521047",
+			"description": "Inaccessible panel",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/292-134",
+			"worktype": "ZCER",
+			"ta0kiv": "KIV7",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjcvWkNFUg--"
+		},
+		{
+			"_rowstamp": "5521048",
+			"description": "Customer does not cooperate",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/293-133",
+			"worktype": "ZCER",
+			"ta0kiv": "KIV6",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjYvWkNFUg--"
+		},
+		{
+			"_rowstamp": "5521049",
+			"description": "Required appointment",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/294-132",
+			"worktype": "ZCER",
+			"ta0kiv": "KIV5",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjUvWkNFUg--"
+		},
+		{
+			"_rowstamp": "5521050",
+			"description": "Unsafe workplace",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/295-131",
+			"worktype": "ZCER",
+			"ta0kiv": "KIV4",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjQvWkNFUg--"
+		},
+		{
+			"_rowstamp": "5521051",
+			"description": "Premise not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/296-130",
+			"worktype": "ZCER",
+			"ta0kiv": "KIV3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjMvWkNFUg--"
+		},
+		{
+			"_rowstamp": "5521052",
+			"description": "Prems no sply(BD/SD/UR)",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/297-129",
+			"worktype": "ZCER",
+			"ta0kiv": "KIV2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjIvWkNFUg--"
+		},
+		{
+			"_rowstamp": "5521053",
+			"description": "Prems clsd/No PIC/Gate locked",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/298-128",
+			"worktype": "ZCER",
+			"ta0kiv": "KIV1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjEvWkNFUg--"
+		},
+		{
+			"_rowstamp": "5521054",
+			"description": "Wrong tariff",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/299-127",
+			"worktype": "ZRPM",
+			"ta0kiv": "TCS3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzMvWlJQTQ--"
+		},
+		{
+			"_rowstamp": "5521055",
+			"description": "Wrong business code",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/300-126",
+			"worktype": "ZRPM",
+			"ta0kiv": "TCS2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzIvWlJQTQ--"
+		},
+		{
+			"_rowstamp": "5521056",
+			"description": "Address incorrect",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/301-125",
+			"worktype": "ZRPM",
+			"ta0kiv": "TCS1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzEvWlJQTQ--"
+		},
+		{
+			"_rowstamp": "5521057",
+			"description": "Meter replaced",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/302-124",
+			"worktype": "ZRPM",
+			"ta0kiv": "MRPD",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL01SUEQvWlJQTQ--"
+		},
+		{
+			"_rowstamp": "5521058",
+			"description": "Pending shut down",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/303-123",
+			"worktype": "ZRPM",
+			"ta0kiv": "KIVE",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkUvWlJQTQ--"
+		},
+		{
+			"_rowstamp": "5521059",
+			"description": "Permanently closed",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/304-122",
+			"worktype": "ZRPM",
+			"ta0kiv": "KIVD",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkQvWlJQTQ--"
+		},
+		{
+			"_rowstamp": "5521060",
+			"description": "Site demolished",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/305-121",
+			"worktype": "ZRPM",
+			"ta0kiv": "KIVC",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkMvWlJQTQ--"
+		},
+		{
+			"_rowstamp": "5521061",
+			"description": "No materials/spare parts",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/306-120",
+			"worktype": "ZRPM",
+			"ta0kiv": "KIVB",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkIvWlJQTQ--"
+		},
+		{
+			"_rowstamp": "5521062",
+			"description": "Meter cage",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/307-119",
+			"worktype": "ZRPM",
+			"ta0kiv": "KIVA",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkEvWlJQTQ--"
+		},
+		{
+			"_rowstamp": "5521063",
+			"description": "Temporary supply",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/308-118",
+			"worktype": "ZRPM",
+			"ta0kiv": "KIV9",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjkvWlJQTQ--"
+		},
+		{
+			"_rowstamp": "5521064",
+			"description": "Meter not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/309-117",
+			"worktype": "ZRPM",
+			"ta0kiv": "KIV8",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjgvWlJQTQ--"
+		},
+		{
+			"_rowstamp": "5521065",
+			"description": "Inaccessible panel",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/310-116",
+			"worktype": "ZRPM",
+			"ta0kiv": "KIV7",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjcvWlJQTQ--"
+		},
+		{
+			"_rowstamp": "5521066",
+			"description": "Customer does not cooperate",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/311-115",
+			"worktype": "ZRPM",
+			"ta0kiv": "KIV6",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjYvWlJQTQ--"
+		},
+		{
+			"_rowstamp": "5521067",
+			"description": "Required appointment",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/312-114",
+			"worktype": "ZRPM",
+			"ta0kiv": "KIV5",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjUvWlJQTQ--"
+		},
+		{
+			"_rowstamp": "5521068",
+			"description": "Unsafe workplace",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/313-113",
+			"worktype": "ZRPM",
+			"ta0kiv": "KIV4",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjQvWlJQTQ--"
+		},
+		{
+			"_rowstamp": "5521069",
+			"description": "Premise not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/314-112",
+			"worktype": "ZRPM",
+			"ta0kiv": "KIV3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjMvWlJQTQ--"
+		},
+		{
+			"_rowstamp": "5521070",
+			"description": "Prems no sply(BD/SD/UR)",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/315-111",
+			"worktype": "ZRPM",
+			"ta0kiv": "KIV2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjIvWlJQTQ--"
+		},
+		{
+			"_rowstamp": "5521071",
+			"description": "Prems clsd/No PIC/Gate locked",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/316-110",
+			"worktype": "ZRPM",
+			"ta0kiv": "KIV1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjEvWlJQTQ--"
+		},
+		{
+			"_rowstamp": "5521072",
+			"description": "Wrong tariff",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/317-109",
+			"worktype": "ZRMV",
+			"ta0kiv": "TCS3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzMvWlJNVg--"
+		},
+		{
+			"_rowstamp": "5521073",
+			"description": "Wrong business code",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/318-108",
+			"worktype": "ZRMV",
+			"ta0kiv": "TCS2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzIvWlJNVg--"
+		},
+		{
+			"_rowstamp": "5521074",
+			"description": "Address incorrect",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/319-107",
+			"worktype": "ZRMV",
+			"ta0kiv": "TCS1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzEvWlJNVg--"
+		},
+		{
+			"_rowstamp": "5521075",
+			"description": "Service removed",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/320-106",
+			"worktype": "ZRMV",
+			"ta0kiv": "SRMV",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1NSTVYvWlJNVg--"
+		},
+		{
+			"_rowstamp": "5521076",
+			"description": "Meter removed",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/321-105",
+			"worktype": "ZRMV",
+			"ta0kiv": "MRMV",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL01STVYvWlJNVg--"
+		},
+		{
+			"_rowstamp": "5521077",
+			"description": "Pending shut down",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/322-104",
+			"worktype": "ZRMV",
+			"ta0kiv": "KIVF",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkYvWlJNVg--"
+		},
+		{
+			"_rowstamp": "5521078",
+			"description": "Permanently closed",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/323-103",
+			"worktype": "ZRMV",
+			"ta0kiv": "KIVE",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkUvWlJNVg--"
+		},
+		{
+			"_rowstamp": "5521079",
+			"description": "Site demolished",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/324-102",
+			"worktype": "ZRMV",
+			"ta0kiv": "KIVD",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkQvWlJNVg--"
+		},
+		{
+			"_rowstamp": "5521080",
+			"description": "No materials/spare parts",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/325-101",
+			"worktype": "ZRMV",
+			"ta0kiv": "KIVC",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkMvWlJNVg--"
+		},
+		{
+			"_rowstamp": "5521081",
+			"description": "Meter cage",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/326-100",
+			"worktype": "ZRMV",
+			"ta0kiv": "KIVB",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkIvWlJNVg--"
+		},
+		{
+			"_rowstamp": "5521082",
+			"description": "Temporary supply",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/327-99",
+			"worktype": "ZRMV",
+			"ta0kiv": "KIVA",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkEvWlJNVg--"
+		},
+		{
+			"_rowstamp": "5521083",
+			"description": "Different meter at site",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/328-98",
+			"worktype": "ZRMV",
+			"ta0kiv": "KIV9",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjkvWlJNVg--"
+		},
+		{
+			"_rowstamp": "5521084",
+			"description": "Meter not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/329-97",
+			"worktype": "ZRMV",
+			"ta0kiv": "KIV8",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjgvWlJNVg--"
+		},
+		{
+			"_rowstamp": "5521085",
+			"description": "Inaccessible panel",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/330-96",
+			"worktype": "ZRMV",
+			"ta0kiv": "KIV7",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjcvWlJNVg--"
+		},
+		{
+			"_rowstamp": "5521086",
+			"description": "Customer does not cooperate",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/331-95",
+			"worktype": "ZRMV",
+			"ta0kiv": "KIV6",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjYvWlJNVg--"
+		},
+		{
+			"_rowstamp": "5521087",
+			"description": "Required appointment",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/332-94",
+			"worktype": "ZRMV",
+			"ta0kiv": "KIV5",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjUvWlJNVg--"
+		},
+		{
+			"_rowstamp": "5521088",
+			"description": "Unsafe workplace",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/333-93",
+			"worktype": "ZRMV",
+			"ta0kiv": "KIV4",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjQvWlJNVg--"
+		},
+		{
+			"_rowstamp": "5521089",
+			"description": "Premise not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/334-92",
+			"worktype": "ZRMV",
+			"ta0kiv": "KIV3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjMvWlJNVg--"
+		},
+		{
+			"_rowstamp": "5521090",
+			"description": "Prems no sply(BD/SD/UR)",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/335-91",
+			"worktype": "ZRMV",
+			"ta0kiv": "KIV2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjIvWlJNVg--"
+		},
+		{
+			"_rowstamp": "5521091",
+			"description": "Prems clsd/No PIC/Gate locked",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/336-90",
+			"worktype": "ZRMV",
+			"ta0kiv": "KIV1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjEvWlJNVg--"
+		},
+		{
+			"_rowstamp": "5521092",
+			"description": "Wrong tariff",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/337-89",
+			"worktype": "ZUDN",
+			"ta0kiv": "TCS3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzMvWlVETg--"
+		},
+		{
+			"_rowstamp": "5521093",
+			"description": "Wrong business code",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/338-88",
+			"worktype": "ZUDN",
+			"ta0kiv": "TCS2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzIvWlVETg--"
+		},
+		{
+			"_rowstamp": "5521094",
+			"description": "Address incorrect",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/339-87",
+			"worktype": "ZUDN",
+			"ta0kiv": "TCS1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzEvWlVETg--"
+		},
+		{
+			"_rowstamp": "5521095",
+			"description": "Pending shut down",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/340-86",
+			"worktype": "ZUDN",
+			"ta0kiv": "KIVF",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkYvWlVETg--"
+		},
+		{
+			"_rowstamp": "5521096",
+			"description": "Commissioning incomplete",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/341-85",
+			"worktype": "ZUDN",
+			"ta0kiv": "KIVE",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkUvWlVETg--"
+		},
+		{
+			"_rowstamp": "5521097",
+			"description": "Info at site missmatch app",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/342-84",
+			"worktype": "ZUDN",
+			"ta0kiv": "KIVD",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkQvWlVETg--"
+		},
+		{
+			"_rowstamp": "5521098",
+			"description": "Site not ready",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/343-83",
+			"worktype": "ZUDN",
+			"ta0kiv": "KIVC",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkMvWlVETg--"
+		},
+		{
+			"_rowstamp": "5521099",
+			"description": "No materials/spare parts",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/344-82",
+			"worktype": "ZUDN",
+			"ta0kiv": "KIVB",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkIvWlVETg--"
+		},
+		{
+			"_rowstamp": "5521100",
+			"description": "Meter cage",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/345-81",
+			"worktype": "ZUDN",
+			"ta0kiv": "KIVA",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkEvWlVETg--"
+		},
+		{
+			"_rowstamp": "5521101",
+			"description": "Temporary supply",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/346-80",
+			"worktype": "ZUDN",
+			"ta0kiv": "KIV9",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjkvWlVETg--"
+		},
+		{
+			"_rowstamp": "5521102",
+			"description": "Meter not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/347-79",
+			"worktype": "ZUDN",
+			"ta0kiv": "KIV8",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjgvWlVETg--"
+		},
+		{
+			"_rowstamp": "5521103",
+			"description": "Inaccessible panel",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/348-78",
+			"worktype": "ZUDN",
+			"ta0kiv": "KIV7",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjcvWlVETg--"
+		},
+		{
+			"_rowstamp": "5521104",
+			"description": "Customer does not cooperate",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/349-77",
+			"worktype": "ZUDN",
+			"ta0kiv": "KIV6",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjYvWlVETg--"
+		},
+		{
+			"_rowstamp": "5521105",
+			"description": "Required appointment",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/350-76",
+			"worktype": "ZUDN",
+			"ta0kiv": "KIV5",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjUvWlVETg--"
+		},
+		{
+			"_rowstamp": "5521106",
+			"description": "Unsafe workplace",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/351-75",
+			"worktype": "ZUDN",
+			"ta0kiv": "KIV4",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjQvWlVETg--"
+		},
+		{
+			"_rowstamp": "5521107",
+			"description": "Premise not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/352-74",
+			"worktype": "ZUDN",
+			"ta0kiv": "KIV3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjMvWlVETg--"
+		},
+		{
+			"_rowstamp": "5521108",
+			"description": "Prems no sply(BD/SD/UR)",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/353-73",
+			"worktype": "ZUDN",
+			"ta0kiv": "KIV2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjIvWlVETg--"
+		},
+		{
+			"_rowstamp": "5521109",
+			"description": "Prems clsd/No PIC/Gate locked",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/354-72",
+			"worktype": "ZUDN",
+			"ta0kiv": "KIV1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjEvWlVETg--"
+		},
+		{
+			"_rowstamp": "5521110",
+			"description": "Wrong tariff",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/355-71",
+			"worktype": "ZIST",
+			"ta0kiv": "TCS3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzMvWklTVA--"
+		},
+		{
+			"_rowstamp": "5521111",
+			"description": "Wrong business code",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/356-70",
+			"worktype": "ZIST",
+			"ta0kiv": "TCS2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzIvWklTVA--"
+		},
+		{
+			"_rowstamp": "5521112",
+			"description": "Address incorrect",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/357-69",
+			"worktype": "ZIST",
+			"ta0kiv": "TCS1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1RDUzEvWklTVA--"
+		},
+		{
+			"_rowstamp": "5521113",
+			"description": "Service installed",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/358-68",
+			"worktype": "ZIST",
+			"ta0kiv": "SIST",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL1NJU1QvWklTVA--"
+		},
+		{
+			"_rowstamp": "5521114",
+			"description": "Device installed",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/359-67",
+			"worktype": "ZIST",
+			"ta0kiv": "MIST",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL01JU1QvWklTVA--"
+		},
+		{
+			"_rowstamp": "5521115",
+			"description": "Pending shut down",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/360-66",
+			"worktype": "ZIST",
+			"ta0kiv": "KIVE",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkUvWklTVA--"
+		},
+		{
+			"_rowstamp": "5521116",
+			"description": "Commissioning incomplete",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/361-65",
+			"worktype": "ZIST",
+			"ta0kiv": "KIVD",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkQvWklTVA--"
+		},
+		{
+			"_rowstamp": "5521117",
+			"description": "Info at site missmatch app",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/362-64",
+			"worktype": "ZIST",
+			"ta0kiv": "KIVC",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkMvWklTVA--"
+		},
+		{
+			"_rowstamp": "5521118",
+			"description": "Site not ready",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/363-63",
+			"worktype": "ZIST",
+			"ta0kiv": "KIVB",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkIvWklTVA--"
+		},
+		{
+			"_rowstamp": "5521119",
+			"description": "No materials/spare parts",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/364-62",
+			"worktype": "ZIST",
+			"ta0kiv": "KIVA",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVkEvWklTVA--"
+		},
+		{
+			"_rowstamp": "5521120",
+			"description": "Meter cage",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/365-61",
+			"worktype": "ZIST",
+			"ta0kiv": "KIV9",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjkvWklTVA--"
+		},
+		{
+			"_rowstamp": "5521121",
+			"description": "Temporary supply",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/366-60",
+			"worktype": "ZIST",
+			"ta0kiv": "KIV8",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjgvWklTVA--"
+		},
+		{
+			"_rowstamp": "5521122",
+			"description": "Inaccessible panel",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/367-59",
+			"worktype": "ZIST",
+			"ta0kiv": "KIV7",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjcvWklTVA--"
+		},
+		{
+			"_rowstamp": "5521123",
+			"description": "Customer does not cooperate",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/368-58",
+			"worktype": "ZIST",
+			"ta0kiv": "KIV6",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjYvWklTVA--"
+		},
+		{
+			"_rowstamp": "5521124",
+			"description": "Required appointment",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/369-57",
+			"worktype": "ZIST",
+			"ta0kiv": "KIV5",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjUvWklTVA--"
+		},
+		{
+			"_rowstamp": "5521125",
+			"description": "Unsafe workplace",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/370-56",
+			"worktype": "ZIST",
+			"ta0kiv": "KIV4",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjQvWklTVA--"
+		},
+		{
+			"_rowstamp": "5521126",
+			"description": "Premise not found",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/371-55",
+			"worktype": "ZIST",
+			"ta0kiv": "KIV3",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjMvWklTVA--"
+		},
+		{
+			"_rowstamp": "5521127",
+			"description": "Prems no sply(BD/SD/UR)",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/372-54",
+			"worktype": "ZIST",
+			"ta0kiv": "KIV2",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjIvWklTVA--"
+		},
+		{
+			"_rowstamp": "5521128",
+			"description": "Prems clsd/No PIC/Gate locked",
+			"localref": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C/ta0userstatus/373-53",
+			"worktype": "ZIST",
+			"ta0kiv": "KIV1",
+			"href": "http://childkey#T1JHQU5JWkFUSU9OL1RBMFVTRVJTVEFUVVMvVE5CL0tJVjEvWklTVA--"
+		}],
+		"href": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload/_VE5C"
+	}],
+	"responseInfo": {
+		"totalCount": 1,
+		"href": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload?&collectioncount=1&oslc.select=*"
+	},
+	"href": "http://3msdssb.dlinkddns.com:9080/maximo/oslc/os/ta0masterdataload"
+}

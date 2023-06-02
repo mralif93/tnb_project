@@ -1,0 +1,65 @@
+page-create-reservation {
+
+    .reg-button {
+        height: 2.6rem;
+        float: right;
+        color: #0000FF;
+        background-color: #ffffff;
+    }
+
+    .wrap-reg {
+        border: 1px solid black;
+        padding: 20px;
+        border-style: dotted;
+    }
+
+    .save-btn {
+        float: right; 
+        padding-top: 15px;
+    }
+
+    #adjust2 {
+        margin-bottom: 10px;
+    }
+
+    #adjust1 {
+        margin-bottom: 10px;
+    }
+
+    .flash {
+        box-shadow: none;
+        width: 74px !important; 
+        border-radius: 10%; 
+        color: #000000; 
+        height: 28px !important; 
+        padding: 12px 12px 12px 12px;
+        background-color: white;
+        top: 3px;
+    }
+    
+    @keyframes flash {  
+        50% { opacity: 0; }
+    }
+    
+    .flash_plnt {
+        animation: flash 1s linear infinite;
+        padding-right: 5px; font-size: 15px;
+    }
+
+    .offline_btn {
+        font-size: 15px;
+    }
+
+    .okay-button {
+        float: right;
+        padding-top: 20px;
+    }
+
+    .classA { 
+        background-color: #fffffA;
+    }
+
+    .classB{ 
+        background-color:#C4D8E2;
+    }
+}

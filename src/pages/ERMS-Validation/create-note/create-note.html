@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-grid class="headerStyle">
+    <ion-row>
+      <ion-col col-2 col-md-2 col-sm-2 style="text-align: left; padding-top: 0px;">
+        <button ion-button menuToggle clear>
+          <ion-icon name="menu" class="menuBackArrow"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-8 col-md-8 col-sm-8>
+        <div class="pageTitle">Create Return Credit Notes</div>
+      </ion-col>
+      <ion-col col-2 col-sm-2 style="word-wrap: break-all; text-align: right; padding-top: 0px; width:12px">
+        <ion-col col-2 col-sm-2>
+          <button ion-button color="primary" style="float: right;" (click)="goBack()">Back</button>
+        </ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+
+<ion-content padding>
+  
+  <ion-list class="wrap-reg">
+
+    <ion-item>
+      <ion-label stacked class="ion-1x"><b>Category Type</b> <span style="color: red">*</span></ion-label>
+      <ion-select [(ngModel)]="ta0rcncat" (ionChange)="getReturnType()">
+        <ion-option *ngFor="let cncat of cnCategories" [value]="cncat.value">{{ cncat.description }}</ion-option>
+      </ion-select>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label stacked class="ion-1x"><b>Return Type</b> <span style="color: red">*</span></ion-label>
+      <ion-select [(ngModel)]="ta0rcntyp" [disabled]="selectedCat">
+        <ion-option *ngFor="let returnItem of cnReturnTypes" [value]="returnItem.value"
+          [selected]="returnItem.value === ta0rcntyp">{{ returnItem.description }}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="ta0rcncat ==='D1' ">
+      <ion-label stacked class="ion-1x"><b>Reservation Number</b><span style="color: red">*</span></ion-label>
+      <ion-input [(ngModel)]="ta0rsnum" type="text"  (keyup)="validationResvNum()"  (ionBlur)="validationResvNum()" ></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="ta0rcncat ==='D1' ">
+      <ion-label stacked class="ion-1x"><b>Reservation Item Number</b><span style="color: red">*</span></ion-label>
+      <ion-input [(ngModel)]="ta0rspos" type="text"  (keyup)="validationQuantity()"  (ionBlur)="validationQuantity()"   ></ion-input>
+    </ion-item>
+      
+      <ion-item>
+          <ion-label stacked class="ion-1x"><b>Site ID</b></ion-label>     
+        <ion-select [(ngModel)]="siteid" (ionChange)="getStorageLocation()">
+          <ion-option *ngFor="let store of siteItem" [value]="store.siteid" [selected]="gv.ta0defsiteid === store.siteid"  [disabled]= "!(store.siteid ==='6180') || !(store.siteid ==='6440') ||!(store.siteid ==='6123') ||!(store.siteid ==='6441') " >{{ store.siteid }} &nbsp; - &nbsp; {{ store.description }} </ion-option>
+      
+        </ion-select>
+      </ion-item>
+ 
+
+    <ion-item>
+      <div class="save-btn">
+         <button ion-button (click)="validateReservation()" style="padding: 15px;"  *ngIf="ta0rcncat ==='D1'">    Validate Reservation </button>  
+        <button ion-button (click)="createCreditNote()" style="padding: 15px;" [disabled] = "disableSubmit"   *ngIf="ta0rcncat ==='D1' " >Create Return Credit Note </button>
+        <button ion-button (click)="createCreditNote()" style="padding: 15px;" [disabled] = "!disableSubmit"   *ngIf="ta0rcncat !=='D1' " >Create Return Credit Note </button>
+      </div>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>

@@ -1,0 +1,25 @@
+page-test {
+    .pageTitle{
+        // padding-top: 10px;
+        color: white;
+        font-weight:  bold;
+        font-size:  20px;
+        align-items:  left;
+
+    }
+
+    .flash {
+        height: 18px !important; 
+        padding: 15px;
+        background-color: white;   
+    }
+    
+    @keyframes flash {  
+        50% { opacity: 0; }
+    }
+    
+    .flash_plnt {
+        animation: flash 2s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+        padding-right: 5px; font-size: 15px;
+    }
+}

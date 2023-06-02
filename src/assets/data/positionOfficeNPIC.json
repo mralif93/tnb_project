@@ -1,0 +1,79 @@
+{
+    "officeDetails": [
+        {
+            "kl": [
+                {
+                    "name": "Amir Hamzah bin Othman",
+                    "position": "Senior Engineer(Detection LPC Selangor/Putrajaya/Cyberjaya)",
+                    "Department":"SEAL Section, Metering Unit,Distribution Network Department, Distribution Division"
+                },
+                {
+                    "name": "Nabila Silam Binti  Muslim",
+                    "position": "Senior Engineer LPC",
+                    "Department":"SEAL,Unit Metering,Distribution Network Department, TNB"
+                },
+                {
+                     "name": "Meor Mohd Farouk B. Zainal Abidin",
+                    "position": "Engineer Seal (Deterrence KL)",
+                    "Department":"Deterrence K.L, Unit Metering ,Distribution Network Department, Distribution Division, TNB"
+                }
+            ]
+        },
+        {
+            "sngor": [
+                {
+                   "name": "Noor Jafri Bin Mokhtar",
+                    "position": "Senior Engineer SEAL Deterrence LPC- Selangor",
+                    "Department":"Metering Unit,Distribution Network Department, Distribution Division TNB"
+                }
+            ]
+        },
+        {
+            "utr": [
+                {
+                   "name": "Shamsul  Ariffin bin Rahman",
+                    "position": "Senior SEAL Detection LPC-UTARA",
+                    "Department":"Metering Unit,Distribution Network Department, Distribution Division TNB"
+                },
+                {
+                   "name": "MUHAMAD RIYASRUDIN BIN MYDIN ABDUl GHANI",
+                    "position": "Senior Engineer",
+                    "Department":"Unit Metering,Distribution Network Department, Distribution Division TNB"
+                },
+                {
+                  "name": "MUHAMAD RIYASRUDIN BIN MYDIN ABDUl GHANI",
+                    "position": "Senior Engineer",
+                    "Department":"Unit Metering,Distribution Network Department, Distribution Division TNB"
+                }
+            ]
+        },
+        {
+            "selat": [
+                {
+                    "name": "MOHD LATIF BIN MD KADIR",
+                    "position": "Senior Engineer",
+                    "Department":"Unit Metering,Distribution Network Department,Distribution Division, TNB"
+                },
+                {
+                    "name": "MOHD AL HAFIZ BIN ISAHAR",
+                    "position": "Senior Engineer (Deterrence LPC-South)",
+                    "Department":"SEAL Section,Metering Unit ,Distribution Network Department, Distribution Division, TNB"
+                }
+            ]
+        },
+        {
+            "tmr": [
+                {
+                    "name": "ABDUL MUHAYMIN BIN MOHAMMAD FAUZI",
+                    "position": "Senior Engineer",
+                    "Department":"METERING SEAL,Distribution Network Department,Bahagian Pembahagian"
+                },
+                {
+                    "name": "NATASHA BINTI MUKHTAR",
+                    "position": "Senior Engineer(DETERRENCE LPC)",
+                    "Department":"Unit Metering,Distribution Network Department,Distribution Division TNB"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,150 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="md-menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Device Details</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon [color]="gv.testMobile ? 'danger' : 'light'" name="md-planet" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+  <ion-navbar color="primary">
+    <ion-searchbar mode="md" [(ngModel)]="searchTerm" color="primary" [showCancelButton]="true"
+      (ionInput)="filterAssetDetails($event.target.value)">
+    </ion-searchbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-fab bottom right>
+    <button ion-fab mini class="scrollFabButton" color="primary" (click)="scrollToTop()">
+      <ion-icon name="arrow-up"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <ion-list>
+    <!-- Start: Device Type -->
+    <ion-item no-lines>
+      <ion-label color="primary" stacked>Device Type</ion-label>
+      <ion-select [(ngModel)]="ta0function" (ionChange)="changeDeviceStatus()" style="border-bottom-style: inset;">
+        <ion-option value="all">All</ion-option>
+        <ion-option value="MODEM">Modem</ion-option>
+        <ion-option value="NMTR">Normal Meter</ion-option>
+        <ion-option value="RMTR">RMR Meter</ion-option>
+        <ion-option value="SIMCRD">SIM Card</ion-option>
+        <ion-option value="CTTFR">CT Instrument Transformer</ion-option>
+        <ion-option value="VTTFR">VT Instrument Transformer</ion-option>
+        <ion-option value="CTDIR">CT MVHV</ion-option>
+        <ion-option value="VTDIR">PT MVHV</ion-option>
+        <ion-option value="SMTR">Smart Meter</ion-option>
+        <ion-option value="COM_SMTR">Comm Module</ion-option>
+        <ion-option value="SMTR_CM">Smart Meter RF</ion-option>
+        <ion-option value="SMTR_OLD">Smart Meter GPRS</ion-option>
+      </ion-select>
+    </ion-item>
+    <!-- End: Device Type -->
+
+    <hr>
+
+    <!-- Start: Pagination -->
+    <ion-item no-lines>
+      <div class="pagination">
+        <a href="javascript:;" [ngClass]="(prevbtndisabled)?'disabled':''" (click)="setprevious()">&laquo;</a>
+        <a href="javascript:;" [ngClass]="(index===pagectrl)?'active':''" (click)="setpagination(index)"
+          *ngFor="let page of pages; let index = index">{{
+              index + 1 }}</a>
+        <a href="javascript:;" [ngClass]="(nextbtndisabled)?'disabled':''" (click)="setnext()">&raquo;</a>
+      </div>
+    </ion-item>
+    <!-- End: Pagination -->
+
+    <hr>
+
+    <!-- Start: List of Devices-->
+    <ion-item *ngFor="let attr of assetDetailItems; let j = index;">
+      <!-- <ion-icon name="md-pricetag" item-start></ion-icon> -->
+      <h2>{{ attr.json.siteid }} : {{ attr.json.serialnum }}</h2>
+      <p>{{ attr.json.description }}</p>
+      <button ion-button outline item-end (click)="goToAssetRegisterPage(attr)">View</button>
+    </ion-item>
+    <!-- End: List of Devices -->
+
+    <hr>
+
+    <!-- Start: Pagination -->
+    <ion-item no-lines>
+      <div class="pagination">
+        <a href="javascript:;" [ngClass]="(prevbtndisabled)?'disabled':''" (click)="setprevious()">&laquo;</a>
+        <a href="javascript:;" [ngClass]="(index===pagectrl)?'active':''" (click)="setpagination(index)"
+          *ngFor="let page of pages; let index = index">{{
+                index + 1 }}</a>
+        <a href="javascript:;" [ngClass]="(nextbtndisabled)?'disabled':''" (click)="setnext()">&raquo;</a>
+      </div>
+    </ion-item>
+    <!-- End: Pagination -->
+  </ion-list>
+
+  <!-- <div>
+    <ion-grid [ngClass]="(isValid)?'display':'non-display'">
+      <ion-row>
+        <ion-col col-12 col-md-12 col-sm-12>
+          <div class="pagination">
+            <a href="javascript:;" [ngClass]="(prevbtndisabled)?'disabled':''" (click)="setprevious()">&laquo;</a>
+            <a href="javascript:;" [ngClass]="(index===pagectrl)?'active':''" (click)="setpagination(index)"
+              *ngFor="let page of pages; let index = index">{{
+              index + 1 }}</a>
+            <a href="javascript:;" [ngClass]="(nextbtndisabled)?'disabled':''" (click)="setnext()">&raquo;</a>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid>
+      <ion-list>
+        <ion-item>
+          <ion-row>
+            <ion-col col-1 col-sm-1 col-md-1 text-wrap><strong>No.</strong></ion-col>
+            <ion-col col-1 col-sm-1 col-md-1 text-wrap><strong>Site</strong></ion-col>
+            <ion-col col-2 col-sm-2 col-md-2 text-wrap><strong>Asset No.</strong></ion-col>
+            <ion-col col-3 col-sm-3 col-md-3 text-wrap><strong>Serial No.</strong></ion-col>
+            <ion-col col-5 col-sm-5 col-md-5 text-wrap><strong>Device Description</strong></ion-col>
+          </ion-row>
+        </ion-item>
+        <div *ngFor="let attr of assetDetailItems; let j = index;">
+          <ion-item [ngClass]="j%2 != 0 ? 'classA' : 'classB'">
+            <ion-row (click)="goToAssetRegisterPage(attr);" style="cursor: pointer;">
+              <ion-col col-1 col-sm-1 col-md-1 text-wrap>{{ offset + j + 1 }}. </ion-col>
+              <ion-col col-1 col-sm-1 col-md-1 text-wrap>{{ attr.json.siteid }} </ion-col>
+              <ion-col col-2 col-sm-2 col-md-2 text-wrap>{{ attr.json.assetnum }}</ion-col>
+              <ion-col col-3 col-sm-3 col-md-3 text-wrap>{{ attr.json.serialnum }}</ion-col>
+              <ion-col col-5 col-sm-5 col-md-5 text-wrap>{{ attr.json.description }}</ion-col>
+            </ion-row>
+          </ion-item>
+        </div>
+      </ion-list>
+    </ion-grid>
+    <ion-grid [ngClass]="(isValid)?'display':'non-display'">
+      <ion-row>
+        <ion-col col-12 col-md-12 col-sm-12>
+          <div class="pagination">
+            <a href="javascript:;" [ngClass]="(prevbtndisabled)?'disabled':''" (click)="setprevious()">&laquo;</a>
+            <a href="javascript:;" [ngClass]="(index===pagectrl)?'active':''" (click)="setpagination(index)"
+              *ngFor="let page of pages; let index = index">{{
+              index + 1 }}</a>
+            <a href="javascript:;" [ngClass]="(nextbtndisabled)?'disabled':''" (click)="setnext()">&raquo;</a>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div> -->
+</ion-content>
+<!--
+<ion-content padding *ngIf="gv.testMobile" style="background-color:  rgba(0,0,0,0.3);">
+  <h1 class="centered">
+      No Network Connection...
+  </h1>
+</ion-content>-->

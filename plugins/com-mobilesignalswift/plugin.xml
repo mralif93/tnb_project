@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com-mobilesignalswift" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>MobileSignalSwift</name>
+    <js-module name="MobileSignalSwift" src="www/MobileSignalSwift.js">
+        <clobbers target="mobilesignalswift" />
+    </js-module>
+     <platform name="ios">
+    <config-file target="config.xml" parent="/*">
+      <feature name="MobileSignalSwift">
+        <param name="ios-package" value="MobileSignalSwift" />
+      </feature>
+    </config-file>
+    <source-file src="src/ios/MobileSignalSwift.swift" />
+  </platform>
+</plugin>

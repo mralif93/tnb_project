@@ -1,0 +1,183 @@
+<ion-header mode="md">
+  <ion-navbar color="primary">
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="md-menu" color="light"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>GIR Process</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon [color]="gv.testMobile ? 'danger' : 'light'" name="md-planet" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end (click)="registerForm(false)">
+      <button mode="md" ion-button round color="light" style="padding: 15px;">
+        Register
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-navbar color="primary">
+    <ion-searchbar mode="md" color="primary" [showCancelButton]="true" [(ngModel)]="gv.searchGirTerm"
+      (ionInput)="filterItems()">
+    </ion-searchbar>
+  </ion-navbar>
+</ion-header>
+
+<!-- <ion-header>
+  <ion-grid class="headerStyle">
+    <ion-row>
+      <ion-col col-3 col-sm-3 col-md-3 align-self-center style="text-align: left;">
+        <button ion-button menuToggle clear>
+          <ion-icon name="menu" class="menuBackArrow"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-5 col-sm-5 col-md-5 align-self-center>
+        <div class="pageTitle">GIR Process
+        </div>
+      </ion-col>
+      <ion-col col-1 col-sm-1 col-md-1 align-self-center style="text-align: right;">
+        <button ion-button small round mode="md" disabled="true" class="flash" style="opacity: unset;">
+          <ion-icon class="flash_plnt" name="planet" [style.color]="gv.testMobile ? 'red':'green'">
+            {{ gv.testMobile ? 'Offline':'Online' }}
+          </ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-3 col-sm-3 col-md-3 align-self-center style="text-align: right;">
+        <button ion-button round mode="md" style="padding: 15px;" (click)="registerForm(false)">
+          Register
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header> -->
+
+<ion-content>
+  <!-- Search Conditions -->
+  <!-- <ion-row>
+    <ion-col col-12>
+      <ion-searchbar [(ngModel)]="gv.searchGirTerm" (ionInput)="filterItems()"></ion-searchbar>
+    </ion-col>
+  </ion-row> -->
+
+  <ion-list>
+    <ion-item-divider>
+      <button ion-button item-start color="primary">Edit</button>
+      <strong>List of GIR's</strong>
+    </ion-item-divider>
+
+    <ion-item detail-push full *ngFor='let attr of gv.girItems; let j = index;'
+      [ngClass]="j%2 != 0 ? 'classA' : 'classB'" (click)="getDetailsInformation(attr)" style="cursor: pointer;">
+      <ion-icon name="md-cube" item-start large></ion-icon>
+      <h2><strong>{{ attr.ta0girnum || '-' }}</strong> (Item: {{ attr.ta0itemlinenum || '-' }})</h2>
+      <p><strong>Reservation : {{ attr.ta0reservationnum || '-' }}</strong></p>
+      <p><strong>Material : {{ attr.ta0materialnum || '-' }}</strong></p>
+      <!--<ion-chip [color]="(attr.status === 'NEW') ? 'secondary' :  'primary'" item-end>
+          <ion-label text-uppercase>{{ attr.status || '-' }}</ion-label>
+        </ion-chip>-->
+      <button mode="md" ion-button round outline [color]="(attr.status === 'NEW') ? 'secondary' :  'primary'" item-end
+        style="margin-right: 10%;">{{ attr.status || '-' }}</button>
+      <ion-icon name="md-trash" color="danger" item-end large (click)="cancelGirProcess(attr.ta0girnum)"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+  <ion-item-divider>
+    <button ion-button icon-start color="primary" mode="md" item-start (click)="multiSelect()">
+      <ion-icon [name]="selectText" style="padding-right: 12px;"></ion-icon>
+      Select
+    </button>
+    <strong>GIR Data List</strong>
+    <button ion-button icon-start color="danger" mode="md" item-end (click)="cancelMultiSelect()" *ngIf="selectCheck">
+      <ion-icon name="trash"></ion-icon>
+      Remove
+    </button>
+  </ion-item-divider>
+
+  <!-- <ion-row class="heading-gap">
+    <ion-col col-2>
+      <button ion-button color="default" (click)="multiSelect()" style="float: left;">
+        <ion-icon [name]="selectText" style="padding-right: 12px;"></ion-icon>
+        Select
+      </button>
+    </ion-col>
+    <ion-col col-8 col-sm-8 col-md-8 style="word-wrap: break-all; padding-left: 5px;">
+      <ion-item>
+        <ion-label color="primary"> GIR Data List </ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col col-2>
+      <button ion-button color="default" *ngIf="selectCheck" (click)="cancelMultiSelect()" style="float: right;">
+        <ion-icon name="trash" style="color: #ffffff;"></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row> -->
+
+  <!-- GIR List Process -->
+  <ion-list>
+    <ion-grid>
+      <ion-item>
+        <ion-label>
+          <ion-row (click)="getDetailsInformation(attr)" style="cursor: pointer;">
+            <ion-col col-1 text-wrap class="col1">
+              <b>S. No</b>
+            </ion-col>
+            <ion-col col-2 text-wrap class="col1">
+              <b>Gir Number</b>
+            </ion-col>
+            <ion-col col-3 text-wrap class="col1">
+              <b>Reservation</b>
+            </ion-col>
+            <ion-col col-3 text-wrap class="col1">
+              <b>Material</b>
+            </ion-col>
+            <ion-col col-1 text-wrap class="col1">
+              <b>Item</b>
+            </ion-col>
+            <ion-col col-1 text-wrap class="col1">
+              <b>Status</b>
+            </ion-col>
+            <ion-col col-1 style="text-align: center;" class="col1">
+              <b>Action</b>
+            </ion-col>
+          </ion-row>
+        </ion-label>
+        <ion-checkbox *ngIf="selectCheck" (click)="selectAll()"></ion-checkbox>
+      </ion-item>
+      <ion-item *ngFor='let attr of gv.girItems; let j = index;' [ngClass]="j%2 != 0 ? 'classA' : 'classB'"
+        (click)="(!selectCheck && !cancelNotification) ? getDetailsInformation(attr):''">
+        <ion-label (click)="onChangeCheckBoxes(attr.ta0girnum, attr)">
+          <ion-row style="cursor: pointer;">
+            <ion-col col-1 text-wrap class="col1">
+              {{ j+1 }}
+            </ion-col>
+            <ion-col col-2 text-wrap class="col1">
+              {{ attr.ta0girnum }}
+            </ion-col>
+            <ion-col col-3 text-wrap class="col1">
+              {{ attr.ta0reservationnum }}
+            </ion-col>
+            <ion-col col-3 text-wrap class="col1">
+              {{ attr.ta0materialnum }}
+            </ion-col>
+            <ion-col col-1 text-wrap class="col1">
+              {{ attr.ta0itemlinenum }}
+            </ion-col>
+            <ion-col col-1 text-wrap class="col1">
+              {{ attr.status }}
+            </ion-col>
+            <ion-col col-1 style="text-align: center;" (click)="cancelGirProcess(attr.ta0girnum)" class="col1">
+              <ion-icon name="trash" color="danger"></ion-icon>
+            </ion-col>
+          </ion-row>
+        </ion-label>
+        <ion-checkbox (click)="onChangeCheckBoxes(attr.ta0girnum, attr)" *ngIf="selectCheck"
+          [checked]="selectedItem.includes(attr.ta0girnum)"></ion-checkbox>
+        <ion-row *ngIf="attr.ta0errorcode">
+          <ion-col col-12 class="col1">
+            <p style="color: #ff0000;">{{ attr.ta0errorcode - attr.ta0errormsg }}</p>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-grid>
+  </ion-list>
+</ion-content>

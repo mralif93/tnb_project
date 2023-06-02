@@ -1,0 +1,154 @@
+{
+    "language": [
+        {
+            "complianceFormType1": {
+                "form": "noticeMeterInstallNTest",
+                "date": "Tarikh",
+                "salutation": "Pelanggan TNB Yang Dihormati",
+                "title": "SURAT PEMBERITAHUAN PEMERIKSAAN DAN PENGUJIAN PEPASANGAN METER TNB",
+                "paragraph1": "Ingin dimaklumkan bahawa pihak TNB sedang menjalankan pemeriksaan dan pengujian terhadap pepasangan meter TNB di premis tuan/puan bagi memastikan ia berfungsi dalam keadaan yang baik.Kerjasama tuan/puan adalah sangat diperlukan semasa proses pemeriksaan dan pengujian dilakukan. Sekiranya terdapat sebarang pertanyaan, sila hubungi pihak TNB di talian .",
+                "moto": "TNB – PENGGERAK KEMAJUAN NEGARA",
+                "signOfSalutation": "Yang Benar,",
+                "tickTitle": "Untuk Kegunaan TNB ",
+                "optionSelection1": "Pengguna Hadir ",
+                "optionSelection2": "Pengguna Tidak Hadir ",
+                "signOff": "Disahkan oleh : ",
+                "staffDetailN": "Nama Pekerja ",
+                "staffNo": "No.Pekerja "
+            }
+        },
+        {
+            "complianceFormType2": {
+                "form": "noticeEvidenceCollection",
+                "title": "SURAT PEMBERITAHUAN PENGAMBILAN BAHAN-BAHAN BUKTI",
+                "col1Acc": "No Akaun.: ",
+                "col2SttCode": "Kod Stesen: ",
+                "custName": "Nama Pengguna ",
+                "admit": "Adalah saya: ",
+                "staffNo": "No Pekerja: ",
+                "staffNo2": " mengaku telah mengambil  perkara-perkara tersebut di bawah ini:-",
+                "addrss": "daripada premis yang beralamat :",
+                "col": [
+                    {
+                        "col1": "T/Tangan Pengambil",
+                        "col2": "T/Tangan Saksi",
+                        "col3": "Nama",
+                        "col4": "No Pekerja",
+                        "col5": "Alamat",
+                        "col6": "No KadPengenalan",
+                        "col7": "Jawatan",
+                        "col8": "Stesen",
+                        "col9": "Tarikh",
+                        "col10": "Masa"
+                    }
+                ]
+            }
+        },
+        {
+            "complianceFormType3": {
+                "form": "noticeEvidenceCollection",
+                "header": "Rujukan Kami : TNB (B) ",
+                "headerDate": "Tarikh:",
+                "salutation": "Pelanggan TNB Yang Dihormati,",
+                "title": "Pemakluman Semakan Pepasangan Meter Elektrik oleh TNB",
+                "paragraph1": "Dimaklumkan bahawa pemeriksaan dan pengujian telah dibuat ke atas pepasangan meter yang merekodkan penggunaan elektrik ke premis yang beralamat ",
+                "paragraph2": "dengan No. Akaun ",
+                "date": "pada",
+                "time": "jam ",
+                "paragraph3": "Hasil pengujian menunjukkan meter berkenaan tidak merekodkan bacaan penggunaan elektrik yang sebenar dan ini telah diterangkan kepada tuan/puan. Ingin dimaklumkan bahawa tuntutan amaun terkurang caj akan dibuat oleh TNB dan akan dimajukan kepada tuan/puan.",
+                "paragraph4": "Sekiranya terdapat sebarang pertanyaan, tuan/puan boleh menghubungi",
+                "paragraph5": "untuk tindakan selanjutnya.",
+                "signOfSalutation": "Sekian,terima kasih.",
+                "colDetails": [
+                    {
+                        "col1": "T/T Pemeriksa",
+                        "col2": "Diterima Oleh (T/T) ",
+                        "col3": "Nama Pemeriksa",
+                        "col4": "No Pekerja",
+                        "col5": "No.Tel",
+                        "col6": "Jabatan",
+                        "col7": "Nama ",
+                        "col9": "Tarikh/Mase"
+                    }
+                ]
+            }
+        },
+        {
+            "complianceFormType4": {
+                "form": "InspectionMeter",
+                "salutationTo": "Kepada:",
+                "paragraph1": "Dimaklumkan bahawa pemeriksaan dan pengujian telah dibuat ke atas pepasangan meter yang merekodkan penggunaan elektrik ke premis yang beralamat ",
+                "paragraph2": "Hasil pengujian menunjukkan meter berkenaan tidak merekodkan bacaan penggunaan elektrik yang sebenar dan ini telah diterangkan kepada tuan/puan. Ingin dimaklumkan bahawa tuntutan amaun terkurang caj akan dibuat oleh TNB dan akan dimajukan kepada tuan/puan.",
+                "paragraph3": "Sekiranya terdapat sebarang pertanyaan, tuan/puan boleh menghubungi ",
+                "salutationEnd": "Sekian,terima kasih.",
+                "closure1": "T/T Pemeriksa: ",
+                "closure2": "Diterima Oleh (T/T): ",
+                "closure3": "Nama Pemeriksa: ",
+                "closure4": "Nama: ",
+                "closure5": "No. Pekerja: ",
+                "closure6": "No.Tel: ",
+                "closure7": "Jabatan :SEAL UNIT METERING ",
+                "closure8": "Tarikh/Masa : ",
+                "closure9": "Sk: Pengurus Kawasan/Cawangan : "
+            }
+        },
+        {
+            "complianceFormType5": {
+                "form": "noticeDisconnectElectric",
+                "title": "NOTIS PEMBERITAHUAN PEMBERHENTIAN/GANGGUAN SEMENTARA BEKALAN ELEKTRIK BAGI TUJUAN PEMERIKSAAN DAN PENGUJIAN PEPASANGAN METER TNB",
+                "paragraph1": "Ingin dimaklumkan bahawa pihak TNB sedang menjalankan pemeriksaan dan pengujian terhadap pepasangan meter TNB di premis tuan/puan bagi memastikan ia berfungsi dalam keadaan yang baik.",
+                "paragraph2": "Untuk tujuan tersebut, adalah dimaklumkan bahawa bekalan elektrik di premis tuan/puan akan diberhentikan/diganggu sementara pada ",
+                "paragraph3": "Kerjasama tuan/puan adalah sangat diperlukan.",
+                "paragraph4": " Adalah dengan ini saya memahami kandungan notis ini bekalan elektrik diberhentikan/diganggu sementara bagi tujuan seperti dinyatakan di atas",
+                "paragraph5": "dari",
+                "verifyBy": [
+                    {
+                        "By": "Nama Pengguna/Pemilik/Wakil",
+                        "Id": "No. Kad Pengenalan",
+                        "DateTime": "Tarikh/Masa"
+                    }
+                ]
+            }
+        },
+        {
+            "complianceFormType6": {
+                "form": "formB cessation",
+                "title": "NOTIS PEMBERHENTIAN/GANGGUAN SEMENTARA BEKALAN ELEKTRIK",
+                "paragraph1": "Dimaklumkan bahawa bekalan elektrik di ",
+                "paragraph2": "In view of the same please be informed that the electricity supply at your premises will be cessationed/temporarily interupted on _______ from __________ until _____________",
+                "paragraph3": "Your kind cooperation is much appreciated",
+                "paragraph4": " I hereby fully understand the contents of this notice and  that the electricity supply  to be  cessationed /temporarily interrupted for the abovesaid purposes.",
+                "verifyBy": [
+                    {
+                        "By": "Name Pemegang Lesen"
+                    },
+                    {
+                        "Address": "Alamat :"
+                    },
+                    {
+                        "DateTime": "Tarikh/Mase :"
+                    },
+                    {
+                        "NoHp": "Nomber telefon"
+                    }
+                ]
+            }
+        },
+        {
+            "complianceFormType7": {
+                "title": "SURAT PEMAKLUMAN (SESI PENJELASAN TANPA PREJUDIS) BERHUBUNG TINDAKAN PEMOTONGAN BEKALAN ELEKTRIK DAN TUNTUTAN KERUGIAN HASIL DAN PERBELANJAAN SERTA CAJ BERKAITAN",
+                "paragraph1": "Ingin dimaklumkan bahawa pihak TNB telah menjalankan pemeriksaan dan pengujian terhadap pepasangan meter TNB di premis tuan/puan bagi memastikan ia berfungsi dalam keadaan yang baik. Hasil pemeriksaan tersebut mendapati pepasangan meter TNB tidak merekodkan bacaan penggunaan elektrik yang sebenar.",
+                "paragraph2": "Berdasarkan peruntukan Seksyen 38 Akta Bekalan Elektrik 1990, pihak TNB akan melakukan pemotongan bekalan elektrik ke premis tuan/puan seperti notis pemotongan (Borang A) yang diserahkan bersama dengan notis ini dan juga akan membuat tuntutan kerugian hasil dan perbelanjaan serta caj berkaitan.",
+                "paragraph3": "Oleh itu, tuan/puan dijemput hadir ke pejabat SEKSYEN JAMINAN HASIL yang beralamat di ",
+                "paragraph4": " selepas 3 hari bekerja daripada tarikh pemeriksaan bagi sesi penjelasan tanpa prejudis berhubung tindakan yang akan TNB lakukan. Tuan/puan juga digalakkan membawa bukti dan dokumen-dokumen sokongan untuk tujuan sesi penjelasan.",
+                "closure": "Sekiranya terdapat sebarang pertanyaan, sila hubungi pihak TNB di talian ",
+                "closure2": "Sekian, terima kasih.",
+                "addressOffice": "SEKSYEN JAMINAN HASIL",
+                "addressOffice2": "UNIT PENGURUSAN HASIL",
+                "addressOffice3": "JABATAN PERKHIDMATAN PENGGUNA ",
+                "addressOffice4": "BAHAGIAN PEMBAHAGIAN, TNB",
+                "noticeReminder": "Notis ini merupakan cetakan computer dan tidak memerlukan tandatangan"
+            }
+        }
+    ]
+}

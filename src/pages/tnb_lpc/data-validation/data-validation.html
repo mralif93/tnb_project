@@ -1,0 +1,398 @@
+<!--
+  Generated template for the DataValidationPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-grid class="headerStyle">
+      <ion-row>
+        <ion-col col-2 col-sm-3 col-md-3 style="text-align: left;padding-top: 0px;">
+          <button ion-button clear (click)="goBack()">
+            <ion-icon name="arrow-back" class="menuBackArrow"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col col-8 col-sm-5 col-md-5>
+          <div class="pageTitle" style="padding-top: 8px;font-weight:bold;">Data Validation
+          </div>
+        </ion-col>
+        <ion-col col-4 col-sm-4 style="word-wrap: break-all; text-align: right; padding-top: 0px; width:12px">
+            <ion-col col-2 col-sm-2>
+                <ion-fab top right style="top: 0%">
+                    <button ion-fab mini class="flash">
+                      <ion-icon class="flash_plnt" name="planet" [style.color]="gv.testMobile ? 'red':'green'"> {{ gv.testMobile ? 'Offline':'Online' }} </ion-icon>
+                    </button>
+                  </ion-fab>
+            </ion-col>
+        <ion-col col-2 col-sm-2  (click)="presentPopover($event)">
+          <button ion-button icon-only clear>
+            <ion-icon name="more" class="menuBackArrow"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-header>
+  
+  
+  <ion-content>
+    <ion-grid>
+  
+      <ion-item-divider color="light">Meter Installation Information</ion-item-divider>
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;" col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label color="primary">Meter Type</ion-label>
+            <ion-input id="test1" type="text" placeholder="" ng-readonly="true"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;" col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label color="primary">Indicator</ion-label>
+            <ion-select [(ngModel)]="selected_indicator" interface="popover">
+              <ion-option value="Y">Yes</ion-option>
+              <ion-option value="N">No</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label color="primary">Serial Number Meter</ion-label>
+            <ion-input id="test1" type="text" placeholder="213500849" ng-readonly="true"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label color="primary">Made/ Model</ion-label>
+            <ion-input id="test1" type="text" placeholder="" ng-readonly="true"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label color="primary">Meter Size</ion-label>
+            <ion-input id="test1" type="text" placeholder="100.00" ng-readonly="false"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label color="primary">CONSTANT</ion-label>
+            <ion-input id="test1" type="text" placeholder="800" ng-readonly="false"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+  
+      <ion-item-divider color="light">LV MVHV</ion-item-divider>
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label color="primary">Meter Serial No.</ion-label>
+            <ion-input id="test1" type="text" placeholder="" ng-readonly="false"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label color="primary">Brand</ion-label>
+            <ion-input id="test1" type="text" placeholder="" ng-readonly="false"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label color="primary">Class</ion-label>
+            <ion-input id="test1" type="text" placeholder="" ng-readonly="false"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label color="primary">Current Meter Ratio</ion-label>
+            <ion-input id="test1" type="text" placeholder="" ng-readonly="false"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label color="primary">Voltage Meter Ratio</ion-label>
+            <ion-input id="test1" type="text" placeholder="" ng-readonly="false"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label color="primary">MF</ion-label>
+            <ion-input id="test1" type="text" placeholder="" ng-readonly="false"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label color="primary">Purpose</ion-label>
+            <ion-input id="test1" type="text" placeholder="eg:Kegunaan Main Meter/ Check Meter" ng-readonly="false"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label color="primary">Label Suppliers</ion-label>
+            <ion-input id="test1" type="text" placeholder="" ng-readonly="false"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label color="primary">Meter Test Date</ion-label>
+            <ion-input id="test1" type="text" placeholder="" ng-readonly="false"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label color="primary">Modem Serial No.</ion-label>
+            <ion-input id="test1" type="text" placeholder="" ng-readonly="false"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label color="primary">Simcard Serial No.</ion-label>
+            <ion-input id="test1" type="text" placeholder="" ng-readonly="false"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label color="primary">No. IP/ Data</ion-label>
+            <ion-input id="test1" type="text" placeholder="" ng-readonly="false"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label color="primary">Device Category</ion-label>
+            <ion-select interface="popover">
+              <ion-option value="90">Main Meter</ion-option>
+              <ion-option value="91">Feeder Meter</ion-option>
+              <ion-option value="92">Check Meter</ion-option>
+              <ion-option value="93">Check Feeder Meter</ion-option>
+              <ion-option value="94">Sub Meter</ion-option>
+              <ion-option value="95">Check Sub Meter</ion-option>
+              <ion-option value="96">Sub Feeder Meter</ion-option>
+              <ion-option value="97">Check Sub Feeder Meter</ion-option>
+              <ion-option value="82">Modem</ion-option>
+              <ion-option value="83">SIM Card</ion-option>
+              <ion-option value="5">Power Transformer</ion-option>
+              <ion-option value="6">Voltage-Current Transformer</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label color="primary">Winding Group</ion-label>
+            <ion-select interface="popover">
+              <ion-option value="90">Main Meter</ion-option>
+              <ion-option value="91">Feeder Meter</ion-option>
+              <ion-option value="92">Check Meter</ion-option>
+              <ion-option value="93">Check Feeder Meter</ion-option>
+              <ion-option value="94">Sub Meter</ion-option>
+              <ion-option value="95">Check Sub Meter</ion-option>
+              <ion-option value="96">Sub Feeder Meter</ion-option>
+              <ion-option value="97">Check Sub Feeder Meter</ion-option>
+              <ion-option value="82">Modem</ion-option>
+              <ion-option value="83">SIM Card</ion-option>
+              <ion-option value="5">Power Transformer</ion-option>
+              <ion-option value="6">Voltage-Current Transformer</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label color="primary">Install Indicator</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-select [(ngModel)]="selected_istind" disabled="{{showIstind}}" interface="popover">
+              <ion-option value="1">Yes</ion-option>
+              <ion-option value="0">No</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label color="primary">Remove Indicator</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-select [(ngModel)]="selected_rmvind" disabled="{{showRmvind}}" interface="popover">
+              <ion-option value="1">Yes</ion-option>
+              <ion-option value="0">No</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label color="primary">Replacement Indicator</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-select [(ngModel)]="selected_rpmind" disabled="{{showRpmind}}" interface="popover">
+              <ion-option value="1">Yes</ion-option>
+              <ion-option value="0">No</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label color="primary">Device Status</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-select [(ngModel)]="selected_devicests" disabled="{{showDeviceSts}}" interface="popover">
+              <ion-option value="ZEVI">ZEVI - Evidence for theft case</ion-option>
+              <ion-option value="ZMIS">ZMIS - Device is missing</ion-option>
+              <ion-option value="ZREM">ZREM - Device is removed</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+  
+      <ion-item-divider color="light">Wrong Meter Attributes</ion-item-divider>
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label color="primary">Wrong Meter Attributes Indicator</ion-label>
+            <ion-select [(ngModel)]="selected_wmattribute" disabled="{{showWma}}" interface="popover" (ionChange)="onHideShowRegister()">
+              <ion-option value="Y">Yes</ion-option>
+              <ion-option value="N">No</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+  
+      <ion-item-divider color="light">Action</ion-item-divider>
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label>Install</ion-label>
+            <ion-checkbox color="dark" checked="true"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+  
+      <br />
+  
+      <div *ngIf="!hideShowRegister">
+        <ion-item style="background-color:aqua">
+          <ion-label color="primary">Remarks</ion-label>
+        </ion-item>
+        <ion-textarea type="textarea" style="border:1px" rows="6" style="border-bottom: 2px solid black; border-right: 1px solid black ;border-left: 1px solid black;border-top: 1px solid black;"
+          placeholder="Please Enter" value=""></ion-textarea>
+      </div>
+    </ion-grid>
+
+   <ion-grid style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;" *ngFor="let registers of multiAssetLocci.ta0registers;let j = index">
+  
+      <ion-item-divider color="light">REGISTER SECTION</ion-item-divider>
+      <ion-item-divider color="light">SECTION {{ j + 1 }}</ion-item-divider>
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label color="primary">Register Type</ion-label>
+            <ion-input id="test2" type="text" [(ngModel)]="registers.ta0registertype" placeholder="01" ng-readonly="true"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-item>
+            <ion-label color="primary">Register Type Description</ion-label>
+            <ion-input id="test2" type="text" [(ngModel)]="registers.ta0registertypedesc" placeholder="" ng-readonly="true"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label color="primary">Unit of Measurement</ion-label>
+            <ion-input id="test2" type="text" [(ngModel)]="registers.ta0uom" placeholder="KWH" ng-readonly="true"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label color="primary">Last Reading</ion-label>
+            <ion-input id="test2" type="text" [(ngModel)]="registers.ta0proposedreading" placeholder="176,080" ng-readonly="true"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label color="primary">Current Reading</ion-label>
+            <ion-input id="test2" type="text" [(ngModel)]="registers.ta0dialafter" placeholder="Please Enter"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label color="primary">Usage</ion-label>
+            <ion-input id="test2" type="text" [(ngModel)]="registers.ta0dialbefore" placeholder="calculation" ng-readonly="true"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+  
+    </ion-grid> 
+  
+  
+  </ion-content>
+  
+  
+  <ion-footer>
+    <ion-toolbar>
+      <div>
+        <ion-row>
+          <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <button ion-button round block>Save</button>
+          </ion-col>
+          <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <button ion-button color="light" round block (click)="goBack()">Cancel</button>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-toolbar>
+  </ion-footer>

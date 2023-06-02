@@ -1,0 +1,380 @@
+<ion-header mode="md">
+  <ion-navbar color="primary">
+    <ion-title *ngIf="type === 'photo'">Attachment</ion-title>
+    <ion-title *ngIf="type === 'pdiagram'">Phase Diagram</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only style="padding-right: 20px;">
+        <ion-icon [color]="gv.testMobile ? 'danger' : 'light'" name="md-planet" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end style="padding-right: 20px;">
+      <button ion-button icon-only (click)="getPictures()">
+        <ion-icon color="light" name="md-attach"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end style="padding-right: 20px;">
+      <button ion-button icon-only (click)="takePhoto()">
+        <ion-icon color="light" name="md-camera"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-navbar *ngIf="type === 'photo'">
+    <ion-segment [(ngModel)]="segment" mode="md">
+      <ion-segment-button value="Image">
+        Image
+      </ion-segment-button>
+      <ion-segment-button value="PDF">
+        PDF
+      </ion-segment-button>
+    </ion-segment>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <span *ngIf="type === 'photo'">
+    <div *ngIf="segment === 'Image'">
+      <ion-item-group reorder="true" (ionItemReorder)="reorderItems($event)">
+        <div *ngFor="let photo of this.item.json.docLinksL; let id = index">
+          <ion-item *ngIf="photo.describedBy.loc_show">
+            <ion-card>
+              <ion-row style="padding: 5px;">
+                <ion-col col-12 col-sm-12 col-md-3 align-self-center>
+                  <img [src]="photo.describedBy.loc_base64Image" *ngIf="photo.describedBy.loc_base64Image" #myImage
+                    (click)="presentImage(myImage)" />
+                  <img src="{{photo.href}}" *ngIf="!photo.describedBy.loc_base64Image" #myImage
+                    (click)="presentImage(myImage)" />
+                </ion-col>
+                <ion-col>
+                  <ion-row style="margin: 5px;">
+                    <ion-col col-md-4>
+                      <h2 class="custom-h2">Type of Image</h2>
+                    </ion-col>
+                    <ion-col col-md-8>
+                      <p class="custom-p">{{ photo.describedBy.loc_title == 'PR' ? 'Premis' : 
+                        photo.describedBy.loc_title == 'MINS' ? 'Pepasangan Meter' :
+                        photo.describedBy.loc_title == 'MD' ? 'Paparan Meter' :
+                        photo.describedBy.loc_title == 'SNSMTR' ? 'Sil dan Pelekat (Meter)' :
+                        photo.describedBy.loc_title == 'ANMLYM' ? 'Anomali (Meter)' :
+                        photo.describedBy.loc_title == 'OTHRINS' ? 'Pemasangan (Lain)' :
+                        photo.describedBy.loc_title == 'SNSOTHR' ? 'Sil dan Pelekat (Lain)' :
+                        photo.describedBy.loc_title == 'ANMLMOTHR' ? 'Anomali (Lain)' :
+                        photo.describedBy.loc_title == 'CRTVACT' ? 'Tindakan Pembetulan' :
+                        photo.describedBy.loc_title == 'CRTVACTDM' ? 'Tindakan Pembetulan (Paparan Meter)' :
+                        photo.describedBy.loc_title == 'WTNSS' ? 'Saksi' : '...' }}
+                      </p>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row style="margin: 5px;">
+                    <ion-col col-md-4>
+                      <h2 class="custom-h2">Category of Image</h2>
+                    </ion-col>
+                    <ion-col col-md-8>
+                      <p class="custom-p">
+                        {{ photo.describedBy.category == 'PI' ? 'Premise Image' : 
+                        photo.describedBy.category == 'RI' ? 'Raw Image' : 
+                        photo.describedBy.category == 'AI' ? 'Anomaly Image' : '...' }}
+                      </p>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col style="display: block;margin: 5px;">
+                      <h2 class="custom-h2">Description</h2>
+                      <p class="custom-p">{{ photo.describedBy.description || '' }}</p>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col>
+                      <button ion-button full icon-start color="primary" mode="md" (click)="openModalPage(id)">
+                        <!-- <ion-icon name="create"></ion-icon> -->
+                        Edit
+                      </button>
+                    </ion-col>
+                    <ion-col>
+                      <button ion-button full icon-start color="danger" mode="md" (click)="deletePhoto(id)">
+                        <!-- <ion-icon name="trash"></ion-icon> -->
+                        Delete
+                      </button>
+                    </ion-col>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+            </ion-card>
+          </ion-item>
+        </div>
+      </ion-item-group>
+
+      <!-- <ion-list>
+        <ion-item-group reorder="true">
+          <ion-item *ngFor="let photo of this.item.json.docLinksL; let id = index">
+            <div *ngIf="photo.describedBy.loc_show">
+
+              <ion-card class="block" style="background-color: #f6fbff">
+                <ion-card-content>
+                  <ion-row>
+                    <ion-col col-4></ion-col>
+                    <ion-col col-4>
+                      <img width="60px" height="150px" [src]="photo.describedBy.loc_base64Image"
+                        *ngIf="photo.describedBy.loc_base64Image" #myImage (click)="presentImage(myImage)" />
+                      <img width="60px" height="150px" *ngIf="!photo.describedBy.loc_base64Image" src="{{photo.href}}"
+                        #myImage (click)="presentImage(myImage)" /></ion-col>
+                    <ion-col col-4></ion-col>
+                  </ion-row>
+                </ion-card-content>
+
+                <ion-card-content>
+                  <ion-row no-padding>
+                    <ion-col>
+                      <h2>Type of Image:</h2>
+                      <span>{{photo.describedBy.loc_title}}</span>
+                    </ion-col>
+                    <ion-col>
+                      <h2>Category:</h2>
+                      <span>{{photo.describedBy.category}}</span>
+                    </ion-col>
+                    <ion-col>
+                      <h2> Description:</h2>
+                      <span> {{photo.describedBy.description}}</span>
+                    </ion-col>
+                  </ion-row>
+
+                </ion-card-content>
+
+                <ion-row no-padding>
+                  <ion-col>
+                    <button ion-button clear small color="danger" icon-start (click)="deletePhoto(id)">
+                      <ion-icon name="trash" class="deleteIcon"></ion-icon>
+                      Delete
+                    </button>
+                  </ion-col>
+                  <ion-col text-center>
+                    <button ion-button clear small icon-start (click)="openModalPage(id)">
+                      <ion-icon name="create" class="deleteIcon"></ion-icon>
+                      Edit
+                    </button>
+                  </ion-col>
+
+                </ion-row>
+              </ion-card> -->
+      <!--  <ion-item>
+                  <ion-label class="maxwidth">Type of Image</ion-label>
+                  <ion-select [(ngModel)]="photo.describedBy.loc_title" multiple="false"
+                    (ionChange)="typeSelection(photo, id, $event)" placeholder="Please select">
+                    <ion-option value="PR">Premis</ion-option>
+                    <ion-option value="MINS">Pepasangan Meter</ion-option>
+                    <ion-option value="MD">Paparan Meter</ion-option>
+                    <ion-option value="SNSMTR">Sil dan Pelekat (Meter)</ion-option>
+                    <ion-option value="ANMLYM">Anomali (Meter)</ion-option>
+                    <ion-option value="OTHRINS">Pemasangan (Lain)</ion-option>
+                    <ion-option value="SNSOTHR">Sil dan Pelekat (Lain)</ion-option>
+                    <ion-option value="ANMLMOTHR">Anomali (Lain)</ion-option>
+                    <ion-option value="CRTVACT">Tindakan Pembetulan</ion-option>
+                    <ion-option value="CRTVACTDM">Tindakan Pembetulan (Paparan Meter)</ion-option>
+                    <ion-option value="WTNSS">Saksi</ion-option>
+                  </ion-select>
+                </ion-item>
+                <br />
+                <ion-item>
+                  <ion-label class="maxwidth">Category</ion-label>
+                  <ion-select [(ngModel)]="photo.describedBy.category" multiple="false" placeholder="Please select">
+                    <ion-option value="PI">Premise Image</ion-option>
+                    <ion-option value="RI">Raw Image</ion-option>
+                    <ion-option value="AI">Anomaly Image</ion-option>
+                  </ion-select>
+                </ion-item>
+                <br />
+                <ion-item>
+                  <ion-label item-start class="maxwidth">Description</ion-label>
+                  <ion-textarea item-content type="textarea" rows="4" placeholder="Description"
+                    [(ngModel)]="photo.describedBy.description"
+                    (change)="checkOnchange('description', photo, photo.describedBy.description)"></ion-textarea>
+                </ion-item> -->
+
+      <!-- 
+            </div>
+          </ion-item>
+        </ion-item-group>
+      </ion-list> -->
+
+      <div *ngIf="this.item.json.docLinksL == ''">
+        <ion-row>
+          <ion-item no-lines>
+            <ion-label text-center color="danger">
+              No Record to display. Browse or capture the photo to attach
+            </ion-label>
+          </ion-item>
+        </ion-row>
+      </div>
+    </div>
+    <div *ngIf="segment === 'PDF'">
+      <ion-list>
+        <ion-list-header>
+          <ion-icon name="document" item-start></ion-icon>
+          List of PDF's
+        </ion-list-header>
+        <span *ngFor="let pdf of attachment_tmp; let j = index">
+          <ion-item *ngIf="pdf.describedBy.loc_show">
+            <h2>{{ pdf.describedBy.title }}</h2>
+            <p>{{ pdf.describedBy.created | date: gv.dateFormat }}</p>
+            <a ion-button round item-end color="primary" mode="md" style="padding: 15px;" [href]="pdf.href"
+              [target]="_blank">View</a>
+            <a ion-button round item-end color="danger" mode="md" style="padding: 15px;"
+              (click)="deletePdf(j)">Remove</a>
+          </ion-item>
+        </span>
+        <ion-item *ngIf="!pdfstatus">
+          <ion-label text-center color="danger">
+            File is not available.
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      <!-- Remove Condition: *ngIf=" pdfstatus===true" | Alif (28.06.2019) | -->
+      <!-- <ion-row>
+        <ion-col col-2 col-md-2 col-sm-2 align-self-center>
+          <ion-item>
+            <ion-label>No.</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label>File Name</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <div *ngFor="let pdflist of listPdf ; let j = index">
+        <ion-row>
+          <ion-col col-2 col-md-2 col-sm-2 align-self-center>
+            <ion-item>
+              {{ j+1 }}.
+            </ion-item>
+          </ion-col>
+          <ion-col col-8 col-md-8 col-sm-8>
+            <ion-item text-wrap>
+              {{ pdflist.PdfFile.describedBy.title }}
+            </ion-item>
+          </ion-col>
+          <ion-col align-self-center>
+            <a ion-button [href]="pdflist.PdfFile.href" [target]="_blank">Open</a>
+          </ion-col>
+        </ion-row>
+      </div>
+      <div *ngIf="pdfstatus === false">
+        <ion-list>
+          <ion-item no-lines>
+            <ion-label text-center color="danger">
+              File is not available.
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </div> -->
+    </div>
+  </span>
+
+  <span *ngIf="type === 'pdiagram'">
+    <div *ngFor="let photo of this.item.json.docLinksL; let id = index">
+      <ion-row *ngIf="photo.describedBy.loc_show">
+
+        <ion-col col-3 col-md-3>
+          <ion-card class="block">
+            <img width="60px" height="150px" [src]="photo.describedBy.loc_base64Image"
+              *ngIf="photo.describedBy.loc_base64Image" #myImage (click)="presentImage(myImage)" />
+            <img width="60px" height="150px" *ngIf="!photo.describedBy.loc_base64Image" src="{{photo.href}}" #myImage
+              (click)="presentImage(myImage)" />
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <!-- <ion-item no-lines>
+            <ion-label class="maxwidth">Type of Image</ion-label>
+
+            <ion-select [(ngModel)]="photo.describedBy.title" multiple="false" (ionChange)="typeSelection()"
+              [ngClass]="(photo.describedBy.title === null || photo.describedBy.title === undefined || photo.describedBy.title === '') ?  'redHighlightText':'blackHighlightText'"> -->
+          <!-- Close Other Option because this only for phase diagram -->
+          <!-- <ion-option value="MMETER.JPG">Main Meter</ion-option>
+              <ion-option value="CMETER.JPG">Check Meter</ion-option>
+              <ion-option value="FMETER.JPG">Feeder Meter</ion-option>
+              <ion-option value="CFMETER.JPG">Check Feeder Meter</ion-option>
+              <ion-option value="CTRANS.JPG">Current Transformer</ion-option>
+              <ion-option value="VTRANS.JPG">Voltage Transformer</ion-option>
+              <ion-option value="MKIOSK.JPG">Meter Kiosk</ion-option>
+              <ion-option value="MROOM.JPG">Meter Room</ion-option>
+              <ion-option value="SMETER.JPG">Sub Meter</ion-option>
+              <ion-option value="CSMETER.JPG">Check Sub Meter</ion-option>
+              <ion-option value="MODEM.JPG">Modem</ion-option>
+              <ion-option value="SIM.JPG">Sim Card</ion-option>
+              <ion-option value="PREMISE.JPG">Premise/Pencawang Elektrik TNB</ion-option>
+              <ion-option value="OTHER.JPG">Other</ion-option> -->
+          <!-- <ion-option value="PDIAGRAM.JPG" [selected]="photo.describedBy.title === 'PDIAGRAM.JPG'">Phasor Diagram
+              </ion-option>
+            </ion-select> -->
+          <!-- <ion-input id="test1" type="text" [ngClass]="(photo.describedBy.title == '' && !validate) ? 'redHighlightText' : 'blackHighlightText'" placeholder="Name" [(ngModel)]="photo.describedBy.title" (change)="checkOnchange('name', photo, photo.describedBy.title)"></ion-input> -->
+          <!-- </ion-item>
+          <br /> -->
+          <!-- For Normal Image -->
+          <!-- <ion-item no-lines>
+            <ion-label class="maxwidth">Category of Image</ion-label>
+            <ion-select [(ngModel)]="photo.describedBy.category" multiple="false" (ionChange)="typeSelection()">
+              <ion-option value="PI">Premise Image</ion-option>
+              <ion-option value="RI">Raw Image</ion-option>
+            </ion-select>
+          </ion-item> -->
+          <!-- For Phase Diagram Image -->
+          <ion-item>
+            <ion-label class="maxwidth">Feeder Section</ion-label>
+            <ion-select multiple="false" [(ngModel)]="photo.describedBy.ta4feederidref" placeholder="Please select">
+              <span *ngIf="optionFeeder[0].ta0feederid == null">
+                <ion-option *ngFor="let option of optionFeeder; let i = index" value="{{ option.ta0feederid }}"
+                  [selected]="option.ta0feedercode === photo.describedBy.ta4feederidref" disabled="true">
+                  {{ option.description }}</ion-option>
+              </span>
+              <span *ngIf="optionFeeder[0].ta0feederid != null">
+                <ion-option *ngFor="let option of optionFeeder; let i = index" value="{{ option.ta0feederid }}"
+                  [selected]="option.ta0feedercode === photo.describedBy.ta4feederidref">
+                  {{ option.description }} - {{ option.ta0feedercode }}</ion-option>
+              </span>
+
+            </ion-select>
+          </ion-item>
+          <br />
+          <ion-item>
+            <ion-label class="maxwidth">Category</ion-label>
+            <ion-select [(ngModel)]="photo.describedBy.docType" placeholder="Please select"
+              (ionChange)="changeDocTypeImage($event, photo)" multiple="false">
+              <ion-option value="PD">Phase Diagram</ion-option>
+              <ion-option value="DD">Reading Details</ion-option>
+            </ion-select>
+          </ion-item>
+          <br />
+          <ion-item>
+            <ion-label item-start class="maxwidth">Description</ion-label>
+            <ion-textarea item-content type="textarea" rows="4" placeholder="Description"
+              [(ngModel)]="photo.describedBy.description"
+              (change)="checkOnchange('description', photo, photo.describedBy.description)"></ion-textarea>
+          </ion-item>
+        </ion-col>
+        <ion-col col-2 col-md-1>
+          <button ion-button color="danger" style="width: 30px;height: 30px;text-align: right;"
+            (click)="deletePhoto(id)">
+            <ion-icon name="trash" class="deleteIcon"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </div>
+  </span>
+</ion-content>
+
+<ion-footer mode="md">
+  <ion-toolbar mode="md">
+    <ion-row>
+      <ion-col>
+        <!-- [disabled]="gv.syncIndicator" -->
+        <button ion-button round block mode="md" (click)="saveImage()">
+          Save
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button round block mode="md" (click)="goBack()">
+          Cancel
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

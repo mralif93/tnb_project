@@ -1,0 +1,63 @@
+page-asset-details {
+
+    .centered {
+
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        margin-top: -50px;
+        margin-left: -100px;
+        color: #ff0000;
+    }
+
+    .pagination a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color .3s;
+        border: 1px solid #ddd;
+        margin: 0 4px;
+    }
+    
+    .pagination a.active {
+        background-color: #0000FF;
+        color: white;
+        border: 1px solid #0000FF;
+    }
+    
+    .pagination a:hover:not(.active) {background-color: #ddd;}
+
+    .non-display {
+        display: none;
+    }
+
+    .display {
+        display: block;
+        text-align: center;
+    }
+
+    .disabled {
+        cursor: not-allowed;
+        opacity: 0.65;
+        background-color: #ddd;
+    }
+    //Pagination ends
+
+    .scrollFabButton {
+        background-color: #0000FF; 
+        opacity: 0.3;
+    }
+
+    .classA { 
+        background-color: #fffffA;
+    }
+
+    .classB{ 
+        background-color:#C4D8E2;
+    }
+
+    .offline_btn {
+        font-size: 15px;
+    }
+}

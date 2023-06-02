@@ -1,0 +1,2750 @@
+<ion-header mode="md">
+  <ion-navbar color="primary">
+    <ion-title>LPC - MVHV Inspection</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon [color]="gv.testMobile ? 'danger' : 'light'" name="md-planet" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <!--Not Applicable for all Start-->
+    <div>
+      <ion-item-divider color="light" class="pointer" (click)="showAllRemarkCommon(false)">
+        <ion-row align-items-center>
+          <ion-col col-12 col-sm-12 col-md-10 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-icon name="flask"></ion-icon>&nbsp; <strong>Not Applicable For All</strong>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align: right;">
+            <ion-icon name="arrow-forward" style="zoom: 1.5;" *ngIf="!showAllCommonRemarkDetails"></ion-icon>
+            <ion-icon name="arrow-down" style="zoom: 1.5;" *ngIf="showAllCommonRemarkDetails"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-item-divider>
+      <div *ngIf="showAllCommonRemarkDetails">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Not Applicable For All</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-select [(ngModel)]="ta0na" (ionChange)="commonNotApplication($event)" interface="popover">
+                  <ion-option value="Y" [selected]="ta0na === 'Y'">Yes</ion-option>
+                  <ion-option value="N" [selected]="ta0na === 'N'">No</ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="showContainRemak">
+            <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Remarks for All</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-6 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-textarea rows="4" [(ngModel)]="ta0Remark" maxlength="40" type="text"
+                  placeholder="Please Enter Remark" (keyup)="commonNotApplicationRemark()"></ion-textarea>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </div>
+    <!--Not Applicable for all End-->
+
+    <!-- Date & Time Meter-->
+    <ion-item-divider color="light" class="pointer" (click)="showMeterDateTimeTestSection(1)">
+      <ion-row align-items-center>
+        <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-icon name="flask"></ion-icon>&nbsp; <strong>METER DATE & TIME</strong>
+        </ion-col>
+        <ion-col col-10 col-sm-10 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
+          <ion-icon name="arrow-forward" style="zoom: 1.5;" *ngIf="!showMeterDateTimeTest"></ion-icon>
+          <ion-icon name="arrow-down" style="zoom: 1.5;" *ngIf="showMeterDateTimeTest"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-item-divider>
+    <div id="showMeterDateTime">
+      <div *ngIf="showMeterDateTimeTest">
+        <ion-row>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label color="primary">Not Applicable</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-select [(ngModel)]="showMeterDateTime.loc_test_ta0na" (ionChange)="hideShowMeterDateTime()"
+                interface="popover">
+                <ion-option value="Y">Yes</ion-option>
+                <ion-option value="N">No</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="showMeterDateTime.ta0na">
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label color="primary">Remarks</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-textarea rows="4" id="remark" type="text" maxlength="40" [(ngModel)]="showMeterDateTime.ta0naremarks"
+                placeholder="Please Enter Remark"
+                [ngClass]="(showMeterDateTime.ta0naremarks == '' || showMeterDateTime.ta0naremarks == undefined && !validateRemark1) ? 'redHighlightText' : 'blackHighlightText'">
+              </ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <div *ngIf="!showMeterDateTime.ta0na">
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Actual Time</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-datetime displayFormat="HH:mm:ss" [(ngModel)]="showMeterDateTime.ta0md_meterdatetime"
+                  [ngClass]="(showMeterDateTime.ta0md_meterdatetime == '' || showMeterDateTime.ta0md_meterdatetime == undefined && !validateTest1) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-datetime>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col text-center col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary" *ngIf="showMainMeter">Supplier: Main Meter</ion-label>
+                <ion-label color="primary" *ngIf="!showMainMeter">Supplier: Check Meter</ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Date</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item text-center>
+                <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DDD MMM YYYY"
+                  [(ngModel)]="showMeterDateTime.ta0md_meterdatetime" [max]="gv.maxDate"
+                  [ngClass]="(showMeterDateTime.ta0md_meterdatetime == '' || showMeterDateTime.ta0md_meterdatetime == undefined && !validateTest1) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-datetime>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Time</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item text-center>
+                <ion-datetime displayFormat="HH:mm:ss" [(ngModel)]="showMeterDateTime.ta0md_meterdatetime"
+                  [ngClass]="(showMeterDateTime.ta0md_meterdatetime == '' || showMeterDateTime.ta0md_meterdatetime == undefined && !validateTest1) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-datetime>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="showMainMeter">
+      <!-- Voltage reading and Ph Rotation test  -->
+      <ion-item-divider color="light" class="pointer" (click)="showVoltageTestSection(1)">
+        <ion-row align-items-center>
+          <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-icon name="flask"></ion-icon>&nbsp; <strong>VOLTAGE READING & PH-ROTATION IN TERMINAL METER</strong>
+          </ion-col>
+          <ion-col col-10 col-sm-10 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
+            <ion-icon name="arrow-forward" style="zoom: 1.5;" *ngIf="!showVoltageTest"></ion-icon>
+            <ion-icon name="arrow-down" style="zoom: 1.5;" *ngIf="showVoltageTest"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-item-divider>
+      <div id="showVoltage">
+        <div *ngIf="showVoltageTest">
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Not Applicable</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-select [(ngModel)]="showVoltage.loc_test_ta0na" (ionChange)="hideShowVoltageTest()"
+                  interface="popover">
+                  <ion-option value="Y">Yes</ion-option>
+                  <ion-option value="N">No</ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="showVoltage.ta0na">
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Remarks</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-textarea rows="4" id="remark" type="text" [(ngModel)]="showVoltage.ta0naremarks"
+                  placeholder="Please Enter Remark"
+                  [ngClass]="(showVoltage.ta0naremarks == '' || showVoltage.ta0naremarks == undefined && !validateRemark2) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-textarea>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <div *ngIf="!showVoltage.ta0na">
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary" *ngIf="showMainMeter">Device Allocation Type: Main Meter</ion-label>
+                  <ion-label color="primary" *ngIf="!showMainMeter">Device Allocation Type: Check Meter</ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-4 style="word-wrap: break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">RY</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-input id="remark" [(ngModel)]="showVoltage.ta0vr_ry" type="text" placeholder="Enter value"
+                    [ngClass]="(showVoltage.ta0vr_ry === '' || showVoltage.ta0vr_ry === undefined && !validateTest2) ? 'redHighlightText' : 'blackHighlightText'"
+                    (keyup)="checkUserInput($event,'RY')" (change)="calculateAveragePteSection()"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-4 style="word-wrap: break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">YB</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-input id="remark" [(ngModel)]="showVoltage.ta0vr_yb" type="text" placeholder="Enter value"
+                    [ngClass]="(showVoltage.ta0vr_yb === '' || showVoltage.ta0vr_yb === undefined && !validateTest2) ? 'redHighlightText' : 'blackHighlightText'"
+                    (keyup)="checkUserInput($event,'YB')" (change)="calculateAveragePteSection()"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-4 style="word-wrap: break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">RB</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-input id="remark" [(ngModel)]="showVoltage.ta0vr_rb" type="text" placeholder="Enter value"
+                    [ngClass]="(showVoltage.ta0vr_rb === '' || showVoltage.ta0vr_rb === undefined && !validateTest2) ? 'redHighlightText' : 'blackHighlightText'"
+                    (keyup)="checkUserInput($event,'RB')" (change)="calculateAveragePteSection()"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">RN</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-input id="remark" [(ngModel)]="showVoltage.ta0vr_rn" type="text" placeholder="Enter value"
+                    [ngClass]="(showVoltage.ta0vr_rn === '' || showVoltage.ta0vr_rn === undefined && !validateTest2) ? 'redHighlightText' : 'blackHighlightText'"
+                    (keyup)="checkUserInput($event,'RN')"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">YN</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-input id="remark" [(ngModel)]="showVoltage.ta0vr_yn" type="text" maxlength="11"
+                    placeholder="Enter value"
+                    [ngClass]="(showVoltage.ta0vr_yn === '' ||showVoltage.ta0vr_yn === undefined && !validateTest2) ? 'redHighlightText' : 'blackHighlightText'"
+                    (keyup)="checkUserInput($event,'YN')"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">BN</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-input id="remark" [(ngModel)]="showVoltage.ta0vr_bn" type="text" maxlength="11"
+                    placeholder="Enter value"
+                    [ngClass]="(showVoltage.ta0vr_bn === '' ||showVoltage.ta0vr_bn === undefined && !validateTest2) ? 'redHighlightText' : 'blackHighlightText'"
+                    (keyup)="checkUserInput($event,'BN')"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-4 style="word-wrap: break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">RE</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-input id="remark" [(ngModel)]="showVoltage.ta0vr_re" type="text" maxlength="11"
+                    placeholder="Enter value"
+                    [ngClass]="(showVoltage.ta0vr_re === '' ||showVoltage.ta0vr_re === undefined && !validateTest2) ? 'redHighlightText' : 'blackHighlightText'"
+                    (keyup)="checkUserInput($event,'RE')"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-4 style="word-wrap: break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">YE</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-input id="remark" [(ngModel)]="showVoltage.ta0vr_ye" type="text" maxlength="11"
+                    placeholder="Enter value"
+                    [ngClass]="(showVoltage.ta0vr_ye === '' ||showVoltage.ta0vr_ye === undefined && !validateTest2) ? 'redHighlightText' : 'blackHighlightText'"
+                    (keyup)="checkUserInput($event,'YE')" v></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-4 style="word-wrap: break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">BE</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-input id="remark" [(ngModel)]="showVoltage.ta0vr_be" type="text" maxlength="11"
+                    placeholder="Enter value"
+                    [ngClass]="(showVoltage.ta0vr_be === '' ||showVoltage.ta0vr_be === undefined && !validateTest2) ? 'redHighlightText' : 'blackHighlightText'"
+                    (keyup)="checkUserInput($event,'BE')"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">NE</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-input id="remark" [(ngModel)]="showVoltage.ta0vr_ne" type="text" maxlength="11"
+                    placeholder="Enter value"
+                    [ngClass]="(showVoltage.ta0vr_ne === '' ||showVoltage.ta0vr_ne === undefined && !validateTest2) ? 'redHighlightText' : 'blackHighlightText'"
+                    (keyup)="checkUserInput($event,'NE')"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Phase Rotation</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-input id="remark" [(ngModel)]="showVoltage.ta0ph_rotation" type="text" maxlength="11"
+                    placeholder="Enter value"
+                    [ngClass]="(showVoltage.ta0ph_rotation === '' ||showVoltage.ta0ph_rotation === undefined && !validateTest2) ? 'redHighlightText' : 'blackHighlightText'"
+                    (keyup)="checkPhaseRotation($event,'phaseRotation')"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+
+
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item-divider color="light">
+                  <ion-row>
+                    <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+                      Current
+                    </ion-col>
+                  </ion-row>
+                </ion-item-divider>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item no-lines>
+                  <ion-label color="primary">R : </ion-label>
+                  <ion-input type="text" maxlength="11" (ionChange)="calculateVolRotation()"
+                    [(ngModel)]="showVoltage.ta0vr_sg_ir"
+                    [ngClass]="(showVoltage.ta0vr_sg_ir === '' || showVoltage.ta0vr_sg_ir === undefined && !validateTest2) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value" (keyup)="checkUserInput($event,'crrRed')" text-right></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item no-lines>
+                  <ion-label color="primary">Y : </ion-label>
+                  <ion-input type="text" maxlength="11" (ionChange)="calculateVolRotation()"
+                    [(ngModel)]="showVoltage.ta0vr_sg_iy"
+                    [ngClass]="(showVoltage.ta0vr_sg_iy === '' || showVoltage.ta0vr_sg_iy === undefined && !validateTest2) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value" (keyup)="checkUserInput($event,'crrYellow')" text-right></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item no-lines>
+                  <ion-label color="primary">B : </ion-label>
+                  <ion-input type="text" maxlength="11" (ionChange)="calculateVolRotation()"
+                    [(ngModel)]="showVoltage.ta0vr_sg_ib"
+                    [ngClass]="(showVoltage.ta0vr_sg_ib === '' || showVoltage.ta0vr_sg_ib === undefined && !validateTest2) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value" (keyup)="checkUserInput($event,'crrBlue')" text-right></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <!-- <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input type="text" maxlength="11" (ionChange)="calculateVolRotation()" [(ngModel)]="showVoltage.ta0vr_sg_ir"
+                  [ngClass]="(showVoltage.ta0vr_sg_ir === '' || showVoltage.ta0vr_sg_ir === undefined && !validateTest2) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Please enter value" (keyup)="checkUserInput($event,'crrRed')"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input type="text" maxlength="11" (ionChange)="calculateVolRotation()" [(ngModel)]="showVoltage.ta0vr_sg_iy"
+                  [ngClass]="(showVoltage.ta0vr_sg_iy === '' || showVoltage.ta0vr_sg_iy === undefined && !validateTest2) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Please enter value" (keyup)="checkUserInput($event,'crrYellow')"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input type="text" maxlength="11" (ionChange)="calculateVolRotation()" [(ngModel)]="showVoltage.ta0vr_sg_ib"
+                  [ngClass]="(showVoltage.ta0vr_sg_ib === '' || showVoltage.ta0vr_sg_ib === undefined && !validateTest2) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Please enter value" (keyup)="checkUserInput($event,'crrBlue')"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row> -->
+
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item-divider color="light">
+                  <ion-row>
+                    <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+                      Calculate Primary
+                    </ion-col>
+                  </ion-row>
+                </ion-item-divider>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">R : </ion-label>
+                  <ion-input type="text" maxlength="11" (keyup)="checkUserInput($event,'primRed')"
+                    [(ngModel)]="showVoltage.ta0vr_sg_cal_prim_ir" [readonly]="isReadonly" text-right></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Y : </ion-label>
+                  <ion-input type="text" maxlength="11" (keyup)="checkUserInput($event,'primYellow')"
+                    [(ngModel)]="showVoltage.ta0vr_sg_cal_prim_iy" [readonly]="isReadonly" text-right></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">B : </ion-label>
+                  <ion-input type="text" maxlength="11" (keyup)="checkUserInput($event,'primBlue')"
+                    [(ngModel)]="showVoltage.ta0vr_sg_cal_prim_ib" [readonly]="isReadonly" text-right></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <!-- <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input type="text" maxlength="11" (keyup)="checkUserInput($event,'primRed')" [(ngModel)]="showVoltage.ta0vr_sg_cal_prim_ir"
+                  [readonly]="isReadonly"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input type="text" maxlength="11" (keyup)="checkUserInput($event,'primYellow')" [(ngModel)]="showVoltage.ta0vr_sg_cal_prim_iy"
+                  [readonly]="isReadonly"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input type="text" maxlength="11" (keyup)="checkUserInput($event,'primBlue')" [(ngModel)]="showVoltage.ta0vr_sg_cal_prim_ib"
+                  [readonly]="isReadonly"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row> -->
+
+
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-12 style="word-wrap: break-all; padding-left: 5px;">
+                <ion-item-divider color="light">
+                  <ion-row>
+                    <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+                      Secondary From Portable Test
+                    </ion-col>
+                  </ion-row>
+                </ion-item-divider>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item no-lines>
+                  <ion-label color="primary">R : </ion-label>
+                  <ion-input type="text" maxlength="11" (keyup)="checkUserInput($event,'secPortRed')"
+                    [(ngModel)]="showVoltage.ta0vr_pte_ir" (ionChange)="calculateVolRotation()"
+                    [ngClass]="(showVoltage.ta0vr_pte_ir === '' || showVoltage.ta0vr_pte_ir === undefined && !validateTest2) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value" text-right></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item no-lines>
+                  <ion-label color="primary">Y : </ion-label>
+                  <ion-input type="text" maxlength="11" (keyup)="checkUserInput($event,'secPortYellow')"
+                    [(ngModel)]="showVoltage.ta0vr_pte_iy" (ionChange)="calculateVolRotation()"
+                    [ngClass]="(showVoltage.ta0vr_pte_iy === '' || showVoltage.ta0vr_pte_iy === undefined && !validateTest2) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value" text-right></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item no-lines>
+                  <ion-label color="primary">B : </ion-label>
+                  <ion-input type="text" maxlength="11" (keyup)="checkUserInput($event,'secPortBlue')"
+                    [(ngModel)]="showVoltage.ta0vr_pte_ib" (ionChange)="calculateVolRotation()"
+                    [ngClass]="(showVoltage.ta0vr_pte_ib === '' || showVoltage.ta0vr_pte_ib === undefined && !validateTest2) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value" text-right></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <!-- <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input type="text" maxlength="11" (keyup)="checkUserInput($event,'secPortRed')" [(ngModel)]="showVoltage.ta0vr_pte_ir"
+                  (ionChange)="calculateVolRotation()" [ngClass]="(showVoltage.ta0vr_pte_ir === '' || showVoltage.ta0vr_pte_ir === undefined && !validateTest2) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Please enter value"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input type="text" maxlength="11" (keyup)="checkUserInput($event,'secPortYellow')" [(ngModel)]="showVoltage.ta0vr_pte_iy"
+                  (ionChange)="calculateVolRotation()" [ngClass]="(showVoltage.ta0vr_pte_iy === '' || showVoltage.ta0vr_pte_iy === undefined && !validateTest2) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Please enter value"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input type="text" maxlength="11" (keyup)="checkUserInput($event,'secPortBlue')" [(ngModel)]="showVoltage.ta0vr_pte_ib"
+                  (ionChange)="calculateVolRotation()" [ngClass]="(showVoltage.ta0vr_pte_ib === '' || showVoltage.ta0vr_pte_ib === undefined && !validateTest2) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Please enter value"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row> -->
+
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item-divider color="light">
+                  <ion-row>
+                    <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+                      Calculate CT Ratio
+                    </ion-col>
+                  </ion-row>
+                </ion-item-divider>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">R : </ion-label>
+                  <ion-input type="text" maxlength="11" [(ngModel)]="showVoltage.ta0vr_pte_cal_ctratio_ir"
+                    [readonly]="isReadonly" text-right></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Y : </ion-label>
+                  <ion-input type="text" maxlength="11" [(ngModel)]="showVoltage.ta0vr_pte_cal_ctratio_iy"
+                    [readonly]="isReadonly" text-right></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">B : </ion-label>
+                  <ion-input type="number" maxlength="8" [(ngModel)]="showVoltage.ta0vr_pte_cal_ctratio_ib"
+                    [readonly]="isReadonly" text-right></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <!-- <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input type="text" maxlength="11" [(ngModel)]="showVoltage.ta0vr_pte_cal_ctratio_ir" [readonly]="isReadonly"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input type="text" maxlength="11" [(ngModel)]="showVoltage.ta0vr_pte_cal_ctratio_iy" [readonly]="isReadonly"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input type="number" maxlength="8" [(ngModel)]="showVoltage.ta0vr_pte_cal_ctratio_ib" [readonly]="isReadonly"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row> -->
+
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item-divider color="light">
+                  <ion-row>
+                    <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+                      Switchgear & Metering
+                    </ion-col>
+                  </ion-row>
+                </ion-item-divider>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Switchgear</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input type="text" maxlength="11" (keyup)="checkUserInput($event,'swtichgear1')"
+                    (ionChange)="calculateVolRotation()" [(ngModel)]="showVoltage.ta0vr_sg_ctratio_n"
+                    [ngClass]="(showVoltage.ta0vr_sg_ctratio_n === '' || showVoltage.ta0vr_sg_ctratio_n === undefined && !validateTest2) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item text-center no-lines>
+                  <ion-label color="primary">/</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input type="text" maxlength="11" (keyup)="checkUserInput($event,'swtichgear2')"
+                    (ionChange)="calculateVolRotation()" [(ngModel)]="showVoltage.ta0vr_sg_ctratio_d"
+                    [ngClass]="(showVoltage.ta0vr_sg_ctratio_d === '' || showVoltage.ta0vr_sg_ctratio_d === undefined && !validateTest2) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item text-center no-lines>
+                  <ion-label color="primary">A</ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Metering</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input type="text" (keyup)="checkUserInput($event,'metering1')"
+                    (ionChange)="CalculationpowerRead()" [(ngModel)]="showVoltage.ta0vr_pte_ctratio_n"
+                    [ngClass]="(showVoltage.ta0vr_pte_ctratio_n === '' || showVoltage.ta0vr_pte_ctratio_n === undefined && !validateTest2) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item text-center no-lines>
+                  <ion-label color="primary">/</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input type="text" (keyup)="checkUserInput($event,'metering2')"
+                    (ionChange)="CalculationpowerRead()" [(ngModel)]="showVoltage.ta0vr_pte_ctratio_d"
+                    [ngClass]="(showVoltage.ta0vr_pte_ctratio_d === '' || showVoltage.ta0vr_pte_ctratio_d === undefined && !validateTest2) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item text-center no-lines>
+                  <ion-label color="primary">A</ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ion-item-divider color="light" class="pointer" (click)="showEnergyTestSection(1)">
+      <ion-row align-items-center>
+        <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-icon name="flask"></ion-icon>&nbsp; <strong>ENERGY READING RECORDED BY METER</strong>
+        </ion-col>
+        <ion-col col-10 col-sm-10 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
+          <ion-icon name="arrow-forward" style="zoom: 1.5;" *ngIf="!showEnergyTest"></ion-icon>
+          <ion-icon name="arrow-down" style="zoom: 1.5;" *ngIf="showEnergyTest"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-item-divider>
+    <div id="showEnergy">
+      <div *ngIf="showEnergyTest">
+        <ion-row>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label color="primary">Not Applicable</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-select [(ngModel)]="showEnergy.loc_test_ta0na" (ionChange)="hideShowEnergyTest()"
+                interface="popover">
+                <ion-option value="Y">Yes</ion-option>
+                <ion-option value="N">No</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="showEnergy.ta0na">
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label color="primary">Remarks</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-textarea rows="4" id="remark" type="text" maxlength="40" [(ngModel)]="showEnergy.ta0naremarks"
+                placeholder="Please enter remark"
+                [ngClass]="(showEnergy.ta0naremarks === '' || showEnergy.ta0naremarks === undefined && !validateRemark3) ? 'redHighlightText' : 'blackHighlightText'">
+              </ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <div *ngIf="!showEnergy.ta0na">
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Start Time</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">End Time</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Duration (Hour)</ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" (ionChange)="CalculationDuration()"
+                  [(ngModel)]="showEnergy.ta0er_starttime" placeholder="Select value"
+                  [ngClass]="(showEnergy.ta0er_starttime === '' || showEnergy.ta0er_starttime === undefined && !validateTest3) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-datetime>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" (ionChange)="CalculationDuration()"
+                  [(ngModel)]="showEnergy.ta0er_endtime" placeholder="Select value"
+                  [ngClass]="(showEnergy.ta0er_endtime === '' || showEnergy.ta0er_endtime === undefined && !validateTest3) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-datetime>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="remark" type="text" [(ngModel)]="showEnergy.ta0er_duration" [readonly]="isReadonly">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+
+
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary" *ngIf="showMainMeter">Device Allocation Type: Main Meter</ion-label>
+                <ion-label color="primary" *ngIf="!showMainMeter">Device Allocation Type: Check Meter</ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <!-- applicable Heading -->
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary" *ngIf="showMainMeter">Supplier: Main Meter</ion-label>
+                <ion-label color="primary" *ngIf="!showMainMeter">Supplier: Check Meter</ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-8 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Reading</ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Code</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Final</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Initial</ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="code" type="number" maxlength="8" [(ngModel)]="showEnergy.ta0er_registercode"
+                  [ngClass]="(showEnergy.ta0er_registercode === '' || showEnergy.ta0er_registercode === undefined && !validateTest3) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="code" type="text" (change)="CalculationSupplier()"
+                  [(ngModel)]="showEnergy.ta0er_readingafter"
+                  [ngClass]="(showEnergy.ta0er_readingafter === '' || showEnergy.ta0er_readingafter === undefined && !validateTest3) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value" (keyup)="allow10input($event,'mtrFinal')"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="code" type="text" placeholder="Enter value" (change)="CalculationSupplier()"
+                  [(ngModel)]="showEnergy.ta0er_readingbefore" (keyup)="allow10input($event,'mtrInitial')"
+                  [ngClass]="(showEnergy.ta0er_readingbefore === '' || showEnergy.ta0er_readingbefore === undefined && !validateTest3) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">MF</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">RF</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Usage</ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="code" type="text" (change)="CalculationSupplier()" [(ngModel)]="showEnergy.ta0er_mf"
+                  maxlength="8"
+                  [ngClass]="(showEnergy.ta0er_mf === '' || showEnergy.ta0er_mf === undefined && !validateTest3) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value" (keyup)="checkUserInput($event,'mtrMF')"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="code" type="text" (change)="CalculationSupplier('')" [(ngModel)]="showEnergy.ta0er_rf"
+                  maxlength="8"
+                  [ngClass]="(showEnergy.ta0er_rf === '' || showEnergy.ta0er_rf === undefined && !validateTest3) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value" (keyup)="checkUserInput($event,'mtrRF')"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="code" type="text" [(ngModel)]="showEnergy.ta0er_usage" maxlength="11"
+                  [readonly]="isReadonly"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </div>
+      </div>
+    </div>
+
+    <ion-item-divider color="light" class="pointer" (click)="showSprTestSection(1)">
+      <ion-row align-items-center>
+        <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-icon name="flask"></ion-icon>&nbsp; <strong>SECONDARY POWER READING FROM PORTABLE TEST EQUIPMENT
+            (PTE)</strong>
+        </ion-col>
+        <ion-col col-10 col-sm-10 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
+          <ion-icon name="arrow-forward" style="zoom: 1.5;" *ngIf="!showSprTest"></ion-icon>
+          <ion-icon name="arrow-down" style="zoom: 1.5;" *ngIf="showSprTest"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-item-divider>
+    <div id="showSpr">
+      <div *ngIf="showSprTest">
+        <ion-row>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label color="primary">Not Applicable</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-select [(ngModel)]="showSpr.loc_test_ta0na" (ionChange)="hideShowSprTest()" interface="popover">
+                <ion-option value="Y">Yes</ion-option>
+                <ion-option value="N">No</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="showSpr.ta0na">
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label color="primary">Remarks</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-textarea rows="4" id="remark" type="text" maxlength="40" [(ngModel)]="showSpr.ta0naremarks"
+                placeholder="Please enter remark"
+                [ngClass]="(showSpr.ta0naremarks === '' || showSpr.ta0naremarks === undefined && !validateRemark4) ? 'redHighlightText' : 'blackHighlightText'">
+              </ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <div *ngIf="!showSpr.ta0na">
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary" *ngIf="showMainMeter">Device Allocation Type: Main Meter</ion-label>
+                <ion-label color="primary" *ngIf="!showMainMeter">Device Allocation Type: Check Meter</ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <div *ngIf="showMainMeter">
+            <ion-item-divider color="light">
+              <ion-row>
+                <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+                  Part 1: Secondary Power Reading from PTE
+                </ion-col>
+              </ion-row>
+            </ion-item-divider>
+            <!-- applicable Heading -->
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary" *ngIf="showMainMeter">Supplier: Main Meter</ion-label>
+                  <ion-label color="primary" *ngIf="!showMainMeter">Supplier: Check Meter</ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary" text-center><strong>PH</strong></ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary"><strong>ACTIVE</strong></ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary"><strong>REACTIVE</strong></ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary"><strong>PF</strong></ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <!-- 1st row  start -->
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary" text-center>Red</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="code" type="text" (change)="CalculationpowerRead()" maxlength="11"
+                    [(ngModel)]="showSpr.ta0pr_active_r"
+                    [ngClass]="(showSpr.ta0pr_active_r === '' || showSpr.ta0pr_active_r === undefined && !validateTest4) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value" (keyup)="checkUserInput($event,'activeRed')"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="code" type="text" maxlength="11" (change)="CalculationpowerRead()"
+                    [(ngModel)]="showSpr.ta0pr_reactive_r"
+                    [ngClass]="(showSpr.ta0pr_reactive_r === '' || showSpr.ta0pr_reactive_r === undefined && !validateTest4) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value" (keyup)="checkUserInput($event,'reactiveRed')"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="code" type="text" maxlength="11" [(ngModel)]="showSpr.ta0pr_pf_r"
+                    [ngClass]="(showSpr.ta0pr_pf_r === '' || showSpr.ta0pr_pf_r === undefined && !validateTest4) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value" (keyup)="checkUserInput($event,'pfRed')"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <!-- 2nd row  start -->
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary" text-center>Yellow</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="code" type="text" maxlength="11" (change)="CalculationpowerRead()"
+                    [(ngModel)]="showSpr.ta0pr_active_y"
+                    [ngClass]="(showSpr.ta0pr_active_y === '' || showSpr.ta0pr_active_y === undefined && !validateTest4) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value" (keyup)="checkUserInput($event,'activeYellow')"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="code" type="text" maxlength="11" (change)="CalculationpowerRead()"
+                    [(ngModel)]="showSpr.ta0pr_reactive_y"
+                    [ngClass]="(showSpr.ta0pr_reactive_y === '' || showSpr.ta0pr_reactive_y === undefined && !validateTest4) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value" (keyup)="checkUserInput($event,'reactiveYellow')"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="code" type="text" maxlength="11" [(ngModel)]="showSpr.ta0pr_pf_y"
+                    [ngClass]="(showSpr.ta0pr_pf_y === '' || showSpr.ta0pr_pf_y === undefined && !validateTest4) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value" (keyup)="checkUserInput($event,'pfYellow')"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <!-- 3rd row  start -->
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary" text-center>Blue</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="code" type="text" maxlength="11" (change)="CalculationpowerRead()"
+                    [(ngModel)]="showSpr.ta0pr_active_b"
+                    [ngClass]="(showSpr.ta0pr_active_b === '' || showSpr.ta0pr_active_b === undefined && !validateTest4) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value" (keyup)="checkUserInput($event,'activeBlue')"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="code" type="text" maxlength="11" (change)="CalculationpowerRead()"
+                    [(ngModel)]="showSpr.ta0pr_reactive_b"
+                    [ngClass]="(showSpr.ta0pr_reactive_b === '' || showSpr.ta0pr_reactive_b === undefined && !validateTest4) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value" (keyup)="checkUserInput($event,'reactiveBlue')"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="code" type="text" maxlength="11" [(ngModel)]="showSpr.ta0pr_pf_b"
+                    [ngClass]="(showSpr.ta0pr_pf_b === '' || showSpr.ta0pr_pf_b === undefined && !validateTest4) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value" (keyup)="checkUserInput($event,'pfBlue')"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <!-- 4th row  start -->
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary" text-center>Total</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="code" type="text" maxlength="11" (keyup)="checkUserInput($event,'totalActive')"
+                    [(ngModel)]="showSpr.ta0pr_active_total" [readonly]="isReadonly"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="code" type="text" maxlength="11" (keyup)="checkUserInput($event,'reactivetotal')"
+                    [(ngModel)]="showSpr.ta0pr_reactive_total" [readonly]="isReadonly"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="code" type="text" maxlength="11" (keyup)="checkUserInput($event,'pfTotal')"
+                    placeholder="Enter value" (change)="CalculationpowerRead()" [(ngModel)]="showSpr.ta0pr_pf_total"
+                    [ngClass]="(showSpr.ta0pr_pf_total === '' || showSpr.ta0pr_pf_total === undefined && !validateTest4) ? 'redHighlightText' : 'blackHighlightText'">
+                  </ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </div>
+
+          <ion-item-divider color="light">Part 2: Meter Accuracy Test (% Error) kVARh </ion-item-divider>
+          <!-- applicable Heading -->
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">First</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Second</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Third</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Average</ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <!-- 1st row  start -->
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="code" type="text" maxlength="11" (change)="CalculationAcurancy()"
+                  [(ngModel)]="showSpr.ta0at_test1"
+                  [ngClass]="(showSpr.ta0at_test1 === '' || showSpr.ta0at_test1 === undefined && !validateTest4) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value" (keyup)="checkUserInput2($event,'accurFirst')"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="code" type="tel" maxlength="11" (change)="CalculationAcurancy()"
+                  [(ngModel)]="showSpr.ta0at_test2"
+                  [ngClass]="(showSpr.ta0at_test2 === '' || showSpr.ta0at_test2 === undefined && !validateTest4) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value" (keyup)="checkUserInput2($event,'accurSecond')"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="code" type="text" maxlength="11" (change)="CalculationAcurancy()"
+                  [(ngModel)]="showSpr.ta0at_test3"
+                  [ngClass]="(showSpr.ta0at_test3 === '' || showSpr.ta0at_test3 === undefined && !validateTest4) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value" (keyup)="checkUserInput2($event,'accurThird')"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="code" type="text" maxlength="11" [(ngModel)]="showSpr.ta0at_avg" [readonly]="isReadonly">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <div *ngIf="showMainMeter">
+            <ion-item-divider color="light">
+              <ion-row>
+                <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+                  Part 3: Total Power Calculation (kWh)
+                </ion-col>
+              </ion-row>
+            </ion-item-divider>
+            <!-- applicable Heading -->
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">CT Ratio (A)</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="code" [readonly]="true" value="{{ctRatioDisplay}} A" type="text"
+                    (change)="calculateTransformerRatio()">
+
+                  </ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">PT Ratio (V)</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="code" type="text" value="{{ptRatioDisplay}} V" [readonly]="true"
+                    (change)="calculateTransformerRatio()">
+
+                  </ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">x (Total Power (sec))</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="code" type="text" maxlength="11" [(ngModel)]="showSpr.ta0pr_totalpower_sec"
+                    [readonly]="isReadonly"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">y (Transformation Factor) (kW)</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="code" type="text" maxlength="11" [(ngModel)]="showSpr.ta0pr_transformationfactor"
+                    [readonly]="isReadonly"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item no-lines>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item no-lines>
+                  <ion-label text-wrap style="font-style:italic;font-size: 12px;">Transformation Factor = CT Ratio X PT
+                    Ratio
+                  </ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">z (Total Power (Primary)) (kW)</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input type="text" maxlength="11" [(ngModel)]="showSpr.ta0pr_totalpower_prim"
+                    [readonly]=isReadonly></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item no-lines>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item no-lines>
+                  <ion-label text-wrap style="font-style:italic;font-size: 12px;"> Total Power (Primary) = Total
+                    Power(Sec)X
+                    Transformation
+                    Factor</ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="showMainMeter">
+      <ion-item-divider color="light" text-wrap class="pointer" (click)="showPowerValTestSection(1)">
+        <ion-row align-items-center>
+          <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-icon name="flask"></ion-icon>&nbsp; <strong>POWER VALUE DIFFERENCE AMONG PTE (P0), METER (P1 & P2) AND
+              CACULATION (P3)</strong>
+          </ion-col>
+          <ion-col col-10 col-sm-10 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
+            <ion-icon name="arrow-forward" style="zoom: 1.5;" *ngIf="!showPowerValTest"></ion-icon>
+            <ion-icon name="arrow-down" style="zoom: 1.5;" *ngIf="showPowerValTest"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-item-divider>
+      <div id="showPowerVal">
+        <div *ngIf="showPowerValTest">
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Not Applicable</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-select [(ngModel)]="showPowerVal.loc_test_ta0na" (ionChange)="hideShowPowerValTest()"
+                  interface="popover">
+                  <ion-option value="Y">Yes</ion-option>
+                  <ion-option value="N">No</ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="showPowerVal.ta0na">
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Remarks</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-textarea rows="4" id="remark" type="text" maxlength="40" [(ngModel)]="showPowerVal.ta0naremarks"
+                  placeholder="Please enter remark"
+                  [ngClass]="(showPowerVal.ta0naremarks === '' || showPowerVal.ta0naremarks === undefined && !validateRemark5) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-textarea>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <div *ngIf="!showPowerVal.ta0na">
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary" *ngIf="showMainMeter">Device Allocation Type: Main Meter</ion-label>
+                  <ion-label color="primary" *ngIf="!showMainMeter">Device Allocation Type: Check Meter</ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-item-divider color="light">
+              <ion-row>
+                <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+                  Part 1: From Item - Energy Power Recorded By Meter
+                </ion-col>
+              </ion-row>
+            </ion-item-divider>
+            <!-- applicable Heading -->
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Usage kWh, A =</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="code" type="text" (keyup)="checkUserInput($event,'kWHA')" (change)="Calculationp1()"
+                    [(ngModel)]="showPowerVal.ta0pwc_usage" maxlength="9"
+                    [ngClass]="(showPowerVal.ta0pwc_usage === '' || showPowerVal.ta0pwc_usage === undefined && !validateTest5) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Duration (Hour), B =</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="code" type="text" (keyup)="checkUserInput($event,'durB')" (change)="Calculationp1()"
+                    [(ngModel)]="showPowerVal.ta0pwc_nexthour" maxlength="9"
+                    [ngClass]="(showPowerVal.ta0pwc_nexthour === '' || showPowerVal.ta0pwc_nexthour === undefined && !validateTest5) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">P1 = Estimated Demand, A/B =</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="estDmnd" type="text" [(ngModel)]="showPowerVal.ta0pwc_estdemand" maxlength="11"
+                    [readonly]="isReadonly"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">P2 = Metered Demand =</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="code" type="text" maxlength="11" (keyup)="checkUserInput($event,'meterDemand')"
+                    [(ngModel)]="showPowerVal.ta0pwc_metereddemand"
+                    [ngClass]="(showPowerVal.ta0pwc_metereddemand === '' || showPowerVal.ta0pwc_metereddemand === undefined && !validateTest5) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-item-divider color="light" text-wrap>
+              <ion-row>
+                <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+                  Part 2: From Item - Power Value Difference among PTE(P0), Meter (P1 & P2) and Calculation (P3)
+                </ion-col>
+              </ion-row>
+            </ion-item-divider>
+            <!-- applicable Heading -->
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Average Voltage (kV) =</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="code" type="text" (keyup)="checkUserInput($event,'avgVoltage')"
+                    (change)="Calculationpte()" [(ngModel)]="showPowerVal.ta0pwc_avgvoltage"
+                    [ngClass]="(showPowerVal.ta0pwc_avgvoltage === '' || showPowerVal.ta0pwc_avgvoltage === undefined && !validateTest5) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Average Amps, I =</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="code" type="text" maxlength="11" (keyup)="checkUserInput($event,'avgAmps')"
+                    (change)="Calculationpte()" [(ngModel)]="showPowerVal.ta0pwc_avgamps"
+                    [ngClass]="(showPowerVal.ta0pwc_avgamps === '' || showPowerVal.ta0pwc_avgamps === undefined && !validateTest5) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Average PF, Cos 0 =</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="code" type="text" maxlength="11" (keyup)="checkUserInput($event,'avgPf')"
+                    (change)="Calculationpte()" [(ngModel)]="showPowerVal.ta0pwc_avgpf"
+                    [ngClass]="(showPowerVal.ta0pwc_avgpf === '' || showPowerVal.ta0pwc_avgpf === undefined && !validateTest5) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">P3 = /3 VI Cos 0 (kW) =</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="code" type="text" maxlength="11" [(ngModel)]="showPowerVal.ta0pwc_p3"
+                    [readonly]="isReadonly"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </div>
+        </div>
+        <!-- end showPowerVal -->
+      </div>
+    </div>
+
+    <ion-item-divider color="light" class="pointer" (click)="showRegisterTestSection(1)">
+      <ion-row align-items-center>
+        <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-icon name="flask"></ion-icon>&nbsp; <strong>REGISTER TEST USING PORTABLE EQUIPMENT (PTE)</strong>
+        </ion-col>
+        <ion-col col-10 col-sm-10 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
+          <ion-icon name="arrow-forward" style="zoom: 1.5;" *ngIf="!showRegisterTest"></ion-icon>
+          <ion-icon name="arrow-down" style="zoom: 1.5;" *ngIf="showRegisterTest"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-item-divider>
+    <div id="showRegister">
+      <div *ngIf="showRegisterTest">
+        <ion-row>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label color="primary">Not Applicable</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-select [(ngModel)]="showRegister.loc_test_ta0na" (ionChange)="hideShowRegisterTest()"
+                interface="popover">
+                <ion-option value="Y">Yes</ion-option>
+                <ion-option value="N">No</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="showRegister.ta0na">
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label color="primary">Remarks</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-textarea rows="4" id="remark" type="text" maxlength="40" [(ngModel)]="showRegister.ta0naremarks"
+                placeholder="Please enter remark"
+                [ngClass]="(showRegister.ta0naremarks === '' || showRegister.ta0naremarks === undefined && !validateRemark6) ? 'redHighlightText' : 'blackHighlightText'">
+              </ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <div *ngIf="!showRegister.ta0na">
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary" *ngIf="showMainMeter">Device Allocation Type: Main Meter</ion-label>
+                <ion-label color="primary" *ngIf="!showMainMeter">Device Allocation Type: Check Meter</ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-item-divider color="light">
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+                Part 1: Meter Reading (kWh)
+              </ion-col>
+            </ion-row>
+          </ion-item-divider>
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-2 style="word-wrap: break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Final</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap: break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input type="text" maxlength="11" (keyup)="checkUserInput($event,'kwhFinal')"
+                  (change)="CalculationKwh()" [(ngModel)]="showRegister.ta0reg_amf"
+                  [ngClass]="(showRegister.ta0reg_amf === '' || showRegister.ta0reg_amf === undefined && !validateTest6) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-2 style="word-wrap: break-all; padding-left: 5px;">
+
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap: break-all; padding-left: 5px;">
+
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-2 style="word-wrap: break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Initial</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap: break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input type="text" maxlength="11" (keyup)="checkUserInput($event,'kwhInitial')"
+                  (change)="CalculationKwh()" [(ngModel)]="showRegister.ta0reg_amb"
+                  [ngClass]="(showRegister.ta0reg_amb === '' || showRegister.ta0reg_amb === undefined && !validateTest6) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-2 style="word-wrap: break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Usage</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap: break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input type="text" maxlength="11" [(ngModel)]="showRegister.ta0reg_amc" [readonly]="true">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-item-divider color="light">
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+                Part 2: Test Equipment Reading (kWh)
+              </ion-col>
+            </ion-row>
+          </ion-item-divider>
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Reading</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <!-- can't enter decimal value  it is integer -->
+                <ion-input id="code" type="text" maxlength="11" (keyup)="checkUserInput($event,'kwhReading')"
+                  (change)="CalculationKwh()" [(ngModel)]="showRegister.ta0reg_pteread"
+                  [ngClass]="(showRegister.ta0reg_pteread === '' || showRegister.ta0reg_pteread === undefined && !validateTest6) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">% Error</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="code" type="text" maxlength="11" [(ngModel)]="showRegister.ta0reg_pteerror"
+                  [readonly]="isReadonly"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-item-divider color="light" *ngIf="showCheckPulse">
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+                Part 3: Check Pulse Connection (kWh)
+              </ion-col>
+            </ion-row>
+          </ion-item-divider>
+          <ion-grid
+            style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
+            *ngFor="let attr of checkPulseConnectionArray; let i = index">
+            <ion-row *ngIf="showCheckPulse">
+              <ion-col *ngIf="showMainMeter" col-12 col-sm-12 col-md-6
+                style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label *ngIf="i === 0" color="primary">M - {{ i + 1 }} ({{ allocationType === '90' ? 'Main Meter'
+                    :
+                    allocationType === '94' ? 'Sub Meter' : 'Sub Meter' }}) 180</ion-label>
+                  <ion-label *ngIf="i !== 0" color="primary">M - {{ i + 1 }} ({{ allocationType === '90' ? 'Feeder
+                    Meter'
+                    : allocationType === '94' ? 'Sub Feeder Meter' : 'Main Meter' }}) 180</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col *ngIf="!showMainMeter" col-12 col-sm-12 col-md-6
+                style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label *ngIf="i === 0" color="primary">M - {{ i + 1 }} ({{ allocationType === '92' ? 'Check
+                    Meter'
+                    : allocationType === '95' ? 'Check Sub Meter' : 'Check Meter' }}) 180</ion-label>
+                  <ion-label *ngIf="i !== 0" color="primary">M - {{ i + 1 }} ({{ allocationType === '92' ? 'Check
+                    Feeder
+                    Meter' : allocationType === '95' ? 'Check Sub Meter' : 'Check Sub Feeder Meter' }}) 180</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input type="text" (keyup)="allow10input($event,'pulse_Connect2', i)"
+                    (ionChange)="calculationpulse()"
+                    [ngClass]="(attr.ta0reg_pciread2 === '' || attr.ta0reg_pciread2 === undefined && !validateTest6) ? 'redHighlightText' : 'blackHighlightText'"
+                    [(ngModel)]="attr.ta0reg_pciread2" placeholder="Enter value"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-row *ngIf="showCheckPulse">
+            <br>
+            <hr>
+            <br>
+          </ion-row>
+          <ion-row *ngIf="showMainMeter && showCheckPulse">
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">M - 1 (Main Meter) 880</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input type="text" [(ngModel)]="showRegister.ta0reg_pcsread"
+                  (keyup)="checkUserInput16($event,'Main880')" placeholder="Enter value"
+                  [ngClass]="(showRegister.ta0reg_pcsread === '' || showRegister.ta0reg_pcsread === undefined && !validateTest6) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="!showMainMeter && showCheckPulse">
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">M - 1 (Check Meter) 880</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input type="text" [(ngModel)]="showRegister.ta0reg_pcsread"
+                  (keyup)="checkUserInput16($event,'Check880')" placeholder="Enter value"
+                  [ngClass]="(showRegister.ta0reg_pcsread === '' || showRegister.ta0reg_pcsread === undefined && !validateTest6) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="showCheckPulse">
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Calculation</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input type="number" [(ngModel)]="showRegister.ta0reg_pccalc" readonly="true"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </div>
+      </div>
+      <!-- end showRegister -->
+    </div>
+
+    <ion-item-divider color="light" class="pointer" (click)="showLedTestSection(1)">
+      <ion-row align-items-center>
+        <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-icon name="flask"></ion-icon>&nbsp; <strong>METER POWER FLOW / LED INDICATION TEST</strong>
+        </ion-col>
+        <ion-col col-10 col-sm-10 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
+          <ion-icon name="arrow-forward" style="zoom: 1.5;" *ngIf="!showLedTest"></ion-icon>
+          <ion-icon name="arrow-down" style="zoom: 1.5;" *ngIf="showLedTest"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-item-divider>
+    <div id="showLed">
+      <div *ngIf="showLedTest">
+        <ion-row>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label color="primary">Not Applicable</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-select [(ngModel)]="showLed.loc_test_ta0na" (ionChange)="hideShowLedTest()" interface="popover">
+                <ion-option value="Y">Yes</ion-option>
+                <ion-option value="N">No</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="showLed.ta0na">
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label color="primary">Remarks</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-textarea rows="4" id="remark" type="text" maxlength="40" [(ngModel)]="showLed.ta0naremarks"
+                placeholder="Please enter remark"
+                [ngClass]="(showLed.ta0naremarks === '' || showLed.ta0naremarks === undefined && !validateRemark7) ? 'redHighlightText' : 'blackHighlightText'">
+              </ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <div *ngIf="!showLed.ta0na">
+          <!-- start yes Applicable Meter LED Test -->
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item text-center>
+                <ion-label color="primary" *ngIf="showMainMeter"><strong>Main Meter (LED kWh Only)</strong></ion-label>
+                <ion-label color="primary" *ngIf="!showMainMeter"><strong>Check Meter (LED kWh Only)</strong>
+                </ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <!-- Title Start -->
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Element</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item text-center>
+                <ion-label color="primary">LED</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item text-center>
+                <ion-label color="primary">Indicator</ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <!-- Title End -->
+
+          <!-- Red Element Start -->
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Red</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+              <!-- LED Section -->
+              <ion-list radio-group [(ngModel)]="showLed.ta0led_r">
+                <ion-row>
+                  <ion-col>
+                    <ion-item
+                      [ngClass]="(showLed.ta0led_r === '' || showLed.ta0led_r === undefined && !validateTest7) ? 'redHighlightText' : 'blackHighlightText'">
+                      <ion-label>K</ion-label>
+                      <ion-radio value="1"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col>
+                    <ion-item
+                      [ngClass]="(showLed.ta0led_r === '' || showLed.ta0led_r === undefined && !validateTest7) ? 'redHighlightText' : 'blackHighlightText'">
+                      <ion-label>T</ion-label>
+                      <ion-radio value="0"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col>
+                    <ion-item
+                      [ngClass]="(showLed.ta0led_r === '' || showLed.ta0led_r === undefined && !validateTest7) ? 'redHighlightText' : 'blackHighlightText'">
+                      <ion-label>NA</ion-label>
+                      <ion-radio value="NA"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+              </ion-list>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+              <!-- Indicator Section -->
+              <ion-list radio-group [(ngModel)]="showLed.ta0led_ind_r">
+                <ion-row>
+                  <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-item
+                      [ngClass]="(showLed.ta0led_ind_r === '' || showLed.ta0led_ind_r === undefined && !validateTest7) ? 'redHighlightText' : 'blackHighlightText'">
+                      <ion-label>F</ion-label>
+                      <ion-radio value="F"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-item
+                      [ngClass]="(showLed.ta0led_ind_r === '' || showLed.ta0led_ind_r === undefined && !validateTest7) ? 'redHighlightText' : 'blackHighlightText'">
+                      <ion-label>R</ion-label>
+                      <ion-radio value="R"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-item
+                      [ngClass]="(showLed.ta0led_ind_r === '' || showLed.ta0led_ind_r === undefined && !validateTest7) ? 'redHighlightText' : 'blackHighlightText'">
+                      <ion-label>NA</ion-label>
+                      <ion-radio value="NA"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+          <!-- Red Element End -->
+
+          <!-- Yellow Element Start -->
+          <ion-row>
+            <ion-col text-center col-12 col-sm-12 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Yellow</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col text-center col-12 col-sm-12 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-list radio-group [(ngModel)]="showLed.ta0led_y">
+                <ion-row>
+                  <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-item
+                      [ngClass]="(showLed.ta0led_y === '' || showLed.ta0led_y === undefined && !validateTest7) ? 'redHighlightText' : 'blackHighlightText'">
+                      <ion-label>K</ion-label>
+                      <ion-radio value="1"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-item
+                      [ngClass]="(showLed.ta0led_y === '' || showLed.ta0led_y === undefined && !validateTest7) ? 'redHighlightText' : 'blackHighlightText'">
+                      <ion-label>T</ion-label>
+                      <ion-radio value="0"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-item
+                      [ngClass]="(showLed.ta0led_y === '' || showLed.ta0led_y === undefined && !validateTest7) ? 'redHighlightText' : 'blackHighlightText'">
+                      <ion-label>NA</ion-label>
+                      <ion-radio value="NA"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+              </ion-list>
+            </ion-col>
+            <ion-col text-center col-12 col-sm-12 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-list radio-group [(ngModel)]="showLed.ta0led_ind_y">
+                <ion-row>
+                  <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-item
+                      [ngClass]="(showLed.ta0led_ind_y === '' || showLed.ta0led_ind_y === undefined && !validateTest7) ? 'redHighlightText' : 'blackHighlightText'">
+                      <ion-label>F</ion-label>
+                      <ion-radio value="F"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-item
+                      [ngClass]="(showLed.ta0led_ind_y === '' || showLed.ta0led_ind_y === undefined && !validateTest7) ? 'redHighlightText' : 'blackHighlightText'">
+                      <ion-label>R</ion-label>
+                      <ion-radio value="R"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-item
+                      [ngClass]="(showLed.ta0led_ind_y === '' || showLed.ta0led_ind_y === undefined && !validateTest7) ? 'redHighlightText' : 'blackHighlightText'">
+                      <ion-label>NA</ion-label>
+                      <ion-radio value="NA"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+          <!-- Yellow Element End -->
+
+          <!-- Blue Element Start -->
+          <ion-row>
+            <ion-col text-center col-12 col-sm-12 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Blue</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col text-center col-12 col-sm-12 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-list radio-group [(ngModel)]="showLed.ta0led_b">
+                <ion-row>
+                  <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-item
+                      [ngClass]="(showLed.ta0led_b === '' || showLed.ta0led_b === undefined && !validateTest7) ? 'redHighlightText' : 'blackHighlightText'">
+                      <ion-label>K</ion-label>
+                      <ion-radio value="1"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-item
+                      [ngClass]="(showLed.ta0led_b === '' || showLed.ta0led_b === undefined && !validateTest7) ? 'redHighlightText' : 'blackHighlightText'">
+                      <ion-label>T</ion-label>
+                      <ion-radio value="0"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-item
+                      [ngClass]="(showLed.ta0led_b === '' || showLed.ta0led_b === undefined && !validateTest7) ? 'redHighlightText' : 'blackHighlightText'">
+                      <ion-label>NA</ion-label>
+                      <ion-radio value="NA"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+              </ion-list>
+            </ion-col>
+            <ion-col text-center col-12 col-sm-12 col-md-5 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-list radio-group [(ngModel)]="showLed.ta0led_ind_b">
+                <ion-row>
+                  <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-item
+                      [ngClass]="(showLed.ta0led_ind_b === '' || showLed.ta0led_ind_b === undefined && !validateTest7) ? 'redHighlightText' : 'blackHighlightText'">
+                      <ion-label>F</ion-label>
+                      <ion-radio value="F"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-item
+                      [ngClass]="(showLed.ta0led_ind_b === '' || showLed.ta0led_ind_b === undefined && !validateTest7) ? 'redHighlightText' : 'blackHighlightText'">
+                      <ion-label>R</ion-label>
+                      <ion-radio value="R"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col style="word-wrap:  break-all; padding-left: 5px;">
+                    <ion-item
+                      [ngClass]="(showLed.ta0led_ind_b === '' || showLed.ta0led_ind_b === undefined && !validateTest7) ? 'redHighlightText' : 'blackHighlightText'">
+                      <ion-label>NA</ion-label>
+                      <ion-radio value="NA"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+          <!-- Blue Element End -->
+          <!-- end yes Applicable Pre Meter LED Test-->
+        </div>
+      </div>
+    </div>
+    <div *ngIf="showMainMeter">
+      <ion-item-divider color="light" class="pointer" (click)="showReportTestSection(1)">
+        <ion-row align-items-center>
+          <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-icon name="flask"></ion-icon>&nbsp; <strong>TEST REPORT VERIFICATION ACCURACY METER ON SITE</strong>
+          </ion-col>
+          <ion-col col-10 col-sm-10 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
+            <ion-icon name="arrow-forward" style="zoom: 1.5;" *ngIf="!showReportTest"></ion-icon>
+            <ion-icon name="arrow-down" style="zoom: 1.5;" *ngIf="showReportTest"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-item-divider>
+      <div id="showReport">
+        <ion-grid *ngIf="showReportTest">
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Not Applicable</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-select [(ngModel)]="showReport.loc_test_ta0na" (ionChange)="hideShowReportTest()"
+                  interface="popover">
+                  <ion-option value="Y">Yes</ion-option>
+                  <ion-option value="N">No</ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="showReport.ta0na">
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Remarks</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-textarea rows="4" id="remark" type="text" maxlength="40" [(ngModel)]="showReport.ta0naremarks"
+                  placeholder="Please enter remark"
+                  [ngClass]="(showReport.ta0naremarks === '' || showReport.ta0naremarks === undefined && !validateRemark8) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-textarea>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <div *ngIf="!showReport.ta0na">
+            <!-- start yes Applicable Report Test -->
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Meter Accuracy Test Procedure</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="test1" type="text" maxlength="40" [(ngModel)]="showReport.ta0mv_metertestprocedure"
+                    [ngClass]="(showReport.ta0mv_metertestprocedure === '' || showReport.ta0mv_metertestprocedure === undefined && !validateTest8) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-item-divider color="light">
+              <ion-row>
+                <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+                  Part 1: Temperature and Humidity
+                </ion-col>
+              </ion-row>
+            </ion-item-divider>
+            <!-- Temperature Section Start -->
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-12>
+                <ion-item>
+                  <ion-label color="primary"><strong>Temperature</strong></ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-2>
+                <ion-item>
+                  <ion-label color="primary">Minimum</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-4>
+                <ion-item>
+                  <ion-input id="test1" type="text" maxlength="11" (keyup)="checkUserInput($event,'mini1')"
+                    [(ngModel)]="showReportTNHT.ta0th_mintemp"
+                    [ngClass]="(showReportTNHT.ta0th_mintemp === '' || showReportTNHT.ta0th_mintemp === undefined && !validateTest8) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Entervalue"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-2>
+                <ion-item>
+                  <ion-label color="primary">Maximum</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-4>
+                <ion-item>
+                  <ion-input id="test1" type="text" maxlength="11" (keyup)="checkUserInput($event,'max1')"
+                    [(ngModel)]="showReportTNHT.ta0th_maxtemp"
+                    [ngClass]="(showReportTNHT.ta0th_maxtemp === '' || showReportTNHT.ta0th_maxtemp === undefined && !validateTest8) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <!-- Temperature Section End -->
+
+            <!-- Humidity Section Start -->
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-12>
+                <ion-item>
+                  <ion-label color="primary"><strong>Humidity</strong></ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-2>
+                <ion-item>
+                  <ion-label color="primary">Minimum</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-4>
+                <ion-item>
+                  <ion-input id="test1" type="text" maxlength="11" (keyup)="checkUserInput($event,'mini2')"
+                    [(ngModel)]="showReportTNHT.ta0th_minmoist"
+                    [ngClass]="(showReportTNHT.ta0th_minmoist === '' || showReportTNHT.ta0th_minmoist === undefined && !validateTest8) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-2>
+                <ion-item>
+                  <ion-label color="primary">Maximum</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-4>
+                <ion-item>
+                  <ion-input id="test1" type="text" maxlength="11" (keyup)="checkUserInput($event,'max2')"
+                    [(ngModel)]="showReportTNHT.ta0th_maxmoist"
+                    [ngClass]="(showReportTNHT.ta0th_maxmoist === '' || showReportTNHT.ta0th_maxmoist === undefined && !validateTest8) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <!-- Humidity Section End -->
+
+            <ion-item-divider color="light">
+              <ion-row>
+                <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+                  Part 2: Portable Test Equipment (PTE) Details
+                </ion-col>
+              </ion-row>
+            </ion-item-divider>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Brand</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="test1" type="text" maxlength="40" [(ngModel)]="showReportPTED.ta0tp_brand"
+                    [ngClass]="(showReportPTED.ta0tp_brand === '' || showReportPTED.ta0tp_brand === undefined && !validateTest8) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Model</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="test1" type="text" maxlength="40" [(ngModel)]="showReportPTED.ta0tp_model"
+                    [ngClass]="(showReportPTED.ta0tp_model === '' || showReportPTED.ta0tp_model === undefined && !validateTest8) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Serial Number</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="test1" type="text" maxlength="40" [(ngModel)]="showReportPTED.ta0tp_serialnum"
+                    [ngClass]="(showReportPTED.ta0tp_serialnum === '' || showReportPTED.ta0tp_serialnum === undefined && !validateTest8) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Traceability</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="test1" type="text" maxlength="40" [(ngModel)]="showReportPTED.ta0tp_traceability"
+                    [ngClass]="(showReportPTED.ta0tp_traceability === '' || showReportPTED.ta0tp_traceability === undefined && !validateTest8) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Calibration Date</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="showReportPTED.ta0tp_calibration"
+                    [max]="gv.maxDate" placeholder="Select value"
+                    [ngClass]="(showReportPTED.ta0tp_calibration === '' || showReportPTED.ta0tp_calibration === undefined && !validateTest8) ? 'redHighlightText' : 'blackHighlightText'">
+                  </ion-datetime>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-item-divider color="light">
+              <ion-row>
+                <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+                  Part 3: Thermohygrograph Details
+                </ion-col>
+              </ion-row>
+            </ion-item-divider>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Brand</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="test1" type="text" maxlength="40" [(ngModel)]="showReportTHGD.ta0tp_brand"
+                    [ngClass]="(showReportTHGD.ta0tp_brand === '' || showReportTHGD.ta0tp_brand === undefined && !validateTest8) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Model</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="test1" type="text" maxlength="40" [(ngModel)]="showReportTHGD.ta0tp_model"
+                    [ngClass]="(showReportTHGD.ta0tp_model === '' || showReportTHGD.ta0tp_model === undefined && !validateTest8) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Serial Number</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="test1" type="text" maxlength="40" [(ngModel)]="showReportTHGD.ta0tp_serialnum"
+                    [ngClass]="(showReportTHGD.ta0tp_serialnum === '' || showReportTHGD.ta0tp_serialnum === undefined && !validateTest8) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Traceability</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input id="test1" type="text" maxlength="40" [(ngModel)]="showReportTHGD.ta0tp_traceability"
+                    [ngClass]="(showReportTHGD.ta0tp_traceability === '' || showReportTHGD.ta0tp_traceability === undefined && !validateTest8) ? 'redHighlightText' : 'blackHighlightText'"
+                    placeholder="Enter value"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-label color="primary">Calibration Date</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="showReportTHGD.ta0tp_calibration"
+                    [max]="gv.maxDate" placeholder="Select value"
+                    [ngClass]="(showReportTHGD.ta0tp_calibration === '' || showReportTHGD.ta0tp_calibration === undefined && !validateTest8) ? 'redHighlightText' : 'blackHighlightText'">
+                  </ion-datetime>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <!-- end yes Applicable Report Test-->
+          </div>
+        </ion-grid>
+      </div>
+    </div>
+    <ion-item-divider color="light" class="pointer" (click)="showAccErrTestSection(1)">
+      <ion-row align-items-center>
+        <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-icon name="flask"></ion-icon>&nbsp; <strong>METER ACCURACY TEST (%ERROR) kWh </strong>
+        </ion-col>
+        <ion-col col-10 col-sm-10 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
+          <ion-icon name="arrow-forward" style="zoom: 1.5;" *ngIf="!showAccErrTest"></ion-icon>
+          <ion-icon name="arrow-down" style="zoom: 1.5;" *ngIf="showAccErrTest"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-item-divider>
+    <div id="showAccErr">
+      <div *ngIf="showAccErrTest">
+        <ion-row>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label color="primary">Not Applicable</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-select [(ngModel)]="showAccErr.loc_test_ta0na" (ionChange)="hideShowAccErrTest()"
+                interface="popover">
+                <ion-option value="Y">Yes</ion-option>
+                <ion-option value="N">No</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="showAccErr.ta0na">
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label color="primary">Remarks</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-textarea rows="4" id="remark" type="text" maxlength="40" [(ngModel)]="showAccErr.ta0naremarks"
+                placeholder="Please enter remark"
+                [ngClass]="(showAccErr.ta0naremarks === '' || showAccErr.ta0naremarks === undefined && !validateRemark9) ? 'redHighlightText' : 'blackHighlightText'">
+              </ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <div *ngIf="!showAccErr.ta0na">
+          <!-- start yes Applicable Report Test -->
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Sticker No.</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="test1" type="text" maxlength="40" [(ngModel)]="showAccErr.ta0at_sticker"
+                  [ngClass]="(showAccErr.ta0at_sticker === '' || showAccErr.ta0at_sticker === undefined && !validateTest9) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Correction Factor</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="test1" type="text" (keyup)="checkUserInput($event,'correctionFactor')"
+                  [(ngModel)]="showAccErr.ta0at_correctionfactor" (ionChange)="calculateAvgCfBefore($event)"
+                  maxlength="8"
+                  [ngClass]="(showAccErr.correctFactor === '' || showAccErr.correctFactor === undefined && !validateTest9) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-item-divider color="light">
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+                Part 1: Reading Before Considering CF
+              </ion-col>
+            </ion-row>
+          </ion-item-divider>
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Load Type</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">RYB</ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-12 style="word-wrap: break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary" style="text-align: center"><strong>% Error Reading (kWh)</strong></ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <!-- applicable Heading -->
+
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Error 1</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Error 2</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Error 3</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Error 4</ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="test1" type="text" (keyup)="checkUserInput2($event,'error1')"
+                  (ionChange)="calculateAvgCfBefore($event)" [(ngModel)]="showAccErr.ta0at_test1"
+                  [ngClass]="(showAccErr.ta0at_test1 === '' || showAccErr.ta0at_test1 === undefined && !validateTest9) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="test1" type="text" (keyup)="checkUserInput2($event,'error2')"
+                  (ionChange)="calculateAvgCfBefore($event)" [(ngModel)]="showAccErr.ta0at_test2"
+                  [ngClass]="(showAccErr.ta0at_test2 === '' || showAccErr.ta0at_test2=== undefined && !validateTest9) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="test1" type="text" (keyup)="checkUserInput2($event,'error3')"
+                  (ionChange)="calculateAvgCfBefore($event)" [(ngModel)]="showAccErr.ta0at_test3"
+                  [ngClass]="(showAccErr.ta0at_test3 === '' || showAccErr.ta0at_test3 === undefined && !validateTest9) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="test1" type="text" (keyup)="checkUserInput2($event,'error4')"
+                  (ionChange)="calculateAvgCfBefore($event)" [(ngModel)]="showAccErr.ta0at_test4"
+                  [ngClass]="(showAccErr.ta0at_test4 === '' || showAccErr.ta0at_test4 === undefined && !validateTest9) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Error 5</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Error 6</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Error 7</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Error 8</ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="test1" type="text" (keyup)="checkUserInput2($event,'error5')"
+                  (ionChange)="calculateAvgCfBefore($event)" [(ngModel)]="showAccErr.ta0at_test5"
+                  [ngClass]="(showAccErr.ta0at_test5 === '' || showAccErr.ta0at_test5 === undefined && !validateTest9) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="test1" type="text" (keyup)="checkUserInput2($event,'error6')"
+                  (ionChange)="calculateAvgCfBefore($event)" [(ngModel)]="showAccErr.ta0at_test6"
+                  [ngClass]="(showAccErr.ta0at_test6 === '' || showAccErr.ta0at_test6 === undefined && !validateTest9) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="test1" type="text" (keyup)="checkUserInput2($event,'error7')"
+                  (ionChange)="calculateAvgCfBefore($event)" [(ngModel)]="showAccErr.ta0at_test7"
+                  [ngClass]="(showAccErr.ta0at_test7 === '' || showAccErr.ta0at_test7 === undefined && !validateTest9) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="test1" type="text" (keyup)="checkUserInput2($event,'error8')"
+                  (ionChange)="calculateAvgCfBefore($event)" [(ngModel)]="showAccErr.ta0at_test8"
+                  [ngClass]="(showAccErr.ta0at_test8 === '' || showAccErr.ta0at_test8 === undefined && !validateTest9) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Error 9</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Error 10</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Average</ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="test1" type="text" (keyup)="checkUserInput2($event,'error9')"
+                  (ionChange)="calculateAvgCfBefore($event)" [(ngModel)]="showAccErr.ta0at_test9"
+                  [ngClass]="(showAccErr.ta0at_test9 === '' || showAccErr.ta0at_test9 === undefined && !validateTest9) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="test1" type="text" (keyup)="checkUserInput2($event,'error10')"
+                  (ionChange)="calculateAvgCfBefore($event)" [(ngModel)]="showAccErr.ta0at_test10"
+                  [ngClass]="(showAccErr.ta0at_test10 === '' || showAccErr.ta0at_test10 === undefined && !validateTest9) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="test1" type="text" [(ngModel)]="showAccErr.ta0at_avg" [readonly]="isReadonly"
+                  maxlength="9" (keypress)="gf.controlUserInput2($event)"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-item-divider color="light">
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-12 style="word-wrap:  break-all; padding-left: 5px;">
+                Part 2: Reading After Considering CF
+              </ion-col>
+            </ion-row>
+          </ion-item-divider>
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Load Type</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">RYB</ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-12 style="word-wrap: break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary" style="text-align: center"><strong>% Error Reading (kWh)</strong></ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <!-- applicable Heading -->
+
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Error 1</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Error 2</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Error 3</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Error 4</ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="test1" type="text" (keyup)="checkUserInput2($event,'error1sec')"
+                  (ionChange)="calculateAvgAfter($event)" [readonly]="true" [(ngModel)]="showAccErrf.ta0at_test1"
+                  [ngClass]="(showAccErrf.ta0at_test1 === '' || showAccErrf.ta0at_test1 === undefined && !validateTest9) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="test1" type="text" (keyup)="checkUserInput2($event,'error2sec')"
+                  (ionChange)="calculateAvgAfter($event)" [readonly]="true" [(ngModel)]="showAccErrf.ta0at_test2"
+                  [ngClass]="(showAccErrf.ta0at_test2 === '' || showAccErrf.ta0at_test2 === undefined && !validateTest9) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="test1" type="text" (keyup)="checkUserInput2($event,'error3sec')"
+                  (ionChange)="calculateAvgAfter($event)" [readonly]="true" [(ngModel)]="showAccErrf.ta0at_test3"
+                  [ngClass]="(showAccErrf.ta0at_test3 === '' || showAccErrf.ta0at_test3 === undefined && !validateTest9) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="test1" type="text" (keyup)="checkUserInput2($event,'error4sec')"
+                  (ionChange)="calculateAvgAfter($event)" [readonly]="true" [(ngModel)]="showAccErrf.ta0at_test4"
+                  [ngClass]="(showAccErrf.ta0at_test4 === '' || showAccErrf.ta0at_test4 === undefined && !validateTest9) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Error 5</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Error 6</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Error 7</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Error 8</ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="test1" type="text" (keyup)="checkUserInput2($event,'error5sec')"
+                  (ionChange)="calculateAvgAfter($event)" [readonly]="true" [(ngModel)]="showAccErrf.ta0at_test5"
+                  [ngClass]="(showAccErrf.ta0at_test5 === '' || showAccErrf.ta0at_test5 === undefined && !validateTest9) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="test1" type="text" (keyup)="checkUserInput2($event,'error6sec')"
+                  (ionChange)="calculateAvgAfter($event)" [readonly]="true" [(ngModel)]="showAccErrf.ta0at_test6"
+                  [ngClass]="(showAccErrf.ta0at_test6 === '' || showAccErrf.ta0at_test6 === undefined && !validateTest9) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="test1" type="text" (keyup)="checkUserInput2($event,'error7sec')"
+                  (ionChange)="calculateAvgAfter($event)" [readonly]="true" [(ngModel)]="showAccErrf.ta0at_test7"
+                  [ngClass]="(showAccErrf.ta0at_test7 === '' || showAccErrf.ta0at_test7 === undefined && !validateTest9) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="test1" type="text" (keyup)="checkUserInput2($event,'error8sec')"
+                  (ionChange)="calculateAvgAfter($event)" [readonly]="true" [(ngModel)]="showAccErrf.ta0at_test8"
+                  [ngClass]="(showAccErrf.ta0at_test8 === '' ||showAccErrf.ta0at_test8 === undefined && !validateTest9) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Error 9</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Error 10</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Error Average</ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="test1" type="text" (keyup)="checkUserInput2($event,'error9sec')"
+                  (ionChange)="calculateAvgAfter($event)" [readonly]="true" [(ngModel)]="showAccErrf.ta0at_test9"
+                  [ngClass]="(showAccErrf.ta0at_test9 === '' || showAccErrf.ta0at_test9 === undefined && !validateTest9) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="test1" type="text" (keyup)="checkUserInput2($event,'error10sec')"
+                  (ionChange)="calculateAvgAfter($event)" [readonly]="true" [(ngModel)]="showAccErrf.ta0at_test10"
+                  [ngClass]="(showAccErrf.ta0at_test10 === '' || showAccErrf.ta0at_test10 === undefined && !validateTest9) ? 'redHighlightText' : 'blackHighlightText'"
+                  placeholder="Enter value"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input id="test1" type="text" [(ngModel)]="showAccErrf.ta0at_avg" maxlength="9"
+                  [readonly]="isReadonly"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <!-- end yes Applicable Meter Accuracy Error Test-->
+        </div>
+      </div>
+    </div>
+  </ion-grid>
+</ion-content>
+
+<ion-footer mode="md">
+  <ion-toolbar mode="md">
+    <ion-row>
+      <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+        <button ion-button round block mode="md" (click)="saveDetails()" [disabled]="buttonSaveMVHV">
+          Save
+        </button>
+      </ion-col>
+      <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+        <button ion-button round block mode="md" (click)="goBack()">
+          Cancel
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

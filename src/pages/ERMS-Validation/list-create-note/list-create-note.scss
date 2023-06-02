@@ -1,0 +1,78 @@
+
+
+create-gir-list {
+
+    .reg-button {
+        height: 2.6rem;
+        float: right;
+        color: #0000FF;
+        background-color: #ffffff;
+    }
+
+    .classA { 
+        background-color: #fffffA;
+    }
+
+    .classB { 
+        background-color:#C4D8E2;
+    }
+
+    .heading-gap {
+        padding-bottom: 25px;
+    }
+
+    .flash {
+        // box-shadow: none;
+        // width: 74px !important; 
+        // border-radius: 10%; 
+        // color: #000000; 
+        height: 18px !important; 
+        padding: 15px;
+        background-color: white;
+        // top: 3px;
+    }
+    
+    @keyframes flash {  
+        50% { opacity: 0; }
+    }
+    
+    .flash_plnt {
+        animation: flash 1s linear infinite;
+        padding-right: 5px; font-size: 15px;
+    }
+
+    .offline_btn {
+        font-size: 15px;
+    }
+
+    .row1{
+        border-style: solid;
+        border-width: 1px 0px 1px 0px;
+        border-color: #dedede;
+      }
+      .col1{
+        border-style: solid;
+        border-width: 0px 1px 0px 1px;
+        border-color: #dedede;
+      }
+
+      .pagination a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color .3s;
+        border: 1px solid #ddd;
+        margin: 0 4px;
+      }
+      
+      .pagination a.active {
+        background-color: #0000FF;
+        color: white;
+        border: 1px solid #0000FF;
+      }
+      
+   
+    
+    .pagination a:hover:not(.active) {background-color: #ddd;}
+}

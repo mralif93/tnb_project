@@ -1,0 +1,333 @@
+<ion-header mode="md">
+  <ion-navbar color="primary">
+    <ion-title>Daily Report Maintenance</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon [color]="gv.testMobile ? 'danger' : 'light'" name="md-planet" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <!-- Date & Time Meter-->
+  <div id="showMeterDateTime">
+    <ion-grid>
+      <ion-item-divider color="light" class="pointer" (click)="showMeterSection(false)">
+        <ion-row align-items-center>
+          <ion-col col-12 col-sm-12 col-md-10 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-icon name="flask"></ion-icon>&nbsp; <strong>METER</strong>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-2 style="word-wrap:  break-all; padding-left: 5px;" text-right>
+            <ion-icon name="arrow-forward" style="zoom: 1.5;" *ngIf="!showMeter"></ion-icon>
+            <ion-icon name="arrow-down" style="zoom: 1.5;" *ngIf="showMeter"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-item-divider>
+      <ion-grid *ngIf="showMeter">
+        <ion-row>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label color="primary">IP/Data No.</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-input id="ta0ip" type="text" maxlength="40" (keyup)="userInputType($event,'IPData')"
+                [(ngModel)]="ta0simcardip" placeholder="Enter value"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label color="primary">Data Center</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-input id="ta0data" type="text" maxlength="40" (keyup)="userInput2($event,'DataCenter')"
+                [(ngModel)]="ta0datacenter" placeholder="Enter value"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-list radio-group [(ngModel)]="pingInspect.ta0pt_hyprtminal" style="margin-bottom: 0px;">
+          <ion-row>
+            <ion-col col-12 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">Hyperterminal</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item [ngClass]="(pingInspect.ta0pt_hyprtminal !== '') ? 'blackHighlightText' : 'redHighlightText'">
+                <ion-label>Pass</ion-label>
+                <ion-radio checked value="true"></ion-radio>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item [ngClass]="(pingInspect.ta0pt_hyprtminal !== '') ? 'blackHighlightText' : 'redHighlightText'">
+                <ion-label>Fail</ion-label>
+                <ion-radio value="false"></ion-radio>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-list>
+        <ion-list radio-group [(ngModel)]="pingInspect.ta0pt_iee" style="margin-bottom: 0px;">
+          <ion-row>
+            <ion-col col-12 col-sm-6 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-label color="primary">IEE</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item [ngClass]="(pingInspect.ta0pt_iee !== '') ? 'blackHighlightText' : 'redHighlightText'">
+                <ion-label>Pass</ion-label>
+                <ion-radio checked value="true"></ion-radio>
+              </ion-item>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item [ngClass]="(pingInspect.ta0pt_iee !== '') ? 'blackHighlightText' : 'redHighlightText'">
+                <ion-label>Fail</ion-label>
+                <ion-radio value="false"></ion-radio>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-list>
+      </ion-grid>
+
+      <ion-item-divider color="light" class="pointer" (click)="showComponentChangeSection(false)">
+        <ion-row align-items-center>
+          <ion-col col-12 col-sm-12 col-md-10 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-icon name="flask"></ion-icon>&nbsp; <strong>COMPONENT CHANGE</strong>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-2 style="word-wrap:  break-all; padding-left: 5px;" text-right>
+            <ion-icon name="arrow-forward" style="zoom: 1.5;" *ngIf="!showComponentChange"></ion-icon>
+            <ion-icon name="arrow-down" style="zoom: 1.5;" *ngIf="showComponentChange"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-item-divider>
+      <ion-grid *ngIf="showComponentChange">
+        <ion-row>
+          <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label>Adaptor Modem</ion-label>
+              <ion-checkbox [(ngModel)]="ceInspect.ta0cc_adaptor_modem"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label>Adaptor Cas</ion-label>
+              <ion-checkbox [(ngModel)]="ceInspect.ta0cc_adaptor_cas"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label>Attenna</ion-label>
+              <ion-checkbox [(ngModel)]="ceInspect.ta0cc_antenna"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label>Cas 2p</ion-label>
+              <ion-checkbox [(ngModel)]="ceInspect.ta0cc_cas_2p"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label>Cas 4p</ion-label>
+              <ion-checkbox [(ngModel)]="ceInspect.ta0cc_cas_4p"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label>Converter</ion-label>
+              <ion-checkbox [(ngModel)]="ceInspect.ta0cc_converter"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label>Data Cable</ion-label>
+              <ion-checkbox [(ngModel)]="ceInspect.ta0cc_data_cable"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label>Rccb</ion-label>
+              <ion-checkbox [(ngModel)]="ceInspect.ta0cc_rccb"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label>Surge</ion-label>
+              <ion-checkbox [(ngModel)]="ceInspect.ta0cc_surge"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label>Timer</ion-label>
+              <ion-checkbox [(ngModel)]="ceInspect.ta0cc_timer"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label>Modem</ion-label>
+              <ion-checkbox [(ngModel)]="ceInspect.ta0cc_modem"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label>Simcard</ion-label>
+              <ion-checkbox [(ngModel)]="ceInspect.ta0cc_simcard"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-item-divider color="light" class="pointer" (click)="showNonComponentChangeSection(false)">
+        <ion-row align-items-center>
+          <ion-col col-12 col-sm-12 col-md-10 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-icon name="flask"></ion-icon>&nbsp; <strong>NON-COMPONENT CHANGE</strong>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-2 style="word-wrap:  break-all; padding-left: 5px;" text-right>
+            <ion-icon name="arrow-forward" style="zoom: 1.5;" *ngIf="!showNonComponentChange"></ion-icon>
+            <ion-icon name="arrow-down" style="zoom: 1.5;" *ngIf="showNonComponentChange"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-item-divider>
+      <ion-grid *ngIf="showNonComponentChange">
+        <ion-row>
+          <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label>Clear Simcard</ion-label>
+              <ion-checkbox [(ngModel)]="ceInspect.ta0cc_clear_simcard"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label>Reset Modem</ion-label>
+              <ion-checkbox [(ngModel)]="ceInspect.ta0cc_reset_modem"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label>Set Cas</ion-label>
+              <ion-checkbox [(ngModel)]="ceInspect.ta0cc_set_cas"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label>Set Baudrate</ion-label>
+              <ion-checkbox [(ngModel)]="ceInspect.ta0cc_set_baudrate"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label>Set Ifc</ion-label>
+              <ion-checkbox [(ngModel)]="ceInspect.ta0cc_ifc"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label>Set Timer</ion-label>
+              <ion-checkbox [(ngModel)]="ceInspect.ta0cc_set_timer"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label>Set Watchdog</ion-label>
+              <ion-checkbox [(ngModel)]="ceInspect.ta0cc_set_watchdog"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label>Bypass Timer</ion-label>
+              <ion-checkbox [(ngModel)]="ceInspect.ta0cc_bypass_timer"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label>Recall</ion-label>
+              <ion-checkbox [(ngModel)]="ceInspect.ta0cc_recall"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label>Update Msn</ion-label>
+              <ion-checkbox [(ngModel)]="ceInspect.ta0cc_update_msn"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label>Update IP/Data no</ion-label>
+              <ion-checkbox [(ngModel)]="ceInspect.ta0cc_update_ip"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label>Rccb Trip</ion-label>
+              <ion-checkbox [(ngModel)]="ceInspect.ta0cc_rccb_trip"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-item-divider color="light" class="pointer" (click)="showRemarksSection(false)">
+        <ion-row align-items-center>
+          <ion-col col-12 col-sm-12 col-md-10 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-icon name="text"></ion-icon>&nbsp; <strong>REMARKS</strong>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-2 style="word-wrap:  break-all; padding-left: 5px;" text-right>
+            <ion-icon name="arrow-forward" style="zoom: 1.5;" *ngIf="!showRemarks"></ion-icon>
+            <ion-icon name="arrow-down" style="zoom: 1.5;" *ngIf="showRemarks"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-item-divider>
+      <ion-grid *ngIf="showRemarks">
+        <ion-row>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-label color="primary">Remarks</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-item>
+              <ion-textarea rows="4" id="remark" type="text" maxlength="40" [(ngModel)]="ceInspect.ta0naremarks"
+                placeholder="Please Enter Remark"
+                [ngClass]="(ceInspect.ta0naremarks === undefined || ceInspect.ta0naremarks === '') ? 'redHighlightText' : 'blackHighlightText'">
+              </ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-grid>
+  </div>
+</ion-content>
+
+<ion-footer mode="md">
+  <ion-toolbar mode="md">
+    <ion-row>
+      <ion-col>
+        <button ion-button round block mode="md" (click)="saveDetails()">
+          Save
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button round block mode="md" (click)="goBack()">
+          Cancel
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

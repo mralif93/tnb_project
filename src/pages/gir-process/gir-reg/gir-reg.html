@@ -1,0 +1,87 @@
+<ion-header mode="md">
+  <ion-navbar color="primary">
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="md-menu" color="light"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>{{ displayProcess === true ? 'ERMS Process Details' : 'GIR Validation' }}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon [color]="gv.testMobile ? 'danger' : 'light'" name="md-planet" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<!-- <ion-header>
+  <ion-grid class="headerStyle">
+    
+    <ion-row>
+      <ion-col col-2 col-md-2 col-sm-2 style="text-align: left; padding-top: 0px;">
+        <button ion-button menuToggle clear>
+          <ion-icon name="menu" class="menuBackArrow"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-8 col-md-8 col-sm-8>
+        <div class="pageTitle">{{ displayProcess === true ? 'ERMS Process Details':'GIR Validation' }}
+        </div>
+      </ion-col>
+      <ion-col col-2 col-sm-2 style="word-wrap: break-all; text-align: right; padding-top: 0px; width:12px">
+          <ion-col col-2 col-sm-2>
+              <ion-fab top right style="top: 0%">
+                  <button ion-fab mini class="flash">
+                    <ion-icon class="flash_plnt" name="planet" [style.color]="gv.testMobile ? 'red':'green'"> {{ gv.testMobile ? 'Offline':'Online' }} </ion-icon>
+                  </button>
+                </ion-fab>
+          </ion-col>
+          <ion-col col-2 col-sm-2 >
+              <button ion-button color="primary" style="float: right;" (click)="goBack()">Back</button>
+      </ion-col>
+  </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header> -->
+
+<ion-content padding>
+  <ion-list class="wrap-reg">
+    <ion-item>
+      <ion-label stacked>Reservation Number</ion-label>
+      <ion-input [(ngModel)]="ta0reservationnum" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Reservation Item</ion-label>
+      <ion-input [(ngModel)]="ta0itemlinenum" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Site Id</ion-label>
+      <ion-select [(ngModel)]="siteid" (ionChange)="getStorageLocation()">
+        <ion-option *ngFor="let store of siteItem" [value]="store.siteid" [selected]="gv.ta0defsiteid === store.siteid">
+          {{ store.siteid }} &nbsp; - &nbsp; {{ store.description }} </ion-option>
+        <!-- <ion-option *ngFor="let store of siteItem"     [value]="store.siteid"   >{{ store.siteid }} &nbsp; - &nbsp; {{ store.description }} </ion-option> -->
+
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="storageLocationfield">
+      <!-- <ion-item > -->
+      <ion-label stacked>Storage Location</ion-label>
+      <!-- Edited: Alif (11/03/2020) -->
+      <!-- <ion-select [(ngModel)]="sLocation" (ionChange)="pilotLocation()">
+        <ion-option *ngFor="let loc of storageLocation" [disabled]=storagePilot>{{ loc.location }} </ion-option>
+      </ion-select> -->
+      <ion-select [(ngModel)]="sLocation">
+        <ion-option *ngFor="let loc of storageLocation" [disabled]=storagePilot>{{ loc.location }} </ion-option>
+        <!-- <ion-option *ngFor="let loc of storageLocation"   [disabled]="(loc.location==='ST_1006'||loc.location==='ST_6180')? true : false"  >{{ loc.location }} </ion-option> -->
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Quantity</ion-label>
+      <ion-input [(ngModel)]="ta0quantity" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <div class="save-btn">
+        <button ion-button (click)="submitScanValidation()" style="padding: 15px;">Validate Data in ERMS</button>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

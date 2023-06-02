@@ -1,0 +1,17 @@
+{
+  "name": "cordova-plugin-mobile-signal",
+  "version": "0.0.1",
+  "description": "Retrieve Mobile Signal Bar",
+  "cordova": {
+    "id": "cordova-plugin-mobile-signal",
+    "platforms": [
+      "ios"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-ios"
+  ],
+  "author": "Andy Chang",
+  "license": "DSSB"
+}

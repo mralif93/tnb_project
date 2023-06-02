@@ -1,0 +1,1443 @@
+<!--
+/* 
+ * Modification History :
+ * Date         version     Modified By   Method    Description
+ * 2021-03-25   009         Andy Chang    -         update data of Work Done By using workorder.lead
+ * 
+ */
+ -->
+<ion-header mode="md">
+  <ion-navbar color="primary">
+    <ion-title>My Assigned Work</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon [color]="gv.testMobile ? 'danger' : 'light'" name="md-planet" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull down to download">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-grid style="word-wrap:  break-all; padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
+    <ion-row>
+      <ion-col col-12 col-sm-12 col-md-12>
+        <ion-item>
+          <ion-label style="font-size: 19px" color="primary">Seal Service Cover </ion-label>
+          <ion-toggle (ionChange)="checkServiceCover()" checked="checkServiceCover"></ion-toggle>
+        </ion-item>
+      </ion-col>
+      <!-- <ion-col col-12 col-sm-12 col-md-12 *ngIf="snCodeCheck">
+        <ion-checkbox [(ngModel)]="req_inspection" style="float: right;" (click)="inspectionRequired()"></ion-checkbox>
+        &nbsp; <span style="float: right; padding-right: 10px;"> Required Inspection </span>
+      </ion-col> -->
+    </ion-row>
+
+    <ion-row style="margin-left: 15px;" *ngIf="snCodeCheck">
+      <ion-col>
+        <ion-item no-lines style="border: 0.55px solid lightgrey;border-radius: 10px;background: ghostwhite;">
+          <ion-icon name="construct" item-start></ion-icon>
+          <ion-label color="primary">Required Inspection</ion-label>
+          <ion-checkbox [(ngModel)]="req_inspection" (click)="inspectionRequired()" item-end></ion-checkbox>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12 col-sm-12 col-md-6
+        style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+        <ion-item>
+          <ion-label color="primary" stacked>Service Order Number</ion-label>
+          <ion-input type="text" value="{{ items.json.wonum }} - {{ items.json.ta0bcrmnum }}" [readonly]="isReadonly">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-12 col-sm-12 col-md-6>
+        <ion-item>
+          <ion-label color="primary" stacked>Report DateTime</ion-label>
+          <ion-input type="text"
+            value="{{ items.json.reportdate | date: gv.dateFormat  }}  {{ items.json.reportdate | date: gv.timeFormat  }} "
+            [readonly]="isReadonly"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12 col-sm-12 col-md-6
+        style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+        <ion-item>
+          <ion-label color="primary" stacked>SN Code</ion-label>
+          <ion-input type="text" value="{{ items.json.ta0sncode }} " [readonly]="isReadonly"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-12 col-sm-12 col-md-6>
+        <ion-item>
+          <ion-label color="primary" stacked>SN Description</ion-label>
+          <ion-input type="text" value="{{ sncodedesc }} " [readonly]="isReadonly"></ion-input>
+          <!--<ion-input type="text" value="{{ items.json.ta0sncodedesc }} " [readonly]="isReadonly"></ion-input>--->
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12 col-sm-12 col-md-6
+        style="word-wrap:  break-all; padding-left: 5px; border-right: 1px solid #dadada;">
+        <ion-item>
+          <ion-label color="primary" stacked>Last Bill Date</ion-label>
+          <ion-input type="text"
+            value="{{ items.json.ta0lastbilldate | date: gv.dateFormat || '' }} {{ items.json.ta0lastbilldate | date: gv.timeFormat || '' }}"
+            [readonly]="isReadonly"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-12 col-sm-12 col-md-6>
+        <ion-item>
+          <ion-label color="primary" stacked>Type of Service Order</ion-label>
+          <ion-input type="text" value="{{ items.json.worktype  || ''}}" [readonly]="isReadonly"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12 col-sm-12 col-md-6
+        style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+        <ion-item>
+          <ion-label color="primary" style="padding-right: 150px" stacked>Service Description</ion-label>
+          <ion-input type="text" value="{{ items.json.description }}" [readonly]="isReadonly"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-12 col-sm-12 col-md-6>
+        <ion-item>
+          <ion-label color="primary" stacked>Pole Number</ion-label>
+          <ion-input type="text" maxlength="20" [(ngModel)]="items.json.ta0polenum"
+            value="{{ items.json.ta0polenum || '' }}" [disabled]="editField" placeholder="Please enter value">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12 col-sm-12 col-md-6
+        style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+        <ion-item>
+          <ion-label color="primary" style="padding-right: 150px" stacked>SR Number</ion-label>
+          <ion-input type="text" value="{{ items.json.ta0srnum || '' }}" [readonly]="isReadonly"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-12 col-sm-12 col-md-6>
+        <ion-item>
+          <ion-label color="primary" stacked>CRM Doc Type</ion-label>
+          <ion-input type="text" value="{{ items.json.ta0crmdoctype || '' }}" [readonly]="isReadonly"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12 col-sm-12 col-md-6
+        style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+        <ion-item>
+          <ion-label color="primary" style="padding-right: 150px" stacked>CRM Appointment Date</ion-label>          
+          <ion-input type="text" value="{{ items.json.ta0crmapptdate | date: gv.dateFormat || '' }} {{ items.json.ta0crmapptdate | date: gv.timeFormat || '' }}"
+            [readonly]="isReadonly"></ion-input>
+        </ion-item>
+      </ion-col>      
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col col-12 col-sm-12 col-md-6
+        style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+        <ion-item>
+          <ion-label color="primary" stacked>No of Element</ion-label>
+          <!-- <ion-input type="text" [(ngModel)]="items.json.ta0elementnum" [readonly]="editableElementNFeeder"></ion-input> -->
+          <ion-select [(ngModel)]="items.json.ta0elementnum" interface="popover">
+            <ion-option value=""></ion-option>
+            <ion-option value="2">2</ion-option>
+            <ion-option value="3">3</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col col-12 col-sm-12 col-md-6 *ngIf="showServiceCover">
+        <ion-item>
+          <ion-label color="primary" stacked>No of feeder</ion-label>
+          <ion-input type="text" [(ngModel)]="items.json.ta0feedernum" [readonly]="editableElementNFeeder">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="showServiceCover">
+      <ion-col col-12 col-sm-12 col-md-6
+        style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+        <ion-item>
+          <ion-label color="primary" style="padding-right: 100px" stacked>No of Suppliers</ion-label>
+          <ion-input type="text" value="{{ items.json.ta0suppliers || '' }}" [readonly]="isReadonly"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <div *ngIf="showServiceCover && items.json.worktype === soTypes.ZUDN">
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-6
+          style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+          <ion-item>
+            <ion-label color="primary" stacked>New Rate Category</ion-label>
+            <ion-input type="text" value="{{ items.json.ta0newratecategory || '' }}" [readonly]="isReadonly">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-6>
+          <ion-item>
+            <ion-label color="primary" stacked>New Rate Category Description</ion-label>
+            <ion-input type="text" value="{{ items.json.ta0newratecategorydesc || '' }}" [readonly]="isReadonly">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <ion-row>
+      <ion-col col-12 col-sm-12 col-md-6
+        style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+        <ion-item>
+          <ion-label color="primary" stacked>Installation Voltage</ion-label>
+          <ion-input type="text" value="{{ items.json.ta0installationvoltage == '01' ? 'Single Phase' :
+            items.json.ta0installationvoltage == '02' ? '3 Phase' :
+            items.json.ta0installationvoltage == '03' ? '400V LPC' : 
+            items.json.ta0installationvoltage == '04' ? '6.6kV LPC' : 
+            items.json.ta0installationvoltage == '05' ? '11kV' :
+            items.json.ta0installationvoltage == '06' ? '22kV' :
+            items.json.ta0installationvoltage == '07' ? '33kV' :
+            items.json.ta0installationvoltage == '08' ? '66kV' :
+            items.json.ta0installationvoltage == '09' ? '132kV' :
+            items.json.ta0installationvoltage == '10' ? '275kV' : 
+            items.json.ta0installationvoltage == '11' ? '500kV' : '' }}" [readonly]="isReadonly"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col *ngIf="items.json.worktype === soTypes.ZUDN" col-12 col-sm-12 col-md-6
+        style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+        <ion-item>
+          <ion-label color="primary" stacked>New Voltage</ion-label>
+          <ion-input type="text" value="{{ items.json.ta0newvoltage == '01' ? 'Single Phase' :
+                  items.json.ta0newvoltage == '02' ? '3 Phase' : 
+                  items.json.ta0newvoltage == '03' ? '400V LPC' : 
+                  items.json.ta0newvoltage == '04' ? '6.6kV LPC' : 
+                  items.json.ta0newvoltage == '05' ? '11kV' :
+                  items.json.ta0newvoltage == '06' ? '22kV' :
+                  items.json.ta0newvoltage == '07' ? '33kV' :
+                  items.json.ta0newvoltage == '08' ? '66kV' :
+                  items.json.ta0newvoltage == '09' ? '132kV' :
+                  items.json.ta0newvoltage == '10' ? '275kV' : 
+                  items.json.ta0newvoltage == '11' ? '500kV' : '' }}" [readonly]="isReadonly"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="showServiceCover">
+      <ion-col col-12 col-sm-12 col-md-6
+        style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+        <ion-item>
+          <ion-label color="primary" stacked>Rate</ion-label>
+          <ion-input type="text" value="{{ items.json.ta0ratecategory || '' }}" [readonly]="isReadonly"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-12 col-sm-12 col-md-6>
+        <ion-item>
+          <ion-label color="primary" stacked>Rate Category Description</ion-label>
+          <ion-input type="text" value="{{ items.json.ta0ratecategorydesc || '' }}" [readonly]="isReadonly">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12 col-sm-12 col-md-6
+        style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+        <ion-item>
+          <ion-label color="primary" stacked>No. RU</ion-label>
+          <ion-input type="text" value="{{ items.json.ta0mru || '' }}" [readonly]="isReadonly"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-12 col-sm-12 col-md-6>
+        <ion-item>
+          <ion-label color="primary" style="padding-right: 150px" stacked>No. RU Description</ion-label>
+          <ion-input type="text" [(ngModel)]="items.json.ta0mrudesc" value="{{ items.json.ta0mrudesc || '' }}"
+            [readonly]="isReadonly"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12 col-sm-12 col-md-6
+        style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+        <ion-item>
+          <ion-label color="primary" stacked>Meter Location</ion-label>
+          <ion-select [(ngModel)]="items.json.ta0dllocation" interface="alert" placeholder="Please select value">
+            <ion-option *ngFor="let alnVolt of alnitem;" [value]="alnVolt.json.value"
+              [selected]="items.json.ta0dllocation == alnVolt.json.value" [disabled]="editField">
+              {{ alnVolt.json.value }} - {{ alnVolt.json.description }}
+            </ion-option>
+          </ion-select>
+          <!--<ion-input type="text"   [(ngModel)]="items.json.ta0dlllocation"  value="{{ items.json.ta0dlllocation || '' }}"  (click)="getDlLocation();"></ion-input>-->
+        </ion-item>
+      </ion-col>
+      <ion-col col-12 col-sm-12 col-md-6>
+        <ion-item>
+          <ion-label color="primary" stacked>Current Ratio</ion-label>
+          <ion-input type="text" maxlength="40" [(ngModel)]="currentRatio" value="{{ currentRatio || '' }}"
+            [readonly]="isReadonly" placeholder=""></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12 col-sm-12 col-md-6
+        style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+        <ion-item>
+          <ion-label color="primary" stacked>Device Location</ion-label>
+          <ion-input type="text" [(ngModel)]="items.json.ta0devicelocation"
+            value="{{ items.json.ta0devicelocation || '' }}" [readonly]="isReadonly"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-12 col-sm-12 col-md-6>
+        <ion-item>
+          <ion-label color="primary" stacked>Device Location Description</ion-label>
+          <ion-input type="text" maxlength="40" [(ngModel)]="items.json.ta0devicelocationdesc"
+            value="{{ items.json.ta0devicelocationdesc || '' }}" [disabled]="editField"
+            placeholder="Please Enter Value"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <div *ngIf="showServiceCover">
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-6
+          style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+          <ion-item>
+            <ion-label color="primary" stacked>Signal Strength</ion-label>
+            <ion-input type="text" value="{{ items.json.ta0signalstrength || '' }}" [readonly]="isReadonly"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-6>
+          <ion-item>
+            <ion-label color="primary" stacked>Key</ion-label>
+            <ion-input type="text" value="{{ items.json.ta0key || '' }}" [readonly]="isReadonly"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <!-- <div *ngIf="showServiceCover">
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+          <ion-item>
+            <ion-label color="primary" stacked>No. RU</ion-label>
+            <ion-input type="text" value="{{ items.json.ta0mru || '' }}" [readonly]="isReadonly"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-6 >
+          <ion-item>
+            <ion-label color="primary" stacked>Meter Location</ion-label>
+            <ion-input type="text" value="{{ items.json.ta0meter || '' }}" [readonly]="isReadonly"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div> -->
+
+    <div *ngIf="(items.json.worktype === 'ZISR' || items.json.worktype === 'ZRCE')">
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-6
+          style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+          <ion-item>
+            <ion-label color="primary" stacked>Parent Wonum </ion-label>
+            <ion-input type="text" value="{{ items.json.origrecordid || '' }}" [readonly]="isReadonly"></ion-input>
+          </ion-item>
+        </ion-col>
+        <!--ion-col col-12 col-sm-12 col-md-6 >
+            <ion-item>
+              <ion-label color="primary" stacked>Type of Premises</ion-label>
+              <ion-input type="text" value="{{ items.json.ta0premisetype || '' }}" [readonly]="isReadonly"></ion-input>
+            </ion-item>
+          </ion-col>-->
+      </ion-row>
+    </div>
+
+    <!--
+     * AMS and AMCG Validation to check Modem and SimCard is change or not...
+     * Editor Shandeep Kumar
+    -->
+    <div *ngIf="showServiceCover && amscheckcond">
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-6
+          style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+          <ion-item>
+            <ion-label color="primary" stacked>AMS</ion-label>
+            <ion-select [(ngModel)]="items.json.ta0ams" (ionChange)="getAMSData($event)" [disabled]="showAms"
+              placeholder="Please select value">
+              <ion-option [value]="" [selected]="amsVolt == ''"></ion-option>
+              <ion-option *ngFor="let amsVolt of amsstolevalue;" [value]="amsVolt"
+                [selected]="items.json.ta0ams === amsVolt">{{amsVolt}}</ion-option>
+            </ion-select>
+            <!-- <ion-input type="text" [(ngModel)]="items.json.ta0ams" value="{{ items.json.ta0ams || '' }}" maxlength="4" disabled="{{showAmsAmcg}}"></ion-input> -->
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-6>
+          <ion-item>
+            <ion-label color="primary" stacked>AMCG</ion-label>
+            <ion-select [(ngModel)]="items.json.ta0amcg" [disabled]="showAmscg" placeholder="Please select value">
+              <ion-option *ngFor="let amscgVolt of amscgstolevalue;" [value]="amscgVolt"
+                [selected]="items.json.ta0amcg === amscgVolt">{{amscgVolt}}</ion-option>
+            </ion-select>
+            <!-- <ion-input type="text" [(ngModel)]="items.json.ta0amcg" value="{{ items.json.ta0amcg || '' }}" maxlength="4" disabled="{{showAmsAmcg}}"></ion-input> -->
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div *ngIf="showServiceCover">
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-6 style="border-right: 1px solid #dadada;">
+          <ion-item>
+            <ion-label color="primary" stacked>Contractor Name</ion-label>
+            <ion-input type="text" value="{{ items.json.ta0contractorname || '' }}" [readonly]="isReadonly"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-6>
+          <ion-item>
+            <ion-label color="primary" stacked>Contractor Phone No.</ion-label>
+            <ion-input type="text" value="{{ items.json.ta0contractorphonenum || '' }}" [readonly]="isReadonly">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <ion-row>
+      <ion-col col-12 col-sm-12 col-md-6
+        style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+        <ion-item>
+          <ion-label color="primary" stacked>Service Order Status</ion-label>
+          <ion-select [(ngModel)]="woStatus" (ionChange)="statusChange($event)"
+            [disabled]="loc_saveStatus ? 'false' : 'true'">
+            <ion-option value="APPR" disabled>APPR &nbsp;-&nbsp; APPROVED</ion-option>
+            <ion-option *ngIf="gv.employeetype !== 'EXECUTIVE'" value="PENDTECO"
+              [disabled]="(woStatus == 'APPR')? true : false">TECO &nbsp;-&nbsp; COMPLETE
+            </ion-option>
+            <ion-option *ngIf="gv.employeetype === 'EXECUTIVE'" value="TECO"
+              [disabled]="(woStatus == 'APPR')? true : false">TECO &nbsp;-&nbsp; COMPLETE
+            </ion-option>
+            <ion-option value="INPRG">INPRG &nbsp;-&nbsp; IN PROGRESS</ion-option>
+            <ion-option value="PENDKIV"
+              [disabled]="(items.json.worktype === 'ZISR' || items.json.worktype === 'ZRCE') && items.json.origrecordid !== ''">
+              KIV
+              &nbsp;-&nbsp; KIV</ion-option>
+            <ion-option value="PENDCLSD"
+              [disabled]="(items.json.worktype === 'ZISR' || items.json.worktype === 'ZRCE') && items.json.origrecordid !== ''">
+              CLSD
+              &nbsp;-&nbsp; CLOSE</ion-option>
+            <ion-option *ngIf="gv.employeetype === 'EXECUTIVE'" value="COMP">COMP
+              &nbsp;-&nbsp; REVIEW</ion-option>
+            <!-- <ion-option value="PCBNT">PCBNT &nbsp;-&nbsp; NEXT TEAM</ion-option> -->
+            <!-- PSTSC: Pass to supervisor to complete (Alif - 13-03-2019) -->
+            <ion-option value="PSTSC">PSTSC &nbsp;-&nbsp; PASS TO SUPERVISOR TO COMPLETE</ion-option>
+            <ion-option *ngIf="items.json.ta0bcrmresponsestatus === 'E'" value="PSTSV">PSTSV &nbsp;-&nbsp; Error Check
+              Next Team</ion-option>
+            <!-- Checking for bcrm Number is available or not... Shandeep Kumar... -->
+            <ion-option
+              *ngIf="(!items.json.ta0bcrmnum || (items.json.worktype === soTypes.ZISR || items.json.worktype === soTypes.ZRCE))"
+              value="CANCEL">CANCEL &nbsp;-&nbsp; CANCEL</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+
+      <ion-col col-12 col-sm-12 col-md-6
+        *ngIf="items.json.ta0installationvoltage <= '03' || (items.json.ta0installationvoltage > '03' && (items.json.worktype == soTypes.ZDCN || items.json.worktype == soTypes.ZRCN))">
+        <ion-row>
+          <ion-col>
+            <ion-item [ngClass]="(validatePhoto) ? 'redHighlightText' : 'blackHighlightText'">
+              <ion-label color="primary" stacked>Upload Photo</ion-label>
+              <ion-input type="text" placeholder="Upload Image" value="{{ items.json.loc_attachmentCount || '0' }} "
+                [readonly]="true">
+              </ion-input>
+              <ion-icon name="md-images" item-end color="primary" style="zoom: 1.2;" *ngIf="showButtonImage"
+                (click)="sealAttachment('photo')"></ion-icon>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+
+      <ion-col col-12 col-sm-12 col-md-6
+        *ngIf="items.json.ta0installationvoltage > '03' && (items.json.worktype !== soTypes.ZDCN && items.json.worktype !== soTypes.ZRCN)">
+        <ion-row>
+          <ion-col>
+            <ion-item [ngClass]="(validatePhoto) ? 'redHighlightText' : 'blackHighlightText'">
+              <ion-label color="primary" stacked>Upload Photo</ion-label>
+              <ion-input type="text" placeholder="Upload Image" value="{{ items.json.loc_attachmentCount || '0' }} "
+                [readonly]="true">
+              </ion-input>
+              <ion-icon name="md-images" item-end color="primary" style="margin-right: 25px;zoom: 1.2;"
+                *ngIf="showButtonImage" (click)="sealAttachment('photo')"></ion-icon>
+              <ion-icon name="md-photos" item-end color="primary" style="zoom: 1.2;" *ngIf="showButtonImage"
+                (click)="sealAttachment('pdiagram')"></ion-icon>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="showServiceCover">
+      <ion-col col-12 col-sm-12 col-md-6
+        style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+        <ion-item>
+          <ion-label color="primary" stacked>Type of Installation Service</ion-label>
+          <ion-select [(ngModel)]="items.json.ta0installationservice" [disabled]="enableServiceTypeAndServiceStatus">
+            <ion-option value="OH">OG- OVERHEAD</ion-option>
+            <ion-option value="UG">UG- UNDERGROUND</ion-option>
+            <ion-option value="FW">FW- 5 FOOT AWAY</ion-option>
+          </ion-select>
+          <!-- <ion-input type="text" value="{{ items.json.ta0installationservice || '' }}" [readonly]="enableServiceTypeAndServiceStatus"></ion-input> -->
+        </ion-item>
+      </ion-col>
+      <ion-col col-12 col-sm-12 col-md-6
+        style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+        <ion-item>
+          <ion-label color="primary" stacked>Condition of Installation Service</ion-label>
+          <ion-select [(ngModel)]="items.json.ta0serviceflag" [disabled]="enableServiceTypeAndServiceStatus">
+            <ion-option value="true">Ready</ion-option>
+            <ion-option value="false">Not Ready</ion-option>
+          </ion-select>
+          <!-- <ion-input type="text" value="{{ items.json.ta0serviceflag || '' }}" [readonly]="enableServiceTypeAndServiceStatus"></ion-input> -->
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12 col-sm-12 col-md-6
+        *ngIf="items.json.worktype == soTypes.ZISO || items.json.worktype == soTypes.ZISP"
+        style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+        <ion-item>
+          <ion-label color="primary" stacked>Disconnection Date</ion-label>
+          <ion-input type="text" placeholder="Select Date" [value]="tempDisDate" [readonly]="true"
+            (ionChange)="disconnectionChanges()"></ion-input>
+          <ion-icon name="md-calendar" item-end color="primary" (click)="presentPopover($event, 'Calendar', 'DCD')"
+            style="margin-right: 25px;zoom: 1.2;"></ion-icon>
+          <ion-icon name="md-trash" item-end color="danger" (click)="clearInputDisconnectedDateValue()"
+            style="zoom: 1.2;"></ion-icon>
+        </ion-item>
+        <!-- <ion-col col-4 col-sm-12 col-md-4 style="text-align: right;" align-self-center>
+            <button ion-button color="primary" (click)="presentPopover($event, 'Calendar', 'DCD')">
+              <ion-icon ios="md-calendar" md="md-calendar"></ion-icon>
+            </button>
+            <button ion-button color="primary" (click)="clearInputDisconnectedDateValue()">
+              <ion-icon ios="md-trash" md="md-trash"></ion-icon>
+            </button>
+          </ion-col> -->
+      </ion-col>
+      <ion-col col-md-6 *ngIf="items.json.worktype == soTypes.ZISO && items.json.ta0sncode === 'S202'">
+        <ion-item>
+          <ion-label color="primary" stacked>Accumulative kWh - Proposed Reading</ion-label>
+          <ion-input type="number" [value]="main_meter_reg_reading" [readonly]="true"></ion-input>
+        </ion-item>
+      </ion-col>
+      <!-- Move into Document Number section below -->
+      <!--   <ion-col col-12 col-sm-12 col-md-6
+        style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;"
+        *ngIf="items.json.worktype == soTypes.ZDCN || items.json.worktype === soTypes.ZRCN">
+        <ion-item>
+          <ion-label stacked><b>Disconnection Doc</b></ion-label>
+          <ion-input type="text" [value]="items.json.ta0disconnectiondoc" [readonly]="true"></ion-input>
+        </ion-item>
+      </ion-col> -->
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item [ngClass]="(validateMembers) ? 'redHighlightText' : 'blackHighlightText'">
+          <ion-label color="primary" stacked>List of Team Members on site</ion-label>
+          <!-- <ion-input type="text" placeholder="Total Members" [value]="ta4members" [readonly]="true"></ion-input> -->
+          <select-searchable item-content [(ngModel)]="ta4members" [items]="listOfMembers" [isMultiple]="true"
+            itemValueField="laborcode" itemTextField="compositeName" [canSearch]="true"
+            placeholder="Choose while Service Order status 'TECO' only.." [disabled]=" membersIndicator"
+            (onChange)="selectedTeamMembers($event)" okButtonText="Ok" resetButtonText="Clear">
+          </select-searchable>
+        </ion-item>
+        <!-- <ion-col col-10 col-sm-10 col-md-1 align-self-center>
+            <button ion-button color="primary" (click)="openPageTeamMembers()" [disabled]="true">
+              <ion-icon name="people"></ion-icon>
+            </button>
+          </ion-col> -->
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item [ngClass]="(validateGPS) ? 'redHighlightText' : 'blackHighlightText'">
+          <ion-label color="primary" stacked>GPS Coordinate</ion-label>
+          <ion-input type="text" [readonly]="isReadonly"
+            value="{{ woserviceaddress.latitudey }} - {{ woserviceaddress.longitudex }} ( Accuracy : {{ woserviceaddress.referencepoint }} meter )">
+          </ion-input>
+          <ion-icon name="md-locate" item-end color="primary" style="zoom: 1.2;" *ngIf="disableButtonSelection"
+            (click)="locationCoordination()"></ion-icon>
+        </ion-item>
+        <!-- <ion-col col-12 col-sm-12 col-md-2 align-self-center style="text-align: right;" align-self-center>
+            <button ion-button (click)="locationCoordination()" *ngIf="disableButtonSelection">GPS </button>
+          </ion-col> -->
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item *ngIf="woStatus != 'APPR'" [ngClass]="(validateUserSts1) ? 'redHighlightText' : 'blackHighlightText'">
+          <ion-label color="primary" stacked>User Status</ion-label>
+          <!-- <ion-select [(ngModel)]="items.json.ta0userstatus1" interface="alert" multiple="true" data-limit="4" (ionChange)="userStatusDefaultChange($event, 'user1')"
+                [ngClass]="(validateUserSts1) ? 'redHighlightText' : 'blackHighlightText'">
+                <ion-option (ionSelect)="userStatusChange($event)" *ngFor="let key of userStsGroupList; let i = index" 
+                [disabled]="isDisabled(key.json.ta0kiv)"
+                value="{{key.json.ta0kiv}}">{{ key.json.ta0kiv }} - {{ key.json.description }} </ion-option>
+              </ion-select> -->
+          <ion-select [(ngModel)]="ta0wouserstatus" interface="alert" multiple="true" data-limit="4"
+            (ionChange)="userStatusDefaultChange($event, 'user1')">
+            <ion-option (ionSelect)="userStatusChange($event)" *ngFor="let key of userStsGroupList; let i = index"
+              [disabled]="false" value="{{ key.ta0kiv }}" [selected]="key.ta0kiv === ta0wouserstatus">{{ key.ta0kiv ||
+              ''}} - {{ key.description}}
+            </ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+<ion-row>
+      <ion-col>
+        <ion-item (click)="openCrimplessSeal()">
+          <ion-label style="font-weight: bold;font-size: 16px;">
+            Crimpless Seal
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    
+    <ion-slides pager #slides>
+      <ion-slide>
+        <ion-card>
+          <ion-card-header style="border-bottom: 0.55px solid #dadada;color: #2e2485;">
+            <strong text-uppercase>Customer Informations Section</strong>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6>
+                <ion-item>
+                  <ion-label color="primary" stacked>Account Number</ion-label>
+                  <ion-input style="border-bottom: 1px solid #dadada;" type="text"
+                    value="{{ items.json.ta0accountnum || '' }}" [readonly]="isReadonly">
+                  </ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6>
+                <ion-item>
+                  <ion-label color="primary" stacked>Phone No</ion-label>
+                  <ion-input style="border-bottom: 1px solid #dadada;" type="text" value="{{ items.json.phone || '' }}"
+                    [readonly]="isReadonly"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6>
+                <ion-item>
+                  <ion-label color="primary" stacked>Occupant Name</ion-label>
+                  <ion-input style="border-bottom: 1px solid #dadada;" type="text"
+                    value="{{ items.json.ta0bptenantname || '' }}" [readonly]="isReadonly">
+                  </ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6>
+                <ion-item>
+                  <ion-label color="primary" stacked>Registered Customer Name</ion-label>
+                  <ion-input style="border-bottom: 1px solid #dadada;" type="text"
+                    value="{{ items.json.ta0bpname || '' }}" [readonly]="isReadonly">
+                  </ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-12>
+                <ion-item *ngFor="let address of items.json.woserviceaddress;">
+                  <ion-label color="primary" stacked>Address</ion-label>
+                  <ion-textarea rows="4" type="text" value="{{ address.formattedaddress || '' }}"
+                    [readonly]="isReadonly" style="border-bottom: 1px solid #dadada;">
+                  </ion-textarea>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-4>
+                <ion-item>
+                  <ion-label color="primary" stacked>Area Code</ion-label>
+                  <ion-input style="border-bottom: 1px solid #dadada;" color="secondary" placeholder="Area Code"
+                    value="{{ items.json.siteid || '' }}" [readonly]="isReadonly"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-8>
+                <ion-item>
+                  <ion-label color="primary" stacked>Area</ion-label>
+                  <ion-input style="border-bottom: 1px solid #dadada;" type="text" placeholder="Area"
+                    value="{{items.json.ta0locationdesc || '' }}" [readonly]="isReadonly"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-4>
+                <ion-item>
+                  <ion-label color="primary" stacked>Type of Premises</ion-label>
+                  <ion-input style="border-bottom: 1px solid #dadada;" type="text"
+                    value="{{ items.json.ta0premisetype || '' }}" [readonly]="isReadonly">
+                  </ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-8>
+                <ion-item>
+                  <ion-label color="primary" stacked>Type of Premises Description</ion-label>
+                  <ion-input style="border-bottom: 1px solid #dadada;" type="text"
+                    value="{{ items.json.ta0premisetypedesc || '' }}" [readonly]="isReadonly">
+                  </ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-4>
+                <ion-item no-lines>
+
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-8 text-right>
+                <button ion-button icon-start round outline color="primary" (click)="openMeterInformationModal()">
+                  <ion-icon name="md-speedometer"></ion-icon>
+                  Verification Device
+                </button>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+
+      <ion-slide *ngIf="items.json.worktype == soTypes.ZISO || items.json.worktype == soTypes.ZISP">
+        <ion-card>
+          <ion-card-header style="border-bottom: 0.55px solid #dadada;color: #2e2485;">
+            <strong text-uppercase>Anomaly & Corrective Action Section</strong>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6>
+                <ion-item>
+                  <ion-label color="primary" stacked>Customer Type</ion-label>
+                  <ion-select [(ngModel)]="items.json.ta0customertype" style="border-bottom: 1px solid #dadada;"
+                    (ionChange)="getCommonFacilities()" placeholder="-- Choose --">
+                    <ion-option [value]=""></ion-option>
+                    <ion-option *ngFor="let customer of customerDetails" [value]="customer"
+                      [selected]="items.json.ta0customertype === customer">{{ customer }}</ion-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6>
+                <ion-item>
+                  <ion-label color="primary" stacked>Premise Type</ion-label>
+                  <ion-input type="text" [(ngModel)]="items.json.ta4premisetyperemarks" placeholder="Enter value"
+                    style="border-bottom: 1px solid #dadada;">
+                  </ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6>
+                <ion-item>
+                  <ion-label color="primary" stacked>Anomaly Main</ion-label>
+                  <ion-select [(ngModel)]="items.json.ta0anomalymain" style="border-bottom: 1px solid #dadada;"
+                    (ionChange)="getCommonFacilities()" [disabled]="anamolyMainCheck" placeholder="-- Choose --">
+                    <ion-option [value]=""></ion-option>
+                    <ion-option *ngFor="let anomalyMain of resultAnamolyMain" [value]="anomalyMain.json.value"
+                      [selected]="items.json.ta0anomalymain === anomalyMain.json.value">
+                      {{ anomalyMain.json.description }}
+                    </ion-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6>
+                <ion-item>
+                  <ion-label color="primary" stacked>Source of Inspection Code</ion-label>
+                  <ion-select [(ngModel)]="items.json.ta0sourcecode" style="border-bottom: 1px solid #dadada;"
+                    placeholder="-- Choose --">
+                    <ion-option [value]=""></ion-option>
+                    <ion-option *ngFor="let sourceCode of sourceCodes" [value]="sourceCode.json.value"
+                      [selected]="sourceCode.json.value === items.json.ta0sourcecode">
+                      {{ sourceCode.json.description }}
+                    </ion-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6>
+                <ion-item>
+                  <ion-label color="primary" stacked>Anomaly Category</ion-label>
+                  <ion-select [(ngModel)]="items.json.ta0anomalycategory" (ionChange)="getCommonFacilities()"
+                    [disabled]="anamolyCategoryCheck" style="border-bottom: 1px solid #dadada;"
+                    placeholder="-- Choose --">
+                    <ion-option [value]=""></ion-option>
+                    <ion-option *ngFor="let anamolyCategory of resultAnamolyCategory"
+                      [value]="anamolyCategory.json.value"
+                      [selected]="items.json.ta0anomalycategory === anamolyCategory.json.value">
+                      {{ anamolyCategory.json.description }}</ion-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6>
+                <ion-item>
+                  <ion-label color="primary" stacked>Initiative/ Preventive Code</ion-label>
+                  <ion-select [(ngModel)]="loc_ta0initprev" interface="popover" multiple="true"
+                    style="border-bottom: 1px solid #dadada;" placeholder="-- Choose --">
+                    <ion-option *ngFor="let initPrev of initPrevs" [value]="initPrev.json.value"
+                      [selected]="(loc_ta0initprev).includes(initPrev.json.value)">
+                      {{ initPrev.json.description }}
+                    </ion-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6>
+                <ion-item>
+                  <ion-label color="primary" stacked>Anomaly Type</ion-label>
+                  <ion-select [(ngModel)]="items.json.ta0anomalytype" [disabled]="anamolyTypeCheck"
+                    style="border-bottom: 1px solid #dadada;" placeholder="-- Choose --">
+                    <ion-option [value]=""></ion-option>
+                    <ion-option *ngFor="let anamolyType of resultAnamolyTypes" [value]="anamolyType.json.value"
+                      [selected]="anamolyType.json.value === items.json.ta0anomalytype">
+                      {{ anamolyType.json.description }}
+                    </ion-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6>
+                <ion-item>
+                  <ion-label color="primary" stacked>Corrective Code</ion-label>
+                  <ion-select [(ngModel)]="items.json.ta0correctivecode" style="border-bottom: 1px solid #dadada;"
+                    placeholder="-- Choose --">
+                    <ion-option [value]=""></ion-option>
+                    <ion-option *ngFor="let corrcode of alncorrectivecode" [value]="corrcode.json.value"
+                      [selected]="corrcode.json.value === items.json.ta0correctivecode">
+                      {{ corrcode.json.description }}
+                    </ion-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col col-sm-12 col-md-6 col-6>
+                <ion-item no-lines>
+                  <ion-label color="primary" stacked>Anomaly Remarks</ion-label>
+                  <ion-textarea type="textarea" style="border:1px solid #dadada; padding: 15px; margin-bottom: 15px;"
+                    rows="6" placeholder="Enter remarks here.." [(ngModel)]="items.json.ta4anomalyremarks"
+                    value="{{ items.json.ta4anomalyremarks }}">
+                  </ion-textarea>
+                </ion-item>
+              </ion-col>
+              <ion-col col-sm-12 col-md-6 col-6>
+                <ion-item no-lines>
+                  <ion-label color="primary" stacked>Corrective Action Remarks</ion-label>
+                  <ion-textarea type="textarea" style="border:1px solid #dadada; padding: 15px; margin-bottom: 15px;"
+                    rows="6" placeholder="Enter remarks here.." [(ngModel)]="items.json.ta4correctiveremarks"
+                    value="{{ items.json.ta4correctiveremarks }}">
+                  </ion-textarea>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+
+      <!-- Close (No need for PRODUCTION) -->
+      <!-- <ion-slide
+        *ngIf="items.json.ta0installationvoltage > '03' && (items.json.worktype == 'ZIST' || items.json.worktype == 'ZISP')">
+        <ion-card>
+          <ion-card-header style="background-color:cornflowerblue">
+            <div style="color: #000070">Additional Informations Section</div>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-row col-12 col-sm-12 col-md-12>
+              <ion-col>
+                <ion-segment [(ngModel)]="category">
+                  <ion-segment-button value="key">
+                    Key
+                  </ion-segment-button>
+                  <ion-segment-button value="info">
+                    Info CT, PT & S/Gear
+                  </ion-segment-button>
+                </ion-segment>
+              </ion-col>
+            </ion-row>
+            <div [ngSwitch]="category">
+              <span *ngSwitchCase="'key'">
+                <ion-row>
+                  <ion-col col-12 col-sm-12 col-md-6>
+                    <ion-item>
+                      <ion-label color="primary" stacked>Key - Standard</ion-label>
+                      <ion-select interface="popover" multiple="false" [(ngModel)]="ta4ai_key_standard"
+                        placeholder="Select value" style="border-bottom: 1px solid #dadada;">
+                        <ion-option value="Abloy Lama">Abloy Lama</ion-option>
+                        <ion-option value="Abloy Baru">Abloy Baru</ion-option>
+                        <ion-option value="Gere">Gere</ion-option>
+                        <ion-option value="No">No</ion-option>
+                      </ion-select>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col col-12 col-sm-12 col-md-6>
+                    <ion-item>
+                      <ion-label color="primary" stacked>Key - Non Standard</ion-label>
+                      <ion-select interface="popover" multiple="false" [(ngModel)]="ta4ai_key_non_standard"
+                        placeholder="Select value" style="border-bottom: 1px solid #dadada;">
+                        <ion-option value="Yes">Yes</ion-option>
+                        <ion-option value="No">No</ion-option>
+                      </ion-select>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col col-12 col-sm-12 col-md-6>
+                    <ion-item>
+                      <ion-label color="primary" stacked>Key - Stored By Customer</ion-label>
+                      <ion-select interface="popover" multiple="false" [(ngModel)]="ta4ai_key_customer"
+                        placeholder="Select value" style="border-bottom: 1px solid #dadada;">
+                        <ion-option value="Yes">Yes</ion-option>
+                        <ion-option value="No">No</ion-option>
+                      </ion-select>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+              </span>
+
+              <span *ngSwitchCase="'info'">
+                <ion-row>
+                  <ion-col col-12 col-sm-12 col-md-6>
+                    <ion-item>
+                      <ion-label stacked color="primary">Type of S/Gear at TNB P/E</ion-label>
+                      <ion-select interface="popover" multiple="false" placeholder="Select value"
+                        style="border-bottom: 1px solid #dadada;">
+                        <ion-option value="RMU">RMU</ion-option>
+                        <ion-option value="VCB">VCB</ion-option>
+                      </ion-select>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col col-12 col-sm-12 col-md-6>
+                    <ion-item>
+                      <ion-label stacked color="primary">CT Meter Location</ion-label>
+                      <ion-select interface="popover" multiple="false" placeholder="Select value"
+                        style="border-bottom: 1px solid #dadada;">
+                        <ion-option value="Cons VCB">Cons VCB</ion-option>
+                        <ion-option value="TNB VCB">TNB VCB</ion-option>
+                      </ion-select>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col col-12 col-sm-12 col-md-6>
+                    <ion-item>
+                      <ion-label stacked color="primary">PT Meter Location</ion-label>
+                      <ion-select interface="popover" multiple="false" placeholder="Select value"
+                        style="border-bottom: 1px solid #dadada;">
+                        <ion-option value="Cons VCB">Cons VCB</ion-option>
+                        <ion-option value="TNB VCB">TNB VCB</ion-option>
+                      </ion-select>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col col-12 col-sm-12 col-md-6>
+                    <ion-item>
+                      <ion-label stacked color="primary">VCB Brand with CT/PT</ion-label>
+                      <ion-input type="text" [(ngModel)]="ta4ai_info_vcb" placeholder="Enter value"
+                        style="border-bottom: 1px solid #dadada;"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+              </span>
+            </div>
+            <ion-row col-12 col-sm-12 col-md-12>
+              <ion-col>
+                <ion-item no-lines class="header-label">
+                  <ion-label text-center>Meter Cablings</ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6>
+                <ion-item>
+                  <ion-label stacked color="primary">Cable One</ion-label>
+                  <ion-select interface="popover" multiple="false" placeholder="Select value"
+                    style="border-bottom: 1px solid #dadada;">
+                    <ion-option value="ac">Armoured Cable</ion-option>
+                    <ion-option value="pvc">PVC Conductor in PIPE</ion-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6>
+                <ion-item>
+                  <ion-label stacked color="primary">Cable Two</ion-label>
+                  <ion-select interface="popover" multiple="false" placeholder="Select value"
+                    style="border-bottom: 1px solid #dadada;">
+                    <ion-option value="ctpt">Direct to CT & PT</ion-option>
+                    <ion-option value="junb">Through Junction Box</ion-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row col-12 col-sm-12 col-md-12>
+              <ion-col>
+                <ion-item no-lines class="header-label">
+                  <ion-label text-center>Kiosk Meter Location</ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6>
+                <ion-item>
+                  <ion-label stacked color="primary">PE Room/ SSU TNB</ion-label>
+                  <ion-select interface="popover" multiple="false" placeholder="Select value"
+                    [(ngModel)]="ta4ai_kiosk_pe" style="border-bottom: 1px solid #dadada;">
+                    <ion-option value="Yes">Yes</ion-option>
+                    <ion-option value="No">No</ion-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6>
+                <ion-item>
+                  <ion-label stacked color="primary">Special Meter Room</ion-label>
+                  <ion-select interface="popover" multiple="false" placeholder="Select value"
+                    [(ngModel)]="ta4ai_kiosk_sm" style="border-bottom: 1px solid #dadada;">
+                    <ion-option value="Yes">Yes</ion-option>
+                    <ion-option value="No">No</ion-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-6>
+                <ion-item>
+                  <ion-label stacked color="primary">Consumer Switch Room</ion-label>
+                  <ion-select interface="popover" multiple="false" placeholder="Select value"
+                    [(ngModel)]="ta4ai_kiosk_su" style="border-bottom: 1px solid #dadada;">
+                    <ion-option value="Yes">Yes</ion-option>
+                    <ion-option value="No">No</ion-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6>
+                <ion-item>
+                  <ion-label stacked color="primary">Type of Kiosk Meter</ion-label>
+                  <ion-select interface="popover" multiple="false" placeholder="Select value"
+                    [(ngModel)]="ta4ai_kiosk_type" style="border-bottom: 1px solid #dadada;">
+                    <ion-option value="Normal">Normal</ion-option>
+                    <ion-option value="HRC">HRC</ion-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide> -->
+    </ion-slides>
+
+    <ion-row *ngIf="woStatus === 'PCBNT' || woStatus === 'PSTSV'">
+      <ion-col col-12 col-sm-12 col-md-12>
+        <ion-item>
+          <ion-label color="primary" stacked> Choose the team to pass Service Order </ion-label>
+          <ion-select [(ngModel)]="items.json.ta0newworkcentervoltage" (ionChange)="passToNextTeam()">
+            <!--  <ion-option value="02">OPC Team</ion-option> -->
+            <ion-option value="03">LV Team</ion-option>
+            <ion-option value="04">MVHV Team</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <!-- Discconnection date for inspection.. 
+    <div *ngIf="items.json.worktype === soTypes.ZISO || items.json.worktype === soTypes.ZISP">
+      <ion-item style="background-color:cornflowerblue">
+        <ion-label color="primary"> Disconnection Date</ion-label>
+      </ion-item>
+      <ion-row col-12 col-sm-12 class="headerBlue">
+
+        <ion-col class="headerBlue">
+          <ion-input type="text" placeholder="select Date" [value]="tempDisDate" [readonly]="true" (ionChange)="disconnectionChanges()"></ion-input>
+        </ion-col>
+        <ion-col col-2 col-sm-2 col-2 col-sm-2 col-md-2 style="text-align: right">
+          <button ion-button color="buttonlightColor" (click)="presentPopover($event,'Calendar', 'DCD')">
+            <ion-icon name="calendar"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </div>-->
+
+    <!-- Adhoc Replacement Start Shandeep Kumar...... -->
+    <!-- Cancel not need to seal (Alif - 13-03-2019) -->
+    <!-- <div *ngIf="!showAdHoc && !gv.testMobile">
+      <ion-row *ngIf="( items.json.worktype === soTypes.ZISP && showAdHocError )">
+        <ion-col col-12 col-sm-12 col-md-12>
+          <ion-item>
+            <ion-label style="color: red; font-size: 10px;">You already created the adHoc, you should not able to
+              replace devices.</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="items.json.worktype === soTypes.ZISP || items.json.worktype === soTypes.ZINR">
+        <ion-col col-10 col-sm-10 col-md-10 >
+          <ion-item>
+            <ion-label color="primary" stacked style="font-weight: bold"> Ad-Hoc Replacement</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-2 col-sm-2 col-md-2>
+          <button ion-button (click)="changeAdhocReplacement()" [disabled]="!adhocValid">Add</button>
+        </ion-col>
+      </ion-row>
+      <div *ngFor='let attr of items.json.relatedrecord; let j = index;'>
+        <ion-row *ngIf="attr.ta0relatedrecstatus !== 'CANCEL'">
+          <ion-col col-12 col-sm-12 col-md-9 >
+            <ion-item>
+              <ion-row>
+                <ion-col col-4 col-sm-4 col-md-4>
+                  <b *ngIf="attr.relatedrecwonum"> {{ attr.relatedrecwonum }} - </b>
+                </ion-col>
+                <ion-col col-3 col-sm-3 col-md-3>
+                  {{ attr.ta0relatedrecworktype }}
+                </ion-col>
+                <ion-col col-3 col-sm-3 col-md-3>
+                  {{ attr.ta0relatedrecsncode }}
+                </ion-col>
+                <ion-col col-2 col-sm-2 col-md-2>
+                  {{ attr.ta0relatedrecstatus }}
+                </ion-col>
+              </ion-row>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-3 >
+            <button ion-button *ngIf="!attr.relatedrecwonum" (click)="createAdhocFollowUp(j)">Create</button>
+            <button ion-button *ngIf="attr.relatedrecwonum"
+              (click)="changeAdhocRemove(j, attr.relatedrecwonum, 'cancel')">Cancel</button>
+            <button ion-button *ngIf="!attr.relatedrecwonum"
+              (click)="changeAdhocRemove(j, attr.relatedrecwonum, 'delete')">Delete</button>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+    <div *ngIf="!showAdHoc && gv.testMobile">
+      <ion-row *ngIf="(items.json.worktype === soTypes.ZISP)">
+        <ion-col col-12 col-sm-12 col-md-12>
+          <ion-item>
+            <ion-label style="color: red; font-size: 10px;">No Network Connection to access Ad-Hoc...</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div> -->
+    <!-- Adhoc Replacement End -->
+
+    <ion-list>
+      <div *ngIf="items.json.worktype === soTypes.ZDCN || items.json.worktype === soTypes.ZRCN">
+        <ion-item style="background-color:cornflowerblue">
+          <ion-label color="primary" *ngIf="items.json.worktype === soTypes.ZDCN">Disconnection</ion-label>
+          <ion-label color="primary" *ngIf="items.json.worktype === soTypes.ZRCN">Reconnection</ion-label>
+        </ion-item>
+        <ion-row>
+          <ion-col col-12 col-sm-12 col-md-6
+            style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+            <ion-item>
+              <ion-label color="primary" stacked>Installation Number</ion-label>
+              <ion-input type="text" value="{{ items.json.ta0installationnum }}" [readonly]="isReadonly"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-6>
+            <ion-item>
+              <ion-label color="primary" stacked>Document Number</ion-label>
+              <ion-input type="text" value="{{ items.json.ta0disconnectiondoc }}" [readonly]="isReadonly"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12 col-sm-12 col-md-6
+            style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+            <ion-item>
+              <ion-label color="primary" stacked *ngIf="items.json.worktype === soTypes.ZDCN">Actual Disconnection
+                DateTime</ion-label>
+              <ion-label color="primary" stacked *ngIf="items.json.worktype === soTypes.ZRCN">Actual Reconnection
+                DateTime</ion-label>
+              <ion-input type="text" value="" [readonly]="isReadonly"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-6>
+            <ion-item>
+              <ion-label color="primary" stacked>TECO DateTime</ion-label>
+              <ion-input type="text" value="" [readonly]="isReadonly"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </div>
+      <ion-item style="background-color:cornflowerblue">
+        <ion-label color="primary">Work Plan Date</ion-label>
+      </ion-item>
+      <!-- <ion-row>
+        <ion-col col-md-12>
+          <ion-item>
+            <ion-label color="primary">Date</ion-label>
+            <ion-input type="text" placeholder="Date"></ion-input>
+          </ion-item>
+        </ion-col>
+        </ion-row> -->
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-6
+          style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+          <ion-item>
+            <ion-label color="primary" stacked>Scheduled Start DateTime</ion-label>
+            <ion-input type="text"
+              value="{{ items.json.schedstart | date: gv.dateFormat }} {{ items.json.schedstart | date: gv.time24Format }} "
+              [readonly]="isReadonly"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-6>
+          <ion-item>
+            <ion-label color="primary" stacked>Scheduled Finish DateTime</ion-label>
+            <ion-input type="text"
+              value="{{ items.json.schedfinish | date: gv.dateFormat }} {{ items.json.schedfinish | date: gv.time24Format }}"
+              [readonly]="isReadonly"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <!--  <ion-row>
+        <ion-col col-12 col-sm-12 col-md-4 >
+          <ion-item>
+            <ion-label color="primary">Scheduled Finish DateTime</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-8 >
+          <ion-item>
+            <ion-input type="text" placeholder="Schedule Finish" value="{{ items.json.schedfinish | date: gv.dateFormat  }} {{ items.json.schedfinish | date: gv.timeFormat  }}"
+              [readonly]="isReadonly"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row> -->
+      <div *ngIf='compliance_label'>
+        <ion-row>
+          <ion-item style="background-color:cornflowerblue">
+            <ion-label color="primary">Compliance List</ion-label>
+          </ion-item>
+        </ion-row>
+        <ion-row>
+          <ion-list col-12 col-sm-12 col-md-12>
+            <ion-col>
+              <ion-item *ngFor="let forms of compArr;let i = index">
+                <ion-label>{{ forms.no }}.</ion-label>
+                <button item-end ion-button item-content (click)='openCompliance(i)'> {{ forms.title }}</button>
+              </ion-item>
+            </ion-col>
+          </ion-list>
+        </ion-row>
+      </div>
+
+      <ion-item style="background-color:cornflowerblue">
+        <ion-label color="primary">Actual Start Date</ion-label>
+      </ion-item>
+
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-6
+          style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+          <ion-item>
+            <ion-label color="primary" stacked>Actual Start DateTime</ion-label>
+            <ion-input type="text"
+              value="{{ items.json.actstart  | date: gv.dateFormat }} {{ items.json.actstart | date: gv.time24Format }}"
+              [readonly]="true"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-6
+          *ngIf="(items.json.worktype === soTypes.ZISO && items.json.ta0sncode !== 'S202') || items.json.worktype === soTypes.ZISP || items.json.worktype === soTypes.ZIST"
+          style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+          <ion-item [ngClass]="(finishDateTimeIndicator) ? 'redHighlightText' : 'blackHighlightText'">
+            <ion-label color="primary" stacked>Finish DateTime</ion-label>
+            <ion-input type="text"
+              value="{{ items.json.wol4 | date: gv.dateFormat }} {{ items.json.wol4 | date: gv.time24Format }}"
+              [readonly]="true"></ion-input>
+            <ion-icon name="md-time" item-end color="primary" style="zoom: 1.2;" (click)="getFinishDateTime()">
+              <!-- *ngIf="items.json.wol4 === undefined || items.json.wol4 === null" -->
+            </ion-icon>
+            <!-- <ion-icon name="md-clock" item-end color="primary"></ion-icon>
+            <ion-icon name="md-checkmark-circle" item-end></ion-icon>
+            <ion-icon name="md-close-circle" item-end></ion-icon> -->
+            <!-- [ngClass]="(validateUserSts1) ? 'redHighlightText' : 'blackHighlightText'" -->
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-6
+          style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+          <ion-item>
+            <ion-label color="primary" stacked>Approved By</ion-label>
+            <ion-input type="text" value="{{ items.json.owner || ''}}" [readonly]="isReadonly"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-6 *ngIf="assignment"
+          style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+          <ion-item>
+            <ion-label color="primary" stacked>Work Done By </ion-label>
+            <ion-input type="text" placeholder="Technician Id (Assign To)" value="{{  assignment.laborcode }}"
+              [readonly]="isReadonly"></ion-input>
+          </ion-item>
+        </ion-col>
+        
+      </ion-row>
+
+      <ion-item style="background-color:cornflowerblue">
+        <ion-label color="primary">Remarks Service Order</ion-label>
+      </ion-item>
+      <div padding>
+        <ion-textarea type="textarea" style="border:1px" rows="6"
+          style="border-bottom: 2px solid black; border-right: 1px solid black ;border-left: 1px solid black;border-top: 1px solid black;"
+          placeholder="Please Enter" [(ngModel)]="items.json.ta0remarks" value="{{ items.json.ta0remarks }}"
+          [disabled]="editField"></ion-textarea>
+      </div>
+      <!-- No Need for Seal -->
+      <!-- Edited: Alif (15/05/2019) -->
+      <!-- <div
+        *ngIf="items.json.worktype === soTypes.ZIST || items.json.worktype === soTypes.ZUDN || items.json.worktype === soTypes.ZSRO|| items.json.worktype === soTypes.ZUNL || items.json.worktype === soTypes.ZRPL|| items.json.worktype === soTypes.ZRPM">
+        <div
+          *ngIf="items.json.ta0installationvoltage === '05' || items.json.ta0installationvoltage === '06' || items.json.ta0installationvoltage === '07' || items.json.ta0installationvoltage === '08' || items.json.ta0installationvoltage === '09' || items.json.ta0installationvoltage === '10'">
+          <ion-item style="background-color:cornflowerblue">
+            <ion-label color="primary">Location PT & CT</ion-label>
+          </ion-item>
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-6
+              style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+              <ion-list>
+                <ion-row>
+                  <ion-col >
+                    <ion-item>
+                      <ion-label color="primary">Location PT </ion-label>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+              </ion-list>
+              <ion-list radio-group [(ngModel)]="ta0ptlocation">
+                <ion-row>
+                  <ion-col >
+                    <ion-item>
+                      <ion-label>TNB S.Gear</ion-label>
+                      <ion-radio value="TNB"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col >
+                    <ion-item>
+                      <ion-label>Customer S.Gear</ion-label>
+                      <ion-radio value="Customer"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+              </ion-list>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-6
+              style="word-wrap:  break-all; padding-left: 5px;border-right: 1px solid #dadada;">
+              <ion-list>
+                <ion-row>
+                  <ion-col >
+                    <ion-item>
+                      <ion-label color="primary">Location CT </ion-label>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+              </ion-list>
+              <ion-list radio-group [(ngModel)]="ta0ctlocation">
+                <ion-row>
+                  <ion-col >
+                    <ion-item>
+                      <ion-label>TNB S.Gear</ion-label>
+                      <ion-radio value="TNB"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col >
+                    <ion-item>
+                      <ion-label>Customer S.Gear</ion-label>
+                      <ion-radio value="Customer"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+        </div>
+      </div> -->
+    </ion-list>
+  </ion-grid>
+</ion-content>
+<br />
+<br />
+
+<ion-footer mode="md">
+  <ion-toolbar color="light" mode="md">
+    <button ion-button color="primary" mode="md" round (click)="goToServiceExecution(itemsOri)"
+      *ngIf="showServiceExecution && req_inspection">
+      Service Execution
+    </button>
+    <button ion-button color="primary" mode="md" round (click)="saveAction()"
+      *ngIf="loc_saveStatus === true || showSave === true"
+      [disabled]="buttonForServiceExecution || (woStatus === 'PENDTECO' && gv.testMobile)">
+      Save
+    </button>
+    <button ion-button color="primary" mode="md" round (click)="goBack()">
+      Cancel
+    </button>
+    <button ion-button color="primary" mode="md" round (click)="presentActionSheet()" *ngIf="previewBtn">
+      Generate Form
+    </button>
+    <button ion-button color="primary" mode="md" round (click)="goToInspectionSummary()"
+      *ngIf="hide_buttonInspectionSummary">
+      Inspection Summary
+    </button>
+    <button ion-button color="primary" mode="md" round (click)="goToTechnicalReview()"
+      *ngIf="hide_buttonTechnicalReview && (gv.employeetype === 'SUPERVISOR' || gv.employeetype === 'EXECUTIVE')">
+      Technical Review
+    </button>
+    <button ion-button color="primary" mode="md" round (click)="goCompliance()"
+      *ngIf="hide_buttonCompliance && gv.employeetype !== 'EXECUTIVE'">
+      Compliance Form
+    </button>
+    <!-- New Page for Attachment Section (SEAL) -->
+    <!-- <button ion-button color="primary" mode="md" round (click)="openAttachmentPhoto()">
+      Attachment
+    </button> -->
+  </ion-toolbar>
+</ion-footer>
+
+<!-- <ion-footer *ngIf="woStatus !== 'APPR'">
+  <ion-toolbar color="darkColor"> -->
+<!-- <button ion-button (click)="goToServiceExecution(items)" *ngIf="showServiceExecution && woStatus == 'INPRG'">Service Execution</button> -->
+<!-- <button ion-button *ngIf="sweepButtonHide" color="footer" (click)="goNotice()">Notice Form</button> -->
+<!-- *ngIf="!showServiceExecution && (woStatus == 'INPRG' || woStatus == 'KIV' || woStatus == 'CLSD' || woStatus == 'TECO')"  [disabled]="buttonForServiceExecution"-->
+
+<!-- <button ion-button color="footer" *ngIf="showServiceExecution && req_inspection"
+      (click)="goToServiceExecution(itemsOri)">Service Execution</button>
+    <button ion-button color="footer" *ngIf="loc_saveStatus === true || showSave === true" (click)="saveAction()"
+      [disabled]="buttonForServiceExecution">Save</button>
+    <button ion-button color="footer" *ngIf="previewBtn" (click)="presentActionSheet()">Preview</button>
+    <button ion-button color="footer" *ngIf="hide_buttonCompliance" (click)="goCompliance()">Compliance Form</button>
+    <button ion-button color="footer" (click)="goToInspectionSummary()">Inspection
+      Summary</button>
+    <span *ngIf="gv.employeetype === 'SUPERVISOR' || gv.employeetype === 'EXECUTIVE'">
+      <button ion-button color="footer" *ngIf="hide_buttonTechnicalReview" (click)="goToTechnicalReview()">Technical
+        Review</button>
+    </span>
+    <button ion-button color="footer" (click)="goBack()">Cancel</button>
+
+    <button ion-button color="footer" (click)="openAttachmentPhoto()">openAttachment</button>
+  </ion-toolbar>
+</ion-footer> -->

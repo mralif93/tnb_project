@@ -1,0 +1,62 @@
+page-register-asset-details {
+
+    .borderTableTop {
+        border-top: 1px solid black;
+        border-left: 1px solid black;
+        border-right: 1px solid black;
+        padding: 6px 0px 6px 0px;
+    }
+    .borderTableBottom {
+        border-bottom: 1px solid black;
+        border-left: 1px solid black;
+        border-right: 1px solid black;
+        border-top: 1px solid black;
+        padding: 6px 0px 6px 0px;
+    }
+
+    .classA { 
+        background-color: #fffffA;
+    }
+
+    .classB{ 
+        background-color:#C4D8E2;
+    }
+
+    .non-display {
+        display: none;
+    }
+
+    .display {
+        display: block;
+    }
+
+    .offline_btn {
+        font-size: 15px;
+    }
+
+    .headerStyle {
+        padding-bottom: 5px; 
+        background-color: blue; 
+        color:white;
+    }
+
+    .card-ios {
+        border-radius: 10px !important;
+        border: 1px solid lightgrey;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-header-ios {
+        border-bottom: 1.5px solid lightgrey;
+    }
+
+    .list > .item-block:last-child,
+    .list > .item-wrapper:last-child .item-block {
+        border-bottom: none;
+    }
+
+    .list > .item-block:last-child .item-inner,
+    .list > .item-wrapper:last-child .item-block .item-inner {
+        border-bottom: 0.55px solid #c8c7cc;
+    }
+}

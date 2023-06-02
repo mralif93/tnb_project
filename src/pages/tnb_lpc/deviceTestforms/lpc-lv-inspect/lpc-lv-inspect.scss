@@ -1,0 +1,132 @@
+page-lpc-lv-inspect {
+
+    .headerStyle{
+        // padding-bottom: 0px; 
+        background-color: blue; 
+        color:white;
+        }
+    
+        .headerBlue{
+        padding-bottom: 0px; 
+        margin-bottom: 0px;
+        background-color:white; 
+        //color:black;
+        border: 1px solid grey;
+        }
+    
+        .radio-group {
+            margin-bottom: 0px;
+        }
+    
+
+        .errorSection{
+            // -webkit-animation: 1s ease slidein;
+            // animation: 1s ease slidein;
+
+            -webkit-animation: blink 1s linear 5;
+            -moz-animation: blink 1s linear 5;
+            animation: blink 1s linear 5;
+
+            // animation: blink-animation 1s steps(5, start) infinite;
+            // -webkit-animation: blink-animation 1s steps(5, start) infinite;
+
+            background-color: red;
+            color:white;
+          }
+
+          @keyframes slidein {
+              from{transform: scaleX(0);}
+              to{transform: scaleX(1);}
+              //100% { transform: translateX(0%); }
+        }
+        
+        @-webkit-keyframes slidein {
+            from { -webkit-transform: scaleX(0);}
+            to {-webkit-transform: scaleY(1);}
+            // 100% { -webkit-transform: translateX(0%); }
+        }
+          
+          @keyframes blink-animation {
+            to {
+              visibility: hidden;
+            }
+          }
+          @-webkit-keyframes blink-animation {
+            to {
+              visibility: hidden;
+            }
+          }
+
+          @keyframes blink {  
+            0% { 
+                background-color: red;
+                color:white;
+            }
+            100% {
+                background-color: #f4f4f4;
+                color:black;
+                }
+          }
+          @-webkit-keyframes blink {
+            0% {
+                background-color: red;
+                color:white;
+            }
+            100% {
+                background-color: #f4f4f4;
+                color:black;
+                }
+          }
+
+          .successSection{
+            background-color: #f4f4f4;
+            color:black;
+          }
+
+        .redHighlightText{
+            padding-bottom: 0px; 
+            border-bottom: 2px solid red;
+            border-right: 0px solid;
+            border-left: 0px solid;
+            border-top: 0px solid;
+        }
+    
+        .blackHighlightText{
+            padding-bottom: 0px; 
+            border-bottom: 2px solid black;
+            border-right: 0px solid;
+            border-left: 0px solid;
+            border-top: 0px solid;
+        }
+    
+        .flash {
+            // box-shadow: none;
+            // width: 74px !important; 
+            // border-radius: 10%; 
+            // color: #000000; 
+            height: 18px !important; 
+            padding: 15px;
+            background-color: white;
+            // top: -5px;
+        }
+        
+        @keyframes flash {  
+            50% { opacity: 0; }
+        }
+        
+        .flash_plnt {
+            animation: flash 1s linear infinite;
+            padding-right: 5px; font-size: 15px;
+        }
+    
+        .offline_btn {
+            font-size: 15px;
+        }
+        
+    .item-divider {
+        border-radius: 10px;
+        margin-top: 1%;
+    }
+    .pointer {cursor: pointer;}
+
+}

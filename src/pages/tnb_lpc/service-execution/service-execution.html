@@ -1,0 +1,673 @@
+<ion-header mode="md">
+  <ion-navbar color="primary">
+    <ion-title> Service Execution</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon [color]="gv.testMobile ? 'danger' : 'light'" name="md-planet" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end (click)="addFeeder()"
+      *ngIf="item.json.worktype === soTypes.ZIST || (item.json.worktype === soTypes.ZUDN && item.json.ta0newvoltage > 2)">
+      <button mode="md" ion-button icon-start round color="light" style="padding: 15px;">
+        <ion-icon name="md-add"></ion-icon>&nbsp; Add Feeder
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull down to download">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <span *ngFor="let feeder of item.json.ta0feeder; let i = index">
+    <ion-card>
+      <ion-list>
+        <span *ngIf="feeder._action != 'Delete'">
+          <ion-list-header class="custom-list-top-header-color">
+            <ion-icon mode="md" name="arrow-dropdown" (click)="toggleSection(i)" *ngIf="feeder.open" item-start>
+            </ion-icon>
+            <ion-icon mode="md" name="arrow-dropright" (click)="toggleSection(i)" *ngIf="!feeder.open" item-start>
+            </ion-icon>
+            <ion-label (click)="toggleSection(i)" [ngClass]="feeder.loc_removeAllDevice ? 'strikethrough' : ''">
+              {{ feeder.eFeederVoltage == '01' ? 'OPC' :  feeder.eFeederVoltage == '02' ? 'OPC' : feeder.eFeederVoltage == '03' ? 'LV' : feeder.eFeederVoltage > '03' ? 'MVHV' : item.json.ta0installationvoltage == '01' ? 'OPC' : item.json.ta0installationvoltage == '02' ? 'OPC' : item.json.ta0installationvoltage == '03' ? 'LV' : item.json.ta0installationvoltage > '03' ? 'MVHV' : '-' }}
+              [{{ feeder.eFeederVoltage || '-' }}]
+              <span *ngIf="feeder.nMeterSerialNum || feeder.eMeterSerialNum">
+                / {{ feeder.eMeterAllocationName || feeder.nMeterAllocationName }} -
+                {{ feeder.eMeterSerialNum || feeder.nMeterSerialNum }}
+              </span>
+            </ion-label>
+            <button ion-button mode="md" item-end
+              *ngIf="((item.json.worktype === soTypes.ZIST || item.json.worktype === soTypes.ZISR || (item.json.worktype === soTypes.ZUDN && feeder.ta0existing === false)) && !wolo1Freeze) && (gv.departmentCode === feeder.eFeederVoltage || item.json.worktype === soTypes.ZUDN || (feeder.eFeederVoltage >= 01 && gv.departmentCode === '00'))"
+              (click)="goToAddDevicesPage(i, feeder.eFeederVoltage)">
+              ADD DEVICES
+            </button>
+            <button ion-button mode="md" item-end
+              *ngIf="((item.json.worktype === soTypes.ZRMV || item.json.worktype === soTypes.ZRCE) && !wolo1Freeze) && (gv.departmentCode === feeder.eFeederVoltage || item.json.worktype === soTypes.ZUDN || (feeder.eFeederVoltage >= 01 && gv.departmentCode === '00'))"
+              (click)="goToRemoveDevicesPage(i, feeder.eFeederVoltage)">
+              REMOVE DEVICES
+            </button>
+            <button ion-button mode="md" item-end
+              *ngIf="((item.json.worktype === soTypes.ZUDN && feeder.ta0existing === true) || item.json.worktype === soTypes.ZRPC || item.json.worktype === soTypes.ZSRO || item.json.worktype === soTypes.ZCER || item.json.worktype === soTypes.ZINR || (item.json.worktype === soTypes.ZINL && !showAdHocError)) && (gv.departmentCode === feeder.eFeederVoltage || item.json.worktype === soTypes.ZUDN || (feeder.eFeederVoltage >= 01 && gv.departmentCode === '00'))"
+              (click)="goToRemoveDevicesPage(i, feeder.eFeederVoltage)">
+              REPLACE DEVICES
+            </button>
+            &nbsp;&nbsp;
+            <ion-icon style="padding-left: 12px;padding-right: 12px;" mode="md" name="trash" color="danger" item-end
+              *ngIf="(item.json.worktype === soTypes.ZIST && this.item.json.ta0sncode !== 'D101') ||  ((item.json.worktype === soTypes.ZIST && this.item.json.ta0sncode === 'D101' && feeder.ta0existing === false) || (item.json.worktype === soTypes.ZUDN && feeder.ta0existing === false)) && (gv.departmentCode === feeder.eFeederVoltage || item.json.worktype === soTypes.ZUDN || (feeder.eFeederVoltage >= 01 && gv.departmentCode === '00'))"
+              (click)="removeFeeder(i)">
+            </ion-icon>
+            <!-- <ion-toggle checked="false" item-end></ion-toggle> -->
+          </ion-list-header>
+
+          <span *ngIf="feeder.multiassetlocci && feeder.open">
+            <span *ngFor="let device of feeder.feederSetDesign; let j = index">
+              <span *ngIf="!device.children">
+                <ion-list>
+                  <span *ngIf="device.soWorkType !== soTypes.ZIST">
+                    <ion-list-header class="custom-list-old-header-color">
+                      <ion-icon name="remove-circle-outline" item-start></ion-icon>
+                      Existing Meter Details - {{ feeder.eFeederVoltage }}
+                      <ion-icon name="checkmark-circle" item-end
+                        [ngClass]="(device.eFeederStatus === true) ? 'complete-color' : 'uncomplete-color'"></ion-icon>
+                    </ion-list-header>
+                    <ion-row class="custom-list-header-bottom custom-list-header content-background-old">
+                      <ion-col col-md-6 class="custom-border-right">
+                        <!-- Start: Main Section -->
+                        <ion-item style="background: transparent;">
+                          <ion-label col-md-4 text-wrap>
+                            <strong>{{ device.eMeterAllocationType == '90' ? 'Main Meter' : device.eMeterAllocationType == '91' ? 'Feeder Meter' : device.eMeterAllocationType == '94' ? 'Sub Meter' : device.eMeterAllocationType == '96' ? 'Sub Feeder Meter' : 'Main Meter' }}:</strong>
+                          </ion-label>
+                          <ion-label>
+                            <h2 [ngClass]="(device.eMeterRemoveInd) ? 'strikethrough' : ''">
+                              {{ device.eMeterSerialNum || '-'}} / {{ device.eMeterCtrl || '-' }}</h2>
+                          </ion-label>
+                        </ion-item>
+
+                        <ion-item style="background: transparent;">
+                          <ion-label col-md-4 text-wrap>
+                            <strong>Modem:</strong>
+                          </ion-label>
+                          <ion-label text-wrap>
+                            <h2 [ngClass]="(device.eMeterModemRemoveInd) ? 'strikethrough' : ''">
+                              {{ device.eMeterModemSerialNum || '-'}} / {{ device.eMeterModemCtrl || '-' }}</h2>
+                          </ion-label>
+                        </ion-item>
+
+                        <ion-item style="background: transparent;">
+                          <ion-label col-md-4 text-wrap>
+                            <strong>Simcard:</strong>
+                          </ion-label>
+                          <ion-label text-wrap>
+                            <h2 [ngClass]="(device.eMeterSimRemoveInd) ? 'strikethrough' : ''">
+                              {{ device.eMeterSimSerialNum || '-' }} / {{ device.eMeterSimCtrl || '-' }}</h2>
+                          </ion-label>
+                        </ion-item>
+                      </ion-col>
+
+                      <!-- End: Main Section -->
+
+                      <!-- Start: Check Section -->
+                      <ion-col col-md-6 class="custom-border-right" *ngIf="device.eFeederVoltage <= 2"></ion-col>
+                      <ion-col col-md-6
+                        *ngIf="device.eFeederVoltage > 2 || (item.json.worktype === soTypes.ZMMR && feeder.eFeederVoltage > 2 && device.eCheckSerialNum)"
+                        class="content-background-old">
+                        <ion-item style="background: transparent;">
+                          <ion-label col-md-4 text-wrap>
+                            <strong>{{ device.eCheckAllocationType == '92' ? 'Check Meter' : device.eCheckAllocationType == '93' ? 'Check Feeder' : device.eCheckAllocationType == '95' ? 'Check Sub Meter' : device.eCheckAllocationType == '97' ? 'Check Sub Feeder' : 'Check Meter' }}:</strong>
+                          </ion-label>
+                          <ion-label text-wrap>
+                            <h2 [ngClass]="(device.eCheckRemoveInd) ? 'strikethrough' : ''">
+                              {{ device.eCheckSerialNum || '-' }} / {{ device.eCheckCtrl || '-' }}</h2>
+                          </ion-label>
+                        </ion-item>
+
+                        <ion-item style="background: transparent;">
+                          <ion-label col-md-4 text-wrap>
+                            <strong>Modem:</strong>
+                          </ion-label>
+                          <ion-label text-wrap>
+                            <h2 [ngClass]="(device.eCheckModemRemoveInd) ? 'strikethrough' : ''">
+                              {{ device.eCheckModemSerialNum || '-' }} / {{ device.eCheckModemCtrl || '-' }}</h2>
+                          </ion-label>
+                        </ion-item>
+
+                        <ion-item style="background: transparent;">
+                          <ion-label col-md-4 text-wrap>
+                            <strong>Simcard:</strong>
+                          </ion-label>
+                          <ion-label text-wrap>
+                            <h2 [ngClass]="(device.eCheckSimRemoveInd) ? 'strikethrough' : ''">
+                              {{ device.eCheckSimSerialNum || '-' }} / {{ device.eCheckSimCtrl || '-' }}</h2>
+                          </ion-label>
+                        </ion-item>
+                      </ion-col>
+                      <!-- End: Check Section -->
+
+                      <!-- Start: Main Section (Button) -->
+                      <!-- <ion-col col-md-6 class="custom-border-right"
+                        *ngIf="device.eMeterSerialNum === 'undefined' && item.json.worktype === soTypes.ZMMR">
+                      </ion-col> -->
+                      <ion-col col-md-6 class="custom-border-right"
+                        *ngIf="gv.departmentCode >= device.eFeederVoltage || (item.json.worktype === soTypes.ZMMR && device.eMeterSerialNum !== 'undefined') || item.json.worktype === soTypes.ZUDN || (device.eFeederVoltage >= 01 && gv.departmentCode === '00')">
+                        <ion-col col-md-2 *ngIf="device.eMeterSerialNum && item.json.worktype === soTypes.ZMMR">
+                          <button ion-button icon-start class="custom-button-1"
+                            (click)="openRegisterPage(device.eMeter, i, device.eMeterIndex, device.eMeterModem, device.eMeterSim, device.eMeterModemIndex, device.eMeterSimIndex)"
+                            [ngClass]="(device.eMeterRegisterStatus !== 'N' && device.eMeterModemRegisterStatus !== 'N' && device.eMeterSimRegisterStatus !== 'N') ? 'completeColor' : ''">
+                            <ion-icon name="information-circle" item-start></ion-icon>
+                            Info
+                          </button>
+                        </ion-col>
+                        <ion-col col-md-2
+                          *ngIf="device.eMeter && item.json.worktype !== soTypes.ZMMR && (item.json.worktype !== soTypes.ZISR)">
+                          <button ion-button icon-start class="custom-button-1"
+                            (click)="openRegisterPage(device.eMeter, i, device.eMeterIndex, device.eMeterModem, device.eMeterSim, device.eMeterModemIndex, device.eMeterSimIndex)"
+                            [ngClass]="(device.eMeterRegisterStatus !== 'N' && device.eMeterModemRegisterStatus !== 'N' && device.eMeterSimRegisterStatus !== 'N') ? 'completeColor' : ''">
+                            <ion-icon name="information-circle" item-start></ion-icon>
+                            Info
+                          </button>
+                        </ion-col>
+                        <!-- CR002 Crimpless Seal-->
+                        <!--
+                        <ion-col col-md-2 *ngIf="device.eMeter && item.json.worktype !== soTypes.ZMMR && (item.json.worktype !== soTypes.ZRMV) && (device.eFeederVoltage > dCons.VOL_LEVEL_OPC_3PH)">
+                        -->
+                        <ion-col col-md-2 *ngIf="device.eMeter && item.json.worktype !== soTypes.ZMMR && (device.eFeederVoltage > dCons.VOL_LEVEL_OPC_3PH)">
+                          <button ion-button icon-start class="custom-button-1"
+                            (click)="openSilStickerInfoPage(i, device.eMeterIndex, device.eMeterAllocationType,  device, 'E')"
+                            [ngClass]="(device.eMeterSilStatus !== 'N') ? 'completeColor' : ''">
+                            <ion-icon name="ribbon" item-start></ion-icon>
+                            S&S
+                          </button>
+                        </ion-col>
+                        <ion-col col-md-2
+                          *ngIf="((item.json.worktype !== soTypes.ZINL && item.json.worktype !== soTypes.ZINR) && (item.json.worktype !== soTypes.ZISR) && (item.json.worktype !== soTypes.ZRCE) && ( device.eMeter || device.eMeterModem )) && item.json.worktype !== soTypes.ZMMR && item.json.worktype !== soTypes.ZRMV">
+                          <button ion-button icon-start class="custom-button-1"
+                            (click)="openLpcTestListPage(i, device.eMeterIndex,device,'main','E')"
+                            [ngClass]="(device.eMeterTestStatus !== 'N' && device.eMeterModemTestStatus !== 'N') ? 'completeColor' : ''">
+                            <ion-icon name="flask" item-start></ion-icon>
+                            Test
+                          </button>
+                        </ion-col>
+                        <ion-col col-md-2
+                          *ngIf="(item.json.worktype === soTypes.ZINL && (device.eFeederVoltage === dCons.VOL_LEVEL_LPC_LV_400V) && device.eMeter) && item.json.worktype !== soTypes.ZMMR">
+                          <button ion-button icon-start class="custom-button-1"
+                            (click)="openLpcLvInspectPage(i, device.eMeterIndex)"
+                            [ngClass]="(device.eMeterTestStatus !== 'N') ? 'completeColor' : ''">
+                            <ion-icon name="flask" item-start></ion-icon>
+                            LV Insp
+                          </button>
+                        </ion-col>
+                        <ion-col col-md-2
+                          *ngIf="(item.json.worktype === soTypes.ZINL && (device.eFeederVoltage > 3 ) && device.eMeter)  && item.json.worktype !== soTypes.ZMMR">
+                          <button ion-button icon-start class="custom-button-1"
+                            (click)="openLpcMvhvInspectPage(i, device.eMeterIndex)"
+                            [ngClass]="(device.eMeterTestStatus !== 'N') ? 'completeColor' : ''">
+                            <ion-icon name="flask" item-start></ion-icon>
+                            MVHV Insp
+                          </button>
+                        </ion-col>
+                        <ion-col col-md-2
+                          *ngIf="(item.json.worktype === (soTypes.ZINL||soTypes.ZINR) && (device.eFeederVoltage <= dCons.VOL_LEVEL_OPC_3PH) && device.eMeter)">
+                          <button ion-button icon-start class="custom-button-1"
+                            (click)="openOPCInspectionPage(i, device.eMeterIndex, device.eFeederVoltage)"
+                            [ngClass]="(device.eMeterTestStatus !== 'N') ? 'completeColor' : ''">
+                            <ion-icon name="flask" item-start></ion-icon>
+                            OPC Insp
+                          </button>
+                        </ion-col>
+                        <ion-col col-md-2
+                          *ngIf="(item.json.worktype === soTypes.ZINR && device.eMeter)  && item.json.worktype !== soTypes.ZMMR && device.eMeterModemIndex !== undefined">
+                          <button ion-button icon-start class="custom-button-1"
+                            (click)="openDailyMaintenanceReport(i, device.eMeterModemIndex, device.eMeterSimIndex)"
+                            [ngClass]="(device.eMeterModemTestStatus !== 'N') ? 'completeColor' : ''">
+                            <ion-icon name="flask" item-start></ion-icon>
+                            CE Insp
+                          </button>
+                        </ion-col>
+                      </ion-col>
+                      <!-- End: Main Section (Button) -->
+
+                      <!-- Start: Check Section (Button) -->
+                      <ion-col col-md-6
+                        *ngIf="gv.departmentCode === device.eFeederVoltage || (item.json.worktype === soTypes.ZMMR && device.eCheck !== 'undefined') || item.json.worktype === soTypes.ZUDN || (device.eFeederVoltage >= 01 && gv.departmentCode === '00')">
+                        <ion-col col-md-2 *ngIf="device.eCheck && item.json.worktype === soTypes.ZMMR">
+                          <button ion-button icon-start class="custom-button-1"
+                            (click)="openRegisterPage(device.eCheck, i, device.eCheckIndex, device.eCheckModem, device.eCheckSim, device.eCheckModemIndex, device.eCheckSimIndex)"
+                            [ngClass]="(device.eCheckRegisterStatus !== 'N'  && device.eCheckModemRegisterStatus !== 'N' && device.eCheckSimRegisterStatus !== 'N') ? 'completeColor' : ''">
+                            <ion-icon name="information-circle" item-start></ion-icon>
+                            Info
+                          </button>
+                        </ion-col>
+                        <ion-col col-md-2
+                          *ngIf="device.eCheck && item.json.worktype !== soTypes.ZMMR && (item.json.worktype !== soTypes.ZISR)">
+                          <button ion-button icon-start class="custom-button-1"
+                            (click)="openRegisterPage(device.eCheck, i, device.eCheckIndex, device.eCheckModem, device.eCheckSim, device.eCheckModemIndex, device.eCheckSimIndex)"
+                            [ngClass]="(device.eCheckRegisterStatus !== 'N' && device.eCheckModemRegisterStatus !== 'N' && device.eCheckSimRegisterStatus !== 'N') ? 'completeColor' : ''">
+                            <ion-icon name="information-circle" item-start></ion-icon>
+                            Info
+                          </button>
+                        </ion-col>
+                        <!-- CR002 Crimpless Seal-->
+                        <!--
+                        <ion-col col-md-2 *ngIf="device.eCheck && item.json.worktype !== soTypes.ZMMR && (item.json.worktype !== soTypes.ZRMV)">
+                        -->
+                        <ion-col col-md-2 *ngIf="device.eCheck && item.json.worktype !== soTypes.ZMMR">
+                          <button ion-button icon-start class="custom-button-1"
+                            (click)="openSilStickerInfoPage(i, device.eCheckIndex, device.eCheckAllocationType,  device, 'E')"
+                            [ngClass]="(device.eCheckSilStatus !== 'N') ? 'completeColor' : ''">
+                            <ion-icon name="ribbon" item-start></ion-icon>
+                            S&S
+                          </button>
+                        </ion-col>
+                        <ion-col col-md-2
+                          *ngIf="((item.json.worktype !== soTypes.ZINL && item.json.worktype !== soTypes.ZINR) && (item.json.worktype !== soTypes.ZISR) && (item.json.worktype !== soTypes.ZRCE) && (device.eCheck || device.eCheckModem)) && item.json.worktype !== soTypes.ZMMR && item.json.worktype !== soTypes.ZRMV">
+                          <button ion-button icon-start class="custom-button-1"
+                            (click)="openLpcTestListPage(i, device.eCheckIndex,  device, 'check','E')"
+                            [ngClass]="(device.eCheckTestStatus !== 'N'  && device.eCheckModemTestStatus !== 'N' ) ? 'completeColor' : ''">
+                            <ion-icon name="flask" item-start></ion-icon>
+                            Test
+                          </button>
+                        </ion-col>
+                        <ion-col col-md-2
+                          *ngIf="(item.json.worktype === soTypes.ZINL && (device.eFeederVoltage === dCons.VOL_LEVEL_LPC_LV_400V) &&  device.eCheck) && item.json.worktype !== soTypes.ZMMR">
+                          <button ion-button icon-start class="custom-button-1"
+                            (click)="openLpcLvInspectPage(i, device.eCheckIndex)"
+                            [ngClass]="(device.eCheckTestStatus !== 'N'  && device.eCheckModemTestStatus !== 'N' ) ? 'completeColor' : ''">
+                            <ion-icon name="flask" item-start></ion-icon>
+                            LV Insp
+                          </button>
+                        </ion-col>
+                        <ion-col col-md-2
+                          *ngIf="(item.json.worktype === soTypes.ZINL && (device.eFeederVoltage > 3) &&  device.eCheck) && item.json.worktype !== soTypes.ZMMR">
+                          <button ion-button icon-start class="custom-button-1"
+                            (click)="openLpcMvhvInspectPage(i, device.eCheckIndex)"
+                            [ngClass]="(device.eCheckTestStatus !== 'N'  && device.eCheckModemTestStatus !== 'N' ) ? 'completeColor' : ''">
+                            <ion-icon name="flask" item-start></ion-icon>
+                            MVHV Insp
+                          </button>
+                        </ion-col>
+                        <ion-col col-md-2
+                          *ngIf="(item.json.worktype === soTypes.ZINR && device.eCheck)  && item.json.worktype !== soTypes.ZMMR && device.eCheckModemIndex !== undefined">
+                          <button ion-button icon-start class="custom-button-1"
+                            (click)="openDailyMaintenanceReport(i, device.eCheckModemIndex, device.eCheckSimIndex)"
+                            [ngClass]="(device.eCheckModemTestStatus !== 'N' ) ? 'completeColor' : ''">
+                            <ion-icon name="flask" item-start></ion-icon>
+                            CE Insp
+                          </button>
+                        </ion-col>
+                      </ion-col>
+                      <!-- Start: Check Section (Button) -->
+                    </ion-row>
+                  </span>
+
+                  <div class="custom-list-header-bottom content-background-old"
+                    *ngIf="device.soWorkType !== soTypes.ZIST && device.eFeederVoltage > 2">
+                    <ion-list-header class="custom-list-old-header-color">
+                      <ion-icon name="remove-circle-outline" item-start></ion-icon>
+                      Existing Current Transformer Details - {{ feeder.eFeederVoltage }}
+                    </ion-list-header>
+
+                    <ion-row align-items-center *ngIf="device.eFeederVoltage > 2" class="content-background-old">
+                      <ion-item style="background: transparent;" col-md-2 no-lines>
+                        <ion-label><strong>CT</strong></ion-label>
+                      </ion-item>
+                      <ion-item style="background: transparent;" col-md-3>
+                        <ion-label>R</ion-label>
+                      </ion-item>
+                      <ion-item style="background: transparent;" col-md-3>
+                        <ion-label>Y</ion-label>
+                      </ion-item>
+                      <ion-item style="background: transparent;" col-md-3>
+                        <ion-label>B</ion-label>
+                      </ion-item>
+                      <ion-item style="background: transparent;" col-md-1 text-right>
+                        <ion-icon name="checkmark-circle" item-end
+                          [ngClass]="(device.eMeterCtRRegisterStatus !== 'N' && device.eMeterCtYRegisterStatus !== 'N' && device.eMeterCtBRegisterStatus !== 'N') ? 'complete-color' : 'uncomplete-color'">
+                        </ion-icon>
+                      </ion-item>
+                    </ion-row>
+
+                    <ion-row *ngIf="device.eFeederVoltage > 2" class="content-background-old">
+                      <ion-item style="background: transparent;" col-md-2 no-lines>
+                        <ion-label><strong>Serial No.</strong></ion-label>
+                      </ion-item>
+                      <button ion-item color="primary" class="custom-button" col-md-3 detail-none text-center text-wrap
+                        [ngClass]="[(device.eMeterCtRRemoveInd) ? 'strikethrough' : '', (device.eMeterCtRRegisterStatus !== 'N') ? 'btn-transformer-complete' : 'btn-transformer-uncomplete']"
+                        (click)="(device.eMeterCtR == 'undefined' || device.eMeterCtR == '' || device.eMeterCtR == null) ? '' : openRegisterPage(device.eMeterCtR, i, device.eMeterCtRIndex, device.eCheckModem, device.eCheckSim, device.eCheckModemIndex, device.eCheckSimIndex, device.eMeterCtRIndex, '')">
+                        <h2>{{ device.eMeterCtRSerialNum || '-' }} / {{ device.eMeterCtRCtrl || '-' }}</h2>
+                      </button>
+                      <button ion-item color="primary" class="custom-button" col-md-3 detail-none text-center text-wrap
+                        [ngClass]="[(device.eMeterCtYRemoveInd) ? 'strikethrough' : '', (device.eMeterCtYRegisterStatus !== 'N') ? 'btn-transformer-complete' : 'btn-transformer-uncomplete']"
+                        (click)="(device.eMeterCtY == 'undefined' || device.eMeterCtY == '' || device.eMeterCtY == null) ? '' : openRegisterPage(device.eMeterCtY, i, device.eMeterCtYIndex, device.eCheckModem, device.eCheckSim, device.eCheckModemIndex, device.eCheckSimIndex, device.eMeterCtYIndex, '')">
+                        <h2>{{ device.eMeterCtYSerialNum || '-' }} / {{ device.eMeterCtYCtrl || '-' }}</h2>
+                      </button>
+                      <button ion-item color="primary" class="custom-button" col-md-3 detail-none text-center text-wrap
+                        [ngClass]="[(device.eMeterCtBRemoveInd) ? 'strikethrough' : '', (device.eMeterCtBRegisterStatus !== 'N') ? 'btn-transformer-complete' : 'btn-transformer-uncomplete']"
+                        (click)="(device.eMeterCtB=='undefined' || device.eMeterCtB=='' || device.eMeterCtB==null) ? '' : openRegisterPage(device.eMeterCtB, i, device.eMeterCtBIndex, device.eCheckModem, device.eCheckSim, device.eCheckModemIndex, device.eCheckSimIndex, device.eMeterCtBIndex, '' )">
+                        <h2>{{ device.eMeterCtBSerialNum || '-' }} / {{ device.eMeterCtBCtrl || '-' }}</h2>
+                      </button>
+                    </ion-row>
+
+                    <ion-row align-items-center *ngIf="device.eFeederVoltage > 3" class="content-background-old">
+                      <ion-item style="background: transparent;" col-md-2 no-lines>
+                        <ion-label><strong>PT</strong></ion-label>
+                      </ion-item>
+                      <ion-item style="background: transparent;" col-md-3>
+                        <ion-label>R</ion-label>
+                      </ion-item>
+                      <ion-item style="background: transparent;" col-md-3>
+                        <ion-label>Y</ion-label>
+                      </ion-item>
+                      <ion-item style="background: transparent;" col-md-3>
+                        <ion-label>B</ion-label>
+                      </ion-item>
+                      <ion-item style="background: transparent;" col-md-1 text-right>
+                        <ion-icon name="checkmark-circle" item-end
+                          [ngClass]="(device.eMeterPtRRegisterStatus !== 'N' && device.eMeterPtYRegisterStatus !== 'N' && device.eMeterPtBRegisterStatus !== 'N') ? 'complete-color' : 'uncomplete-color'">
+                        </ion-icon>
+                      </ion-item>
+                    </ion-row>
+
+                    <ion-row *ngIf="device.eFeederVoltage > 3" class="content-background-old">
+                      <ion-item style="background: transparent;" col-md-2 no-lines>
+                        <ion-label><strong>Serial No.</strong></ion-label>
+                      </ion-item>
+                      <button ion-item color="primary" class="custom-button" col-md-3 detail-none text-center text-wrap
+                        [ngClass]="[(device.eMeterPtRRemoveInd) ? 'strikethrough' : '', (device.eMeterPtRRegisterStatus !== 'N') ? 'btn-transformer-complete' : 'btn-transformer-uncomplete']"
+                        (click)="(device.eMeterPtR == 'undefined' || device.eMeterPtR == '' || device.eMeterPtR == null) ? '' : openRegisterPage(device.eMeterPtR, i, device.eMeterPtRIndex, device.eCheckModem, device.eCheckSim, device.eCheckModemIndex, device.eCheckSimIndex, '', device.eMeterPtRIndex)">
+                        <h2>{{ device.eMeterPtRSerialNum || '-' }} / {{ device.eMeterPtRCtrl || '-' }}</h2>
+                      </button>
+                      <button ion-item color="primary" class="custom-button" col-md-3 detail-none text-center text-wrap
+                        [ngClass]="[(device.eMeterPtYRemoveInd) ? 'strikethrough' : '', (device.eMeterPtYRegisterStatus !== 'N') ? 'btn-transformer-complete' : 'btn-transformer-uncomplete']"
+                        (click)="(device.eMeterPtY == 'undefined' || device.eMeterPtY == '' || device.eMeterPtY == null) ? '' : openRegisterPage(device.eMeterPtY, i, device.eMeterPtYIndex, device.eCheckModem, device.eCheckSim, device.eCheckModemIndex, device.eCheckSimIndex, '', device.eMeterPtYIndex)">
+                        <h2>{{ device.eMeterPtYSerialNum || '-' }} / {{ device.eMeterPtYCtrl || '-' }}</h2>
+                      </button>
+                      <button ion-item color="primary" class="custom-button" col-md-3 detail-none text-center text-wrap
+                        [ngClass]="[(device.eMeterPtBRemoveInd) ? 'strikethrough' : '', (device.eMeterPtBRegisterStatus !== 'N') ? 'btn-transformer-complete' : 'btn-transformer-uncomplete']"
+                        (click)="(device.eMeterPtB == 'undefined' || device.eMeterPtB == '' || device.eMeterPtB == null) ? '' : openRegisterPage(device.eMeterPtB, i, device.eMeterPtBIndex, device.eCheckModem, device.eCheckSim, device.eCheckModemIndex, device.eCheckSimIndex, '', device.eMeterPtBIndex)">
+                        <h2>{{ device.eMeterPtBSerialNum || '-' }} / {{ device.eMeterPtBCtrl || '-' }}</h2>
+                      </button>
+                    </ion-row>
+                  </div>
+
+                  <span *ngIf="feeder.loc_haveNewDevice">
+                    <ion-list-header class="custom-list-new-header-color">
+                      <ion-icon name="swap" item-start></ion-icon>
+                      <span
+                        *ngIf="device.soWorkType === soTypes.ZSRO || device.soWorkType === soTypes.ZRPM || device.soWorkType === soTypes.ZCER || device.soWorkType === soTypes.ZINL || device.soWorkType === soTypes.ZISR || device.soWorkType === soTypes.ZRCE || device.soWorkType === soTypes.ZINR">
+                        Replace New Device - {{ gv.departmentCode }} : {{ device.nFeederVoltage }}
+                      </span>
+                      <span
+                        *ngIf="device.soWorkType === soTypes.ZIST || device.soWorkType === soTypes.ZUDN || device.soWorkType === soTypes.ZRPC">
+                        Install New Device - {{ device.nFeederVoltage }}
+                      </span>
+                      <ion-icon name="checkmark-circle" item-end
+                        [ngClass]="(device.nFeederStatus === true) ? 'complete-color' : 'uncomplete-color'"></ion-icon>
+                    </ion-list-header>
+
+                    <ion-row class="content-background-new">
+                      <!-- Start: Main Section -->
+                      <ion-col col-md-6 class="custom-border-right">
+                        <ion-item style="background: transparent;">
+                          <ion-label col-md-4 text-wrap>
+                            <strong>{{ device.nMeterAllocationType == '90' ? 'Main Meter' : device.nMeterAllocationType == '91' ? 'Feeder Meter' : device.nMeterAllocationType == '94' ? 'Sub Meter' : device.nMeterAllocationType == '96' ? 'Sub Feeder Meter' : 'Main Meter' }}:</strong>
+                          </ion-label>
+                          <ion-label>
+                            <h2>{{ device.nMeterSerialNum || '-'}} / {{ device.nMeterCtrl || '-' }}</h2>
+                          </ion-label>
+                        </ion-item>
+                        <ion-item style="background: transparent;">
+                          <ion-label col-md-4 text-wrap>
+                            <strong>Modem:</strong>
+                          </ion-label>
+                          <ion-label text-wrap>
+                            <h2>{{ device.nMeterModemSerialNum || '-' }} / {{ device.nMeterModemCtrl || '-' }}</h2>
+                          </ion-label>
+                        </ion-item>
+
+                        <ion-item style="background: transparent;">
+                          <ion-label col-md-4 text-wrap>
+                            <strong>Simcard:</strong>
+                          </ion-label>
+                          <ion-label text-wrap>
+                            <h2>{{ device.nMeterSimSerialNum || '-' }} / {{ device.nMeterSimCtrl || '-' }}</h2>
+                          </ion-label>
+                        </ion-item>
+                      </ion-col>
+                      <!-- End: Main Section -->
+                      <!-- Start: Check Section -->
+                      <ion-col col-md-6 class="content-background-new">
+                        <ion-item style="background: transparent;">
+                          <ion-label col-md-4 text-wrap>
+                            <strong>{{ device.nCheckAllocationType == '92' ? 'Check Meter' : device.nCheckAllocationType == '93' ? 'Check Feeder' : device.nCheckAllocationType == '95' ? 'Check Sub Meter' : device.nCheckAllocationType == '97' ? 'Check Sub Feeder' : 'Check Meter' }}:</strong>
+                          </ion-label>
+                          <ion-label>
+                            <h2>{{ device.nCheckSerialNum || '-'}} / {{ device.nCheckCtrl || '-' }}</h2>
+                          </ion-label>
+                        </ion-item>
+
+                        <ion-item style="background: transparent;">
+                          <ion-label col-md-4 text-wrap>
+                            <strong>Modem:</strong>
+                          </ion-label>
+                          <ion-label text-wrap>
+                            <h2>{{ device.nCheckModemSerialNum || '-' }} / {{ device.nCheckModemCtrl || '-' }}</h2>
+                          </ion-label>
+                        </ion-item>
+
+                        <ion-item style="background: transparent;">
+                          <ion-label col-md-4 text-wrap>
+                            <strong>Simcard:</strong>
+                          </ion-label>
+                          <ion-label text-wrap>
+                            <h2>{{ device.nCheckSimSerialNum || '-' }} / {{ device.nCheckSimCtrl || '-' }}</h2>
+                          </ion-label>
+                        </ion-item>
+                      </ion-col>
+                      <!-- End: Check Section -->
+                      <ion-col col-md-6 class="custom-border-right"
+                        *ngIf="gv.departmentCode === device.nFeederVoltage || item.json.worktype === soTypes.ZUDN || (feeder.nFeederVoltage >= 00 && gv.departmentCode === '00')">
+                        <ion-col col-md-2
+                          *ngIf="(device.nMeter != null || device.nMeterSim != null || device.nMeterModem != null) && item.json.worktype === soTypes.ZMMR">
+                          <button ion-button icon-start class="custom-button-1"
+                            [ngClass]="(device.nMeterRegisterStatus !== 'N' && device.nMeterModemRegisterStatus !== 'N' && device.nMeterSimRegisterStatus !== 'N') ? 'completeColor' : ''"
+                            (click)="openRegisterPage(device.nMeter, i, device.nMeterIndex, device.nMeterModem, device.nMeterSim, device.nMeterModemIndex, device.nMeterSimIndex)">
+                            <ion-icon name="information-circle" item-start></ion-icon>
+                            Info
+                          </button>
+                        </ion-col>
+                        <ion-col col-md-2
+                          *ngIf=" (device.nMeter != null || device.nMeterSim != null || device.nMeterModem != null) && item.json.worktype !== soTypes.ZMMR && (item.json.worktype !== soTypes.ZISR && item.json.worktype !== soTypes.ZINR)">
+                          <button ion-button icon-start class="custom-button-1"
+                            [ngClass]="(device.nMeterRegisterStatus !== 'N' && device.nMeterModemRegisterStatus !== 'N' && device.nMeterSimRegisterStatus !== 'N') ? 'completeColor' : ''"
+                            (click)="openRegisterPage(device.nMeter, i, device.nMeterIndex, device.nMeterModem, device.nMeterSim, device.nMeterModemIndex, device.nMeterSimIndex)">
+                            <ion-icon name="information-circle" item-start></ion-icon>
+                            Info
+                          </button>
+                        </ion-col>
+                        <ion-col col-md-2
+                          *ngIf="(device.nMeter != null || device.nMeterSim !=null || device.nMeterModem !=null) && item.json.worktype !== soTypes.ZMMR && (item.json.worktype !== soTypes.ZISR && item.json.worktype !== soTypes.ZINR)">
+                          <button ion-button icon-start class="custom-button-1"
+                            [ngClass]="(device.nMeterSilStatus !== 'N' ) ? 'completeColor' : ''"
+                            (click)="openSilStickerInfoPage(i, device.nMeterIndex, device.nMeterAllocationType, device, 'N')">
+                            <ion-icon name="ribbon" item-start></ion-icon>
+                            S&S
+                          </button>
+                        </ion-col>
+                        <ion-col col-md-2
+                          *ngIf="(device.nMeter || device.nMeterModem) && item.json.worktype !== soTypes.ZMMR && item.json.worktype !== soTypes.ZRMV">
+                          <button ion-button icon-start class="custom-button-1"
+                            [ngClass]="(device.nMeterTestStatus !== 'N' && device.nMeterModemTestStatus !== 'N') ? 'completeColor' : ''"
+                            (click)="openLpcTestListPage(i, device.nMeterIndex, device,'main','N')">
+                            <ion-icon name="flask" item-start></ion-icon>
+                            Test
+                          </button>
+                        </ion-col>
+                      </ion-col>
+                      <ion-col col-md-6
+                        *ngIf="gv.departmentCode === device.nFeederVoltage || item.json.worktype === soTypes.ZUDN || (feeder.nFeederVoltage >= 00 && gv.departmentCode === '00')">
+                        <ion-col col-md-2
+                          *ngIf="(device.nCheckSim != null ||device.nCheckModem != null ||device.nCheck != null) && item.json.worktype === soTypes.ZMMR">
+                          <button ion-button icon-start class="custom-button-1"
+                            [ngClass]="(device.nCheckRegisterStatus !== 'N' && device.nCheckModemRegisterStatus !== 'N' && device.nCheckSimRegisterStatus !== 'N') ? 'completeColor' : ''"
+                            (click)="openRegisterPage(device.nCheck, i, device.nCheckIndex, device.nCheckModem, device.nCheckSim, device.nCheckModemIndex, device.nCheckSimIndex)">
+                            <ion-icon name="information-circle" item-start></ion-icon>
+                            Info
+                          </button>
+                        </ion-col>
+                        <ion-col col-md-2
+                          *ngIf="(device.nCheckSim != null ||device.nCheckModem != null ||device.nCheck != null) && item.json.worktype !== soTypes.ZMMR && (item.json.worktype !== soTypes.ZISR && item.json.worktype !== soTypes.ZINR)">
+                          <button ion-button icon-start class="custom-button-1"
+                            [ngClass]="(device.nCheckRegisterStatus !== 'N' && device.nCheckModemRegisterStatus !== 'N' && device.nCheckSimRegisterStatus !== 'N') ? 'completeColor' : ''"
+                            (click)="openRegisterPage(device.nCheck, i, device.nCheckIndex, device.nCheckModem, device.nCheckSim, device.nCheckModemIndex, device.nCheckSimIndex)">
+                            <ion-icon name="information-circle" item-start></ion-icon>
+                            Info
+                          </button>
+                        </ion-col>
+                        <ion-col col-md-2
+                          *ngIf="(device.nCheckSim != null ||device.nCheckModem != null ||device.nCheck != null) && item.json.worktype !== soTypes.ZMMR && (item.json.worktype !== soTypes.ZISR && item.json.worktype !== soTypes.ZINR)">
+                          <button ion-button icon-start class="custom-button-1"
+                            [ngClass]="(device.nCheckSilStatus !== 'N') ? 'completeColor' : ''"
+                            (click)="openSilStickerInfoPage(i, device.nCheckIndex, device.nCheckAllocationType,  device, 'N')">
+                            <ion-icon name="ribbon" item-start></ion-icon>
+                            S&S
+                          </button>
+                        </ion-col>
+                        <ion-col col-md-2
+                          *ngIf="(device.nCheck || device.nCheckModem) && item.json.worktype !== soTypes.ZMMR && item.json.worktype !== soTypes.ZRMV">
+                          <button ion-button icon-start class="custom-button-1"
+                            [ngClass]="(device.nCheckTestStatus !== 'N'  && device.nCheckModemTestStatus !== 'N' ) ? 'completeColor' : ''"
+                            (click)="openLpcTestListPage(i, device.nCheckIndex, device,'check','N')">
+                            <ion-icon name="flask" item-start></ion-icon>
+                            Test
+                          </button>
+                        </ion-col>
+                      </ion-col>
+                    </ion-row>
+                  </span>
+
+                  <div class="custom-list-header-bottom custom-list-header"
+                    *ngIf="feeder.loc_haveNewDevice && device.nFeederVoltage > 2" class="custom-list-new-header-color">
+                    <ion-list-header class="custom-list-new-header-color">
+                      <ion-icon name="swap" item-start></ion-icon>
+                      Installation Current Transformer Details
+                    </ion-list-header>
+
+                    <ion-row align-items-center *ngIf="device.nFeederVoltage > 2" class="content-background-new">
+                      <ion-item style="background: transparent;" col-md-2 no-lines>
+                        <ion-label><strong>CT</strong></ion-label>
+                      </ion-item>
+                      <ion-item style="background: transparent;" col-md-3>
+                        <ion-label>R</ion-label>
+                      </ion-item>
+                      <ion-item style="background: transparent;" col-md-3>
+                        <ion-label>Y</ion-label>
+                      </ion-item>
+                      <ion-item style="background: transparent;" col-md-3>
+                        <ion-label>B</ion-label>
+                      </ion-item>
+                      <ion-item style="background: transparent;" col-md-1 text-right>
+                        <ion-icon name="checkmark-circle" item-end
+                          [ngClass]="(device.nMeterCtRRegisterStatus !== 'N' && device.nMeterCtRRegisterStatus !== 'N' && device.nMeterCtRRegisterStatus !== 'N') ? 'complete-color' : 'uncomplete-color'">
+                        </ion-icon>
+                      </ion-item>
+                    </ion-row>
+
+                    <ion-row *ngIf="device.nFeederVoltage > 2" class="content-background-new"
+                      style="padding-bottom: 10px;">
+                      <ion-item style="background: transparent;" col-md-2 no-lines>
+                        <ion-label><strong>Serial No.</strong></ion-label>
+                      </ion-item>
+                      <button ion-item color="primary" class="custom-button" col-md-3 detail-none text-center text-wrap
+                        [ngClass]="(device.nMeterCtRRegisterStatus !== 'N') ? 'btn-transformer-complete' : 'btn-transformer-uncomplete'"
+                        (click)="(device.nMeterCtR == 'undefined' || device.nMeterCtR == '' || device.nMeterCtR == null) ? '' : openRegisterPage(device.CtR, i, device.nMeterCtRIndex, device.nCheckModem, device.nCheckSim, device.nCheckModemIndex, device.nCheckSimIndex, device.nMeterCtRIndex, '')">
+                        <h2>{{ device.nMeterCtRSerialNum || '-' }} / {{ device.nMeterCtRCtrl || '-' }}</h2>
+                      </button>
+                      <button ion-item color="primary" class="custom-button" col-md-3 detail-none text-center text-wrap
+                        [ngClass]="(device.nMeterCtYRegisterStatus !== 'N') ? 'btn-transformer-complete' : 'btn-transformer-uncomplete'"
+                        (click)="(device.nMeterCtY == 'undefined' || device.nMeterCtY == '' || device.nMeterCtY == null) ? '' : openRegisterPage(device.CtY, i, device.nMeterCtYIndex, device.nCheckModem, device.nCheckSim, device.nCheckModemIndex, device.nCheckSimIndex, device.nMeterCtYIndex, '')">
+                        <h2>{{ device.nMeterCtYSerialNum || '-' }} / {{ device.nMeterCtYCtrl || '-' }}</h2>
+                      </button>
+                      <button ion-item color="primary" class="custom-button" col-md-3 detail-none text-center text-wrap
+                        [ngClass]="(device.nMeterCtBRegisterStatus !== 'N') ? 'btn-transformer-complete' : 'btn-transformer-uncomplete'"
+                        (click)="(device.nMeterCtB == 'undefined' || device.nMeterCtB == '' || device.nMeterCtB == null) ? '' : openRegisterPage(device.CtB, i, device.nMeterCtBIndex, device.nCheckModem, device.nCheckSim, device.nCheckModemIndex, device.nCheckSimIndex, device.nMeterCtBIndex, '')">
+                        <h2>{{ device.nMeterCtBSerialNum || '-' }} / {{ device.nMeterCtBCtrl || '-' }}</h2>
+                      </button>
+                    </ion-row>
+
+                    <ion-row align-items-center *ngIf="device.nFeederVoltage > 3" class="content-background-new"
+                      style="padding-bottom: 10px;">
+                      <ion-item style="background: transparent;" col-md-2 no-lines>
+                        <ion-label><strong>PT</strong></ion-label>
+                      </ion-item>
+                      <ion-item style="background: transparent;" col-md-3>
+                        <ion-label>R</ion-label>
+                      </ion-item>
+                      <ion-item style="background: transparent;" col-md-3>
+                        <ion-label>Y</ion-label>
+                      </ion-item>
+                      <ion-item style="background: transparent;" col-md-3>
+                        <ion-label>B</ion-label>
+                      </ion-item>
+                      <ion-item style="background: transparent;" col-md-1 text-right>
+                        <ion-icon name="checkmark-circle" item-end
+                          [ngClass]="(device.nMeterPtRRegisterStatus !== 'N' && device.nMeterPtRRegisterStatus !== 'N' && device.nMeterPtRRegisterStatus !== 'N') ? 'complete-color' : 'uncomplete-color'">
+                        </ion-icon>
+                      </ion-item>
+                    </ion-row>
+
+                    <ion-row *ngIf="device.nFeederVoltage > 3" class="content-background-new"
+                      style="padding-bottom: 10px;">
+                      <ion-item style="background: transparent;" col-md-2 no-lines>
+                        <ion-label><strong>Serial No.</strong></ion-label>
+                      </ion-item>
+                      <button ion-item color="primary" class="custom-button" col-md-3 detail-none text-center text-wrap
+                        [ngClass]="(device.nMeterPtRRegisterStatus !== 'N') ? 'btn-transformer-complete' : 'btn-transformer-uncomplete'"
+                        (click)="(device.nMeterPtR == 'undefined' || device.nMeterPtR == '' || device.nMeterPtR == null) ? '' : openRegisterPage(device.PtR, i, device.nMeterPtRIndex, device.nCheckModem, device.nCheckSim, device.nCheckModemIndex, device.nCheckSimIndex, device.nMeterCtRIndex, device.nMeterPtRIndex)">
+                        <h2>{{ device.nMeterPtRSerialNum || '-' }} / {{ device.nMeterPtRCtrl || '-' }}</h2>
+                      </button>
+                      <button ion-item color="primary" class="custom-button" col-md-3 detail-none text-center text-wrap
+                        [ngClass]="(device.nMeterPtYRegisterStatus !== 'N') ? 'btn-transformer-complete' : 'btn-transformer-uncomplete'"
+                        (click)="(device.nMeterPtY == 'undefined' || device.nMeterPtY == '' || device.nMeterPtY == null) ? '' : openRegisterPage(device.PtY, i, device.nMeterPtYIndex, device.nCheckModem, device.nCheckSim, device.nCheckModemIndex, device.nCheckSimIndex, device.nMeterCtRIndex, device.nMeterPtYIndex)">
+                        <h2>{{ device.nMeterPtYSerialNum || '-' }} / {{ device.nMeterPtYCtrl || '-' }}</h2>
+                      </button>
+                      <button ion-item color="primary" class="custom-button" col-md-3 detail-none text-center text-wrap
+                        [ngClass]="(device.nMeterPtBRegisterStatus !== 'N') ? 'btn-transformer-complete' : 'btn-transformer-uncomplete'"
+                        (click)="(device.nMeterPtB == 'undefined' || device.nMeterPtB == '' || device.nMeterPtB == null) ? '' : openRegisterPage(device.PtB, i, device.nMeterPtBIndex, device.nCheckModem, device.nCheckSim, device.nCheckModemIndex, device.nCheckSimIndex, device.nMeterCtRIndex, device.nMeterPtBIndex)">
+                        <h2>{{ device.nMeterPtBSerialNum || '-' }} / {{ device.nMeterPtBCtrl || '-' }}</h2>
+                      </button>
+                    </ion-row>
+                  </div>
+                </ion-list>
+              </span>
+            </span>
+          </span>
+
+          <span *ngIf="!feeder.multiassetlocci && feeder.open">
+            <ion-item>
+              <ion-label>No Device Added</ion-label>
+            </ion-item>
+          </span>
+        </span>
+      </ion-list>
+    </ion-card>
+  </span>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar mode="md">
+    <ion-row>
+      <ion-col>
+        <button ion-button round block mode="md" (click)="saveFeeder(item)">
+          Save
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button round block mode="md" (click)="goBack()">
+          Done
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,151 @@
+<ion-header mode="md">
+  <ion-navbar color="primary">
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="md-menu" color="light"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Return Credit Note List</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon [color]="gv.testMobile ? 'danger' : 'light'" name="md-planet" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end (click)="goCreditNote()">
+      <button mode="md" ion-button round color="light" style="padding: 15px;">
+        Create R.C.N.
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<!-- <ion-header>
+  <ion-grid class="headerStyle">
+    <ion-row>
+      <ion-col col-2 col-md-2 col-sm-2 style="text-align: left; padding-top: 0px;">
+        <button ion-button menuToggle clear>
+          <ion-icon name="menu" class="menuBackArrow"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-8 col-md-8 col-sm-8>
+        <div class="pageTitle">Return Credit Note List</div>
+      </ion-col>
+ 
+      <ion-col col-2 col-sm-2 style="word-wrap: break-all; text-align: right; padding-top: 0px; width:12px">
+        <ion-col col-2 col-sm-2 >
+          <button ion-button color="primary" style="float: right;" (click)="goCreditNote()">Create Return Credit Note</button>
+      </ion-col>
+  </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header> -->
+
+<ion-content padding>
+
+  <!-- Search Conditions -->
+  <ion-row>
+    <ion-col col-12>
+      <ion-searchbar [(ngModel)]="gv.searchCnTerm" (ionInput)="filterItems()"></ion-searchbar>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col col-sm-12 col-md-3 col-3>
+      <ion-item no-lines>
+
+      </ion-item>
+    </ion-col>
+    <ion-col col-6 col-sm-12 col-md-5 align-self-center style="padding-top:10px;">
+      <ion-item no-lines>
+
+      </ion-item>
+    </ion-col>
+    <ion-col col-sm-12 col-md-3 col-3>
+      <ion-item no-lines>
+        <ion-select interface="popover" [(ngModel)]="filterCnStatus" (ionChange)="statusChange($event)">
+          <ion-option value="DRAFT" selected> DRAFT</ion-option>
+          <ion-option value="SUBMIT"> SUBMIT</ion-option>
+          <ion-option value="INPRG"> IN PROGRESS </ion-option>
+          <ion-option value="CLOSED"> CLOSED</ion-option>
+          <ion-option value="ERRCLOSE"> CLOSE W/ERROR</ion-option>
+          <ion-option value="ERROR"> ERROR</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+    <ion-col col-1 col-sm-12 col-md-1 style="word-wrap: break-all;" align-self-end>
+
+    </ion-col>
+  </ion-row>
+
+  <ion-list>
+    <ion-grid>
+      <ion-item>
+        <ion-label>
+          <ion-row style="cursor: pointer;">
+            <ion-col col-1 text-wrap class="col1">
+              <b>No.</b>
+            </ion-col>
+            <ion-col col-2 text-wrap class="col1">
+              <b>RCN No.</b>
+            </ion-col>
+            <ion-col col-2 text-wrap class="col1">
+              <b>Category Type</b>
+            </ion-col>
+            <ion-col col-2 text-wrap class="col1">
+              <b>Return Type</b>
+            </ion-col>
+            <ion-col col-2 text-wrap class="col1">
+              <b>Status</b>
+            </ion-col>
+            <ion-col col-1 text-wrap class="col1">
+              <b>Items</b>
+            </ion-col>
+            <ion-col col-2 text-wrap class="col1">
+              <b>Date</b>
+            </ion-col>
+          </ion-row>
+        </ion-label>
+      </ion-item>
+
+      <ion-item *ngFor='let attr of gv.cnItems; let j = index;' [ngClass]="j%2 != 0 ? 'classA' : 'classB'"
+        (click)=" getDetailsInformation(attr)">
+        <ion-row style="cursor: pointer;">
+          <ion-col col-1 text-wrap class="col1">
+            {{ j+1 }}
+          </ion-col>
+          <ion-col col-2 text-wrap class="col1">
+            {{ attr.creditnum }}
+          </ion-col>
+          <ion-col col-2 text-wrap class="col1">
+            {{ convertStringCat(attr.category) }}
+          </ion-col>
+          <ion-col col-2 text-wrap class="col1">
+            {{ convertStringReturn(attr.returntype) }}
+          </ion-col>
+          <ion-col col-2 text-wrap class="col1">
+            {{ attr.status }}
+          </ion-col>
+          <ion-col col-1 text-wrap class="col1">
+            {{ attr.ta0cnline !==null  ? attr.ta0cnline.length : '0' }}
+          </ion-col>
+          <ion-col col-2 text-wrap class="col1">
+            {{ attr.changedate }} <br />
+            {{attr.timeformat}}
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-grid>
+
+    <!-- <ion-row *ngIf="pagination">
+      <ion-col col-12 col-md-12 col-sm-12 style="text-align: center;">
+        <div class="pagination">
+          <a href="javascript:;" [ngClass]="(prevPage)?'disabled':''"  (click)="setprevious()">&laquo;</a>
+          <a href="javascript:;" *ngFor='let page of paginationList; let i=index;' [ngClass]="(currentPage===(i+1))?'active':''" (click)="activePagination(page)"> {{ page }}</a>
+          <a href="javascript:;" [ngClass]="(nextPage)?'disabled':''" (click)="setnext()" >&raquo;</a>
+        </div>
+      </ion-col>
+    </ion-row> -->
+  </ion-list>
+  <ion-grid>
+  </ion-grid>
+</ion-content>

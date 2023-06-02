@@ -1,0 +1,180 @@
+<ion-header mode="md">
+  <ion-navbar color="primary">
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="md-menu" color="light"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Attachments</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only style="padding-right: 20px;">
+        <ion-icon [color]="gv.testMobile ? 'danger' : 'light'" name="md-planet" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end style="padding-right: 20px;">
+      <button ion-button icon-only (click)="getPictures()">
+        <ion-icon color="light" name="md-attach"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end style="padding-right: 20px;">
+      <button ion-button icon-only (click)="takePhoto()">
+        <ion-icon color="light" name="md-camera"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<!-- <ion-header>
+  <ion-grid class="headerStyle">
+    <ion-row>
+      <ion-col col-3 col-sm-3 col-md-3 style="text-align: left;">
+        <button ion-button clear (click)="goBack()">
+          <ion-icon name="arrow-back" class="menuBackArrow"> Back</ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-5 col-sm-5 col-md-5 align-self-center>
+        <div class="pageTitle">
+          Attachments
+        </div>
+      </ion-col>
+
+      <ion-col col-1 col-sm-1 col-md-1 align-self-center style="text-align: right;">
+        <button ion-button small round mode="md" disabled="true" class="flash" style="opacity: unset;">
+          <ion-icon class="flash_plnt" name="planet" [style.color]="gv.testMobile ? 'red':'green'">
+            {{ gv.testMobile ? 'Offline':'Online' }}
+          </ion-icon>
+        </button>
+      </ion-col>
+
+      <ion-col col-3 col-sm-3 col-md-3 align-self-center style="text-align: right;">
+        <button ion-button round mode="md" style="padding: 10px 25px 10px 25px;" (click)="getPictures()">
+          <ion-icon ios="md-attach"></ion-icon>
+        </button>
+        <button ion-button round mode="md" style="padding: 10px 23px 10px 23px;" (click)="takePhoto()">
+          <ion-icon ios="md-camera"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header> -->
+
+<!-- class="animated fadeInLeft"  -->
+
+<ion-content class="card-background-page">
+
+  <ion-grid *ngIf="this.item.json.docLinksL != ''">
+    <div *ngFor="let photo of this.item.json.docLinksL; let id = index">
+      <ion-row *ngIf="photo.describedBy.loc_show">
+        <ion-col col-3 col-md-3>
+          <ion-card class="block">
+            <img width="60px" height="150px" [src]="photo.describedBy.loc_base64Image"
+              *ngIf="photo.describedBy.loc_base64Image" #myImage (click)="presentImage(myImage)" />
+            <img width="60px" height="150px" *ngIf="!photo.describedBy.loc_base64Image" src="{{photo.href}}" #myImage
+              (click)="presentImage(myImage)" />
+          </ion-card>
+        </ion-col>
+        <ion-col col-7 col-md-8>
+          <ion-item no-lines>
+            <ion-label class="maxwidth">Type of Image</ion-label>
+            <ion-select [(ngModel)]="photo.describedBy.loc_title" multiple="false" (ionChange)="typeSelection(id)"
+              [ngClass]="(photo.describedBy.title === null || photo.describedBy.title === undefined || photo.describedBy.title === '') ?  'redHighlightText':'blackHighlightText'">
+              <ion-option value="MMETER">Main
+                Meter</ion-option>
+              <ion-option value="CMETER">Check
+                Meter</ion-option>
+              <ion-option value="FMETER">Feeder
+                Meter</ion-option>
+              <ion-option value="CFMETER">Check
+                Feeder Meter</ion-option>
+              <ion-option value="CTRANS">Current
+                Transformer</ion-option>
+              <ion-option value="VTRANS">Voltage
+                Transformer</ion-option>
+              <ion-option value="MKIOSK">Meter
+                Kiosk</ion-option>
+              <ion-option value="MROOM">Meter
+                Room</ion-option>
+              <ion-option value="SMETER">Sub Meter
+              </ion-option>
+              <ion-option value="CSMETER">Check
+                Sub Meter</ion-option>
+              <ion-option value="MODEM">Modem
+              </ion-option>
+              <ion-option value="SIM">Sim Card
+              </ion-option>
+              <ion-option value="PREMISE">Premise
+                / Pencawang Elektrik TNB</ion-option>
+              <ion-option value="OTHER">Other
+              </ion-option>
+            </ion-select>
+            <!-- <ion-input id="test1" type="text" [ngClass]="(photo.describedBy.title == '' && !validate) ? 'redHighlightText' : 'blackHighlightText'" placeholder="Name" [(ngModel)]="photo.describedBy.title" (change)="checkOnchange('name', photo, photo.describedBy.title)"></ion-input> -->
+          </ion-item>
+          <br />
+          <ion-item>
+            <ion-label item-start class="maxwidth">Description</ion-label>
+            <ion-textarea item-content type="textarea" rows="4" placeholder="Description"
+              [(ngModel)]="photo.describedBy.description"
+              (change)="checkOnchange('description', photo, photo.describedBy.description)"></ion-textarea>
+          </ion-item>
+        </ion-col>
+        <ion-col col-2 col-md-1>
+          <button ion-button color="danger" style="width: 30px;height: 30px;text-align: right;"
+            (click)="deletePhoto(id)">
+            <ion-icon name="trash" class="deleteIcon"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+  <!-- 
+    User don't like ion-fab 31 Dec 2018 by shankar ..
+    <ion-fab bottom right style="right:2%">
+    <button ion-fab>
+      <ion-icon name="add"></ion-icon>
+    </button>
+    <ion-fab-list side="top" style="padding-top: 20%; zoom:1.2;">
+      <button ion-fab (click)="getPictures()">
+        <ion-icon name="attach"></ion-icon>
+      </button>
+      <button ion-fab (click)="takePhoto()">
+        <ion-icon name="camera"></ion-icon>
+      </button>
+    </ion-fab-list>
+  </ion-fab> -->
+  <ion-grid *ngIf="this.item.json.docLinksL == ''">
+    <p> No Record to display. Browse or capture the photo to attach </p>
+  </ion-grid>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar mode="md">
+    <ion-row>
+      <ion-col>
+        <button ion-button round block mode="md" (click)="saveImage(item)">
+          Save
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button round block mode="md" (click)="goBack()">
+          Cancel
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>
+
+<!-- <ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button ion-button round block (click)="saveImage(item)" class="saveBtn">
+          <ion-icon name="cloud-upload" class="deleteIcon"> Save </ion-icon>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button round block (click)="goBack()" class="cancel">Cancel</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer> -->

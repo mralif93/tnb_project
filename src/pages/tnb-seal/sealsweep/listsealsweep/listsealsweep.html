@@ -1,0 +1,106 @@
+<ion-header mode="md">
+  <ion-navbar color="primary">
+    <ion-title>List of Seal Sweep</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only style="padding: 15px;">
+        <ion-icon [color]="gv.testMobile ? 'danger' : 'light'" name="md-planet" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end (click)="addSealSweep()">
+      <button mode="md" ion-button icon-start round color="light" style="padding: 15px;">
+        <ion-icon name="md-add"></ion-icon>&nbsp; Add New
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-toolbar>
+    <ion-segment mode="md" [(ngModel)]="refSealSegment" (click)="sealSegClick()">
+      <ion-segment-button value="MSOK" [ngClass]="refSealSegment == 'MSOK' ? 'Segment-actived' : ''">
+        MS Ok
+      </ion-segment-button>
+      <ion-segment-button value="MSNOTOK" [ngClass]="refSealSegment == 'MSNOTOK' ? 'Segment-actived' : ''">
+        MS Not Ok
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<!-- <ion-header>
+  <ion-grid class="headerStyle">
+    <ion-row>
+      <ion-col col-2 col-lg-2 col-md-2 col-sm-2 style="text-align: left; padding-top: 0px;">
+        <button ion-button menuToggle clear>
+          <ion-icon name="menu" class="menuBackArrow"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-8 col-lg-8 col-md-8 col-sm-8>
+        <div class="pageTitle">List Seal Sweep</div>
+      </ion-col>
+      <ion-col col-4 col-sm-4 style="word-wrap: break-all; text-align: right; padding-top: 0px; width:12px">
+        <ion-col col-2 col-sm-2>
+          <ion-fab top right style="top: 0%">
+            <button ion-fab mini class="flash">
+              <ion-icon class="flash_plnt" name="planet" [style.color]="gv.testMobile ? 'red':'green'">
+                {{ gv.testMobile ? 'Offline':'Online' }} </ion-icon>
+            </button>
+          </ion-fab>
+        </ion-col>
+        <ion-col col-2 col-sm-2>
+          <button ion-button class="reg-button" (click)="addSealSweep()">Add New</button>
+        </ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="refSealSegment" (click)="sealSegClick()">
+      <ion-segment-button value="MSOK" [ngClass]="refSealSegment == 'MSOK' ? 'Segment-actived' : ''">MS Ok
+      </ion-segment-button>
+      <ion-segment-button value="MSNOTOK" [ngClass]="refSealSegment == 'MSNOTOK' ? 'Segment-actived' : ''">MS Not Ok
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content padding>
+  <div [ngSwitch]="refSealSegment">
+    <ion-grid *ngSwitchCase="'MSOK'">
+      <ion-row>
+        <ion-col col-12 col-lg-12 col-md-12 col-sm-12>
+          <ion-searchbar [(ngModel)]="searchTermMSOK" (ionInput)="filterSealMSOK($event.target.value)"></ion-searchbar>
+        </ion-col>
+      </ion-row>
+      <ion-list>
+        <ion-grid>
+          <ion-item *ngFor="let seal of gitItem; let i = index;">
+            <ion-row style="cursor: pointer;">
+              <ion-col>
+                {{ seal.ta4sweepnum }}
+              </ion-col>
+              <ion-col>
+                {{ seal.actualstart }}
+              </ion-col>
+              <ion-col>
+                {{ seal.actualfinish }}
+              </ion-col>
+              <!--<ion-col style="margin-top: -8px;">
+                <button ion-button  class="reg-button">
+                  <ion-icon name="trash" item-center></ion-icon>
+                </button>
+                <button ion-button  class="reg-button">
+                  <ion-icon name="construct" item-center></ion-icon>
+                </button>
+              </ion-col>-->
+            </ion-row>
+          </ion-item>
+        </ion-grid>
+      </ion-list>
+    </ion-grid>
+    <ion-grid *ngSwitchCase="'MSNOTOK'">
+      <ion-row>
+        <ion-col col-12 col-lg-12 col-md-12 col-sm-12>
+          <ion-searchbar [(ngModel)]="searchTermMSNOTOK" (ionInput)="filterSealMSNOTOK($event.target.value)">
+          </ion-searchbar>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

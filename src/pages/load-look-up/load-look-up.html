@@ -1,0 +1,312 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="md-menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Load Look Up Details</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon [color]="gv.testMobile ? 'danger' : 'light'" name="md-planet" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <!-- Start: All Collections -->
+    <ion-item>
+      <ion-icon name="md-cube" item-start></ion-icon>
+      <h2>All Collections Details</h2>
+      <p text-wrap>Load all collections at one time.</p>
+      <button mode="md" item-end ion-button (click)="getAllLoading()" [disabled]="isAssetDetails || gv.testMobile">
+        Load All
+      </button>
+    </ion-item>
+    <!-- End: All Collections -->
+    <!-- Start: Asset Details -->
+    <ion-item>
+      <ion-icon name="md-briefcase" item-start></ion-icon>
+      <h2>Asset Details</h2>
+      <p>Count: {{ gv.assetDetailCount || 0 }}</p>
+      <ion-spinner name="bubbles" item-end *ngIf="isAssetDetails === true"></ion-spinner>
+      <button mode="md" item-end ion-button [disabled]="isAssetDetails || gv.testMobile"
+        (click)="getAssetDetailCount()">
+        Load
+      </button>
+    </ion-item>
+    <!-- End: Asset Details -->
+    <!-- Start: Lookup Values -->
+    <ion-item>
+      <ion-icon name="md-filing" item-start></ion-icon>
+      <h2>Lookup Values</h2>
+      <p>Count: {{ gv.alnDetailCount || 0 }}</p>
+      <ion-spinner name="bubbles" item-end *ngIf="isAlDomain === true"></ion-spinner>
+      <button mode="md" item-end ion-button [disabled]="isAlDomain || gv.testMobile"
+        (click)="getAlnDomainDetailCount()">
+        Load
+      </button>
+    </ion-item>
+    <!-- End: Lookup Values -->
+    <!-- Start: Winding Group -->
+    <ion-item>
+      <ion-icon name="md-film" item-start></ion-icon>
+      <h2>Winding Group</h2>
+      <p>Count: {{ gv.windDetailCount || 0 }}</p>
+      <ion-spinner name="bubbles" item-end *ngIf="isWindingGroup === true"></ion-spinner>
+      <button mode="md" item-end ion-button [disabled]="isWindingGroup || gv.testMobile"
+        (click)="getWindingDetailCount()">
+        Load
+      </button>
+    </ion-item>
+    <!-- End: Winding Group -->
+    <!-- Start: AMI Data -->
+    <ion-item>
+      <ion-icon name="md-flag" item-start></ion-icon>
+      <h2>AMI Data</h2>
+      <p>Count: {{ gv.amiDetailCount || 0 }}</p>
+      <ion-spinner name="bubbles" item-end *ngIf="isAmiData === true"></ion-spinner>
+      <button mode="md" item-end ion-button [disabled]="isAmiData || gv.testMobile" (click)="getAmiDataDetailCount()">
+        Load
+      </button>
+    </ion-item>
+    <!-- End: AMI Data -->
+    <!-- Start: SN Code -->
+    <ion-item>
+      <ion-icon name="md-list-box" item-start></ion-icon>
+      <h2>SN Code</h2>
+      <p>Count: {{ gv.snCodeDetailCount || 0 }}</p>
+      <ion-spinner name="bubbles" item-end *ngIf="isSnCode === true"></ion-spinner>
+      <button mode="md" item-end ion-button [disabled]="isSnCode || gv.testMobile" (click)="getSnCodeDetailCount()">
+        Load
+      </button>
+    </ion-item>
+    <!-- End: SN Code -->
+    <!-- Start: Customer Data -->
+    <ion-item>
+      <ion-icon name="md-stats" item-start></ion-icon>
+      <h2>Customer Data</h2>
+      <p>Count: {{ gv.customerDetailCount || 0 }}</p>
+      <ion-spinner name="bubbles" item-end *ngIf="isCustomerData === true"></ion-spinner>
+      <button mode="md" item-end ion-button [disabled]="isCustomerData || gv.testMobile"
+        (click)="getCustomerTypeCount()">
+        Load
+      </button>
+    </ion-item>
+    <!-- End: Customer Data -->
+    <!-- Start: SO User Status -->
+    <ion-item>
+      <ion-icon name="md-chatbubbles" item-start></ion-icon>
+      <h2>SO User Status</h2>
+      <p>Count: {{ gv.userDetailCount || 0 }}</p>
+      <ion-spinner name="bubbles" item-end *ngIf="isUserStatus === true"></ion-spinner>
+      <button mode="md" item-end ion-button [disabled]="isUserStatus || gv.testMobile" (click)="getUserDetailCount()">
+        Load
+      </button>
+    </ion-item>
+    <!-- End: SO User Status -->
+    <!-- Start: Zone Details -->
+    <ion-item>
+      <ion-icon name="md-map" item-start></ion-icon>
+      <h2>Zone Details</h2>
+      <p>Count: {{ gv.zoneDetailCount || 0 }}</p>
+      <ion-spinner name="bubbles" item-end *ngIf="isZone === true"></ion-spinner>
+      <button mode="md" item-end ion-button [disabled]="isZone || gv.testMobile" (click)="getZoneDataDetailsCount()">
+        Load
+      </button>
+    </ion-item>
+    <!-- End: Zone Details -->
+    <!-- Start: Executive List -->
+    <ion-item>
+      <ion-icon name="md-contacts" item-start></ion-icon>
+      <h2>List of Executive's</h2>
+      <p>Count: {{ gv.executiveListCount || 0 }}</p>
+      <ion-spinner name="bubbles" item-end *ngIf="isExecutiveList === true"></ion-spinner>
+      <button mode="md" item-end ion-button [disabled]="isExecutiveList || gv.testMobile"
+        (click)="getExecutiveListCount()">
+        Load
+      </button>
+    </ion-item>
+    <!-- End: Executive List -->
+    <!-- Start: Team Member List -->
+    <ion-item>
+      <ion-icon name="md-people" item-start></ion-icon>
+      <h2>List of Team Member's</h2>
+      <p>Count: {{ gv.teamMemberListCount || 0 }}</p>
+      <ion-spinner name="bubbles" item-end *ngIf="isTeamMemberList === true"></ion-spinner>
+      <button mode="md" item-end ion-button [disabled]="isTeamMemberList || gv.testMobile"
+        (click)="getTeamMemberListCount()">
+        Load
+      </button>
+    </ion-item>
+    <!-- End: Team Member List -->
+    <!-- Start: Site ID List -->
+    <ion-item>
+      <ion-icon name="md-compass" item-start></ion-icon>
+      <h2>List of Site ID's</h2>
+      <p>Count: {{ gv.siteIDListCount || 0 }}</p>
+      <ion-spinner name="bubbles" item-end *ngIf="isSiteIDList === true"></ion-spinner>
+      <button mode="md" item-end ion-button [disabled]="isSiteIDList || gv.testMobile" (click)="getSiteIDListCount()">
+        Load
+      </button>
+    </ion-item>
+    <!-- End: Site ID List -->
+    <!-- Start: Login User Details -->
+    <ion-item>
+      <ion-icon name="md-contact" item-start></ion-icon>
+      <h2>Login User Details</h2>
+      <p>Count: {{ gv.userStatusDetailCount || 0 }}</p>
+      <ion-spinner name="bubbles" item-end *ngIf="isUserStatusDetails === true"></ion-spinner>
+      <button mode="md" item-end ion-button [disabled]="isUserStatusDetails || gv.testMobile"
+        (click)="getUserStatusDetailCount()">
+        Load
+      </button>
+    </ion-item>
+    <!-- End: Login User Details -->
+  </ion-list>
+
+
+  <!-- <ion-list>
+    <ion-item>
+      <ion-row>
+        <ion-col col-2 col-md-2 col-sm-2 align-self-center><strong>S.No</strong></ion-col>
+        <ion-col col-6 col-md-6 col-sm-6 align-self-center><strong>Collections</strong></ion-col>
+        <ion-col col-2 col-md-2 col-sm-2 align-self-center><strong>Count</strong></ion-col>
+        <ion-col col-2 col-md-2 col-sm-2 style="text-align: right;">
+          <button ion-button [disabled]="gv.testMobile ?  true : false" (click)="getAllLoading();">Load All</button>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+    <ion-item>
+      <ion-row>
+        <ion-col col-2 col-md-2 col-sm-2 align-self-center>1.</ion-col>
+        <ion-col col-6 col-md-6 col-sm-6 align-self-center>Asset Details</ion-col>
+        <ion-col col-2 col-md-2 col-sm-2 align-self-center>
+          <ion-spinner name="bubbles" *ngIf="isAssetDetails === true"></ion-spinner><span
+            *ngIf="isAssetDetails === false">
+            {{ gv.assetDetailCount }} </span>
+        </ion-col>
+        <ion-col style="text-align: right;"> <button ion-button [disabled]="isAssetDetails || gv.testMobile"
+            (click)="getAssetDetailCount();">Load</button>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+    <ion-item>
+      <ion-row>
+        <ion-col col-2 col-md-2 col-sm-2 align-self-center>2.</ion-col>
+        <ion-col col-6 col-md-6 col-sm-6 align-self-center>Lookup Values</ion-col>
+        <ion-col col-2 col-md-2 col-sm-2 align-self-center>
+          <ion-spinner name="bubbles" *ngIf="isAlDomain === true"></ion-spinner><span *ngIf="isAlDomain === false">{{
+            gv.alnDetailCount }}</span>
+        </ion-col>
+        <ion-col col-2 col-md-2 col-sm-2 style="text-align: right;"> <button ion-button
+            [disabled]="isAlDomain || gv.testMobile" (click)="getAlnDomainDetailCount();">Load</button>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+    <ion-item>
+      <ion-row>
+        <ion-col col-2 col-md-2 col-sm-2 align-self-center>3.</ion-col>
+        <ion-col col-6 col-md-6 col-sm-6 align-self-center>Winding Group</ion-col>
+        <ion-col col-2 col-md-2 col-sm-2 align-self-center>
+          <ion-spinner name="bubbles" *ngIf="isWindingGroup === true"></ion-spinner><span
+            *ngIf="isWindingGroup === false">{{
+            gv.windDetailCount }}</span>
+        </ion-col>
+        <ion-col col-2 col-md-2 col-sm-2 style="text-align: right;"> <button ion-button
+            [disabled]="isWindingGroup || gv.testMobile" (click)="getWindingDetailCount()">Load</button>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+    <ion-item>
+      <ion-row>
+        <ion-col col-2 col-md-2 col-sm-2 align-self-center>4.</ion-col>
+        <ion-col col-6 col-md-6 col-sm-6 align-self-center>AMI Data</ion-col>
+        <ion-col col-2 col-md-2 col-sm-2 align-self-center>
+          <ion-spinner name="bubbles" *ngIf="isAmiData === true"></ion-spinner><span *ngIf="isAmiData === false">{{
+            gv.amiDetailCount }}</span>
+        </ion-col>
+        <ion-col col-2 col-md-2 col-sm-2 style="text-align: right;"> <button ion-button
+            [disabled]="isAmiData || gv.testMobile" (click)="getAmiDataDetailCount();">Load</button>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col col-2 col-md-2 col-sm-2 align-self-center>5.</ion-col>
+        <ion-col col-6 col-md-6 col-sm-6 align-self-center>SN Code</ion-col>
+        <ion-col col-2 col-md-2 col-sm-2 align-self-center>
+          <ion-spinner name="bubbles" *ngIf="isSnCode === true"></ion-spinner><span *ngIf="isSnCode === false">{{
+            gv.snCodeDetailCount }}</span>
+        </ion-col>
+        <ion-col col-2 col-md-2 col-sm-2 style="text-align: right;"> <button ion-button
+            [disabled]="isSnCode || gv.testMobile" (click)="getSnCodeDetailCount()">Load</button>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+    <ion-item>
+      <ion-row>
+        <ion-col col-2 col-md-2 col-sm-2 align-self-center>6.</ion-col>
+        <ion-col col-6 col-md-6 col-sm-6 align-self-center>Material Data</ion-col>
+        <ion-col col-2 col-md-2 col-sm-2 align-self-center>
+          <ion-spinner name="bubbles" *ngIf="isMaterialData === true"></ion-spinner><span
+            *ngIf="isMaterialData === false">{{
+            gv.materialDetailCount }}</span>
+        </ion-col>
+        <ion-col col-2 col-md-2 col-sm-2 style="text-align: right;"> <button ion-button
+            [disabled]="isMaterialData || gv.testMobile" (click)="getMaterialDetailCount()">Load</button>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+    <ion-item>
+      <ion-row>
+        <ion-col col-2 col-md-2 col-sm-2 align-self-center>7.</ion-col>
+        <ion-col col-6 col-md-6 col-sm-6 align-self-center>Customer Data</ion-col>
+        <ion-col col-2 col-md-2 col-sm-2 align-self-center>
+          <ion-spinner name="bubbles" *ngIf="isCustomerData === true"></ion-spinner><span
+            *ngIf="isCustomerData === false">{{
+            gv.customerDetailCount }}</span>
+        </ion-col>
+        <ion-col col-2 col-md-2 col-sm-2 style="text-align: right;"> <button ion-button
+            [disabled]="isCustomerData || gv.testMobile" (click)="getCustomerTypeCount()">Load</button>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+    <ion-item>
+      <ion-row>
+        <ion-col col-2 col-md-2 col-sm-2 align-self-center>8.</ion-col>
+        <ion-col col-6 col-md-6 col-sm-6 align-self-center>SO User Status</ion-col>
+        <ion-col col-2 col-md-2 col-sm-2 align-self-center>
+          <ion-spinner name="bubbles" *ngIf="isUserStatus === true"></ion-spinner><span *ngIf="isUserStatus === false">{{
+            gv.userDetailCount }}</span>
+        </ion-col>
+        <ion-col col-2 col-md-2 col-sm-2 style="text-align: right;"> <button ion-button
+            [disabled]="isUserStatus || gv.testMobile" (click)="getUserDetailCount()">Load</button>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+    <ion-item>
+      <ion-row>
+        <ion-col col-2 col-md-2 col-sm-2 align-self-center>9.</ion-col>
+        <ion-col col-6 col-md-6 col-sm-6 align-self-center>Login User Details</ion-col>
+        <ion-col col-2 col-md-2 col-sm-2 align-self-center>
+          <ion-spinner name="bubbles" *ngIf="isUserStatusDetails === true"></ion-spinner>
+          <span *ngIf="isUserStatusDetails === false">{{ gv.userStatusDetailCount }}</span>
+        </ion-col>
+        <ion-col col-2 col-md-2 col-sm-2 style="text-align: right;"> <button ion-button
+            [disabled]="isUserStatusDetails || gv.testMobile" (click)="getUserStatusDetailCount()">Load</button>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+  </ion-list> -->
+</ion-content>
+<!--
+<ion-content padding *ngIf="gv.testMobile" style="background-color:  rgba(0,0,0,0.3);">
+  <h1 class="centered">
+      No Network Connection...
+  </h1>
+</ion-content>-->

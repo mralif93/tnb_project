@@ -1,0 +1,593 @@
+<ion-header mode="md">
+  <ion-navbar color="primary">
+    <ion-title>{{ pageTitle }}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon color="light" name="md-planet" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<!-- <ion-header>
+  <ion-grid class="sealHeader">
+    <ion-row>
+      <ion-col col-3 col-sm-3 col-md-3 style="text-align: left;">
+        <button ion-button clear class="backbutton" (click)="goBack()">
+          <ion-icon name="arrow-back" class="menuBackArrow backbutton"> Back </ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-7 col-md-7 col-sm-7 align-self-center>
+        <div class="pageTitle">Notice Letter
+        </div>
+      </ion-col>
+      <ion-col col-1 col-sm-1 col-md-1 align-self-center style="text-align: right;">
+        <div *ngIf='gv.testMobile'>
+          <ion-icon class="flash_plnt" name="custom-connected" [style.color]="gv.testMobile ? 'red':'#00e600'">
+            {{ gv.testMobile ? 'Offline':'Online' }}
+          </ion-icon>
+        </div>
+        <div *ngIf='!gv.testMobile'>
+          <ion-icon class="flash_plnt" name="custom-disconnect" [style.color]="gv.testMobile ? 'red':'#00e600'">
+            {{ gv.testMobile ? 'Offline':'Online' }}
+          </ion-icon>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header> -->
+
+<ion-content>
+  <!-- User give cooperation -->
+  <ion-grid>
+    <ion-row>
+      <ion-item>
+        <ion-item-divider style="background-color: #f3e5f5">Notice Letter User Status</ion-item-divider>
+      </ion-item>
+    </ion-row>
+    <ion-list radio-group [(ngModel)]="formASelection">
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Customer cooperate</ion-label>
+            <ion-radio (click)="typeform('true')" value="true"></ion-radio>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label>Customer does not cooperate</ion-label>
+            <ion-radio (click)="typeform('false')" value="false"></ion-radio>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-list>
+  </ion-grid>
+  <!-- Cust cooperate -->
+  <ion-grid *ngIf='!formSelected'>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-title text-center>
+            Letter Notice Customer Cooperate
+          </ion-title>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Our Reference: TNB B/SJH/../</ion-label>
+        </ion-item>
+        <ion-row>
+          <ion-item>
+            <ion-label>{{noticeMeter.ta4accountno}}</ion-label>
+          </ion-item>
+        </ion-row>
+        <ion-row>
+          <ion-item>
+            <ion-label>{{noticeMeter.customername}}</ion-label>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>Date: {{noticeMeter.currentTime}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>
+            Dear valued TNB customer,
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-title text-center>
+            Inspection Notice Meter Installation by TNB
+          </ion-title>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label text-wrap>Informed that examination and testing has been made on installation metres that record
+            use of
+            electric to premise that addressed {{noticeMeter.customeraddress}} with no. account
+            {{noticeMeter.ta4accountno}} in {{noticeMeter.ta4datetime}} {{noticeMeter.currentTime}} hour. </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label text-wrap>
+            Testing result show metres does not record real electric usage reading and this was explained the customers.
+            We want to inform that total reduced claim charge will be made by TNB parties and will be forwarded to the
+            customers.
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>
+            For your information, evidence bag serial number is
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-input [(ngModel)]="noticeMeter.serialNum" placeholder="Enter siri"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label text-wrap>
+            Sir/madame, you are invited to attend to Seksyen Jaminan Hasil (Zon Utara), Aras 2, Wisma TNB, No. 1 Jalan
+            Perda Barat, Bandar Perda, 14000 Bukit Mertajam, Pulau Pinang (No. tel: 04-5380108) and please state
+            evidence bag serial number for further information after 14 days from case date above.
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>If there are any inquiries, sir/madame please contact </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-select [(ngModel)]="noticeMeter.ta4officezone" [selectOptions]="OfficeAddress"
+            (ionChange)="officeAdrssSelect()">
+            <ion-option value="kl">Kuala Lumpur</ion-option>
+            <ion-option value="selat">Selatan</ion-option>
+            <ion-option value="utr">Utara</ion-option>
+            <ion-option value="sngor">Selangor</ion-option>
+            <ion-option value="tmr">Timur</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-select [(ngModel)]="noticeMeter.officeName" [selectOptions]="selectOptions"
+            (ionChange)="checkPhoneNumber($event) ">
+            <ion-option *ngFor="let locations  of location ; let j=index" value="{{j}}">{{locations}}
+            </ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item text-wrap>
+          <ion-textarea readonly="true" [(ngModel)]="noticeMeter.ta4officeaddress">
+          </ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>
+            No.Tel:
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>{{noticeMeter.ta4officephone}} for further action.</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>
+            Thank you.
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-item-divider style="background-color: #f3e5f5">Staff Details</ion-item-divider>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Staff Signature: </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad1></signature-pad>
+          <button ion-button color="buttonlightColor" (click)="clearSign('staff')">Clear</button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Examiner Name: </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>{{noticeMeter.staffname}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Employee No. : </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>{{noticeMeter.staffno}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Department : </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-input [(ngModel)]="noticeMeter.department" placeholder="Enter Department"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-item-divider style="background-color: #f3e5f5">Customer Details</ion-item-divider>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Customer Signature: </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad2></signature-pad>
+          <button ion-button color="buttonlightColor" (click)="clearSign('customer')">Clear</button>
+        </ion-item>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Name: </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-input [(ngModel)]="noticeMeter.customername" placeholder="Enter Name"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Telephone No. </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-input [(ngModel)]="noticeMeter.officePhoneNo" placeholder="Enter Telephone"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Date/Time: </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-datetime displayFormat="DD/MM/YYYY HH:mm" pickerFormat="DD/MM/YYYY HH:mm"
+            [(ngModel)]="noticeMeter.datetime" placeholder="Please Enter date and time"
+            (ionChange)='formatTimeDisplay()'></ion-datetime>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- Cust does not cooperate -->
+  <ion-grid *ngIf='formSelected'>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-title text-center>
+            Letter Notice Customer Does Not Cooperate
+          </ion-title>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Our Reference: TNB B/SJH/../</ion-label>
+        </ion-item>
+        <ion-row>
+          <ion-item>
+            <ion-label>{{noticeMeter.ta4accountno}}</ion-label>
+          </ion-item>
+        </ion-row>
+        <ion-row>
+          <ion-item>
+            <ion-label>{{noticeMeter.customername}}</ion-label>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>Date: {{noticeMeter.currentTime}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>
+            Dear valued TNB customer,
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-title text-center>
+            Inspection Notice Meter Installation by TNB
+          </ion-title>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label text-wrap>Informed that examination and testing has been made on installation metres that record
+            use of
+            electric to premise that addressed {{noticeMeter.customeraddress}} with no. account
+            {{noticeMeter.ta4accountno}} in {{noticeMeter.ta4datetime}} {{noticeMeter.currentTime}} hour. </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label text-wrap>
+            Testing result show metres does not record real electric usage reading and this was explained the customers.
+            We want to inform that total reduced claim charge will be made by TNB parties and will be forwarded to the
+            customers.
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>
+            For your information, evidence bag serial number is
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-input [(ngModel)]="noticeMeter.serialNum" placeholder="Enter siri"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label text-wrap>
+            Sir/madame, you are invited to attend to Seksyen Jaminan Hasil (Zon Utara), Aras 2, Wisma TNB, No. 1 Jalan
+            Perda Barat, Bandar Perda, 14000 Bukit Mertajam, Pulau Pinang (No. tel: 04-5380108) and please state
+            evidence bag serial number for further information after 14 days from case date above.
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>If there are any inquiries, sir/madame please contact </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-select [(ngModel)]="noticeMeter.ta4officezone" [selectOptions]="OfficeAddress"
+            (ionChange)="officeAdrssSelect()">
+            <ion-option value="kl">Kuala Lumpur</ion-option>
+            <ion-option value="selat">Selatan</ion-option>
+            <ion-option value="utr">Utara</ion-option>
+            <ion-option value="sngor">Selangor</ion-option>
+            <ion-option value="tmr">Timur</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-select [(ngModel)]="noticeMeter.officeName" [selectOptions]="selectOptions"
+            (ionChange)="checkPhoneNumber($event) ">
+            <ion-option *ngFor="let locations  of location ; let j=index" value="{{j}}">{{locations}}
+            </ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item text-wrap>
+          <ion-textarea readonly="true" [(ngModel)]="noticeMeter.ta4officeaddress">
+          </ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>
+            No.Tel:
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>{{noticeMeter.ta4officephone}} for further action.</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>
+            Thank you.
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-item-divider style="background-color: #f3e5f5">Staff Details</ion-item-divider>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Staff Signature: </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <signature-pad [options]="signaturePadOptions" id="signatureCanvas" #SignaturePad3></signature-pad>
+          <button ion-button color="buttonlightColor" (click)="clearSign('staffNotCoop')">Clear</button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Examiner Name: </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>{{noticeMeter.staffname}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Employee No. : </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>{{noticeMeter.staffno}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Department : </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-input [(ngModel)]="noticeMeter.department" placeholder="Enter Department"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer mode="md">
+  <ion-toolbar mode="md">
+    <ion-row>
+      <ion-col>
+        <button ion-button round block mode="md" (click)="saveData()">
+          Save
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>
+
+<!-- <ion-footer>
+  <ion-toolbar color="darkColor">
+    <div>
+      <ion-row>
+        <button color="footer" ion-button round block (click)="saveData()">Save</button>
+      </ion-row>
+    </div>
+  </ion-toolbar>
+</ion-footer> -->

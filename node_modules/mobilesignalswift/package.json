@@ -1,0 +1,55 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "/Users/developer/Desktop/dssb_project/ionic_workspace/com-mobilesignalswift/MobileSignalSwift",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "/Users/developer/Desktop/dssb_project/ionic_workspace/com-mobilesignalswift/MobileSignalSwift",
+        "spec": "/Users/developer/Desktop/dssb_project/ionic_workspace/com-mobilesignalswift/MobileSignalSwift",
+        "type": "directory"
+      },
+      "/Users/developer/Desktop/dssb_project/ionic_workspace/SoExecution"
+    ]
+  ],
+  "_from": "../com-mobilesignalswift/MobileSignalSwift",
+  "_id": "mobilesignalswift@1.0.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/mobilesignalswift",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "/Users/developer/Desktop/dssb_project/ionic_workspace/com-mobilesignalswift/MobileSignalSwift",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "/Users/developer/Desktop/dssb_project/ionic_workspace/com-mobilesignalswift/MobileSignalSwift",
+    "spec": "/Users/developer/Desktop/dssb_project/ionic_workspace/com-mobilesignalswift/MobileSignalSwift",
+    "type": "directory"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "file:../com-mobilesignalswift/MobileSignalSwift",
+  "_shasum": "ffe320eb3f422dd2332ba3115751c51e765f17ea",
+  "_shrinkwrap": null,
+  "_spec": "/Users/developer/Desktop/dssb_project/ionic_workspace/com-mobilesignalswift/MobileSignalSwift",
+  "_where": "/Users/developer/Desktop/dssb_project/ionic_workspace/SoExecution",
+  "author": {
+    "name": "Andy Chang"
+  },
+  "dependencies": {},
+  "description": "Retrieve IOS 11 Signal Strength",
+  "devDependencies": {},
+  "license": "SunAppEnt",
+  "main": "MobileSignalSwift.js",
+  "name": "mobilesignalswift",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.0"
+}

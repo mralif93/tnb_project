@@ -1,0 +1,7 @@
+<ion-list>
+  <ion-list-header> Options </ion-list-header>
+  <button ion-item (click)="close('downloadList')"> Download SO </button>
+  <button ion-item (click)="close('syncData')"> Sync WorkOrder</button>
+  <!--<button ion-item (click)="close('loadLook')"> Load lookup</button>-->
+  <button *ngIf="gv.employeeTypeLogin" ion-item (click)="close('taskassign')"> Assign SO</button>
+</ion-list>

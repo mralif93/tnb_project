@@ -1,0 +1,62 @@
+page-gir-detail {
+
+    .reg-button {
+        height: 2.6rem;
+        float: right;
+        color: #0000FF;
+        background-color: #ffffff;
+    }
+
+    .label-md[stacked] {
+        font-weight:  normal;
+        font-size: 1.6rem;
+        text-transform: none;
+        color: #000;
+    }
+
+    .classA { 
+        background-color: #fffffA;
+    }
+
+
+    .classB{ 
+        background-color:#C4D8E2;
+    }
+
+    .heading-gap {
+        padding-bottom: 25px;
+    }
+
+    .totalContainer {
+        padding: 25px 100px 0px 100px;
+    }
+
+    .wrapperScanSet {
+        padding: 20px; 
+        border: 1px dotted black;
+    }
+
+    .deviceLabel {
+        padding-top: 15px;
+    }
+
+    .text-right {
+        float: right;
+    }
+    
+    .AppDelete {
+        text-decoration: line-through;
+    }
+    
+    .text-input[disabled] {
+        opacity: 1;
+    }
+
+    .item-input .label-md, .item-select .label-md, .item-datetime .label-md {
+        color: #000000;
+    }
+
+    .offline_btn {
+        font-size: 15px;
+    }
+}

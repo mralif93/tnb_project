@@ -1,0 +1,59 @@
+<!--
+  Generated template for the SearchStatusPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+
+  <ion-grid class="headerStyle">
+
+    <ion-row>
+      <ion-col col-2 col-sm-3 style="text-align: left;padding-top: 0px;">
+        <button ion-button clear (click)="goBack()">
+          <ion-icon name="arrow-back" class="menuBackArrow"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-8 col-sm-5>
+        <div class="pageTitle">Search Status
+        </div>
+      </ion-col>
+      <ion-col col-2 col-sm-4 style="text-align: right;padding-top: 0px;">
+        <ion-fab top right style="top: 0%">
+          <button ion-fab mini class="flash">
+            <ion-icon class="flash_plnt" name="planet" [style.color]="gv.testMobile ? 'red':'green'">
+              {{ gv.testMobile ? 'Offline':'Online' }} </ion-icon>
+          </button>
+        </ion-fab>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-searchbar (ionInput)="filterUserStatus($event.target.value)"></ion-searchbar>
+
+  <!-- <ul class="userStatus" >
+    <li *ngFor="let userSts of userStatus">
+      <h2> {{ userSts.name }} </h2>
+      <div> {{ userSts.description }} </div>
+    </li>
+  </ul> -->
+  <ion-list>
+    <ion-grid>
+      <ion-row *ngFor="let userSts of userStatus" (click)="goToStatusChangePage(userSts)">
+        <ion-col col-6 style="border:1px solid;text-align:left" #userStatus>
+          <ion-item> {{ userSts.name }} </ion-item>
+        </ion-col>
+        <ion-col col-6 style="border:1px solid;text-align:left">
+          <ion-item> {{ userSts.description }} </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+
+</ion-content>
