@@ -4006,15 +4006,13 @@ export class ServiceDetailsPage {
    * Crimpless Seal CR
    * Open Crimpless Seal Listing page
    */
-  openCrimplessSeal() {
-    console.log('item.json.ta0feeder123', this.items.json.ta0feeder);
-    console.log('Open SealCrimplessSealPage');
-    this.gf.setLoaderTimeout("Please wait...",10000);
+  openCrimplessSeal() {    
+    console.log('Open SealCrimplessSealPage');        
     let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
     newRootNav.push("SealCrimplessSealPage", {
       from: 'my_Assigned_page',
       //feederDetails: this.feederDetails,
       paramObj: this.items
-    });
-  }
+    });     
+  }   
 }

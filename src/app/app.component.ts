@@ -70,7 +70,7 @@ export class MyApp {
       console.log("trigger authHandler.init");
       this.authHandler.init();
       console.log("trigger ds.initializeDB method for SQLite");
-      //this.ds.initializeDB();
+      this.ds.initializeDB();
     });
     //this.initializeApp();
 

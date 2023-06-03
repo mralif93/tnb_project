@@ -1,6 +1,6 @@
 <ion-header mode="md">
   <ion-navbar color="primary">
-    <ion-title>Crimpless Seal</ion-title>
+    <ion-title>Seal Device Location</ion-title>
     <ion-buttons end>
       <button ion-button icon-only>
         <ion-icon [color]="gv.testMobile ? 'danger' : 'light'" name="md-planet" class="flash_plnt"></ion-icon>
@@ -40,8 +40,7 @@
           <ion-row>
             <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
               <ion-item no-lines>
-                <ion-label *ngIf="ttbF1Array.length <= 1" color="primary">Test Block F1</ion-label>
-                <ion-label *ngIf="ttbF1Array.length > 1" color="primary">Test Block F1 - {{ j + 1 }}</ion-label>
+                <ion-label color="primary">{{attr.ta0seallocation_description}}</ion-label>
               </ion-item>
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1>
@@ -98,11 +97,10 @@
             <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;"
               *ngIf="attr.ta0removeind">
               <ion-item no-lines>
-                <ion-label color="primary"> Removal Reason</ion-label>
+                <ion-label color="primary">Removal Reason</ion-label>
               </ion-item>
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1 *ngIf="attr.ta0removeind">
-
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-8 style="word-wrap:  break-all; padding-left: 5px;"
               *ngIf="attr.ta0removeind">
@@ -138,8 +136,7 @@
           <ion-row>
             <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
               <ion-item no-lines>
-                <ion-label *ngIf="ttbF2Array.length <= 1" color="primary">Test Block F2</ion-label>
-                <ion-label *ngIf="ttbF2Array.length > 1" color="primary">Test Block F2 - {{ j + 1 }}</ion-label>
+                <ion-label color="primary">{{attr.ta0seallocation_description}}</ion-label>
               </ion-item>
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1>
@@ -196,11 +193,10 @@
             <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;"
               *ngIf="attr.ta0removeind">
               <ion-item no-lines>
-                <ion-label color="primary"> Removal Reason</ion-label>
+                <ion-label color="primary">Removal Reason</ion-label>
               </ion-item>
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1 *ngIf="attr.ta0removeind">
-
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-8 style="word-wrap:  break-all; padding-left: 5px;"
               *ngIf="attr.ta0removeind">
@@ -1085,187 +1081,7 @@
             </ion-col>
           </ion-row>
         </span>
-<!--
-        <ion-item-divider color="light">
-          <ion-row align-items-center>
-            <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 0px;">
-              CT Chamber F2
-            </ion-col>
-            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
 
-            </ion-col>
-          </ion-row>
-        </ion-item-divider>
-        <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
-          *ngFor="let attr of ctChamberArrayF2; let j = index">
-          <ion-row>
-            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
-              <ion-item no-lines>
-                <ion-label *ngIf="ctChamberArrayF2.length <= 1" color="primary">CT Chamber F2</ion-label>
-                <ion-label *ngIf="ctChamberArrayF2.length > 1" color="primary">CT Chamber F2 {{ j + 1 }}</ion-label>
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-1>
-              <ion-item no-lines>
-                <ion-checkbox [(ngModel)]="attr.ta0removeind">
-                </ion-checkbox>
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
-              <ion-item>
-                <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30"
-                  (keyup)="userInputLengthNum($event,'ctChamberF2', j,'before')" clearInput placeholder="Please Enter"
-                  [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
-                </ion-input>
-              </ion-item>
-            </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
-              <button ion-button (click)="barcodeScan(ctChamberArrayF2,j,1, 'before')">
-                <ion-icon name="barcode"></ion-icon>
-              </button>
-            </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;" *ngIf="j > 0">
-              <button ion-button (click)="deleteCtChamber(j,'f2')">
-                <ion-icon name="trash"></ion-icon>
-              </button>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col col-12 col-sm-12 col-md-3>
-              <ion-item no-lines>
-                <ion-label color="primary">Condition</ion-label>
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-1>
-              <ion-item no-lines>
-
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-6>
-              <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealcondition" interface="popover" placeholder="Please select value"
-                  [ngClass]="(attr.ta0sealcondition == '' || (attr.ta0sealcondition == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
-                  <ion-option *ngFor="let key of sc" value="{{ key.json.value }}">
-                    {{ key.json.description }}
-                  </ion-option>
-                </ion-select>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;"
-              *ngIf="attr.ta0removeind">
-              <ion-item no-lines>
-                <ion-label color="primary"> Removal Reason</ion-label>
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-1 *ngIf="attr.ta0removeind">
-
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;"
-              *ngIf="attr.ta0removeind">
-              <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value"
-                  [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
-                  <ion-option *ngFor="let key of sc" value="{{ key.json.value }}">
-                    {{ key.json.description }}
-                  </ion-option>
-                </ion-select>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-        </span>
-
-        <ion-item-divider color="light">
-          <ion-row align-items-center>
-            <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 0px;">
-              CT Chamber F3
-            </ion-col>
-            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
-
-            </ion-col>
-          </ion-row>
-        </ion-item-divider>
-        <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
-          *ngFor="let attr of ctChamberArrayF3; let j = index">
-          <ion-row>
-            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
-              <ion-item no-lines>
-                <ion-label *ngIf="ctChamberArrayF3.length <= 1" color="primary">CT Chamber F3</ion-label>
-                <ion-label *ngIf="ctChamberArrayF3.length > 1" color="primary">CT Chamber F3 {{ j + 1 }}</ion-label>
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-1>
-              <ion-item no-lines>
-                <ion-checkbox [(ngModel)]="attr.ta0removeind">
-                </ion-checkbox>
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
-              <ion-item>
-                <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30"
-                  (keyup)="userInputLengthNum($event,'ctChamberF3', j,'before')" clearInput placeholder="Please Enter"
-                  [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
-                </ion-input>
-              </ion-item>
-            </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
-              <button ion-button (click)="barcodeScan(ctChamberArrayF3,j,1, 'before')">
-                <ion-icon name="barcode"></ion-icon>
-              </button>
-            </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;" *ngIf="j > 0">
-              <button ion-button (click)="deleteCtChamber(j,'f3')">
-                <ion-icon name="trash"></ion-icon>
-              </button>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col col-12 col-sm-12 col-md-3>
-              <ion-item no-lines>
-                <ion-label color="primary">Condition</ion-label>
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-1>
-              <ion-item no-lines>
-
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-6>
-              <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealcondition" interface="popover" placeholder="Please select value"
-                  [ngClass]="(attr.ta0sealcondition == '' || (attr.ta0sealcondition == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
-                  <ion-option *ngFor="let key of sc" value="{{ key.json.value }}">
-                    {{ key.json.description }}
-                  </ion-option>
-                </ion-select>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;"
-              *ngIf="attr.ta0removeind">
-              <ion-item no-lines>
-                <ion-label color="primary"> Removal Reason</ion-label>
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-1 *ngIf="attr.ta0removeind">
-
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;"
-              *ngIf="attr.ta0removeind">
-              <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value"
-                  [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
-                  <ion-option *ngFor="let key of sc" value="{{ key.json.value }}">
-                    {{ key.json.description }}
-                  </ion-option>
-                </ion-select>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-        </span>
--->
 
         <ion-item-divider color="light">
           <ion-row align-items-center>
@@ -1360,187 +1176,6 @@
             </ion-col>
           </ion-row>
         </span>
-<!--
-        <ion-item-divider color="light">
-          <ion-row align-items-center>
-            <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 0px;">
-              PT Chamber F2
-            </ion-col>
-            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
-
-            </ion-col>
-          </ion-row>
-        </ion-item-divider>
-        <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
-          *ngFor="let attr of ptChamberArrayF2; let j = index">
-          <ion-row>
-            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
-              <ion-item no-lines>
-                <ion-label *ngIf="ptChamberArrayF2.length <= 1" color="primary">PT Chamber F2</ion-label>
-                <ion-label *ngIf="ptChamberArrayF2.length > 1" color="primary">PT Chamber F{{ j + 1 }}</ion-label>
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-1>
-              <ion-item no-lines>
-                <ion-checkbox [(ngModel)]="attr.ta0removeind">
-                </ion-checkbox>
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
-              <ion-item>
-                <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30"
-                  (keyup)="userInputLengthNum($event,'ptChamberf2', j,'before')" clearInput placeholder="Please Enter"
-                  [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
-                </ion-input>
-              </ion-item>
-            </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
-              <button ion-button (click)="barcodeScan(ptChamberArrayF2,j,1, 'before')">
-                <ion-icon name="barcode"></ion-icon>
-              </button>
-            </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;" *ngIf="j > 0">
-              <button ion-button (click)="deletePtChamber(j,'f2')">
-                <ion-icon name="trash"></ion-icon>
-              </button>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col col-12 col-sm-12 col-md-3>
-              <ion-item no-lines>
-                <ion-label color="primary">Condition</ion-label>
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-1>
-              <ion-item no-lines>
-
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-6>
-              <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealcondition" interface="popover" placeholder="Please select value"
-                  [ngClass]="(attr.ta0sealcondition == '' || (attr.ta0sealcondition == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
-                  <ion-option *ngFor="let key of sc" value="{{ key.json.value }}">
-                    {{ key.json.description }}
-                  </ion-option>
-                </ion-select>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;"
-              *ngIf="attr.ta0removeind">
-              <ion-item no-lines>
-                <ion-label color="primary"> Removal Reason</ion-label>
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-1 *ngIf="attr.ta0removeind">
-
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;"
-              *ngIf="attr.ta0removeind">
-              <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value"
-                  [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
-                  <ion-option *ngFor="let key of sc" value="{{ key.json.value }}">
-                    {{ key.json.description }}
-                  </ion-option>
-                </ion-select>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-        </span>
-
-        <ion-item-divider color="light">
-          <ion-row align-items-center>
-            <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 0px;">
-              PT Chamber F3
-            </ion-col>
-            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
-
-            </ion-col>
-          </ion-row>
-        </ion-item-divider>
-        <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
-          *ngFor="let attr of ptChamberArrayF3; let j = index">
-          <ion-row>
-            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
-              <ion-item no-lines>
-                <ion-label *ngIf="ptChamberArrayF3.length <= 1" color="primary">PT Chamber F3</ion-label>
-                <ion-label *ngIf="ptChamberArrayF3.length > 1" color="primary">PT Chamber F3 {{ j + 1 }}</ion-label>
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-1>
-              <ion-item no-lines>
-                <ion-checkbox [(ngModel)]="attr.ta0removeind">
-                </ion-checkbox>
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
-              <ion-item>
-                <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30"
-                  (keyup)="userInputLengthNum($event,'ptChamberf3', j,'before')" clearInput placeholder="Please Enter"
-                  [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
-                </ion-input>
-              </ion-item>
-            </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
-              <button ion-button (click)="barcodeScan(ptChamberArrayF3,j,1, 'before')">
-                <ion-icon name="barcode"></ion-icon>
-              </button>
-            </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;" *ngIf="j > 0">
-              <button ion-button (click)="deletePtChamber(j,'f3')">
-                <ion-icon name="trash"></ion-icon>
-              </button>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col col-12 col-sm-12 col-md-3>
-              <ion-item no-lines>
-                <ion-label color="primary">Condition</ion-label>
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-1>
-              <ion-item no-lines>
-
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-6>
-              <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealcondition" interface="popover" placeholder="Please select value"
-                  [ngClass]="(attr.ta0sealcondition == '' || (attr.ta0sealcondition == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
-                  <ion-option *ngFor="let key of sc" value="{{ key.json.value }}">
-                    {{ key.json.description }}
-                  </ion-option>
-                </ion-select>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;"
-              *ngIf="attr.ta0removeind">
-              <ion-item no-lines>
-                <ion-label color="primary"> Removal Reason</ion-label>
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-1 *ngIf="attr.ta0removeind">
-
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;"
-              *ngIf="attr.ta0removeind">
-              <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value"
-                  [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
-                  <ion-option *ngFor="let key of sc" value="{{ key.json.value }}">
-                    {{ key.json.description }}
-                  </ion-option>
-                </ion-select>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-        </span>
--->
 
         <ion-item-divider color="light">
           <ion-row align-items-center>
@@ -1852,8 +1487,13 @@
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
               <ion-item>
+                <!--
                 <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30"
                   (keyup)="userInputLengthNum($event,'SMarshBoxF1', j,'before')" clearInput [readonly]="true" placeholder="Please Enter" 
+                  [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-input>
+                -->
+                <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30" clearInput [readonly]="true" placeholder="Please Enter" 
                   [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
                 </ion-input>
               </ion-item>
@@ -1918,189 +1558,7 @@
             </ion-col>
           </ion-row>
         </span>
-<!--
-        <ion-item-divider color="light">
-          <ion-row align-items-center>
-            <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 0px;">
-              Marshalling Box F2
-            </ion-col>
-            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
 
-            </ion-col>
-          </ion-row>
-        </ion-item-divider>
-        <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
-          *ngFor="let attr of marshallingBoxArrayF2; let j = index">
-          <ion-row>
-            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
-              <ion-item no-lines>
-                <ion-label *ngIf="marshallingBoxArrayF2.length <= 1" color="primary">Marshalling Box F2</ion-label>
-                <ion-label *ngIf="marshallingBoxArrayF2.length > 1" color="primary">Marshalling Box F2 - {{ j + 1 }}
-                </ion-label>
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-1>
-              <ion-item no-lines>
-                <ion-checkbox [(ngModel)]="attr.ta0removeind">
-                </ion-checkbox>
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
-              <ion-item>
-                <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30"
-                  (keyup)="userInputLengthNum($event,'SMarshBoxF2', j,'before')" clearInput placeholder="Please Enter"
-                  [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
-                </ion-input>
-              </ion-item>
-            </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
-              <button ion-button (click)="barcodeScan(marshallingBoxArrayF2,j,1, 'before')">
-                <ion-icon name="barcode"></ion-icon>
-              </button>
-            </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;" *ngIf="j > 0">
-              <button ion-button (click)="deleteMarshallingBox(j)">
-                <ion-icon name="trash"></ion-icon>
-              </button>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col col-12 col-sm-12 col-md-3>
-              <ion-item no-lines>
-                <ion-label color="primary">Condition</ion-label>
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-1>
-              <ion-item no-lines>
-
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-6>
-              <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealcondition" interface="popover" placeholder="Please select value"
-                  [ngClass]="(attr.ta0sealcondition == '' || (attr.ta0sealcondition == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
-                  <ion-option *ngFor="let key of sc" value="{{ key.json.value }}">
-                    {{ key.json.description }}
-                  </ion-option>
-                </ion-select>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;"
-              *ngIf="attr.ta0removeind">
-              <ion-item no-lines>
-                <ion-label color="primary"> Removal Reason</ion-label>
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-1 *ngIf="attr.ta0removeind">
-
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;"
-              *ngIf="attr.ta0removeind">
-              <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value"
-                  [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
-                  <ion-option *ngFor="let key of sc" value="{{ key.json.value }}">
-                    {{ key.json.description }}
-                  </ion-option>
-                </ion-select>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-        </span>
-
-        <ion-item-divider color="light">
-          <ion-row align-items-center>
-            <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 0px;">
-              Marshalling Box F3
-            </ion-col>
-            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
-
-            </ion-col>
-          </ion-row>
-        </ion-item-divider>
-        <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
-          *ngFor="let attr of marshallingBoxArrayF3; let j = index">
-          <ion-row>
-            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
-              <ion-item no-lines>
-                <ion-label *ngIf="marshallingBoxArrayF3.length <= 1" color="primary">Marshalling Box F3</ion-label>
-                <ion-label *ngIf="marshallingBoxArrayF3.length > 1" color="primary">Marshalling Box F3 - {{ j + 1 }}
-                </ion-label>
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-1>
-              <ion-item no-lines>
-                <ion-checkbox [(ngModel)]="attr.ta0removeind">
-                </ion-checkbox>
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
-              <ion-item>
-                <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30"
-                  (keyup)="userInputLengthNum($event,'SMarshBoxF3', j,'before')" clearInput placeholder="Please Enter"
-                  [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
-                </ion-input>
-              </ion-item>
-            </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
-              <button ion-button (click)="barcodeScan(marshallingBoxArrayF3,j,1, 'before')">
-                <ion-icon name="barcode"></ion-icon>
-              </button>
-            </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;" *ngIf="j > 0">
-              <button ion-button (click)="deleteMarshallingBox(j)">
-                <ion-icon name="trash"></ion-icon>
-              </button>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col col-12 col-sm-12 col-md-3>
-              <ion-item no-lines>
-                <ion-label color="primary">Condition</ion-label>
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-1>
-              <ion-item no-lines>
-
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-6>
-              <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealcondition" interface="popover" placeholder="Please select value"
-                  [ngClass]="(attr.ta0sealcondition == '' || (attr.ta0sealcondition == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
-                  <ion-option *ngFor="let key of sc" value="{{ key.json.value }}">
-                    {{ key.json.description }}
-                  </ion-option>
-                </ion-select>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;"
-              *ngIf="attr.ta0removeind">
-              <ion-item no-lines>
-                <ion-label color="primary"> Removal Reason</ion-label>
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-1 *ngIf="attr.ta0removeind">
-
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;"
-              *ngIf="attr.ta0removeind">
-              <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value"
-                  [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
-                  <ion-option *ngFor="let key of sc" value="{{ key.json.value }}">
-                    {{ key.json.description }}
-                  </ion-option>
-                </ion-select>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-        </span>
--->
         <ion-item-divider color="light">
           <ion-row align-items-center>
             <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 0px;">
@@ -2426,43 +1884,58 @@
           <ion-row align-items-center>
             <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 0px;">
               Test Block F1
-            </ion-col>
+            </ion-col>            
             <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
+              <!--
               <button ion-button small icon-only round mode="md" style="float: right;" *ngIf="showAddTtbF1"
                 (click)="addTtb('f1')">
                 <ion-icon ios="md-add" md="md-add"></ion-icon>
               </button>
+              -->
             </ion-col>
           </ion-row>
         </ion-item-divider>
-        <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
-          *ngFor="let attr of ttbF1NewArray; let j = index">
+        <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
+          <!-- Device Location TEST_BLOCK_F1_1 -->
           <ion-row>
             <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
               <ion-item no-lines>
-                <ion-label *ngIf="ttbF1NewArray.length <= 1" color="primary">Test Block F1</ion-label>
-                <ion-label *ngIf="ttbF1NewArray.length > 1" color="primary">Test Block F1 - {{ j + 1 }}</ion-label>
+                <ion-label color="primary">Test Block F1 - 1</ion-label>
               </ion-item>
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
               <ion-item>
-                <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30" clearInput
-                  placeholder="Please Enter" [disabled]="checkingFieldDisabledF1(attr, 'seal') ? true : false"
-                  [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+                <ion-input [(ngModel)]="ttbf11Val.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter" 
+                  [ngClass]="(ttbf11Val.ta0sealnum == '' || ttbf11Val.ta0sealnum == undefined && !validateInput || ttbf11Val.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
                 </ion-input>
               </ion-item>
             </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
-              <button ion-button (click)="barcodeScan(ttbF1NewArray,j,1, 'after')">
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(ttbf11Val,0,1, 'after')">
                 <ion-icon name="barcode"></ion-icon>
               </button>
+            </ion-col>            
+          </ion-row>
+          <!-- Device Location TEST_BLOCK_F1_2 -->
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item no-lines>
+                <ion-label color="primary">Test Block F1 - 2</ion-label>
+              </ion-item>
             </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;" *ngIf="j > 0">
-              <button ion-button (click)="deleteTtb(j,'f1')">
-                <ion-icon name="trash"></ion-icon>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input [(ngModel)]="ttbf12Val.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter" 
+                  [ngClass]="(ttbf12Val.ta0sealnum == '' || ttbf12Val.ta0sealnum == undefined && !validateInput || ttbf12Val.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(ttbf12Val,0,1, 'after')">
+                <ion-icon name="barcode"></ion-icon>
               </button>
-            </ion-col>
-          </ion-row>                             
+            </ion-col>           
+          </ion-row>
         </span>
 
         <ion-item-divider color="light">
@@ -2471,40 +1944,55 @@
               Test Block F2
             </ion-col>
             <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
+              <!--
               <button ion-button small icon-only round mode="md" style="float: right;" *ngIf="showAddTtbF2"
                 (click)="addTtb('f2')">
                 <ion-icon ios="md-add" md="md-add"></ion-icon>
               </button>
+              -->
             </ion-col>
           </ion-row>
         </ion-item-divider>
-        <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
-          *ngFor="let attr of ttbF2NewArray; let j = index">
+        <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
+          <!-- Device Location TEST_BLOCK_F2_1 -->
           <ion-row>
             <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
               <ion-item no-lines>
-                <ion-label *ngIf="ttbF2NewArray.length <= 1" color="primary">Test Block F2</ion-label>
-                <ion-label *ngIf="ttbF2NewArray.length > 1" color="primary">Test Block F2 - {{ j + 1 }}</ion-label>
+                <ion-label color="primary">Test Block F2 - 1</ion-label>
               </ion-item>
             </ion-col>           
             <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
               <ion-item>
-                <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30" clearInput
-                  placeholder="Please Enter" [disabled]="checkingFieldDisabledF2(attr, 'seal') ? true : false"
-                  [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+                <ion-input [(ngModel)]="ttbf21Val.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter" 
+                  [ngClass]="(ttbf21Val.ta0sealnum == '' || ttbf21Val.ta0sealnum == undefined && !validateInput || ttbf21Val.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
                 </ion-input>
               </ion-item>
             </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
-              <button ion-button (click)="barcodeScan(ttbF2NewArray,j,1, 'after')">
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(ttbf21Val,0,1, 'after')">
                 <ion-icon name="barcode"></ion-icon>
               </button>
+            </ion-col>           
+          </ion-row>
+           <!-- Device Location TEST_BLOCK_F2_2 -->
+           <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item no-lines>
+                <ion-label color="primary">Test Block F2 - 2</ion-label>
+              </ion-item>
+            </ion-col>           
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input [(ngModel)]="ttbf22Val.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter" 
+                  [ngClass]="(ttbf22Val.ta0sealnum == '' || ttbf22Val.ta0sealnum == undefined && !validateInput || ttbf22Val.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-input>
+              </ion-item>
             </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;" *ngIf="j > 0">
-              <button ion-button (click)="deleteTtb(j,'f2')">
-                <ion-icon name="trash"></ion-icon>
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(ttbf22Val,0,1, 'after')">
+                <ion-icon name="barcode"></ion-icon>
               </button>
-            </ion-col>
+            </ion-col>           
           </ion-row>        
         </span>
 
@@ -2514,41 +2002,56 @@
               Test Block F3
             </ion-col>
             <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
+              <!--
               <button ion-button small icon-only round mode="md" style="float: right;" *ngIf="showAddTtbF3"
                 (click)="addTtb('f3')">
                 <ion-icon ios="md-add" md="md-add"></ion-icon>
               </button>
+              -->
             </ion-col>
           </ion-row>
         </ion-item-divider>
-        <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
-          *ngFor="let attr of ttbF3NewArray; let j = index">
+        <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
+          <!-- Device Location TEST_BLOCK_F3_1 -->
           <ion-row>
             <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
               <ion-item no-lines>
-                <ion-label *ngIf="ttbF3NewArray.length <= 1" color="primary">Test Block F3</ion-label>
-                <ion-label *ngIf="ttbF3NewArray.length > 1" color="primary">Test Block F3 - {{ j + 1 }}</ion-label>
+                <ion-label color="primary">Test Block F3 - 1</ion-label>                
               </ion-item>
             </ion-col>           
-            <ion-col col-12 col-sm-12 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
               <ion-item>
-                <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30" clearInput
-                  placeholder="Please Enter" [disabled]="checkingFieldDisabledF3(attr, 'seal') ? true : false"
-                  [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+                <ion-input [(ngModel)]="ttbf31Val.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter" 
+                  [ngClass]="(ttbf31Val.ta0sealnum == '' || ttbf31Val.ta0sealnum == undefined && !validateInput || ttbf31Val.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
                 </ion-input>
               </ion-item>
             </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
-              <button ion-button (click)="barcodeScan(ttbF3NewArray,j,1, 'after')">
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(ttbF3NewArray,0,1, 'after')">
                 <ion-icon name="barcode"></ion-icon>
               </button>
+            </ion-col>           
+          </ion-row> 
+          <!-- Device Location TEST_BLOCK_F3_2 -->
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item no-lines>
+                <ion-label color="primary">Test Block F3 - 2</ion-label>                
+              </ion-item>
+            </ion-col>           
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input [(ngModel)]="ttbf32Val.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter" 
+                  [ngClass]="(ttbf32Val.ta0sealnum == '' || ttbf32Val.ta0sealnum == undefined && !validateInput || ttbf32Val.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-input>
+              </ion-item>
             </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;" *ngIf="j > 0">
-              <button ion-button (click)="deleteTtb(j,'f3')">
-                <ion-icon name="trash"></ion-icon>
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(ttbF3NewArray,0,1, 'after')">
+                <ion-icon name="barcode"></ion-icon>
               </button>
-            </ion-col>
-          </ion-row>          
+            </ion-col>           
+          </ion-row>         
         </span>
 
         <ion-item-divider color="light">
@@ -2557,136 +2060,175 @@
               Meter Fuse
             </ion-col>
             <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
+              <!--
               <button ion-button small icon-only round mode="md" style="float: right;" *ngIf="showAddSfuseF1"
                 (click)="addSfuseF1()">
                 <ion-icon ios="md-add" md="md-add"></ion-icon>
               </button> 
+              -->
             </ion-col>
           </ion-row>
         </ion-item-divider>
-        <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
-          *ngFor="let attr of sfuseF1NewArray; let j = index">
+        <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
+          <!-- Device Location METER_FUSE_F1 -->
           <ion-row>
             <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
               <ion-item no-lines>
-                <ion-label *ngIf="sfuseF1Array.length <= 1" color="primary">Meter Fuse F1</ion-label>
-                <ion-label *ngIf="sfuseF1Array.length > 1" color="primary">Meter Fuse F{{ j + 1
-                  }}</ion-label>
+                <ion-label color="primary">Meter Fuse F1</ion-label>
               </ion-item>
             </ion-col>           
             <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
               <ion-item>
-                <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30"
-                  (keyup)="userInputLengthNum($event,'SFuse1', j,'after')" clearInput placeholder="Please Enter"
-                  [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+                <ion-input [(ngModel)]="mfusef1Val.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter"
+                  [ngClass]="(mfusef1Val.ta0sealnum == '' || mfusef1Val.ta0sealnum == undefined && !validateInput || mfusef1Val.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
                 </ion-input>
               </ion-item>
             </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
-              <button ion-button (click)="barcodeScan(sfuseF1NewArray,j,2, 'after')">
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(mfusef1Val,j,2, 'after')">
                 <ion-icon name="barcode"></ion-icon>
               </button>
+            </ion-col>            
+          </ion-row>
+          <!-- Device Location METER_FUSE_F2 -->
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item no-lines>
+                <ion-label color="primary">Meter Fuse F2</ion-label>
+              </ion-item>
+            </ion-col>           
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input [(ngModel)]="mfusef2Val.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter"
+                  [ngClass]="(mfusef2Val.ta0sealnum == '' || mfusef2Val.ta0sealnum == undefined && !validateInput || mfusef2Val.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-input>
+              </ion-item>
             </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;" *ngIf="j > 0">
-              <button ion-button (click)="deleteSfuse(j,'f1')">
-                <ion-icon name="trash"></ion-icon>
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(mfusef2Val,j,2, 'after')">
+                <ion-icon name="barcode"></ion-icon>
               </button>
+            </ion-col>           
+          </ion-row>
+          <!-- Device Location METER_FUSE_F3 -->
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item no-lines>
+                <ion-label color="primary">Meter Fuse F3</ion-label>
+              </ion-item>
+            </ion-col>           
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>
+                <ion-input [(ngModel)]="mfusef3Val.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter"
+                  [ngClass]="(mfusef3Val.ta0sealnum == '' || mfusef3Val.ta0sealnum == undefined && !validateInput || mfusef3Val.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-input>
+              </ion-item>
             </ion-col>
-          </ion-row>        
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(mfusef3Val,j,2, 'after')">
+                <ion-icon name="barcode"></ion-icon>
+              </button>
+            </ion-col>          
+          </ion-row>       
         </span>
 
         <ion-item-divider color="light">
           <ion-row align-items-center>
             <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 0px;">
-              Panel Door Kiosk 1
+              Panel Door Kiosk
             </ion-col>
             <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
+              <!--
               <button ion-button small icon-only round mode="md" style="float: right;" *ngIf="showAddMeterKiosk1"
                 (click)="addMeterKiosk('1')">
                 <ion-icon ios="md-add" md="md-add"></ion-icon>
               </button>
+              -->
             </ion-col>
           </ion-row>
         </ion-item-divider>
-        <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
-          *ngFor="let attr of meterKiosk1NewArray; let j = index">
-          <ion-row>
-            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
-              <ion-item no-lines>
-                <ion-label *ngIf="meterKiosk1NewArray.length <= 1" color="primary">Meter Kiosk_1</ion-label>
-                <ion-label *ngIf="meterKiosk1NewArray.length > 1" color="primary">Meter Kiosk_1 - {{ j + 1 }}</ion-label>
-              </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-1>
-              <!-- <ion-item no-lines>
-                <ion-checkbox [(ngModel)]="attr.ta0removeind">
-                </ion-checkbox>
-              </ion-item> -->
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
-              <ion-item>
-                <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30"
-                  (keyup)="userInputLengthNum($event,'mtrKiosk1', j,'after')" clearInput placeholder="Please Enter"
-                  [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
-                </ion-input>
-              </ion-item>
-            </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
-              <button ion-button (click)="barcodeScan(meterKiosk1NewArray,j,1, 'after')">
-                <ion-icon name="barcode"></ion-icon>
-              </button>
-            </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;" *ngIf="j > 0">
-              <button ion-button (click)="deleteMeterKiosk(j,'1')">
-                <ion-icon name="trash"></ion-icon>
-              </button>
-            </ion-col>
-          </ion-row>
-        </span>
-
-        <ion-item-divider color="light">
-          <ion-row align-items-center>
-            <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 0px;">
-              Panel Door Kiosk 2
-            </ion-col>
-            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
-              <button ion-button small icon-only round mode="md" style="float: right;" *ngIf="showAddMeterKiosk2"
-                (click)="addMeterKiosk('2')">
-                <ion-icon ios="md-add" md="md-add"></ion-icon>
-              </button>
-            </ion-col>
-          </ion-row>
-        </ion-item-divider>
-        <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
-          *ngFor="let attr of meterKiosk2NewArray; let j = index">
+        <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
+          <!-- Device Location PANELDOOR_KIOSK1_1 -->
           <ion-row>
             <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
               <ion-item no-lines>
-                <ion-label *ngIf="meterKiosk2NewArray.length <= 1" color="primary">Meter Kiosk_2</ion-label>
-                <ion-label *ngIf="meterKiosk2NewArray.length > 1" color="primary">Meter Kiosk_2 - {{ j + 1 }}</ion-label>
+                <ion-label color="primary">Panel Door Kiosk 1 - 1</ion-label>
               </ion-item>
-            </ion-col>            
+            </ion-col>         
             <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
-              <ion-item>
-                <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30"
-                  (keyup)="userInputLengthNum($event,'mtrKiosk2', j,'after')" clearInput placeholder="Please Enter"
-                  [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+              <ion-item>              
+                <ion-input [(ngModel)]="paneldoorkiosk11Val.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter"
+                  [ngClass]="(paneldoorkiosk11Val.ta0sealnum == '' || paneldoorkiosk11Val.ta0sealnum == undefined && !validateInput || paneldoorkiosk11Val.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
                 </ion-input>
               </ion-item>
             </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
-              <button ion-button (click)="barcodeScan(meterKiosk2NewArray,j,1, 'after')">
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(meterKiosk1NewArray,0,1, 'after')">
                 <ion-icon name="barcode"></ion-icon>
               </button>
-            </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;" *ngIf="j > 0">
-              <button ion-button (click)="deleteMeterKiosk(j,'2')">
-                <ion-icon name="trash"></ion-icon>
-              </button>
-            </ion-col>
+            </ion-col>            
           </ion-row>
-        </span>
-
+          <!-- Device Location PANELDOOR_KIOSK1_2 -->
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item no-lines>
+                <ion-label color="primary">Panel Door Kiosk 1 - 2</ion-label>
+              </ion-item>
+            </ion-col>         
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>              
+                <ion-input [(ngModel)]="paneldoorkiosk12Val.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter"
+                  [ngClass]="(paneldoorkiosk12Val.ta0sealnum == '' || paneldoorkiosk12Val.ta0sealnum == undefined && !validateInput || paneldoorkiosk12Val.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(meterKiosk1NewArray,0,1, 'after')">
+                <ion-icon name="barcode"></ion-icon>
+              </button>
+            </ion-col>            
+          </ion-row>
+          <!-- Device Location PANELDOOR_KIOSK2_1 -->
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item no-lines>
+                <ion-label color="primary">Panel Door Kiosk 2 - 1</ion-label>
+              </ion-item>
+            </ion-col>         
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>              
+                <ion-input [(ngModel)]="paneldoorkiosk21Val.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter"
+                  [ngClass]="(paneldoorkiosk21Val.ta0sealnum == '' || paneldoorkiosk21Val.ta0sealnum == undefined && !validateInput || paneldoorkiosk21Val.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(paneldoorkiosk21Val,0,1, 'after')">
+                <ion-icon name="barcode"></ion-icon>
+              </button>
+            </ion-col>            
+          </ion-row>
+          <!-- Device Location PANELDOOR_KIOSK2_2 -->
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item no-lines>
+                <ion-label color="primary">Panel Door Kiosk 2 - 2</ion-label>
+              </ion-item>
+            </ion-col>         
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>              
+                <ion-input [(ngModel)]="paneldoorkiosk22Val.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter"
+                  [ngClass]="(paneldoorkiosk22Val.ta0sealnum == '' || paneldoorkiosk22Val.ta0sealnum == undefined && !validateInput || paneldoorkiosk22Val.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(paneldoorkiosk22Val,0,1, 'after')">
+                <ion-icon name="barcode"></ion-icon>
+              </button>
+            </ion-col>            
+          </ion-row>
+        </span>      
 
         <ion-item-divider color="light">
           <ion-row aling-items-center>
@@ -2694,140 +2236,172 @@
               Meter Test Box 1
             </ion-col>
             <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
+              <!--
               <button ion-button small icon-only round mode="md" style="float: right;" *ngIf="showAddMeterTestBox1"
                 (click)="addMeterTestBox('1')">
                 <ion-icon ios="md-add" md="md-add"></ion-icon>
               </button>
+              -->
             </ion-col>
           </ion-row>
         </ion-item-divider>
-        <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
-          *ngFor="let attr of meterTestBoxNewArray1; let j = index">
+        <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
+          <!-- Device Location METER_TESTBOX_KIOSK1_1 -->
           <ion-row>
             <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
               <ion-item no-lines>
-                <ion-label *ngIf="meterTestBoxNewArray1.length <= 1" color="primary">Meter Test Box_1</ion-label>
-                <ion-label *ngIf="meterTestBoxNewArray1.length > 1" color="primary">Meter Test Box_1 -{{ j + 1 }}
-                </ion-label>
+                <ion-label  color="primary">Meter Test Box 1 - 1</ion-label>                
               </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-1>
-              <!-- <ion-item no-lines>
-                <ion-checkbox [(ngModel)]="attr.ta0removeind">
-                </ion-checkbox>
-              </ion-item> -->
-            </ion-col>
+            </ion-col>        
             <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
-              <ion-item>
-                <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30"
-                  (keyup)="userInputLengthNum($event,'mtrTestBox1', j,'after')" clearInput placeholder="Please Enter"
-                  [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+              <ion-item>               
+                <ion-input [(ngModel)]="mtestbox11Val.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter"
+                  [ngClass]="(mtestbox11Val.ta0sealnum == '' || mtestbox11Val.ta0sealnum == undefined && !validateInput || mtestbox11Val.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
                 </ion-input>
               </ion-item>
             </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
-              <button ion-button (click)="barcodeScan(meterTestBoxNewArray1,j,1, 'after')">
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(mtestbox11Val,0,1, 'after')">
                 <ion-icon name="barcode"></ion-icon>
               </button>
-            </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;" *ngIf="j > 0">
-              <button ion-button (click)="deleteMeterTestBox(j,'1')">
-                <ion-icon name="trash"></ion-icon>
-              </button>
-            </ion-col>
+            </ion-col>           
           </ion-row>
-
-        </span>
-
-        <ion-item-divider color="light">
-          <ion-row aling-items-center>
-            <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 0px;">
-              Meter Test Box 2
-            </ion-col>
-            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
-              <button ion-button small icon-only round mode="md" style="float: right;" *ngIf="showAddMeterTestBox2"
-                (click)="addMeterTestBox('2')">
-                <ion-icon ios="md-add" md="md-add"></ion-icon>
-              </button>
-            </ion-col>
-          </ion-row>
-        </ion-item-divider>
-        <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
-          *ngFor="let attr of meterTestBoxNewArray2; let j = index">
+          <!-- Device Location METER_TESTBOX_KIOSK1_2 -->
           <ion-row>
-            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
               <ion-item no-lines>
-                <ion-label *ngIf="meterTestBoxNewArray2.length <= 1" color="primary">Meter Test Box_2</ion-label>
-                <ion-label *ngIf="meterTestBoxNewArray2.length > 1" color="primary">Meter Test Box_2 -{{ j + 1 }}
-                </ion-label>
+                <ion-label  color="primary">Meter Test Box 1 - 2</ion-label>                
               </ion-item>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-1>
-              <!-- <ion-item no-lines>
-                <ion-checkbox [(ngModel)]="attr.ta0removeind">
-                </ion-checkbox>
-              </ion-item> -->
-            </ion-col>
+            </ion-col>        
             <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
-              <ion-item>
-                <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30"
-                  (keyup)="userInputLengthNum($event,'mtrTestBox2', j,'after')" clearInput placeholder="Please Enter"
-                  [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+              <ion-item>               
+                <ion-input [(ngModel)]="mtestbox12Val.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter"
+                  [ngClass]="(mtestbox12Val.ta0sealnum == '' || mtestbox12Val.ta0sealnum == undefined && !validateInput || mtestbox12Val.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
                 </ion-input>
               </ion-item>
             </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
-              <button ion-button (click)="barcodeScan(meterTestBoxNewArray2,j,1, 'after')">
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(mtestbox12Val,0,1, 'after')">
                 <ion-icon name="barcode"></ion-icon>
               </button>
+            </ion-col>           
+          </ion-row>
+          <!-- Device Location METER_TESTBOX_KIOSK2_1 -->
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item no-lines>
+                <ion-label  color="primary">Meter Test Box 2 - 1</ion-label>                
+              </ion-item>
+            </ion-col>        
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>               
+                <ion-input [(ngModel)]="mtestbox21Val.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter"
+                  [ngClass]="(mtestbox21Val.ta0sealnum == '' || mtestbox21Val.ta0sealnum == undefined && !validateInput || mtestbox21Val.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-input>
+              </ion-item>
             </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;" *ngIf="j > 0">
-              <button ion-button (click)="deleteMeterTestBox(j,'2')">
-                <ion-icon name="trash"></ion-icon>
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(mtestbox21Val,0,1, 'after')">
+                <ion-icon name="barcode"></ion-icon>
               </button>
+            </ion-col>           
+          </ion-row>
+          <!-- Device Location METER_TESTBOX_KIOSK2_2 -->
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item no-lines>
+                <ion-label  color="primary">Meter Test Box 2 - 2</ion-label>                
+              </ion-item>
+            </ion-col>        
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>               
+                <ion-input [(ngModel)]="mtestbox22Val.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter"
+                  [ngClass]="(mtestbox22Val.ta0sealnum == '' || mtestbox22Val.ta0sealnum == undefined && !validateInput || mtestbox22Val.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-input>
+              </ion-item>
             </ion-col>
-          </ion-row>        
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(meterTestBoxNewArray1,0,1, 'after')">
+                <ion-icon name="barcode"></ion-icon>
+              </button>
+            </ion-col>           
+          </ion-row>          
         </span>
-
+        
         <ion-item-divider color="light">
           <ion-row align-items-center>
             <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 0px;">
-              CT Chamber F1
+              CT Chamber
             </ion-col>
             <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
+              <!--
               <button ion-button small icon-only round mode="md" style="float: right;" *ngIf="showAddCtChamber" (click)="addCtChamber()">
                 <ion-icon ios="md-add" md="md-add"></ion-icon>
               </button>
+              -->
             </ion-col>
           </ion-row>
         </ion-item-divider>
-        <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
-          *ngFor="let attr of ctChamberArrayF1; let j = index">
+        <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
+          <!-- Device Location CT_CHAMBER_F1 -->
           <ion-row>
             <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
               <ion-item no-lines>
-                <ion-label *ngIf="ctChamberArrayF1.length <= 1" color="primary">CT Chamber F1</ion-label>
-                <ion-label *ngIf="ctChamberArrayF1.length > 1" color="primary">CT Chamber F{{ j + 1 }}</ion-label>
+                <ion-label color="primary">CT Chamber F1</ion-label>
               </ion-item>
             </ion-col>          
             <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
-              <ion-item>
-                <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30"
-                  (keyup)="userInputLengthNum($event,'ctChamberF1', j,'after')" clearInput placeholder="Please Enter"
-                  [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+              <ion-item>               
+                <ion-input [(ngModel)]="ctchamberf1Val1.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter"
+                  [ngClass]="(ctchamberf1Val1.ta0sealnum == '' || ctchamberf1Val1.ta0sealnum == undefined && !validateInput || ctchamberf1Val1.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
                 </ion-input>
               </ion-item>
             </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
-              <button ion-button (click)="barcodeScan(ctChamberArrayF1,j,1, 'after')">
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(ctchamberf1Val1,0,1, 'after')">
                 <ion-icon name="barcode"></ion-icon>
               </button>
+            </ion-col>           
+          </ion-row>
+          <!-- Device Location CT_CHAMBER_F2 -->
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item no-lines>
+                <ion-label color="primary">CT Chamber F2</ion-label>
+              </ion-item>
+            </ion-col>          
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>               
+                <ion-input [(ngModel)]="ctchamberf2Val1.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter"
+                  [ngClass]="(ctchamberf2Val1.ta0sealnum == '' || ctchamberf2Val1.ta0sealnum == undefined && !validateInput || ctchamberf2Val1.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-input>
+              </ion-item>
             </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;" *ngIf="j > 0">
-              <button ion-button (click)="deleteCtChamber(j,'f1')">
-                <ion-icon name="trash"></ion-icon>
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(ctchamberf2Val1,0,1, 'after')">
+                <ion-icon name="barcode"></ion-icon>
               </button>
+            </ion-col>           
+          </ion-row>
+          <!-- Device Location CT_CHAMBER_F3 -->
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item no-lines>
+                <ion-label color="primary">CT Chamber F3</ion-label>
+              </ion-item>
+            </ion-col>          
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>               
+                <ion-input [(ngModel)]="ctchamberf3Val1.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter"
+                  [ngClass]="(ctchamberf3Val1.ta0sealnum == '' || ctchamberf3Val1.ta0sealnum == undefined && !validateInput || ctchamberf3Val1.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-input>
+              </ion-item>
             </ion-col>
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(ctchamberf3Val1,0,1, 'after')">
+                <ion-icon name="barcode"></ion-icon>
+              </button>
+            </ion-col>           
           </ion-row>   
         </span>
         
@@ -2837,180 +2411,314 @@
               PT Chamber
             </ion-col>
             <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
+              <!--
               <button ion-button small icon-only round mode="md" style="float: right;" *ngIf="showAddPtChamber" (click)="addPtChamber()">
                 <ion-icon ios="md-add" md="md-add"></ion-icon>
               </button>
+              -->
             </ion-col>
           </ion-row>
         </ion-item-divider>
-        <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
-          *ngFor="let attr of ptChamberArrayF1; let j = index">
+        <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
+          <!-- Device Location PT_CHAMBER_F1 -->
           <ion-row>
-            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
               <ion-item no-lines>
-                <ion-label *ngIf="ptChamberNewArrayF1.length <= 1" color="primary">PT Chamber F1</ion-label>
-                <ion-label *ngIf="ptChamberNewArrayF1.length > 1" color="primary">PT Chamber F{{ j + 1 }}</ion-label>
+                <ion-label color="primary">PT Chamber F1</ion-label>                
               </ion-item>
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
-              <ion-item>
-                <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30"
-                  (keyup)="userInputLengthNum($event,'ptChamberf1', j,'after')" clearInput placeholder="Please Enter"
-                  [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+              <ion-item>              
+                <ion-input [(ngModel)]="ptchamberf1Val1.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter"
+                  [ngClass]="(ptchamberf1Val1.ta0sealnum == '' || ptchamberf1Val1.ta0sealnum == undefined && !validateInput || ptchamberf1Val1.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
                 </ion-input>
               </ion-item>
             </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
-              <button ion-button (click)="barcodeScan(ptChamberNewArrayF1,j,1, 'after')">
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(ptchamberf1Val1,0,1, 'after')">
                 <ion-icon name="barcode"></ion-icon>
               </button>
+            </ion-col>            
+          </ion-row>
+          <!-- Device Location PT_CHAMBER_F2 -->
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item no-lines>
+                <ion-label color="primary">PT Chamber F2</ion-label>                
+              </ion-item>
             </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;" *ngIf="j > 0">
-              <button ion-button (click)="deletePtChamber(j,'f1')">
-                <ion-icon name="trash"></ion-icon>
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>              
+                <ion-input [(ngModel)]="ptchamberf2Val1.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter"
+                  [ngClass]="(ptchamberf2Val1.ta0sealnum == '' || ptchamberf2Val1.ta0sealnum == undefined && !validateInput || ptchamberf2Val1.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(ptchamberf2Val1,0,1, 'after')">
+                <ion-icon name="barcode"></ion-icon>
               </button>
+            </ion-col>            
+          </ion-row>
+          <!-- Device Location PT_CHAMBER_F3 -->
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item no-lines>
+                <ion-label color="primary">PT Chamber F3</ion-label>                
+              </ion-item>
             </ion-col>
-          </ion-row>          
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>              
+                <ion-input [(ngModel)]="ptchamberf3Val1.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter"
+                  [ngClass]="(ptchamberf3Val1.ta0sealnum == '' || ptchamberf3Val1.ta0sealnum == undefined && !validateInput || ptchamberf3Val1.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(ptchamberf3Val1,0,1, 'after')">
+                <ion-icon name="barcode"></ion-icon>
+              </button>
+            </ion-col>            
+          </ion-row>
         </span>        
 
         <ion-item-divider color="light">
           <ion-row align-items-center>
             <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 0px;">
-              Termination Box F1
+              Termination Box
             </ion-col>
             <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
+              <!--
               <button ion-button small icon-only round mode="md" style="float: right;" *ngIf="showAddTerminalBox" (click)="addTerminalBox()">
                 <ion-icon ios="md-add" md="md-add"></ion-icon>
               </button>
+              -->
             </ion-col>
           </ion-row>
         </ion-item-divider>
-        <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
-          *ngFor="let attr of terminalBoxNewArrayF1; let j = index">
+        <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
+          <!-- Device Location TERMINATION_BOX_F1 -->
           <ion-row>
-            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
               <ion-item no-lines>
-                <ion-label *ngIf="terminalBoxNewArrayF1.length <= 1" color="primary">Termination Box F1</ion-label>
-                <ion-label *ngIf="terminalBoxNewArrayF1.length > 1" color="primary">Termination Box F{{ j + 1 }}
-                </ion-label>
+                <ion-label color="primary">Termination Box F1</ion-label>
               </ion-item>
             </ion-col>            
             <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
-              <ion-item>
-                <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30"
-                  (keyup)="userInputLengthNum($event,'SmtrTerminalBoxf1', j,'after')" clearInput
-                  placeholder="Please Enter"
-                  [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+              <ion-item>             
+                <ion-input [(ngModel)]="terminalboxf1Val.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter"
+                  [ngClass]="(terminalboxf1Val.ta0sealnum == '' || terminalboxf1Val.ta0sealnum == undefined && !validateInput || terminalboxf1Val.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
                 </ion-input>
               </ion-item>
             </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
-              <button ion-button (click)="barcodeScan(terminalBoxNewArrayF1,j,1, 'after')">
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(terminalBoxNewArrayF1,0,1, 'after')">
                 <ion-icon name="barcode"></ion-icon>
               </button>
+            </ion-col>          
+          </ion-row>
+          <!-- Device Location TERMINATION_BOX_F2 -->
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item no-lines>
+                <ion-label color="primary">Termination Box F2</ion-label>
+              </ion-item>
+            </ion-col>            
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>             
+                <ion-input [(ngModel)]="terminalboxf2Val.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter"
+                  [ngClass]="(terminalboxf2Val.ta0sealnum == '' || terminalboxf2Val.ta0sealnum == undefined && !validateInput || terminalboxf2Val.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-input>
+              </ion-item>
             </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;" *ngIf="j > 0">
-              <button ion-button (click)="deleteTerminalBox(j)">
-                <ion-icon name="trash"></ion-icon>
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(terminalboxf2Val,0,1, 'after')">
+                <ion-icon name="barcode"></ion-icon>
               </button>
+            </ion-col>          
+          </ion-row>
+          <!-- Device Location TERMINATION_BOX_F3 -->
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item no-lines>
+                <ion-label color="primary">Termination Box F3</ion-label>
+              </ion-item>
+            </ion-col>            
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>             
+                <ion-input [(ngModel)]="terminalboxf3Val.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter"
+                  [ngClass]="(terminalboxf3Val.ta0sealnum == '' || terminalboxf3Val.ta0sealnum == undefined && !validateInput || terminalboxf3Val.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-input>
+              </ion-item>
             </ion-col>
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(terminalboxf3Val,0,1, 'after')">
+                <ion-icon name="barcode"></ion-icon>
+              </button>
+            </ion-col>          
           </ion-row>
         </span>
 
         <ion-item-divider color="light">
           <ion-row align-items-center>
             <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 0px;">
-              Marshalling Box F1
+              Marshalling Box
             </ion-col>
             <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
+              <!--
               <button ion-button small icon-only round mode="md" style="float: right;" *ngIf="showAddMarshallingBox"
                 (click)="addMarshallingBox()">
                 <ion-icon ios="md-add" md="md-add"></ion-icon>
               </button>
+              -->
             </ion-col>
           </ion-row>
         </ion-item-divider>
-        <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
-          *ngFor="let attr of marshallingBoxArrayF1; let j = index">
+        <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
+          <!-- Device Location MARSHALLING_BOX_F1 -->
           <ion-row>
             <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
               <ion-item no-lines>
-                <ion-label *ngIf="marshallingBoxArrayF1.length <= 1" color="primary">Marshalling Box F1</ion-label>
-                <ion-label *ngIf="marshallingBoxArrayF1.length > 1" color="primary">Marshalling Box F{{ j + 1 }}
-                </ion-label>
+                <ion-label color="primary">Marshalling Box F1</ion-label>
               </ion-item>
             </ion-col>            
             <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
-              <ion-item>
-                <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30"
-                  (keyup)="userInputLengthNum($event,'SMarshBoxF1', j,'after')" clearInput placeholder="Please Enter"
-                  [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+              <ion-item>              
+                <ion-input [(ngModel)]="marshallingboxf1Val.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter"
+                  [ngClass]="(marshallingboxf1Val.ta0sealnum == '' || marshallingboxf1Val.ta0sealnum == undefined && !validateInput || marshallingboxf1Val.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
                 </ion-input>
               </ion-item>
             </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
-              <button ion-button (click)="barcodeScan(marshallingBoxArrayF1,j,1, 'after')">
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(marshallingboxf1Val,0,1, 'after')">
                 <ion-icon name="barcode"></ion-icon>
               </button>
+            </ion-col>           
+          </ion-row> 
+          <!-- Device Location MARSHALLING_BOX_F2 -->
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item no-lines>
+                <ion-label color="primary">Marshalling Box F2</ion-label>
+              </ion-item>
+            </ion-col>            
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>              
+                <ion-input [(ngModel)]="marshallingboxf2Val.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter"
+                  [ngClass]="(marshallingboxf2Val.ta0sealnum == '' || marshallingboxf2Val.ta0sealnum == undefined && !validateInput || marshallingboxf2Val.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-input>
+              </ion-item>
             </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;" *ngIf="j > 0">
-              <button ion-button (click)="deleteMarshallingBox(j)">
-                <ion-icon name="trash"></ion-icon>
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(marshallingboxf2Val,0,1, 'after')">
+                <ion-icon name="barcode"></ion-icon>
               </button>
+            </ion-col>           
+          </ion-row>
+          <!-- Device Location MARSHALLING_BOX_F3 -->
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item no-lines>
+                <ion-label color="primary">Marshalling Box F3</ion-label>
+              </ion-item>
+            </ion-col>            
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>              
+                <ion-input [(ngModel)]="marshallingboxf3Val.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter"
+                  [ngClass]="(marshallingboxf3Val.ta0sealnum == '' || marshallingboxf3Val.ta0sealnum == undefined && !validateInput || marshallingboxf3Val.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-input>
+              </ion-item>
             </ion-col>
-          </ion-row>         
+            <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(marshallingboxf3Val,0,1, 'after')">
+                <ion-icon name="barcode"></ion-icon>
+              </button>
+            </ion-col>           
+          </ion-row>        
         </span>        
 
         <ion-item-divider color="light">
           <ion-row align-items-center>
             <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 0px;">
-              PT Secondary Fuse F1
+              PT Secondary Fuse
             </ion-col>
             <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
+              <!--
               <button ion-button small icon-only round mode="md" style="float: right;"
                 *ngIf="showAddPtSecondaryFuse" (click)="addPtSecondaryFuse()">
                 <ion-icon ios="md-add" md="md-add"></ion-icon>
               </button>
+              -->
             </ion-col>
           </ion-row>
         </ion-item-divider>
-        <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
-          *ngFor="let attr of ptSecondaryFuseNewArrayF1; let j = index">
+        <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
+          <!-- Device Location PT_SEC_FUSE_F1 -->
           <ion-row>
-            <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
               <ion-item no-lines>
-                <ion-label *ngIf="ptSecondaryFuseNewArrayF1.length <= 1" color="primary">PT Secondary Fuse F1</ion-label>
-                <ion-label *ngIf="ptSecondaryFuseNewArrayF1.length > 1" color="primary">PT Secondary Fuse F1 - {{ j + 1 }}
-                </ion-label>
+                <ion-label color="primary">PT Secondary Fuse F1</ion-label>
               </ion-item>
             </ion-col>           
             <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
-              <ion-item>
-                <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30"
-                  (keyup)="userInputLengthNum($event,'ptSecFuseF1', j,'after')" clearInput placeholder="Please Enter"
-                  [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+              <ion-item>               
+                <ion-input [(ngModel)]="ptsecondaryfusef1Val.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter"
+                  [ngClass]="(ptsecondaryfusef1Val.ta0sealnum == '' || ptsecondaryfusef1Val.ta0sealnum == undefined && !validateInput || ptsecondaryfusef1Val.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
                 </ion-input>
               </ion-item>
             </ion-col>
             <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
-              <button ion-button (click)="barcodeScan(ptSecondaryFuseNewArrayF1,j,1, 'after')">
+              <button ion-button (click)="barcodeScan(ptsecondaryfusef1Val,0,1, 'after')">
                 <ion-icon name="barcode"></ion-icon>
               </button>
+            </ion-col>           
+          </ion-row> 
+          <!-- Device Location PT_SEC_FUSE_F2 -->
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item no-lines>
+                <ion-label color="primary">PT Secondary Fuse F2</ion-label>
+              </ion-item>
+            </ion-col>           
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>               
+                <ion-input [(ngModel)]="ptsecondaryfusef2Val.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter"
+                  [ngClass]="(ptsecondaryfusef2Val.ta0sealnum == '' || ptsecondaryfusef2Val.ta0sealnum == undefined && !validateInput || ptsecondaryfusef2Val.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-input>
+              </ion-item>
             </ion-col>
-            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;" *ngIf="j > 0">
-              <button ion-button (click)="deletePtSecondaryFuse(j)">
-                <ion-icon name="trash"></ion-icon>
+            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(ptsecondaryfusef2Val,0,1, 'after')">
+                <ion-icon name="barcode"></ion-icon>
               </button>
+            </ion-col>           
+          </ion-row>
+          <!-- Device Location PT_SEC_FUSE_F3 -->
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item no-lines>
+                <ion-label color="primary">PT Secondary Fuse F3</ion-label>
+              </ion-item>
+            </ion-col>           
+            <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+              <ion-item>               
+                <ion-input [(ngModel)]="ptsecondaryfusef3Val.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter"
+                  [ngClass]="(ptsecondaryfusef3Val.ta0sealnum == '' || ptsecondaryfusef3Val.ta0sealnum == undefined && !validateInput || ptsecondaryfusef3Val.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+                </ion-input>
+              </ion-item>
             </ion-col>
-          </ion-row>    
+            <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
+              <button ion-button (click)="barcodeScan(ptsecondaryfusef3Val,0,1, 'after')">
+                <ion-icon name="barcode"></ion-icon>
+              </button>
+            </ion-col>           
+          </ion-row>
         </span>
         
       </span>
     </span>
   </ng-container>
 </ion-content>
-
-
 
 <ion-footer mode="md">
   <ion-toolbar mode="md">

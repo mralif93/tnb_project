@@ -3814,8 +3814,17 @@ export class SealServiceExecutionPage {
     this.gf.loadingTimer(loading);
   }
 
-  openSealNStickerPage(i, j, alloType, fDesign, vType, from?, serialNum?) {
+  openSealNStickerPage(i, j, alloType, fDesign, vType, from?, serialNum?) {    
     debugger;
+    debugger;
+    console.log("openSealNStickerPage");
+    console.log(i);
+    console.log(j);
+    console.log(alloType);
+    console.log(fDesign);
+    console.log(vType);
+    console.log(from);
+    console.log(serialNum);
     let loading = this.loadingCtrl.create({
       content: "Please wait..."
     });
@@ -3826,8 +3835,10 @@ export class SealServiceExecutionPage {
 
       if ('N' === vType) {
         deviceVoltage = fDesign.nFeederVoltage;
+        console.log("deviceVoltage");
       } else {
         deviceVoltage = fDesign.eFeederVoltage;
+        console.log("deviceVoltage");
       }
 
       // Navigate to Seal Sil & Sticker Info Page

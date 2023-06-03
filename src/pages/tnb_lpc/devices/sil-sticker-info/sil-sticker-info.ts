@@ -13,6 +13,7 @@ import { GlobalVars } from '../../../../providers/common/global-vars';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
 import { Domains } from '../../../../pojo/commonEnum/Domains';
 import { DataStoreProvider } from '../../../../providers/data-store/data-store';
+import { b4 } from '@angular/core/src/render3';
 
 declare var cordova: any;
 
@@ -166,6 +167,18 @@ export class SilStickerInfoPage {
   public sc: any;
   public rr: any; //CR002 Crimpless Seal CR
 
+  
+  public newterminalcover1  = new SealInfo();
+  public newterminalcover2  = new SealInfo();
+  public newmetercover1  = new SealInfo();
+  public newmetercover2  = new SealInfo();
+  public newmetercover3  = new SealInfo();    
+  public newmdbutton  = new SealInfo();
+  public newopticaleyecover  = new SealInfo();
+  public newmeterbattery  = new SealInfo();
+  public newcommmodule  = new SealInfo();
+  
+
   public refSegment: String = "before";
   public segmentSection: boolean = false;
 
@@ -178,7 +191,7 @@ export class SilStickerInfoPage {
     private barcodeScanner: BarcodeScanner, private alertCtrl: AlertController,
     private toast: Toast, public appCtrl: App,
     private ds: DataStoreProvider) {
-
+debugger;
     this.itemOri = this.params.get("paramObj");
     this.fIndex = this.params.get("fIndex");
     this.maIndex = this.params.get("maIndex");
@@ -529,6 +542,29 @@ export class SilStickerInfoPage {
     smodemVal.ta0stickercondition = null;
     this.smodemArray[0] = smodemVal;
 
+
+    //New Seal 
+    this.newterminalcover1.ta0seallocation = "TERMINAL_COVER_1";
+    this.newterminalcover1.ta0seallocation_description = "Terminal Cover 1";
+    this.newterminalcover2.ta0seallocation = "TERMINAL_COVER_2";
+    this.newterminalcover2.ta0seallocation_description = "Terminal Cover 2";
+    this.newmetercover1.ta0seallocation = "METER_COVER_1";
+    this.newmetercover1.ta0seallocation_description = "Meter Cover 1";
+    this.newmetercover2.ta0seallocation = "METER_COVER_2";
+    this.newmetercover2.ta0seallocation_description = "Meter Cover 2";
+    this.newmetercover3.ta0seallocation = "METER_COVER_3";
+    this.newmetercover3.ta0seallocation_description = "Meter Cover 3";
+    this.newmdbutton.ta0seallocation = "MD_BUTTON";
+    this.newmdbutton.ta0seallocation_description = "MD Button";
+    this.newopticaleyecover.ta0seallocation = "OPTICAL_EYE_COVER";
+    this.newopticaleyecover.ta0seallocation_description = "Optical Eye Cover";
+    this.newmeterbattery.ta0seallocation = "METER_BATTERY";
+    this.newmeterbattery.ta0seallocation_description = "Meter Battery";
+    this.newcommmodule.ta0seallocation = "COMM_MODULE";
+    this.newcommmodule.ta0seallocation_description = "Comm Module";
+
+    debugger;
+
     // Read ta0detail if exist
     if (typeof (this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail) != 'undefined' &&
       this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail !== null &&
@@ -567,12 +603,16 @@ export class SilStickerInfoPage {
       var tcCount = 0;
       var SStickerCount = 0;
 
+      debugger;
+
       for (var i = 0; i < seal_length; i++) {
 
         var ta0sealdetail = this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail[i];
         var ta0seallocation = ta0sealdetail.ta0seallocation;
 
-        if (ta0seallocation.startsWith(FunctionClass.METER_COVER)) {
+        
+
+        if (ta0seallocation.startsWith(FunctionClass.METER_COVER) && ta0sealdetail.ta0existingseal === true) {
           meterCoverVal = ta0sealdetail;
           this.meterCoverArray[mCount] = meterCoverVal;
           console.log(mCount+' meterCoverArray : '+JSON.stringify(this.meterCoverArray));
@@ -583,7 +623,7 @@ export class SilStickerInfoPage {
 
           mCount++;
         }
-        else if (ta0seallocation.startsWith(FunctionClass.TERMINAL_COVER)) {
+        else if (ta0seallocation.startsWith(FunctionClass.TERMINAL_COVER) && ta0sealdetail.ta0existingseal === true) {
           terminalCoverVal = ta0sealdetail;
           this.terminalCoverArray[tCount] = terminalCoverVal;
           console.log(tCount+' terminalCoverArray : '+JSON.stringify(this.terminalCoverArray));
@@ -599,30 +639,30 @@ export class SilStickerInfoPage {
           console.log(fCount+' fuseArray : '+JSON.stringify(this.fuseArray));
           fCount++;
         }
-        else if (ta0seallocation.startsWith(FunctionClass.MD_BUTTON)) {
+        else if (ta0seallocation.startsWith(FunctionClass.MD_BUTTON) && ta0sealdetail.ta0existingseal === true) {
           mdButtonVal = ta0sealdetail;
           this.mdButtonArray[mdCount] = mdButtonVal;
           console.log(mbCount+' mdButtonArray : '+JSON.stringify(this.mdButtonArray));
           mdCount++;
         }
-        else if (ta0seallocation.startsWith(FunctionClass.METER_BATTERY)) {
+        else if (ta0seallocation.startsWith(FunctionClass.METER_BATTERY) && ta0sealdetail.ta0existingseal === true) {
           meterBatteryVal = ta0sealdetail;
           this.meterBatteryArray[mbCount] = meterBatteryVal;
           console.log(mbCount+' meterBatteryArray : '+JSON.stringify(this.meterBatteryArray));
           mbCount++;
         }
-        else if (ta0seallocation.startsWith(FunctionClass.OPTICAL_EYE_COVER)) {
+        else if (ta0seallocation.startsWith(FunctionClass.COMM_MODULE) && ta0sealdetail.ta0existingseal === true) {
           commModuleVal = ta0sealdetail;
-          this.commModuleArray[oCount] = commModuleVal;
-          console.log(oCount+' commModuleArray : '+JSON.stringify(this.commModuleArray));
+          this.commModuleArray[cmCount] = commModuleVal;
+          console.log(cmCount+' commModuleArray : '+JSON.stringify(this.commModuleArray));
           cmCount++;
         }
-        else if (ta0seallocation.startsWith(FunctionClass.COMM_MODULE)) {
+        else if (ta0seallocation.startsWith(FunctionClass.OPTICAL_EYE_COVER) && ta0sealdetail.ta0existingseal === true) {
           opticalEyeVal = ta0sealdetail;
           this.opticalEyeArray[oCount] = opticalEyeVal;
           console.log(oCount+' opticalEyeArray : '+JSON.stringify(this.opticalEyeArray));
           oCount++;
-        }
+        }      
         else if (ta0seallocation.startsWith(FunctionClass.TTB)) {
           ttbVal = ta0sealdetail;
           this.ttbArray[tbCount] = ttbVal;
@@ -638,7 +678,28 @@ export class SilStickerInfoPage {
           this.modemArray[moCount] = modemVal;
           console.log(moCount+' modemArray : '+JSON.stringify(this.modemArray));
           moCount++;
+        } else if (ta0seallocation.startsWith("TERMINAL_COVER_1") && ta0sealdetail.ta0existingseal === false) {
+          this.newterminalcover1 = ta0sealdetail;
+        } else if (ta0seallocation.startsWith("TERMINAL_COVER_2") && ta0sealdetail.ta0existingseal === false) {
+          this.newterminalcover2 = ta0sealdetail;
+        } else if (ta0seallocation.startsWith("METER_COVER_1") && ta0sealdetail.ta0existingseal === false) {
+          this.newmetercover1 = ta0sealdetail;
+        } else if (ta0seallocation.startsWith("METER_COVER_2") && ta0sealdetail.ta0existingseal === false) {
+          this.newmetercover2 = ta0sealdetail;
+        } else if (ta0seallocation.startsWith("METER_COVER_3") && ta0sealdetail.ta0existingseal === false) {
+          this.newmetercover3 = ta0sealdetail;
+        } else if (ta0seallocation.startsWith(FunctionClass.MD_BUTTON) && ta0sealdetail.ta0existingseal === false) {
+          this.newmdbutton = ta0sealdetail;
+        } else if (ta0seallocation.startsWith(FunctionClass.METER_BATTERY) && ta0sealdetail.ta0existingseal === false) {
+          this.newopticaleyecover = ta0sealdetail;
+        } else if (ta0seallocation.startsWith(FunctionClass.OPTICAL_EYE_COVER) && ta0sealdetail.ta0existingseal === false) {
+          this.newterminalcover1 = ta0sealdetail;
+        } else if (ta0seallocation.startsWith(FunctionClass.COMM_MODULE) && ta0sealdetail.ta0existingseal === false) {
+          this.newmeterbattery = ta0sealdetail;
+        } else if (ta0seallocation.startsWith(FunctionClass.OPTICAL_EYE_COVER) && ta0sealdetail.ta0existingseal === false) {
+          this.newcommmodule = ta0sealdetail;
         }
+      
 
         switch (this.showLvFields) {
 
@@ -907,6 +968,7 @@ export class SilStickerInfoPage {
    * Created  : 19-03-2019
    */
   loadlookup() {
+    debugger;
     this.getAlnDomainData("sealcondition").then((success) => {
       // this.getAlnDomainData("safetysticker").then((success) => {
       //   this.getAlnDomainData("fuse").then((success) => {
@@ -932,6 +994,7 @@ export class SilStickerInfoPage {
    * Created  : 19-03-2019
    */
   getAlnDomainData(inputType) {
+    debugger;
     console.log("filtering type condition for sil & sticker..");
     var queryPart: any;
 
@@ -1445,7 +1508,12 @@ export class SilStickerInfoPage {
   }
 
   saveDeviceDetails() {
-
+    debugger;
+    var isNew = false;
+    if (this.refSegment == 'after') {
+      isNew = true;
+    }
+    debugger;
     let loading = this.loadingCtrl.create({
       content: "Loading..."
     });
@@ -1459,35 +1527,254 @@ export class SilStickerInfoPage {
 
     // Default value from parent
     var assetnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].assetnum;
+    var ta0olddeviceassetnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0olddeviceassetnum;
+    var ta0serialnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0serialnum;
+    var ta0devicecategory = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0devicecategory;
     var orgid = this.itemOri.json.ta0feeder[this.fIndex].orgid;
     var siteid = this.itemOri.json.siteid;
     var wonum = this.itemOri.json.wonum;
 
+    //Save new crimpless seal
+
+    if(this.newterminalcover1.ta0sealnum !== null &&  this.newterminalcover1.ta0sealnum !== undefined && this.newterminalcover1.ta0sealnum !== '') {
+      console.log(this.newterminalcover1.assetnum);
+      console.log(this.newterminalcover1.ta0sealnum);
+      console.log(this.newterminalcover1.ta0seallocation);
+      if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
+        this.newterminalcover1.assetnum = ta0olddeviceassetnum;
+      } else {
+        this.newterminalcover1.assetnum = assetnum;
+      }
+      this.newterminalcover1.orgid = orgid;
+      this.newterminalcover1.siteid = siteid;
+      this.newterminalcover1.wonum = wonum; 
+      this.newterminalcover1.ta0installind= true;
+      this.newterminalcover1.devicelocind=false;
+      this.newterminalcover1.devicecategory=ta0devicecategory;
+      this.newterminalcover1.serialnum = ta0serialnum;
+      this.newterminalcover1.ta0sealindicator='N';
+      this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.newterminalcover1); 
+    }
+    if(this.newterminalcover2.ta0sealnum !== null &&  this.newterminalcover2.ta0sealnum !== undefined && this.newterminalcover2.ta0sealnum !== '') {
+      console.log(this.newterminalcover2.assetnum);
+      console.log(this.newterminalcover2.ta0sealnum);
+      console.log(this.newterminalcover2.ta0seallocation);
+      if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
+        this.newterminalcover1.assetnum = ta0olddeviceassetnum;
+      } else {
+        this.newterminalcover1.assetnum = assetnum;
+      }      
+      this.newterminalcover2.orgid = orgid;
+      this.newterminalcover2.siteid = siteid;
+      this.newterminalcover2.wonum = wonum; 
+      this.newterminalcover2.ta0installind= true;
+      this.newterminalcover2.devicelocind=false;
+      this.newterminalcover2.devicecategory=ta0devicecategory;
+      this.newterminalcover2.serialnum = ta0serialnum;
+      this.newterminalcover2.ta0sealindicator='N';
+      this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.newterminalcover2); 
+    }
+    if(this.newmetercover1.ta0sealnum !== null &&  this.newmetercover1.ta0sealnum !== undefined && this.newmetercover1.ta0sealnum !== '') {
+      console.log(this.newmetercover1.assetnum);
+      console.log(this.newmetercover1.ta0sealnum);
+      console.log(this.newmetercover1.ta0seallocation);
+      if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
+        this.newterminalcover1.assetnum = ta0olddeviceassetnum;
+      } else {
+        this.newterminalcover1.assetnum = assetnum;
+      }   
+      this.newmetercover1.orgid = orgid;
+      this.newmetercover1.siteid = siteid;
+      this.newmetercover1.wonum = wonum; 
+      this.newmetercover1.ta0installind= true;
+      this.newmetercover1.devicelocind=false;
+      this.newmetercover1.devicecategory=ta0devicecategory;
+      this.newmetercover1.serialnum = ta0serialnum;
+      this.newmetercover1.ta0sealindicator='N';
+      this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.newmetercover1); 
+    }
+    if(this.newmetercover2.ta0sealnum !== null &&  this.newmetercover2.ta0sealnum !== undefined && this.newmetercover2.ta0sealnum !== '') {
+      console.log(this.newmetercover2.assetnum);
+      console.log(this.newmetercover2.ta0sealnum);
+      console.log(this.newmetercover2.ta0seallocation);
+      if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
+        this.newterminalcover1.assetnum = ta0olddeviceassetnum;
+      } else {
+        this.newterminalcover1.assetnum = assetnum;
+      }   
+      this.newmetercover2.orgid = orgid;
+      this.newmetercover2.siteid = siteid;
+      this.newmetercover2.wonum = wonum; 
+      this.newmetercover2.ta0installind= true;
+      this.newmetercover2.devicelocind=false;
+      this.newmetercover2.devicecategory=ta0devicecategory;
+      this.newmetercover2.serialnum = ta0serialnum;
+      this.newmetercover2.ta0sealindicator='N';
+      this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.newmetercover2); 
+    }
+    if(this.newmetercover3.ta0sealnum !== null &&  this.newmetercover3.ta0sealnum !== undefined && this.newmetercover3.ta0sealnum !== '') {
+      console.log(this.newmetercover3.assetnum);
+      console.log(this.newmetercover3.ta0sealnum);
+      console.log(this.newmetercover3.ta0seallocation);
+      if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
+        this.newterminalcover1.assetnum = ta0olddeviceassetnum;
+      } else {
+        this.newterminalcover1.assetnum = assetnum;
+      }   
+      this.newmetercover3.orgid = orgid;
+      this.newmetercover3.siteid = siteid;
+      this.newmetercover3.wonum = wonum; 
+      this.newmetercover3.ta0installind= true;
+      this.newmetercover3.devicelocind=false;
+      this.newmetercover3.devicecategory=ta0devicecategory;
+      this.newmetercover3.serialnum = ta0serialnum;
+      this.newmetercover3.ta0sealindicator='N';
+      this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.newmetercover3); 
+    }
+    if(this.newmdbutton.ta0sealnum !== null &&  this.newmdbutton.ta0sealnum !== undefined && this.newmdbutton.ta0sealnum !== '') {
+      console.log(this.newmdbutton.assetnum);
+      console.log(this.newmdbutton.ta0sealnum);
+      console.log(this.newmdbutton.ta0seallocation);
+      if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
+        this.newterminalcover1.assetnum = ta0olddeviceassetnum;
+      } else {
+        this.newterminalcover1.assetnum = assetnum;
+      }   
+      this.newmdbutton.orgid = orgid;
+      this.newmdbutton.siteid = siteid;
+      this.newmdbutton.wonum = wonum; 
+      this.newmdbutton.ta0installind= true;
+      this.newmdbutton.devicelocind=false;
+      this.newmdbutton.devicecategory=ta0devicecategory;
+      this.newmdbutton.serialnum = ta0serialnum;
+      this.newmdbutton.ta0sealindicator='N';
+      this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.newmdbutton); 
+    }
+    if(this.newopticaleyecover.ta0sealnum !== null &&  this.newopticaleyecover.ta0sealnum !== undefined && this.newopticaleyecover.ta0sealnum !== '') {
+      console.log(this.newopticaleyecover.assetnum);
+      console.log(this.newopticaleyecover.ta0sealnum);
+      console.log(this.newopticaleyecover.ta0seallocation);
+      if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
+        this.newterminalcover1.assetnum = ta0olddeviceassetnum;
+      } else {
+        this.newterminalcover1.assetnum = assetnum;
+      }   
+      this.newopticaleyecover.orgid = orgid;
+      this.newopticaleyecover.siteid = siteid;
+      this.newopticaleyecover.wonum = wonum; 
+      this.newopticaleyecover.ta0installind= true;
+      this.newopticaleyecover.devicelocind=false;
+      this.newopticaleyecover.devicecategory=ta0devicecategory;
+      this.newopticaleyecover.serialnum = ta0serialnum;
+      this.newopticaleyecover.ta0sealindicator='N';
+      this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.newopticaleyecover); 
+    }
+    if(this.newmeterbattery.ta0sealnum !== null &&  this.newmeterbattery.ta0sealnum !== undefined && this.newmeterbattery.ta0sealnum !== '') {
+      console.log(this.newmeterbattery.assetnum);
+      console.log(this.newmeterbattery.ta0sealnum);
+      console.log(this.newmeterbattery.ta0seallocation);
+      if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
+        this.newterminalcover1.assetnum = ta0olddeviceassetnum;
+      } else {
+        this.newterminalcover1.assetnum = assetnum;
+      }   
+      this.newmeterbattery.orgid = orgid;
+      this.newmeterbattery.siteid = siteid;
+      this.newmeterbattery.wonum = wonum; 
+      this.newmeterbattery.ta0installind= true;
+      this.newmeterbattery.devicelocind=false;
+      this.newmeterbattery.devicecategory=ta0devicecategory;
+      this.newmeterbattery.serialnum = ta0serialnum;
+      this.newmeterbattery.ta0sealindicator='N';
+      this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.newmeterbattery); 
+    }
+    if(this.newcommmodule.ta0sealnum !== null &&  this.newcommmodule.ta0sealnum !== undefined && this.newcommmodule.ta0sealnum !== '') {
+      console.log(this.newcommmodule.assetnum);
+      console.log(this.newcommmodule.ta0sealnum);
+      console.log(this.newcommmodule.ta0seallocation);
+      if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
+        this.newterminalcover1.assetnum = ta0olddeviceassetnum;
+      } else {
+        this.newterminalcover1.assetnum = assetnum;
+      }   
+      this.newcommmodule.orgid = orgid;
+      this.newcommmodule.siteid = siteid;
+      this.newcommmodule.wonum = wonum; 
+      this.newcommmodule.ta0installind= true;
+      this.newcommmodule.devicelocind=false;
+      this.newcommmodule.devicecategory=ta0devicecategory;
+      this.newcommmodule.serialnum = ta0serialnum;
+      this.newcommmodule.ta0sealindicator='N';
+      this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.newcommmodule); 
+    }
+ 
     // Save Seal Details...
     // Save Data MeterCover
     if ((this.meterCoverArray[0].ta0sealnum != null || this.meterCoverArray[0].ta0sealnum != undefined) || this.meterCoverArray[0].ta0newsealnum != null || this.meterCoverArray[0].ta0newsealnum != undefined) {
 
-      for (var i = 0; i < this.meterCoverArray.length; i++) {
 
-        this.meterCoverArray[i].assetnum = assetnum;
-        this.meterCoverArray[i].orgid = orgid;
-        this.meterCoverArray[i].siteid = siteid;
-        this.meterCoverArray[i].wonum = wonum;
-        this.meterCoverArray[i].ta0seallocation = "METER_COVER_" + (i + 1);
-        this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.meterCoverArray[i]);
-      }
+      
+        for (var i = 0; i < this.meterCoverArray.length; i++) {
+          console.log(this.meterCoverArray[i].assetnum);
+          console.log(this.meterCoverArray[i].ta0sealnum);
+          console.log(this.meterCoverArray[i].ta0seallocation);
+          this.meterCoverArray[i].assetnum = assetnum;
+          this.meterCoverArray[i].orgid = orgid;
+          this.meterCoverArray[i].siteid = siteid;
+          this.meterCoverArray[i].wonum = wonum;
+          //this.meterCoverArray[i].ta0seallocation = "METER_COVER_" + (i + 1);
+          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.meterCoverArray[i]); 
+          /*         
+          if(this.meterCoverArray[i].ta0newsealnum !== null || this.meterCoverArray[i].ta0newsealnum !== undefined || this.meterCoverArray[i].ta0newsealnum !== '') {
+            var meterCoverVal = new SealInfo();
+            meterCoverVal.assetnum = assetnum;
+            meterCoverVal.orgid = orgid;
+            meterCoverVal.siteid = siteid;
+            meterCoverVal.wonum = wonum;
+            meterCoverVal.ta0seallocation = "METER_COVER_" + (i + 1);
+            meterCoverVal.ta0sealnum = this.meterCoverArray[i].ta0newsealnum;
+            meterCoverVal.ta0installind = true; 
+            meterCoverVal.ta0sealindicator = 'N';
+            meterCoverVal.serialnum = ta0serialnum;
+            meterCoverVal.devicecategory = ta0devicecategory;
+            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(meterCoverVal);
+            console.log(JSON.stringify(meterCoverVal));
+          }
+          */
+        }
     }
+      
+    
 
     // Save Data TerminalCover
     if ((this.terminalCoverArray[0].ta0sealnum != null || this.terminalCoverArray[0].ta0sealnum != undefined) || this.terminalCoverArray[0].ta0newsealnum != null || this.terminalCoverArray[0].ta0newsealnum != undefined) {
 
       for (var k = 0; k < this.terminalCoverArray.length; k++) {
-
+        console.log(this.terminalCoverArray[k].assetnum);
+        console.log(this.terminalCoverArray[k].ta0sealnum);
+        console.log(this.terminalCoverArray[k].ta0seallocation);
         this.terminalCoverArray[k].assetnum = assetnum;
         this.terminalCoverArray[k].siteid = siteid;
         this.terminalCoverArray[k].wonum = wonum;
-        this.terminalCoverArray[k].ta0seallocation = "TERMINAL_COVER_" + (k + 1);
+        //this.terminalCoverArray[k].ta0seallocation = "TERMINAL_COVER_" + (k + 1);
         this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalCoverArray[k]);
+        /*
+        if(this.terminalCoverArray[k].ta0newsealnum !== null && this.terminalCoverArray[k].ta0newsealnum !== undefined && this.terminalCoverArray[k].ta0newsealnum !== '') {
+          var terminalCoverVal = new SealInfo();
+          terminalCoverVal.assetnum = assetnum;
+          terminalCoverVal.orgid = orgid;
+          terminalCoverVal.siteid = siteid;
+          terminalCoverVal.wonum = wonum;
+          terminalCoverVal.ta0seallocation = "TERMINAL_COVER_" + (k + 1);
+          terminalCoverVal.ta0sealnum = this.terminalCoverArray[k].ta0newsealnum;
+          terminalCoverVal.ta0installind = true; 
+          terminalCoverVal.ta0sealindicator = 'N'; 
+          terminalCoverVal.serialnum = ta0serialnum;
+          terminalCoverVal.devicecategory = ta0devicecategory;
+          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(terminalCoverVal);
+          console.log(JSON.stringify(terminalCoverVal));
+        }
+        */
       }
     }
 
@@ -1495,13 +1782,32 @@ export class SilStickerInfoPage {
     if ((this.fuseArray[0].ta0sealnum != null || this.fuseArray[0].ta0sealnum != undefined) || this.fuseArray[0].ta0newsealnum != null || this.fuseArray[0].ta0newsealnum != undefined) {
 
       for (var j = 0; j < this.fuseArray.length; j++) {
-
+        console.log(this.fuseArray[j].assetnum);
+        console.log(this.fuseArray[j].ta0sealnum);
+        console.log(this.fuseArray[j].ta0seallocation);
         this.fuseArray[j].assetnum = assetnum;
         this.fuseArray[j].orgid = orgid;
         this.fuseArray[j].siteid = siteid;
         this.fuseArray[j].wonum = wonum;
-        this.fuseArray[j].ta0seallocation = "METER_FUSE_" + (j + 1);
+        //this.fuseArray[j].ta0seallocation = "METER_FUSE_F" + (j + 1);
         this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.fuseArray[j]);
+        /*
+        if(this.fuseArray[j].ta0newsealnum !== null && this.fuseArray[j].ta0newsealnum !== undefined && this.fuseArray[j].ta0newsealnum !== '') {
+          var fuseVal = new SealInfo();
+          fuseVal.assetnum = assetnum;
+          fuseVal.orgid = orgid;
+          fuseVal.siteid = siteid;
+          fuseVal.wonum = wonum;
+          fuseVal.ta0seallocation = "METER_FUSE_F" + (j + 1);
+          fuseVal.ta0sealnum = this.fuseArray[j].ta0newsealnum;
+          fuseVal.ta0installind = true; 
+          fuseVal.ta0sealindicator = 'N'; 
+          fuseVal.serialnum = ta0serialnum;
+          fuseVal.devicecategory = ta0devicecategory;
+          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(fuseVal);
+          console.log(JSON.stringify(fuseVal));
+        }
+        */
       }
     }
 
@@ -1509,13 +1815,32 @@ export class SilStickerInfoPage {
     if ((this.mdButtonArray[0].ta0sealnum != null || this.mdButtonArray[0].ta0sealnum != undefined) || this.fuseArray[0].ta0newsealnum != null || this.fuseArray[0].ta0newsealnum != undefined) {
 
       for (var m = 0; m < this.mdButtonArray.length; m++) {
-
+        console.log(this.mdButtonArray[m].assetnum);
+        console.log(this.mdButtonArray[m].serialnum);
+        console.log(this.mdButtonArray[m].ta0sealnum);
+        console.log(this.mdButtonArray[m].ta0seallocation);
         this.mdButtonArray[m].assetnum = assetnum;
         this.mdButtonArray[m].orgid = orgid;
         this.mdButtonArray[m].siteid = siteid;
         this.mdButtonArray[m].wonum = wonum;
-        this.mdButtonArray[m].ta0seallocation = "MD_BUTTON_" + (m + 1);
+        //this.mdButtonArray[m].ta0seallocation = "MD_BUTTON";
         this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.mdButtonArray[m]);
+        /*
+        if(this.mdButtonArray[m].ta0newsealnum !== null && this.mdButtonArray[m].ta0newsealnum !== undefined && this.mdButtonArray[m].ta0newsealnum !== '') {
+          var mdButtonVal = new SealInfo();
+          mdButtonVal.assetnum = assetnum;
+          mdButtonVal.orgid = orgid;
+          mdButtonVal.siteid = siteid;
+          mdButtonVal.wonum = wonum;
+          mdButtonVal.ta0seallocation = "MD_BUTTON";
+          mdButtonVal.ta0sealnum = this.mdButtonArray[m].ta0newsealnum;
+          mdButtonVal.ta0installind = true; 
+          mdButtonVal.ta0sealindicator = 'N'; 
+          mdButtonVal.serialnum = ta0serialnum;
+          mdButtonVal.devicecategory = ta0devicecategory;
+          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(mdButtonVal);
+          console.log(JSON.stringify(mdButtonVal));
+        }*/
       }
     }
 
@@ -1523,13 +1848,33 @@ export class SilStickerInfoPage {
     if ((this.meterBatteryArray[0].ta0sealnum != null || this.meterBatteryArray[0].ta0sealnum != undefined) || this.meterBatteryArray[0].ta0newsealnum != null || this.meterBatteryArray[0].ta0newsealnum != undefined) {
 
       for (var n = 0; n < this.meterBatteryArray.length; n++) {
-
+        console.log(this.meterBatteryArray[n].assetnum);
+        console.log(this.meterBatteryArray[n].serialnum);
+        console.log(this.meterBatteryArray[n].ta0sealnum);
+        console.log(this.meterBatteryArray[n].ta0seallocation);
         this.meterBatteryArray[n].assetnum = assetnum;
         this.meterBatteryArray[n].orgid = orgid;
         this.meterBatteryArray[n].siteid = siteid;
         this.meterBatteryArray[n].wonum = wonum;
-        this.meterBatteryArray[n].ta0seallocation = "METER_BATTERY_" + (n + 1);
+        //this.meterBatteryArray[n].ta0seallocation = "METER_BATTERY";
         this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.meterBatteryArray[n]);
+        /*
+        if(this.meterBatteryArray[n].ta0newsealnum !== null && this.meterBatteryArray[n].ta0newsealnum !== undefined && this.meterBatteryArray[n].ta0newsealnum !== '') {
+          var meterBatteryVal = new SealInfo();
+          meterBatteryVal.assetnum = assetnum;
+          meterBatteryVal.orgid = orgid;
+          meterBatteryVal.siteid = siteid;
+          meterBatteryVal.wonum = wonum;
+          meterBatteryVal.ta0seallocation = "METER_BATTERY";
+          meterBatteryVal.ta0sealnum = this.meterBatteryArray[n].ta0newsealnum;
+          meterBatteryVal.ta0installind = true; 
+          meterBatteryVal.ta0sealindicator = 'N'; 
+          meterBatteryVal.serialnum = ta0serialnum;
+          meterBatteryVal.devicecategory = ta0devicecategory;
+          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(meterBatteryVal);
+          console.log(JSON.stringify(meterBatteryVal));
+        }
+        */
       }
     }
 
@@ -1537,13 +1882,33 @@ export class SilStickerInfoPage {
     if ((this.opticalEyeArray[0].ta0sealnum != null || this.opticalEyeArray[0].ta0sealnum != undefined) || this.opticalEyeArray[0].ta0newsealnum != null || this.opticalEyeArray[0].ta0newsealnum != undefined) {
 
       for (var b = 0; b < this.opticalEyeArray.length; b++) {
-
+        console.log(this.opticalEyeArray[b].assetnum);
+        console.log(this.opticalEyeArray[b].serialnum);
+        console.log(this.opticalEyeArray[b].ta0sealnum);
+        console.log(this.opticalEyeArray[b].ta0seallocation);
         this.opticalEyeArray[b].assetnum = assetnum;
         this.opticalEyeArray[b].orgid = orgid;
         this.opticalEyeArray[b].siteid = siteid;
         this.opticalEyeArray[b].wonum = wonum;
-        this.opticalEyeArray[b].ta0seallocation = "OPTICAL_EYE_COVER_" + (b + 1);
+        //this.opticalEyeArray[b].ta0seallocation = "OPTICAL_EYE_COVER";
         this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.opticalEyeArray[b]);
+        /*
+        if(this.opticalEyeArray[b].ta0newsealnum !== null && this.opticalEyeArray[b].ta0newsealnum !== undefined && this.opticalEyeArray[b].ta0newsealnum !== '') {
+          var opticalEyeyVal = new SealInfo();
+          opticalEyeyVal.assetnum = assetnum;
+          opticalEyeyVal.orgid = orgid;
+          opticalEyeyVal.siteid = siteid;
+          opticalEyeyVal.wonum = wonum;
+          opticalEyeyVal.ta0seallocation = "OPTICAL_EYE_COVER";
+          opticalEyeyVal.ta0sealnum = this.opticalEyeArray[b].ta0newsealnum;
+          opticalEyeyVal.ta0installind = true; 
+          opticalEyeyVal.ta0sealindicator = 'N'; 
+          opticalEyeyVal.serialnum = ta0serialnum;
+          opticalEyeyVal.devicecategory = ta0devicecategory;
+          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(opticalEyeyVal);
+          console.log(JSON.stringify(opticalEyeyVal));
+        }
+        */
       }
     }
 
@@ -3638,7 +4003,7 @@ export class SilStickerInfoPage {
   }
 
   checkingFieldDisabled(attr, category) {
-
+    debugger;
     if (category === "seal") {
       if (typeof (attr.ta0sealnum) !== "undefined" && attr.ta0removeind === false) {
         return false;
@@ -3660,6 +4025,7 @@ export class SilStickerInfoPage {
    * Edited     : Alif (03.10.2019)
    */
   replaceMeterNCheck() {
+    debugger;
     var checkingDeviceSelect = this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0bcrmuploadindicator;
     var multiassetlocci_temp = this.item.json.ta0feeder[this.fIndex].multiassetlocci;
 
@@ -3938,6 +4304,7 @@ export class SilStickerInfoPage {
   }
 
   updateRemovalReason(event,index) {
+    debugger;
     console.log("Executing updateRemovalReason");
     console.log("Option selected : "+event);
     console.log("index : "+index);
