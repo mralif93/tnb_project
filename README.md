@@ -24,6 +24,7 @@
 * Ionic, run command `npm install -g ionic@3.20.1`
 * Cordova, run command `npm install -g cordova@7.1.0`
 * MFPDev, run command `npm install -g mfpdev-cli@8.0-2018040312`
+* Rosetta 2, run command `softwareupdate --install-rosetta`
 
 # Build iOS Application
 * ionic cordova build ios --buildFlag="-UseModernBuildSystem=0"
