@@ -206,7 +206,6 @@ export class SealDeviceSilNStickerInfoPage {
     private toast: Toast, public appCtrl: App,
     private ds: DataStoreProvider) {
 
-    debugger;
     this.itemOri = this.params.get("paramObj");
     this.fIndex = this.params.get("fIndex");
     this.maIndex = this.params.get("maIndex");
@@ -219,7 +218,6 @@ export class SealDeviceSilNStickerInfoPage {
 
     // Clone data
     this.item = JSON.parse(JSON.stringify(this.itemOri));
-    console.log("this.item : " + JSON.stringify(this.item));
 
     switch (this.alloType) {
       case DeviceConstants.DEV_ALLOC_MAIN_METER:
@@ -572,7 +570,6 @@ export class SealDeviceSilNStickerInfoPage {
     terminalCtYellowVal.ta0newsealnum = null;
     terminalCtYellowVal.ta0sealcondition = null;
     terminalCtYellowVal.ta0removeind = null;
-
     this.terminalCtYellowArray[0] = terminalCtYellowVal;
 
     var terminalCtBlueVal = new SealInfo();
@@ -581,31 +578,27 @@ export class SealDeviceSilNStickerInfoPage {
     terminalCtBlueVal.ta0newsealnum = null;
     terminalCtBlueVal.ta0sealcondition = null;
     terminalCtBlueVal.ta0removeind = null;
-
     this.terminalCtBlueArray[0] = terminalCtBlueVal;
 
-
-
-     //New Seal 
-     this.newterminalcover1.ta0seallocation = "TERMINAL_COVER_1";
-     this.newterminalcover1.ta0seallocation_description = "Terminal Cover 1";
-     this.newterminalcover2.ta0seallocation = "TERMINAL_COVER_2";
-     this.newterminalcover2.ta0seallocation_description = "Terminal Cover 2";
-     this.newmetercover1.ta0seallocation = "METER_COVER_1";
-     this.newmetercover1.ta0seallocation_description = "Meter Cover 1";
-     this.newmetercover2.ta0seallocation = "METER_COVER_2";
-     this.newmetercover2.ta0seallocation_description = "Meter Cover 2";
-     this.newmetercover3.ta0seallocation = "METER_COVER_3";
-     this.newmetercover3.ta0seallocation_description = "Meter Cover 3";
-     this.newmdbutton.ta0seallocation = "MD_BUTTON";
-     this.newmdbutton.ta0seallocation_description = "MD Button";
-     this.newopticaleyecover.ta0seallocation = "OPTICAL_EYE_COVER";
-     this.newopticaleyecover.ta0seallocation_description = "Optical Eye Cover";
-     this.newmeterbattery.ta0seallocation = "METER_BATTERY";
-     this.newmeterbattery.ta0seallocation_description = "Meter Battery";
-     this.newcommmodule.ta0seallocation = "COMM_MODULE";
-     this.newcommmodule.ta0seallocation_description = "Comm Module";
-
+    // New Seal 
+    this.newterminalcover1.ta0seallocation = "TERMINAL_COVER_1";
+    this.newterminalcover1.ta0seallocation_description = "Terminal Cover 1";
+    this.newterminalcover2.ta0seallocation = "TERMINAL_COVER_2";
+    this.newterminalcover2.ta0seallocation_description = "Terminal Cover 2";
+    this.newmetercover1.ta0seallocation = "METER_COVER_1";
+    this.newmetercover1.ta0seallocation_description = "Meter Cover 1";
+    this.newmetercover2.ta0seallocation = "METER_COVER_2";
+    this.newmetercover2.ta0seallocation_description = "Meter Cover 2";
+    this.newmetercover3.ta0seallocation = "METER_COVER_3";
+    this.newmetercover3.ta0seallocation_description = "Meter Cover 3";
+    this.newmdbutton.ta0seallocation = "MD_BUTTON";
+    this.newmdbutton.ta0seallocation_description = "MD Button";
+    this.newopticaleyecover.ta0seallocation = "OPTICAL_EYE_COVER";
+    this.newopticaleyecover.ta0seallocation_description = "Optical Eye Cover";
+    this.newmeterbattery.ta0seallocation = "METER_BATTERY";
+    this.newmeterbattery.ta0seallocation_description = "Meter Battery";
+    this.newcommmodule.ta0seallocation = "COMM_MODULE";
+    this.newcommmodule.ta0seallocation_description = "Comm Module";
 
     var treminalCTNew = this.item.json.ta0feeder[this.fIndex].multiassetlocci.filter((item) => this.assetNum == item.assetnum)
     this.indexof = this.item.json.ta0feeder[this.fIndex].multiassetlocci.findIndex((item) => this.assetNum === item.assetnum)
@@ -663,14 +656,12 @@ export class SealDeviceSilNStickerInfoPage {
       var tcRCount = 0;
       var tcYCount = 0;
       var tcBCount = 0;
-debugger;
-      for (var i = 0; i < seal_length; i++) {
 
+      for (var i = 0; i < seal_length; i++) {
         var ta0sealdetail = this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail[i];
         var ta0seallocation = ta0sealdetail.ta0seallocation;
         let ta0installind = this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail[i].ta0installind
         this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail[i].ta0installind = ta0installind === 'true'
-
 
         if (ta0seallocation.startsWith(FunctionClass.METER_COVER) && ta0sealdetail.ta0existingseal == true) {
           meterCoverVal = ta0sealdetail;
@@ -4259,28 +4250,21 @@ debugger;
     var multiassetlocci_temp = this.item.json.ta0feeder[this.fIndex].multiassetlocci;
 
     if (checkingDeviceSelect === DeviceConstants.BCRM_EXISTING_INDICATOR_MAIN || checkingDeviceSelect === DeviceConstants.BCRM_EXISTING_INDICATOR_CHECK) {
-
-
-
       var meter = multiassetlocci_temp.filter((item) => {
         if (item.ta0bcrmuploadindicator === DeviceConstants.BCRM_NEW_INDICATOR_MAIN) {
           this.disableBefore = false;
           this.disableAfter = true;
         }
       })
-
     } else if (checkingDeviceSelect === DeviceConstants.BCRM_NEW_INDICATOR_MAIN || checkingDeviceSelect === DeviceConstants.BCRM_NEW_INDICATOR_CHECK) {
       this.refSegment = 'after';
-
       var meter = multiassetlocci_temp.filter((item) => {
         if (item.ta0bcrmuploadindicator === DeviceConstants.BCRM_NEW_INDICATOR_MAIN) {
           this.disableBefore = true;
           this.disableAfter = false;
         }
       })
-
     }
-
   }
 
   /**

@@ -1199,7 +1199,7 @@ export class SealServiceExecutionPage {
                 feederSetDesign.eCheckCommRemoveInd = feederArr.multiassetlocci[i].ta0removeind;
                 break;
               case DeviceConstants.BCRM_EXISTING_INDICATOR_MAIN_CT:
-                if (ctECount === 0) {
+                if (feederArr.multiassetlocci[i].ta0sealdetail[0].ta0seallocation === FunctionClass.TERMINAL_CT_RED) {
                   feederSetDesign.eMeterCtR = feederArr.multiassetlocci[i].assetnum;
                   feederSetDesign.eMeterCtRSerialNum = feederArr.multiassetlocci[i].ta0serialnum;
                   feederSetDesign.eMeterCtRCtrl = feederArr.multiassetlocci[i].ta0controllingdevice;
@@ -1219,7 +1219,7 @@ export class SealServiceExecutionPage {
                     feederSetDesign.eMeterCtRRemoveInd = feederArr.multiassetlocci[i].ta0removeind;
                   }
                   ctECount++;
-                } else if (ctECount === 1) {
+                } else if (feederArr.multiassetlocci[i].ta0sealdetail[0].ta0seallocation === FunctionClass.TERMINAL_CT_YELLOW) {
                   feederSetDesign.eMeterCtY = feederArr.multiassetlocci[i].assetnum;
                   feederSetDesign.eMeterCtYSerialNum = feederArr.multiassetlocci[i].ta0serialnum;
                   feederSetDesign.eMeterCtYCtrl = feederArr.multiassetlocci[i].ta0controllingdevice;
@@ -1239,7 +1239,7 @@ export class SealServiceExecutionPage {
                     feederSetDesign.eMeterCtYRemoveInd = feederArr.multiassetlocci[i].ta0removeind;
                   }
                   ctECount++;
-                } else {
+                } else if (feederArr.multiassetlocci[i].ta0sealdetail[0].ta0seallocation === FunctionClass.TERMINAL_CT_BLUE) {
                   feederSetDesign.eMeterCtB = feederArr.multiassetlocci[i].assetnum;
                   feederSetDesign.eMeterCtBSerialNum = feederArr.multiassetlocci[i].ta0serialnum;
                   feederSetDesign.eMeterCtBCtrl = feederArr.multiassetlocci[i].ta0controllingdevice;
@@ -3852,6 +3852,36 @@ export class SealServiceExecutionPage {
         deviceVoltage: deviceVoltage,
         from: from ? from : '',
         serialNum: serialNum ? serialNum : ''
+      });
+      // Dismiss Loading
+      loading.dismiss();
+    });
+
+    this.gf.loadingTimer(loading);
+  }
+
+  openCtSealPage(fIndex, maIndex, alloType, fDesign, vType) {
+    let loading = this.loadingCtrl.create({
+      content: "Please wait..."
+    });
+
+    loading.present().then(() => {
+      var deviceVoltage = 0;
+      if ('N' === vType) {
+        deviceVoltage = fDesign.nFeederVoltage;
+      } else {
+        deviceVoltage = fDesign.eFeederVoltage;
+      }
+
+      // Navigate to Seal Sil & Sticker Info Page
+      let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
+      newRootNav.push("SealCtSilInfoPage", {
+        paramObj: this.item,
+        fIndex: fIndex,
+        maIndex: maIndex,
+        alloType: alloType,
+        versionType: vType,
+        deviceVoltage: deviceVoltage,
       });
       // Dismiss Loading
       loading.dismiss();

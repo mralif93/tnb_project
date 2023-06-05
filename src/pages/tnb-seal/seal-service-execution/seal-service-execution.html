@@ -392,31 +392,18 @@
                     </ion-row>
 
                     <ion-row *ngIf="device.eFeederVoltage === dCons.VOL_LEVEL_LPC_LV_400V">
-                      <ion-col col-3 col-sm-3 col-md-2>
-
+                      <ion-col col-3 col-sm-3 col-md-2></ion-col>
+                      <ion-col col-3 col-sm-3 col-md-3 class="pointer" (click)="openCtSealPage(i, device.eMeterCtRIndex, device.eCheckAllocationType, device, 'E')">
+                        <h2 class="btn-transformer-uncomplete">CT Seal</h2>
                       </ion-col>
-                      <ion-col col-3 col-sm-3 col-md-3 class="pointer"
-                      (click)="openSealNStickerPage(i, device.eMeterCtRIndex, device.eCheckAllocationType, device, 'E','crimpless_Seal',device.eMeterCtRSerialNum)">
-                        <h2 class="btn-transformer-uncomplete" 
-                        >Crimpless Seal</h2>
-
+                      <ion-col col-3 col-sm-3 col-md-3 class="pointer" (click)="openCtSealPage(i, device.eMeterCtYIndex, device.eCheckAllocationType, device, 'E')">
+                        <h2 class="btn-transformer-uncomplete">CT Seal</h2>
                       </ion-col>
-                      <ion-col col-3 col-sm-3 col-md-3 class="pointer"
-                      (click)="openSealNStickerPage(i, device.eMeterCtYIndex, device.eCheckAllocationType, device, 'E','crimpless_Seal',device.eMeterCtYSerialNum)">
-                        <h2 class="btn-transformer-uncomplete">Crimpless Seal</h2>
-
-
+                      <ion-col col-3 col-sm-3 col-md-3 class="pointer" (click)="openCtSealPage(i, device.eMeterCtBIndex, device.eCheckAllocationType, device, 'E')">
+                        <h2 class="btn-transformer-uncomplete">CT Seal</h2>
                       </ion-col>
-                      <ion-col col-3 col-sm-3 col-md-3 class="pointer"
-                      (click)="openSealNStickerPage(i, device.eMeterCtBIndex, device.eCheckAllocationType, device, 'E','crimpless_Seal',device.eMeterCtBSerialNum)">
-                        <h2 class="btn-transformer-uncomplete">Crimpless Seal</h2>
-
-
-                      </ion-col>
-                      <ion-col col-3 col-sm-3 col-md-1 style="
-                          text-align:right;">
-                        <ion-icon name="checkmark-circle" class="uncomplete-color">
-                        </ion-icon>
+                      <ion-col col-3 col-sm-3 col-md-1 style=" text-align:right;">
+                        <ion-icon name="checkmark-circle" class="uncomplete-color"></ion-icon>
                       </ion-col>
                     </ion-row>
                   </div>
