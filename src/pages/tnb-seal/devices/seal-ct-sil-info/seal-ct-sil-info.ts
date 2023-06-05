@@ -46,6 +46,11 @@ export class SealCtSilInfoPage {
   showMvHvFields: boolean = false;
   showOpcFields: boolean = false;
 
+  refSegment: String = "before";
+  segmentSection: boolean = false;
+  disableBefore: boolean = false;
+  disableAfter: boolean = false;
+
   // Clone Data
   itemOri: any;
 
@@ -59,6 +64,9 @@ export class SealCtSilInfoPage {
   terminalCtRedArray = [];
   terminalCtYellowArray = [];
   terminalCtBlueArray = [];
+  nTerminalCtRedArray = [];
+  nTerminalCtYellowArray = [];
+  nTerminalCtBlueArray = [];
   
   constructor(public navCtrl: NavController, public params: NavParams, public toastCtrl: ToastController,
     public gf: GlobalFunction, private dataService: DataServiceProvider, private jsonStore: JsonStoreCrudProvider,
@@ -108,7 +116,7 @@ export class SealCtSilInfoPage {
     // Search ta0sealdetail > ta0seallocation to define R/Y/B
     // Define Object
     var terminalCtRedVal = new SealInfo();
-    terminalCtRedVal.ta0seallocation = "TERMINAL_CT_RED";
+    terminalCtRedVal.ta0seallocation = FunctionClass.TERMINAL_CT_RED;
     terminalCtRedVal.ta0sealnum = null;
     terminalCtRedVal.ta0newsealnum = null;
     terminalCtRedVal.ta0sealcondition = null;
@@ -116,7 +124,7 @@ export class SealCtSilInfoPage {
     this.terminalCtRedArray[0] = terminalCtRedVal;
 
     var terminalCtYellowVal = new SealInfo();
-    terminalCtYellowVal.ta0seallocation = "TERMINAL_CT_YELLOW";
+    terminalCtYellowVal.ta0seallocation = FunctionClass.TERMINAL_CT_YELLOW;
     terminalCtYellowVal.ta0sealnum = null;
     terminalCtYellowVal.ta0newsealnum = null;
     terminalCtYellowVal.ta0sealcondition = null;
@@ -124,12 +132,39 @@ export class SealCtSilInfoPage {
     this.terminalCtYellowArray[0] = terminalCtYellowVal;
 
     var terminalCtBlueVal = new SealInfo();
-    terminalCtBlueVal.ta0seallocation = "TERMINAL_CT_BLUE";
+    terminalCtBlueVal.ta0seallocation = FunctionClass.TERMINAL_CT_BLUE;
     terminalCtBlueVal.ta0sealnum = null;
     terminalCtBlueVal.ta0newsealnum = null;
     terminalCtBlueVal.ta0sealcondition = null;
     terminalCtBlueVal.ta0removeind = null;
     this.terminalCtBlueArray[0] = terminalCtBlueVal;
+
+    var nTerminalCtRedVal = new SealInfo();
+    nTerminalCtRedVal.ta0seallocation = FunctionClass.TERMINAL_CT_RED;
+    nTerminalCtRedVal.ta0installind = true;
+    nTerminalCtRedVal.devicelocind = false;
+    nTerminalCtRedVal.devicecategory = null;
+    nTerminalCtRedVal.serialnum = null;
+    nTerminalCtRedVal.ta0sealindicator = 'N';
+    this.nTerminalCtRedArray[0] = nTerminalCtRedVal;
+
+    var nTerminalCtYellowVal = new SealInfo();
+    nTerminalCtYellowVal.ta0seallocation = FunctionClass.TERMINAL_CT_YELLOW;
+    nTerminalCtYellowVal.ta0installind = true;
+    nTerminalCtYellowVal.devicelocind = false;
+    nTerminalCtYellowVal.devicecategory = null;
+    nTerminalCtYellowVal.serialnum = null;
+    nTerminalCtYellowVal.ta0sealindicator = 'N';
+    this.nTerminalCtYellowArray[0] = nTerminalCtYellowVal;
+
+    var nTerminalCtBlueVal = new SealInfo();
+    nTerminalCtBlueVal.ta0seallocation = FunctionClass.TERMINAL_CT_BLUE;
+    nTerminalCtBlueVal.ta0installind = true;
+    nTerminalCtBlueVal.devicelocind = false;
+    nTerminalCtBlueVal.devicecategory = null;
+    nTerminalCtBlueVal.serialnum = null;
+    nTerminalCtBlueVal.ta0sealindicator = 'N';
+    this.nTerminalCtBlueArray[0] = nTerminalCtBlueVal;
 
     // Read ta0detail if exist
     if (typeof (this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail) != 'undefined' &&
@@ -143,6 +178,8 @@ export class SealCtSilInfoPage {
       var tcCount = 0;
 
       for (var i = 0; i < seal_length; i++) {
+        var serialnum = this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0serialnum;
+        var devicecategory = this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0devicecategory;
         var ta0sealdetail = this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail[i];
         var ta0seallocation = ta0sealdetail.ta0seallocation;
         let ta0installind = this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail[i].ta0installind;
@@ -153,9 +190,15 @@ export class SealCtSilInfoPage {
           this.terminalCtRedArray[tcCount] = terminalCtRedVal;
           tcRCount++;
 
+          // Set serial number & device category CT
+          this.nTerminalCtRedArray[0].serialnum = serialnum;
+          this.nTerminalCtRedArray[0].devicecategory = devicecategory;
+
           // Clear others
           this.terminalCtYellowArray = [];
           this.terminalCtBlueArray = [];
+          this.nTerminalCtYellowArray = [];
+          this.nTerminalCtBlueArray = [];
           break;
         }
         else if (ta0seallocation.startsWith(FunctionClass.TERMINAL_CT_YELLOW) && ta0sealdetail.ta0existingseal == true) {        
@@ -163,9 +206,15 @@ export class SealCtSilInfoPage {
           this.terminalCtYellowArray[tcCount] = terminalCtYellowVal;
           tcYCount++;
 
+          // Set serial number CT
+          this.nTerminalCtYellowArray[0].serialnum = serialnum;
+          this.nTerminalCtYellowArray[0].devicecategory = devicecategory;
+
           // Clear others
           this.terminalCtRedArray = [];
           this.terminalCtBlueArray = [];
+          this.nTerminalCtRedArray = [];
+          this.nTerminalCtBlueArray = [];
           break;
         }
         else if (ta0seallocation.startsWith(FunctionClass.TERMINAL_CT_BLUE) && ta0sealdetail.ta0existingseal == true) {          
@@ -173,9 +222,15 @@ export class SealCtSilInfoPage {
           this.terminalCtBlueArray[tcCount] = terminalCtBlueVal;
           tcBCount++;
 
+          // Set serial number CT
+          this.nTerminalCtBlueArray[0].serialnum = serialnum;
+          this.nTerminalCtBlueArray[0].devicecategory = devicecategory;
+
           // Clear others
           this.terminalCtRedArray = [];
           this.terminalCtYellowArray = [];
+          this.nTerminalCtRedArray = [];
+          this.nTerminalCtYellowArray = [];
           break;
         }
 
@@ -341,6 +396,7 @@ export class SealCtSilInfoPage {
     console.log(">>>> get standard data to save >>> ct sil details >>>");
     // Default value from parent
     var assetnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].assetnum;
+    var olddeviceassetnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0olddeviceassetnum;
     var orgid = this.itemOri.json.ta0feeder[this.fIndex].orgid;
     var siteid = this.itemOri.json.siteid;
     var wonum = this.itemOri.json.wonum;
@@ -369,7 +425,7 @@ export class SealCtSilInfoPage {
           this.terminalCtYellowArray[i].siteid = siteid;
           this.terminalCtYellowArray[i].wonum = wonum;
           this.terminalCtYellowArray[i].ta0installind = this.terminalCtYellowArray[i].ta0installind ? this.terminalCtYellowArray[i].ta0installind : string;
-          this.terminalCtYellowArray[i].ta0seallocation = "TERMINAL_CT_YELLOW";
+          this.terminalCtYellowArray[i].ta0seallocation = FunctionClass.TERMINAL_CT_YELLOW;
           this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalCtYellowArray[i]);
         }
       }
@@ -384,12 +440,69 @@ export class SealCtSilInfoPage {
           this.terminalCtBlueArray[i].siteid = siteid;
           this.terminalCtBlueArray[i].wonum = wonum;
           this.terminalCtBlueArray[i].ta0installind = this.terminalCtBlueArray[i].ta0installind ? this.terminalCtBlueArray[i].ta0installind : string;
-          this.terminalCtBlueArray[i].ta0seallocation = "TERMINAL_CT_BLUE";
+          this.terminalCtBlueArray[i].ta0seallocation = FunctionClass.TERMINAL_CT_BLUE;
           this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalCtBlueArray[i]);
         }
       }
     }
- 
+
+    console.log(">>>> get new ct blue data to save >>> ct sil details >>>");
+    if (this.nTerminalCtRedArray.length > 0) {
+      if (this.nTerminalCtRedArray[0].serialnum != null || this.nTerminalCtRedArray[0].serialnum != undefined) {
+        for (var i = 0; i < this.nTerminalCtRedArray.length; i++) {
+          if(olddeviceassetnum !== null &&  olddeviceassetnum !== undefined && olddeviceassetnum !== '') {
+            this.nTerminalCtRedArray[i].assetnum = olddeviceassetnum;
+          } else {
+            this.nTerminalCtRedArray[i].assetnum = assetnum;
+          }
+          this.nTerminalCtRedArray[i].assetnum = assetnum;
+          this.nTerminalCtRedArray[i].orgid = orgid;
+          this.nTerminalCtRedArray[i].siteid = siteid;
+          this.nTerminalCtRedArray[i].wonum = wonum;
+          this.nTerminalCtRedArray[i].ta0seallocation = FunctionClass.TERMINAL_CT_RED;
+          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.nTerminalCtRedArray[i]);
+        }
+      }
+    }
+
+    console.log(">>>> get new ct yellow data to save >>> ct sil details >>>");
+    if (this.nTerminalCtYellowArray.length > 0) {
+      if (this.nTerminalCtYellowArray[0].serialnum != null || this.nTerminalCtYellowArray[0].serialnum != undefined) {
+        for (var i = 0; i < this.nTerminalCtYellowArray.length; i++) {
+          if(olddeviceassetnum !== null &&  olddeviceassetnum !== undefined && olddeviceassetnum !== '') {
+            this.nTerminalCtYellowArray[i].assetnum = olddeviceassetnum;
+          } else {
+            this.nTerminalCtYellowArray[i].assetnum = assetnum;
+          }
+          this.nTerminalCtYellowArray[i].assetnum = assetnum;
+          this.nTerminalCtYellowArray[i].orgid = orgid;
+          this.nTerminalCtYellowArray[i].siteid = siteid;
+          this.nTerminalCtYellowArray[i].wonum = wonum;
+          this.nTerminalCtYellowArray[i].ta0seallocation = FunctionClass.TERMINAL_CT_YELLOW;
+          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.nTerminalCtYellowArray[i]);
+        }
+      }
+    }
+
+    console.log(">>>> get new ct blue data to save >>> ct sil details >>>");
+    if (this.nTerminalCtBlueArray.length > 0) {
+      if (this.nTerminalCtBlueArray[0].serialnum != null || this.nTerminalCtBlueArray[0].serialnum != undefined) {
+        for (var i = 0; i < this.nTerminalCtBlueArray.length; i++) {
+          if(olddeviceassetnum !== null &&  olddeviceassetnum !== undefined && olddeviceassetnum !== '') {
+            this.nTerminalCtBlueArray[i].assetnum = olddeviceassetnum;
+          } else {
+            this.nTerminalCtBlueArray[i].assetnum = assetnum;
+          }
+          this.nTerminalCtBlueArray[i].assetnum = assetnum;
+          this.nTerminalCtBlueArray[i].orgid = orgid;
+          this.nTerminalCtBlueArray[i].siteid = siteid;
+          this.nTerminalCtBlueArray[i].wonum = wonum;
+          this.nTerminalCtBlueArray[i].ta0seallocation = FunctionClass.TERMINAL_CT_BLUE;
+          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.nTerminalCtBlueArray[i]);
+        }
+      }
+    }
+
      setTimeout(() => {
        loading.onWillDismiss(() => {
          console.log("this.itemOri : " + JSON.stringify(this.itemOri));
@@ -518,5 +631,4 @@ export class SealCtSilInfoPage {
          });
      }
   }
-
 }
