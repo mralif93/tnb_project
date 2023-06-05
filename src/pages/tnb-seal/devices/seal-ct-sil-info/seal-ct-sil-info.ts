@@ -33,7 +33,6 @@ declare var cordova: any;
   templateUrl: 'seal-ct-sil-info.html',
 })
 export class SealCtSilInfoPage {
-
   // Declare Variables for Params
   item: any;
   fIndex: number;
@@ -213,6 +212,10 @@ export class SealCtSilInfoPage {
     console.log('ionViewDidLoad SealCtSilInfoPage');
   }
 
+  /**
+   * Reason   : Method to call promise to loadlookup data.
+   * Created  : 05/06/2023
+   */
   loadlookup() {
     // CR002 Removal Reason
     this.getAlnDomainData("sealcondition").then((success) => {
@@ -320,7 +323,7 @@ export class SealCtSilInfoPage {
     confirm.present();
   }
 
-    /**
+  /**
    * Reason   : Method to save data.
    * Created  : 05/06/2023
    */
