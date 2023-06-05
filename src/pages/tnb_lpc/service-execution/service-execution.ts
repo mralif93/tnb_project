@@ -3904,6 +3904,36 @@ export class ServiceExecutionPage {
     // }, 500);
   }
 
+  openCtSealPage(fIndex, maIndex, alloType, fDesign, vType) {
+    let loading = this.loadingCtrl.create({
+      content: "Please wait..."
+    });
+
+    loading.present().then(() => {
+      var deviceVoltage = 0;
+      if ('N' === vType) {
+        deviceVoltage = fDesign.nFeederVoltage;
+      } else {
+        deviceVoltage = fDesign.eFeederVoltage;
+      }
+
+      // Navigate to Seal Sil & Sticker Info Page
+      let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
+      newRootNav.push("SealCtSilInfoPage", {
+        paramObj: this.item,
+        fIndex: fIndex,
+        maIndex: maIndex,
+        alloType: alloType,
+        versionType: vType,
+        deviceVoltage: deviceVoltage,
+      });
+      // Dismiss Loading
+      loading.dismiss();
+    });
+
+    this.gf.loadingTimer(loading);
+  }
+
   goToServiceDetailsPage() {
     let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
     newRootNav.push("ServiceDetailsPage", this.item);

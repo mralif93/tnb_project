@@ -349,6 +349,21 @@
                       </button>
                     </ion-row>
 
+                    <ion-row *ngIf="device.eFeederVoltage === dCons.VOL_LEVEL_LPC_LV_400V"  class="content-background-old" style="margin-top: 10px;">
+                      <ion-item style="background: transparent;" col-md-2 no-lines>
+                        <ion-label><strong></strong></ion-label>
+                      </ion-item>
+                      <button ion-item color="primary" class="custom-button" col-md-3 detail-none text-center text-wrap [ngClass]="btn-transformer-uncomplete" (click)="openCtSealPage(i, device.eMeterCtRIndex, device.eCheckAllocationType, device, 'E')">
+                        <h2>CT Seal</h2>
+                      </button>
+                      <button ion-item color="primary" class="custom-button" col-md-3 detail-none text-center text-wrap [ngClass]="btn-transformer-uncomplete" (click)="openCtSealPage(i, device.eMeterCtYIndex, device.eCheckAllocationType, device, 'E')">
+                        <h2>CT Seal</h2>
+                      </button>
+                      <button ion-item color="primary" class="custom-button" col-md-3 detail-none text-center text-wrap [ngClass]="btn-transformer-uncomplete" (click)="openCtSealPage(i, device.eMeterCtBIndex, device.eCheckAllocationType, device, 'E')">
+                        <h2>CT Seal</h2>
+                      </button>
+                    </ion-row>
+
                     <ion-row align-items-center *ngIf="device.eFeederVoltage > 3" class="content-background-old">
                       <ion-item style="background: transparent;" col-md-2 no-lines>
                         <ion-label><strong>PT</strong></ion-label>
