@@ -1,6 +1,6 @@
 <ion-header mode="md">
   <ion-navbar color="primary">
-    <ion-title>Seal Device Location</ion-title>
+    <ion-title>Device Location Seal</ion-title>
     <ion-buttons end>
       <button ion-button icon-only>
         <ion-icon [color]="gv.testMobile ? 'danger' : 'light'" name="md-planet" class="flash_plnt"></ion-icon>
@@ -232,8 +232,7 @@
           <ion-row>
             <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
               <ion-item no-lines>
-                <ion-label *ngIf="ttbF3Array.length <= 1" color="primary">Test Block F3</ion-label>
-                <ion-label *ngIf="ttbF3Array.length > 1" color="primary">Test Block F3 - {{ j + 1 }}</ion-label>
+                <ion-label color="primary">{{attr.ta0seallocation_description}}</ion-label>
               </ion-item>
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1>
@@ -326,9 +325,7 @@
           <ion-row>
             <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
               <ion-item no-lines>
-                <ion-label *ngIf="sfuseF1Array.length <= 1" color="primary">Meter Fuse F1</ion-label>
-                <ion-label *ngIf="sfuseF1Array.length > 1" color="primary">Meter Fuse F{{ j + 1
-                  }}</ion-label>
+                <ion-label color="primary">{{attr.ta0seallocation_description}}</ion-label>
               </ion-item>
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1>
@@ -609,8 +606,7 @@
           <ion-row>
             <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
               <ion-item no-lines>
-                <ion-label *ngIf="meterKiosk1Array.length <= 1" color="primary">Panel Door Kiosk 1</ion-label>
-                <ion-label *ngIf="meterKiosk1Array.length > 1" color="primary">Panel Door Kiosk 1 {{ j + 1 }}</ion-label>
+                <ion-label color="primary">{{attr.ta0seallocation_description}}</ion-label>
               </ion-item>
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1>
@@ -708,8 +704,7 @@
           <ion-row>
             <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
               <ion-item no-lines>
-                <ion-label *ngIf="meterKiosk2Array.length <= 1" color="primary">Panel Door Kiosk 2</ion-label>
-                <ion-label *ngIf="meterKiosk2Array.length > 1" color="primary">Meter Kiosk 2 - {{ j + 1 }}</ion-label>
+                <ion-label color="primary">{{attr.ta0seallocation_description}}</ion-label>
               </ion-item>
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1>
@@ -808,9 +803,7 @@
           <ion-row>
             <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
               <ion-item no-lines>
-                <ion-label *ngIf="meterTestBoxArray1.length <= 1" color="primary">Meter Test Box 1</ion-label>
-                <ion-label *ngIf="meterTestBoxArray1.length > 1" color="primary">Meter Test Box 1 {{ j + 1 }}
-                </ion-label>
+                <ion-label color="primary">{{attr.ta0seallocation_description}}</ion-label>
               </ion-item>
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1>
@@ -908,9 +901,7 @@
           <ion-row>
             <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
               <ion-item no-lines>
-                <ion-label *ngIf="meterTestBoxArray2.length <= 1" color="primary">Meter Test Box 2</ion-label>
-                <ion-label *ngIf="meterTestBoxArray2.length > 1" color="primary">Meter Test Box 2 {{ j + 1 }}
-                </ion-label>
+                <ion-label color="primary">{{attr.ta0seallocation_description}}</ion-label>
               </ion-item>
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1>
@@ -1003,8 +994,7 @@
           <ion-row>
             <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
               <ion-item no-lines>
-                <ion-label *ngIf="ctChamberArrayF1.length <= 1" color="primary">CT Chamber F1</ion-label>
-                <ion-label *ngIf="ctChamberArrayF1.length > 1" color="primary">CT Chamber F{{ j + 1 }}</ion-label>
+                <ion-label color="primary">{{attr.ta0seallocation_description}}</ion-label>
               </ion-item>
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1>
@@ -1098,8 +1088,7 @@
           <ion-row>
             <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
               <ion-item no-lines>
-                <ion-label *ngIf="ptChamberArrayF1.length <= 1" color="primary">PT Chamber F1</ion-label>
-                <ion-label *ngIf="ptChamberArrayF1.length > 1" color="primary">PT Chamber F1 {{ j + 1 }}</ion-label>
+                <ion-label color="primary">{{attr.ta0seallocation_description}}</ion-label>
               </ion-item>
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1>
@@ -1192,9 +1181,7 @@
           <ion-row>
             <ion-col col-12 col-sm-12 col-md-4 style="word-wrap:  break-all; padding-left: 5px;">
               <ion-item no-lines>
-                <ion-label *ngIf="terminalBoxArrayF1.length <= 1" color="primary">Termination Box F1</ion-label>
-                <ion-label *ngIf="terminalBoxArrayF1.length > 1" color="primary">Termination Box F{{ j + 1 }}
-                </ion-label>
+                <ion-label color="primary">{{attr.ta0seallocation_description}}</ion-label>
               </ion-item>
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1>

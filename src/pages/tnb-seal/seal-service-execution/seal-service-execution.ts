@@ -1199,66 +1199,68 @@ export class SealServiceExecutionPage {
                 feederSetDesign.eCheckCommRemoveInd = feederArr.multiassetlocci[i].ta0removeind;
                 break;
               case DeviceConstants.BCRM_EXISTING_INDICATOR_MAIN_CT:
-                if (feederArr.multiassetlocci[i].ta0sealdetail[0].ta0seallocation === FunctionClass.TERMINAL_CT_RED) {
-                  feederSetDesign.eMeterCtR = feederArr.multiassetlocci[i].assetnum;
-                  feederSetDesign.eMeterCtRSerialNum = feederArr.multiassetlocci[i].ta0serialnum;
-                  feederSetDesign.eMeterCtRCtrl = feederArr.multiassetlocci[i].ta0controllingdevice;
-                  feederSetDesign.eMeterCtRIndex = i;
-                  feederSetDesign.eMeterCtRAllocationType = feederArr.multiassetlocci[i].ta0allocationtype;
-                  if (feederArr.multiassetlocci[i].ta0replaceind === true || feederArr.multiassetlocci[i].ta0removeind === true) {
-                    if (feederArr.multiassetlocci[i].ta0registerstatus !== 'Y') {
-                      feederArr.multiassetlocci[i].ta0registerstatus = 'N';
+                if (typeof(feederArr.multiassetlocci[i].ta0sealdetail) !== 'undefined') {
+                  if (feederArr.multiassetlocci[i].ta0sealdetail[0].ta0seallocation === FunctionClass.TERMINAL_CT_RED) {
+                    feederSetDesign.eMeterCtR = feederArr.multiassetlocci[i].assetnum;
+                    feederSetDesign.eMeterCtRSerialNum = feederArr.multiassetlocci[i].ta0serialnum;
+                    feederSetDesign.eMeterCtRCtrl = feederArr.multiassetlocci[i].ta0controllingdevice;
+                    feederSetDesign.eMeterCtRIndex = i;
+                    feederSetDesign.eMeterCtRAllocationType = feederArr.multiassetlocci[i].ta0allocationtype;
+                    if (feederArr.multiassetlocci[i].ta0replaceind === true || feederArr.multiassetlocci[i].ta0removeind === true) {
+                      if (feederArr.multiassetlocci[i].ta0registerstatus !== 'Y') {
+                        feederArr.multiassetlocci[i].ta0registerstatus = 'N';
+                      }
+                    } else {
+                      feederArr.multiassetlocci[i].ta0registerstatus = 'Y';
                     }
-                  } else {
-                    feederArr.multiassetlocci[i].ta0registerstatus = 'Y';
-                  }
-                  feederSetDesign.eMeterCtRRegisterStatus = feederArr.multiassetlocci[i].ta0registerstatus;
-                  if (this.worktype === 'ZSRO' || this.worktype === 'ZINL' || this.worktype === 'ZCER' || this.worktype === 'ZINR') {
-                    feederSetDesign.eMeterCtRRemoveInd = feederArr.multiassetlocci[i].ta0replaceind;
-                  } else {
-                    feederSetDesign.eMeterCtRRemoveInd = feederArr.multiassetlocci[i].ta0removeind;
-                  }
-                  ctECount++;
-                } else if (feederArr.multiassetlocci[i].ta0sealdetail[0].ta0seallocation === FunctionClass.TERMINAL_CT_YELLOW) {
-                  feederSetDesign.eMeterCtY = feederArr.multiassetlocci[i].assetnum;
-                  feederSetDesign.eMeterCtYSerialNum = feederArr.multiassetlocci[i].ta0serialnum;
-                  feederSetDesign.eMeterCtYCtrl = feederArr.multiassetlocci[i].ta0controllingdevice;
-                  feederSetDesign.eMeterCtYIndex = i;
-                  feederSetDesign.eMeterCtYAllocationType = feederArr.multiassetlocci[i].ta0allocationtype;
-                  if (feederArr.multiassetlocci[i].ta0replaceind === true || feederArr.multiassetlocci[i].ta0removeind === true) {
-                    if (feederArr.multiassetlocci[i].ta0registerstatus !== 'Y') {
-                      feederArr.multiassetlocci[i].ta0registerstatus = 'N';
+                    feederSetDesign.eMeterCtRRegisterStatus = feederArr.multiassetlocci[i].ta0registerstatus;
+                    if (this.worktype === 'ZSRO' || this.worktype === 'ZINL' || this.worktype === 'ZCER' || this.worktype === 'ZINR') {
+                      feederSetDesign.eMeterCtRRemoveInd = feederArr.multiassetlocci[i].ta0replaceind;
+                    } else {
+                      feederSetDesign.eMeterCtRRemoveInd = feederArr.multiassetlocci[i].ta0removeind;
                     }
-                  } else {
-                    feederArr.multiassetlocci[i].ta0registerstatus = 'Y';
-                  }
-                  feederSetDesign.eMeterCtYRegisterStatus = feederArr.multiassetlocci[i].ta0registerstatus;
-                  if (this.worktype === 'ZSRO' || this.worktype === 'ZINL' || this.worktype === 'ZCER' || this.worktype === 'ZINR') {
-                    feederSetDesign.eMeterCtYRemoveInd = feederArr.multiassetlocci[i].ta0replaceind;
-                  } else {
-                    feederSetDesign.eMeterCtYRemoveInd = feederArr.multiassetlocci[i].ta0removeind;
-                  }
-                  ctECount++;
-                } else if (feederArr.multiassetlocci[i].ta0sealdetail[0].ta0seallocation === FunctionClass.TERMINAL_CT_BLUE) {
-                  feederSetDesign.eMeterCtB = feederArr.multiassetlocci[i].assetnum;
-                  feederSetDesign.eMeterCtBSerialNum = feederArr.multiassetlocci[i].ta0serialnum;
-                  feederSetDesign.eMeterCtBCtrl = feederArr.multiassetlocci[i].ta0controllingdevice;
-                  feederSetDesign.eMeterCtBIndex = i;
-                  feederSetDesign.eMeterCtBAllocationType = feederArr.multiassetlocci[i].ta0allocationtype;
-                  if (feederArr.multiassetlocci[i].ta0replaceind === true || feederArr.multiassetlocci[i].ta0removeind === true) {
-                    if (feederArr.multiassetlocci[i].ta0registerstatus !== 'Y') {
-                      feederArr.multiassetlocci[i].ta0registerstatus = 'N';
+                    ctECount++;
+                  } else if (feederArr.multiassetlocci[i].ta0sealdetail[0].ta0seallocation === FunctionClass.TERMINAL_CT_YELLOW) {
+                    feederSetDesign.eMeterCtY = feederArr.multiassetlocci[i].assetnum;
+                    feederSetDesign.eMeterCtYSerialNum = feederArr.multiassetlocci[i].ta0serialnum;
+                    feederSetDesign.eMeterCtYCtrl = feederArr.multiassetlocci[i].ta0controllingdevice;
+                    feederSetDesign.eMeterCtYIndex = i;
+                    feederSetDesign.eMeterCtYAllocationType = feederArr.multiassetlocci[i].ta0allocationtype;
+                    if (feederArr.multiassetlocci[i].ta0replaceind === true || feederArr.multiassetlocci[i].ta0removeind === true) {
+                      if (feederArr.multiassetlocci[i].ta0registerstatus !== 'Y') {
+                        feederArr.multiassetlocci[i].ta0registerstatus = 'N';
+                      }
+                    } else {
+                      feederArr.multiassetlocci[i].ta0registerstatus = 'Y';
                     }
-                  } else {
-                    feederArr.multiassetlocci[i].ta0registerstatus = 'Y';
+                    feederSetDesign.eMeterCtYRegisterStatus = feederArr.multiassetlocci[i].ta0registerstatus;
+                    if (this.worktype === 'ZSRO' || this.worktype === 'ZINL' || this.worktype === 'ZCER' || this.worktype === 'ZINR') {
+                      feederSetDesign.eMeterCtYRemoveInd = feederArr.multiassetlocci[i].ta0replaceind;
+                    } else {
+                      feederSetDesign.eMeterCtYRemoveInd = feederArr.multiassetlocci[i].ta0removeind;
+                    }
+                    ctECount++;
+                  } else if (feederArr.multiassetlocci[i].ta0sealdetail[0].ta0seallocation === FunctionClass.TERMINAL_CT_BLUE) {
+                    feederSetDesign.eMeterCtB = feederArr.multiassetlocci[i].assetnum;
+                    feederSetDesign.eMeterCtBSerialNum = feederArr.multiassetlocci[i].ta0serialnum;
+                    feederSetDesign.eMeterCtBCtrl = feederArr.multiassetlocci[i].ta0controllingdevice;
+                    feederSetDesign.eMeterCtBIndex = i;
+                    feederSetDesign.eMeterCtBAllocationType = feederArr.multiassetlocci[i].ta0allocationtype;
+                    if (feederArr.multiassetlocci[i].ta0replaceind === true || feederArr.multiassetlocci[i].ta0removeind === true) {
+                      if (feederArr.multiassetlocci[i].ta0registerstatus !== 'Y') {
+                        feederArr.multiassetlocci[i].ta0registerstatus = 'N';
+                      }
+                    } else {
+                      feederArr.multiassetlocci[i].ta0registerstatus = 'Y';
+                    }
+                    feederSetDesign.eMeterCtBRegisterStatus = feederArr.multiassetlocci[i].ta0registerstatus;
+                    if (this.worktype === 'ZSRO' || this.worktype === 'ZINL' || this.worktype === 'ZCER' || this.worktype === 'ZINR') {
+                      feederSetDesign.eMeterCtBRemoveInd = feederArr.multiassetlocci[i].ta0replaceind;
+                    } else {
+                      feederSetDesign.eMeterCtBRemoveInd = feederArr.multiassetlocci[i].ta0removeind;
+                    }
+                    ctECount++;
                   }
-                  feederSetDesign.eMeterCtBRegisterStatus = feederArr.multiassetlocci[i].ta0registerstatus;
-                  if (this.worktype === 'ZSRO' || this.worktype === 'ZINL' || this.worktype === 'ZCER' || this.worktype === 'ZINR') {
-                    feederSetDesign.eMeterCtBRemoveInd = feederArr.multiassetlocci[i].ta0replaceind;
-                  } else {
-                    feederSetDesign.eMeterCtBRemoveInd = feederArr.multiassetlocci[i].ta0removeind;
-                  }
-                  ctECount++;
                 }
 
                 break;

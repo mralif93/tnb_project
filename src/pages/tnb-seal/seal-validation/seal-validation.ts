@@ -279,9 +279,11 @@ export class SealValidationPage {
     this.gf.loadingTimer(loading);
     this.ds.insertCrimplesslData(this.sealValidItem).then((result)=>{
       var respResult: any = result;
+      console.log("result : "+JSON.stringify(respResult));
       let alert = this.alertCtrl.create({
-        title: 'Status',
-        subTitle: respResult.statusCode,
+        //title: 'Status',
+        //subTitle: respResult.statusCode,
+        title: respResult.statusCode,
         message: respResult.statusText,
         buttons: [{
           text: 'Ok',
@@ -370,5 +372,9 @@ export class SealValidationPage {
       });
 
     }
+  }
+  delete(){
+    debugger;
+    this.ds.deleteDatabase();
   }
 }

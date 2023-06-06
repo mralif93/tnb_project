@@ -59,7 +59,7 @@
           <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
             <ion-item>
               <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30" placeholder="Please Enter" disabled="true"
-                clearInput (keyup)="userInputLengthNum($event,'terminalCTRed',j,'before')"
+                clearInput (keyup)="userInputLengthNum($event,'terminalCTRed',j,'before')" [readonly]="true" 
                 [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
               </ion-input>
             </ion-item>
@@ -153,7 +153,7 @@
           <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
             <ion-item>
               <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30" placeholder="Please Enter" disabled="true"
-                clearInput (keyup)="userInputLengthNum($event,'terminalCTYellow',j,'before')"
+                clearInput (keyup)="userInputLengthNum($event,'terminalCTYellow',j,'before')" [readonly]="true" 
                 [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
               </ion-input>
             </ion-item>
@@ -246,7 +246,7 @@
           <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
             <ion-item>
               <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30" placeholder="Please Enter" disabled="true"
-                clearInput (keyup)="userInputLengthNum($event,'terminalCTBlue',j,'before')"
+                clearInput (keyup)="userInputLengthNum($event,'terminalCTBlue',j,'before')" [readonly]="true" 
                 [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
               </ion-input>
             </ion-item>
@@ -350,8 +350,8 @@
           </ion-col>
           <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
             <ion-item>
-              <ion-input [(ngModel)]="attr.serialnum" type="text" maxlength="30" placeholder="Please Enter" clearInput
-                [ngClass]="(attr.serialnum == '' || attr.serialnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+              <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30" placeholder="Please Enter" clearInput 
+                [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
               </ion-input>
             </ion-item>
           </ion-col>
@@ -397,8 +397,8 @@
           </ion-col>
           <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
             <ion-item>
-              <ion-input [(ngModel)]="attr.serialnum" type="text" maxlength="30" placeholder="Please Enter" clearInput
-                [ngClass]="(attr.serialnum == '' || attr.serialnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+              <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30" placeholder="Please Enter" clearInput
+                [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
               </ion-input>
             </ion-item>
           </ion-col>
@@ -444,8 +444,8 @@
           </ion-col>
           <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
             <ion-item>
-              <ion-input [(ngModel)]="attr.serialnum" type="text" maxlength="30" placeholder="Please Enter" clearInput
-                [ngClass]="(attr.serialnum == '' || attr.serialnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
+              <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30" placeholder="Please Enter" clearInput
+                [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
               </ion-input>
             </ion-item>
           </ion-col>

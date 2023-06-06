@@ -206,6 +206,7 @@ export class SealDeviceSilNStickerInfoPage {
     private toast: Toast, public appCtrl: App,
     private ds: DataStoreProvider) {
 
+    debugger;
     this.itemOri = this.params.get("paramObj");
     this.fIndex = this.params.get("fIndex");
     this.maIndex = this.params.get("maIndex");
@@ -218,6 +219,7 @@ export class SealDeviceSilNStickerInfoPage {
 
     // Clone data
     this.item = JSON.parse(JSON.stringify(this.itemOri));
+    console.log("this.item : " + JSON.stringify(this.item));
 
     switch (this.alloType) {
       case DeviceConstants.DEV_ALLOC_MAIN_METER:

@@ -349,7 +349,7 @@
                       </button>
                     </ion-row>
 
-                    <ion-row *ngIf="device.eFeederVoltage === dCons.VOL_LEVEL_LPC_LV_400V"  class="content-background-old" style="margin-top: 10px;">
+                    <ion-row *ngIf="device.eFeederVoltage > 2"  class="content-background-old" style="margin-top: 10px;">
                       <ion-item style="background: transparent;" col-md-2 no-lines>
                         <ion-label><strong></strong></ion-label>
                       </ion-item>

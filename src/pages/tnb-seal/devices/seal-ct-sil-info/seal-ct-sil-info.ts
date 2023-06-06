@@ -254,11 +254,61 @@ export class SealCtSilInfoPage {
             break;
           }
         }
+      }
 
-        // Sorting Seal
-        this.terminalCtRedArray.sort(this.dynamicSort("ta0stickerlocation"));
-        this.terminalCtYellowArray.sort(this.dynamicSort("ta0stickerlocation"));
-        this.terminalCtBlueArray.sort(this.dynamicSort("ta0stickerlocation"));
+        //new CT
+        for (var i = 0; i < seal_length; i++) {
+          var serialnum = this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0serialnum;
+          var devicecategory = this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0devicecategory;
+          var ta0sealdetail = this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail[i];
+          var ta0seallocation = ta0sealdetail.ta0seallocation;                    
+  
+          if (ta0seallocation.startsWith(FunctionClass.TERMINAL_CT_RED) && ta0sealdetail.ta0existingseal == false) {         
+            nTerminalCtRedVal = ta0sealdetail;
+            this.nTerminalCtRedArray[0] = nTerminalCtRedVal;            
+            // Clear others
+            this.terminalCtYellowArray = [];
+            this.terminalCtBlueArray = [];
+            this.nTerminalCtYellowArray = [];
+            this.nTerminalCtBlueArray = [];
+            break;
+          }
+          else if (ta0seallocation.startsWith(FunctionClass.TERMINAL_CT_YELLOW) && ta0sealdetail.ta0existingseal == false) {        
+            nTerminalCtYellowVal = ta0sealdetail;
+            this.nTerminalCtYellowArray[0] = nTerminalCtYellowVal;
+            // Clear others
+            this.terminalCtRedArray = [];
+            this.terminalCtBlueArray = [];
+            this.nTerminalCtRedArray = [];
+            this.nTerminalCtBlueArray = [];
+            break;
+          }
+          else if (ta0seallocation.startsWith(FunctionClass.TERMINAL_CT_BLUE) && ta0sealdetail.ta0existingseal == false) {          
+            nTerminalCtBlueVal = ta0sealdetail;
+            this.nTerminalCtBlueArray[0] = nTerminalCtBlueVal;
+            // Clear others
+            this.terminalCtRedArray = [];
+            this.terminalCtYellowArray = [];
+            this.nTerminalCtRedArray = [];
+            this.nTerminalCtYellowArray = [];
+            break;
+          }
+  
+          switch (this.showLvFields) {
+            case true: {
+              if (ta0seallocation.startsWith(FunctionClass.TERMINAL_CT_RED) && ta0sealdetail.ta0existingseal == false) {
+                nTerminalCtRedVal = ta0sealdetail;
+                this.nTerminalCtRedArray[0] = nTerminalCtRedVal;                
+              } else if (ta0seallocation.startsWith(FunctionClass.TERMINAL_CT_YELLOW) && ta0sealdetail.ta0existingseal == false) {
+                nTerminalCtYellowVal = ta0sealdetail;
+                this.nTerminalCtYellowArray[0] = nTerminalCtYellowVal;                
+              } else if (ta0seallocation.startsWith(FunctionClass.TERMINAL_CT_BLUE) && ta0sealdetail.ta0existingseal == false) {
+                nTerminalCtBlueVal = ta0sealdetail;
+                this.nTerminalCtBlueArray[0] = nTerminalCtBlueVal;                
+              }
+              break;
+            }
+          }             
       }
     }
   }
@@ -267,6 +317,9 @@ export class SealCtSilInfoPage {
     console.log('ionViewDidLoad SealCtSilInfoPage');
   }
 
+  goBack() {
+    this.navCtrl.pop();
+  }
   /**
    * Reason   : Method to call promise to loadlookup data.
    * Created  : 05/06/2023
@@ -395,6 +448,8 @@ export class SealCtSilInfoPage {
 
     console.log(">>>> get standard data to save >>> ct sil details >>>");
     // Default value from parent
+    var ta0serialnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0serialnum;
+    var ta0devicecategory = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0devicecategory;
     var assetnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].assetnum;
     var olddeviceassetnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0olddeviceassetnum;
     var orgid = this.itemOri.json.ta0feeder[this.fIndex].orgid;
@@ -409,8 +464,8 @@ export class SealCtSilInfoPage {
           this.terminalCtRedArray[i].orgid = orgid;
           this.terminalCtRedArray[i].siteid = siteid;
           this.terminalCtRedArray[i].wonum = wonum;
-          this.terminalCtRedArray[i].ta0installind = this.terminalCtRedArray[i].ta0installind ? this.terminalCtRedArray[i].ta0installind : string;
-          this.terminalCtRedArray[i].ta0seallocation = FunctionClass.TERMINAL_CT_RED;
+          //this.terminalCtRedArray[i].ta0installind = this.terminalCtRedArray[i].ta0installind ? this.terminalCtRedArray[i].ta0installind : string;
+          //this.terminalCtRedArray[i].ta0seallocation = FunctionClass.TERMINAL_CT_RED;
           this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalCtRedArray[i]);
         }
       }
@@ -424,8 +479,8 @@ export class SealCtSilInfoPage {
           this.terminalCtYellowArray[i].orgid = orgid;
           this.terminalCtYellowArray[i].siteid = siteid;
           this.terminalCtYellowArray[i].wonum = wonum;
-          this.terminalCtYellowArray[i].ta0installind = this.terminalCtYellowArray[i].ta0installind ? this.terminalCtYellowArray[i].ta0installind : string;
-          this.terminalCtYellowArray[i].ta0seallocation = FunctionClass.TERMINAL_CT_YELLOW;
+          //this.terminalCtYellowArray[i].ta0installind = this.terminalCtYellowArray[i].ta0installind ? this.terminalCtYellowArray[i].ta0installind : string;
+          //this.terminalCtYellowArray[i].ta0seallocation = FunctionClass.TERMINAL_CT_YELLOW;
           this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalCtYellowArray[i]);
         }
       }
@@ -439,8 +494,8 @@ export class SealCtSilInfoPage {
           this.terminalCtBlueArray[i].orgid = orgid;
           this.terminalCtBlueArray[i].siteid = siteid;
           this.terminalCtBlueArray[i].wonum = wonum;
-          this.terminalCtBlueArray[i].ta0installind = this.terminalCtBlueArray[i].ta0installind ? this.terminalCtBlueArray[i].ta0installind : string;
-          this.terminalCtBlueArray[i].ta0seallocation = FunctionClass.TERMINAL_CT_BLUE;
+          //this.terminalCtBlueArray[i].ta0installind = this.terminalCtBlueArray[i].ta0installind ? this.terminalCtBlueArray[i].ta0installind : string;
+          //this.terminalCtBlueArray[i].ta0seallocation = FunctionClass.TERMINAL_CT_BLUE;
           this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalCtBlueArray[i]);
         }
       }
@@ -448,7 +503,7 @@ export class SealCtSilInfoPage {
 
     console.log(">>>> get new ct blue data to save >>> ct sil details >>>");
     if (this.nTerminalCtRedArray.length > 0) {
-      if (this.nTerminalCtRedArray[0].serialnum != null || this.nTerminalCtRedArray[0].serialnum != undefined) {
+      if (this.nTerminalCtRedArray[0].ta0sealnum !== null || this.nTerminalCtRedArray[0].ta0sealnum !== undefined || this.nTerminalCtRedArray[0].ta0sealnum !== '' )  {
         for (var i = 0; i < this.nTerminalCtRedArray.length; i++) {
           if(olddeviceassetnum !== null &&  olddeviceassetnum !== undefined && olddeviceassetnum !== '') {
             this.nTerminalCtRedArray[i].assetnum = olddeviceassetnum;
@@ -459,7 +514,10 @@ export class SealCtSilInfoPage {
           this.nTerminalCtRedArray[i].orgid = orgid;
           this.nTerminalCtRedArray[i].siteid = siteid;
           this.nTerminalCtRedArray[i].wonum = wonum;
-          this.nTerminalCtRedArray[i].ta0seallocation = FunctionClass.TERMINAL_CT_RED;
+          this.nTerminalCtRedArray[i].ta0installind = true;
+          this.nTerminalCtRedArray[i].devicecategory = ta0devicecategory;
+          this.nTerminalCtRedArray[i].serialnum = ta0serialnum;
+          //this.nTerminalCtRedArray[i].ta0seallocation = FunctionClass.TERMINAL_CT_RED;
           this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.nTerminalCtRedArray[i]);
         }
       }
@@ -467,7 +525,7 @@ export class SealCtSilInfoPage {
 
     console.log(">>>> get new ct yellow data to save >>> ct sil details >>>");
     if (this.nTerminalCtYellowArray.length > 0) {
-      if (this.nTerminalCtYellowArray[0].serialnum != null || this.nTerminalCtYellowArray[0].serialnum != undefined) {
+      if (this.nTerminalCtYellowArray[0].ta0sealnum != null && this.nTerminalCtYellowArray[0].ta0sealnum != undefined && this.nTerminalCtYellowArray[0].ta0sealnum !== '' ) {
         for (var i = 0; i < this.nTerminalCtYellowArray.length; i++) {
           if(olddeviceassetnum !== null &&  olddeviceassetnum !== undefined && olddeviceassetnum !== '') {
             this.nTerminalCtYellowArray[i].assetnum = olddeviceassetnum;
@@ -478,7 +536,10 @@ export class SealCtSilInfoPage {
           this.nTerminalCtYellowArray[i].orgid = orgid;
           this.nTerminalCtYellowArray[i].siteid = siteid;
           this.nTerminalCtYellowArray[i].wonum = wonum;
-          this.nTerminalCtYellowArray[i].ta0seallocation = FunctionClass.TERMINAL_CT_YELLOW;
+          this.nTerminalCtYellowArray[i].ta0installind = true;
+          this.nTerminalCtYellowArray[i].devicecategory = ta0devicecategory;
+          this.nTerminalCtYellowArray[i].serialnum = ta0serialnum;
+          //this.nTerminalCtYellowArray[i].ta0seallocation = FunctionClass.TERMINAL_CT_YELLOW;
           this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.nTerminalCtYellowArray[i]);
         }
       }
@@ -486,7 +547,7 @@ export class SealCtSilInfoPage {
 
     console.log(">>>> get new ct blue data to save >>> ct sil details >>>");
     if (this.nTerminalCtBlueArray.length > 0) {
-      if (this.nTerminalCtBlueArray[0].serialnum != null || this.nTerminalCtBlueArray[0].serialnum != undefined) {
+      if (this.nTerminalCtBlueArray[0].ta0sealnum !== null && this.nTerminalCtBlueArray[0].ta0sealnum !== undefined && this.nTerminalCtBlueArray[0].ta0sealnum !== '' ) {
         for (var i = 0; i < this.nTerminalCtBlueArray.length; i++) {
           if(olddeviceassetnum !== null &&  olddeviceassetnum !== undefined && olddeviceassetnum !== '') {
             this.nTerminalCtBlueArray[i].assetnum = olddeviceassetnum;
@@ -497,7 +558,10 @@ export class SealCtSilInfoPage {
           this.nTerminalCtBlueArray[i].orgid = orgid;
           this.nTerminalCtBlueArray[i].siteid = siteid;
           this.nTerminalCtBlueArray[i].wonum = wonum;
-          this.nTerminalCtBlueArray[i].ta0seallocation = FunctionClass.TERMINAL_CT_BLUE;
+          this.nTerminalCtBlueArray[i].ta0installind = true;
+          this.nTerminalCtBlueArray[i].devicecategory = ta0devicecategory;
+          this.nTerminalCtBlueArray[i].serialnum = ta0serialnum;
+          //this.nTerminalCtBlueArray[i].ta0seallocation = FunctionClass.TERMINAL_CT_BLUE;
           this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.nTerminalCtBlueArray[i]);
         }
       }
