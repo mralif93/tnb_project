@@ -451,7 +451,7 @@ export class SealCtSilInfoPage {
     var ta0serialnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0serialnum;
     var ta0devicecategory = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0devicecategory;
     var assetnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].assetnum;
-    var olddeviceassetnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0olddeviceassetnum;
+    var olddeviceassetnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0olddeviceserialnum;
     var orgid = this.itemOri.json.ta0feeder[this.fIndex].orgid;
     var siteid = this.itemOri.json.siteid;
     var wonum = this.itemOri.json.wonum;
@@ -506,9 +506,9 @@ export class SealCtSilInfoPage {
       if (this.nTerminalCtRedArray[0].ta0sealnum !== null || this.nTerminalCtRedArray[0].ta0sealnum !== undefined || this.nTerminalCtRedArray[0].ta0sealnum !== '' )  {
         for (var i = 0; i < this.nTerminalCtRedArray.length; i++) {
           if(olddeviceassetnum !== null &&  olddeviceassetnum !== undefined && olddeviceassetnum !== '') {
-            this.nTerminalCtRedArray[i].assetnum = olddeviceassetnum;
+            this.nTerminalCtRedArray[i].parent = olddeviceassetnum;
           } else {
-            this.nTerminalCtRedArray[i].assetnum = assetnum;
+            this.nTerminalCtRedArray[i].parent = assetnum;
           }
           this.nTerminalCtRedArray[i].assetnum = assetnum;
           this.nTerminalCtRedArray[i].orgid = orgid;
@@ -528,9 +528,9 @@ export class SealCtSilInfoPage {
       if (this.nTerminalCtYellowArray[0].ta0sealnum != null && this.nTerminalCtYellowArray[0].ta0sealnum != undefined && this.nTerminalCtYellowArray[0].ta0sealnum !== '' ) {
         for (var i = 0; i < this.nTerminalCtYellowArray.length; i++) {
           if(olddeviceassetnum !== null &&  olddeviceassetnum !== undefined && olddeviceassetnum !== '') {
-            this.nTerminalCtYellowArray[i].assetnum = olddeviceassetnum;
+            this.nTerminalCtYellowArray[i].parent = olddeviceassetnum;
           } else {
-            this.nTerminalCtYellowArray[i].assetnum = assetnum;
+            this.nTerminalCtYellowArray[i].parent = assetnum;
           }
           this.nTerminalCtYellowArray[i].assetnum = assetnum;
           this.nTerminalCtYellowArray[i].orgid = orgid;
@@ -550,9 +550,9 @@ export class SealCtSilInfoPage {
       if (this.nTerminalCtBlueArray[0].ta0sealnum !== null && this.nTerminalCtBlueArray[0].ta0sealnum !== undefined && this.nTerminalCtBlueArray[0].ta0sealnum !== '' ) {
         for (var i = 0; i < this.nTerminalCtBlueArray.length; i++) {
           if(olddeviceassetnum !== null &&  olddeviceassetnum !== undefined && olddeviceassetnum !== '') {
-            this.nTerminalCtBlueArray[i].assetnum = olddeviceassetnum;
+            this.nTerminalCtBlueArray[i].parent = olddeviceassetnum;
           } else {
-            this.nTerminalCtBlueArray[i].assetnum = assetnum;
+            this.nTerminalCtBlueArray[i].parent = assetnum;
           }
           this.nTerminalCtBlueArray[i].assetnum = assetnum;
           this.nTerminalCtBlueArray[i].orgid = orgid;

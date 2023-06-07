@@ -353,13 +353,16 @@
                       <ion-item style="background: transparent;" col-md-2 no-lines>
                         <ion-label><strong></strong></ion-label>
                       </ion-item>
-                      <button ion-item color="primary" class="custom-button" col-md-3 detail-none text-center text-wrap [ngClass]="btn-transformer-uncomplete" (click)="openCtSealPage(i, device.eMeterCtRIndex, device.eCheckAllocationType, device, 'E')">
+                      <button ion-item color="primary" class="custom-button" col-md-3 detail-none text-center text-wrap 
+                        [ngClass]="btn-transformer-uncomplete" (click)="openCtSealPage(i, device.eMeterCtRIndex, device.eCheckAllocationType, device, 'E')">
                         <h2>CT Seal</h2>
                       </button>
-                      <button ion-item color="primary" class="custom-button" col-md-3 detail-none text-center text-wrap [ngClass]="btn-transformer-uncomplete" (click)="openCtSealPage(i, device.eMeterCtYIndex, device.eCheckAllocationType, device, 'E')">
+                      <button ion-item color="primary" class="custom-button" col-md-3 detail-none text-center text-wrap 
+                        [ngClass]="btn-transformer-uncomplete" (click)="openCtSealPage(i, device.eMeterCtYIndex, device.eCheckAllocationType, device, 'E')">
                         <h2>CT Seal</h2>
                       </button>
-                      <button ion-item color="primary" class="custom-button" col-md-3 detail-none text-center text-wrap [ngClass]="btn-transformer-uncomplete" (click)="openCtSealPage(i, device.eMeterCtBIndex, device.eCheckAllocationType, device, 'E')">
+                      <button ion-item color="primary" class="custom-button" col-md-3 detail-none text-center text-wrap 
+                      [ngClass]="btn-transformer-uncomplete" (click)="openCtSealPage(i, device.eMeterCtBIndex, device.eCheckAllocationType, device, 'E')">
                         <h2>CT Seal</h2>
                       </button>
                     </ion-row>
@@ -610,6 +613,26 @@
                         <h2>{{ device.nMeterCtBSerialNum || '-' }} / {{ device.nMeterCtBCtrl || '-' }}</h2>
                       </button>
                     </ion-row>
+
+                    <ion-row *ngIf="device.eFeederVoltage > 2"  class="content-background-new" 
+                      style="padding-bottom: 10px;">
+                      <ion-item style="background: transparent;" col-md-2 no-lines>
+                        <ion-label><strong></strong></ion-label>
+                      </ion-item>
+                      <button ion-item color="primary" class="custom-button" col-md-3 detail-none text-center text-wrap 
+                        [ngClass]="btn-transformer-uncomplete" (click)="openCtSealPage(i, device.nMeterCtRIndex, device.eCheckAllocationType, device, 'E')">
+                        <h2>CT Seal</h2>
+                      </button>
+                      <button ion-item color="primary" class="custom-button" col-md-3 detail-none text-center text-wrap 
+                        [ngClass]="btn-transformer-uncomplete" (click)="openCtSealPage(i, device.nMeterCtYIndex, device.eCheckAllocationType, device, 'E')">
+                        <h2>CT Seal</h2>
+                      </button>
+                      <button ion-item color="primary" class="custom-button" col-md-3 detail-none text-center text-wrap 
+                      [ngClass]="btn-transformer-uncomplete" (click)="openCtSealPage(i, device.nMeterCtBIndex, device.eCheckAllocationType, device, 'E')">
+                        <h2>CT Seal</h2>
+                      </button>
+                    </ion-row>
+
 
                     <ion-row align-items-center *ngIf="device.nFeederVoltage > 3" class="content-background-new"
                       style="padding-bottom: 10px;">

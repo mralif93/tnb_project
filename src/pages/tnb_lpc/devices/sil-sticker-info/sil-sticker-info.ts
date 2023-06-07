@@ -695,12 +695,10 @@ this.loadingPresent();
         } else if (ta0seallocation.startsWith(FunctionClass.MD_BUTTON) && ta0sealdetail.ta0existingseal === false) {
           this.newmdbutton = ta0sealdetail;
         } else if (ta0seallocation.startsWith(FunctionClass.METER_BATTERY) && ta0sealdetail.ta0existingseal === false) {
-          this.newopticaleyecover = ta0sealdetail;
-        } else if (ta0seallocation.startsWith(FunctionClass.OPTICAL_EYE_COVER) && ta0sealdetail.ta0existingseal === false) {
-          this.newterminalcover1 = ta0sealdetail;
-        } else if (ta0seallocation.startsWith(FunctionClass.COMM_MODULE) && ta0sealdetail.ta0existingseal === false) {
           this.newmeterbattery = ta0sealdetail;
         } else if (ta0seallocation.startsWith(FunctionClass.OPTICAL_EYE_COVER) && ta0sealdetail.ta0existingseal === false) {
+          this.newopticaleyecover = ta0sealdetail;
+        } else if (ta0seallocation.startsWith(FunctionClass.COMM_MODULE) && ta0sealdetail.ta0existingseal === false) {
           this.newcommmodule = ta0sealdetail;
         }
       
@@ -1527,7 +1525,7 @@ this.loadingPresent();
 
     // Default value from parent
     var assetnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].assetnum;
-    var ta0olddeviceassetnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0olddeviceassetnum;
+    var ta0olddeviceassetnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0olddeviceserialnum;
     var ta0serialnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0serialnum;
     var ta0devicecategory = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0devicecategory;
     var orgid = this.itemOri.json.ta0feeder[this.fIndex].orgid;
@@ -1538,8 +1536,6 @@ this.loadingPresent();
       // Save Seal Details...
       // Save Data MeterCover
       if ((this.meterCoverArray[0].ta0sealnum != null || this.meterCoverArray[0].ta0sealnum != undefined) || this.meterCoverArray[0].ta0newsealnum != null || this.meterCoverArray[0].ta0newsealnum != undefined) {
-
-
         
           for (var i = 0; i < this.meterCoverArray.length; i++) {
             console.log(this.meterCoverArray[i].assetnum);
@@ -1549,25 +1545,7 @@ this.loadingPresent();
             this.meterCoverArray[i].orgid = orgid;
             this.meterCoverArray[i].siteid = siteid;
             this.meterCoverArray[i].wonum = wonum;
-            //this.meterCoverArray[i].ta0seallocation = "METER_COVER_" + (i + 1);
-            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.meterCoverArray[i]); 
-            /*         
-            if(this.meterCoverArray[i].ta0newsealnum !== null || this.meterCoverArray[i].ta0newsealnum !== undefined || this.meterCoverArray[i].ta0newsealnum !== '') {
-              var meterCoverVal = new SealInfo();
-              meterCoverVal.assetnum = assetnum;
-              meterCoverVal.orgid = orgid;
-              meterCoverVal.siteid = siteid;
-              meterCoverVal.wonum = wonum;
-              meterCoverVal.ta0seallocation = "METER_COVER_" + (i + 1);
-              meterCoverVal.ta0sealnum = this.meterCoverArray[i].ta0newsealnum;
-              meterCoverVal.ta0installind = true; 
-              meterCoverVal.ta0sealindicator = 'N';
-              meterCoverVal.serialnum = ta0serialnum;
-              meterCoverVal.devicecategory = ta0devicecategory;
-              this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(meterCoverVal);
-              console.log(JSON.stringify(meterCoverVal));
-            }
-            */
+            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.meterCoverArray[i]);            
           }
       }
 
@@ -1581,25 +1559,7 @@ this.loadingPresent();
           this.terminalCoverArray[k].assetnum = assetnum;
           this.terminalCoverArray[k].siteid = siteid;
           this.terminalCoverArray[k].wonum = wonum;
-          //this.terminalCoverArray[k].ta0seallocation = "TERMINAL_COVER_" + (k + 1);
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalCoverArray[k]);
-          /*
-          if(this.terminalCoverArray[k].ta0newsealnum !== null && this.terminalCoverArray[k].ta0newsealnum !== undefined && this.terminalCoverArray[k].ta0newsealnum !== '') {
-            var terminalCoverVal = new SealInfo();
-            terminalCoverVal.assetnum = assetnum;
-            terminalCoverVal.orgid = orgid;
-            terminalCoverVal.siteid = siteid;
-            terminalCoverVal.wonum = wonum;
-            terminalCoverVal.ta0seallocation = "TERMINAL_COVER_" + (k + 1);
-            terminalCoverVal.ta0sealnum = this.terminalCoverArray[k].ta0newsealnum;
-            terminalCoverVal.ta0installind = true; 
-            terminalCoverVal.ta0sealindicator = 'N'; 
-            terminalCoverVal.serialnum = ta0serialnum;
-            terminalCoverVal.devicecategory = ta0devicecategory;
-            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(terminalCoverVal);
-            console.log(JSON.stringify(terminalCoverVal));
-          }
-          */
+          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalCoverArray[k]);          
         }
       }
 
@@ -1614,25 +1574,7 @@ this.loadingPresent();
           this.fuseArray[j].orgid = orgid;
           this.fuseArray[j].siteid = siteid;
           this.fuseArray[j].wonum = wonum;
-          //this.fuseArray[j].ta0seallocation = "METER_FUSE_F" + (j + 1);
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.fuseArray[j]);
-          /*
-          if(this.fuseArray[j].ta0newsealnum !== null && this.fuseArray[j].ta0newsealnum !== undefined && this.fuseArray[j].ta0newsealnum !== '') {
-            var fuseVal = new SealInfo();
-            fuseVal.assetnum = assetnum;
-            fuseVal.orgid = orgid;
-            fuseVal.siteid = siteid;
-            fuseVal.wonum = wonum;
-            fuseVal.ta0seallocation = "METER_FUSE_F" + (j + 1);
-            fuseVal.ta0sealnum = this.fuseArray[j].ta0newsealnum;
-            fuseVal.ta0installind = true; 
-            fuseVal.ta0sealindicator = 'N'; 
-            fuseVal.serialnum = ta0serialnum;
-            fuseVal.devicecategory = ta0devicecategory;
-            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(fuseVal);
-            console.log(JSON.stringify(fuseVal));
-          }
-          */
+          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.fuseArray[j]);          
         }
       }
 
@@ -1648,24 +1590,7 @@ this.loadingPresent();
           this.mdButtonArray[m].orgid = orgid;
           this.mdButtonArray[m].siteid = siteid;
           this.mdButtonArray[m].wonum = wonum;
-          //this.mdButtonArray[m].ta0seallocation = "MD_BUTTON";
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.mdButtonArray[m]);
-          /*
-          if(this.mdButtonArray[m].ta0newsealnum !== null && this.mdButtonArray[m].ta0newsealnum !== undefined && this.mdButtonArray[m].ta0newsealnum !== '') {
-            var mdButtonVal = new SealInfo();
-            mdButtonVal.assetnum = assetnum;
-            mdButtonVal.orgid = orgid;
-            mdButtonVal.siteid = siteid;
-            mdButtonVal.wonum = wonum;
-            mdButtonVal.ta0seallocation = "MD_BUTTON";
-            mdButtonVal.ta0sealnum = this.mdButtonArray[m].ta0newsealnum;
-            mdButtonVal.ta0installind = true; 
-            mdButtonVal.ta0sealindicator = 'N'; 
-            mdButtonVal.serialnum = ta0serialnum;
-            mdButtonVal.devicecategory = ta0devicecategory;
-            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(mdButtonVal);
-            console.log(JSON.stringify(mdButtonVal));
-          }*/
+          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.mdButtonArray[m]);          
         }
       }
 
@@ -1681,25 +1606,7 @@ this.loadingPresent();
           this.meterBatteryArray[n].orgid = orgid;
           this.meterBatteryArray[n].siteid = siteid;
           this.meterBatteryArray[n].wonum = wonum;
-          //this.meterBatteryArray[n].ta0seallocation = "METER_BATTERY";
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.meterBatteryArray[n]);
-          /*
-          if(this.meterBatteryArray[n].ta0newsealnum !== null && this.meterBatteryArray[n].ta0newsealnum !== undefined && this.meterBatteryArray[n].ta0newsealnum !== '') {
-            var meterBatteryVal = new SealInfo();
-            meterBatteryVal.assetnum = assetnum;
-            meterBatteryVal.orgid = orgid;
-            meterBatteryVal.siteid = siteid;
-            meterBatteryVal.wonum = wonum;
-            meterBatteryVal.ta0seallocation = "METER_BATTERY";
-            meterBatteryVal.ta0sealnum = this.meterBatteryArray[n].ta0newsealnum;
-            meterBatteryVal.ta0installind = true; 
-            meterBatteryVal.ta0sealindicator = 'N'; 
-            meterBatteryVal.serialnum = ta0serialnum;
-            meterBatteryVal.devicecategory = ta0devicecategory;
-            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(meterBatteryVal);
-            console.log(JSON.stringify(meterBatteryVal));
-          }
-          */
+          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.meterBatteryArray[n]);          
         }
       }
 
@@ -1715,25 +1622,7 @@ this.loadingPresent();
           this.opticalEyeArray[b].orgid = orgid;
           this.opticalEyeArray[b].siteid = siteid;
           this.opticalEyeArray[b].wonum = wonum;
-          //this.opticalEyeArray[b].ta0seallocation = "OPTICAL_EYE_COVER";
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.opticalEyeArray[b]);
-          /*
-          if(this.opticalEyeArray[b].ta0newsealnum !== null && this.opticalEyeArray[b].ta0newsealnum !== undefined && this.opticalEyeArray[b].ta0newsealnum !== '') {
-            var opticalEyeyVal = new SealInfo();
-            opticalEyeyVal.assetnum = assetnum;
-            opticalEyeyVal.orgid = orgid;
-            opticalEyeyVal.siteid = siteid;
-            opticalEyeyVal.wonum = wonum;
-            opticalEyeyVal.ta0seallocation = "OPTICAL_EYE_COVER";
-            opticalEyeyVal.ta0sealnum = this.opticalEyeArray[b].ta0newsealnum;
-            opticalEyeyVal.ta0installind = true; 
-            opticalEyeyVal.ta0sealindicator = 'N'; 
-            opticalEyeyVal.serialnum = ta0serialnum;
-            opticalEyeyVal.devicecategory = ta0devicecategory;
-            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(opticalEyeyVal);
-            console.log(JSON.stringify(opticalEyeyVal));
-          }
-          */
+          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.opticalEyeArray[b]);          
         }
       }
 
@@ -2162,6 +2051,10 @@ this.loadingPresent();
     // Setting flag button colour (alif) - (29.12.2018)
     this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0silstickerstatus = 'Y';
 
+    
+    
+
+
     setTimeout(() => {
       loading.onWillDismiss(() => {
         this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
@@ -2327,7 +2220,7 @@ this.loadingPresent();
 
       // Default value from parent
       var assetnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].assetnum;
-      var ta0olddeviceassetnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0olddeviceassetnum;
+      var ta0olddeviceassetnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0olddeviceserialnum;
       var ta0serialnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0serialnum;
       var ta0devicecategory = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0devicecategory;
       var orgid = this.itemOri.json.ta0feeder[this.fIndex].orgid;
@@ -2449,9 +2342,9 @@ this.loadingPresent();
           console.log(this.newterminalcover1.ta0sealnum);
           console.log(this.newterminalcover1.ta0seallocation);
           if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
-            this.newterminalcover1.assetnum = ta0olddeviceassetnum;
+            this.newterminalcover1.parent = ta0olddeviceassetnum;
           } else {
-            this.newterminalcover1.assetnum = assetnum;
+            this.newterminalcover1.parent = assetnum;
           }
           this.newterminalcover1.orgid = orgid;
           this.newterminalcover1.siteid = siteid;
@@ -2468,9 +2361,9 @@ this.loadingPresent();
           console.log(this.newterminalcover2.ta0sealnum);
           console.log(this.newterminalcover2.ta0seallocation);
           if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
-            this.newterminalcover1.assetnum = ta0olddeviceassetnum;
+            this.newterminalcover2.parent = ta0olddeviceassetnum;
           } else {
-            this.newterminalcover1.assetnum = assetnum;
+            this.newterminalcover2.parent = assetnum;
           }      
           this.newterminalcover2.orgid = orgid;
           this.newterminalcover2.siteid = siteid;
@@ -2487,9 +2380,9 @@ this.loadingPresent();
           console.log(this.newmetercover1.ta0sealnum);
           console.log(this.newmetercover1.ta0seallocation);
           if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
-            this.newterminalcover1.assetnum = ta0olddeviceassetnum;
+            this.newmetercover1.parent = ta0olddeviceassetnum;
           } else {
-            this.newterminalcover1.assetnum = assetnum;
+            this.newmetercover1.parent = assetnum;
           }   
           this.newmetercover1.orgid = orgid;
           this.newmetercover1.siteid = siteid;
@@ -2506,9 +2399,9 @@ this.loadingPresent();
           console.log(this.newmetercover2.ta0sealnum);
           console.log(this.newmetercover2.ta0seallocation);
           if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
-            this.newterminalcover1.assetnum = ta0olddeviceassetnum;
+            this.newmetercover2.parent = ta0olddeviceassetnum;
           } else {
-            this.newterminalcover1.assetnum = assetnum;
+            this.newmetercover2.parent = assetnum;
           }   
           this.newmetercover2.orgid = orgid;
           this.newmetercover2.siteid = siteid;
@@ -2525,9 +2418,9 @@ this.loadingPresent();
           console.log(this.newmetercover3.ta0sealnum);
           console.log(this.newmetercover3.ta0seallocation);
           if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
-            this.newterminalcover1.assetnum = ta0olddeviceassetnum;
+            this.newmetercover3.parent = ta0olddeviceassetnum;
           } else {
-            this.newterminalcover1.assetnum = assetnum;
+            this.newmetercover3.parent = assetnum;
           }   
           this.newmetercover3.orgid = orgid;
           this.newmetercover3.siteid = siteid;
@@ -2544,9 +2437,9 @@ this.loadingPresent();
           console.log(this.newmdbutton.ta0sealnum);
           console.log(this.newmdbutton.ta0seallocation);
           if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
-            this.newterminalcover1.assetnum = ta0olddeviceassetnum;
+            this.newmdbutton.parent = ta0olddeviceassetnum;
           } else {
-            this.newterminalcover1.assetnum = assetnum;
+            this.newmdbutton.parent = assetnum;
           }   
           this.newmdbutton.orgid = orgid;
           this.newmdbutton.siteid = siteid;
@@ -2563,9 +2456,9 @@ this.loadingPresent();
           console.log(this.newopticaleyecover.ta0sealnum);
           console.log(this.newopticaleyecover.ta0seallocation);
           if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
-            this.newterminalcover1.assetnum = ta0olddeviceassetnum;
+            this.newopticaleyecover.parent = ta0olddeviceassetnum;
           } else {
-            this.newterminalcover1.assetnum = assetnum;
+            this.newopticaleyecover.parent = assetnum;
           }   
           this.newopticaleyecover.orgid = orgid;
           this.newopticaleyecover.siteid = siteid;
@@ -2582,9 +2475,9 @@ this.loadingPresent();
           console.log(this.newmeterbattery.ta0sealnum);
           console.log(this.newmeterbattery.ta0seallocation);
           if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
-            this.newterminalcover1.assetnum = ta0olddeviceassetnum;
+            this.newmeterbattery.parent = ta0olddeviceassetnum;
           } else {
-            this.newterminalcover1.assetnum = assetnum;
+            this.newmeterbattery.parent = assetnum;
           }   
           this.newmeterbattery.orgid = orgid;
           this.newmeterbattery.siteid = siteid;
@@ -2601,9 +2494,9 @@ this.loadingPresent();
           console.log(this.newcommmodule.ta0sealnum);
           console.log(this.newcommmodule.ta0seallocation);
           if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
-            this.newterminalcover1.assetnum = ta0olddeviceassetnum;
+            this.newcommmodule.parent = ta0olddeviceassetnum;
           } else {
-            this.newterminalcover1.assetnum = assetnum;
+            this.newcommmodule.parent = assetnum;
           }   
           this.newcommmodule.orgid = orgid;
           this.newcommmodule.siteid = siteid;

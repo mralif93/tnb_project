@@ -685,10 +685,10 @@ export class SealCrimplessSealPage implements OnInit {
     for(var i = 0 ; i < this.itemOri.json.ta0sealdetail.length ; i++) {
       if(this.ttbF1Array !== null && this.ttbF1Array.length > 0 ){
         for(var x = 0 ; x<this.ttbF1Array.length ; x++ ) {
-          if(this.ttbF1Array[x].ta0sealnum == this.itemOri.json.ta0sealdetail[i].ta0sealnum){              
+          if(this.ttbF1Array[x].ta0sealnum == this.itemOri.json.ta0sealdetail[i].ta0sealnum){
               this.itemOri.json.ta0sealdetail[i].ta0removeind = this.ttbF1Array[x].ta0removeind;
               this.itemOri.json.ta0sealdetail[i].ta0sealremreason = this.ttbF1Array[x].ta0sealremreason;
-              this.itemOri.json.ta0sealdetail[i].ta0sealcondition = this.ttbF1Array[x].ta0sealcondition;
+              this.itemOri.json.ta0sealdetail[i].ta0sealcondition = this.ttbF1Array[x].ta0sealcondition;              
           }              
         }
       }
@@ -794,125 +794,125 @@ export class SealCrimplessSealPage implements OnInit {
     }
     console.log(">SealCrimplessSealPage >>saveDeviceDetailsBefore >>>this.itemOri ==>",this.itemOri);
 
-    let loading = this.loadingCtrl.create({
-      content: "Loading..."
-    });
-    loading.present();
-    this.gf.loadingTimer(loading);
-
-    setTimeout(() => {
-      loading.onWillDismiss(() => {
-        this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);        
-        this.gf.displayToast("Crimpless Details have updated.");
-        loading.dismiss();
+      let loading = this.loadingCtrl.create({
+        content: "Loading..."
       });
-    }, 10000);
+      loading.present();
+      this.gf.loadingTimer(loading);
 
-    if (this.gv.testMobile && (DeviceConstants.NETWORK_UNKNOWN === this.gf.checkNetwork() || DeviceConstants.NETWORK_NONE === this.gf.checkNetwork())) {
-
-      this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
-      //this.itemOri.json.ta0feeder[0].multiassetlocci[0].loc_silStickers_haveChange = true;
-      this.gf.displayToast("Crimpless Details updated locally.");
-      loading.dismiss();
-      
-    } else if ((DeviceConstants.NETWORK_2G === this.gf.checkNetwork() || DeviceConstants.NETWORK_3G === this.gf.checkNetwork() || DeviceConstants.NETWORK_4G === this.gf.checkNetwork())) {
-      debugger;
-      cordova.plugins.MobileSignal.getSignalStrength((data) => {
-        if (this.gv.deviceSignal <= data) {
-         
-          var ta0sealdetails = {
-            ta0sealdetail: []
-          } ; 
-          for(var seal of this.itemOri.json.ta0sealdetail) {
-            ta0sealdetails.ta0sealdetail.push(seal);
-          }
-          var feederCode = '';          
-          var itemVal = JSON.parse(JSON.stringify(ta0sealdetails));          
-          var itemArray = [];
-          itemArray.push(itemVal);
-
-          this.dataService
-            .saveRecordWithNewType(itemArray, this.itemOri.json.wonum, DeviceConstants.PAGE_ACTION_SILSWORKORDER, feederCode, this.itemOri.json.worktype)
-            .then(results => {
-              console.log(">SealCrimplessSealPage >>saveDeviceDetailsBefore >>>results ==>", JSON.stringify(results));
-              this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", false);
-              //this.itemOri.json.ta0feeder[0].multiassetlocci[0].loc_ta0silStickers_haveChange = false;
-
-              /** convert string into json */
-              var resultDes = JSON.parse(results.toString());
-              if (resultDes.processStatus === "failure") {
-                resultDes.description.replace(/(?!\w|\s)./g, '').replace(/\s+/g, ' ').replace(/^(\s*)([\W\w]*)(\b\s*$)/g, '$2');
-                // Remove double quote+words not working..
-                resultDes.description.replace(/"/g, '');
-                var split = resultDes.description.split(":");
-                var result = split[1].substr(0, split[1].length - 1);
-                var NewResult = result.substring(2);                
-                resultDes.description.replace(/com.ibm.maximo.oslc.OslcException/g, "Failure");
-                this.gf.displayToast(NewResult);
-              } else {
-                this.gf.warningAlert('Success', 'Crimpless Details save successfully', 'Close');                
-                this.navCtrl.pop();
-              }
-              loading.dismiss();
-
-            }).catch(error => {
-              console.log(">SealCrimplessSealPage >>saveDeviceDetailsBefore >>>Error ==>" + error);
-              this.gf.warningAlert('Error', 'Crimpless Details is failed to save.', 'Close');
-              loading.dismiss();
-            });
-        } else {
-          //No Signal
-          this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);          
-          this.gf.displayToast("Crimpless Details have updated locally.");
-          this.navCtrl.pop();
-          loading.dismiss();
-        }
-        
-      });
-
-    } else {
-      debugger;
-      var feederCode = '';
-      var itemVal = JSON.parse(JSON.stringify(this.itemOri.json.ta0feeder[0].multiassetlocci[0]));      
-      var ta0sealdetails = {
-        ta0sealdetail: []
-      } ; 
-      for(var seal of this.itemOri.json.ta0sealdetail) {
-        ta0sealdetails.ta0sealdetail.push(seal);
-      }          
-      var itemVal = JSON.parse(JSON.stringify(ta0sealdetails));          
-      var itemArray = [];
-      itemArray.push(itemVal);
-     
-      this.dataService
-        .saveRecordWithNewType(itemArray, this.itemOri.json.wonum, DeviceConstants.PAGE_ACTION_SILSWORKORDER, feederCode, this.itemOri.json.worktype)
-        .then(results => {
-          console.log(">SealCrimplessSealPage >>saveDeviceDetailsBefore >>>results ==>", JSON.stringify(results));
-          this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", false);
-          //this.itemOri.json.ta0feeder[0].multiassetlocci[0].loc_ta0silStickers_haveChange = false;
-
-          /** convert string into json */
-          var resultDes = JSON.parse(results.toString());
-          if (resultDes.processStatus === "failure") {
-            resultDes.description.replace(/(?!\w|\s)./g, '').replace(/\s+/g, ' ').replace(/^(\s*)([\W\w]*)(\b\s*$)/g, '$2');
-            // Remove double quote+words not working..
-            resultDes.description.replace(/"/g, '');
-            var split = resultDes.description.split(":");
-            var result = split[1].substr(0, split[1].length - 1);
-            var NewResult = result.substring(2);           
-            resultDes.description.replace(/com.ibm.maximo.oslc.OslcException/g, "Failure");
-            this.gf.displayToast(NewResult);
-          } else {
-            this.gf.warningAlert('Success', 'Crimpless Details save successfully', 'Close');
-            this.navCtrl.pop();
-          }
-          loading.dismiss();
-
-        }).catch(error => {
-          this.gf.stopLoading();
+      setTimeout(() => {
+        loading.onWillDismiss(() => {
+          this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);        
+          this.gf.displayToast("Crimpless Details have updated.");
           loading.dismiss();
         });
-    }
+      }, 10000);
+
+      if (this.gv.testMobile && (DeviceConstants.NETWORK_UNKNOWN === this.gf.checkNetwork() || DeviceConstants.NETWORK_NONE === this.gf.checkNetwork())) {
+
+        this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
+        //this.itemOri.json.ta0feeder[0].multiassetlocci[0].loc_silStickers_haveChange = true;
+        this.gf.displayToast("Crimpless Details updated locally.");
+        loading.dismiss();
+        
+      } else if ((DeviceConstants.NETWORK_2G === this.gf.checkNetwork() || DeviceConstants.NETWORK_3G === this.gf.checkNetwork() || DeviceConstants.NETWORK_4G === this.gf.checkNetwork())) {
+        debugger;
+        cordova.plugins.MobileSignal.getSignalStrength((data) => {
+          if (this.gv.deviceSignal <= data) {
+          
+            var ta0sealdetails = {
+              ta0sealdetail: []
+            } ; 
+            for(var seal of this.itemOri.json.ta0sealdetail) {
+              ta0sealdetails.ta0sealdetail.push(seal);
+            }
+            var feederCode = '';          
+            var itemVal = JSON.parse(JSON.stringify(ta0sealdetails));          
+            var itemArray = [];
+            itemArray.push(itemVal);
+
+            this.dataService
+              .saveRecordWithNewType(itemArray, this.itemOri.json.wonum, DeviceConstants.PAGE_ACTION_SILSWORKORDER, feederCode, this.itemOri.json.worktype)
+              .then(results => {
+                console.log(">SealCrimplessSealPage >>saveDeviceDetailsBefore >>>results ==>", JSON.stringify(results));
+                this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", false);
+                //this.itemOri.json.ta0feeder[0].multiassetlocci[0].loc_ta0silStickers_haveChange = false;
+
+                /** convert string into json */
+                var resultDes = JSON.parse(results.toString());
+                if (resultDes.processStatus === "failure") {
+                  resultDes.description.replace(/(?!\w|\s)./g, '').replace(/\s+/g, ' ').replace(/^(\s*)([\W\w]*)(\b\s*$)/g, '$2');
+                  // Remove double quote+words not working..
+                  resultDes.description.replace(/"/g, '');
+                  var split = resultDes.description.split(":");
+                  var result = split[1].substr(0, split[1].length - 1);
+                  var NewResult = result.substring(2);                
+                  resultDes.description.replace(/com.ibm.maximo.oslc.OslcException/g, "Failure");
+                  this.gf.displayToast(NewResult);
+                } else {
+                  this.gf.warningAlert('Success', 'Crimpless Details save successfully', 'Close');                
+                  this.navCtrl.pop();
+                }
+                loading.dismiss();
+
+              }).catch(error => {
+                console.log(">SealCrimplessSealPage >>saveDeviceDetailsBefore >>>Error ==>" + error);
+                this.gf.warningAlert('Error', 'Crimpless Details is failed to save.', 'Close');
+                loading.dismiss();
+              });
+          } else {
+            //No Signal
+            this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);          
+            this.gf.displayToast("Crimpless Details have updated locally.");
+            this.navCtrl.pop();
+            loading.dismiss();
+          }
+          
+        });
+
+      } else {
+        debugger;
+        var feederCode = '';
+        var itemVal = JSON.parse(JSON.stringify(this.itemOri.json.ta0feeder[0].multiassetlocci[0]));      
+        var ta0sealdetails = {
+          ta0sealdetail: []
+        } ; 
+        for(var seal of this.itemOri.json.ta0sealdetail) {
+          ta0sealdetails.ta0sealdetail.push(seal);
+        }          
+        var itemVal = JSON.parse(JSON.stringify(ta0sealdetails));          
+        var itemArray = [];
+        itemArray.push(itemVal);
+      
+        this.dataService
+          .saveRecordWithNewType(itemArray, this.itemOri.json.wonum, DeviceConstants.PAGE_ACTION_SILSWORKORDER, feederCode, this.itemOri.json.worktype)
+          .then(results => {
+            console.log(">SealCrimplessSealPage >>saveDeviceDetailsBefore >>>results ==>", JSON.stringify(results));
+            this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", false);
+            //this.itemOri.json.ta0feeder[0].multiassetlocci[0].loc_ta0silStickers_haveChange = false;
+
+            /** convert string into json */
+            var resultDes = JSON.parse(results.toString());
+            if (resultDes.processStatus === "failure") {
+              resultDes.description.replace(/(?!\w|\s)./g, '').replace(/\s+/g, ' ').replace(/^(\s*)([\W\w]*)(\b\s*$)/g, '$2');
+              // Remove double quote+words not working..
+              resultDes.description.replace(/"/g, '');
+              var split = resultDes.description.split(":");
+              var result = split[1].substr(0, split[1].length - 1);
+              var NewResult = result.substring(2);           
+              resultDes.description.replace(/com.ibm.maximo.oslc.OslcException/g, "Failure");
+              this.gf.displayToast(NewResult);
+            } else {
+              this.gf.warningAlert('Success', 'Crimpless Details save successfully', 'Close');
+              this.navCtrl.pop();
+            }
+            loading.dismiss();
+
+          }).catch(error => {
+            this.gf.stopLoading();
+            loading.dismiss();
+          });
+      }
   }
 
 

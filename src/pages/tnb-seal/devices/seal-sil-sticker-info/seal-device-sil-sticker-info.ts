@@ -1793,7 +1793,7 @@ export class SealDeviceSilNStickerInfoPage {
 
     // Default value from parent
     var assetnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].assetnum;
-    var ta0olddeviceassetnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0olddeviceassetnum;
+    var ta0olddeviceassetnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0olddeviceserialnum;
     var ta0serialnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0serialnum;
     var ta0devicecategory = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0devicecategory;
     var orgid = this.itemOri.json.ta0feeder[this.fIndex].orgid;
@@ -1807,9 +1807,9 @@ export class SealDeviceSilNStickerInfoPage {
       console.log(this.newterminalcover1.ta0sealnum);
       console.log(this.newterminalcover1.ta0seallocation);
       if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
-        this.newterminalcover1.assetnum = ta0olddeviceassetnum;
+        this.newterminalcover1.parent = ta0olddeviceassetnum;
       } else {
-        this.newterminalcover1.assetnum = assetnum;
+        this.newterminalcover1.parent = assetnum;
       }
       this.newterminalcover1.orgid = orgid;
       this.newterminalcover1.siteid = siteid;
@@ -1826,9 +1826,9 @@ export class SealDeviceSilNStickerInfoPage {
       console.log(this.newterminalcover2.ta0sealnum);
       console.log(this.newterminalcover2.ta0seallocation);
       if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
-        this.newterminalcover1.assetnum = ta0olddeviceassetnum;
+        this.newterminalcover2.parent = ta0olddeviceassetnum;
       } else {
-        this.newterminalcover1.assetnum = assetnum;
+        this.newterminalcover2.parent = assetnum;
       }      
       this.newterminalcover2.orgid = orgid;
       this.newterminalcover2.siteid = siteid;
@@ -1845,9 +1845,9 @@ export class SealDeviceSilNStickerInfoPage {
       console.log(this.newmetercover1.ta0sealnum);
       console.log(this.newmetercover1.ta0seallocation);
       if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
-        this.newterminalcover1.assetnum = ta0olddeviceassetnum;
+        this.newmetercover1.parent = ta0olddeviceassetnum;
       } else {
-        this.newterminalcover1.assetnum = assetnum;
+        this.newmetercover1.parent = assetnum;
       }   
       this.newmetercover1.orgid = orgid;
       this.newmetercover1.siteid = siteid;
@@ -1864,9 +1864,9 @@ export class SealDeviceSilNStickerInfoPage {
       console.log(this.newmetercover2.ta0sealnum);
       console.log(this.newmetercover2.ta0seallocation);
       if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
-        this.newterminalcover1.assetnum = ta0olddeviceassetnum;
+        this.newmetercover2.parent = ta0olddeviceassetnum;
       } else {
-        this.newterminalcover1.assetnum = assetnum;
+        this.newmetercover2.parent = assetnum;
       }   
       this.newmetercover2.orgid = orgid;
       this.newmetercover2.siteid = siteid;
@@ -1883,9 +1883,9 @@ export class SealDeviceSilNStickerInfoPage {
       console.log(this.newmetercover3.ta0sealnum);
       console.log(this.newmetercover3.ta0seallocation);
       if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
-        this.newterminalcover1.assetnum = ta0olddeviceassetnum;
+        this.newmetercover3.parent = ta0olddeviceassetnum;
       } else {
-        this.newterminalcover1.assetnum = assetnum;
+        this.newmetercover3.parent = assetnum;
       }   
       this.newmetercover3.orgid = orgid;
       this.newmetercover3.siteid = siteid;
@@ -1902,9 +1902,9 @@ export class SealDeviceSilNStickerInfoPage {
       console.log(this.newmdbutton.ta0sealnum);
       console.log(this.newmdbutton.ta0seallocation);
       if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
-        this.newterminalcover1.assetnum = ta0olddeviceassetnum;
+        this.newmdbutton.parent = ta0olddeviceassetnum;
       } else {
-        this.newterminalcover1.assetnum = assetnum;
+        this.newmdbutton.parent = assetnum;
       }   
       this.newmdbutton.orgid = orgid;
       this.newmdbutton.siteid = siteid;
@@ -1921,9 +1921,9 @@ export class SealDeviceSilNStickerInfoPage {
       console.log(this.newopticaleyecover.ta0sealnum);
       console.log(this.newopticaleyecover.ta0seallocation);
       if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
-        this.newterminalcover1.assetnum = ta0olddeviceassetnum;
+        this.newopticaleyecover.parent = ta0olddeviceassetnum;
       } else {
-        this.newterminalcover1.assetnum = assetnum;
+        this.newopticaleyecover.parent = assetnum;
       }   
       this.newopticaleyecover.orgid = orgid;
       this.newopticaleyecover.siteid = siteid;
@@ -1940,9 +1940,9 @@ export class SealDeviceSilNStickerInfoPage {
       console.log(this.newmeterbattery.ta0sealnum);
       console.log(this.newmeterbattery.ta0seallocation);
       if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
-        this.newterminalcover1.assetnum = ta0olddeviceassetnum;
+        this.newmeterbattery.parent = ta0olddeviceassetnum;
       } else {
-        this.newterminalcover1.assetnum = assetnum;
+        this.newmeterbattery.parent = assetnum;
       }   
       this.newmeterbattery.orgid = orgid;
       this.newmeterbattery.siteid = siteid;
@@ -1959,9 +1959,9 @@ export class SealDeviceSilNStickerInfoPage {
       console.log(this.newcommmodule.ta0sealnum);
       console.log(this.newcommmodule.ta0seallocation);
       if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
-        this.newterminalcover1.assetnum = ta0olddeviceassetnum;
+        this.newcommmodule.parent = ta0olddeviceassetnum;
       } else {
-        this.newterminalcover1.assetnum = assetnum;
+        this.newcommmodule.parent = assetnum;
       }   
       this.newcommmodule.orgid = orgid;
       this.newcommmodule.siteid = siteid;

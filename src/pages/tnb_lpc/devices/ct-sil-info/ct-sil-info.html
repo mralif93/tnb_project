@@ -35,21 +35,15 @@
           <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 0px;">
             Terminal CT
           </ion-col>
-          <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
-            <!-- <button ion-button small icon-only round mode="md" style="float: right;" *ngIf="showAddTerminalCt"
-            (click)="addTerminalCt()">
-            <ion-icon ios="md-add" md="md-add"></ion-icon>
-          </button> -->
+          <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">           
           </ion-col>
         </ion-row>
       </ion-item-divider>
-      <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;" *ngFor="let attr of terminalCtRedArray; let j = index">
+      <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;" *ngFor="let attr of terminalCTArray; let j = index">
         <ion-row>
           <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
             <ion-item no-lines>
-              <ion-label *ngIf="terminalCtRedArray.length <= 1" color="primary">Terminal CT Red</ion-label>
-              <ion-label *ngIf="terminalCtRedArray.length > 1" color="primary">Terminal CT Red {{ j + 1 }}
-              </ion-label>
+              <ion-label color="primary">Terminal CT</ion-label>
             </ion-item>
           </ion-col>
           <ion-col col-12 col-sm-12 col-md-1>
@@ -79,7 +73,7 @@
         <ion-row>
           <ion-col col-12 col-sm-12 col-md-3>
             <ion-item no-lines>
-              <ion-label color="primary">Condition</ion-label>
+              <ion-label color="primary">CT Type</ion-label>
             </ion-item>
           </ion-col>
           <ion-col col-12 col-sm-12 col-md-1>
@@ -89,85 +83,13 @@
           </ion-col>
           <ion-col col-12 col-sm-12 col-md-6>
             <ion-item>
-              <ion-select [(ngModel)]="attr.ta0sealcondition" interface="popover" placeholder="Please select value"
-                [ngClass]="(attr.ta0sealcondition == '' || (attr.tta0sealcondition == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
-                <ion-option *ngFor="let key of sc" value="{{ key.json.value }}">
-                  {{ key.json.description }}
-                </ion-option>
-              </ion-select>
+              <ion-select [(ngModel)]="CTType" interface="popover" placeholder="Please select value"
+                [ngClass]="(CTType == '' || (CTType == undefined && !validateInput)) ? 'redHighlightText' : 'blackHighlightText'">              
+                  <ion-option value="red">Terminal CT Red</ion-option>
+                  <ion-option value="yellow">Terminal CT Yellow</ion-option>
+                  <ion-option value="blue">Terminal CT Blue</ion-option>
+              </ion-select>              
             </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;"
-            *ngIf="attr.ta0removeind">
-            <ion-item no-lines>
-              <ion-label color="primary"> Removal Reason</ion-label>
-              <!-- <ion-label *ngIf="ttbF1Array.length > 1" color="primary"> {{sealDetail.ta0seallocation_description}} - {{ j + 1 }}</ion-label> -->
-            </ion-item>
-          </ion-col>
-          <ion-col col-12 col-sm-12 col-md-1 *ngIf="attr.ta0removeind">
-
-          </ion-col>
-          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;"
-            *ngIf="attr.ta0removeind">
-            <ion-item>
-              <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value"
-                [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
-                <ion-option *ngFor="let key of rr" value="{{ key.json.value }}">
-                  {{ key.json.description }}
-                </ion-option>
-              </ion-select>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-      </span>
-
-      <ion-item-divider color="light" *ngIf="terminalCtYellowArray.length > 0">
-        <ion-row align-items-center>
-          <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 0px;">
-            Terminal CT
-          </ion-col>
-          <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
-            <!-- <button ion-button small icon-only round mode="md" style="float: right;" *ngIf="showAddTerminalCt"
-            (click)="addTerminalCt()">
-            <ion-icon ios="md-add" md="md-add"></ion-icon>
-          </button> -->
-          </ion-col>
-        </ion-row>
-      </ion-item-divider>
-      <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;" *ngFor="let attr of terminalCtYellowArray; let j = index">
-        <ion-row>
-          <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
-            <ion-item no-lines>
-              <ion-label *ngIf="terminalCtYellowArray.length <= 1" color="primary">Terminal CT Yellow</ion-label>
-              <ion-label *ngIf="terminalCtYellowArray.length > 1" color="primary">Terminal CT Yellow{{ j + 1 }}
-              </ion-label>
-            </ion-item>
-          </ion-col>
-          <ion-col col-12 col-sm-12 col-md-1>
-            <ion-item no-lines>
-              <ion-checkbox [(ngModel)]="attr.ta0removeind">
-              </ion-checkbox>
-            </ion-item>
-          </ion-col>
-          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
-            <ion-item>
-              <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30" placeholder="Please Enter"
-                clearInput (keyup)="userInputLengthNum($event,'terminalCTYellow',j,'before')" [readonly]="true" 
-                [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
-              </ion-input>
-            </ion-item>
-          </ion-col>
-          <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
-            <button ion-button (click)="barcodeScan(terminalCtYellowArray,j,1, 'before')">
-              <ion-icon name="barcode"></ion-icon>
-            </button>
-          </ion-col>
-          <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;" *ngIf="j > 0">
-            <button ion-button (click)="deleteTerminalCt(j)">
-              <ion-icon name="trash"></ion-icon>
-            </button>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -217,97 +139,6 @@
         </ion-row>
       </span>
 
-      <ion-item-divider color="light" *ngIf="terminalCtBlueArray.length > 0">
-        <ion-row align-items-center>
-          <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 0px;">
-            Terminal CT
-          </ion-col>
-          <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
-            <!-- <button ion-button small icon-only round mode="md" style="float: right;" *ngIf="showAddTerminalCt"
-            (click)="addTerminalCt()">
-            <ion-icon ios="md-add" md="md-add"></ion-icon>
-          </button> -->
-          </ion-col>
-        </ion-row>
-      </ion-item-divider>
-      <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;" *ngFor="let attr of terminalCtBlueArray; let j = index">
-        <ion-row>
-          <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
-            <ion-item no-lines>
-              <ion-label *ngIf="terminalCtBlueArray.length <= 1" color="primary">Terminal CT Blue</ion-label>
-              <ion-label *ngIf="terminalCtBlueArray.length > 1" color="primary">Terminal CT Blue {{ j + 1 }}
-              </ion-label>
-            </ion-item>
-          </ion-col>
-          <ion-col col-12 col-sm-12 col-md-1>
-            <ion-item no-lines>
-              <ion-checkbox [(ngModel)]="attr.ta0removeind"></ion-checkbox>
-            </ion-item>
-          </ion-col>
-          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
-            <ion-item>
-              <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30" placeholder="Please Enter"
-                clearInput (keyup)="userInputLengthNum($event,'terminalCTBlue',j,'before')" [readonly]="true" 
-                [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
-              </ion-input>
-            </ion-item>
-          </ion-col>
-          <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
-            <button ion-button (click)="barcodeScan(terminalCtBlueArray,j,1, 'before')">
-              <ion-icon name="barcode"></ion-icon>
-            </button>
-          </ion-col>
-          <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;" *ngIf="j > 0">
-            <button ion-button (click)="deleteTerminalCt(j)">
-              <ion-icon name="trash"></ion-icon>
-            </button>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-12 col-sm-12 col-md-3>
-            <ion-item no-lines>
-              <ion-label color="primary">Condition</ion-label>
-            </ion-item>
-          </ion-col>
-          <ion-col col-12 col-sm-12 col-md-1>
-            <ion-item no-lines>
-
-            </ion-item>
-          </ion-col>
-          <ion-col col-12 col-sm-12 col-md-6>
-            <ion-item>
-              <ion-select [(ngModel)]="attr.ta0sealcondition" interface="popover" placeholder="Please select value"
-                [ngClass]="(attr.ta0sealcondition == '' || (attr.tta0sealcondition == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
-                <ion-option *ngFor="let key of sc" value="{{ key.json.value }}">
-                  {{ key.json.description }}
-                </ion-option>
-              </ion-select>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;" *ngIf="attr.ta0removeind">
-            <ion-item no-lines>
-              <ion-label color="primary"> Removal Reason</ion-label>
-              <!-- <ion-label *ngIf="ttbF1Array.length > 1" color="primary"> {{sealDetail.ta0seallocation_description}} - {{ j + 1 }}</ion-label> -->
-            </ion-item>
-          </ion-col>
-          <ion-col col-12 col-sm-12 col-md-1 *ngIf="attr.ta0removeind">
-
-          </ion-col>
-          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;"
-            *ngIf="attr.ta0removeind">
-            <ion-item>
-              <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value"
-                [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
-                <ion-option *ngFor="let key of rr" value="{{ key.json.value }}">
-                  {{ key.json.description }}
-                </ion-option>
-              </ion-select>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-      </span>
     </span>
 
     <span *ngSwitchCase="'after'">
@@ -323,31 +154,24 @@
         </ion-row>
       </ion-item-divider>
     
-      <ion-item-divider color="light" *ngIf="nTerminalCtRedArray.length > 0">
+      <ion-item-divider color="light" *ngIf="terminalCTArray.length > 0">
         <ion-row align-items-center>
           <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 0px;">
             Terminal CT
           </ion-col>
-          <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
-            <!-- <button ion-button small icon-only round mode="md" style="float: right;" *ngIf="showAddTerminalCt"
-            (click)="addTerminalCt()">
-            <ion-icon ios="md-add" md="md-add"></ion-icon>
-          </button> -->
+          <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">           
           </ion-col>
         </ion-row>
       </ion-item-divider>
-      <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;" *ngFor="let attr of nTerminalCtRedArray; let j = index">
+      <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;" *ngFor="let attr of nTerminalCTArray; let j = index">
         <ion-row>
           <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
             <ion-item no-lines>
-              <ion-label *ngIf="nTerminalCtRedArray.length <= 1" color="primary">Terminal CT Red</ion-label>
-              <ion-label *ngIf="nTerminalCtRedArray.length > 1" color="primary">Terminal CT Red {{ j + 1 }}
-              </ion-label>
+              <ion-label color="primary">Terminal</ion-label>
             </ion-item>
           </ion-col>
           <ion-col col-12 col-sm-12 col-md-1>
             <ion-item no-lines>
-              <!-- <ion-checkbox [(ngModel)]="attr.ta0removeind"></ion-checkbox> -->
             </ion-item>
           </ion-col>
           <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
@@ -358,7 +182,7 @@
             </ion-item>
           </ion-col>
           <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
-            <button ion-button (click)="barcodeScan(nTerminalCtRedArray,j,1, 'before')">
+            <button ion-button (click)="barcodeScan(terminalCTArray,j,1, 'before')">
               <ion-icon name="barcode"></ion-icon>
             </button>
           </ion-col>
@@ -368,101 +192,29 @@
             </button>
           </ion-col>
         </ion-row>
-      </span>
-    
-      <ion-item-divider color="light" *ngIf="nTerminalCtYellowArray.length > 0">
-        <ion-row align-items-center>
-          <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 0px;">
-            Terminal CT
-          </ion-col>
-          <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
-            <!-- <button ion-button small icon-only round mode="md" style="float: right;" *ngIf="showAddTerminalCt"
-            (click)="addTerminalCt()">
-            <ion-icon ios="md-add" md="md-add"></ion-icon>
-          </button> -->
-          </ion-col>
-        </ion-row>
-      </ion-item-divider>
-      <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;" *ngFor="let attr of nTerminalCtYellowArray; let j = index">
         <ion-row>
-          <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-col col-12 col-sm-12 col-md-3>
             <ion-item no-lines>
-              <ion-label *ngIf="nTerminalCtYellowArray.length <= 1" color="primary">Terminal CT Yellow</ion-label>
-              <ion-label *ngIf="nTerminalCtYellowArray.length > 1" color="primary">Terminal CT Yellow{{ j + 1 }}
-              </ion-label>
+              <ion-label color="primary">CT Type</ion-label>
             </ion-item>
           </ion-col>
           <ion-col col-12 col-sm-12 col-md-1>
             <ion-item no-lines>
-              <!-- <ion-checkbox [(ngModel)]="attr.ta0removeind"></ion-checkbox> -->
+
             </ion-item>
           </ion-col>
-          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+          <ion-col col-12 col-sm-12 col-md-6>
             <ion-item>
-              <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30" placeholder="Please Enter" clearInput
-                [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
-              </ion-input>
+              <ion-select [(ngModel)]="newCTType" interface="popover" placeholder="Please select value"
+                [ngClass]="(newCTType == '' || (newCTType == undefined && !validateInput)) ? 'redHighlightText' : 'blackHighlightText'">
+                  <ion-option value="red">Terminal CT Red</ion-option>
+                  <ion-option value="yellow">Terminal CT Yellow</ion-option>
+                  <ion-option value="blue">Terminal CT Blue</ion-option>
+              </ion-select>
             </ion-item>
-          </ion-col>
-          <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
-            <button ion-button (click)="barcodeScan(nTerminalCtYellowArray,j,1, 'before')">
-              <ion-icon name="barcode"></ion-icon>
-            </button>
-          </ion-col>
-          <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;" *ngIf="j > 0">
-            <button ion-button (click)="deleteTerminalCt(j)">
-              <ion-icon name="trash"></ion-icon>
-            </button>
           </ion-col>
         </ion-row>
-      </span>
-    
-      <ion-item-divider color="light" *ngIf="nTerminalCtBlueArray.length > 0">
-        <ion-row align-items-center>
-          <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 0px;">
-            Terminal CT
-          </ion-col>
-          <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px; text-align:right">
-            <!-- <button ion-button small icon-only round mode="md" style="float: right;" *ngIf="showAddTerminalCt"
-            (click)="addTerminalCt()">
-            <ion-icon ios="md-add" md="md-add"></ion-icon>
-          </button> -->
-          </ion-col>
-        </ion-row>
-      </ion-item-divider>
-      <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;" *ngFor="let attr of nTerminalCtBlueArray; let j = index">
-        <ion-row>
-          <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
-            <ion-item no-lines>
-              <ion-label *ngIf="nTerminalCtBlueArray.length <= 1" color="primary">Terminal CT Blue</ion-label>
-              <ion-label *ngIf="nTerminalCtBlueArray.length > 1" color="primary">Terminal CT Blue {{ j + 1 }}
-              </ion-label>
-            </ion-item>
-          </ion-col>
-          <ion-col col-12 col-sm-12 col-md-1>
-            <ion-item no-lines>
-              <!-- <ion-checkbox [(ngModel)]="attr.ta0removeind"></ion-checkbox> -->
-            </ion-item>
-          </ion-col>
-          <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
-            <ion-item>
-              <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30" placeholder="Please Enter" clearInput
-                [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput || attr.ta0error) ? 'redHighlightText' : 'blackHighlightText'">
-              </ion-input>
-            </ion-item>
-          </ion-col>
-          <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
-            <button ion-button (click)="barcodeScan(nTerminalCtBlueArray,j,1, 'before')">
-              <ion-icon name="barcode"></ion-icon>
-            </button>
-          </ion-col>
-          <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;" *ngIf="j > 0">
-            <button ion-button (click)="deleteTerminalCt(j)">
-              <ion-icon name="trash"></ion-icon>
-            </button>
-          </ion-col>
-        </ion-row>
-      </span>
+      </span>          
     </span>
 
   </span>
