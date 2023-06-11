@@ -89,7 +89,7 @@
           <ion-col col-12 col-sm-12 col-md-6>
             <ion-item>
               <ion-select [(ngModel)]="attr.ta0sealcondition" interface="popover" placeholder="Please select value"
-                [ngClass]="(attr.ta0sealcondition == '' || (attr.tta0sealcondition == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
+                [ngClass]="(attr.ta0sealcondition == '' || (attr.ta0sealcondition == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
                 <ion-option *ngFor="let key of sc" value="{{ key.json.value }}">
                   {{ key.json.description }}
                 </ion-option>
