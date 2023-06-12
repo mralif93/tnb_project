@@ -67,6 +67,8 @@ export class SealCtSilInfoPage {
   nTerminalCtRedArray = [];
   nTerminalCtYellowArray = [];
   nTerminalCtBlueArray = [];
+
+  options: BarcodeScannerOptions;
   
   constructor(public navCtrl: NavController, public params: NavParams, public toastCtrl: ToastController,
     public gf: GlobalFunction, private dataService: DataServiceProvider, private jsonStore: JsonStoreCrudProvider,
@@ -734,5 +736,58 @@ export class SealCtSilInfoPage {
         return true;
     }
   }
+
+  barcodeScan(deviceDetailsArray, index, indicator, type) {
+
+    this.options = {
+      prompt: "Scan your barcode "
+    }
+
+    this.barcodeScanner.scan(this.options).then((barcodeData) => {
+      if (type === "before") { // before
+        if (indicator == 1) {
+          if (deviceDetailsArray[index].ta0sealnum === barcodeData.text.trim()) {
+            this.gf.displayToast("Entered value is matches with barcode.");
+          } else {
+            if (deviceDetailsArray[index].ta0sealnum !== '' && deviceDetailsArray[index].ta0sealnum !== null && typeof deviceDetailsArray[index].ta0sealnum !== 'undefined') {
+              this.gf.displayToast("Entered value does not matches with barcode.");
+            } else {
+              deviceDetailsArray[index].ta0sealnum = barcodeData.text.trim();
+            }
+          }
+        } else if (indicator == 2) {
+          if (deviceDetailsArray[index].ta0stickernum === barcodeData.text.trim()) {
+            this.gf.displayToast("Entered value is matches with barcode.");
+          } else {
+            if (deviceDetailsArray[index].ta0stickernum !== '' && deviceDetailsArray[index].ta0stickernum !== null && typeof deviceDetailsArray[index].ta0stickernum !== 'undefined') {
+              this.gf.displayToast("Entered value does not matches with barcode.");
+            } else {
+              deviceDetailsArray[index].ta0stickernum = barcodeData.text.trim();
+            }
+          }
+        }
+      } else { // after
+        if (indicator == 1) {         
+          deviceDetailsArray.ta0sealnum = barcodeData.text.trim();         
+        } else if (indicator == 2) {
+          if (deviceDetailsArray[index].ta0newstickernum === barcodeData.text.trim()) {
+            this.gf.displayToast("Entered value is matches with barcode.");
+          } else {
+            if (deviceDetailsArray[index].ta0newstickernum !== '' && deviceDetailsArray[index].ta0newstickernum !== null && typeof deviceDetailsArray[index].ta0newstickernum !== 'undefined') {
+              this.gf.displayToast("Entered value does not matches with barcode.");
+            } else {
+              deviceDetailsArray[index].ta0newstickernum = barcodeData.text.trim();
+            }
+          }
+        }
+      }
+    },
+      (err) => {
+        this.toast.show(err, '5000', 'center').subscribe(
+          toast => { console.log(toast); }
+        );
+      });
+  }
+
 
 }
