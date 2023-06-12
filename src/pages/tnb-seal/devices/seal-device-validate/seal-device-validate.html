@@ -1,0 +1,59 @@
+<ion-header mode="md">
+  <ion-navbar color="primary">
+    <ion-title>Device Validate Informations</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon [color]="gv.testMobile ? 'danger' : 'light'" name="md-planet" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-grid>
+    <ion-item-divider color="light">
+      <ion-row align-items-center>
+        <ion-col col-12>
+          <ion-icon name="information-circle"></ion-icon>&nbsp; <strong>Device Validate</strong>
+        </ion-col>
+      </ion-row>
+    </ion-item-divider>
+
+    <ion-row>
+      <ion-col col-12 col-sm-12 col-md-3>
+        <ion-item no-lines>
+          <ion-label color="primary">CT Seal</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-12 col-sm-12 col-md-7>
+        <ion-item>
+          <ion-input [(ngModel)]="serialnum" type="text" maxlength="30" placeholder="Please Enter" clearInput></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-2 col-sm-2 col-md-1>
+        <button ion-button (click)="barcodeScan()">
+          <ion-icon name="barcode"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-2 col-sm-2 col-md-1>
+        <button ion-button>
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer mode="md">
+  <ion-toolbar mode="md">
+    <ion-row>
+      <ion-col>
+        <button ion-button round block mode="md" (click)="validateDevice()">Validate</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button round block mode="md" (click)="goBack()">Cancel</button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>
