@@ -453,8 +453,7 @@ export class CtSilInfoPage {
    * Reason   : Method to save data.
    * Created  : 05/06/2023
    */
-  saveCtSealDetails(){
-    debugger;
+  saveCtSealDetails() {
     console.log(">>>> enter to save >>> ct sil details >>>");
     let string: boolean = true
     let loading = this.loadingCtrl.create({
@@ -462,295 +461,303 @@ export class CtSilInfoPage {
     });
     loading.present();
     this.gf.loadingTimer(loading);
+
     if (this.refSegment == 'before') {
-      if(this.terminalCTArray[0].ta0sealnum === null || this.terminalCTArray[0].ta0sealnum === '' ){
+      if(this.terminalCTArray[0].ta0sealnum === null || this.terminalCTArray[0].ta0sealnum === '' ) {
         loading.dismiss();
         this.gf.warningAlert('Warning', 'Nothing to update !', 'Close');  
         this.allowSave = false;
-      }else{
+      } else {
         this.allowSave = true;
       }
-    } 
-    if(this.allowSave == true){
-      this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail = [];
+    }
 
-      console.log(">>>> get standard data to save >>> ct sil details >>>");
-      // Default value from parent
-      var ta0serialnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0serialnum;
-      var ta0devicecategory = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0devicecategory;
-      var assetnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].assetnum;
-      var olddeviceassetnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0olddeviceserialnum;
-      var assetnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].assetnum;
-      var orgid = this.itemOri.json.ta0feeder[this.fIndex].orgid;
-      var siteid = this.itemOri.json.siteid;
-      var wonum = this.itemOri.json.wonum;
-      console.log("olddeviceassetnum : "+olddeviceassetnum);
-      console.log("assetnum : "+assetnum);
-      console.log(">>>> get ct red data to save >>> ct sil details >>>");
-      /*
-      if (this.terminalCtRedArray.length > 0) {
-        if ((this.terminalCtRedArray[0].ta0sealnum != null || this.terminalCtRedArray[0].ta0sealnum != undefined) || this.terminalCtRedArray[0].ta0newsealnum != null || this.terminalCtRedArray[0].ta0newsealnum != undefined) {
-          for (var i = 0; i < this.terminalCtRedArray.length; i++) {
-            console.log("CT Terminal Red : " + JSON.stringify(this.terminalCtRedArray[i]));
-            this.terminalCtRedArray[i].assetnum = assetnum;
-            this.terminalCtRedArray[i].orgid = orgid;
-            this.terminalCtRedArray[i].siteid = siteid;
-            this.terminalCtRedArray[i].wonum = wonum;                    
-            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalCtRedArray[i]);
-          }
-        }
-      }    
-      */
-      if (this.terminalCTArray.length > 0) {
-        if ((this.terminalCTArray[0].ta0sealnum !== null && this.terminalCTArray[0].ta0sealnum !== undefined) && this.terminalCTArray[0].ta0sealnum !== '') {
-          for (var i = 0; i < this.terminalCTArray.length; i++) {
-            console.log("CT Terminal : " + JSON.stringify(this.terminalCTArray[i]));
-            this.terminalCTArray[i].assetnum = assetnum;
-            this.terminalCTArray[i].orgid = orgid;
-            this.terminalCTArray[i].siteid = siteid;
-            this.terminalCTArray[i].wonum = wonum;            
-            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalCTArray[i]);
-          }
-        }
-      }
-      /*
-      console.log(">>>> get ct yellow data to save >>> ct sil details >>>");
-      if (this.terminalCtYellowArray.length > 0) {
-        if ((this.terminalCtYellowArray[0].ta0sealnum != null || this.terminalCtYellowArray[0].ta0sealnum != undefined) || this.terminalCtYellowArray[0].ta0newsealnum != null || this.terminalCtYellowArray[0].ta0newsealnum != undefined) {
-          for (var i = 0; i < this.terminalCtYellowArray.length; i++) {
-            console.log("CT Terminal Yellow : " + JSON.stringify(this.terminalCtYellowArray[i]));
-            this.terminalCtYellowArray[i].assetnum = assetnum;
-            this.terminalCtYellowArray[i].orgid = orgid;
-            this.terminalCtYellowArray[i].siteid = siteid;
-            this.terminalCtYellowArray[i].wonum = wonum;
-            //this.terminalCtYellowArray[i].ta0installind = this.terminalCtYellowArray[i].ta0installind ? this.terminalCtYellowArray[i].ta0installind : string;
-            //this.terminalCtYellowArray[i].ta0seallocation = "TERMINAL_CT_YELLOW";
-            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalCtYellowArray[i]);
-          }
-        }
-      }
+    // validation
+    if (this.validationRemovalReason() == false) {
+      loading.dismiss();
+      this.gf.displayToast("Please check and try again!");
+    } else {
+      if (this.allowSave == true) {
+        this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail = [];
   
-      console.log(">>>> get ct blue data to save >>> ct sil details >>>");
-      if (this.terminalCtBlueArray.length > 0) {
-        if ((this.terminalCtBlueArray[0].ta0sealnum != null || this.terminalCtBlueArray[0].ta0sealnum != undefined) || this.terminalCtBlueArray[0].ta0newsealnum != null || this.terminalCtBlueArray[0].ta0newsealnum != undefined) {
-          for (var i = 0; i < this.terminalCtBlueArray.length; i++) {
-            console.log("CT Terminal Yellow : " + JSON.stringify(this.terminalCtBlueArray[i]));
-            this.terminalCtBlueArray[i].assetnum = assetnum;
-            this.terminalCtBlueArray[i].orgid = orgid;
-            this.terminalCtBlueArray[i].siteid = siteid;
-            this.terminalCtBlueArray[i].wonum = wonum;
-            //this.terminalCtBlueArray[i].ta0installind = this.terminalCtBlueArray[i].ta0installind ? this.terminalCtBlueArray[i].ta0installind : string;
-            //this.terminalCtBlueArray[i].ta0seallocation = "TERMINAL_CT_BLUE";
-            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalCtBlueArray[i]);
+        console.log(">>>> get standard data to save >>> ct sil details >>>");
+        // Default value from parent
+        var ta0serialnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0serialnum;
+        var ta0devicecategory = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0devicecategory;
+        var assetnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].assetnum;
+        var olddeviceassetnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0olddeviceserialnum;
+        var assetnum = this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].assetnum;
+        var orgid = this.itemOri.json.ta0feeder[this.fIndex].orgid;
+        var siteid = this.itemOri.json.siteid;
+        var wonum = this.itemOri.json.wonum;
+        console.log("olddeviceassetnum : "+olddeviceassetnum);
+        console.log("assetnum : "+assetnum);
+        console.log(">>>> get ct red data to save >>> ct sil details >>>");
+        /*
+        if (this.terminalCtRedArray.length > 0) {
+          if ((this.terminalCtRedArray[0].ta0sealnum != null || this.terminalCtRedArray[0].ta0sealnum != undefined) || this.terminalCtRedArray[0].ta0newsealnum != null || this.terminalCtRedArray[0].ta0newsealnum != undefined) {
+            for (var i = 0; i < this.terminalCtRedArray.length; i++) {
+              console.log("CT Terminal Red : " + JSON.stringify(this.terminalCtRedArray[i]));
+              this.terminalCtRedArray[i].assetnum = assetnum;
+              this.terminalCtRedArray[i].orgid = orgid;
+              this.terminalCtRedArray[i].siteid = siteid;
+              this.terminalCtRedArray[i].wonum = wonum;                    
+              this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalCtRedArray[i]);
+            }
+          }
+        }    
+        */
+        if (this.terminalCTArray.length > 0) {
+          if ((this.terminalCTArray[0].ta0sealnum !== null && this.terminalCTArray[0].ta0sealnum !== undefined) && this.terminalCTArray[0].ta0sealnum !== '') {
+            for (var i = 0; i < this.terminalCTArray.length; i++) {
+              console.log("CT Terminal : " + JSON.stringify(this.terminalCTArray[i]));
+              this.terminalCTArray[i].assetnum = assetnum;
+              this.terminalCTArray[i].orgid = orgid;
+              this.terminalCTArray[i].siteid = siteid;
+              this.terminalCTArray[i].wonum = wonum;            
+              this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalCTArray[i]);
+            }
           }
         }
-      }
-      */
-  
-      console.log(">>>> get new ct blue data to save >>> ct sil details >>>");
-      if (this.nTerminalCTArray.length > 0) {
-        if (this.nTerminalCTArray[0].ta0sealnum !== null && this.nTerminalCTArray[0].ta0sealnum !== undefined && this.nTerminalCTArray[0].ta0sealnum !== '') {
-          for (var i = 0; i < this.nTerminalCTArray.length; i++) {
-            if(olddeviceassetnum !== null &&  olddeviceassetnum !== undefined && olddeviceassetnum !== '') {
-              this.nTerminalCTArray[i].parent = olddeviceassetnum;
-            } else {
-              this.nTerminalCTArray[i].parent = assetnum;
-            }          
-            this.nTerminalCTArray[i].orgid = orgid;
-            this.nTerminalCTArray[i].siteid = siteid;
-            this.nTerminalCTArray[i].wonum = wonum;
-            this.nTerminalCTArray[i].ta0installind = true;
-            this.nTerminalCTArray[i].devicecategory = ta0devicecategory;
-            this.nTerminalCTArray[i].serialnum = ta0serialnum;
-            console.log("newCTType : "+this.newCTType);
-            if (this.newCTType === 'red'){
-              this.nTerminalCTArray[0].ta0seallocation = FunctionClass.TERMINAL_CT_RED;
-              this.nTerminalCTArray[0].ta0seallocation_description = "Terminal CT Red";
-            } else if (this.newCTType === 'yellow'){
-              this.nTerminalCTArray[0].ta0seallocation = FunctionClass.TERMINAL_CT_YELLOW;
-              this.nTerminalCTArray[0].ta0seallocation_description = "Terminal CT Yellow";
-            } else if (this.newCTType === 'blue'){
-              this.nTerminalCTArray[0].ta0seallocation = FunctionClass.TERMINAL_CT_BLUE;
-              this.nTerminalCTArray[0].ta0seallocation_description = "Terminal CT Blue";
-            }          
-            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.nTerminalCTArray[i]);
+        /*
+        console.log(">>>> get ct yellow data to save >>> ct sil details >>>");
+        if (this.terminalCtYellowArray.length > 0) {
+          if ((this.terminalCtYellowArray[0].ta0sealnum != null || this.terminalCtYellowArray[0].ta0sealnum != undefined) || this.terminalCtYellowArray[0].ta0newsealnum != null || this.terminalCtYellowArray[0].ta0newsealnum != undefined) {
+            for (var i = 0; i < this.terminalCtYellowArray.length; i++) {
+              console.log("CT Terminal Yellow : " + JSON.stringify(this.terminalCtYellowArray[i]));
+              this.terminalCtYellowArray[i].assetnum = assetnum;
+              this.terminalCtYellowArray[i].orgid = orgid;
+              this.terminalCtYellowArray[i].siteid = siteid;
+              this.terminalCtYellowArray[i].wonum = wonum;
+              //this.terminalCtYellowArray[i].ta0installind = this.terminalCtYellowArray[i].ta0installind ? this.terminalCtYellowArray[i].ta0installind : string;
+              //this.terminalCtYellowArray[i].ta0seallocation = "TERMINAL_CT_YELLOW";
+              this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalCtYellowArray[i]);
+            }
           }
         }
-      }
-      /*
-      console.log(">>>> get new ct yellow data to save >>> ct sil details >>>");
-      if (this.nTerminalCtYellowArray.length > 0) {
-        if (this.nTerminalCtYellowArray[0].ta0sealnum !== null && this.nTerminalCtYellowArray[0].ta0sealnum !== undefined && this.nTerminalCtYellowArray[0].ta0sealnum !== '') {
-          for (var i = 0; i < this.nTerminalCtYellowArray.length; i++) {
-            if(olddeviceassetnum !== null &&  olddeviceassetnum !== undefined && olddeviceassetnum !== '') {
-              this.nTerminalCtYellowArray[i].assetnum = olddeviceassetnum;
-            } else {
+    
+        console.log(">>>> get ct blue data to save >>> ct sil details >>>");
+        if (this.terminalCtBlueArray.length > 0) {
+          if ((this.terminalCtBlueArray[0].ta0sealnum != null || this.terminalCtBlueArray[0].ta0sealnum != undefined) || this.terminalCtBlueArray[0].ta0newsealnum != null || this.terminalCtBlueArray[0].ta0newsealnum != undefined) {
+            for (var i = 0; i < this.terminalCtBlueArray.length; i++) {
+              console.log("CT Terminal Yellow : " + JSON.stringify(this.terminalCtBlueArray[i]));
+              this.terminalCtBlueArray[i].assetnum = assetnum;
+              this.terminalCtBlueArray[i].orgid = orgid;
+              this.terminalCtBlueArray[i].siteid = siteid;
+              this.terminalCtBlueArray[i].wonum = wonum;
+              //this.terminalCtBlueArray[i].ta0installind = this.terminalCtBlueArray[i].ta0installind ? this.terminalCtBlueArray[i].ta0installind : string;
+              //this.terminalCtBlueArray[i].ta0seallocation = "TERMINAL_CT_BLUE";
+              this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalCtBlueArray[i]);
+            }
+          }
+        }
+        */
+    
+        console.log(">>>> get new ct blue data to save >>> ct sil details >>>");
+        if (this.nTerminalCTArray.length > 0) {
+          if (this.nTerminalCTArray[0].ta0sealnum !== null && this.nTerminalCTArray[0].ta0sealnum !== undefined && this.nTerminalCTArray[0].ta0sealnum !== '') {
+            for (var i = 0; i < this.nTerminalCTArray.length; i++) {
+              if(olddeviceassetnum !== null &&  olddeviceassetnum !== undefined && olddeviceassetnum !== '') {
+                this.nTerminalCTArray[i].parent = olddeviceassetnum;
+              } else {
+                this.nTerminalCTArray[i].parent = assetnum;
+              }          
+              this.nTerminalCTArray[i].orgid = orgid;
+              this.nTerminalCTArray[i].siteid = siteid;
+              this.nTerminalCTArray[i].wonum = wonum;
+              this.nTerminalCTArray[i].ta0installind = true;
+              this.nTerminalCTArray[i].devicecategory = ta0devicecategory;
+              this.nTerminalCTArray[i].serialnum = ta0serialnum;
+              console.log("newCTType : "+this.newCTType);
+              if (this.newCTType === 'red'){
+                this.nTerminalCTArray[0].ta0seallocation = FunctionClass.TERMINAL_CT_RED;
+                this.nTerminalCTArray[0].ta0seallocation_description = "Terminal CT Red";
+              } else if (this.newCTType === 'yellow'){
+                this.nTerminalCTArray[0].ta0seallocation = FunctionClass.TERMINAL_CT_YELLOW;
+                this.nTerminalCTArray[0].ta0seallocation_description = "Terminal CT Yellow";
+              } else if (this.newCTType === 'blue'){
+                this.nTerminalCTArray[0].ta0seallocation = FunctionClass.TERMINAL_CT_BLUE;
+                this.nTerminalCTArray[0].ta0seallocation_description = "Terminal CT Blue";
+              }          
+              this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.nTerminalCTArray[i]);
+            }
+          }
+        }
+        /*
+        console.log(">>>> get new ct yellow data to save >>> ct sil details >>>");
+        if (this.nTerminalCtYellowArray.length > 0) {
+          if (this.nTerminalCtYellowArray[0].ta0sealnum !== null && this.nTerminalCtYellowArray[0].ta0sealnum !== undefined && this.nTerminalCtYellowArray[0].ta0sealnum !== '') {
+            for (var i = 0; i < this.nTerminalCtYellowArray.length; i++) {
+              if(olddeviceassetnum !== null &&  olddeviceassetnum !== undefined && olddeviceassetnum !== '') {
+                this.nTerminalCtYellowArray[i].assetnum = olddeviceassetnum;
+              } else {
+                this.nTerminalCtYellowArray[i].assetnum = assetnum;
+              }
               this.nTerminalCtYellowArray[i].assetnum = assetnum;
+              this.nTerminalCtYellowArray[i].orgid = orgid;
+              this.nTerminalCtYellowArray[i].siteid = siteid;
+              this.nTerminalCtYellowArray[i].wonum = wonum;
+              this.nTerminalCtYellowArray[i].ta0installind = true;
+              this.nTerminalCtYellowArray[i].devicecategory = ta0devicecategory;
+              this.nTerminalCtYellowArray[i].serialnum = ta0serialnum;
+              //this.nTerminalCtYellowArray[i].ta0seallocation = FunctionClass.TERMINAL_CT_YELLOW;
+              this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.nTerminalCtYellowArray[i]);
             }
-            this.nTerminalCtYellowArray[i].assetnum = assetnum;
-            this.nTerminalCtYellowArray[i].orgid = orgid;
-            this.nTerminalCtYellowArray[i].siteid = siteid;
-            this.nTerminalCtYellowArray[i].wonum = wonum;
-            this.nTerminalCtYellowArray[i].ta0installind = true;
-            this.nTerminalCtYellowArray[i].devicecategory = ta0devicecategory;
-            this.nTerminalCtYellowArray[i].serialnum = ta0serialnum;
-            //this.nTerminalCtYellowArray[i].ta0seallocation = FunctionClass.TERMINAL_CT_YELLOW;
-            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.nTerminalCtYellowArray[i]);
           }
         }
-      }
-  
-      console.log(">>>> get new ct blue data to save >>> ct sil details >>>");
-      if (this.nTerminalCtBlueArray.length > 0) {
-        if (this.nTerminalCtBlueArray[0].ta0sealnum != null || this.nTerminalCtBlueArray[0].ta0sealnum != undefined && this.nTerminalCtBlueArray[0].ta0sealnum !== '') {
-          for (var i = 0; i < this.nTerminalCtBlueArray.length; i++) {
-            if(olddeviceassetnum !== null &&  olddeviceassetnum !== undefined && olddeviceassetnum !== '') {
-              this.nTerminalCtBlueArray[i].assetnum = olddeviceassetnum;
-            } else {
+    
+        console.log(">>>> get new ct blue data to save >>> ct sil details >>>");
+        if (this.nTerminalCtBlueArray.length > 0) {
+          if (this.nTerminalCtBlueArray[0].ta0sealnum != null || this.nTerminalCtBlueArray[0].ta0sealnum != undefined && this.nTerminalCtBlueArray[0].ta0sealnum !== '') {
+            for (var i = 0; i < this.nTerminalCtBlueArray.length; i++) {
+              if(olddeviceassetnum !== null &&  olddeviceassetnum !== undefined && olddeviceassetnum !== '') {
+                this.nTerminalCtBlueArray[i].assetnum = olddeviceassetnum;
+              } else {
+                this.nTerminalCtBlueArray[i].assetnum = assetnum;
+              }
               this.nTerminalCtBlueArray[i].assetnum = assetnum;
+              this.nTerminalCtBlueArray[i].orgid = orgid;
+              this.nTerminalCtBlueArray[i].siteid = siteid;
+              this.nTerminalCtBlueArray[i].wonum = wonum;
+              this.nTerminalCtBlueArray[i].ta0installind = true;
+              this.nTerminalCtBlueArray[i].devicecategory = ta0devicecategory;
+              this.nTerminalCtBlueArray[i].serialnum = ta0serialnum;
+              //this.nTerminalCtBlueArray[i].ta0seallocation = FunctionClass.TERMINAL_CT_BLUE;
+              this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.nTerminalCtBlueArray[i]);
             }
-            this.nTerminalCtBlueArray[i].assetnum = assetnum;
-            this.nTerminalCtBlueArray[i].orgid = orgid;
-            this.nTerminalCtBlueArray[i].siteid = siteid;
-            this.nTerminalCtBlueArray[i].wonum = wonum;
-            this.nTerminalCtBlueArray[i].ta0installind = true;
-            this.nTerminalCtBlueArray[i].devicecategory = ta0devicecategory;
-            this.nTerminalCtBlueArray[i].serialnum = ta0serialnum;
-            //this.nTerminalCtBlueArray[i].ta0seallocation = FunctionClass.TERMINAL_CT_BLUE;
-            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.nTerminalCtBlueArray[i]);
           }
         }
-      }
-      */
-   
-       setTimeout(() => {
-         loading.onWillDismiss(() => {
-           console.log("this.itemOri : " + JSON.stringify(this.itemOri));
-           this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
-           this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_silStickers_haveChange = true;
-           this.gf.displayToast("CT Sil Details updated.");
-           loading.dismiss();
-         });
-       }, 10000);
-  
-       this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
-  
-       if (this.gv.testMobile && (DeviceConstants.NETWORK_UNKNOWN === this.gf.checkNetwork() || DeviceConstants.NETWORK_NONE === this.gf.checkNetwork())) {
-         this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
-         this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_silStickers_haveChange = true;
-         this.gf.displayToast("CT Sil Details updated locally.");
-         loading.dismiss();
-         /** Sending latest data.. (alif) - (29.12.2018)*/
-         // let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
-         // newRootNav.push("SealServiceExecutionPage", this.itemOri);
-       } else if ((DeviceConstants.NETWORK_2G === this.gf.checkNetwork() || DeviceConstants.NETWORK_3G === this.gf.checkNetwork() || DeviceConstants.NETWORK_4G === this.gf.checkNetwork())) {
-   
-         cordova.plugins.MobileSignal.getSignalStrength((data) => {
-           if (this.gv.deviceSignal <= data) {
-             var feederCode = this.itemOri.json.ta0feeder[this.fIndex].ta0feedercode;
-             this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0silstickerstatus = 'Y';
-             var itemVal = JSON.parse(JSON.stringify(this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex]));
-             var itemArray = [];
-             itemArray.push(itemVal);
-             this.dataService
-               .saveRecordWithNewType(itemArray, this.itemOri.json.wonum, DeviceConstants.PAGE_ACTION_SILSTICKERS, feederCode, this.itemOri.json.worktype)
-               .then(results => {
-                 console.log(' result + ' + JSON.stringify(results));
-                 this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", false);
-                 this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_ta0silStickers_haveChange = false;
-   
-                 /** convert string into json */
-                 var resultDes = JSON.parse(results.toString());
-                 debugger;
-                 if (resultDes.processStatus === "failure") {
-                   resultDes.description.replace(/(?!\w|\s)./g, '').replace(/\s+/g, ' ').replace(/^(\s*)([\W\w]*)(\b\s*$)/g, '$2');
-                   // Remove double quote+words not working..
-                   resultDes.description.replace(/"/g, '');
-   
-                   var split = resultDes.description.split(":");
-                   var result = split[1].substr(0, split[1].length - 1);
-                   var NewResult = result.substring(2);
-                   /* var patt2 = /BMXAA4190E - Seal Location TEST_BLOCK_3 is not in the value list./i;
-                   var result2 = resultDes.description.match(patt2);
-                   var stringArry = result2.toString();
-                   */
-                   // var result = resultDes.description.slice(0, 34);
-                   resultDes.description.replace(/com.ibm.maximo.oslc.OslcException/g, "Failure");
-                   this.gf.displayToast(NewResult);
-                 } else {
-                   this.gf.warningAlert('Success', 'CT Sil Details save successfully.', 'Close');
-                   /** Sending latest data.. (alif) - (29.12.2018)*/
-                   // let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
-                   // newRootNav.push("SealServiceExecutionPage", this.itemOri);\
-                   this.navCtrl.pop();
-                 }
-                 loading.dismiss();
-   
-               }).catch(error => {
-                 console.log('service failure : ' + error);
-                 this.gf.warningAlert('Error', 'CT Sil Details failed to save.', 'Close');
-                 loading.dismiss();
-               });
-           } else {
+        */
+     
+         setTimeout(() => {
+           loading.onWillDismiss(() => {
+             console.log("this.itemOri : " + JSON.stringify(this.itemOri));
              this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
              this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_silStickers_haveChange = true;
-             this.gf.displayToast("CT Sil Details updated locally.");
-             this.navCtrl.pop();
-             loading.dismiss();
-             /** Sending latest data.. (alif) - (29.12.2018)*/
-             // let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
-             // newRootNav.push("SealServiceExecutionPage", this.itemOri);
-           }
-         });
-  
-       } else {
-         var feederCode = this.itemOri.json.ta0feeder[this.fIndex].ta0feedercode;
-         this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0silstickerstatus = 'Y';
-         var itemVal = JSON.parse(JSON.stringify(this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex]));
-         var itemArray = [];
-   
-         delete itemVal['ta0registerdetail'];
-         delete itemVal['ta0testdetail'];
-   
-         itemArray.push(itemVal);
-         this.dataService
-           .saveRecordWithNewType(itemArray, this.itemOri.json.wonum, DeviceConstants.PAGE_ACTION_SILSTICKERS, feederCode, this.itemOri.json.worktype)
-           .then(results => {
-             this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", false);
-             this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_ta0silStickers_haveChange = false;
-   
-             /** convert string into json */
-             var resultDes = JSON.parse(results.toString());
-             debugger;
-             if (resultDes.processStatus === "failure") {
-               resultDes.description.replace(/(?!\w|\s)./g, '').replace(/\s+/g, ' ').replace(/^(\s*)([\W\w]*)(\b\s*$)/g, '$2');
-               // Remove double quote+words not working..
-               resultDes.description.replace(/"/g, '');
-   
-               var split = resultDes.description.split(":");
-               var result = split[1].substr(0, split[1].length - 1);
-               var NewResult = result.substring(2);
-               /* var patt2 = /BMXAA4190E - Seal Location TEST_BLOCK_3 is not in the value list./i;
-               var result2 = resultDes.description.match(patt2);
-               var stringArry = result2.toString();
-               */
-               // var result = resultDes.description.slice(0, 34);
-               resultDes.description.replace(/com.ibm.maximo.oslc.OslcException/g, "Failure");
-               this.gf.displayToast(NewResult);
-             } else {
-               this.gf.warningAlert('Success', 'CT Sil Details save successfully.', 'Close');
-               // let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
-               // newRootNav.push("SealServiceExecutionPage", this.itemOri);
-               this.navCtrl.pop();
-             }
-             loading.dismiss();
-   
-           }).catch(error => {
-             this.gf.stopLoading();
+             this.gf.displayToast("CT Sil Details updated.");
              loading.dismiss();
            });
-       }
-    }    
+         }, 10000);
+    
+         this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
+    
+         if (this.gv.testMobile && (DeviceConstants.NETWORK_UNKNOWN === this.gf.checkNetwork() || DeviceConstants.NETWORK_NONE === this.gf.checkNetwork())) {
+           this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
+           this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_silStickers_haveChange = true;
+           this.gf.displayToast("CT Sil Details updated locally.");
+           loading.dismiss();
+           /** Sending latest data.. (alif) - (29.12.2018)*/
+           // let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
+           // newRootNav.push("SealServiceExecutionPage", this.itemOri);
+         } else if ((DeviceConstants.NETWORK_2G === this.gf.checkNetwork() || DeviceConstants.NETWORK_3G === this.gf.checkNetwork() || DeviceConstants.NETWORK_4G === this.gf.checkNetwork())) {
+     
+           cordova.plugins.MobileSignal.getSignalStrength((data) => {
+             if (this.gv.deviceSignal <= data) {
+               var feederCode = this.itemOri.json.ta0feeder[this.fIndex].ta0feedercode;
+               this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0silstickerstatus = 'Y';
+               var itemVal = JSON.parse(JSON.stringify(this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex]));
+               var itemArray = [];
+               itemArray.push(itemVal);
+               this.dataService
+                 .saveRecordWithNewType(itemArray, this.itemOri.json.wonum, DeviceConstants.PAGE_ACTION_SILSTICKERS, feederCode, this.itemOri.json.worktype)
+                 .then(results => {
+                   console.log(' result + ' + JSON.stringify(results));
+                   this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", false);
+                   this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_ta0silStickers_haveChange = false;
+     
+                   /** convert string into json */
+                   var resultDes = JSON.parse(results.toString());
+                   debugger;
+                   if (resultDes.processStatus === "failure") {
+                     resultDes.description.replace(/(?!\w|\s)./g, '').replace(/\s+/g, ' ').replace(/^(\s*)([\W\w]*)(\b\s*$)/g, '$2');
+                     // Remove double quote+words not working..
+                     resultDes.description.replace(/"/g, '');
+     
+                     var split = resultDes.description.split(":");
+                     var result = split[1].substr(0, split[1].length - 1);
+                     var NewResult = result.substring(2);
+                     /* var patt2 = /BMXAA4190E - Seal Location TEST_BLOCK_3 is not in the value list./i;
+                     var result2 = resultDes.description.match(patt2);
+                     var stringArry = result2.toString();
+                     */
+                     // var result = resultDes.description.slice(0, 34);
+                     resultDes.description.replace(/com.ibm.maximo.oslc.OslcException/g, "Failure");
+                     this.gf.displayToast(NewResult);
+                   } else {
+                     this.gf.warningAlert('Success', 'CT Sil Details save successfully.', 'Close');
+                     /** Sending latest data.. (alif) - (29.12.2018)*/
+                     // let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
+                     // newRootNav.push("SealServiceExecutionPage", this.itemOri);\
+                     this.navCtrl.pop();
+                   }
+                   loading.dismiss();
+     
+                 }).catch(error => {
+                   console.log('service failure : ' + error);
+                   this.gf.warningAlert('Error', 'CT Sil Details failed to save.', 'Close');
+                   loading.dismiss();
+                 });
+             } else {
+               this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
+               this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_silStickers_haveChange = true;
+               this.gf.displayToast("CT Sil Details updated locally.");
+               this.navCtrl.pop();
+               loading.dismiss();
+               /** Sending latest data.. (alif) - (29.12.2018)*/
+               // let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
+               // newRootNav.push("SealServiceExecutionPage", this.itemOri);
+             }
+           });
+    
+         } else {
+           var feederCode = this.itemOri.json.ta0feeder[this.fIndex].ta0feedercode;
+           this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0silstickerstatus = 'Y';
+           var itemVal = JSON.parse(JSON.stringify(this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex]));
+           var itemArray = [];
+     
+           delete itemVal['ta0registerdetail'];
+           delete itemVal['ta0testdetail'];
+     
+           itemArray.push(itemVal);
+           this.dataService
+             .saveRecordWithNewType(itemArray, this.itemOri.json.wonum, DeviceConstants.PAGE_ACTION_SILSTICKERS, feederCode, this.itemOri.json.worktype)
+             .then(results => {
+               this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", false);
+               this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_ta0silStickers_haveChange = false;
+     
+               /** convert string into json */
+               var resultDes = JSON.parse(results.toString());
+               debugger;
+               if (resultDes.processStatus === "failure") {
+                 resultDes.description.replace(/(?!\w|\s)./g, '').replace(/\s+/g, ' ').replace(/^(\s*)([\W\w]*)(\b\s*$)/g, '$2');
+                 // Remove double quote+words not working..
+                 resultDes.description.replace(/"/g, '');
+     
+                 var split = resultDes.description.split(":");
+                 var result = split[1].substr(0, split[1].length - 1);
+                 var NewResult = result.substring(2);
+                 /* var patt2 = /BMXAA4190E - Seal Location TEST_BLOCK_3 is not in the value list./i;
+                 var result2 = resultDes.description.match(patt2);
+                 var stringArry = result2.toString();
+                 */
+                 // var result = resultDes.description.slice(0, 34);
+                 resultDes.description.replace(/com.ibm.maximo.oslc.OslcException/g, "Failure");
+                 this.gf.displayToast(NewResult);
+               } else {
+                 this.gf.warningAlert('Success', 'CT Sil Details save successfully.', 'Close');
+                 // let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
+                 // newRootNav.push("SealServiceExecutionPage", this.itemOri);
+                 this.navCtrl.pop();
+               }
+               loading.dismiss();
+     
+             }).catch(error => {
+               this.gf.stopLoading();
+               loading.dismiss();
+             });
+         }
+      }
+    } 
   }
 
   goBack() {
@@ -807,5 +814,40 @@ export class CtSilInfoPage {
           toast => { console.log(toast); }
         );
       });
+  }
+
+  /**
+   * Reason   : Method to check removal reason if remove tick.
+   * Created  : 09/06/2023
+   */
+  validationRemovalReason() {
+    // verify exist or not
+    if (typeof (this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail) != 'undefined' &&
+      this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail !== "" &&
+      this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail !== null) {
+        console.log (">>>> check data >>>> " + JSON.stringify(this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail));
+        if (this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail[0].ta0removeind == true) {
+          console.log(">>>> validation removal reason.. true..");
+
+          if(typeof(this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail[0].ta0sealremreason) == 'undefined' ||
+            this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail[0].ta0sealremreason == "" ||
+            this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail[0].ta0sealremreason == null) {
+              this.validateInput = false;
+              console.log(">>>> validation ta0sealremreason.. false..")
+              return false;
+            }
+          // check reason
+          if (this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail[0].ta0sealremreason == null ||
+            this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail[0].ta0sealremreason == undefined ||
+            this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail[0].ta0sealremreason == '') {
+              this.validateInput = false;
+              console.log(">>>> validation ta0sealremreason.. false..")
+              return false;
+          }
+        }
+
+        console.log(">>>> validation removal reason.. true..")
+        return true;
+    }
   }
 }
