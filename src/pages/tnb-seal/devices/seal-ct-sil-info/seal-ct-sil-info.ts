@@ -375,8 +375,7 @@ export class SealCtSilInfoPage {
    * Reason   : Method to save data.
    * Created  : 05/06/2023
    */
-  async saveCtSealDetails(){
-    debugger;
+  async saveCtSealDetails() {
     console.log(">>>> enter to save >>> ct sil details >>>");
     let string: boolean = true
     let loading = this.loadingCtrl.create({
@@ -384,16 +383,18 @@ export class SealCtSilInfoPage {
     });
     loading.present();
     this.gf.loadingTimer(loading);
+
     if (this.refSegment == 'before') {
-      if(this.terminalCTArray[0].ta0sealnum === null || this.terminalCTArray[0].ta0sealnum === '' ){
+      if (this.terminalCTArray[0].ta0sealnum === null || this.terminalCTArray[0].ta0sealnum === '' ){
         loading.dismiss();
         this.gf.warningAlert('Warning', 'Nothing to update !', 'Close');  
         this.allowSave = false;
-      }else{
+      } else {
         this.allowSave = true;
       }
-    } 
-    if(this.allowSave == true){
+    }
+
+    if (this.allowSave == true) {
       this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail = [];
 
       console.log(">>>> get standard data to save >>> ct sil details >>>");
@@ -413,7 +414,7 @@ export class SealCtSilInfoPage {
       console.log("validateSeal : "+validateSeal);
       console.log("olddeviceassetnum : "+olddeviceassetnum);
       console.log("assetnum : "+assetnum);      
-      if(validateSeal){
+      if (validateSeal) {
         //validate against database
         if (this.nTerminalCTArray.length > 0) {
           if (this.nTerminalCTArray[0].ta0sealnum !== null && this.nTerminalCTArray[0].ta0sealnum !== undefined && this.nTerminalCTArray[0].ta0sealnum !== '') {
@@ -429,7 +430,8 @@ export class SealCtSilInfoPage {
           }
         }
       }
-      if(validateSeal === true && saveFlag === false) {
+
+      if (validateSeal === true && saveFlag === false) {
         loading.dismiss();
         this.gf.warningAlert('Warning', 'Invalid seal number '+fakeSealNum+' found!', 'Close');   
         return;
@@ -478,46 +480,104 @@ export class SealCtSilInfoPage {
           }
         }
   
-// validation
-     if (this.validationRemovalReason() == false) {
-      loading.dismiss();
-      this.gf.displayToast("Please check and try again!");
-     } else {
-      setTimeout(() => {
-        loading.onWillDismiss(() => {
-console.log("this.itemOri : " + JSON.stringify(this.itemOri));
-          this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_ctSealInfo_haveChange = true;
-          this.gf.displayToast("CT Sil Details updated.");
+        // validation
+        if (this.validationRemovalReason() == false) {
           loading.dismiss();
-        });
-      }, 10000);
+          this.gf.displayToast("Please check and try again!");
+        } else {
+          setTimeout(() => {
+            loading.onWillDismiss(() => {
+              console.log("this.itemOri : " + JSON.stringify(this.itemOri));
+              this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
+              this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_ctSealInfo_haveChange = true;
+              this.gf.displayToast("CT Sil Details updated.");
+              loading.dismiss();
+            });
+          }, 10000);
 
-      this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
-      if (this.gv.testMobile && (DeviceConstants.NETWORK_UNKNOWN === this.gf.checkNetwork() || DeviceConstants.NETWORK_NONE === this.gf.checkNetwork())) {
-        this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
-        this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_silStickers_haveChange = true;
-        this.gf.displayToast("CT Sil Details updated locally.");
-        loading.dismiss();
-        /** Sending latest data.. (alif) - (29.12.2018)*/
-        // let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
-        // newRootNav.push("SealServiceExecutionPage", this.itemOri);
-      } else if ((DeviceConstants.NETWORK_2G === this.gf.checkNetwork() || DeviceConstants.NETWORK_3G === this.gf.checkNetwork() || DeviceConstants.NETWORK_4G === this.gf.checkNetwork())) {
+          this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
+          if (this.gv.testMobile && (DeviceConstants.NETWORK_UNKNOWN === this.gf.checkNetwork() || DeviceConstants.NETWORK_NONE === this.gf.checkNetwork())) {
+            this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
+            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_silStickers_haveChange = true;
+            this.gf.displayToast("CT Sil Details updated locally.");
+            loading.dismiss();
+            /** Sending latest data.. (alif) - (29.12.2018)*/
+            // let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
+            // newRootNav.push("SealServiceExecutionPage", this.itemOri);
+          } else if ((DeviceConstants.NETWORK_2G === this.gf.checkNetwork() || DeviceConstants.NETWORK_3G === this.gf.checkNetwork() || DeviceConstants.NETWORK_4G === this.gf.checkNetwork())) {
+            cordova.plugins.MobileSignal.getSignalStrength((data) => {
+              if (this.gv.deviceSignal <= data) {
+                var feederCode = this.itemOri.json.ta0feeder[this.fIndex].ta0feedercode;
+                this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0silstickerstatus = 'Y';
+                var itemVal = JSON.parse(JSON.stringify(this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex]));
+                var itemArray = [];
+                  delete itemVal['ta0registerdetail'];
+                  delete itemVal['ta0testdetail'];
+                  delete itemVal['ta4testdata'];
+                itemArray.push(itemVal);
+                this.dataService
+                  .saveRecordWithNewType(itemArray, this.itemOri.json.wonum, DeviceConstants.PAGE_ACTION_SILSTICKERS, feederCode, this.itemOri.json.worktype)
+                  .then(results => {
+                    console.log(' result + ' + JSON.stringify(results));
+                    this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", false);
+                    this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_ta0silStickers_haveChange = false;
 
-        cordova.plugins.MobileSignal.getSignalStrength((data) => {
-          if (this.gv.deviceSignal <= data) {
+                    /** convert string into json */
+                    var resultDes = JSON.parse(results.toString());
+                    debugger;
+                    if (resultDes.processStatus === "failure") {
+                      resultDes.description.replace(/(?!\w|\s)./g, '').replace(/\s+/g, ' ').replace(/^(\s*)([\W\w]*)(\b\s*$)/g, '$2');
+                      // Remove double quote+words not working..
+                      resultDes.description.replace(/"/g, '');
+
+                      var split = resultDes.description.split(":");
+                      var result = split[1].substr(0, split[1].length - 1);
+                      var NewResult = result.substring(2);
+                      /* var patt2 = /BMXAA4190E - Seal Location TEST_BLOCK_3 is not in the value list./i;
+                      var result2 = resultDes.description.match(patt2);
+                      var stringArry = result2.toString();
+                      */
+                      // var result = resultDes.description.slice(0, 34);
+                      resultDes.description.replace(/com.ibm.maximo.oslc.OslcException/g, "Failure");
+                      this.gf.displayToast(NewResult);
+                    } else {
+                      this.gf.warningAlert('Success', 'CT Sil Details save successfully.', 'Close');
+                      /** Sending latest data.. (alif) - (29.12.2018)*/
+                      // let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
+                      // newRootNav.push("SealServiceExecutionPage", this.itemOri);\
+                      this.navCtrl.pop();
+                    }
+                    loading.dismiss();
+
+                  }).catch(error => {
+                    console.log('service failure : ' + error);
+                    this.gf.warningAlert('Error', 'CT Sil Details failed to save.', 'Close');
+                    loading.dismiss();
+                  });
+              } else {
+                this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
+                this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_silStickers_haveChange = true;
+                this.gf.displayToast("CT Sil Details updated locally.");
+                this.navCtrl.pop();
+                loading.dismiss();
+                /** Sending latest data.. (alif) - (29.12.2018)*/
+                // let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
+                // newRootNav.push("SealServiceExecutionPage", this.itemOri);
+              }
+            });
+          } else {
             var feederCode = this.itemOri.json.ta0feeder[this.fIndex].ta0feedercode;
             this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0silstickerstatus = 'Y';
             var itemVal = JSON.parse(JSON.stringify(this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex]));
             var itemArray = [];
-delete itemVal['ta0registerdetail'];
-              delete itemVal['ta0testdetail'];
-              delete itemVal['ta4testdata'];
+
+            delete itemVal['ta0registerdetail'];
+            delete itemVal['ta0testdetail'];
+            delete itemVal['ta4testdata'];
             itemArray.push(itemVal);
             this.dataService
               .saveRecordWithNewType(itemArray, this.itemOri.json.wonum, DeviceConstants.PAGE_ACTION_SILSTICKERS, feederCode, this.itemOri.json.worktype)
               .then(results => {
-                console.log(' result + ' + JSON.stringify(results));
                 this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", false);
                 this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_ta0silStickers_haveChange = false;
 
@@ -541,78 +601,20 @@ delete itemVal['ta0registerdetail'];
                   this.gf.displayToast(NewResult);
                 } else {
                   this.gf.warningAlert('Success', 'CT Sil Details save successfully.', 'Close');
-                  /** Sending latest data.. (alif) - (29.12.2018)*/
                   // let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
-                  // newRootNav.push("SealServiceExecutionPage", this.itemOri);\
+                  // newRootNav.push("SealServiceExecutionPage", this.itemOri);
                   this.navCtrl.pop();
                 }
                 loading.dismiss();
 
               }).catch(error => {
-                console.log('service failure : ' + error);
-                this.gf.warningAlert('Error', 'CT Sil Details failed to save.', 'Close');
+                this.gf.stopLoading();
                 loading.dismiss();
               });
-          } else {
-            this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
-            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_silStickers_haveChange = true;
-            this.gf.displayToast("CT Sil Details updated locally.");
-            this.navCtrl.pop();
-            loading.dismiss();
-            /** Sending latest data.. (alif) - (29.12.2018)*/
-            // let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
-            // newRootNav.push("SealServiceExecutionPage", this.itemOri);
           }
-        });
-
-      } else {
-        var feederCode = this.itemOri.json.ta0feeder[this.fIndex].ta0feedercode;
-        this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0silstickerstatus = 'Y';
-        var itemVal = JSON.parse(JSON.stringify(this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex]));
-        var itemArray = [];
-
-        delete itemVal['ta0registerdetail'];
-        delete itemVal['ta0testdetail'];
-delete itemVal['ta4testdata'];
-        itemArray.push(itemVal);
-        this.dataService
-          .saveRecordWithNewType(itemArray, this.itemOri.json.wonum, DeviceConstants.PAGE_ACTION_SILSTICKERS, feederCode, this.itemOri.json.worktype)
-          .then(results => {
-            this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", false);
-            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_ta0silStickers_haveChange = false;
-
-            /** convert string into json */
-            var resultDes = JSON.parse(results.toString());
-            debugger;
-            if (resultDes.processStatus === "failure") {
-              resultDes.description.replace(/(?!\w|\s)./g, '').replace(/\s+/g, ' ').replace(/^(\s*)([\W\w]*)(\b\s*$)/g, '$2');
-              // Remove double quote+words not working..
-              resultDes.description.replace(/"/g, '');
-
-              var split = resultDes.description.split(":");
-              var result = split[1].substr(0, split[1].length - 1);
-              var NewResult = result.substring(2);
-              /* var patt2 = /BMXAA4190E - Seal Location TEST_BLOCK_3 is not in the value list./i;
-              var result2 = resultDes.description.match(patt2);
-              var stringArry = result2.toString();
-              */
-              // var result = resultDes.description.slice(0, 34);
-              resultDes.description.replace(/com.ibm.maximo.oslc.OslcException/g, "Failure");
-              this.gf.displayToast(NewResult);
-            } else {
-              this.gf.warningAlert('Success', 'CT Sil Details save successfully.', 'Close');
-              // let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
-              // newRootNav.push("SealServiceExecutionPage", this.itemOri);
-              this.navCtrl.pop();
-            }
-            loading.dismiss();
-
-          }).catch(error => {
-            this.gf.stopLoading();
-            loading.dismiss();
-          });
+        }
       }
-     }
+    }
   }
 
   /**
@@ -701,6 +703,4 @@ delete itemVal['ta4testdata'];
         );
       });
   }
-
-
 }
