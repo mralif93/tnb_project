@@ -106,6 +106,7 @@ export class ServiceDetailsPage {
 
   public currentRatio: any;
   private sncodedesc: any;
+  
 
   constructor(public navCtrl: NavController,
     public platform: Platform,
@@ -4007,12 +4008,21 @@ export class ServiceDetailsPage {
    * Open Crimpless Seal Listing page
    */
   openCrimplessSeal() {    
-    console.log('Open SealCrimplessSealPage');        
-    let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
-    newRootNav.push("SealCrimplessSealPage", {
-      from: 'my_Assigned_page',
-      //feederDetails: this.feederDetails,
-      paramObj: this.items
-    });     
-  }   
+    console.log('Open SealCrimplessSealPage');    
+    let loading = this.loadingCtrl.create({
+      content: 'Loading...'
+    });
+    loading.present().then(() => {
+      let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
+      newRootNav.push("SealCrimplessSealPage", {
+        from: 'my_Assigned_page',
+        //feederDetails: this.feederDetails,
+        paramObj: this.items
+      }).then(() => {
+        loading.dismiss();
+        // page can change because (this.canLeave == true) now
+      });     
+    });    
+  }
+  
 }

@@ -229,8 +229,8 @@
                       <!-- End: Main Section (Button) -->
 
                       <!-- Start: Check Section (Button) -->
-                      <ion-col col-md-6
-                        *ngIf="gv.departmentCode === device.eFeederVoltage || (item.json.worktype === soTypes.ZMMR && device.eCheck !== 'undefined') || item.json.worktype === soTypes.ZUDN || (device.eFeederVoltage >= 01 && gv.departmentCode === '00')">
+                      <ion-col col-md-6                        
+                        *ngIf="gv.departmentCode >= device.eFeederVoltage || (item.json.worktype === soTypes.ZMMR && device.eCheck !== 'undefined') || item.json.worktype === soTypes.ZUDN || (device.eFeederVoltage >= 01 && gv.departmentCode === '00')">
                         <ion-col col-md-2 *ngIf="device.eCheck && item.json.worktype === soTypes.ZMMR">
                           <button ion-button icon-start class="custom-button-1"
                             (click)="openRegisterPage(device.eCheck, i, device.eCheckIndex, device.eCheckModem, device.eCheckSim, device.eCheckModemIndex, device.eCheckSimIndex)"
@@ -614,7 +614,7 @@
                       </button>
                     </ion-row>
 
-                    <ion-row *ngIf="device.eFeederVoltage > 2"  class="content-background-new" 
+                    <ion-row *ngIf="device.nFeederVoltage > 2"  class="content-background-new" 
                       style="padding-bottom: 10px;">
                       <ion-item style="background: transparent;" col-md-2 no-lines>
                         <ion-label><strong></strong></ion-label>

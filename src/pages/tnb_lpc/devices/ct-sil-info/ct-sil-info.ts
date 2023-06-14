@@ -99,6 +99,7 @@ export class CtSilInfoPage {
     console.log("alloType : "+this.alloType);
     console.log("versionType : "+this.versionType);
     console.log("deviceVoltage : "+this.deviceVoltage);    
+    
     // Fetch Data
     this.loadlookup();
 
@@ -453,7 +454,8 @@ export class CtSilInfoPage {
    * Reason   : Method to save data.
    * Created  : 05/06/2023
    */
-  saveCtSealDetails() {
+  async saveCtSealDetails(){
+    debugger;
     console.log(">>>> enter to save >>> ct sil details >>>");
     let string: boolean = true
     let loading = this.loadingCtrl.create({
@@ -461,13 +463,12 @@ export class CtSilInfoPage {
     });
     loading.present();
     this.gf.loadingTimer(loading);
-
     if (this.refSegment == 'before') {
-      if(this.terminalCTArray[0].ta0sealnum === null || this.terminalCTArray[0].ta0sealnum === '' ) {
+      if(this.terminalCTArray[0].ta0sealnum === null || this.terminalCTArray[0].ta0sealnum === '' ){
         loading.dismiss();
         this.gf.warningAlert('Warning', 'Nothing to update !', 'Close');  
         this.allowSave = false;
-      } else {
+      }else{
         this.allowSave = true;
       }
     }
@@ -507,6 +508,36 @@ export class CtSilInfoPage {
           }
         }    
         */
+
+	let validateSeal = this.gv.validateDBSeal;
+      let fakeSealNum: string = '';
+      var saveFlag: Boolean = true;
+
+      console.log("validateSeal : "+validateSeal);
+      console.log("olddeviceassetnum : "+olddeviceassetnum);
+      console.log("assetnum : "+assetnum);      
+      if(validateSeal){
+        //validate against database
+        if (this.nTerminalCTArray.length > 0) {
+          if (this.nTerminalCTArray[0].ta0sealnum !== null && this.nTerminalCTArray[0].ta0sealnum !== undefined && this.nTerminalCTArray[0].ta0sealnum !== '') {
+            //Validate against SQLite
+            await this.ds.queryCrimplessData(this.nTerminalCTArray[0].ta0sealnum).then((response) => {
+              console.log(JSON.stringify(response));
+              let result = JSON.parse(JSON.stringify(response));
+              if(result.statusCode === 'E') {
+                fakeSealNum = this.nTerminalCTArray[0].ta0sealnum;
+                saveFlag = false;
+              }         
+            });
+          }
+        }
+      }
+      if(validateSeal === true && saveFlag === false) {
+        loading.dismiss();
+        this.gf.warningAlert('Warning', 'Invalid seal number '+fakeSealNum+' found!', 'Close');   
+        return;
+  
+      } else {
         if (this.terminalCTArray.length > 0) {
           if ((this.terminalCTArray[0].ta0sealnum !== null && this.terminalCTArray[0].ta0sealnum !== undefined) && this.terminalCTArray[0].ta0sealnum !== '') {
             for (var i = 0; i < this.terminalCTArray.length; i++) {

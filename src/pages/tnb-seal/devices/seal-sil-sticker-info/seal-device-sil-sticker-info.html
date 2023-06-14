@@ -743,8 +743,9 @@
                       <ion-select [(ngModel)]="attr.ta0sealremreason" placeholder="Please select value"
                         (ionChange)="updateRemovalReason()"
                         [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">                        
-                        <ion-option *ngFor="let key of rr; let idx = index" value="{{ key.json.value }}"
-                          selected="{{(idx==0).toString()}}">
+                        <!--<ion-option *ngFor="let key of rr; let idx = index" value="{{ key.json.value }}"
+                          selected="{{(idx==0).toString()}}">-->
+                        <ion-option *ngFor="let key of rr" value="{{ key.json.value }}">
                           {{ key.json.description }}
                         </ion-option>
                       </ion-select>
@@ -837,9 +838,9 @@
                       <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover"
                         placeholder="Please select value"
                         [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
-                        <!--<ion-option *ngFor="let key of rr" value="{{ key.json.value }}">-->
-                        <ion-option *ngFor="let key of rr; let idx = index" value="{{ key.json.value }}"
-                          selected="{{(idx==0).toString()}}">
+                        <ion-option *ngFor="let key of rr" value="{{ key.json.value }}">
+                        <!--<ion-option *ngFor="let key of rr; let idx = index" value="{{ key.json.value }}"
+                          selected="{{(idx==0).toString()}}">-->
                           {{ key.json.description }}
                         </ion-option>
                       </ion-select>
@@ -932,9 +933,9 @@
                       <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover"
                         placeholder="Please select value"
                         [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
-                        <!--<ion-option *ngFor="let key of rr" value="{{ key.json.value }}">-->
-                        <ion-option *ngFor="let key of rr; let idx = index" value="{{ key.json.value }}"
-                          selected="{{(idx==0).toString()}}">
+                        <ion-option *ngFor="let key of rr" value="{{ key.json.value }}">
+                        <!--<ion-option *ngFor="let key of rr; let idx = index" value="{{ key.json.value }}"
+                          selected="{{(idx==0).toString()}}">-->
                           {{ key.json.description }}
                         </ion-option>
                       </ion-select>
@@ -1002,6 +1003,93 @@
                       <ion-option *ngFor="let key of sc" value="{{ key.json.value }}">
                         {{ key.json.description }}
                       </ion-option>
+                    </ion-select>                                     
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+              <!-- CR002 Crimpless Seal-->
+              <div *ngIf="attr.ta0removeind===true">
+                <ion-row>
+                  <ion-col col-12 col-sm-12 col-md-3>
+                    <ion-item no-lines>
+                      <ion-label color="primary">Removal Reason</ion-label>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col col-12 col-sm-12 col-md-1>
+                    <ion-item no-lines>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col col-12 col-sm-12 col-md-6>
+                    <ion-item>
+                      <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover"
+                        placeholder="Please select value"
+                        [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
+                        <ion-option *ngFor="let key of rr" value="{{ key.json.value }}">
+                        <!--<ion-option *ngFor="let key of rr; let idx = index" value="{{ key.json.value }}"
+                          selected="{{(idx==0).toString()}}">-->
+                          {{ key.json.description }}
+                        </ion-option>
+                      </ion-select>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+              </div>
+              <!-- CR002 Crimpless Seal-->
+            </span>
+
+            <ion-item-divider color="light">
+              <ion-row align-items-center>
+                <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 0px;">
+                  Comm Module
+                </ion-col>             
+              </ion-row>
+            </ion-item-divider>
+            <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
+              *ngFor="let attr of commModuleArray; let j = index">
+              <ion-row>
+                <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-item no-lines>
+                    <ion-label color="primary">Comm Module</ion-label>                    
+                  </ion-item>
+                </ion-col>
+                <ion-col col-12 col-sm-12 col-md-1>
+                  <ion-item no-lines>
+                    <ion-checkbox [(ngModel)]="attr.ta0removeind">
+                    </ion-checkbox>
+                  </ion-item>
+                </ion-col>
+                <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                  <ion-item>
+                    <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter" [readonly]="true"
+                      [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput) ? 'redHighlightText' : 'blackHighlightText'">
+                    </ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
+                  <button ion-button (click)="barcodeScan(commModuleArray,j,1, 'before')">
+                    <ion-icon name="barcode"></ion-icon>
+                  </button>
+                </ion-col>               
+              </ion-row>
+              <ion-row>
+                <ion-col col-12 col-sm-12 col-md-3>
+                  <ion-item no-lines>
+                    <ion-label color="primary">Condition</ion-label>
+                  </ion-item>
+                </ion-col>
+                <ion-col col-12 col-sm-12 col-md-1>
+                  <ion-item no-lines>
+
+                  </ion-item>
+                </ion-col>
+                <ion-col col-12 col-sm-12 col-md-6>
+                  <ion-item>
+                    <ion-select [(ngModel)]="attr.ta0sealcondition" interface="popover"
+                      placeholder="Please select value"
+                      [ngClass]="(attr.ta0sealcondition == '' || (attr.ta0sealcondition == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
+                      <ion-option *ngFor="let key of sc" value="{{ key.json.value }}">
+                        {{ key.json.description }}
+                      </ion-option>
                     </ion-select>
                   </ion-item>
                 </ion-col>
@@ -1023,9 +1111,9 @@
                       <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover"
                         placeholder="Please select value"
                         [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
-                        <!--<ion-option *ngFor="let key of rr" value="{{ key.json.value }}">-->
-                        <ion-option *ngFor="let key of rr; let idx = index" value="{{ key.json.value }}"
-                          selected="{{(idx==0).toString()}}">
+                        <ion-option *ngFor="let key of rr" value="{{ key.json.value }}">
+                        <!--<ion-option *ngFor="let key of rr; let idx = index" value="{{ key.json.value }}"
+                          selected="{{(idx==0).toString()}}">-->
                           {{ key.json.description }}
                         </ion-option>
                       </ion-select>
@@ -1035,6 +1123,7 @@
               </div>
               <!-- CR002 Crimpless Seal-->
             </span>
+
           </div>
         </span>
         <!-- Seal & Sticker (OPC) End -->
@@ -1400,10 +1489,13 @@
               </ion-col>
               <ion-col col-12 col-sm-12 col-md-6>
                 <ion-item>
-                  <ion-input [(ngModel)]="attr.ta0sealcondition" type="text" maxlength="30" clearInput
-                    placeholder="Please Enter"
-                    [ngClass]="(attr.ta0sealcondition == '' || (attr.ta0sealcondition == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
-                  </ion-input>
+                 <ion-select [(ngModel)]="attr.ta0sealcondition" interface="popover"
+                      placeholder="Please select value"
+                      [ngClass]="(attr.ta0sealcondition == '' || (attr.ta0sealcondition == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
+                      <ion-option *ngFor="let key of sc" value="{{ key.json.value }}">
+                        {{ key.json.description }}
+                      </ion-option>
+                    </ion-select>
                 </ion-item>
               </ion-col>
             </ion-row>
@@ -1494,10 +1586,13 @@
               </ion-col>
               <ion-col col-12 col-sm-12 col-md-6>
                 <ion-item>
-                  <ion-input [(ngModel)]="attr.ta0sealcondition" type="text" maxlength="30" clearInput
-                    placeholder="Please Enter"
-                    [ngClass]="(attr.ta0sealcondition == '' || (attr.ta0sealcondition == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
-                  </ion-input>
+              <ion-select [(ngModel)]="attr.ta0sealcondition" interface="popover"
+                      placeholder="Please select value"
+                      [ngClass]="(attr.ta0sealcondition == '' || (attr.ta0sealcondition == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
+                      <ion-option *ngFor="let key of sc" value="{{ key.json.value }}">
+                        {{ key.json.description }}
+                      </ion-option>
+                    </ion-select>
                 </ion-item>
               </ion-col>
             </ion-row>
@@ -1528,6 +1623,94 @@
             </div>
             <!-- CR002 Crimpless Seal-->
           </span>
+
+          <ion-item-divider color="light">
+            <ion-row align-items-center>
+              <ion-col col-10 col-sm-10 col-md-10 style="word-wrap:  break-all; padding-left: 0px;">
+                Comm Module
+              </ion-col>             
+            </ion-row>
+          </ion-item-divider>
+          <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
+            *ngFor="let attr of commModuleArray; let j = index">
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item no-lines>
+                  <ion-label color="primary">Comm Module</ion-label>                    
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-1>
+                <ion-item no-lines>
+                  <ion-checkbox [(ngModel)]="attr.ta0removeind">
+                  </ion-checkbox>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;">
+                <ion-item>
+                  <ion-input [(ngModel)]="attr.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter" [readonly]="true"
+                    [ngClass]="(attr.ta0sealnum == '' || attr.ta0sealnum == undefined && !validateInput) ? 'redHighlightText' : 'blackHighlightText'">
+                  </ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
+                <button ion-button (click)="barcodeScan(commModuleArray,j,1, 'before')">
+                  <ion-icon name="barcode"></ion-icon>
+                </button>
+              </ion-col>               
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 col-sm-12 col-md-3>
+                <ion-item no-lines>
+                  <ion-label color="primary">Condition</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-1>
+                <ion-item no-lines>
+
+                </ion-item>
+              </ion-col>
+              <ion-col col-12 col-sm-12 col-md-6>
+                <ion-item>
+                  <ion-select [(ngModel)]="attr.ta0sealcondition" interface="popover"
+                    placeholder="Please select value"
+                    [ngClass]="(attr.ta0sealcondition == '' || (attr.ta0sealcondition == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
+                    <ion-option *ngFor="let key of sc" value="{{ key.json.value }}">
+                      {{ key.json.description }}
+                    </ion-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <!-- CR002 Crimpless Seal-->
+            <div *ngIf="attr.ta0removeind===true">
+              <ion-row>
+                <ion-col col-12 col-sm-12 col-md-3>
+                  <ion-item no-lines>
+                    <ion-label color="primary">Removal Reason</ion-label>
+                  </ion-item>
+                </ion-col>
+                <ion-col col-12 col-sm-12 col-md-1>
+                  <ion-item no-lines>
+                  </ion-item>
+                </ion-col>
+                <ion-col col-12 col-sm-12 col-md-6>
+                  <ion-item>
+                    <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover"
+                      placeholder="Please select value"
+                      [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
+                      <!--<ion-option *ngFor="let key of rr" value="{{ key.json.value }}">-->
+                      <ion-option *ngFor="let key of rr; let idx = index" value="{{ key.json.value }}"
+                        selected="{{(idx==0).toString()}}">
+                        {{ key.json.description }}
+                      </ion-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </div>
+            <!-- CR002 Crimpless Seal-->
+          </span>
+
           </span>
 
           <!-- STICKER NO START -->
@@ -3119,8 +3302,7 @@
               </ion-col>
             </ion-row>
           </ion-item-divider>
-          <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
-            *ngFor="let attr of opticalEyeArray; let j = index">
+          <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
             <ion-row>
               <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
                 <ion-item no-lines>
@@ -3321,8 +3503,7 @@
                 </ion-col>
               </ion-row>
             </ion-item-divider>
-            <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;"
-              *ngFor="let attr of mdButtonArray; let j = index">
+            <span style="word-wrap:  break-all; padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
               <ion-row>
                 <ion-col col-12 col-sm-12 col-md-3 style="word-wrap:  break-all; padding-left: 5px;">
                   <ion-item no-lines>
@@ -3331,13 +3512,13 @@
                 </ion-col>
                 <ion-col col-12 col-sm-12 col-md-7 style="word-wrap:  break-all; padding-left: 5px;">
                   <ion-item>
-                    <ion-input [(ngModel)]="attr.ta0newsealnum" type="text" maxlength="30" clearInput placeholder="Please Enter" 
-                      [ngClass]="(attr.ta0newsealnum == '' || (attr.ta0newsealnum == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
+                    <ion-input [(ngModel)]="newmdbutton.ta0sealnum" type="text" maxlength="30" clearInput placeholder="Please Enter" 
+                      [ngClass]="(newmdbutton.ta0sealnum == '' || (newmdbutton.ta0sealnum == undefined && !validateInput) || newmdbutton.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
                     </ion-input>
                   </ion-item>
                 </ion-col>
                 <ion-col col-2 col-sm-2 col-md-1 style="word-wrap:  break-all; padding-left: 5px;">
-                  <button ion-button (click)="barcodeScan(mdButtonArray,j,1, 'after')">
+                  <button ion-button (click)="barcodeScan(newmdbutton,0,1, 'after')">
                     <ion-icon name="barcode"></ion-icon>
                   </button>
                 </ion-col>               
@@ -3399,7 +3580,7 @@
                 </ion-item>
               </ion-col>
               <ion-col col-2 col-sm-2 col-md-2 style="word-wrap:  break-all; padding-left: 5px;">
-                <button ion-button (click)="barcodeScan(opticalEyeArray,0,1, 'after')">
+                <button ion-button (click)="barcodeScan(newopticaleyecover,0,1, 'after')">
                   <ion-icon name="barcode"></ion-icon>
                 </button>
               </ion-col>             

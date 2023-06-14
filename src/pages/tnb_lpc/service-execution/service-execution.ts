@@ -195,6 +195,22 @@ export class ServiceExecutionPage {
       this.jsonStore.replaceWO(this.item, "LPCWORKORDER", true);
       console.log("ServiceExecutionPage >>> this.item "+JSON.stringify(this.item));
     });
+
+
+
+    //logging
+    console.log("departmentCode : " + this.gv.departmentCode);
+    console.log("worktype : " + this.item.json.worktype);
+    for(var i = 0 ; i < this.item.json.ta0feeder.length ; i++) {      
+      for(var x = 0 ; x < this.item.json.ta0feeder[i].feederSetDesign.length ; x++) {
+        var device = this.item.json.ta0feeder[i].feederSetDesign[x];
+        console.log("feederSetDesign : " + JSON.stringify(device));
+        console.log("eFeederVoltage : " + device.eFeederVoltage);      
+        console.log("eCheck : " + device.eCheck);        
+        console.log("eCheckModem : " + device.eCheckModem);        
+        console.log("eCheckSerialNum : " + device.eCheckSerialNum);
+      }
+    }
   }
 
   wolo1FreezeCheck() {

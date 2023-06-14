@@ -278,12 +278,13 @@ this.loadingPresent();
       this.showLvExtraFields = true;
     }
 
+    //Meter Seal
     var meterCoverVal = new SealInfo();
-    meterCoverVal.ta0seallocation = "METER_COVER_";
-    meterCoverVal.ta0sealnum = null;
-    meterCoverVal.ta0newsealnum = null;
-    meterCoverVal.ta0sealcondition = null;
-    meterCoverVal.ta0sealremreason = null;  //CR002 Crimpless Seal
+    //meterCoverVal.ta0seallocation = "METER_COVER_";
+    // meterCoverVal.ta0sealnum = null;
+    // meterCoverVal.ta0newsealnum = null;
+    // meterCoverVal.ta0sealcondition = null;
+    // meterCoverVal.ta0sealremreason = null;  //CR002 Crimpless Seal
     this.meterCoverArray[0] = meterCoverVal;
 
     // var meterConditionsVal = new SealInfo();
@@ -292,11 +293,11 @@ this.loadingPresent();
     // this.meterConditionArray[0] = meterConditionsVal;
 
     var terminalCoverVal = new SealInfo();
-    terminalCoverVal.ta0seallocation = "TERMINAL_COVER_";
-    terminalCoverVal.ta0sealnum = null;
-    terminalCoverVal.ta0newsealnum = null;
-    terminalCoverVal.ta0sealcondition = null;
-    terminalCoverVal.ta0sealremreason = null;  //CR002 Crimpless Seal
+    //terminalCoverVal.ta0seallocation = "TERMINAL_COVER_";
+    // terminalCoverVal.ta0sealnum = null;
+    // terminalCoverVal.ta0newsealnum = null;
+    //terminalCoverVal.ta0sealcondition = null;
+    //terminalCoverVal.ta0sealremreason = null;  //CR002 Crimpless Seal
     this.terminalCoverArray[0] = terminalCoverVal;
 
     // var terminalConditionsVal = new SealInfo();
@@ -305,161 +306,161 @@ this.loadingPresent();
     // this.terminalConditionsArray[0] = terminalConditionsVal;
 
     var fuseVal = new SealInfo();
-    fuseVal.ta0seallocation = "METER_FUSE_";
-    fuseVal.ta0sealnum = null;
-    fuseVal.ta0newsealnum = null;
-    fuseVal.ta0sealcondition = null;
-    fuseVal.ta0sealremreason = null;  //CR002 Crimpless Seal
+    // fuseVal.ta0seallocation = "METER_FUSE_";
+    // fuseVal.ta0sealnum = null;
+    // fuseVal.ta0newsealnum = null;
+    // fuseVal.ta0sealcondition = null;
+    // fuseVal.ta0sealremreason = null;  //CR002 Crimpless Seal
     this.fuseArray[0] = fuseVal;
 
     var mdButtonVal = new SealInfo();
-    mdButtonVal.ta0seallocation = "MD_BUTTON_";
-    mdButtonVal.ta0sealnum = null;
-    mdButtonVal.ta0newsealnum = null;
-    mdButtonVal.ta0sealcondition = null;
-    mdButtonVal.ta0sealremreason = null;  //CR002 Crimpless Seal
+    //mdButtonVal.ta0seallocation = "MD_BUTTON_";
+    // mdButtonVal.ta0sealnum = null;
+    // mdButtonVal.ta0newsealnum = null;
+    // mdButtonVal.ta0sealcondition = null;
+    // mdButtonVal.ta0sealremreason = null;  //CR002 Crimpless Seal
     this.mdButtonArray[0] = mdButtonVal;
 
     var meterBatteryVal = new SealInfo();
-    meterBatteryVal.ta0seallocation = "METER_BATTERY_";
-    meterBatteryVal.ta0sealnum = null;
-    meterBatteryVal.ta0newsealnum = null;
-    meterBatteryVal.ta0sealcondition = null;
-    meterBatteryVal.ta0sealremreason = null;  //CR002 Crimpless Seal
+    //meterBatteryVal.ta0seallocation = "METER_BATTERY_";
+    // meterBatteryVal.ta0sealnum = null;
+    // meterBatteryVal.ta0newsealnum = null;
+    // meterBatteryVal.ta0sealcondition = null;
+    // meterBatteryVal.ta0sealremreason = null;  //CR002 Crimpless Seal
     this.meterBatteryArray[0] = meterBatteryVal;
 
     var commModuleVal = new SealInfo();
-    commModuleVal.ta0seallocation = "COMM_MODULE_";
-    commModuleVal.ta0sealnum = null;
-    commModuleVal.ta0newsealnum = null;
-    commModuleVal.ta0sealcondition = null;
-    commModuleVal.ta0sealremreason = null;  //CR002 Crimpless Seal
+    //commModuleVal.ta0seallocation = "COMM_MODULE_";
+    // commModuleVal.ta0sealnum = null;
+    // commModuleVal.ta0newsealnum = null;
+    // commModuleVal.ta0sealcondition = null;
+    // commModuleVal.ta0sealremreason = null;  //CR002 Crimpless Seal
     this.commModuleArray[0] = commModuleVal;
 
     var opticalEyeVal = new SealInfo();
-    opticalEyeVal.ta0seallocation = "OPTICAL_EYE_COVER_";
-    opticalEyeVal.ta0sealnum = null;
-    opticalEyeVal.ta0newsealnum = null;
-    opticalEyeVal.ta0sealcondition = null;
-    opticalEyeVal.ta0sealremreason = null;  //CR002 Crimpless Seal
-    this.opticalEyeArray[0] = opticalEyeVal;
-
-    //sticker info
-    var sterminalCoverVal = new StickerInfo();
-    sterminalCoverVal.ta0stickerlocation = "TERMINAL_COVER_";
-    sterminalCoverVal.ta0stickernum = null;
-    sterminalCoverVal.ta0newstickernum = null;
-    sterminalCoverVal.ta0stickercondition = null;
-    this.sterminalCoverArray[0] = sterminalCoverVal;
-
-    /*   var sStickerSafetyVal = new StickerInfo();
-      sStickerSafetyVal.ta0stickerlocation = "STICKER_SAFETY_";
-      sStickerSafetyVal.ta0stickernum = null;
-      this.stickerSafetyArray[0] = sStickerSafetyVal;
-   */
-    var sfuseVal = new StickerInfo();
-    sfuseVal.ta0stickerlocation = "METER_FUSE_";
-    sfuseVal.ta0stickernum = null;
-    sfuseVal.ta0newstickernum = null;
-    sfuseVal.ta0stickercondition = null;
-    this.sfuseArray[0] = sfuseVal;
+    //opticalEyeVal.ta0seallocation = "OPTICAL_EYE_COVER_";
+    // opticalEyeVal.ta0sealnum = null;
+    //opticalEyeVal.ta0newsealnum = null;
+    // opticalEyeVal.ta0sealcondition = null;
+    // opticalEyeVal.ta0sealremreason = null;  //CR002 Crimpless Seal
+    this.opticalEyeArray[0] = opticalEyeVal;   
 
     //Other Seal
     var ttbVal = new SealInfo();
-    ttbVal.ta0seallocation = "TEST_BLOCK_";
-    ttbVal.ta0sealnum = null;
-    ttbVal.ta0newsealnum = null;
-    ttbVal.ta0sealcondition = null;
-    ttbVal.ta0sealremreason = null;  //CR002 Crimpless Seal
+    // ttbVal.ta0seallocation = "TEST_BLOCK_";
+    // ttbVal.ta0sealnum = null;
+    // ttbVal.ta0newsealnum = null;
+    // ttbVal.ta0sealcondition = null;
+    // ttbVal.ta0sealremreason = null;  //CR002 Crimpless Seal
     this.ttbArray[0] = ttbVal;
 
     var ptChamberVal = new SealInfo();
-    ptChamberVal.ta0seallocation = "PT_CHAMBER_";
-    ptChamberVal.ta0sealnum = null;
-    ptChamberVal.ta0newsealnum = null;
-    ptChamberVal.ta0sealcondition = null;
-    ptChamberVal.ta0sealremreason = null;  //CR002 Crimpless Seal
+    // ptChamberVal.ta0seallocation = "PT_CHAMBER_";
+    // ptChamberVal.ta0sealnum = null;
+    // ptChamberVal.ta0newsealnum = null;
+    // ptChamberVal.ta0sealcondition = null;
+    // ptChamberVal.ta0sealremreason = null;  //CR002 Crimpless Seal
     this.ptChamberArray[0] = ptChamberVal;
 
     var ctChamberVal = new SealInfo();
-    ctChamberVal.ta0seallocation = "CT_CHAMBER_";
-    ctChamberVal.ta0sealnum = null;
-    ctChamberVal.ta0newsealnum = null;
-    ctChamberVal.ta0sealcondition = null;
-    ctChamberVal.ta0sealremreason = null;  //CR002 Crimpless Seal
+    // ctChamberVal.ta0seallocation = "CT_CHAMBER_";
+    // ctChamberVal.ta0sealnum = null;
+    // ctChamberVal.ta0newsealnum = null;
+    // ctChamberVal.ta0sealcondition = null;
+    // ctChamberVal.ta0sealremreason = null;  //CR002 Crimpless Seal
     this.ctChamberArray[0] = ctChamberVal;
 
     var ptSecondaryFuseVal = new SealInfo();
-    ptSecondaryFuseVal.ta0seallocation = "PT_SEC_FUSE_";
-    ptSecondaryFuseVal.ta0sealnum = null;
-    ptSecondaryFuseVal.ta0newsealnum = null;
-    ptSecondaryFuseVal.ta0sealcondition = null;
-    ptSecondaryFuseVal.ta0sealremreason = null;  //CR002 Crimpless Seal
+    // ptSecondaryFuseVal.ta0seallocation = "PT_SEC_FUSE_";
+    // ptSecondaryFuseVal.ta0sealnum = null;
+    // ptSecondaryFuseVal.ta0newsealnum = null;
+    // ptSecondaryFuseVal.ta0sealcondition = null;
+    // ptSecondaryFuseVal.ta0sealremreason = null;  //CR002 Crimpless Seal
     this.ptSecondaryFuseArray[0] = ptSecondaryFuseVal;
 
     var meterKioskVal = new SealInfo();
-    meterKioskVal.ta0seallocation = "KIOSK_PANELDOOR_";
-    meterKioskVal.ta0sealnum = null;
-    meterKioskVal.ta0newsealnum = null;
-    meterKioskVal.ta0sealcondition = null;
-    meterKioskVal.ta0sealremreason = null;  //CR002 Crimpless Seal
+    // meterKioskVal.ta0seallocation = "KIOSK_PANELDOOR_";
+    // meterKioskVal.ta0sealnum = null;
+    // meterKioskVal.ta0newsealnum = null;
+    // meterKioskVal.ta0sealcondition = null;
+    // meterKioskVal.ta0sealremreason = null;  //CR002 Crimpless Seal
     this.meterKioskArray[0] = meterKioskVal;
 
     var meterTestBoxVal = new SealInfo();
-    meterTestBoxVal.ta0seallocation = "METER_TEST_BOX_";
-    meterTestBoxVal.ta0sealnum = null;
-    meterTestBoxVal.ta0newsealnum = null;
-    meterTestBoxVal.ta0sealcondition = null;
-    meterTestBoxVal.ta0sealremreason = null;  //CR002 Crimpless Seal
+    // meterTestBoxVal.ta0seallocation = "METER_TEST_BOX_";
+    // meterTestBoxVal.ta0sealnum = null;
+    // meterTestBoxVal.ta0newsealnum = null;
+    // meterTestBoxVal.ta0sealcondition = null;
+    // meterTestBoxVal.ta0sealremreason = null;  //CR002 Crimpless Seal
     this.meterTestBoxArray[0] = meterTestBoxVal;
 
     var terminalBoxVal = new SealInfo();
-    terminalBoxVal.ta0seallocation = "TERMINATION_BOX_";
-    terminalBoxVal.ta0sealnum = null;
-    terminalBoxVal.ta0newsealnum = null;
-    terminalBoxVal.ta0sealcondition = null;
-    terminalBoxVal.ta0sealremreason = null;  //CR002 Crimpless Seal
+    // terminalBoxVal.ta0seallocation = "TERMINATION_BOX_";
+    // terminalBoxVal.ta0sealnum = null;
+    // terminalBoxVal.ta0newsealnum = null;
+    // terminalBoxVal.ta0sealcondition = null;
+    // terminalBoxVal.ta0sealremreason = null;  //CR002 Crimpless Seal
     this.terminalBoxArray[0] = terminalBoxVal;
 
     var marshallingBoxVal = new SealInfo();
-    marshallingBoxVal.ta0seallocation = "MARSHALLING_BOX_";
-    marshallingBoxVal.ta0sealnum = null;
-    marshallingBoxVal.ta0newsealnum = null;
-    marshallingBoxVal.ta0sealcondition = null;
-    marshallingBoxVal.ta0sealremreason = null;  //CR002 Crimpless Seal
+    // marshallingBoxVal.ta0seallocation = "MARSHALLING_BOX_";
+    // marshallingBoxVal.ta0sealnum = null;
+    // marshallingBoxVal.ta0newsealnum = null;
+    // marshallingBoxVal.ta0sealcondition = null;
+    // marshallingBoxVal.ta0sealremreason = null;  //CR002 Crimpless Seal
     this.marshallingBoxArray[0] = marshallingBoxVal;
 
     var ctPanelVal = new SealInfo();
-    ctPanelVal.ta0seallocation = "CT_CHAMBER_";
-    ctPanelVal.ta0sealnum = null;
-    ctPanelVal.ta0newsealnum = null;
-    ctPanelVal.ta0sealcondition = null;
-    ctPanelVal.ta0sealremreason = null;  //CR002 Crimpless Seal
+    // ctPanelVal.ta0seallocation = "CT_CHAMBER_";
+    // ctPanelVal.ta0sealnum = null;
+    // ctPanelVal.ta0newsealnum = null;
+    // ctPanelVal.ta0sealcondition = null;
+    // ctPanelVal.ta0sealremreason = null;  //CR002 Crimpless Seal
     this.ctPanelArray[0] = ctPanelVal;
 
     var panelMeterVal = new SealInfo();
-    panelMeterVal.ta0seallocation = "PANEL_METER_";
-    panelMeterVal.ta0sealnum = null;
-    panelMeterVal.ta0newsealnum = null;
-    panelMeterVal.ta0sealcondition = null;
-    panelMeterVal.ta0sealremreason = null;  //CR002 Crimpless Seal
+    // panelMeterVal.ta0seallocation = "PANEL_METER_";
+    // panelMeterVal.ta0sealnum = null;
+    // panelMeterVal.ta0newsealnum = null;
+    // panelMeterVal.ta0sealcondition = null;
+    // panelMeterVal.ta0sealremreason = null;  //CR002 Crimpless Seal
     this.panelMeterArray[0] = panelMeterVal;
 
     var terminalCtVal = new SealInfo();
-    terminalCtVal.ta0seallocation = "TERMINAL_CT_";
-    terminalCtVal.ta0sealnum = null;
-    terminalCtVal.ta0newsealnum = null;
-    terminalCtVal.ta0sealcondition = null;
-    terminalCtVal.ta0sealremreason = null;  //CR002 Crimpless Seal
+    // terminalCtVal.ta0seallocation = "TERMINAL_CT_";
+    // terminalCtVal.ta0sealnum = null;
+    // terminalCtVal.ta0newsealnum = null;
+    // terminalCtVal.ta0sealcondition = null;
+    // terminalCtVal.ta0sealremreason = null;  //CR002 Crimpless Seal
     this.terminalCtArray[0] = terminalCtVal;
 
     var modemVal = new SealInfo();
-    modemVal.ta0seallocation = "MODEM_";
-    modemVal.ta0sealnum = null;
-    modemVal.ta0newsealnum = null;
-    modemVal.ta0sealcondition = null;
-    modemVal.ta0sealremreason = null;  //CR002 Crimpless Seal
+    // modemVal.ta0seallocation = "MODEM_";
+    // modemVal.ta0sealnum = null;
+    // modemVal.ta0newsealnum = null;
+    // modemVal.ta0sealcondition = null;
+    // modemVal.ta0sealremreason = null;  //CR002 Crimpless Seal
     this.modemArray[0] = modemVal;
+
+     //sticker info
+     var sterminalCoverVal = new StickerInfo();
+     sterminalCoverVal.ta0stickerlocation = "TERMINAL_COVER_";
+     sterminalCoverVal.ta0stickernum = null;
+     sterminalCoverVal.ta0newstickernum = null;
+     sterminalCoverVal.ta0stickercondition = null;
+     this.sterminalCoverArray[0] = sterminalCoverVal;
+ 
+     /*   var sStickerSafetyVal = new StickerInfo();
+       sStickerSafetyVal.ta0stickerlocation = "STICKER_SAFETY_";
+       sStickerSafetyVal.ta0stickernum = null;
+       this.stickerSafetyArray[0] = sStickerSafetyVal;
+    */
+     var sfuseVal = new StickerInfo();
+     sfuseVal.ta0stickerlocation = "METER_FUSE_";
+     sfuseVal.ta0stickernum = null;
+     sfuseVal.ta0newstickernum = null;
+     sfuseVal.ta0stickercondition = null;
+     this.sfuseArray[0] = sfuseVal;
 
     //Other Sticker
     var sttbVal = new StickerInfo();
@@ -572,9 +573,13 @@ this.loadingPresent();
     // Read ta0detail if exist
     if (typeof (this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail) != 'undefined' &&
       this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail !== null &&
-      this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail != '') {
+      this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail !== '') {
 
       var seal_length = Number(this.item.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.length);
+      console.log("Feeder position : " + this.fIndex);
+      console.log("Multiassetlocci position : " + this.maIndex)
+      console.log("Total Seal : " + seal_length);
+
       var mCount = 0;
       var mCondiCount = 0;
       var tCount = 0;
@@ -615,199 +620,205 @@ this.loadingPresent();
         var ta0seallocation = ta0sealdetail.ta0seallocation;
 
         
-
+        //Existing Meter Cover
         if (ta0seallocation.startsWith(FunctionClass.METER_COVER) && ta0sealdetail.ta0existingseal === true) {
           meterCoverVal = ta0sealdetail;
           this.meterCoverArray[mCount] = meterCoverVal;
-          console.log(mCount+' meterCoverArray : '+JSON.stringify(this.meterCoverArray));
-
+          console.log(mCount+' Meter Cover  : '+JSON.stringify(this.meterCoverArray[mCount]));
           if (mCount === 2) {
             this.showAddMeterCover = false;
           }
-
           mCount++;
         }
+        //Existing Terminal Cover
         else if (ta0seallocation.startsWith(FunctionClass.TERMINAL_COVER) && ta0sealdetail.ta0existingseal === true) {
           terminalCoverVal = ta0sealdetail;
           this.terminalCoverArray[tCount] = terminalCoverVal;
-          console.log(tCount+' terminalCoverArray : '+JSON.stringify(this.terminalCoverArray));
+          console.log(tCount+' Terminal Cover : '+JSON.stringify(this.terminalCoverArray[tCount]));
           if (tCount === 1) {
             this.showAddTerminalCover = false;
           }
-
           tCount++;
-        }
-        else if (ta0seallocation.startsWith(FunctionClass.METER_FUSE)) {
-          fuseVal = ta0sealdetail;
-          this.fuseArray[fCount] = fuseVal;
-          console.log(fCount+' fuseArray : '+JSON.stringify(this.fuseArray));
-          fCount++;
-        }
+        }       
+        //Existing MD Button
         else if (ta0seallocation.startsWith(FunctionClass.MD_BUTTON) && ta0sealdetail.ta0existingseal === true) {
           mdButtonVal = ta0sealdetail;
           this.mdButtonArray[mdCount] = mdButtonVal;
-          console.log(mbCount+' mdButtonArray : '+JSON.stringify(this.mdButtonArray));
+          console.log(mbCount+' MD Button : '+JSON.stringify(this.mdButtonArray[mdCount]));
           mdCount++;
         }
+        //Existing Meter Battery
         else if (ta0seallocation.startsWith(FunctionClass.METER_BATTERY) && ta0sealdetail.ta0existingseal === true) {
           meterBatteryVal = ta0sealdetail;
           this.meterBatteryArray[mbCount] = meterBatteryVal;
           console.log(mbCount+' meterBatteryArray : '+JSON.stringify(this.meterBatteryArray));
           mbCount++;
         }
+        //Existing Comm Module
         else if (ta0seallocation.startsWith(FunctionClass.COMM_MODULE) && ta0sealdetail.ta0existingseal === true) {
           commModuleVal = ta0sealdetail;
           this.commModuleArray[cmCount] = commModuleVal;
           console.log(cmCount+' commModuleArray : '+JSON.stringify(this.commModuleArray));
           cmCount++;
         }
+        //Existing Optical Eye Cover
         else if (ta0seallocation.startsWith(FunctionClass.OPTICAL_EYE_COVER) && ta0sealdetail.ta0existingseal === true) {
           opticalEyeVal = ta0sealdetail;
           this.opticalEyeArray[oCount] = opticalEyeVal;
           console.log(oCount+' opticalEyeArray : '+JSON.stringify(this.opticalEyeArray));
           oCount++;
         }      
-        else if (ta0seallocation.startsWith(FunctionClass.TTB)) {
-          ttbVal = ta0sealdetail;
-          this.ttbArray[tbCount] = ttbVal;
-          console.log(tbCount+' ttbArray : '+JSON.stringify(this.ttbArray));
-          if (tbCount === 1) {
-            this.showAddTtb = false;
-          }
-
-          tbCount++;
-        }
-        else if (ta0seallocation.startsWith(FunctionClass.MODEM_)) {
-          modemVal = ta0sealdetail;
-          this.modemArray[moCount] = modemVal;
-          console.log(moCount+' modemArray : '+JSON.stringify(this.modemArray));
-          moCount++;
-        } else if (ta0seallocation.startsWith("TERMINAL_COVER_1") && ta0sealdetail.ta0existingseal === false) {
+        // else if (ta0seallocation.startsWith(FunctionClass.TTB)) {
+        //   ttbVal = ta0sealdetail;
+        //   this.ttbArray[tbCount] = ttbVal;
+        //   console.log(tbCount+' ttbArray : '+JSON.stringify(this.ttbArray));
+        //   if (tbCount === 1) {
+        //     this.showAddTtb = false;
+        //   }
+        //   tbCount++;                
+        // } 
+        // Existing Meter Fuse Sticker
+        // else if (ta0seallocation.startsWith(FunctionClass.METER_FUSE) && ta0sealdetail.ta0existingseal === true) {
+        //   fuseVal = ta0sealdetail;
+        //   this.fuseArray[fCount] = fuseVal;
+        //   console.log(fCount+' Meter Fuse : '+JSON.stringify(this.fuseArray[fCount]));
+        //   fCount++;
+        // }
+        //New Terminal Cover 1
+        else if (ta0seallocation.startsWith("TERMINAL_COVER_1") && ta0sealdetail.ta0existingseal === false) {
           this.newterminalcover1 = ta0sealdetail;
-        } else if (ta0seallocation.startsWith("TERMINAL_COVER_2") && ta0sealdetail.ta0existingseal === false) {
+        } 
+        //New Terminal Cover 2
+        else if (ta0seallocation.startsWith("TERMINAL_COVER_2") && ta0sealdetail.ta0existingseal === false) {
           this.newterminalcover2 = ta0sealdetail;
-        } else if (ta0seallocation.startsWith("METER_COVER_1") && ta0sealdetail.ta0existingseal === false) {
+        } 
+        //New Meter Cover 1
+        else if (ta0seallocation.startsWith("METER_COVER_1") && ta0sealdetail.ta0existingseal === false) {
           this.newmetercover1 = ta0sealdetail;
-        } else if (ta0seallocation.startsWith("METER_COVER_2") && ta0sealdetail.ta0existingseal === false) {
+        } 
+        //New Meter Cover 2
+        else if (ta0seallocation.startsWith("METER_COVER_2") && ta0sealdetail.ta0existingseal === false) {
           this.newmetercover2 = ta0sealdetail;
-        } else if (ta0seallocation.startsWith("METER_COVER_3") && ta0sealdetail.ta0existingseal === false) {
+        } 
+        //New Meter Cover 3
+        else if (ta0seallocation.startsWith("METER_COVER_3") && ta0sealdetail.ta0existingseal === false) {
           this.newmetercover3 = ta0sealdetail;
-        } else if (ta0seallocation.startsWith(FunctionClass.MD_BUTTON) && ta0sealdetail.ta0existingseal === false) {
+        } 
+        //New MD button
+        else if (ta0seallocation.startsWith(FunctionClass.MD_BUTTON) && ta0sealdetail.ta0existingseal === false) {
           this.newmdbutton = ta0sealdetail;
-        } else if (ta0seallocation.startsWith(FunctionClass.METER_BATTERY) && ta0sealdetail.ta0existingseal === false) {
+        } 
+        //New Meter Battery
+        else if (ta0seallocation.startsWith(FunctionClass.METER_BATTERY) && ta0sealdetail.ta0existingseal === false) {
           this.newmeterbattery = ta0sealdetail;
-        } else if (ta0seallocation.startsWith(FunctionClass.OPTICAL_EYE_COVER) && ta0sealdetail.ta0existingseal === false) {
+        } 
+        //New Optical Eye Cover
+        else if (ta0seallocation.startsWith(FunctionClass.OPTICAL_EYE_COVER) && ta0sealdetail.ta0existingseal === false) {
           this.newopticaleyecover = ta0sealdetail;
-        } else if (ta0seallocation.startsWith(FunctionClass.COMM_MODULE) && ta0sealdetail.ta0existingseal === false) {
+        } 
+        //New Comm Module
+        else if (ta0seallocation.startsWith(FunctionClass.COMM_MODULE) && ta0sealdetail.ta0existingseal === false) {
           this.newcommmodule = ta0sealdetail;
         }
       
-
-        switch (this.showLvFields) {
-
-          case true: {
-
-            if (ta0seallocation.startsWith(FunctionClass.CT_PANEL)) {
-              ctPanelVal = ta0sealdetail;
-              this.ctPanelArray[ctCount] = ctPanelVal;
-              console.log(ctCount+' ctPanelArray : '+JSON.stringify(this.ctPanelArray));
-              ctCount++;
-            }
-            // else if (ta0seallocation.startsWith(FunctionClass.PANEL_METER)) {
-            //   panelMeterVal = ta0sealdetail;
-            //   this.panelMeterArray[pmCount] = panelMeterVal;
-            //   pmCount++;
-            // }
-            else if (ta0seallocation.startsWith(FunctionClass.METER_KIOSK)) {
-              meterKioskVal = ta0sealdetail;
-              this.meterKioskArray[mkCount] = meterKioskVal;
-              console.log(mkCount+' meterKioskArray : '+JSON.stringify(this.meterKioskArray));
-              mkCount++;
-            }
-            else if (ta0seallocation.startsWith(FunctionClass.TERMINAL_CT)) {
-              terminalCtVal = ta0sealdetail;
-              this.terminalCtArray[tcCount] = terminalCtVal;
-              console.log(tcCount+' terminalCtArray : '+JSON.stringify(this.terminalCtArray));
-              tcCount++;
-            }
-            break;
-          }
-        }
-
-        switch (this.showMvHvFields) {
-          case true: {
-            if (ta0seallocation.startsWith(FunctionClass.PT_CHAM)) {
-              ptChamberVal = ta0sealdetail;
-              this.ptChamberArray[ptCount] = ptChamberVal;
-              console.log(ptCount+' ptChamberArray : '+JSON.stringify(this.ptChamberArray));
-              ptCount++;
-            }
-            else if (ta0seallocation.startsWith(FunctionClass.CT_CHAM)) {
-              ctChamberVal = ta0sealdetail;
-              this.ctChamberArray[ctcCount] = ctChamberVal;
-              console.log(ctCount+' ctChamberArray : '+JSON.stringify(this.ctChamberArray));
-              ctCount++;
-            }
-            else if (ta0seallocation.startsWith(FunctionClass.PT_SEC_FS)) {
-              ptSecondaryFuseVal = ta0sealdetail;
-              this.ptSecondaryFuseArray[ptsCount] = ptSecondaryFuseVal;
-              console.log(ptsCount+' ptSecondaryFuseArray : '+JSON.stringify(this.ptSecondaryFuseArray));
-              ptsCount++;
-            }
-            else if (ta0seallocation.startsWith(FunctionClass.METER_KIOSK)) {
-              meterKioskVal = ta0sealdetail;
-              this.meterKioskArray[mkCount] = meterKioskVal;
-              console.log(mkCount+' meterKioskArray : '+JSON.stringify(this.meterKioskArray));
-              mkCount++;
-            }
-            else if (ta0seallocation.startsWith(FunctionClass.METER_TEST_BOX)) {
-              meterTestBoxVal = ta0sealdetail;
-              this.meterTestBoxArray[mtbCount] = meterTestBoxVal;
-              console.log(mtbCount+' meterTestBoxArray : '+JSON.stringify(this.meterTestBoxArray));
-              mtbCount++;
-            }
-            else if (ta0seallocation.startsWith(FunctionClass.TERMINATION_BOX)) {
-              terminalBoxVal = ta0sealdetail;
-              this.terminalBoxArray[tboCount] = terminalBoxVal;
-              console.log(tboCount+' terminalBoxArray : '+JSON.stringify(this.terminalBoxArray));
-              tboCount++;
-            }
-            else if (ta0seallocation.startsWith(FunctionClass.MARSHALLING_BOX)) {
-              marshallingBoxVal = ta0sealdetail;
-              this.marshallingBoxArray[msbCount] = marshallingBoxVal;
-              console.log(msbCount+' marshallingBoxArray : '+JSON.stringify(this.marshallingBoxArray));
-              msbCount++;
-            }
-            else if (ta0seallocation.startsWith(FunctionClass.TERMINAL_CT)) {
-              terminalCtVal = ta0sealdetail;
-              this.terminalCtArray[tcCount] = terminalCtVal;
-              console.log(tcCount+' terminalCtArray : '+JSON.stringify(this.terminalCtArray));
-              tcCount++;
-            }
-            break;
-          }
-        }
+        //Show LV Sticker
+        // switch (this.showLvFields) {
+        //   case true: {
+        //     if (ta0seallocation.startsWith(FunctionClass.CT_PANEL)) {
+        //       ctPanelVal = ta0sealdetail;
+        //       this.ctPanelArray[ctCount] = ctPanelVal;
+        //       console.log(ctCount+' CT Panel : '+JSON.stringify(this.ctPanelArray[ctCount]));
+        //       ctCount++;
+        //     } else if (ta0seallocation.startsWith(FunctionClass.METER_KIOSK)) {
+        //       meterKioskVal = ta0sealdetail;
+        //       this.meterKioskArray[mkCount] = meterKioskVal;
+        //       console.log(mkCount+' Meter Kiosk : '+JSON.stringify(this.meterKioskArray[mkCount]));
+        //       mkCount++;
+        //     } else if (ta0seallocation.startsWith(FunctionClass.TERMINAL_CT)) {
+        //       terminalCtVal = ta0sealdetail;
+        //       this.terminalCtArray[tcCount] = terminalCtVal;
+        //       console.log(tcCount+' Terminal CT : '+JSON.stringify(this.terminalCtArray[tcCount]));
+        //       tcCount++;
+        //     }
+        //     break;
+        //   }
+        // }
+        //Show MVHV Sticker
+        // switch (this.showMvHvFields) {
+        //   case true: {
+        //     if (ta0seallocation.startsWith(FunctionClass.PT_CHAM)) {
+        //       ptChamberVal = ta0sealdetail;
+        //       this.ptChamberArray[ptCount] = ptChamberVal;
+        //       console.log(ptCount+' PT Chamber : '+JSON.stringify(this.ptChamberArray[ptCount]));
+        //       ptCount++;
+        //     }
+        //     else if (ta0seallocation.startsWith(FunctionClass.CT_CHAM)) {
+        //       ctChamberVal = ta0sealdetail;
+        //       this.ctChamberArray[ctcCount] = ctChamberVal;
+        //       console.log(ctCount+' CT Chamber : '+JSON.stringify(this.ctChamberArray[ctcCount]));
+        //       ctCount++;
+        //     }
+        //     else if (ta0seallocation.startsWith(FunctionClass.PT_SEC_FS)) {
+        //       ptSecondaryFuseVal = ta0sealdetail;
+        //       this.ptSecondaryFuseArray[ptsCount] = ptSecondaryFuseVal;
+        //       console.log(ptsCount+' PT Secondary Fuse : '+JSON.stringify(this.ptSecondaryFuseArray[ptsCount]));
+        //       ptsCount++;
+        //     }
+        //     else if (ta0seallocation.startsWith(FunctionClass.METER_KIOSK)) {
+        //       meterKioskVal = ta0sealdetail;
+        //       this.meterKioskArray[mkCount] = meterKioskVal;
+        //       console.log(mkCount+' Meter Kiosk : '+JSON.stringify(this.meterKioskArray[mkCount]));
+        //       mkCount++;
+        //     }
+        //     else if (ta0seallocation.startsWith(FunctionClass.METER_TEST_BOX)) {
+        //       meterTestBoxVal = ta0sealdetail;
+        //       this.meterTestBoxArray[mtbCount] = meterTestBoxVal;
+        //       console.log(mtbCount+' Meter Test Box : '+JSON.stringify(this.meterTestBoxArray[mtbCount]));
+        //       mtbCount++;
+        //     }
+        //     else if (ta0seallocation.startsWith(FunctionClass.TERMINATION_BOX)) {
+        //       terminalBoxVal = ta0sealdetail;
+        //       this.terminalBoxArray[tboCount] = terminalBoxVal;
+        //       console.log(tboCount+' Terminal Box : '+JSON.stringify(this.terminalBoxArray[tboCount]));
+        //       tboCount++;
+        //     }
+        //     else if (ta0seallocation.startsWith(FunctionClass.MARSHALLING_BOX)) {
+        //       marshallingBoxVal = ta0sealdetail;
+        //       this.marshallingBoxArray[msbCount] = marshallingBoxVal;
+        //       console.log(msbCount+' Marshalling Box : '+JSON.stringify(this.marshallingBoxArray[msbCount]));
+        //       msbCount++;
+        //     }
+        //     else if (ta0seallocation.startsWith(FunctionClass.TERMINAL_CT)) {
+        //       terminalCtVal = ta0sealdetail;
+        //       this.terminalCtArray[tcCount] = terminalCtVal;
+        //       console.log(tcCount+' Terminal CT : '+JSON.stringify(this.terminalCtArray[tcCount]));
+        //       tcCount++;
+        //     }
+        //     break;
+        //   }
+        //}
 
         // Sorting Seal
         this.meterCoverArray.sort(this.dynamicSort("ta0seallocation"));
         this.terminalCoverArray.sort(this.dynamicSort("ta0seallocation"));
-        this.fuseArray.sort(this.dynamicSort("ta0seallocation"));
+        //this.fuseArray.sort(this.dynamicSort("ta0seallocation"));
         this.mdButtonArray.sort(this.dynamicSort("ta0seallocation"));
         this.meterBatteryArray.sort(this.dynamicSort("ta0seallocation"));
         this.opticalEyeArray.sort(this.dynamicSort("ta0seallocation"));
-        this.ttbArray.sort(this.dynamicSort("ta0seallocation"));
-        this.modemArray.sort(this.dynamicSort("ta0seallocation"));
-        this.ctPanelArray.sort(this.dynamicSort("ta0seallocation"));
-        this.panelMeterArray.sort(this.dynamicSort("ta0seallocation"));
-        this.terminalCtArray.sort(this.dynamicSort("ta0seallocation"));
-        this.ptChamberArray.sort(this.dynamicSort("ta0seallocation"));
-        this.ctChamberArray.sort(this.dynamicSort("ta0seallocation"));
-        this.ptSecondaryFuseArray.sort(this.dynamicSort("ta0seallocation"));
-        this.meterKioskArray.sort(this.dynamicSort("ta0seallocation"));
-        this.meterTestBoxArray.sort(this.dynamicSort("ta0seallocation"));
-        this.terminalBoxArray.sort(this.dynamicSort("ta0seallocation"));
-        this.marshallingBoxArray.sort(this.dynamicSort("ta0seallocation"));
-        this.terminalCtArray.sort(this.dynamicSort("ta0seallocation"));
+        this.commModuleArray.sort(this.dynamicSort("ta0seallocation"));
+        //this.ttbArray.sort(this.dynamicSort("ta0seallocation"));
+        //this.modemArray.sort(this.dynamicSort("ta0seallocation"));
+        //this.ctPanelArray.sort(this.dynamicSort("ta0seallocation"));
+        //this.panelMeterArray.sort(this.dynamicSort("ta0seallocation"));
+        //this.terminalCtArray.sort(this.dynamicSort("ta0seallocation"));
+        //this.ptChamberArray.sort(this.dynamicSort("ta0seallocation"));
+        //this.ctChamberArray.sort(this.dynamicSort("ta0seallocation"));
+        //this.ptSecondaryFuseArray.sort(this.dynamicSort("ta0seallocation"));
+        //this.meterKioskArray.sort(this.dynamicSort("ta0seallocation"));
+        //this.meterTestBoxArray.sort(this.dynamicSort("ta0seallocation"));
+        //this.terminalBoxArray.sort(this.dynamicSort("ta0seallocation"));
+        //this.marshallingBoxArray.sort(this.dynamicSort("ta0seallocation"));
+        //this.terminalCtArray.sort(this.dynamicSort("ta0seallocation"));
       }
     }
 
@@ -1535,12 +1546,13 @@ this.loadingPresent();
  
       // Save Seal Details...
       // Save Data MeterCover
-      if ((this.meterCoverArray[0].ta0sealnum != null || this.meterCoverArray[0].ta0sealnum != undefined) || this.meterCoverArray[0].ta0newsealnum != null || this.meterCoverArray[0].ta0newsealnum != undefined) {
+      if ((this.meterCoverArray[0].ta0sealnum != null || this.meterCoverArray[0].ta0sealnum != undefined)) {
         
           for (var i = 0; i < this.meterCoverArray.length; i++) {
-            console.log(this.meterCoverArray[i].assetnum);
-            console.log(this.meterCoverArray[i].ta0sealnum);
-            console.log(this.meterCoverArray[i].ta0seallocation);
+            console.log(i+" : " +this.meterCoverArray[i].assetnum);
+            console.log(i+" : " +this.meterCoverArray[i].serialnum);
+            console.log(i+" : " +this.meterCoverArray[i].ta0sealnum);
+            console.log(i+" : " +this.meterCoverArray[i].ta0seallocation);
             this.meterCoverArray[i].assetnum = assetnum;
             this.meterCoverArray[i].orgid = orgid;
             this.meterCoverArray[i].siteid = siteid;
@@ -1550,12 +1562,13 @@ this.loadingPresent();
       }
 
       // Save Data TerminalCover
-      if ((this.terminalCoverArray[0].ta0sealnum != null || this.terminalCoverArray[0].ta0sealnum != undefined) || this.terminalCoverArray[0].ta0newsealnum != null || this.terminalCoverArray[0].ta0newsealnum != undefined) {
+      if ((this.terminalCoverArray[0].ta0sealnum != null || this.terminalCoverArray[0].ta0sealnum != undefined)) {
 
         for (var k = 0; k < this.terminalCoverArray.length; k++) {
-          console.log(this.terminalCoverArray[k].assetnum);
-          console.log(this.terminalCoverArray[k].ta0sealnum);
-          console.log(this.terminalCoverArray[k].ta0seallocation);
+          console.log(k+" : " +this.terminalCoverArray[k].assetnum);
+          console.log(k+" : " +this.terminalCoverArray[k].serialnum);
+          console.log(k+" : " +this.terminalCoverArray[k].ta0sealnum);
+          console.log(k+" : " +this.terminalCoverArray[k].ta0seallocation);          
           this.terminalCoverArray[k].assetnum = assetnum;
           this.terminalCoverArray[k].siteid = siteid;
           this.terminalCoverArray[k].wonum = wonum;
@@ -1564,28 +1577,28 @@ this.loadingPresent();
       }
 
       // Save Data Fuse
-      if ((this.fuseArray[0].ta0sealnum != null || this.fuseArray[0].ta0sealnum != undefined) || this.fuseArray[0].ta0newsealnum != null || this.fuseArray[0].ta0newsealnum != undefined) {
+      // if ((this.fuseArray[0].ta0sealnum != null || this.fuseArray[0].ta0sealnum != undefined) || this.fuseArray[0].ta0newsealnum != null || this.fuseArray[0].ta0newsealnum != undefined) {
 
-        for (var j = 0; j < this.fuseArray.length; j++) {
-          console.log(this.fuseArray[j].assetnum);
-          console.log(this.fuseArray[j].ta0sealnum);
-          console.log(this.fuseArray[j].ta0seallocation);
-          this.fuseArray[j].assetnum = assetnum;
-          this.fuseArray[j].orgid = orgid;
-          this.fuseArray[j].siteid = siteid;
-          this.fuseArray[j].wonum = wonum;
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.fuseArray[j]);          
-        }
-      }
+      //   for (var j = 0; j < this.fuseArray.length; j++) {
+      //     console.log(this.fuseArray[j].assetnum);
+      //     console.log(this.fuseArray[j].ta0sealnum);
+      //     console.log(this.fuseArray[j].ta0seallocation);
+      //     this.fuseArray[j].assetnum = assetnum;
+      //     this.fuseArray[j].orgid = orgid;
+      //     this.fuseArray[j].siteid = siteid;
+      //     this.fuseArray[j].wonum = wonum;
+      //     this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.fuseArray[j]);          
+      //   }
+      // }
 
       // Save Data MDButton
-      if ((this.mdButtonArray[0].ta0sealnum != null || this.mdButtonArray[0].ta0sealnum != undefined) || this.fuseArray[0].ta0newsealnum != null || this.fuseArray[0].ta0newsealnum != undefined) {
+      if ((this.mdButtonArray[0].ta0sealnum != null || this.mdButtonArray[0].ta0sealnum != undefined)) {
 
         for (var m = 0; m < this.mdButtonArray.length; m++) {
-          console.log(this.mdButtonArray[m].assetnum);
-          console.log(this.mdButtonArray[m].serialnum);
-          console.log(this.mdButtonArray[m].ta0sealnum);
-          console.log(this.mdButtonArray[m].ta0seallocation);
+          console.log(m+" : " +this.mdButtonArray[m].assetnum);
+          console.log(m+" : " +this.mdButtonArray[m].serialnum);
+          console.log(m+" : " +this.mdButtonArray[m].ta0sealnum);
+          console.log(m+" : " +this.mdButtonArray[m].ta0seallocation);
           this.mdButtonArray[m].assetnum = assetnum;
           this.mdButtonArray[m].orgid = orgid;
           this.mdButtonArray[m].siteid = siteid;
@@ -1595,13 +1608,13 @@ this.loadingPresent();
       }
 
       // Save Data Battery
-      if ((this.meterBatteryArray[0].ta0sealnum != null || this.meterBatteryArray[0].ta0sealnum != undefined) || this.meterBatteryArray[0].ta0newsealnum != null || this.meterBatteryArray[0].ta0newsealnum != undefined) {
+      if ((this.meterBatteryArray[0].ta0sealnum != null || this.meterBatteryArray[0].ta0sealnum != undefined)) {
 
         for (var n = 0; n < this.meterBatteryArray.length; n++) {
-          console.log(this.meterBatteryArray[n].assetnum);
-          console.log(this.meterBatteryArray[n].serialnum);
-          console.log(this.meterBatteryArray[n].ta0sealnum);
-          console.log(this.meterBatteryArray[n].ta0seallocation);
+          console.log(n+" : " +this.meterBatteryArray[n].assetnum);
+          console.log(n+" : " +this.meterBatteryArray[n].serialnum);
+          console.log(n+" : " +this.meterBatteryArray[n].ta0sealnum);
+          console.log(n+" : " +this.meterBatteryArray[n].ta0seallocation);
           this.meterBatteryArray[n].assetnum = assetnum;
           this.meterBatteryArray[n].orgid = orgid;
           this.meterBatteryArray[n].siteid = siteid;
@@ -1611,13 +1624,13 @@ this.loadingPresent();
       }
 
       // Save Data OpticalEyeCover
-      if ((this.opticalEyeArray[0].ta0sealnum != null || this.opticalEyeArray[0].ta0sealnum != undefined) || this.opticalEyeArray[0].ta0newsealnum != null || this.opticalEyeArray[0].ta0newsealnum != undefined) {
+      if ((this.opticalEyeArray[0].ta0sealnum != null || this.opticalEyeArray[0].ta0sealnum != undefined)) {
 
         for (var b = 0; b < this.opticalEyeArray.length; b++) {
-          console.log(this.opticalEyeArray[b].assetnum);
-          console.log(this.opticalEyeArray[b].serialnum);
-          console.log(this.opticalEyeArray[b].ta0sealnum);
-          console.log(this.opticalEyeArray[b].ta0seallocation);
+          console.log(b+" : " +this.opticalEyeArray[b].assetnum);
+          console.log(b+" : " +this.opticalEyeArray[b].serialnum);
+          console.log(b+" : " +this.opticalEyeArray[b].ta0sealnum);
+          console.log(b+" : " +this.opticalEyeArray[b].ta0seallocation);
           this.opticalEyeArray[b].assetnum = assetnum;
           this.opticalEyeArray[b].orgid = orgid;
           this.opticalEyeArray[b].siteid = siteid;
@@ -1629,9 +1642,7 @@ this.loadingPresent();
       // Save Sticker Details...
       // Save TerminalCover
       if ((this.sterminalCoverArray[0].ta0stickernum != null || this.sterminalCoverArray[0].ta0stickernum != undefined) || (this.sterminalCoverArray[0].ta0newstickernum != null || this.sterminalCoverArray[0].ta0newstickernum != undefined) || (this.sterminalCoverArray[0].ta0stickercondition != null || this.sterminalCoverArray[0].ta0stickercondition != undefined)) {
-
         for (var i = 0; i < this.sterminalCoverArray.length; i++) {
-
           this.sterminalCoverArray[i].assetnum = assetnum;
           this.sterminalCoverArray[i].orgid = orgid;
           this.sterminalCoverArray[i].siteid = siteid;
@@ -1643,9 +1654,7 @@ this.loadingPresent();
 
       // Save Fuse
       if ((this.sfuseArray[0].ta0stickernum != null || this.sfuseArray[0].ta0stickernum != undefined) || this.sfuseArray[0].ta0newstickernum != null || this.sfuseArray[0].ta0newstickernum != undefined) {
-
         for (var i = 0; i < this.sfuseArray.length; i++) {
-
           this.sfuseArray[i].assetnum = assetnum;
           this.sfuseArray[i].orgid = orgid;
           this.sfuseArray[i].siteid = siteid;
@@ -1657,205 +1666,201 @@ this.loadingPresent();
 
       // Save Other Seal Details...
       // Save TTB
-      if ((this.ttbArray[0].ta0sealnum != null || this.ttbArray[0].ta0sealnum != undefined) || this.ttbArray[0].ta0newsealnum != null || this.ttbArray[0].ta0newsealnum != undefined) {
-
-        for (var i = 0; i < this.ttbArray.length; i++) {
-
-          this.ttbArray[i].assetnum = assetnum;
-          this.ttbArray[i].orgid = orgid;
-          this.ttbArray[i].siteid = siteid;
-          this.ttbArray[i].wonum = wonum;
-          this.ttbArray[i].ta0seallocation = "TEST_BLOCK_" + (i + 1);
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.ttbArray[i]);
-        }
-      }
+      // if ((this.ttbArray[0].ta0sealnum != null || this.ttbArray[0].ta0sealnum != undefined) || this.ttbArray[0].ta0newsealnum != null || this.ttbArray[0].ta0newsealnum != undefined) {
+      //   for (var i = 0; i < this.ttbArray.length; i++) {
+      //     this.ttbArray[i].assetnum = assetnum;
+      //     this.ttbArray[i].orgid = orgid;
+      //     this.ttbArray[i].siteid = siteid;
+      //     this.ttbArray[i].wonum = wonum;
+      //     this.ttbArray[i].ta0seallocation = "TEST_BLOCK_" + (i + 1);
+      //     this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.ttbArray[i]);
+      //   }
+      // }
 
       // Save PT Chamber
-      if (this.showMvHvFields) {
+      // if (this.showMvHvFields) {
+      //   if ((this.ptChamberArray[0].ta0sealnum != null || this.ptChamberArray[0].ta0sealnum != undefined) || this.ptChamberArray[0].ta0newsealnum != null || this.ptChamberArray[0].ta0newsealnum != undefined) {
+      //     for (var i = 0; i < this.ptChamberArray.length; i++) {
+      //       this.ptChamberArray[i].assetnum = assetnum;
+      //       this.ptChamberArray[i].orgid = orgid;
+      //       this.ptChamberArray[i].siteid = siteid;
+      //       this.ptChamberArray[i].wonum = wonum;
+      //       this.ptChamberArray[i].ta0seallocation = "PT_CHAMBER_" + (i + 1);
+      //       this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.ptChamberArray[i]);
+      //     }
+      //   }
 
-        if ((this.ptChamberArray[0].ta0sealnum != null || this.ptChamberArray[0].ta0sealnum != undefined) || this.ptChamberArray[0].ta0newsealnum != null || this.ptChamberArray[0].ta0newsealnum != undefined) {
+      //   // Save CT Chamber
+      //   if ((this.ctChamberArray[0].ta0sealnum != null || this.ctChamberArray[0].ta0sealnum != undefined) || this.ctChamberArray[0].ta0newsealnum != null || this.ctChamberArray[0].ta0newsealnum != undefined) {
 
-          for (var i = 0; i < this.ptChamberArray.length; i++) {
-            this.ptChamberArray[i].assetnum = assetnum;
-            this.ptChamberArray[i].orgid = orgid;
-            this.ptChamberArray[i].siteid = siteid;
-            this.ptChamberArray[i].wonum = wonum;
-            this.ptChamberArray[i].ta0seallocation = "PT_CHAMBER_" + (i + 1);
-            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.ptChamberArray[i]);
-          }
-        }
+      //     for (var i = 0; i < this.ctChamberArray.length; i++) {
 
-        // Save CT Chamber
-        if ((this.ctChamberArray[0].ta0sealnum != null || this.ctChamberArray[0].ta0sealnum != undefined) || this.ctChamberArray[0].ta0newsealnum != null || this.ctChamberArray[0].ta0newsealnum != undefined) {
+      //       this.ctChamberArray[i].assetnum = assetnum;
+      //       this.ctChamberArray[i].orgid = orgid;
+      //       this.ctChamberArray[i].siteid = siteid;
+      //       this.ctChamberArray[i].wonum = wonum;
+      //       this.ctChamberArray[i].ta0seallocation = "CT_CHAMBER_" + (i + 1);
+      //       this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.ctChamberArray[i]);
+      //     }
+      //   }
 
-          for (var i = 0; i < this.ctChamberArray.length; i++) {
+      //   // Save PT Sec. Fuse
+      //   if ((this.ptSecondaryFuseArray[0].ta0sealnum != null || this.ptSecondaryFuseArray[0].ta0sealnum != undefined) || this.ptSecondaryFuseArray[0].ta0newsealnum != null || this.ptSecondaryFuseArray[0].ta0newsealnum != undefined) {
 
-            this.ctChamberArray[i].assetnum = assetnum;
-            this.ctChamberArray[i].orgid = orgid;
-            this.ctChamberArray[i].siteid = siteid;
-            this.ctChamberArray[i].wonum = wonum;
-            this.ctChamberArray[i].ta0seallocation = "CT_CHAMBER_" + (i + 1);
-            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.ctChamberArray[i]);
-          }
-        }
+      //     for (var i = 0; i < this.ptSecondaryFuseArray.length; i++) {
 
-        // Save PT Sec. Fuse
-        if ((this.ptSecondaryFuseArray[0].ta0sealnum != null || this.ptSecondaryFuseArray[0].ta0sealnum != undefined) || this.ptSecondaryFuseArray[0].ta0newsealnum != null || this.ptSecondaryFuseArray[0].ta0newsealnum != undefined) {
+      //       this.ptSecondaryFuseArray[i].assetnum = assetnum;
+      //       this.ptSecondaryFuseArray[i].orgid = orgid;
+      //       this.ptSecondaryFuseArray[i].siteid = siteid;
+      //       this.ptSecondaryFuseArray[i].wonum = wonum;
+      //       this.ptSecondaryFuseArray[i].ta0seallocation = "PT_SEC_FUSE_" + (i + 1);
+      //       this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.ptSecondaryFuseArray[i]);
+      //     }
+      //   }
 
-          for (var i = 0; i < this.ptSecondaryFuseArray.length; i++) {
+      //   // Save Meter Kiosk
+      //   if ((this.meterKioskArray[0].ta0sealnum != null || this.meterKioskArray[0].ta0sealnum != undefined) || this.meterKioskArray[0].ta0newsealnum != null || this.meterKioskArray[0].ta0newsealnum != undefined) {
 
-            this.ptSecondaryFuseArray[i].assetnum = assetnum;
-            this.ptSecondaryFuseArray[i].orgid = orgid;
-            this.ptSecondaryFuseArray[i].siteid = siteid;
-            this.ptSecondaryFuseArray[i].wonum = wonum;
-            this.ptSecondaryFuseArray[i].ta0seallocation = "PT_SEC_FUSE_" + (i + 1);
-            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.ptSecondaryFuseArray[i]);
-          }
-        }
+      //     for (var i = 0; i < this.meterKioskArray.length; i++) {
 
-        // Save Meter Kiosk
-        if ((this.meterKioskArray[0].ta0sealnum != null || this.meterKioskArray[0].ta0sealnum != undefined) || this.meterKioskArray[0].ta0newsealnum != null || this.meterKioskArray[0].ta0newsealnum != undefined) {
+      //       this.meterKioskArray[i].assetnum = assetnum;
+      //       this.meterKioskArray[i].orgid = orgid;
+      //       this.meterKioskArray[i].siteid = siteid;
+      //       this.meterKioskArray[i].wonum = wonum;
+      //       this.meterKioskArray[i].ta0seallocation = "KIOSK_PANELDOOR_" + (i + 1);
+      //       this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.meterKioskArray[i]);
+      //     }
+      //   }
 
-          for (var i = 0; i < this.meterKioskArray.length; i++) {
+      //   // Save Meter Test Box
+      //   if ((this.meterTestBoxArray[0].ta0sealnum != null || this.meterTestBoxArray[0].ta0sealnum != undefined) || this.meterTestBoxArray[0].ta0newsealnum != null || this.meterTestBoxArray[0].ta0newsealnum != undefined) {
 
-            this.meterKioskArray[i].assetnum = assetnum;
-            this.meterKioskArray[i].orgid = orgid;
-            this.meterKioskArray[i].siteid = siteid;
-            this.meterKioskArray[i].wonum = wonum;
-            this.meterKioskArray[i].ta0seallocation = "KIOSK_PANELDOOR_" + (i + 1);
-            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.meterKioskArray[i]);
-          }
-        }
+      //     for (var i = 0; i < this.meterTestBoxArray.length; i++) {
 
-        // Save Meter Test Box
-        if ((this.meterTestBoxArray[0].ta0sealnum != null || this.meterTestBoxArray[0].ta0sealnum != undefined) || this.meterTestBoxArray[0].ta0newsealnum != null || this.meterTestBoxArray[0].ta0newsealnum != undefined) {
+      //       this.meterTestBoxArray[i].assetnum = assetnum;
+      //       this.meterTestBoxArray[i].orgid = orgid;
+      //       this.meterTestBoxArray[i].siteid = siteid;
+      //       this.meterTestBoxArray[i].wonum = wonum;
+      //       this.meterTestBoxArray[i].ta0seallocation = "METER_TEST_BOX_" + (i + 1);
+      //       this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.meterTestBoxArray[i]);
+      //     }
+      //   }
 
-          for (var i = 0; i < this.meterTestBoxArray.length; i++) {
+      //   // Save Termination Box
+      //   if ((this.terminalBoxArray[0].ta0sealnum != null || this.terminalBoxArray[0].ta0sealnum != undefined) || this.terminalBoxArray[0].ta0newsealnum != null || this.terminalBoxArray[0].ta0newsealnum != undefined) {
 
-            this.meterTestBoxArray[i].assetnum = assetnum;
-            this.meterTestBoxArray[i].orgid = orgid;
-            this.meterTestBoxArray[i].siteid = siteid;
-            this.meterTestBoxArray[i].wonum = wonum;
-            this.meterTestBoxArray[i].ta0seallocation = "METER_TEST_BOX_" + (i + 1);
-            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.meterTestBoxArray[i]);
-          }
-        }
+      //     for (var i = 0; i < this.terminalBoxArray.length; i++) {
 
-        // Save Termination Box
-        if ((this.terminalBoxArray[0].ta0sealnum != null || this.terminalBoxArray[0].ta0sealnum != undefined) || this.terminalBoxArray[0].ta0newsealnum != null || this.terminalBoxArray[0].ta0newsealnum != undefined) {
+      //       this.terminalBoxArray[i].assetnum = assetnum;
+      //       this.terminalBoxArray[i].orgid = orgid;
+      //       this.terminalBoxArray[i].siteid = siteid;
+      //       this.terminalBoxArray[i].wonum = wonum;
+      //       this.terminalBoxArray[i].ta0seallocation = "TERMINATION_BOX_" + (i + 1);
+      //       this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalBoxArray[i]);
+      //     }
+      //   }
 
-          for (var i = 0; i < this.terminalBoxArray.length; i++) {
+      //   // Save Marshalling Box
+      //   if ((this.marshallingBoxArray[0].ta0sealnum != null || this.marshallingBoxArray[0].ta0sealnum != undefined) || this.marshallingBoxArray[0].ta0newsealnum != null || this.marshallingBoxArray[0].ta0newsealnum != undefined) {
 
-            this.terminalBoxArray[i].assetnum = assetnum;
-            this.terminalBoxArray[i].orgid = orgid;
-            this.terminalBoxArray[i].siteid = siteid;
-            this.terminalBoxArray[i].wonum = wonum;
-            this.terminalBoxArray[i].ta0seallocation = "TERMINATION_BOX_" + (i + 1);
-            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalBoxArray[i]);
-          }
-        }
+      //     for (var i = 0; i < this.marshallingBoxArray.length; i++) {
 
-        // Save Marshalling Box
-        if ((this.marshallingBoxArray[0].ta0sealnum != null || this.marshallingBoxArray[0].ta0sealnum != undefined) || this.marshallingBoxArray[0].ta0newsealnum != null || this.marshallingBoxArray[0].ta0newsealnum != undefined) {
+      //       this.marshallingBoxArray[i].assetnum = assetnum;
+      //       this.marshallingBoxArray[i].orgid = orgid;
+      //       this.marshallingBoxArray[i].siteid = siteid;
+      //       this.marshallingBoxArray[i].wonum = wonum;
+      //       this.marshallingBoxArray[i].ta0seallocation = "MARSHALLING_BOX_" + (i + 1);
+      //       this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.marshallingBoxArray[i]);
+      //     }
+      //   }
 
-          for (var i = 0; i < this.marshallingBoxArray.length; i++) {
+      //   // Save Terminal CT
+      //   if ((this.terminalCtArray[0].ta0sealnum != null || this.terminalCtArray[0].ta0sealnum != undefined) || this.terminalCtArray[0].ta0newsealnum != null || this.terminalCtArray[0].ta0newsealnum != undefined) {
 
-            this.marshallingBoxArray[i].assetnum = assetnum;
-            this.marshallingBoxArray[i].orgid = orgid;
-            this.marshallingBoxArray[i].siteid = siteid;
-            this.marshallingBoxArray[i].wonum = wonum;
-            this.marshallingBoxArray[i].ta0seallocation = "MARSHALLING_BOX_" + (i + 1);
-            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.marshallingBoxArray[i]);
-          }
-        }
+      //     for (var i = 0; i < this.terminalCtArray.length; i++) {
 
-        // Save Terminal CT
-        if ((this.terminalCtArray[0].ta0sealnum != null || this.terminalCtArray[0].ta0sealnum != undefined) || this.terminalCtArray[0].ta0newsealnum != null || this.terminalCtArray[0].ta0newsealnum != undefined) {
-
-          for (var i = 0; i < this.terminalCtArray.length; i++) {
-
-            this.terminalCtArray[i].assetnum = assetnum;
-            this.terminalCtArray[i].orgid = orgid;
-            this.terminalCtArray[i].siteid = siteid;
-            this.terminalCtArray[i].wonum = wonum;
-            this.terminalCtArray[i].ta0seallocation = "TERMINAL_CT_" + (i + 1);
-            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalCtArray[i]);
-          }
-        }
-      }
+      //       this.terminalCtArray[i].assetnum = assetnum;
+      //       this.terminalCtArray[i].orgid = orgid;
+      //       this.terminalCtArray[i].siteid = siteid;
+      //       this.terminalCtArray[i].wonum = wonum;
+      //       this.terminalCtArray[i].ta0seallocation = "TERMINAL_CT_" + (i + 1);
+      //       this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalCtArray[i]);
+      //     }
+      //   }
+      // }
 
       // Save CT Panel
-      if (this.showLvFields) {
+      // if (this.showLvFields) {
 
-        if ((this.ctPanelArray[0].ta0sealnum != null || this.ctPanelArray[0].ta0sealnum != undefined) || this.ctPanelArray[0].ta0newsealnum != null || this.ctPanelArray[0].ta0newsealnum != undefined) {
+      //   if ((this.ctPanelArray[0].ta0sealnum != null || this.ctPanelArray[0].ta0sealnum != undefined) || this.ctPanelArray[0].ta0newsealnum != null || this.ctPanelArray[0].ta0newsealnum != undefined) {
 
-          for (var i = 0; i < this.ctPanelArray.length; i++) {
+      //     for (var i = 0; i < this.ctPanelArray.length; i++) {
 
-            this.ctPanelArray[i].assetnum = assetnum;
-            this.ctPanelArray[i].orgid = orgid;
-            this.ctPanelArray[i].siteid = siteid;
-            this.ctPanelArray[i].wonum = wonum;
-            this.ctPanelArray[i].ta0seallocation = "CT_CHAMBER_" + (i + 1);
-            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.ctPanelArray[i]);
-          }
-        }
+      //       this.ctPanelArray[i].assetnum = assetnum;
+      //       this.ctPanelArray[i].orgid = orgid;
+      //       this.ctPanelArray[i].siteid = siteid;
+      //       this.ctPanelArray[i].wonum = wonum;
+      //       this.ctPanelArray[i].ta0seallocation = "CT_CHAMBER_" + (i + 1);
+      //       this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.ctPanelArray[i]);
+      //     }
+      //   }
 
-        // Save Panel Meter
-        // if ((this.panelMeterArray[0].ta0sealnum != null || this.panelMeterArray[0].ta0sealnum != undefined) || this.panelMeterArray[0].ta0newsealnum != null || this.panelMeterArray[0].ta0newsealnum != undefined) {
+      //   // Save Panel Meter
+      //   // if ((this.panelMeterArray[0].ta0sealnum != null || this.panelMeterArray[0].ta0sealnum != undefined) || this.panelMeterArray[0].ta0newsealnum != null || this.panelMeterArray[0].ta0newsealnum != undefined) {
 
-        //   for (var i = 0; i < this.panelMeterArray.length; i++) {
+      //   //   for (var i = 0; i < this.panelMeterArray.length; i++) {
 
-        //     this.panelMeterArray[i].assetnum = assetnum;
-        //     this.panelMeterArray[i].orgid = orgid;
-        //     this.panelMeterArray[i].siteid = siteid;
-        //     this.panelMeterArray[i].wonum = wonum;
-        //     this.panelMeterArray[i].ta0seallocation = "PANEL_METER_" + (i + 1);
-        //     this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.panelMeterArray[i]);
-        //   }
-        // }
+      //   //     this.panelMeterArray[i].assetnum = assetnum;
+      //   //     this.panelMeterArray[i].orgid = orgid;
+      //   //     this.panelMeterArray[i].siteid = siteid;
+      //   //     this.panelMeterArray[i].wonum = wonum;
+      //   //     this.panelMeterArray[i].ta0seallocation = "PANEL_METER_" + (i + 1);
+      //   //     this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.panelMeterArray[i]);
+      //   //   }
+      //   // }
 
-        // Save Panel Meter
-        if ((this.meterKioskArray[0].ta0sealnum != null || this.meterKioskArray[0].ta0sealnum != undefined) || this.meterKioskArray[0].ta0newsealnum != null || this.meterKioskArray[0].ta0newsealnum != undefined) {
+      //   // Save Panel Meter
+      //   if ((this.meterKioskArray[0].ta0sealnum != null || this.meterKioskArray[0].ta0sealnum != undefined) || this.meterKioskArray[0].ta0newsealnum != null || this.meterKioskArray[0].ta0newsealnum != undefined) {
 
-          for (var i = 0; i < this.meterKioskArray.length; i++) {
+      //     for (var i = 0; i < this.meterKioskArray.length; i++) {
 
-            this.meterKioskArray[i].assetnum = assetnum;
-            this.meterKioskArray[i].orgid = orgid;
-            this.meterKioskArray[i].siteid = siteid;
-            this.meterKioskArray[i].wonum = wonum;
-            this.meterKioskArray[i].ta0seallocation = "KIOSK_PANELDOOR_" + (i + 1);
-            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.meterKioskArray[i]);
-          }
-        }
+      //       this.meterKioskArray[i].assetnum = assetnum;
+      //       this.meterKioskArray[i].orgid = orgid;
+      //       this.meterKioskArray[i].siteid = siteid;
+      //       this.meterKioskArray[i].wonum = wonum;
+      //       this.meterKioskArray[i].ta0seallocation = "KIOSK_PANELDOOR_" + (i + 1);
+      //       this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.meterKioskArray[i]);
+      //     }
+      //   }
 
-        // Save Terminal CT
-        if ((this.terminalCtArray[0].ta0sealnum != null || this.terminalCtArray[0].ta0sealnum != undefined) || this.terminalCtArray[0].ta0newsealnum != null || this.terminalCtArray[0].ta0newsealnum != undefined) {
+      //   // Save Terminal CT
+      //   if ((this.terminalCtArray[0].ta0sealnum != null || this.terminalCtArray[0].ta0sealnum != undefined) || this.terminalCtArray[0].ta0newsealnum != null || this.terminalCtArray[0].ta0newsealnum != undefined) {
 
-          for (var i = 0; i < this.terminalCtArray.length; i++) {
+      //     for (var i = 0; i < this.terminalCtArray.length; i++) {
 
-            this.terminalCtArray[i].assetnum = assetnum;
-            this.terminalCtArray[i].orgid = orgid;
-            this.terminalCtArray[i].siteid = siteid;
-            this.terminalCtArray[i].wonum = wonum;
-            this.terminalCtArray[i].ta0seallocation = "TERMINAL_CT_" + (i + 1);
-            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalCtArray[i]);
-          }
-        }
-      }
+      //       this.terminalCtArray[i].assetnum = assetnum;
+      //       this.terminalCtArray[i].orgid = orgid;
+      //       this.terminalCtArray[i].siteid = siteid;
+      //       this.terminalCtArray[i].wonum = wonum;
+      //       this.terminalCtArray[i].ta0seallocation = "TERMINAL_CT_" + (i + 1);
+      //       this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalCtArray[i]);
+      //     }
+      //   }
+      // }
 
       // Save Modem
-      if ((this.modemArray[0].ta0sealnum != null || this.modemArray[0].ta0sealnum != undefined) || this.modemArray[0].ta0newsealnum != null || this.modemArray[0].ta0newsealnum != undefined) {
+      // if ((this.modemArray[0].ta0sealnum != null || this.modemArray[0].ta0sealnum != undefined) || this.modemArray[0].ta0newsealnum != null || this.modemArray[0].ta0newsealnum != undefined) {
 
-        for (var i = 0; i < this.modemArray.length; i++) {
+      //   for (var i = 0; i < this.modemArray.length; i++) {
 
-          this.modemArray[i].assetnum = assetnum;
-          this.modemArray[i].orgid = orgid;
-          this.modemArray[i].siteid = siteid;
-          this.modemArray[i].wonum = wonum;
-          this.modemArray[i].ta0seallocation = "MODEM_" + (i + 1);
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.modemArray[i]);
-        }
-      }
+      //     this.modemArray[i].assetnum = assetnum;
+      //     this.modemArray[i].orgid = orgid;
+      //     this.modemArray[i].siteid = siteid;
+      //     this.modemArray[i].wonum = wonum;
+      //     this.modemArray[i].ta0seallocation = "MODEM_" + (i + 1);
+      //     this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.modemArray[i]);
+      //   }
+      // }
 
       // Save Other Sticker Details
       if (this.showMvHvFields) {
@@ -2229,109 +2234,114 @@ this.loadingPresent();
       var fakeSealNum : string = '';
       var saveFlag: Boolean = true;
 
-      //Save new crimpless seal
-      if(this.newterminalcover1.ta0sealnum !== null &&  this.newterminalcover1.ta0sealnum !== undefined && this.newterminalcover1.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.newterminalcover1.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.newterminalcover1.ta0sealnum + ',';
-            saveFlag = false;
-          }    
-        });
-      }
-      if(this.newterminalcover2.ta0sealnum !== null &&  this.newterminalcover2.ta0sealnum !== undefined && this.newterminalcover2.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.newterminalcover2.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.newterminalcover2.ta0sealnum + ',';
-            saveFlag = false;
-          }    
-        });
-      }
-      if(this.newmetercover1.ta0sealnum !== null &&  this.newmetercover1.ta0sealnum !== undefined && this.newmetercover1.ta0sealnum !== '') {     
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.newmetercover1.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.newmetercover1.ta0sealnum + ',';
-            saveFlag = false;
-          }    
-        });
-      }
-      if(this.newmetercover2.ta0sealnum !== null &&  this.newmetercover2.ta0sealnum !== undefined && this.newmetercover2.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.newmetercover2.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.newmetercover2.ta0sealnum + ',';
-            saveFlag = false;
-          }    
-        });
-      }
-      if(this.newmetercover3.ta0sealnum !== null &&  this.newmetercover3.ta0sealnum !== undefined && this.newmetercover3.ta0sealnum !== '') {   
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.newmetercover3.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.newmetercover3.ta0sealnum + ',';
-            saveFlag = false;
-          }    
-        });      
-      }
-      if(this.newmdbutton.ta0sealnum !== null &&  this.newmdbutton.ta0sealnum !== undefined && this.newmdbutton.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.newmdbutton.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.newmdbutton.ta0sealnum + ',';
-            saveFlag = false;
-          }    
-        });
-      }
-      if(this.newopticaleyecover.ta0sealnum !== null &&  this.newopticaleyecover.ta0sealnum !== undefined && this.newopticaleyecover.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.newopticaleyecover.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.newopticaleyecover.ta0sealnum + ',';
-            saveFlag = false;
-          }    
-        });
-      }
-      if(this.newmeterbattery.ta0sealnum !== null &&  this.newmeterbattery.ta0sealnum !== undefined && this.newmeterbattery.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.newmeterbattery.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.newmeterbattery.ta0sealnum + ',';
-            saveFlag = false;
-          }    
-        });
-      }
-      if(this.newcommmodule.ta0sealnum !== null &&  this.newcommmodule.ta0sealnum !== undefined && this.newcommmodule.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.newcommmodule.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.newcommmodule.ta0sealnum + ',';
-            saveFlag = false;
-          }    
-        });
+      let validateSeal = this.gv.validateDBSeal;
+      if(validateSeal) {
+        //Save new crimpless seal
+        if(this.newterminalcover1.ta0sealnum !== null &&  this.newterminalcover1.ta0sealnum !== undefined && this.newterminalcover1.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.newterminalcover1.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.newterminalcover1.ta0sealnum + ',';
+              saveFlag = false;
+            }    
+          });
+        }
+        if(this.newterminalcover2.ta0sealnum !== null &&  this.newterminalcover2.ta0sealnum !== undefined && this.newterminalcover2.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.newterminalcover2.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.newterminalcover2.ta0sealnum + ',';
+              saveFlag = false;
+            }    
+          });
+        }
+        if(this.newmetercover1.ta0sealnum !== null &&  this.newmetercover1.ta0sealnum !== undefined && this.newmetercover1.ta0sealnum !== '') {     
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.newmetercover1.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.newmetercover1.ta0sealnum + ',';
+              saveFlag = false;
+            }    
+          });
+        }
+        if(this.newmetercover2.ta0sealnum !== null &&  this.newmetercover2.ta0sealnum !== undefined && this.newmetercover2.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.newmetercover2.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.newmetercover2.ta0sealnum + ',';
+              saveFlag = false;
+            }    
+          });
+        }
+        if(this.newmetercover3.ta0sealnum !== null &&  this.newmetercover3.ta0sealnum !== undefined && this.newmetercover3.ta0sealnum !== '') {   
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.newmetercover3.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.newmetercover3.ta0sealnum + ',';
+              saveFlag = false;
+            }    
+          });      
+        }
+        if(this.newmdbutton.ta0sealnum !== null &&  this.newmdbutton.ta0sealnum !== undefined && this.newmdbutton.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.newmdbutton.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.newmdbutton.ta0sealnum + ',';
+              saveFlag = false;
+            }    
+          });
+        }
+        if(this.newopticaleyecover.ta0sealnum !== null &&  this.newopticaleyecover.ta0sealnum !== undefined && this.newopticaleyecover.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.newopticaleyecover.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.newopticaleyecover.ta0sealnum + ',';
+              saveFlag = false;
+            }    
+          });
+        }
+        if(this.newmeterbattery.ta0sealnum !== null &&  this.newmeterbattery.ta0sealnum !== undefined && this.newmeterbattery.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.newmeterbattery.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.newmeterbattery.ta0sealnum + ',';
+              saveFlag = false;
+            }    
+          });
+        }
+        if(this.newcommmodule.ta0sealnum !== null &&  this.newcommmodule.ta0sealnum !== undefined && this.newcommmodule.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.newcommmodule.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.newcommmodule.ta0sealnum + ',';
+              saveFlag = false;
+            }    
+          });
+        }
       }
 
+      
+
       console.log("saveFlag : "+saveFlag);
-      if(saveFlag === false) {
+      if(validateSeal === true && saveFlag === false) {
         loading.dismiss();
         this.gf.warningAlert('Warning', 'Invalid seal number '+fakeSealNum.substring(0,fakeSealNum.length-1)+' found!', 'Close');   
         return;
@@ -3176,6 +3186,11 @@ this.loadingPresent();
               this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0silstickerstatus = 'Y';
               var itemVal = JSON.parse(JSON.stringify(this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex]));
               var itemArray = [];
+
+              delete itemVal['ta0registerdetail'];
+              delete itemVal['ta0testdetail'];
+              delete itemVal['ta4testdata'];
+
               itemArray.push(itemVal);
               this.dataService
                 .saveRecordWithNewType(itemArray, this.itemOri.json.wonum, DeviceConstants.PAGE_ACTION_SILSTICKERS, feederCode, this.itemOri.json.worktype)
@@ -3238,6 +3253,7 @@ this.loadingPresent();
 
           delete itemVal['ta0registerdetail'];
           delete itemVal['ta0testdetail'];
+          delete itemVal['ta4testdata'];
 
           itemArray.push(itemVal);
           this.dataService

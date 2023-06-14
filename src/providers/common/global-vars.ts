@@ -143,6 +143,10 @@ export class GlobalVars {
     public simulationInd: boolean = false;
     public timeout: Number = 120000;
 
+    //validate against SQLite
+    public validateDBSeal: boolean = false;
+
+
     //IEE Status Map
     public ieeMap = new Map<string, boolean>();
 

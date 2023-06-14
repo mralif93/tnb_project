@@ -27,4 +27,5 @@ export class SealInfo {
     orgid: string;
     assetnum: string;
     siteid: string;
+    parent: string;
 }

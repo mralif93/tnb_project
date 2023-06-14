@@ -626,6 +626,7 @@ export class JsonStoreCrudProvider {
 
     replaceWO(item, collectionName, markBoolean) {
         console.log('>JsonStoreCrudProvider >>replaceWO >>>collectionName : '+collectionName);
+        console.log('>JsonStoreCrudProvider >>replaceWO >>>item : '+JSON.stringify(item));
 
         if (markBoolean) {
             // Offline markBoolean value true...
@@ -648,7 +649,8 @@ export class JsonStoreCrudProvider {
 
     replacingData(item, collectionName, markBoolean) {
         debugger;
-        console.log('>JsonStoreCrudProvider >>replacingData >>>collectionName : '+collectionName);
+        console.log('>JsonStoreCrudProvider >>replacingData >>>collectionName : ' + collectionName);
+        console.log('>JsonStoreCrudProvider >>replacingData >>>item : ' + JSON.stringify(item));
         var data = item;
         var options: any;
         if (this.gv.testMobile && markBoolean) {
@@ -670,8 +672,10 @@ export class JsonStoreCrudProvider {
         }
 
         WL.JSONStore.get(collectionName).replace(data, options).then((results) => {
+            console.log('>JsonStoreCrudProvider >>replacingData >>>results : ' + JSON.stringify(results));
             return true;
         }, (failure) => {
+            console.log('>JsonStoreCrudProvider >>replacingData >>>failure : ' + JSON.stringify(failure));
             return false;
         });
 
@@ -741,6 +745,7 @@ export class JsonStoreCrudProvider {
 
     getDirtyCheck(item, collectionName) {
         console.log('>JsonStoreCrudProvider >>getDirtyCheck >>>collectionName : '+collectionName);
+        console.log('>JsonStoreCrudProvider >>getDirtyCheck >>>item : '+JSON.stringify(item));
         return new Promise((resolve) => {
 
             var data = item;
@@ -751,6 +756,7 @@ export class JsonStoreCrudProvider {
             };
 
             WL.JSONStore.get(collectionName).isDirty(data, options).then(function (result) {
+                console.log('>JsonStoreCrudProvider >>getDirtyCheck >>>result : '+JSON.stringify(result));
 
                 if (result > 0) {
                     // Yes dirty is available

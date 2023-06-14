@@ -55,6 +55,16 @@ export class DataStoreProvider {
     }).catch(e => console.log('Error : ' + JSON.stringify(e)));
   }
 
+  deleteDatabase(){
+    this.sqlite.deleteDatabase({ 
+      name: 'MMMSDB.db', 
+      location: 'default'
+    }).then(() => {
+      this.initializeDB();
+    });
+    
+  }
+
   insertCrimplesslData(crimplessData: any) {
     console.log("Access insertCrimplesslData");
     console.log("crimplessData : " + JSON.stringify(crimplessData));
@@ -76,6 +86,12 @@ export class DataStoreProvider {
           let sealColor = this.gf.returnValue('sealColor', crimplessData[i].sealColor)
           let utilityMasterID = this.gf.returnValue('utilityMasterID', crimplessData[i].utilityMasterID);
           let responsiblePersonID = this.gf.returnValue('responsiblePersonID', crimplessData[i].responsiblePersonID);
+          console.log("sealCode : "+sealCode);
+          console.log("sealCategory : "+sealCategory);
+          console.log("sealStatus : "+sealStatus);
+          console.log("sealColor : "+sealColor);
+          console.log("utilityMasterID : "+utilityMasterID);
+          console.log("responsiblePersonID : "+responsiblePersonID);
           db.executeSql('INSERT INTO CRIMPLESS VALUES(NULL,?,?,?,?,?,?,?,?)', [sealCode,sealCategory,sealStatus,sealColor,utilityMasterID,responsiblePersonID, new Date(),'N'])
             .then(res => {
               console.log('Success insertId : ' + res.insertId);              
@@ -265,5 +281,35 @@ export class DataStoreProvider {
           });
       });
     })
+  }
+
+ /**
+  * This function update existing record in CRIMPLESS table
+  * This function will update ISINSTALLED to Y if crimpless seal successful save.
+  * this function will update
+  * @param sealNum
+  * @param indicator
+  * @returns 
+  */
+updateCrimplesslData(sealCode: string, indicator: string): void {
+    console.log("Access updateCrimplesslData");
+    console.log("sealCode : " + sealCode);
+    console.log("indicator : " + indicator);
+    console.log("updateCrimplesslData ---> Initialize Database MMMSDB.db");
+    this.sqlite.create({
+      name: 'MMMSDB.db',
+      location: 'default'
+    }).then(async (db: SQLiteObject) => {
+      console.log("updateCrimplesslData ---> Update records ");        
+      db.executeSql('UPDATE CRIMPLESS SET ISINSTALLED = ? WHERE SEALCODE = ?', [indicator,sealCode])
+        .then(res => {
+          console.log('Success : '+ JSON.stringify(res));
+        })
+        .catch(e => {             
+          console.log('Error : ' + JSON.stringify(e));
+        });     
+    }).catch(e => {
+      console.log('updateCrimplesslData ---> Error : ' + JSON.stringify(e));
+    });
   }
 }

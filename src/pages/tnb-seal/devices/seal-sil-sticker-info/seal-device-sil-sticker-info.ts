@@ -751,12 +751,10 @@ export class SealDeviceSilNStickerInfoPage {
         } else if (ta0seallocation.startsWith(FunctionClass.MD_BUTTON) && ta0sealdetail.ta0existingseal === false) {
           this.newmdbutton = ta0sealdetail;
         } else if (ta0seallocation.startsWith(FunctionClass.METER_BATTERY) && ta0sealdetail.ta0existingseal === false) {
-          this.newopticaleyecover = ta0sealdetail;
-        } else if (ta0seallocation.startsWith(FunctionClass.OPTICAL_EYE_COVER) && ta0sealdetail.ta0existingseal === false) {
-          this.newterminalcover1 = ta0sealdetail
-        } else if (ta0seallocation.startsWith(FunctionClass.COMM_MODULE) && ta0sealdetail.ta0existingseal === false) {
           this.newmeterbattery = ta0sealdetail;
         } else if (ta0seallocation.startsWith(FunctionClass.OPTICAL_EYE_COVER) && ta0sealdetail.ta0existingseal === false) {
+          this.newopticaleyecover = ta0sealdetail
+        } else if (ta0seallocation.startsWith(FunctionClass.COMM_MODULE) && ta0sealdetail.ta0existingseal === false) {
           this.newcommmodule = ta0sealdetail;
         }
 
@@ -1776,7 +1774,7 @@ export class SealDeviceSilNStickerInfoPage {
      }
   }
 
-  saveDeviceDetails() {
+  async saveDeviceDetails() {
     debugger;
     let string: boolean = true
 
@@ -1799,662 +1797,741 @@ export class SealDeviceSilNStickerInfoPage {
     var orgid = this.itemOri.json.ta0feeder[this.fIndex].orgid;
     var siteid = this.itemOri.json.siteid;
     var wonum = this.itemOri.json.wonum;
+    let validateSeal = this.gv.validateDBSeal;
+    var fakeSealNum : string = '';
+    var saveFlag: Boolean = true;
 
-    //Save new crimpless seal
-
-    if(this.newterminalcover1.ta0sealnum !== null &&  this.newterminalcover1.ta0sealnum !== undefined && this.newterminalcover1.ta0sealnum !== '') {
-      console.log(this.newterminalcover1.assetnum);
-      console.log(this.newterminalcover1.ta0sealnum);
-      console.log(this.newterminalcover1.ta0seallocation);
-      if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
-        this.newterminalcover1.parent = ta0olddeviceassetnum;
-      } else {
-        this.newterminalcover1.parent = assetnum;
+    if(validateSeal) {
+      //Save new crimpless seal
+      if(this.newterminalcover1.ta0sealnum !== null &&  this.newterminalcover1.ta0sealnum !== undefined && this.newterminalcover1.ta0sealnum !== '') {
+        //Validate against SQLite
+        await this.ds.queryCrimplessData(this.newterminalcover1.ta0sealnum).then((response) => {
+          console.log(JSON.stringify(response));
+          let result = JSON.parse(JSON.stringify(response));
+          if(result.statusCode === 'E') {
+            fakeSealNum = fakeSealNum + this.newterminalcover1.ta0sealnum + ',';
+            saveFlag = false;
+          }    
+        });
       }
-      this.newterminalcover1.orgid = orgid;
-      this.newterminalcover1.siteid = siteid;
-      this.newterminalcover1.wonum = wonum; 
-      this.newterminalcover1.ta0installind= true;
-      this.newterminalcover1.devicelocind=false;
-      this.newterminalcover1.devicecategory=ta0devicecategory;
-      this.newterminalcover1.serialnum = ta0serialnum;
-      this.newterminalcover1.ta0sealindicator='N';
-      this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.newterminalcover1); 
-    }
-    if(this.newterminalcover2.ta0sealnum !== null &&  this.newterminalcover2.ta0sealnum !== undefined && this.newterminalcover2.ta0sealnum !== '') {
-      console.log(this.newterminalcover2.assetnum);
-      console.log(this.newterminalcover2.ta0sealnum);
-      console.log(this.newterminalcover2.ta0seallocation);
-      if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
-        this.newterminalcover2.parent = ta0olddeviceassetnum;
-      } else {
-        this.newterminalcover2.parent = assetnum;
-      }      
-      this.newterminalcover2.orgid = orgid;
-      this.newterminalcover2.siteid = siteid;
-      this.newterminalcover2.wonum = wonum; 
-      this.newterminalcover2.ta0installind= true;
-      this.newterminalcover2.devicelocind=false;
-      this.newterminalcover2.devicecategory=ta0devicecategory;
-      this.newterminalcover2.serialnum = ta0serialnum;
-      this.newterminalcover2.ta0sealindicator='N';
-      this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.newterminalcover2); 
-    }
-    if(this.newmetercover1.ta0sealnum !== null &&  this.newmetercover1.ta0sealnum !== undefined && this.newmetercover1.ta0sealnum !== '') {
-      console.log(this.newmetercover1.assetnum);
-      console.log(this.newmetercover1.ta0sealnum);
-      console.log(this.newmetercover1.ta0seallocation);
-      if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
-        this.newmetercover1.parent = ta0olddeviceassetnum;
-      } else {
-        this.newmetercover1.parent = assetnum;
-      }   
-      this.newmetercover1.orgid = orgid;
-      this.newmetercover1.siteid = siteid;
-      this.newmetercover1.wonum = wonum; 
-      this.newmetercover1.ta0installind= true;
-      this.newmetercover1.devicelocind=false;
-      this.newmetercover1.devicecategory=ta0devicecategory;
-      this.newmetercover1.serialnum = ta0serialnum;
-      this.newmetercover1.ta0sealindicator='N';
-      this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.newmetercover1); 
-    }
-    if(this.newmetercover2.ta0sealnum !== null &&  this.newmetercover2.ta0sealnum !== undefined && this.newmetercover2.ta0sealnum !== '') {
-      console.log(this.newmetercover2.assetnum);
-      console.log(this.newmetercover2.ta0sealnum);
-      console.log(this.newmetercover2.ta0seallocation);
-      if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
-        this.newmetercover2.parent = ta0olddeviceassetnum;
-      } else {
-        this.newmetercover2.parent = assetnum;
-      }   
-      this.newmetercover2.orgid = orgid;
-      this.newmetercover2.siteid = siteid;
-      this.newmetercover2.wonum = wonum; 
-      this.newmetercover2.ta0installind= true;
-      this.newmetercover2.devicelocind=false;
-      this.newmetercover2.devicecategory=ta0devicecategory;
-      this.newmetercover2.serialnum = ta0serialnum;
-      this.newmetercover2.ta0sealindicator='N';
-      this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.newmetercover2); 
-    }
-    if(this.newmetercover3.ta0sealnum !== null &&  this.newmetercover3.ta0sealnum !== undefined && this.newmetercover3.ta0sealnum !== '') {
-      console.log(this.newmetercover3.assetnum);
-      console.log(this.newmetercover3.ta0sealnum);
-      console.log(this.newmetercover3.ta0seallocation);
-      if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
-        this.newmetercover3.parent = ta0olddeviceassetnum;
-      } else {
-        this.newmetercover3.parent = assetnum;
-      }   
-      this.newmetercover3.orgid = orgid;
-      this.newmetercover3.siteid = siteid;
-      this.newmetercover3.wonum = wonum; 
-      this.newmetercover3.ta0installind= true;
-      this.newmetercover3.devicelocind=false;
-      this.newmetercover3.devicecategory=ta0devicecategory;
-      this.newmetercover3.serialnum = ta0serialnum;
-      this.newmetercover3.ta0sealindicator='N';
-      this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.newmetercover3); 
-    }
-    if(this.newmdbutton.ta0sealnum !== null &&  this.newmdbutton.ta0sealnum !== undefined && this.newmdbutton.ta0sealnum !== '') {
-      console.log(this.newmdbutton.assetnum);
-      console.log(this.newmdbutton.ta0sealnum);
-      console.log(this.newmdbutton.ta0seallocation);
-      if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
-        this.newmdbutton.parent = ta0olddeviceassetnum;
-      } else {
-        this.newmdbutton.parent = assetnum;
-      }   
-      this.newmdbutton.orgid = orgid;
-      this.newmdbutton.siteid = siteid;
-      this.newmdbutton.wonum = wonum; 
-      this.newmdbutton.ta0installind= true;
-      this.newmdbutton.devicelocind=false;
-      this.newmdbutton.devicecategory=ta0devicecategory;
-      this.newmdbutton.serialnum = ta0serialnum;
-      this.newmdbutton.ta0sealindicator='N';
-      this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.newmdbutton); 
-    }
-    if(this.newopticaleyecover.ta0sealnum !== null &&  this.newopticaleyecover.ta0sealnum !== undefined && this.newopticaleyecover.ta0sealnum !== '') {
-      console.log(this.newopticaleyecover.assetnum);
-      console.log(this.newopticaleyecover.ta0sealnum);
-      console.log(this.newopticaleyecover.ta0seallocation);
-      if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
-        this.newopticaleyecover.parent = ta0olddeviceassetnum;
-      } else {
-        this.newopticaleyecover.parent = assetnum;
-      }   
-      this.newopticaleyecover.orgid = orgid;
-      this.newopticaleyecover.siteid = siteid;
-      this.newopticaleyecover.wonum = wonum; 
-      this.newopticaleyecover.ta0installind= true;
-      this.newopticaleyecover.devicelocind=false;
-      this.newopticaleyecover.devicecategory=ta0devicecategory;
-      this.newopticaleyecover.serialnum = ta0serialnum;
-      this.newopticaleyecover.ta0sealindicator='N';
-      this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.newopticaleyecover); 
-    }
-    if(this.newmeterbattery.ta0sealnum !== null &&  this.newmeterbattery.ta0sealnum !== undefined && this.newmeterbattery.ta0sealnum !== '') {
-      console.log(this.newmeterbattery.assetnum);
-      console.log(this.newmeterbattery.ta0sealnum);
-      console.log(this.newmeterbattery.ta0seallocation);
-      if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
-        this.newmeterbattery.parent = ta0olddeviceassetnum;
-      } else {
-        this.newmeterbattery.parent = assetnum;
-      }   
-      this.newmeterbattery.orgid = orgid;
-      this.newmeterbattery.siteid = siteid;
-      this.newmeterbattery.wonum = wonum; 
-      this.newmeterbattery.ta0installind= true;
-      this.newmeterbattery.devicelocind=false;
-      this.newmeterbattery.devicecategory=ta0devicecategory;
-      this.newmeterbattery.serialnum = ta0serialnum;
-      this.newmeterbattery.ta0sealindicator='N';
-      this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.newmeterbattery); 
-    }
-    if(this.newcommmodule.ta0sealnum !== null &&  this.newcommmodule.ta0sealnum !== undefined && this.newcommmodule.ta0sealnum !== '') {
-      console.log(this.newcommmodule.assetnum);
-      console.log(this.newcommmodule.ta0sealnum);
-      console.log(this.newcommmodule.ta0seallocation);
-      if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
-        this.newcommmodule.parent = ta0olddeviceassetnum;
-      } else {
-        this.newcommmodule.parent = assetnum;
-      }   
-      this.newcommmodule.orgid = orgid;
-      this.newcommmodule.siteid = siteid;
-      this.newcommmodule.wonum = wonum; 
-      this.newcommmodule.ta0installind= true;
-      this.newcommmodule.devicelocind=false;
-      this.newcommmodule.devicecategory=ta0devicecategory;
-      this.newcommmodule.serialnum = ta0serialnum;
-      this.newcommmodule.ta0sealindicator='N';
-      this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.newcommmodule); 
-    }
-    // Save Seal Details...
-    // Save Data MeterCover
-    if ((this.meterCoverArray[0].ta0sealnum != null || this.meterCoverArray[0].ta0sealnum != undefined) || this.meterCoverArray[0].ta0newsealnum != null || this.meterCoverArray[0].ta0newsealnum != undefined) {
-
-      console.log("meterCoverArray : " + JSON.stringify(this.meterCoverArray));
-      for (var i = 0; i < this.meterCoverArray.length; i++) {
-
-        this.meterCoverArray[i].assetnum = assetnum;
-        this.meterCoverArray[i].orgid = orgid;
-        this.meterCoverArray[i].siteid = siteid;
-        this.meterCoverArray[i].wonum = wonum;
-        this.meterCoverArray[i].ta0seallocation = "METER_COVER_" + (i + 1);
-        this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.meterCoverArray[i]);
+      if(this.newterminalcover2.ta0sealnum !== null &&  this.newterminalcover2.ta0sealnum !== undefined && this.newterminalcover2.ta0sealnum !== '') {
+        //Validate against SQLite
+        await this.ds.queryCrimplessData(this.newterminalcover2.ta0sealnum).then((response) => {
+          console.log(JSON.stringify(response));
+          let result = JSON.parse(JSON.stringify(response));
+          if(result.statusCode === 'E') {
+            fakeSealNum = fakeSealNum + this.newterminalcover2.ta0sealnum + ',';
+            saveFlag = false;
+          }    
+        });
+      }
+      if(this.newmetercover1.ta0sealnum !== null &&  this.newmetercover1.ta0sealnum !== undefined && this.newmetercover1.ta0sealnum !== '') {     
+        //Validate against SQLite
+        await this.ds.queryCrimplessData(this.newmetercover1.ta0sealnum).then((response) => {
+          console.log(JSON.stringify(response));
+          let result = JSON.parse(JSON.stringify(response));
+          if(result.statusCode === 'E') {
+            fakeSealNum = fakeSealNum + this.newmetercover1.ta0sealnum + ',';
+            saveFlag = false;
+          }    
+        });
+      }
+      if(this.newmetercover2.ta0sealnum !== null &&  this.newmetercover2.ta0sealnum !== undefined && this.newmetercover2.ta0sealnum !== '') {
+        //Validate against SQLite
+        await this.ds.queryCrimplessData(this.newmetercover2.ta0sealnum).then((response) => {
+          console.log(JSON.stringify(response));
+          let result = JSON.parse(JSON.stringify(response));
+          if(result.statusCode === 'E') {
+            fakeSealNum = fakeSealNum + this.newmetercover2.ta0sealnum + ',';
+            saveFlag = false;
+          }    
+        });
+      }
+      if(this.newmetercover3.ta0sealnum !== null &&  this.newmetercover3.ta0sealnum !== undefined && this.newmetercover3.ta0sealnum !== '') {   
+        //Validate against SQLite
+        await this.ds.queryCrimplessData(this.newmetercover3.ta0sealnum).then((response) => {
+          console.log(JSON.stringify(response));
+          let result = JSON.parse(JSON.stringify(response));
+          if(result.statusCode === 'E') {
+            fakeSealNum = fakeSealNum + this.newmetercover3.ta0sealnum + ',';
+            saveFlag = false;
+          }    
+        });      
+      }
+      if(this.newmdbutton.ta0sealnum !== null &&  this.newmdbutton.ta0sealnum !== undefined && this.newmdbutton.ta0sealnum !== '') {
+        //Validate against SQLite
+        await this.ds.queryCrimplessData(this.newmdbutton.ta0sealnum).then((response) => {
+          console.log(JSON.stringify(response));
+          let result = JSON.parse(JSON.stringify(response));
+          if(result.statusCode === 'E') {
+            fakeSealNum = fakeSealNum + this.newmdbutton.ta0sealnum + ',';
+            saveFlag = false;
+          }    
+        });
+      }
+      if(this.newopticaleyecover.ta0sealnum !== null &&  this.newopticaleyecover.ta0sealnum !== undefined && this.newopticaleyecover.ta0sealnum !== '') {
+        //Validate against SQLite
+        await this.ds.queryCrimplessData(this.newopticaleyecover.ta0sealnum).then((response) => {
+          console.log(JSON.stringify(response));
+          let result = JSON.parse(JSON.stringify(response));
+          if(result.statusCode === 'E') {
+            fakeSealNum = fakeSealNum + this.newopticaleyecover.ta0sealnum + ',';
+            saveFlag = false;
+          }    
+        });
+      }
+      if(this.newmeterbattery.ta0sealnum !== null &&  this.newmeterbattery.ta0sealnum !== undefined && this.newmeterbattery.ta0sealnum !== '') {
+        //Validate against SQLite
+        await this.ds.queryCrimplessData(this.newmeterbattery.ta0sealnum).then((response) => {
+          console.log(JSON.stringify(response));
+          let result = JSON.parse(JSON.stringify(response));
+          if(result.statusCode === 'E') {
+            fakeSealNum = fakeSealNum + this.newmeterbattery.ta0sealnum + ',';
+            saveFlag = false;
+          }    
+        });
+      }
+      if(this.newcommmodule.ta0sealnum !== null &&  this.newcommmodule.ta0sealnum !== undefined && this.newcommmodule.ta0sealnum !== '') {
+        //Validate against SQLite
+        await this.ds.queryCrimplessData(this.newcommmodule.ta0sealnum).then((response) => {
+          console.log(JSON.stringify(response));
+          let result = JSON.parse(JSON.stringify(response));
+          if(result.statusCode === 'E') {
+            fakeSealNum = fakeSealNum + this.newcommmodule.ta0sealnum + ',';
+            saveFlag = false;
+          }    
+        });
       }
     }
 
-    // Save Data TerminalCover
-    if ((this.terminalCoverArray[0].ta0sealnum != null || this.terminalCoverArray[0].ta0sealnum != undefined) || this.terminalCoverArray[0].ta0newsealnum != null || this.terminalCoverArray[0].ta0newsealnum != undefined) {
+    console.log("saveFlag : "+saveFlag);
+    if(validateSeal === true && saveFlag === false) {
+      loading.dismiss();
+      this.gf.warningAlert('Warning', 'Invalid seal number '+fakeSealNum.substring(0,fakeSealNum.length-1)+' found!', 'Close');   
+      return;
 
-      console.log("meterCoverArray : " + JSON.stringify(this.meterCoverArray));
-      for (var k = 0; k < this.terminalCoverArray.length; k++) {
-
-        this.terminalCoverArray[k].assetnum = assetnum;
-        this.terminalCoverArray[k].siteid = siteid;
-        this.terminalCoverArray[k].wonum = wonum;
-        this.terminalCoverArray[k].ta0seallocation = "TERMINAL_COVER_" + (k + 1);
-        this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalCoverArray[k]);
+    } else {
+      //Save new crimpless seal
+      if(this.newterminalcover1.ta0sealnum !== null &&  this.newterminalcover1.ta0sealnum !== undefined && this.newterminalcover1.ta0sealnum !== '') {
+        console.log("New Terminal Cover 1 " + this.newterminalcover1.assetnum);
+        console.log("New Terminal Cover 1 " + this.newterminalcover1.ta0sealnum);
+        console.log("New Terminal Cover 1 " + this.newterminalcover1.ta0seallocation);
+        if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
+          this.newterminalcover1.parent = ta0olddeviceassetnum;
+        } else {
+          this.newterminalcover1.parent = assetnum;
+        }
+        this.newterminalcover1.orgid = orgid;
+        this.newterminalcover1.siteid = siteid;
+        this.newterminalcover1.wonum = wonum; 
+        this.newterminalcover1.ta0installind= true;
+        this.newterminalcover1.devicelocind=false;
+        this.newterminalcover1.devicecategory=ta0devicecategory;
+        this.newterminalcover1.serialnum = ta0serialnum;
+        this.newterminalcover1.ta0sealindicator='N';
+        this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.newterminalcover1); 
       }
-    }
-
-
-    // Save Data Fuse
-    if ((this.fuseArray[0].ta0sealnum != null || this.fuseArray[0].ta0sealnum != undefined) || this.fuseArray[0].ta0newsealnum != null || this.fuseArray[0].ta0newsealnum != undefined) {
-
-      for (var j = 0; j < this.fuseArray.length; j++) {
-
-        this.fuseArray[j].assetnum = assetnum;
-        this.fuseArray[j].orgid = orgid;
-        this.fuseArray[j].siteid = siteid;
-        this.fuseArray[j].wonum = wonum;
-        this.fuseArray[j].ta0seallocation = "METER_FUSE_" + (j + 1);
-        this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.fuseArray[j]);
+      if(this.newterminalcover2.ta0sealnum !== null &&  this.newterminalcover2.ta0sealnum !== undefined && this.newterminalcover2.ta0sealnum !== '') {
+        console.log("New Terminal Cover 2 " + this.newterminalcover2.assetnum);
+        console.log("New Terminal Cover 2 " + this.newterminalcover2.ta0sealnum);
+        console.log("New Terminal Cover 2 " + this.newterminalcover2.ta0seallocation);
+        if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
+          this.newterminalcover2.parent = ta0olddeviceassetnum;
+        } else {
+          this.newterminalcover2.parent = assetnum;
+        }      
+        this.newterminalcover2.orgid = orgid;
+        this.newterminalcover2.siteid = siteid;
+        this.newterminalcover2.wonum = wonum; 
+        this.newterminalcover2.ta0installind= true;
+        this.newterminalcover2.devicelocind=false;
+        this.newterminalcover2.devicecategory=ta0devicecategory;
+        this.newterminalcover2.serialnum = ta0serialnum;
+        this.newterminalcover2.ta0sealindicator='N';
+        this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.newterminalcover2); 
       }
-    }
-
-    // Save Data MDButton
-    if ((this.mdButtonArray[0].ta0sealnum != null || this.mdButtonArray[0].ta0sealnum != undefined) || this.fuseArray[0].ta0newsealnum != null || this.fuseArray[0].ta0newsealnum != undefined) {
-
-      for (var m = 0; m < this.mdButtonArray.length; m++) {
-
-        this.mdButtonArray[m].assetnum = assetnum;
-        this.mdButtonArray[m].orgid = orgid;
-        this.mdButtonArray[m].siteid = siteid;
-        this.mdButtonArray[m].wonum = wonum;
-        this.mdButtonArray[m].ta0seallocation = "MD_BUTTON_" + (m + 1);
-        this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.mdButtonArray[m]);
+      if(this.newmetercover1.ta0sealnum !== null &&  this.newmetercover1.ta0sealnum !== undefined && this.newmetercover1.ta0sealnum !== '') {
+        console.log("New Meter Cover 1 " + this.newmetercover1.assetnum);
+        console.log("New Meter Cover 1 " + this.newmetercover1.ta0sealnum);
+        console.log("New Meter Cover 1 " + this.newmetercover1.ta0seallocation);
+        if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
+          this.newmetercover1.parent = ta0olddeviceassetnum;
+        } else {
+          this.newmetercover1.parent = assetnum;
+        }   
+        this.newmetercover1.orgid = orgid;
+        this.newmetercover1.siteid = siteid;
+        this.newmetercover1.wonum = wonum; 
+        this.newmetercover1.ta0installind= true;
+        this.newmetercover1.devicelocind=false;
+        this.newmetercover1.devicecategory=ta0devicecategory;
+        this.newmetercover1.serialnum = ta0serialnum;
+        this.newmetercover1.ta0sealindicator='N';
+        this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.newmetercover1); 
       }
-    }
-
-    // Save Data Battery
-    if ((this.meterBatteryArray[0].ta0sealnum != null || this.meterBatteryArray[0].ta0sealnum != undefined) || this.meterBatteryArray[0].ta0newsealnum != null || this.meterBatteryArray[0].ta0newsealnum != undefined) {
-
-      for (var n = 0; n < this.meterBatteryArray.length; n++) {
-
-        this.meterBatteryArray[n].assetnum = assetnum;
-        this.meterBatteryArray[n].orgid = orgid;
-        this.meterBatteryArray[n].siteid = siteid;
-        this.meterBatteryArray[n].wonum = wonum;
-        this.meterBatteryArray[n].ta0seallocation = "METER_BATTERY_" + (n + 1);
-        this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.meterBatteryArray[n]);
+      if(this.newmetercover2.ta0sealnum !== null &&  this.newmetercover2.ta0sealnum !== undefined && this.newmetercover2.ta0sealnum !== '') {
+        console.log("New Meter Cover 2 " + this.newmetercover2.assetnum);
+        console.log("New Meter Cover 2 " + this.newmetercover2.ta0sealnum);
+        console.log("New Meter Cover 2 " + this.newmetercover2.ta0seallocation);
+        if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
+          this.newmetercover2.parent = ta0olddeviceassetnum;
+        } else {
+          this.newmetercover2.parent = assetnum;
+        }   
+        this.newmetercover2.orgid = orgid;
+        this.newmetercover2.siteid = siteid;
+        this.newmetercover2.wonum = wonum; 
+        this.newmetercover2.ta0installind= true;
+        this.newmetercover2.devicelocind=false;
+        this.newmetercover2.devicecategory=ta0devicecategory;
+        this.newmetercover2.serialnum = ta0serialnum;
+        this.newmetercover2.ta0sealindicator='N';
+        this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.newmetercover2); 
       }
-    }
-
-    // Save Data OpticalEyeCover
-    if ((this.opticalEyeArray[0].ta0sealnum != null || this.opticalEyeArray[0].ta0sealnum != undefined) || this.opticalEyeArray[0].ta0newsealnum != null || this.opticalEyeArray[0].ta0newsealnum != undefined) {
-
-      for (var b = 0; b < this.opticalEyeArray.length; b++) {
-
-        this.opticalEyeArray[b].assetnum = assetnum;
-        this.opticalEyeArray[b].orgid = orgid;
-        this.opticalEyeArray[b].siteid = siteid;
-        this.opticalEyeArray[b].wonum = wonum;
-        this.opticalEyeArray[b].ta0seallocation = "OPTICAL_EYE_COVER_" + (b + 1);
-        this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.opticalEyeArray[b]);
+      if(this.newmetercover3.ta0sealnum !== null &&  this.newmetercover3.ta0sealnum !== undefined && this.newmetercover3.ta0sealnum !== '') {
+        console.log("New Meter Cover 3 " + this.newmetercover3.assetnum);
+        console.log("New Meter Cover 3 " + this.newmetercover3.ta0sealnum);
+        console.log("New Meter Cover 3 " + this.newmetercover3.ta0seallocation);
+        if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
+          this.newmetercover3.parent = ta0olddeviceassetnum;
+        } else {
+          this.newmetercover3.parent = assetnum;
+        }   
+        this.newmetercover3.orgid = orgid;
+        this.newmetercover3.siteid = siteid;
+        this.newmetercover3.wonum = wonum; 
+        this.newmetercover3.ta0installind= true;
+        this.newmetercover3.devicelocind=false;
+        this.newmetercover3.devicecategory=ta0devicecategory;
+        this.newmetercover3.serialnum = ta0serialnum;
+        this.newmetercover3.ta0sealindicator='N';
+        this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.newmetercover3); 
       }
-    }
-
-    // Save Sticker Details...
-    // Save TerminalCover
-    if ((this.sterminalCoverArray[0].ta0stickernum != null || this.sterminalCoverArray[0].ta0stickernum != undefined) || (this.sterminalCoverArray[0].ta0newstickernum != null || this.sterminalCoverArray[0].ta0newstickernum != undefined) || (this.sterminalCoverArray[0].ta0stickercondition != null || this.sterminalCoverArray[0].ta0stickercondition != undefined)) {
-
-      for (var i = 0; i < this.sterminalCoverArray.length; i++) {
-
-        this.sterminalCoverArray[i].assetnum = assetnum;
-        this.sterminalCoverArray[i].orgid = orgid;
-        this.sterminalCoverArray[i].siteid = siteid;
-        this.sterminalCoverArray[i].wonum = wonum;
-        this.sterminalCoverArray[i].ta0stickerlocation = "TERMINAL_COVER_" + (i + 1);
-        this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0stickerdetail.push(this.sterminalCoverArray[i]);
+      if(this.newmdbutton.ta0sealnum !== null &&  this.newmdbutton.ta0sealnum !== undefined && this.newmdbutton.ta0sealnum !== '') {
+        console.log("New MD Button " + this.newmdbutton.assetnum);
+        console.log("New MD Button " + this.newmdbutton.ta0sealnum);
+        console.log("New MD Button " + this.newmdbutton.ta0seallocation);
+        if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
+          this.newmdbutton.parent = ta0olddeviceassetnum;
+        } else {
+          this.newmdbutton.parent = assetnum;
+        }   
+        this.newmdbutton.orgid = orgid;
+        this.newmdbutton.siteid = siteid;
+        this.newmdbutton.wonum = wonum; 
+        this.newmdbutton.ta0installind= true;
+        this.newmdbutton.devicelocind=false;
+        this.newmdbutton.devicecategory=ta0devicecategory;
+        this.newmdbutton.serialnum = ta0serialnum;
+        this.newmdbutton.ta0sealindicator='N';
+        this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.newmdbutton); 
       }
-    }
-
-    // Save Fuse
-    if ((this.sfuseArray[0].ta0stickernum != null || this.sfuseArray[0].ta0stickernum != undefined) || this.sfuseArray[0].ta0newstickernum != null || this.sfuseArray[0].ta0newstickernum != undefined) {
-
-      for (var i = 0; i < this.sfuseArray.length; i++) {
-
-        this.sfuseArray[i].assetnum = assetnum;
-        this.sfuseArray[i].orgid = orgid;
-        this.sfuseArray[i].siteid = siteid;
-        this.sfuseArray[i].wonum = wonum;
-        this.sfuseArray[i].ta0stickerlocation = "METER_FUSE_" + (i + 1);
-        this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0stickerdetail.push(this.sfuseArray[i]);
+      if(this.newopticaleyecover.ta0sealnum !== null &&  this.newopticaleyecover.ta0sealnum !== undefined && this.newopticaleyecover.ta0sealnum !== '') {
+        console.log("New Optical Eye Cover " + this.newopticaleyecover.assetnum);
+        console.log("New Optical Eye Cover " + this.newopticaleyecover.ta0sealnum);
+        console.log("New Optical Eye Cover " + this.newopticaleyecover.ta0seallocation);
+        if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
+          this.newopticaleyecover.parent = ta0olddeviceassetnum;
+        } else {
+          this.newopticaleyecover.parent = assetnum;
+        }   
+        this.newopticaleyecover.orgid = orgid;
+        this.newopticaleyecover.siteid = siteid;
+        this.newopticaleyecover.wonum = wonum; 
+        this.newopticaleyecover.ta0installind= true;
+        this.newopticaleyecover.devicelocind=false;
+        this.newopticaleyecover.devicecategory=ta0devicecategory;
+        this.newopticaleyecover.serialnum = ta0serialnum;
+        this.newopticaleyecover.ta0sealindicator='N';
+        this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.newopticaleyecover); 
       }
-    }
-
-    // Save Other Seal Details...
-    // Save TTB
-    if ((this.ttbArray[0].ta0sealnum != null || this.ttbArray[0].ta0sealnum != undefined) || this.ttbArray[0].ta0newsealnum != null || this.ttbArray[0].ta0newsealnum != undefined) {
-
-      for (var i = 0; i < this.ttbArray.length; i++) {
-
-        this.ttbArray[i].assetnum = assetnum;
-        this.ttbArray[i].orgid = orgid;
-        this.ttbArray[i].siteid = siteid;
-        this.ttbArray[i].wonum = wonum;
-        this.ttbArray[i].ta0seallocation = "TEST_BLOCK_" + (i + 1);
-        this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.ttbArray[i]);
+      if(this.newmeterbattery.ta0sealnum !== null &&  this.newmeterbattery.ta0sealnum !== undefined && this.newmeterbattery.ta0sealnum !== '') {
+        console.log("New Meter Battery " + this.newmeterbattery.assetnum);
+        console.log("New Meter Battery " + this.newmeterbattery.ta0sealnum);
+        console.log("New Meter Battery " + this.newmeterbattery.ta0seallocation);
+        if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
+          this.newmeterbattery.parent = ta0olddeviceassetnum;
+        } else {
+          this.newmeterbattery.parent = assetnum;
+        }   
+        this.newmeterbattery.orgid = orgid;
+        this.newmeterbattery.siteid = siteid;
+        this.newmeterbattery.wonum = wonum; 
+        this.newmeterbattery.ta0installind= true;
+        this.newmeterbattery.devicelocind=false;
+        this.newmeterbattery.devicecategory=ta0devicecategory;
+        this.newmeterbattery.serialnum = ta0serialnum;
+        this.newmeterbattery.ta0sealindicator='N';
+        this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.newmeterbattery); 
       }
-    }
+      if(this.newcommmodule.ta0sealnum !== null &&  this.newcommmodule.ta0sealnum !== undefined && this.newcommmodule.ta0sealnum !== '') {
+        console.log("New Comm Module " + this.newcommmodule.assetnum);
+        console.log("New Comm Module " + this.newcommmodule.ta0sealnum);
+        console.log("New Comm Module " + this.newcommmodule.ta0seallocation);
+        if(ta0olddeviceassetnum !== null &&  ta0olddeviceassetnum !== undefined && ta0olddeviceassetnum !== '') {
+          this.newcommmodule.parent = ta0olddeviceassetnum;
+        } else {
+          this.newcommmodule.parent = assetnum;
+        }   
+        this.newcommmodule.orgid = orgid;
+        this.newcommmodule.siteid = siteid;
+        this.newcommmodule.wonum = wonum; 
+        this.newcommmodule.ta0installind= true;
+        this.newcommmodule.devicelocind=false;
+        this.newcommmodule.devicecategory=ta0devicecategory;
+        this.newcommmodule.serialnum = ta0serialnum;
+        this.newcommmodule.ta0sealindicator='N';
+        this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.newcommmodule); 
+      }
+      // Save Seal Details...
+      // Save Data MeterCover
+      if ((this.meterCoverArray[0].ta0sealnum != null || this.meterCoverArray[0].ta0sealnum != undefined) || this.meterCoverArray[0].ta0newsealnum != null || this.meterCoverArray[0].ta0newsealnum != undefined) {
 
-    // Save PT Chamber
-    if (this.showMvHvFields) {
+        console.log("meterCoverArray : " + JSON.stringify(this.meterCoverArray));
+        for (var i = 0; i < this.meterCoverArray.length; i++) {
 
-      if ((this.ptChamberArray[0].ta0sealnum != null || this.ptChamberArray[0].ta0sealnum != undefined) || this.ptChamberArray[0].ta0newsealnum != null || this.ptChamberArray[0].ta0newsealnum != undefined) {
-
-        for (var i = 0; i < this.ptChamberArray.length; i++) {
-          this.ptChamberArray[i].assetnum = assetnum;
-          this.ptChamberArray[i].orgid = orgid;
-          this.ptChamberArray[i].siteid = siteid;
-          this.ptChamberArray[i].wonum = wonum;
-          this.ptChamberArray[i].ta0seallocation = "PT_CHAMBER_" + (i + 1);
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.ptChamberArray[i]);
+          this.meterCoverArray[i].assetnum = assetnum;
+          this.meterCoverArray[i].orgid = orgid;
+          this.meterCoverArray[i].siteid = siteid;
+          this.meterCoverArray[i].wonum = wonum;
+          //this.meterCoverArray[i].ta0seallocation = "METER_COVER_" + (i + 1);
+          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.meterCoverArray[i]);
         }
       }
 
-      // Save CT Chamber
-      if ((this.ctChamberArray[0].ta0sealnum != null || this.ctChamberArray[0].ta0sealnum != undefined) || this.ctChamberArray[0].ta0newsealnum != null || this.ctChamberArray[0].ta0newsealnum != undefined) {
+      // Save Data TerminalCover
+      if ((this.terminalCoverArray[0].ta0sealnum != null || this.terminalCoverArray[0].ta0sealnum != undefined) || this.terminalCoverArray[0].ta0newsealnum != null || this.terminalCoverArray[0].ta0newsealnum != undefined) {
 
-        for (var i = 0; i < this.ctChamberArray.length; i++) {
+        console.log("meterCoverArray : " + JSON.stringify(this.meterCoverArray));
+        for (var k = 0; k < this.terminalCoverArray.length; k++) {
 
-          this.ctChamberArray[i].assetnum = assetnum;
-          this.ctChamberArray[i].orgid = orgid;
-          this.ctChamberArray[i].siteid = siteid;
-          this.ctChamberArray[i].wonum = wonum;
-          this.ctChamberArray[i].ta0seallocation = "CT_CHAMBER_" + (i + 1);
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.ctChamberArray[i]);
+          this.terminalCoverArray[k].assetnum = assetnum;
+          this.terminalCoverArray[k].siteid = siteid;
+          this.terminalCoverArray[k].wonum = wonum;
+          //this.terminalCoverArray[k].ta0seallocation = "TERMINAL_COVER_" + (k + 1);
+          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalCoverArray[k]);
         }
       }
 
-      // Save PT Sec. Fuse
-      if ((this.ptSecondaryFuseArray[0].ta0sealnum != null || this.ptSecondaryFuseArray[0].ta0sealnum != undefined) || this.ptSecondaryFuseArray[0].ta0newsealnum != null || this.ptSecondaryFuseArray[0].ta0newsealnum != undefined) {
 
-        for (var i = 0; i < this.ptSecondaryFuseArray.length; i++) {
+      // Save Data Fuse
+      // if ((this.fuseArray[0].ta0sealnum != null || this.fuseArray[0].ta0sealnum != undefined) || this.fuseArray[0].ta0newsealnum != null || this.fuseArray[0].ta0newsealnum != undefined) {
 
-          this.ptSecondaryFuseArray[i].assetnum = assetnum;
-          this.ptSecondaryFuseArray[i].orgid = orgid;
-          this.ptSecondaryFuseArray[i].siteid = siteid;
-          this.ptSecondaryFuseArray[i].wonum = wonum;
-          this.ptSecondaryFuseArray[i].ta0seallocation = "PT_SEC_FUSE_" + (i + 1);
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.ptSecondaryFuseArray[i]);
-        }
-      }
+      //   for (var j = 0; j < this.fuseArray.length; j++) {
 
-      // Save Meter Kiosk
-      if ((this.meterKioskArray[0].ta0sealnum != null || this.meterKioskArray[0].ta0sealnum != undefined) || this.meterKioskArray[0].ta0newsealnum != null || this.meterKioskArray[0].ta0newsealnum != undefined) {
-
-        for (var i = 0; i < this.meterKioskArray.length; i++) {
-
-          this.meterKioskArray[i].assetnum = assetnum;
-          this.meterKioskArray[i].orgid = orgid;
-          this.meterKioskArray[i].siteid = siteid;
-          this.meterKioskArray[i].wonum = wonum;
-          this.meterKioskArray[i].ta0seallocation = "KIOSK_PANELDOOR_" + (i + 1);
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.meterKioskArray[i]);
-        }
-      }
-
-      // Save Meter Test Box
-      if ((this.meterTestBoxArray[0].ta0sealnum != null || this.meterTestBoxArray[0].ta0sealnum != undefined) || this.meterTestBoxArray[0].ta0newsealnum != null || this.meterTestBoxArray[0].ta0newsealnum != undefined) {
-
-        for (var i = 0; i < this.meterTestBoxArray.length; i++) {
-
-          this.meterTestBoxArray[i].assetnum = assetnum;
-          this.meterTestBoxArray[i].orgid = orgid;
-          this.meterTestBoxArray[i].siteid = siteid;
-          this.meterTestBoxArray[i].wonum = wonum;
-          this.meterTestBoxArray[i].ta0seallocation = "METER_TEST_BOX_" + (i + 1);
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.meterTestBoxArray[i]);
-        }
-      }
-
-      // Save Termination Box
-      if ((this.terminalBoxArray[0].ta0sealnum != null || this.terminalBoxArray[0].ta0sealnum != undefined) || this.terminalBoxArray[0].ta0newsealnum != null || this.terminalBoxArray[0].ta0newsealnum != undefined) {
-
-        for (var i = 0; i < this.terminalBoxArray.length; i++) {
-
-          this.terminalBoxArray[i].assetnum = assetnum;
-          this.terminalBoxArray[i].orgid = orgid;
-          this.terminalBoxArray[i].siteid = siteid;
-          this.terminalBoxArray[i].wonum = wonum;
-          this.terminalBoxArray[i].ta0seallocation = "TERMINATION_BOX_" + (i + 1);
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalBoxArray[i]);
-        }
-      }
-
-      // Save Marshalling Box
-      if ((this.marshallingBoxArray[0].ta0sealnum != null || this.marshallingBoxArray[0].ta0sealnum != undefined) || this.marshallingBoxArray[0].ta0newsealnum != null || this.marshallingBoxArray[0].ta0newsealnum != undefined) {
-
-        for (var i = 0; i < this.marshallingBoxArray.length; i++) {
-
-          this.marshallingBoxArray[i].assetnum = assetnum;
-          this.marshallingBoxArray[i].orgid = orgid;
-          this.marshallingBoxArray[i].siteid = siteid;
-          this.marshallingBoxArray[i].wonum = wonum;
-          this.marshallingBoxArray[i].ta0seallocation = "MARSHALLING_BOX_" + (i + 1);
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.marshallingBoxArray[i]);
-        }
-      }
-
-      // Save Terminal CT
-      if ((this.terminalCtArray[0].ta0sealnum != null || this.terminalCtArray[0].ta0sealnum != undefined) || this.terminalCtArray[0].ta0newsealnum != null || this.terminalCtArray[0].ta0newsealnum != undefined) {
-
-        for (var i = 0; i < this.terminalCtArray.length; i++) {
-
-          this.terminalCtArray[i].assetnum = assetnum;
-          this.terminalCtArray[i].orgid = orgid;
-          this.terminalCtArray[i].siteid = siteid;
-          this.terminalCtArray[i].wonum = wonum;
-          this.terminalCtArray[i].ta0seallocation = "TERMINAL_CT_" + (i + 1);
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalCtArray[i]);
-        }
-      }
-    }
-
-    // Save CT Panel
-    if (this.showLvFields) {
-
-      if ((this.ctPanelArray[0].ta0sealnum != null || this.ctPanelArray[0].ta0sealnum != undefined) || this.ctPanelArray[0].ta0newsealnum != null || this.ctPanelArray[0].ta0newsealnum != undefined) {
-
-        for (var i = 0; i < this.ctPanelArray.length; i++) {
-
-          this.ctPanelArray[i].assetnum = assetnum;
-          this.ctPanelArray[i].orgid = orgid;
-          this.ctPanelArray[i].siteid = siteid;
-          this.ctPanelArray[i].wonum = wonum;
-          this.ctPanelArray[i].ta0seallocation = "CT_CHAMBER_" + (i + 1);
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.ctPanelArray[i]);
-        }
-      }
-
-      // Save Panel Meter
-      // if ((this.panelMeterArray[0].ta0sealnum != null || this.panelMeterArray[0].ta0sealnum != undefined) || this.panelMeterArray[0].ta0newsealnum != null || this.panelMeterArray[0].ta0newsealnum != undefined) {
-
-      //   for (var i = 0; i < this.panelMeterArray.length; i++) {
-
-      //     this.panelMeterArray[i].assetnum = assetnum;
-      //     this.panelMeterArray[i].orgid = orgid;
-      //     this.panelMeterArray[i].siteid = siteid;
-      //     this.panelMeterArray[i].wonum = wonum;
-      //     this.panelMeterArray[i].ta0seallocation = "PANEL_METER_" + (i + 1);
-      //     this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.panelMeterArray[i]);
+      //     this.fuseArray[j].assetnum = assetnum;
+      //     this.fuseArray[j].orgid = orgid;
+      //     this.fuseArray[j].siteid = siteid;
+      //     this.fuseArray[j].wonum = wonum;
+      //     //this.fuseArray[j].ta0seallocation = "METER_FUSE_" + (j + 1);
+      //     this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.fuseArray[j]);
       //   }
       // }
 
-      // Save Panel Meter
-      if ((this.meterKioskArray[0].ta0sealnum != null || this.meterKioskArray[0].ta0sealnum != undefined) || this.meterKioskArray[0].ta0newsealnum != null || this.meterKioskArray[0].ta0newsealnum != undefined) {
+      // Save Data MDButton
+      if ((this.mdButtonArray[0].ta0sealnum != null || this.mdButtonArray[0].ta0sealnum != undefined) || this.fuseArray[0].ta0newsealnum != null || this.fuseArray[0].ta0newsealnum != undefined) {
 
-        for (var i = 0; i < this.meterKioskArray.length; i++) {
+        for (var m = 0; m < this.mdButtonArray.length; m++) {
 
-          this.meterKioskArray[i].assetnum = assetnum;
-          this.meterKioskArray[i].orgid = orgid;
-          this.meterKioskArray[i].siteid = siteid;
-          this.meterKioskArray[i].wonum = wonum;
-          this.meterKioskArray[i].ta0seallocation = "KIOSK_PANELDOOR_" + (i + 1);
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.meterKioskArray[i]);
+          this.mdButtonArray[m].assetnum = assetnum;
+          this.mdButtonArray[m].orgid = orgid;
+          this.mdButtonArray[m].siteid = siteid;
+          this.mdButtonArray[m].wonum = wonum;
+          //this.mdButtonArray[m].ta0seallocation = "MD_BUTTON_" + (m + 1);
+          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.mdButtonArray[m]);
         }
       }
 
-      // Save Terminal CT
-      if ((this.terminalCtArray[0].ta0sealnum != null || this.terminalCtArray[0].ta0sealnum != undefined) || this.terminalCtArray[0].ta0newsealnum != null || this.terminalCtArray[0].ta0newsealnum != undefined) {
+      // Save Data Battery
+      if ((this.meterBatteryArray[0].ta0sealnum != null || this.meterBatteryArray[0].ta0sealnum != undefined) || this.meterBatteryArray[0].ta0newsealnum != null || this.meterBatteryArray[0].ta0newsealnum != undefined) {
 
-        for (var i = 0; i < this.terminalCtArray.length; i++) {
+        for (var n = 0; n < this.meterBatteryArray.length; n++) {
 
-          this.terminalCtArray[i].assetnum = assetnum;
-          this.terminalCtArray[i].orgid = orgid;
-          this.terminalCtArray[i].siteid = siteid;
-          this.terminalCtArray[i].wonum = wonum;
-          this.terminalCtArray[i].ta0seallocation = "TERMINAL_CT_" + (i + 1);
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalCtArray[i]);
+          this.meterBatteryArray[n].assetnum = assetnum;
+          this.meterBatteryArray[n].orgid = orgid;
+          this.meterBatteryArray[n].siteid = siteid;
+          this.meterBatteryArray[n].wonum = wonum;
+          //this.meterBatteryArray[n].ta0seallocation = "METER_BATTERY_" + (n + 1);
+          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.meterBatteryArray[n]);
         }
       }
-    }
 
-    // Save Modem
-    if ((this.modemArray[0].ta0sealnum != null || this.modemArray[0].ta0sealnum != undefined) || this.modemArray[0].ta0newsealnum != null || this.modemArray[0].ta0newsealnum != undefined) {
+      // Save Data OpticalEyeCover
+      if ((this.opticalEyeArray[0].ta0sealnum != null || this.opticalEyeArray[0].ta0sealnum != undefined) || this.opticalEyeArray[0].ta0newsealnum != null || this.opticalEyeArray[0].ta0newsealnum != undefined) {
 
-      for (var i = 0; i < this.modemArray.length; i++) {
+        for (var b = 0; b < this.opticalEyeArray.length; b++) {
 
-        this.modemArray[i].assetnum = assetnum;
-        this.modemArray[i].orgid = orgid;
-        this.modemArray[i].siteid = siteid;
-        this.modemArray[i].wonum = wonum;
-        this.modemArray[i].ta0seallocation = "MODEM_" + (i + 1);
-        this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.modemArray[i]);
+          this.opticalEyeArray[b].assetnum = assetnum;
+          this.opticalEyeArray[b].orgid = orgid;
+          this.opticalEyeArray[b].siteid = siteid;
+          this.opticalEyeArray[b].wonum = wonum;
+          //this.opticalEyeArray[b].ta0seallocation = "OPTICAL_EYE_COVER_" + (b + 1);
+          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.opticalEyeArray[b]);
+        }
       }
-    }
 
-    // Save Other Sticker Details
-    if (this.showMvHvFields) {
+      // Save Data Comm Module
+      if ((this.commModuleArray[0].ta0sealnum != null || this.commModuleArray[0].ta0sealnum != undefined)) {
+
+        for (var b = 0; b < this.commModuleArray.length; b++) {
+
+          this.commModuleArray[b].assetnum = assetnum;
+          this.commModuleArray[b].orgid = orgid;
+          this.commModuleArray[b].siteid = siteid;
+          this.commModuleArray[b].wonum = wonum;
+          //this.opticalEyeArray[b].ta0seallocation = "OPTICAL_EYE_COVER_" + (b + 1);
+          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.commModuleArray[b]);
+        }
+      }
+
+      // Save Sticker Details...
+      // Save TerminalCover
+      if ((this.sterminalCoverArray[0].ta0stickernum != null || this.sterminalCoverArray[0].ta0stickernum != undefined) || (this.sterminalCoverArray[0].ta0newstickernum != null || this.sterminalCoverArray[0].ta0newstickernum != undefined) || (this.sterminalCoverArray[0].ta0stickercondition != null || this.sterminalCoverArray[0].ta0stickercondition != undefined)) {
+
+        for (var i = 0; i < this.sterminalCoverArray.length; i++) {
+
+          this.sterminalCoverArray[i].assetnum = assetnum;
+          this.sterminalCoverArray[i].orgid = orgid;
+          this.sterminalCoverArray[i].siteid = siteid;
+          this.sterminalCoverArray[i].wonum = wonum;
+          this.sterminalCoverArray[i].ta0stickerlocation = "TERMINAL_COVER_" + (i + 1);
+          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0stickerdetail.push(this.sterminalCoverArray[i]);
+        }
+      }
+
+      // Save Fuse
+      if ((this.sfuseArray[0].ta0stickernum != null || this.sfuseArray[0].ta0stickernum != undefined) || this.sfuseArray[0].ta0newstickernum != null || this.sfuseArray[0].ta0newstickernum != undefined) {
+
+        for (var i = 0; i < this.sfuseArray.length; i++) {
+
+          this.sfuseArray[i].assetnum = assetnum;
+          this.sfuseArray[i].orgid = orgid;
+          this.sfuseArray[i].siteid = siteid;
+          this.sfuseArray[i].wonum = wonum;
+          this.sfuseArray[i].ta0stickerlocation = "METER_FUSE_" + (i + 1);
+          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0stickerdetail.push(this.sfuseArray[i]);
+        }
+      }
+
+      // Save Other Seal Details...
       // Save TTB
-      if ((this.sttbArray[0].ta0stickernum != null || this.sttbArray[0].ta0stickernum != undefined) || this.sttbArray[0].ta0newstickernum != null || this.sttbArray[0].ta0newstickernum != undefined) {
+      if ((this.ttbArray[0].ta0sealnum != null || this.ttbArray[0].ta0sealnum != undefined) || this.ttbArray[0].ta0newsealnum != null || this.ttbArray[0].ta0newsealnum != undefined) {
 
-        for (var i = 0; i < this.sttbArray.length; i++) {
+        for (var i = 0; i < this.ttbArray.length; i++) {
 
-          this.sttbArray[i].assetnum = assetnum;
-          this.sttbArray[i].orgid = orgid;
-          this.sttbArray[i].siteid = siteid;
-          this.sttbArray[i].wonum = wonum;
-          this.sttbArray[i].ta0stickerlocation = "TEST_BLOCK_" + (i + 1);
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0stickerdetail.push(this.sttbArray[i]);
+          this.ttbArray[i].assetnum = assetnum;
+          this.ttbArray[i].orgid = orgid;
+          this.ttbArray[i].siteid = siteid;
+          this.ttbArray[i].wonum = wonum;
+          this.ttbArray[i].ta0seallocation = "TEST_BLOCK_" + (i + 1);
+          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.ttbArray[i]);
         }
       }
 
       // Save PT Chamber
-      if ((this.sptChamberArray[0].ta0stickernum != null || this.sptChamberArray[0].ta0stickernum != undefined) || this.sptChamberArray[0].ta0newstickernum != null || this.sptChamberArray[0].ta0newstickernum != undefined) {
+      if (this.showMvHvFields) {
 
-        for (var i = 0; i < this.sptChamberArray.length; i++) {
+        if ((this.ptChamberArray[0].ta0sealnum != null || this.ptChamberArray[0].ta0sealnum != undefined) || this.ptChamberArray[0].ta0newsealnum != null || this.ptChamberArray[0].ta0newsealnum != undefined) {
 
-          this.sptChamberArray[i].assetnum = assetnum;
-          this.sptChamberArray[i].orgid;
-          this.sptChamberArray[i].siteid = siteid;
-          this.sptChamberArray[i].wonum = wonum;
-          this.sptChamberArray[i].ta0stickerlocation = "PT_CHAMBER_" + (i + 1);
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0stickerdetail.push(this.sptChamberArray[i]);
+          for (var i = 0; i < this.ptChamberArray.length; i++) {
+            this.ptChamberArray[i].assetnum = assetnum;
+            this.ptChamberArray[i].orgid = orgid;
+            this.ptChamberArray[i].siteid = siteid;
+            this.ptChamberArray[i].wonum = wonum;
+            this.ptChamberArray[i].ta0seallocation = "PT_CHAMBER_" + (i + 1);
+            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.ptChamberArray[i]);
+          }
         }
-      }
 
-      // Save CT Chamber
-      if ((this.sctChamberArray[0].ta0stickernum != null || this.sctChamberArray[0].ta0stickernum != undefined) || this.sctChamberArray[0].ta0newstickernum != null || this.sctChamberArray[0].ta0newstickernum != undefined) {
+        // Save CT Chamber
+        if ((this.ctChamberArray[0].ta0sealnum != null || this.ctChamberArray[0].ta0sealnum != undefined) || this.ctChamberArray[0].ta0newsealnum != null || this.ctChamberArray[0].ta0newsealnum != undefined) {
 
-        for (var i = 0; i < this.sctChamberArray.length; i++) {
+          for (var i = 0; i < this.ctChamberArray.length; i++) {
 
-          this.sctChamberArray[i].assetnum = assetnum;
-          this.sctChamberArray[i].orgid = orgid;
-          this.sctChamberArray[i].siteid = siteid;
-          this.sctChamberArray[i].wonum = wonum;
-          this.sctChamberArray[i].ta0stickerlocation = "CT_CHAMBER_" + (i + 1);
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0stickerdetail.push(this.sctChamberArray[i]);
+            this.ctChamberArray[i].assetnum = assetnum;
+            this.ctChamberArray[i].orgid = orgid;
+            this.ctChamberArray[i].siteid = siteid;
+            this.ctChamberArray[i].wonum = wonum;
+            this.ctChamberArray[i].ta0seallocation = "CT_CHAMBER_" + (i + 1);
+            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.ctChamberArray[i]);
+          }
         }
-      }
 
-      // Save PT Sec. Fuse
-      if ((this.sptSecondaryFuseArray[0].ta0stickernum != null || this.sptSecondaryFuseArray[0].ta0stickernum != undefined) || this.sptSecondaryFuseArray[0].ta0newstickernum != null || this.sptSecondaryFuseArray[0].ta0newstickernum != undefined) {
+        // Save PT Sec. Fuse
+        if ((this.ptSecondaryFuseArray[0].ta0sealnum != null || this.ptSecondaryFuseArray[0].ta0sealnum != undefined) || this.ptSecondaryFuseArray[0].ta0newsealnum != null || this.ptSecondaryFuseArray[0].ta0newsealnum != undefined) {
 
-        for (var i = 0; i < this.sptSecondaryFuseArray.length; i++) {
+          for (var i = 0; i < this.ptSecondaryFuseArray.length; i++) {
 
-          this.sptSecondaryFuseArray[i].assetnum = assetnum;
-          this.sptSecondaryFuseArray[i].orgid = orgid;
-          this.sptSecondaryFuseArray[i].siteid = siteid;
-          this.sptSecondaryFuseArray[i].wonum = wonum;
-          this.sptSecondaryFuseArray[i].ta0stickerlocation = "PT_SEC_FUSE_" + (i + 1);
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0stickerdetail.push(this.sptSecondaryFuseArray[i]);
+            this.ptSecondaryFuseArray[i].assetnum = assetnum;
+            this.ptSecondaryFuseArray[i].orgid = orgid;
+            this.ptSecondaryFuseArray[i].siteid = siteid;
+            this.ptSecondaryFuseArray[i].wonum = wonum;
+            this.ptSecondaryFuseArray[i].ta0seallocation = "PT_SEC_FUSE_" + (i + 1);
+            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.ptSecondaryFuseArray[i]);
+          }
         }
-      }
 
-      // Save Meter Kiosk
-      if ((this.smeterKioskArray[0].ta0stickernum != null || this.smeterKioskArray[0].ta0stickernum != undefined) || this.smeterKioskArray[0].ta0newstickernum != null || this.smeterKioskArray[0].ta0newstickernum != undefined) {
+        // Save Meter Kiosk
+        if ((this.meterKioskArray[0].ta0sealnum != null || this.meterKioskArray[0].ta0sealnum != undefined) || this.meterKioskArray[0].ta0newsealnum != null || this.meterKioskArray[0].ta0newsealnum != undefined) {
 
-        for (var i = 0; i < this.smeterKioskArray.length; i++) {
+          for (var i = 0; i < this.meterKioskArray.length; i++) {
 
-          this.smeterKioskArray[i].assetnum = assetnum;
-          this.smeterKioskArray[i].orgid = orgid;
-          this.smeterKioskArray[i].siteid = siteid;
-          this.smeterKioskArray[i].wonum = wonum;
-          this.smeterKioskArray[i].ta0stickerlocation = "KIOSK_PANELDOOR_" + (i + 1);
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0stickerdetail.push(this.smeterKioskArray[i]);
+            this.meterKioskArray[i].assetnum = assetnum;
+            this.meterKioskArray[i].orgid = orgid;
+            this.meterKioskArray[i].siteid = siteid;
+            this.meterKioskArray[i].wonum = wonum;
+            this.meterKioskArray[i].ta0seallocation = "KIOSK_PANELDOOR_" + (i + 1);
+            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.meterKioskArray[i]);
+          }
         }
-      }
 
-      // Save Meter Test Box
-      if ((this.smeterTestBoxArray[0].ta0stickernum != null || this.smeterTestBoxArray[0].ta0stickernum != undefined) || this.smeterTestBoxArray[0].ta0newstickernum != null || this.smeterTestBoxArray[0].ta0newstickernum != undefined) {
+        // Save Meter Test Box
+        if ((this.meterTestBoxArray[0].ta0sealnum != null || this.meterTestBoxArray[0].ta0sealnum != undefined) || this.meterTestBoxArray[0].ta0newsealnum != null || this.meterTestBoxArray[0].ta0newsealnum != undefined) {
 
-        for (var i = 0; i < this.smeterTestBoxArray.length; i++) {
+          for (var i = 0; i < this.meterTestBoxArray.length; i++) {
 
-          this.smeterTestBoxArray[i].assetnum = assetnum;
-          this.smeterTestBoxArray[i].orgid = orgid;
-          this.smeterTestBoxArray[i].siteid = siteid;
-          this.smeterTestBoxArray[i].wonum = wonum;
-          this.smeterTestBoxArray[i].ta0stickerlocation = "METER_TEST_BOX_" + (i + 1);
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0stickerdetail.push(this.smeterTestBoxArray[i]);
+            this.meterTestBoxArray[i].assetnum = assetnum;
+            this.meterTestBoxArray[i].orgid = orgid;
+            this.meterTestBoxArray[i].siteid = siteid;
+            this.meterTestBoxArray[i].wonum = wonum;
+            this.meterTestBoxArray[i].ta0seallocation = "METER_TEST_BOX_" + (i + 1);
+            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.meterTestBoxArray[i]);
+          }
         }
-      }
 
-      // Save Termination Box
-      if ((this.sterminalBoxArray[0].ta0stickernum != null || this.sterminalBoxArray[0].ta0stickernum != undefined) || this.sterminalBoxArray[0].ta0newstickernum != null || this.sterminalBoxArray[0].ta0newstickernum != undefined) {
+        // Save Termination Box
+        if ((this.terminalBoxArray[0].ta0sealnum != null || this.terminalBoxArray[0].ta0sealnum != undefined) || this.terminalBoxArray[0].ta0newsealnum != null || this.terminalBoxArray[0].ta0newsealnum != undefined) {
 
-        for (var i = 0; i < this.sterminalBoxArray.length; i++) {
+          for (var i = 0; i < this.terminalBoxArray.length; i++) {
 
-          this.sterminalBoxArray[i].assetnum = assetnum;
-          this.sterminalBoxArray[i].orgid = orgid;
-          this.sterminalBoxArray[i].siteid = siteid;
-          this.sterminalBoxArray[i].wonum = wonum;
-          this.sterminalBoxArray[i].ta0stickerlocation = "TERMINATION_BOX_" + (i + 1);
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0stickerdetail.push(this.sterminalBoxArray[i]);
+            this.terminalBoxArray[i].assetnum = assetnum;
+            this.terminalBoxArray[i].orgid = orgid;
+            this.terminalBoxArray[i].siteid = siteid;
+            this.terminalBoxArray[i].wonum = wonum;
+            this.terminalBoxArray[i].ta0seallocation = "TERMINATION_BOX_" + (i + 1);
+            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalBoxArray[i]);
+          }
         }
-      }
 
-      // Save Marshalling Box
-      if ((this.smarshallingBoxArray[0].ta0stickernum != null || this.smarshallingBoxArray[0].ta0stickernum != undefined) || this.smarshallingBoxArray[0].ta0newstickernum != null || this.smarshallingBoxArray[0].ta0newstickernum != undefined) {
+        // Save Marshalling Box
+        if ((this.marshallingBoxArray[0].ta0sealnum != null || this.marshallingBoxArray[0].ta0sealnum != undefined) || this.marshallingBoxArray[0].ta0newsealnum != null || this.marshallingBoxArray[0].ta0newsealnum != undefined) {
 
-        for (var i = 0; i < this.smarshallingBoxArray.length; i++) {
+          for (var i = 0; i < this.marshallingBoxArray.length; i++) {
 
-          this.smarshallingBoxArray[i].assetnum = assetnum;
-          this.smarshallingBoxArray[i].orgid = orgid;
-          this.smarshallingBoxArray[i].siteid = siteid;
-          this.smarshallingBoxArray[i].wonum = wonum;
-          this.smarshallingBoxArray[i].ta0stickerlocation = "MARSHALLING_BOX_" + (i + 1);
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0stickerdetail.push(this.smarshallingBoxArray[i]);
-        }
-      }
-
-      // Save Terminal CT
-      debugger;
-      if ((this.sterminalCtArray[0].ta0stickernum != null || this.sterminalCtArray[0].ta0stickernum != undefined) || this.sterminalCtArray[0].ta0newstickernum != null || this.sterminalCtArray[0].ta0newstickernum != undefined) {
-
-        for (var i = 0; i < this.sterminalCtArray.length; i++) {
-
-          this.sterminalCtArray[i].assetnum = assetnum;
-          this.sterminalCtArray[i].orgid = orgid;
-          this.sterminalCtArray[i].siteid = siteid;
-          this.sterminalCtArray[i].wonum = wonum;
-          this.sterminalCtArray[i].ta0stickerlocation = "TERMINAL_CT_" + (i + 1);
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0stickerdetail.push(this.sterminalCtArray[i]);
-        }
-      }
-    }
-
-    // Save CT Panel
-    if (this.showLvFields) {
-
-      if ((this.sctPanelArray[0].ta0stickernum != null || this.sctPanelArray[0].ta0stickernum != undefined) || this.sctPanelArray[0].ta0newstickernum != null || this.sctPanelArray[0].ta0newstickernum != undefined) {
-
-        for (var i = 0; i < this.sctPanelArray.length; i++) {
-
-          this.sctPanelArray[i].assetnum = assetnum;
-          this.sctPanelArray[i].orgid = orgid;
-          this.sctPanelArray[i].siteid = siteid;
-          this.sctPanelArray[i].wonum = wonum;
-          this.sctPanelArray[i].ta0stickerlocation = "CT_CHAMBER_" + (i + 1);
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0stickerdetail.push(this.sctPanelArray[i]);
-        }
-      }
-
-      // Save Panel Meter
-      if (this.showLvExtraFields) {
-
-        if ((this.spanelMeterArray[0].ta0stickernum != null || this.spanelMeterArray[0].ta0stickernum != undefined) || this.spanelMeterArray[0].ta0newstickernum != null || this.spanelMeterArray[0].ta0newstickernum != undefined) {
-
-          for (var i = 0; i < this.spanelMeterArray.length; i++) {
-
-            this.spanelMeterArray[i].assetnum = assetnum;
-            this.spanelMeterArray[i].orgid = orgid;
-            this.spanelMeterArray[i].siteid = siteid;
-            this.spanelMeterArray[i].wonum = wonum;
-            this.spanelMeterArray[i].ta0stickerlocation = "PANEL_METER_" + (i + 1);
-            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0stickerdetail.push(this.spanelMeterArray[i]);
+            this.marshallingBoxArray[i].assetnum = assetnum;
+            this.marshallingBoxArray[i].orgid = orgid;
+            this.marshallingBoxArray[i].siteid = siteid;
+            this.marshallingBoxArray[i].wonum = wonum;
+            this.marshallingBoxArray[i].ta0seallocation = "MARSHALLING_BOX_" + (i + 1);
+            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.marshallingBoxArray[i]);
           }
         }
 
         // Save Terminal CT
-        if (this.sterminalCtArray[0].ta0stickernum != null || this.sterminalCtArray[0].ta0stickernum != undefined) {
+        if ((this.terminalCtArray[0].ta0sealnum != null || this.terminalCtArray[0].ta0sealnum != undefined) || this.terminalCtArray[0].ta0newsealnum != null || this.terminalCtArray[0].ta0newsealnum != undefined) {
+
+          for (var i = 0; i < this.terminalCtArray.length; i++) {
+
+            this.terminalCtArray[i].assetnum = assetnum;
+            this.terminalCtArray[i].orgid = orgid;
+            this.terminalCtArray[i].siteid = siteid;
+            this.terminalCtArray[i].wonum = wonum;
+            this.terminalCtArray[i].ta0seallocation = "TERMINAL_CT_" + (i + 1);
+            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalCtArray[i]);
+          }
+        }
+      }
+
+      // Save CT Panel
+      if (this.showLvFields) {
+
+        if ((this.ctPanelArray[0].ta0sealnum != null || this.ctPanelArray[0].ta0sealnum != undefined) || this.ctPanelArray[0].ta0newsealnum != null || this.ctPanelArray[0].ta0newsealnum != undefined) {
+
+          for (var i = 0; i < this.ctPanelArray.length; i++) {
+
+            this.ctPanelArray[i].assetnum = assetnum;
+            this.ctPanelArray[i].orgid = orgid;
+            this.ctPanelArray[i].siteid = siteid;
+            this.ctPanelArray[i].wonum = wonum;
+            this.ctPanelArray[i].ta0seallocation = "CT_CHAMBER_" + (i + 1);
+            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.ctPanelArray[i]);
+          }
+        }
+
+        // Save Panel Meter
+        // if ((this.panelMeterArray[0].ta0sealnum != null || this.panelMeterArray[0].ta0sealnum != undefined) || this.panelMeterArray[0].ta0newsealnum != null || this.panelMeterArray[0].ta0newsealnum != undefined) {
+
+        //   for (var i = 0; i < this.panelMeterArray.length; i++) {
+
+        //     this.panelMeterArray[i].assetnum = assetnum;
+        //     this.panelMeterArray[i].orgid = orgid;
+        //     this.panelMeterArray[i].siteid = siteid;
+        //     this.panelMeterArray[i].wonum = wonum;
+        //     this.panelMeterArray[i].ta0seallocation = "PANEL_METER_" + (i + 1);
+        //     this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.panelMeterArray[i]);
+        //   }
+        // }
+
+        // Save Panel Meter
+        if ((this.meterKioskArray[0].ta0sealnum != null || this.meterKioskArray[0].ta0sealnum != undefined) || this.meterKioskArray[0].ta0newsealnum != null || this.meterKioskArray[0].ta0newsealnum != undefined) {
+
+          for (var i = 0; i < this.meterKioskArray.length; i++) {
+
+            this.meterKioskArray[i].assetnum = assetnum;
+            this.meterKioskArray[i].orgid = orgid;
+            this.meterKioskArray[i].siteid = siteid;
+            this.meterKioskArray[i].wonum = wonum;
+            this.meterKioskArray[i].ta0seallocation = "KIOSK_PANELDOOR_" + (i + 1);
+            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.meterKioskArray[i]);
+          }
+        }
+
+        // Save Terminal CT
+        if ((this.terminalCtArray[0].ta0sealnum != null || this.terminalCtArray[0].ta0sealnum != undefined) || this.terminalCtArray[0].ta0newsealnum != null || this.terminalCtArray[0].ta0newsealnum != undefined) {
+
+          for (var i = 0; i < this.terminalCtArray.length; i++) {
+
+            this.terminalCtArray[i].assetnum = assetnum;
+            this.terminalCtArray[i].orgid = orgid;
+            this.terminalCtArray[i].siteid = siteid;
+            this.terminalCtArray[i].wonum = wonum;
+            this.terminalCtArray[i].ta0seallocation = "TERMINAL_CT_" + (i + 1);
+            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalCtArray[i]);
+          }
+        }
+      }
+
+      // Save Modem
+      if ((this.modemArray[0].ta0sealnum != null || this.modemArray[0].ta0sealnum != undefined) || this.modemArray[0].ta0newsealnum != null || this.modemArray[0].ta0newsealnum != undefined) {
+
+        for (var i = 0; i < this.modemArray.length; i++) {
+
+          this.modemArray[i].assetnum = assetnum;
+          this.modemArray[i].orgid = orgid;
+          this.modemArray[i].siteid = siteid;
+          this.modemArray[i].wonum = wonum;
+          this.modemArray[i].ta0seallocation = "MODEM_" + (i + 1);
+          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.modemArray[i]);
+        }
+      }
+
+      // Save Other Sticker Details
+      if (this.showMvHvFields) {
+        // Save TTB
+        if ((this.sttbArray[0].ta0stickernum != null || this.sttbArray[0].ta0stickernum != undefined) || this.sttbArray[0].ta0newstickernum != null || this.sttbArray[0].ta0newstickernum != undefined) {
+
+          for (var i = 0; i < this.sttbArray.length; i++) {
+
+            this.sttbArray[i].assetnum = assetnum;
+            this.sttbArray[i].orgid = orgid;
+            this.sttbArray[i].siteid = siteid;
+            this.sttbArray[i].wonum = wonum;
+            this.sttbArray[i].ta0stickerlocation = "TEST_BLOCK_" + (i + 1);
+            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0stickerdetail.push(this.sttbArray[i]);
+          }
+        }
+
+        // Save PT Chamber
+        if ((this.sptChamberArray[0].ta0stickernum != null || this.sptChamberArray[0].ta0stickernum != undefined) || this.sptChamberArray[0].ta0newstickernum != null || this.sptChamberArray[0].ta0newstickernum != undefined) {
+
+          for (var i = 0; i < this.sptChamberArray.length; i++) {
+
+            this.sptChamberArray[i].assetnum = assetnum;
+            this.sptChamberArray[i].orgid;
+            this.sptChamberArray[i].siteid = siteid;
+            this.sptChamberArray[i].wonum = wonum;
+            this.sptChamberArray[i].ta0stickerlocation = "PT_CHAMBER_" + (i + 1);
+            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0stickerdetail.push(this.sptChamberArray[i]);
+          }
+        }
+
+        // Save CT Chamber
+        if ((this.sctChamberArray[0].ta0stickernum != null || this.sctChamberArray[0].ta0stickernum != undefined) || this.sctChamberArray[0].ta0newstickernum != null || this.sctChamberArray[0].ta0newstickernum != undefined) {
+
+          for (var i = 0; i < this.sctChamberArray.length; i++) {
+
+            this.sctChamberArray[i].assetnum = assetnum;
+            this.sctChamberArray[i].orgid = orgid;
+            this.sctChamberArray[i].siteid = siteid;
+            this.sctChamberArray[i].wonum = wonum;
+            this.sctChamberArray[i].ta0stickerlocation = "CT_CHAMBER_" + (i + 1);
+            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0stickerdetail.push(this.sctChamberArray[i]);
+          }
+        }
+
+        // Save PT Sec. Fuse
+        if ((this.sptSecondaryFuseArray[0].ta0stickernum != null || this.sptSecondaryFuseArray[0].ta0stickernum != undefined) || this.sptSecondaryFuseArray[0].ta0newstickernum != null || this.sptSecondaryFuseArray[0].ta0newstickernum != undefined) {
+
+          for (var i = 0; i < this.sptSecondaryFuseArray.length; i++) {
+
+            this.sptSecondaryFuseArray[i].assetnum = assetnum;
+            this.sptSecondaryFuseArray[i].orgid = orgid;
+            this.sptSecondaryFuseArray[i].siteid = siteid;
+            this.sptSecondaryFuseArray[i].wonum = wonum;
+            this.sptSecondaryFuseArray[i].ta0stickerlocation = "PT_SEC_FUSE_" + (i + 1);
+            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0stickerdetail.push(this.sptSecondaryFuseArray[i]);
+          }
+        }
+
+        // Save Meter Kiosk
+        if ((this.smeterKioskArray[0].ta0stickernum != null || this.smeterKioskArray[0].ta0stickernum != undefined) || this.smeterKioskArray[0].ta0newstickernum != null || this.smeterKioskArray[0].ta0newstickernum != undefined) {
+
+          for (var i = 0; i < this.smeterKioskArray.length; i++) {
+
+            this.smeterKioskArray[i].assetnum = assetnum;
+            this.smeterKioskArray[i].orgid = orgid;
+            this.smeterKioskArray[i].siteid = siteid;
+            this.smeterKioskArray[i].wonum = wonum;
+            this.smeterKioskArray[i].ta0stickerlocation = "KIOSK_PANELDOOR_" + (i + 1);
+            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0stickerdetail.push(this.smeterKioskArray[i]);
+          }
+        }
+
+        // Save Meter Test Box
+        if ((this.smeterTestBoxArray[0].ta0stickernum != null || this.smeterTestBoxArray[0].ta0stickernum != undefined) || this.smeterTestBoxArray[0].ta0newstickernum != null || this.smeterTestBoxArray[0].ta0newstickernum != undefined) {
+
+          for (var i = 0; i < this.smeterTestBoxArray.length; i++) {
+
+            this.smeterTestBoxArray[i].assetnum = assetnum;
+            this.smeterTestBoxArray[i].orgid = orgid;
+            this.smeterTestBoxArray[i].siteid = siteid;
+            this.smeterTestBoxArray[i].wonum = wonum;
+            this.smeterTestBoxArray[i].ta0stickerlocation = "METER_TEST_BOX_" + (i + 1);
+            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0stickerdetail.push(this.smeterTestBoxArray[i]);
+          }
+        }
+
+        // Save Termination Box
+        if ((this.sterminalBoxArray[0].ta0stickernum != null || this.sterminalBoxArray[0].ta0stickernum != undefined) || this.sterminalBoxArray[0].ta0newstickernum != null || this.sterminalBoxArray[0].ta0newstickernum != undefined) {
+
+          for (var i = 0; i < this.sterminalBoxArray.length; i++) {
+
+            this.sterminalBoxArray[i].assetnum = assetnum;
+            this.sterminalBoxArray[i].orgid = orgid;
+            this.sterminalBoxArray[i].siteid = siteid;
+            this.sterminalBoxArray[i].wonum = wonum;
+            this.sterminalBoxArray[i].ta0stickerlocation = "TERMINATION_BOX_" + (i + 1);
+            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0stickerdetail.push(this.sterminalBoxArray[i]);
+          }
+        }
+
+        // Save Marshalling Box
+        if ((this.smarshallingBoxArray[0].ta0stickernum != null || this.smarshallingBoxArray[0].ta0stickernum != undefined) || this.smarshallingBoxArray[0].ta0newstickernum != null || this.smarshallingBoxArray[0].ta0newstickernum != undefined) {
+
+          for (var i = 0; i < this.smarshallingBoxArray.length; i++) {
+
+            this.smarshallingBoxArray[i].assetnum = assetnum;
+            this.smarshallingBoxArray[i].orgid = orgid;
+            this.smarshallingBoxArray[i].siteid = siteid;
+            this.smarshallingBoxArray[i].wonum = wonum;
+            this.smarshallingBoxArray[i].ta0stickerlocation = "MARSHALLING_BOX_" + (i + 1);
+            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0stickerdetail.push(this.smarshallingBoxArray[i]);
+          }
+        }
+
+        // Save Terminal CT
+        debugger;
+        if ((this.sterminalCtArray[0].ta0stickernum != null || this.sterminalCtArray[0].ta0stickernum != undefined) || this.sterminalCtArray[0].ta0newstickernum != null || this.sterminalCtArray[0].ta0newstickernum != undefined) {
 
           for (var i = 0; i < this.sterminalCtArray.length; i++) {
 
@@ -2467,165 +2544,217 @@ export class SealDeviceSilNStickerInfoPage {
           }
         }
       }
-    }
 
-    // Save Modem
-    if ((this.smodemArray[0].ta0stickernum != null || this.smodemArray[0].ta0stickernum != undefined) || this.smodemArray[0].ta0newstickernum != null || this.smodemArray[0].ta0newstickernum != undefined) {
+      // Save CT Panel
+      if (this.showLvFields) {
 
-      for (var i = 0; i < this.smodemArray.length; i++) {
+        if ((this.sctPanelArray[0].ta0stickernum != null || this.sctPanelArray[0].ta0stickernum != undefined) || this.sctPanelArray[0].ta0newstickernum != null || this.sctPanelArray[0].ta0newstickernum != undefined) {
 
-        this.smodemArray[i].assetnum = assetnum;
-        this.smodemArray[i].orgid = orgid;
-        this.smodemArray[i].siteid = siteid;
-        this.smodemArray[i].wonum = wonum;
-        this.smodemArray[i].ta0stickerlocation = "MODEM_" + (i + 1);
-        this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0stickerdetail.push(this.smodemArray[i]);
+          for (var i = 0; i < this.sctPanelArray.length; i++) {
+
+            this.sctPanelArray[i].assetnum = assetnum;
+            this.sctPanelArray[i].orgid = orgid;
+            this.sctPanelArray[i].siteid = siteid;
+            this.sctPanelArray[i].wonum = wonum;
+            this.sctPanelArray[i].ta0stickerlocation = "CT_CHAMBER_" + (i + 1);
+            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0stickerdetail.push(this.sctPanelArray[i]);
+          }
+        }
+
+        // Save Panel Meter
+        if (this.showLvExtraFields) {
+
+          if ((this.spanelMeterArray[0].ta0stickernum != null || this.spanelMeterArray[0].ta0stickernum != undefined) || this.spanelMeterArray[0].ta0newstickernum != null || this.spanelMeterArray[0].ta0newstickernum != undefined) {
+
+            for (var i = 0; i < this.spanelMeterArray.length; i++) {
+
+              this.spanelMeterArray[i].assetnum = assetnum;
+              this.spanelMeterArray[i].orgid = orgid;
+              this.spanelMeterArray[i].siteid = siteid;
+              this.spanelMeterArray[i].wonum = wonum;
+              this.spanelMeterArray[i].ta0stickerlocation = "PANEL_METER_" + (i + 1);
+              this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0stickerdetail.push(this.spanelMeterArray[i]);
+            }
+          }
+
+          // Save Terminal CT
+          if (this.sterminalCtArray[0].ta0stickernum != null || this.sterminalCtArray[0].ta0stickernum != undefined) {
+
+            for (var i = 0; i < this.sterminalCtArray.length; i++) {
+
+              this.sterminalCtArray[i].assetnum = assetnum;
+              this.sterminalCtArray[i].orgid = orgid;
+              this.sterminalCtArray[i].siteid = siteid;
+              this.sterminalCtArray[i].wonum = wonum;
+              this.sterminalCtArray[i].ta0stickerlocation = "TERMINAL_CT_" + (i + 1);
+              this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0stickerdetail.push(this.sterminalCtArray[i]);
+            }
+          }
+        }
       }
-    }
 
-    // Setting flag button colour (alif) - (29.12.2018)
-    this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0silstickerstatus = 'Y';
+      // Save Modem
+      if ((this.smodemArray[0].ta0stickernum != null || this.smodemArray[0].ta0stickernum != undefined) || this.smodemArray[0].ta0newstickernum != null || this.smodemArray[0].ta0newstickernum != undefined) {
 
-    // Saving the remarks into multiassetlocci for ZISP
-    if (this.itemOri.json.worktype === "ZISP" || this.itemOri.json.worktype === "ZIST") {
-      this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta4sealstickerbfremarks = this.ta0naremarks_before;
-      this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta4sealstickerremarks = this.ta0naremarks_after;
-    }
+        for (var i = 0; i < this.smodemArray.length; i++) {
 
-    setTimeout(() => {
-      loading.onWillDismiss(() => {
-        console.log("this.itemOri : " + JSON.stringify(this.itemOri));
-        this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
-        this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_silStickers_haveChange = true;
-        this.gf.displayToast("Sil & Sticker Details updated.");
-        loading.dismiss();
-      });
-    }, 10000);
+          this.smodemArray[i].assetnum = assetnum;
+          this.smodemArray[i].orgid = orgid;
+          this.smodemArray[i].siteid = siteid;
+          this.smodemArray[i].wonum = wonum;
+          this.smodemArray[i].ta0stickerlocation = "MODEM_" + (i + 1);
+          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0stickerdetail.push(this.smodemArray[i]);
+        }
+      }
 
-    /**
-    * Reason   : Saving to local storage (json data).
-    * Created  : 22-01-2019
-    */
-    this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
+      // Setting flag button colour (alif) - (29.12.2018)
+      this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0silstickerstatus = 'Y';
 
-    if (this.gv.testMobile && (DeviceConstants.NETWORK_UNKNOWN === this.gf.checkNetwork() || DeviceConstants.NETWORK_NONE === this.gf.checkNetwork())) {
+      // Saving the remarks into multiassetlocci for ZISP
+      if (this.itemOri.json.worktype === "ZISP" || this.itemOri.json.worktype === "ZIST") {
+        this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta4sealstickerbfremarks = this.ta0naremarks_before;
+        this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta4sealstickerremarks = this.ta0naremarks_after;
+      }
 
-      this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
-      this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_silStickers_haveChange = true;
-      this.gf.displayToast("Sil & Sticker Details updated locally.");
-      loading.dismiss();
-      /** Sending latest data.. (alif) - (29.12.2018)*/
-      // let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
-      // newRootNav.push("SealServiceExecutionPage", this.itemOri);
-    } else if ((DeviceConstants.NETWORK_2G === this.gf.checkNetwork() || DeviceConstants.NETWORK_3G === this.gf.checkNetwork() || DeviceConstants.NETWORK_4G === this.gf.checkNetwork())) {
-
-      cordova.plugins.MobileSignal.getSignalStrength((data) => {
-        if (this.gv.deviceSignal <= data) {
-          var feederCode = this.itemOri.json.ta0feeder[this.fIndex].ta0feedercode;
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0silstickerstatus = 'Y';
-          var itemVal = JSON.parse(JSON.stringify(this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex]));
-          var itemArray = [];
-          itemArray.push(itemVal);
-          this.dataService
-            .saveRecordWithNewType(itemArray, this.itemOri.json.wonum, DeviceConstants.PAGE_ACTION_SILSTICKERS, feederCode, this.itemOri.json.worktype)
-            .then(results => {
-              console.log(' result + ' + JSON.stringify(results));
-              this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", false);
-              this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_ta0silStickers_haveChange = false;
-
-              /** convert string into json */
-              var resultDes = JSON.parse(results.toString());
-              debugger;
-              if (resultDes.processStatus === "failure") {
-                resultDes.description.replace(/(?!\w|\s)./g, '').replace(/\s+/g, ' ').replace(/^(\s*)([\W\w]*)(\b\s*$)/g, '$2');
-                // Remove double quote+words not working..
-                resultDes.description.replace(/"/g, '');
-
-                var split = resultDes.description.split(":");
-                var result = split[1].substr(0, split[1].length - 1);
-                var NewResult = result.substring(2);
-                /* var patt2 = /BMXAA4190E - Seal Location TEST_BLOCK_3 is not in the value list./i;
-                var result2 = resultDes.description.match(patt2);
-                var stringArry = result2.toString();
-                */
-                // var result = resultDes.description.slice(0, 34);
-                resultDes.description.replace(/com.ibm.maximo.oslc.OslcException/g, "Failure");
-                this.gf.displayToast(NewResult);
-              } else {
-                this.gf.warningAlert('Success', 'Sil & Sticker Details save successfully', 'Close');
-                /** Sending latest data.. (alif) - (29.12.2018)*/
-                // let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
-                // newRootNav.push("SealServiceExecutionPage", this.itemOri);\
-                this.navCtrl.pop();
-              }
-              loading.dismiss();
-
-            }).catch(error => {
-              console.log('service failure : ' + error);
-              this.gf.warningAlert('Error', 'Sil & Sticker Details failed to save.', 'Close');
-              loading.dismiss();
-            });
-        } else {
+      setTimeout(() => {
+        loading.onWillDismiss(() => {
+          console.log("this.itemOri : " + JSON.stringify(this.itemOri));
           this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
           this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_silStickers_haveChange = true;
-          this.gf.displayToast("Sil & Sticker Details updated locally.");
-          this.navCtrl.pop();
-          loading.dismiss();
-          /** Sending latest data.. (alif) - (29.12.2018)*/
-          // let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
-          // newRootNav.push("SealServiceExecutionPage", this.itemOri);
-        }
-      });
-
-    } else {
-
-      var feederCode = this.itemOri.json.ta0feeder[this.fIndex].ta0feedercode;
-      this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0silstickerstatus = 'Y';
-      var itemVal = JSON.parse(JSON.stringify(this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex]));
-      var itemArray = [];
-
-      delete itemVal['ta0registerdetail'];
-      delete itemVal['ta0testdetail'];
-
-      itemArray.push(itemVal);
-      this.dataService
-        .saveRecordWithNewType(itemArray, this.itemOri.json.wonum, DeviceConstants.PAGE_ACTION_SILSTICKERS, feederCode, this.itemOri.json.worktype)
-        .then(results => {
-          this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", false);
-          this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_ta0silStickers_haveChange = false;
-
-          /** convert string into json */
-          var resultDes = JSON.parse(results.toString());
-          debugger;
-          if (resultDes.processStatus === "failure") {
-            resultDes.description.replace(/(?!\w|\s)./g, '').replace(/\s+/g, ' ').replace(/^(\s*)([\W\w]*)(\b\s*$)/g, '$2');
-            // Remove double quote+words not working..
-            resultDes.description.replace(/"/g, '');
-
-            var split = resultDes.description.split(":");
-            var result = split[1].substr(0, split[1].length - 1);
-            var NewResult = result.substring(2);
-            /* var patt2 = /BMXAA4190E - Seal Location TEST_BLOCK_3 is not in the value list./i;
-            var result2 = resultDes.description.match(patt2);
-            var stringArry = result2.toString();
-            */
-            // var result = resultDes.description.slice(0, 34);
-            resultDes.description.replace(/com.ibm.maximo.oslc.OslcException/g, "Failure");
-            this.gf.displayToast(NewResult);
-          } else {
-            this.gf.warningAlert('Success', 'Sil & Sticker Details save successfully', 'Close');
-            // let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
-            // newRootNav.push("SealServiceExecutionPage", this.itemOri);
-            this.navCtrl.pop();
-          }
-          loading.dismiss();
-
-        }).catch(error => {
-          this.gf.stopLoading();
+          this.gf.displayToast("Sil & Sticker Details updated.");
           loading.dismiss();
         });
+      }, 10000);
+
+      /**
+      * Reason   : Saving to local storage (json data).
+      * Created  : 22-01-2019
+      */
+      this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
+
+      if (this.gv.testMobile && (DeviceConstants.NETWORK_UNKNOWN === this.gf.checkNetwork() || DeviceConstants.NETWORK_NONE === this.gf.checkNetwork())) {
+
+        this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
+        this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_silStickers_haveChange = true;
+        this.gf.displayToast("Sil & Sticker Details updated locally.");
+        loading.dismiss();
+        /** Sending latest data.. (alif) - (29.12.2018)*/
+        // let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
+        // newRootNav.push("SealServiceExecutionPage", this.itemOri);
+      } else if ((DeviceConstants.NETWORK_2G === this.gf.checkNetwork() || DeviceConstants.NETWORK_3G === this.gf.checkNetwork() || DeviceConstants.NETWORK_4G === this.gf.checkNetwork())) {
+
+        delete itemVal['ta0registerdetail'];
+        delete itemVal['ta0testdetail'];
+        delete itemVal['ta4testdata'];
+        
+        cordova.plugins.MobileSignal.getSignalStrength((data) => {
+          if (this.gv.deviceSignal <= data) {
+            var feederCode = this.itemOri.json.ta0feeder[this.fIndex].ta0feedercode;
+            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0silstickerstatus = 'Y';
+            var itemVal = JSON.parse(JSON.stringify(this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex]));
+            var itemArray = [];
+            itemArray.push(itemVal);
+            this.dataService
+              .saveRecordWithNewType(itemArray, this.itemOri.json.wonum, DeviceConstants.PAGE_ACTION_SILSTICKERS, feederCode, this.itemOri.json.worktype)
+              .then(results => {
+                console.log(' result + ' + JSON.stringify(results));
+                this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", false);
+                this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_ta0silStickers_haveChange = false;
+
+                /** convert string into json */
+                var resultDes = JSON.parse(results.toString());
+                debugger;
+                if (resultDes.processStatus === "failure") {
+                  resultDes.description.replace(/(?!\w|\s)./g, '').replace(/\s+/g, ' ').replace(/^(\s*)([\W\w]*)(\b\s*$)/g, '$2');
+                  // Remove double quote+words not working..
+                  resultDes.description.replace(/"/g, '');
+
+                  var split = resultDes.description.split(":");
+                  var result = split[1].substr(0, split[1].length - 1);
+                  var NewResult = result.substring(2);
+                  /* var patt2 = /BMXAA4190E - Seal Location TEST_BLOCK_3 is not in the value list./i;
+                  var result2 = resultDes.description.match(patt2);
+                  var stringArry = result2.toString();
+                  */
+                  // var result = resultDes.description.slice(0, 34);
+                  resultDes.description.replace(/com.ibm.maximo.oslc.OslcException/g, "Failure");
+                  this.gf.displayToast(NewResult);
+                } else {
+                  this.gf.warningAlert('Success', 'Sil & Sticker Details save successfully', 'Close');
+                  /** Sending latest data.. (alif) - (29.12.2018)*/
+                  // let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
+                  // newRootNav.push("SealServiceExecutionPage", this.itemOri);\
+                  this.navCtrl.pop();
+                }
+                loading.dismiss();
+
+              }).catch(error => {
+                console.log('service failure : ' + error);
+                this.gf.warningAlert('Error', 'Sil & Sticker Details failed to save.', 'Close');
+                loading.dismiss();
+              });
+          } else {
+            this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
+            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_silStickers_haveChange = true;
+            this.gf.displayToast("Sil & Sticker Details updated locally.");
+            this.navCtrl.pop();
+            loading.dismiss();
+            /** Sending latest data.. (alif) - (29.12.2018)*/
+            // let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
+            // newRootNav.push("SealServiceExecutionPage", this.itemOri);
+          }
+        });
+
+      } else {
+
+        var feederCode = this.itemOri.json.ta0feeder[this.fIndex].ta0feedercode;
+        this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0silstickerstatus = 'Y';
+        var itemVal = JSON.parse(JSON.stringify(this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex]));
+        var itemArray = [];
+
+        delete itemVal['ta0registerdetail'];
+        delete itemVal['ta0testdetail'];
+        delete itemVal['ta4testdata'];
+
+        itemArray.push(itemVal);
+        this.dataService
+          .saveRecordWithNewType(itemArray, this.itemOri.json.wonum, DeviceConstants.PAGE_ACTION_SILSTICKERS, feederCode, this.itemOri.json.worktype)
+          .then(results => {
+            this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", false);
+            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_ta0silStickers_haveChange = false;
+
+            /** convert string into json */
+            var resultDes = JSON.parse(results.toString());
+            debugger;
+            if (resultDes.processStatus === "failure") {
+              resultDes.description.replace(/(?!\w|\s)./g, '').replace(/\s+/g, ' ').replace(/^(\s*)([\W\w]*)(\b\s*$)/g, '$2');
+              // Remove double quote+words not working..
+              resultDes.description.replace(/"/g, '');
+
+              var split = resultDes.description.split(":");
+              var result = split[1].substr(0, split[1].length - 1);
+              var NewResult = result.substring(2);
+              /* var patt2 = /BMXAA4190E - Seal Location TEST_BLOCK_3 is not in the value list./i;
+              var result2 = resultDes.description.match(patt2);
+              var stringArry = result2.toString();
+              */
+              // var result = resultDes.description.slice(0, 34);
+              resultDes.description.replace(/com.ibm.maximo.oslc.OslcException/g, "Failure");
+              this.gf.displayToast(NewResult);
+            } else {
+              this.gf.warningAlert('Success', 'Sil & Sticker Details save successfully', 'Close');
+              // let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
+              // newRootNav.push("SealServiceExecutionPage", this.itemOri);
+              this.navCtrl.pop();
+            }
+            loading.dismiss();
+
+          }).catch(error => {
+            this.gf.stopLoading();
+            loading.dismiss();
+          });
+      }
     }
-    //}
   }
 
   // Seal Section

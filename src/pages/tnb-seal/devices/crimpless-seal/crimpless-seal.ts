@@ -146,6 +146,10 @@ export class CrimplessSealPage implements OnInit {
       this.items = JSON.parse(JSON.stringify(this.itemOri));
       this.loadlookup();
       this.loadingPresent();
+      if (typeof (this.itemOri.json.ta0sealdetail) === 'undefined') {
+        console.log('Initilize this.itemOri.json.ta0sealdetail');
+        this.itemOri.json.ta0sealdetail = [];
+      }
     
   }
 
@@ -932,421 +936,424 @@ export class CrimplessSealPage implements OnInit {
       var wonum = this.itemOri.json.wonum;
       var saveFlag: Boolean = true;
       let fakeSealNum: string = '';
+      let validateSeal = this.gv.validateDBSeal;
       
-      if (this.ttbf11Val.ta0sealnum !== null && this.ttbf11Val.ta0sealnum !== undefined && this.ttbf11Val.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.ttbf11Val.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.ttbf11Val.ta0sealnum + ',';
-            saveFlag = false;
-          }         
-        });
-           
-      }
+      if(validateSeal){
+        if (this.ttbf11Val.ta0sealnum !== null && this.ttbf11Val.ta0sealnum !== undefined && this.ttbf11Val.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.ttbf11Val.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.ttbf11Val.ta0sealnum + ',';
+              saveFlag = false;
+            }         
+          });
+            
+        }
 
-      if (this.ttbf12Val.ta0sealnum !== null && this.ttbf12Val.ta0sealnum !== undefined && this.ttbf12Val.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.ttbf12Val.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode == 'E') {            
-            fakeSealNum = fakeSealNum + this.ttbf12Val.ta0sealnum + ',';
-            saveFlag = false;
-          }          
-        });
-      }
+        if (this.ttbf12Val.ta0sealnum !== null && this.ttbf12Val.ta0sealnum !== undefined && this.ttbf12Val.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.ttbf12Val.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode == 'E') {            
+              fakeSealNum = fakeSealNum + this.ttbf12Val.ta0sealnum + ',';
+              saveFlag = false;
+            }          
+          });
+        }
 
-      if (this.ttbf21Val.ta0sealnum !== null && this.ttbf21Val.ta0sealnum !== undefined && this.ttbf21Val.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.ttbf21Val.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.ttbf21Val.ta0sealnum + ',';
-            saveFlag = false;
-          }          
-        });
-      }
+        if (this.ttbf21Val.ta0sealnum !== null && this.ttbf21Val.ta0sealnum !== undefined && this.ttbf21Val.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.ttbf21Val.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.ttbf21Val.ta0sealnum + ',';
+              saveFlag = false;
+            }          
+          });
+        }
 
-      if (this.ttbf22Val.ta0sealnum !== null && this.ttbf22Val.ta0sealnum !== undefined && this.ttbf22Val.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.ttbf22Val.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.ttbf22Val.ta0sealnum + ',';
-            saveFlag = false;
-          }         
-        });        
-      }
+        if (this.ttbf22Val.ta0sealnum !== null && this.ttbf22Val.ta0sealnum !== undefined && this.ttbf22Val.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.ttbf22Val.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.ttbf22Val.ta0sealnum + ',';
+              saveFlag = false;
+            }         
+          });        
+        }
 
-      if (this.ttbf31Val.ta0sealnum !== null && this.ttbf31Val.ta0sealnum !== undefined && this.ttbf31Val.ta0sealnum !== '') {
-         //Validate against SQLite
-         await this.ds.queryCrimplessData(this.ttbf31Val.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.ttbf31Val.ta0sealnum + ',';
-            saveFlag = false;
-          }            
-        });
-      }
+        if (this.ttbf31Val.ta0sealnum !== null && this.ttbf31Val.ta0sealnum !== undefined && this.ttbf31Val.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.ttbf31Val.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.ttbf31Val.ta0sealnum + ',';
+              saveFlag = false;
+            }            
+          });
+        }
 
-      if (this.ttbf32Val.ta0sealnum !== null && this.ttbf32Val.ta0sealnum !== undefined && this.ttbf32Val.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.ttbf32Val.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.ttbf32Val.ta0sealnum + ',';
-            saveFlag = false;
-          }          
-        });
-       
-      }
-
-      if (this.mfusef1Val.ta0sealnum !== null && this.mfusef1Val.ta0sealnum !== undefined && this.mfusef1Val.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.mfusef1Val.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.mfusef1Val.ta0sealnum + ',';
-            saveFlag = false;
-          }           
-        });
-       
-      }
-
-      if (this.mfusef2Val.ta0sealnum !== null && this.mfusef2Val.ta0sealnum !== undefined && this.mfusef2Val.ta0sealnum !== '') {
-         //Validate against SQLite
-         await this.ds.queryCrimplessData(this.mfusef2Val.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.mfusef2Val.ta0sealnum + ',';
-            saveFlag = false;
-          }            
-        });
+        if (this.ttbf32Val.ta0sealnum !== null && this.ttbf32Val.ta0sealnum !== undefined && this.ttbf32Val.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.ttbf32Val.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.ttbf32Val.ta0sealnum + ',';
+              saveFlag = false;
+            }          
+          });
         
-      }
+        }
 
-      if (this.mfusef3Val.ta0sealnum !== null && this.mfusef3Val.ta0sealnum !== undefined && this.mfusef3Val.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.mfusef3Val.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.mfusef3Val.ta0sealnum + ',';
-            saveFlag = false;
-          }            
-        });
+        if (this.mfusef1Val.ta0sealnum !== null && this.mfusef1Val.ta0sealnum !== undefined && this.mfusef1Val.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.mfusef1Val.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.mfusef1Val.ta0sealnum + ',';
+              saveFlag = false;
+            }           
+          });
         
-      }
+        }
 
-      if (this.paneldoorkiosk11Val.ta0sealnum !== null && this.paneldoorkiosk11Val.ta0sealnum !== undefined && this.paneldoorkiosk11Val.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.paneldoorkiosk11Val.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.paneldoorkiosk11Val.ta0sealnum + ',';
-            saveFlag = false;
-          }        
-        });
+        if (this.mfusef2Val.ta0sealnum !== null && this.mfusef2Val.ta0sealnum !== undefined && this.mfusef2Val.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.mfusef2Val.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.mfusef2Val.ta0sealnum + ',';
+              saveFlag = false;
+            }            
+          });
+          
+        }
+
+        if (this.mfusef3Val.ta0sealnum !== null && this.mfusef3Val.ta0sealnum !== undefined && this.mfusef3Val.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.mfusef3Val.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.mfusef3Val.ta0sealnum + ',';
+              saveFlag = false;
+            }            
+          });
+          
+        }
+
+        if (this.paneldoorkiosk11Val.ta0sealnum !== null && this.paneldoorkiosk11Val.ta0sealnum !== undefined && this.paneldoorkiosk11Val.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.paneldoorkiosk11Val.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.paneldoorkiosk11Val.ta0sealnum + ',';
+              saveFlag = false;
+            }        
+          });
+          
+        }
+
+        if (this.paneldoorkiosk12Val.ta0sealnum !== null && this.paneldoorkiosk12Val.ta0sealnum !== undefined && this.paneldoorkiosk12Val.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.paneldoorkiosk12Val.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.paneldoorkiosk12Val.ta0sealnum + ',';
+              saveFlag = false;
+            }          
+          });
+          
+        }
+
+        if (this.paneldoorkiosk21Val.ta0sealnum !== null && this.paneldoorkiosk21Val.ta0sealnum !== undefined && this.paneldoorkiosk21Val.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.paneldoorkiosk21Val.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.paneldoorkiosk21Val.ta0sealnum + ',';
+              saveFlag = false;
+            }            
+          });
+          
+        }
+
+        if (this.paneldoorkiosk22Val.ta0sealnum !== null && this.paneldoorkiosk22Val.ta0sealnum !== undefined && this.paneldoorkiosk22Val.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.paneldoorkiosk22Val.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.paneldoorkiosk22Val.ta0sealnum + ',';
+              saveFlag = false;
+            }           
+          });
+          
+        }
+
+        if (this.mtestbox11Val.ta0sealnum !== null && this.mtestbox11Val.ta0sealnum !== undefined && this.mtestbox11Val.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.mtestbox11Val.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.mtestbox11Val.ta0sealnum + ',';
+              saveFlag = false;
+            }           
+          });
+          
+        }
+
+        if (this.mtestbox12Val.ta0sealnum !== null && this.mtestbox12Val.ta0sealnum !== undefined && this.mtestbox12Val.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.mtestbox12Val.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.mtestbox12Val.ta0sealnum + ',';
+              saveFlag = false;
+            }             
+          });
+          
+        }
+
+        if (this.mtestbox21Val.ta0sealnum !== null && this.mtestbox21Val.ta0sealnum !== undefined && this.mtestbox21Val.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.mtestbox21Val.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.mtestbox21Val.ta0sealnum + ',';
+              saveFlag = false;
+            }              
+          });
         
-      }
+        }
 
-      if (this.paneldoorkiosk12Val.ta0sealnum !== null && this.paneldoorkiosk12Val.ta0sealnum !== undefined && this.paneldoorkiosk12Val.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.paneldoorkiosk12Val.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.paneldoorkiosk12Val.ta0sealnum + ',';
-            saveFlag = false;
-          }          
-        });
+        if (this.mtestbox22Val.ta0sealnum !== null && this.mtestbox22Val.ta0sealnum !== undefined && this.mtestbox22Val.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.mtestbox22Val.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.mtestbox22Val.ta0sealnum + ',';
+              saveFlag = false;
+            }          
+          });
         
-      }
+        }
 
-      if (this.paneldoorkiosk21Val.ta0sealnum !== null && this.paneldoorkiosk21Val.ta0sealnum !== undefined && this.paneldoorkiosk21Val.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.paneldoorkiosk21Val.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.paneldoorkiosk21Val.ta0sealnum + ',';
-            saveFlag = false;
-          }            
-        });
+        if (this.ctchamberf1Val1.ta0sealnum !== null && this.ctchamberf1Val1.ta0sealnum !== undefined && this.ctchamberf1Val1.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.ctchamberf1Val1.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.ctchamberf1Val1.ta0sealnum + ',';
+              saveFlag = false;
+            }        
+          });
+          
+        }
+
+        if (this.ctchamberf2Val1.ta0sealnum !== null && this.ctchamberf2Val1.ta0sealnum !== undefined && this.ctchamberf2Val1.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.ctchamberf2Val1.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.ctchamberf2Val1.ta0sealnum + ',';
+              saveFlag = false;
+            }         
+          });
         
-      }
+        }
 
-      if (this.paneldoorkiosk22Val.ta0sealnum !== null && this.paneldoorkiosk22Val.ta0sealnum !== undefined && this.paneldoorkiosk22Val.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.paneldoorkiosk22Val.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.paneldoorkiosk22Val.ta0sealnum + ',';
-            saveFlag = false;
-          }           
-        });
+        if (this.ctchamberf3Val1.ta0sealnum !== null && this.ctchamberf3Val1.ta0sealnum !== undefined && this.ctchamberf3Val1.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.ctchamberf3Val1.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.ctchamberf3Val1.ta0sealnum + ',';
+              saveFlag = false;
+            }       
+          });
         
-      }
+        }
 
-      if (this.mtestbox11Val.ta0sealnum !== null && this.mtestbox11Val.ta0sealnum !== undefined && this.mtestbox11Val.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.mtestbox11Val.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.mtestbox11Val.ta0sealnum + ',';
-            saveFlag = false;
-          }           
-        });
+        if (this.ptchamberf1Val1.ta0sealnum !== null && this.ptchamberf1Val1.ta0sealnum !== undefined && this.ptchamberf1Val1.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.ptchamberf1Val1.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.ptchamberf1Val1.ta0sealnum + ',';
+              saveFlag = false;
+            }         
+          });
         
-      }
+        }
 
-      if (this.mtestbox12Val.ta0sealnum !== null && this.mtestbox12Val.ta0sealnum !== undefined && this.mtestbox12Val.ta0sealnum !== '') {
-         //Validate against SQLite
-         await this.ds.queryCrimplessData(this.mtestbox12Val.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.mtestbox12Val.ta0sealnum + ',';
-            saveFlag = false;
-          }             
-        });
+        if (this.ptchamberf2Val1.ta0sealnum !== null && this.ptchamberf2Val1.ta0sealnum !== undefined && this.ptchamberf2Val1.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.ptchamberf2Val1.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.ptchamberf2Val1.ta0sealnum + ',';
+              saveFlag = false;
+            }         
+          });
         
-      }
+        }
 
-      if (this.mtestbox21Val.ta0sealnum !== null && this.mtestbox21Val.ta0sealnum !== undefined && this.mtestbox21Val.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.mtestbox21Val.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.mtestbox21Val.ta0sealnum + ',';
-            saveFlag = false;
-          }              
-        });
-      
-      }
-
-      if (this.mtestbox22Val.ta0sealnum !== null && this.mtestbox22Val.ta0sealnum !== undefined && this.mtestbox22Val.ta0sealnum !== '') {
-         //Validate against SQLite
-         await this.ds.queryCrimplessData(this.mtestbox22Val.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.mtestbox22Val.ta0sealnum + ',';
-            saveFlag = false;
-          }          
-        });
-       
-      }
-
-      if (this.ctchamberf1Val1.ta0sealnum !== null && this.ctchamberf1Val1.ta0sealnum !== undefined && this.ctchamberf1Val1.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.ctchamberf1Val1.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.ctchamberf1Val1.ta0sealnum + ',';
-            saveFlag = false;
-          }        
-        });
+        if (this.ptchamberf3Val1.ta0sealnum !== null && this.ptchamberf3Val1.ta0sealnum !== undefined && this.ptchamberf3Val1.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.ptchamberf3Val1.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.ptchamberf3Val1.ta0sealnum + ',';
+              saveFlag = false;
+            }            
+          });
         
-      }
+        }
 
-      if (this.ctchamberf2Val1.ta0sealnum !== null && this.ctchamberf2Val1.ta0sealnum !== undefined && this.ctchamberf2Val1.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.ctchamberf2Val1.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.ctchamberf2Val1.ta0sealnum + ',';
-            saveFlag = false;
-          }         
-        });
-      
-      }
+        if (this.terminalboxf1Val.ta0sealnum !== null && this.terminalboxf1Val.ta0sealnum !== undefined && this.terminalboxf1Val.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.terminalboxf1Val.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.terminalboxf1Val.ta0sealnum + ',';
+              saveFlag = false;
+            }             
+          });
+          
+        }
 
-      if (this.ctchamberf3Val1.ta0sealnum !== null && this.ctchamberf3Val1.ta0sealnum !== undefined && this.ctchamberf3Val1.ta0sealnum !== '') {
-         //Validate against SQLite
-         await this.ds.queryCrimplessData(this.ctchamberf3Val1.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.ctchamberf3Val1.ta0sealnum + ',';
-            saveFlag = false;
-          }       
-        });
-       
-      }
+        if (this.terminalboxf2Val.ta0sealnum !== null && this.terminalboxf2Val.ta0sealnum !== undefined && this.terminalboxf2Val.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.terminalboxf2Val.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.terminalboxf2Val.ta0sealnum + ',';
+              saveFlag = false;
+            }          
+          });
+          
+        }
 
-      if (this.ptchamberf1Val1.ta0sealnum !== null && this.ptchamberf1Val1.ta0sealnum !== undefined && this.ptchamberf1Val1.ta0sealnum !== '') {
-         //Validate against SQLite
-         await this.ds.queryCrimplessData(this.ptchamberf1Val1.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.ptchamberf1Val1.ta0sealnum + ',';
-            saveFlag = false;
-          }         
-        });
-       
-      }
-
-      if (this.ptchamberf2Val1.ta0sealnum !== null && this.ptchamberf2Val1.ta0sealnum !== undefined && this.ptchamberf2Val1.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.ptchamberf2Val1.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.ptchamberf2Val1.ta0sealnum + ',';
-            saveFlag = false;
-          }         
-        });
-      
-      }
-
-      if (this.ptchamberf3Val1.ta0sealnum !== null && this.ptchamberf3Val1.ta0sealnum !== undefined && this.ptchamberf3Val1.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.ptchamberf3Val1.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.ptchamberf3Val1.ta0sealnum + ',';
-            saveFlag = false;
-          }            
-        });
-      
-      }
-
-      if (this.terminalboxf1Val.ta0sealnum !== null && this.terminalboxf1Val.ta0sealnum !== undefined && this.terminalboxf1Val.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.terminalboxf1Val.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.terminalboxf1Val.ta0sealnum + ',';
-            saveFlag = false;
-          }             
-        });
+        if (this.terminalboxf3Val.ta0sealnum !== null && this.terminalboxf3Val.ta0sealnum !== undefined && this.terminalboxf3Val.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.terminalboxf3Val.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.terminalboxf3Val.ta0sealnum + ',';
+              saveFlag = false;
+            }        
+          });
         
-      }
+        }
 
-      if (this.terminalboxf2Val.ta0sealnum !== null && this.terminalboxf2Val.ta0sealnum !== undefined && this.terminalboxf2Val.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.terminalboxf2Val.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.terminalboxf2Val.ta0sealnum + ',';
-            saveFlag = false;
-          }          
-        });
+        if (this.marshallingboxf1Val.ta0sealnum !== null && this.marshallingboxf1Val.ta0sealnum !== undefined && this.marshallingboxf1Val.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.marshallingboxf1Val.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.marshallingboxf1Val.ta0sealnum + ',';
+              saveFlag = false;
+            }         
+          });
+          
+        }
+
+        if (this.marshallingboxf2Val.ta0sealnum !== null && this.marshallingboxf2Val.ta0sealnum !== undefined && this.marshallingboxf2Val.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.marshallingboxf2Val.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.marshallingboxf2Val.ta0sealnum + ',';
+              saveFlag = false;
+            }        
+          });
         
-      }
+        }
 
-      if (this.terminalboxf3Val.ta0sealnum !== null && this.terminalboxf3Val.ta0sealnum !== undefined && this.terminalboxf3Val.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.terminalboxf3Val.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.terminalboxf3Val.ta0sealnum + ',';
-            saveFlag = false;
-          }        
-        });
-       
-      }
-
-      if (this.marshallingboxf1Val.ta0sealnum !== null && this.marshallingboxf1Val.ta0sealnum !== undefined && this.marshallingboxf1Val.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.marshallingboxf1Val.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.marshallingboxf1Val.ta0sealnum + ',';
-            saveFlag = false;
-          }         
-        });
+        if (this.marshallingboxf3Val.ta0sealnum !== null && this.marshallingboxf3Val.ta0sealnum !== undefined && this.marshallingboxf3Val.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.marshallingboxf3Val.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.marshallingboxf3Val.ta0sealnum + ',';
+              saveFlag = false;
+            }    
+          });
         
-      }
+        }
 
-      if (this.marshallingboxf2Val.ta0sealnum !== null && this.marshallingboxf2Val.ta0sealnum !== undefined && this.marshallingboxf2Val.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.marshallingboxf2Val.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.marshallingboxf2Val.ta0sealnum + ',';
-            saveFlag = false;
-          }        
-        });
-       
-      }
-
-      if (this.marshallingboxf3Val.ta0sealnum !== null && this.marshallingboxf3Val.ta0sealnum !== undefined && this.marshallingboxf3Val.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.marshallingboxf3Val.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.marshallingboxf3Val.ta0sealnum + ',';
-            saveFlag = false;
-          }    
-        });
-       
-      }
-
-      if (this.ptsecondaryfusef1Val.ta0sealnum !== null && this.ptsecondaryfusef1Val.ta0sealnum !== undefined && this.ptsecondaryfusef1Val.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.ptsecondaryfusef1Val.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.ptsecondaryfusef1Val.ta0sealnum + ',';
-            saveFlag = false;
-          }   
-        });
-       
-      }
-
-      if (this.ptsecondaryfusef2Val.ta0sealnum !== null && this.ptsecondaryfusef2Val.ta0sealnum !== undefined && this.ptsecondaryfusef2Val.ta0sealnum !== '') {
-        //Validate against SQLite
-        await this.ds.queryCrimplessData(this.ptsecondaryfusef2Val.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.ptsecondaryfusef2Val.ta0sealnum + ',';
-            saveFlag = false;
-          }    
-        });
-      
-      }
-
-      if (this.ptsecondaryfusef3Val.ta0sealnum !== null && this.ptsecondaryfusef3Val.ta0sealnum !== undefined && this.ptsecondaryfusef3Val.ta0sealnum !== '') {
-         //Validate against SQLite
-         await this.ds.queryCrimplessData(this.ptsecondaryfusef3Val.ta0sealnum).then((response) => {
-          console.log(JSON.stringify(response));
-          let result = JSON.parse(JSON.stringify(response));
-          if(result.statusCode === 'E') {
-            fakeSealNum = fakeSealNum + this.ptsecondaryfusef3Val.ta0sealnum + ',';
-            saveFlag = false;
-          }  
-        });
+        if (this.ptsecondaryfusef1Val.ta0sealnum !== null && this.ptsecondaryfusef1Val.ta0sealnum !== undefined && this.ptsecondaryfusef1Val.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.ptsecondaryfusef1Val.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.ptsecondaryfusef1Val.ta0sealnum + ',';
+              saveFlag = false;
+            }   
+          });
         
-      }
-      console.log("saveFlag : "+saveFlag);
+        }
 
-    if(saveFlag === false) {
+        if (this.ptsecondaryfusef2Val.ta0sealnum !== null && this.ptsecondaryfusef2Val.ta0sealnum !== undefined && this.ptsecondaryfusef2Val.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.ptsecondaryfusef2Val.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.ptsecondaryfusef2Val.ta0sealnum + ',';
+              saveFlag = false;
+            }    
+          });
+        
+        }
+
+        if (this.ptsecondaryfusef3Val.ta0sealnum !== null && this.ptsecondaryfusef3Val.ta0sealnum !== undefined && this.ptsecondaryfusef3Val.ta0sealnum !== '') {
+          //Validate against SQLite
+          await this.ds.queryCrimplessData(this.ptsecondaryfusef3Val.ta0sealnum).then((response) => {
+            console.log(JSON.stringify(response));
+            let result = JSON.parse(JSON.stringify(response));
+            if(result.statusCode === 'E') {
+              fakeSealNum = fakeSealNum + this.ptsecondaryfusef3Val.ta0sealnum + ',';
+              saveFlag = false;
+            }  
+          });
+          
+        }
+        console.log("saveFlag : "+saveFlag);
+      }
+
+    if(validateSeal === true && saveFlag === false) {
       loading.dismiss();
       this.gf.warningAlert('Warning', 'Invalid seal number '+fakeSealNum.substring(0,fakeSealNum.length-1)+' found!', 'Close');   
       return;
@@ -1481,7 +1488,7 @@ export class CrimplessSealPage implements OnInit {
           this.paneldoorkiosk21Val.ta0existingseal = false,
           this.paneldoorkiosk21Val.devicelocind = true;
           this.paneldoorkiosk21Val.ta0sealindicator = 'N';                 
-          this.itemOri.json.ta0sealdetail.push(this.paneldoorkiosk12Val);
+          this.itemOri.json.ta0sealdetail.push(this.paneldoorkiosk21Val);
         }
   
         if (this.paneldoorkiosk22Val.ta0sealnum !== null && this.paneldoorkiosk22Val.ta0sealnum !== undefined && this.paneldoorkiosk22Val.ta0sealnum !== '') { 
