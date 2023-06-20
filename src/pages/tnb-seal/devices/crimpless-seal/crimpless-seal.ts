@@ -718,6 +718,10 @@ export class CrimplessSealPage implements OnInit {
             this.itemOri.json.ta0sealdetail[i].ta0sealremreason = this.ttbF3Array[x].ta0sealremreason;
             this.itemOri.json.ta0sealdetail[i].ta0sealcondition = this.ttbF3Array[x].ta0sealcondition;
           }
+          // settings to save global crimpless seal reason
+          if (this.gv.crimplessSealReason === null || this.gv.crimplessSealReason === '' || this.gv.crimplessSealReason === undefined) {
+            this.gv.crimplessSealReason = this.ttbF3Array[x].ta0sealremreason;
+          }
         }
       }
       if(this.sfuseF1Array !== null && this.sfuseF1Array.length > 0 ){
@@ -730,7 +734,7 @@ export class CrimplessSealPage implements OnInit {
           // settings to save global crimpless seal reason
           if (this.gv.crimplessSealReason === null || this.gv.crimplessSealReason === '' || this.gv.crimplessSealReason === undefined) {
             this.gv.crimplessSealReason = this.sfuseF1Array[x].ta0sealremreason;
-          }  
+          }
         }
       }
       if(this.meterKiosk1Array !== null && this.meterKiosk1Array.length > 0 ){
