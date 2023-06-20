@@ -5237,5 +5237,27 @@ this.loadingPresent();
     console.log(">SilStickerInfoPage >>ionViewWillEnter");
     this.loading.dismiss();
   }
+
+  /**
+   * Reason   : Method to assign value crimpless seal reason
+   * Created  : 20/06/2023
+   */
+    onClickRemove(val) {
+      // console.log(">>>>> onRemove >>>>> " + JSON.stringify(val));
+      // checking remove or not
+      if (val.ta0removeind) {
+        // checking crimpless seal removal reason
+        if (this.gv.crimplessSealReason) {
+          console.log(">>>>> onRemove >>>>> " + this.gv.crimplessSealReason);
+          if (typeof(val.ta0sealremreason) == 'undefined') {
+            val.ta0sealremreason = this.gv.crimplessSealReason;
+            console.log(">>>>> onRemove >>>>> " + val.ta0sealremreason);
+          } else if (val.ta0sealremreason !== null && val.ta0sealremreason.ta0sealremreason !== '' && val.ta0sealremreason !== undefined) {
+            val.ta0sealremreason = this.gv.crimplessSealReason;
+            console.log(">>>>> onRemove >>>>> " + val.ta0sealremreason);
+          }
+        }
+      }
+    }
  
 }
