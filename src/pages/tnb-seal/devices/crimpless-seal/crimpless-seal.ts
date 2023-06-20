@@ -690,16 +690,25 @@ export class CrimplessSealPage implements OnInit {
               this.itemOri.json.ta0sealdetail[i].ta0removeind = this.ttbF1Array[x].ta0removeind;
               this.itemOri.json.ta0sealdetail[i].ta0sealremreason = this.ttbF1Array[x].ta0sealremreason;
               this.itemOri.json.ta0sealdetail[i].ta0sealcondition = this.ttbF1Array[x].ta0sealcondition;
-          }              
+          }
+
+          // settings to save global crimpless seal reason
+          if (this.gv.crimplessSealReason === null || this.gv.crimplessSealReason === '' || this.gv.crimplessSealReason === undefined) {
+            this.gv.crimplessSealReason = this.ttbF1Array[x].ta0sealremreason;
+          }
         }
       }
       if(this.ttbF2Array !== null && this.ttbF2Array.length > 0 ){
         for(var x = 0 ; x<this.ttbF2Array.length ; x++ ) {
           if(this.ttbF2Array[x].ta0sealnum == this.itemOri.json.ta0sealdetail[i].ta0sealnum){              
-            this.itemOri.json.ta0sealdetail[i].ta0removeind = this.ttbF1Array[x].ta0removeind;
-            this.itemOri.json.ta0sealdetail[i].ta0sealremreason = this.ttbF1Array[x].ta0sealremreason;
-            this.itemOri.json.ta0sealdetail[i].ta0sealcondition = this.ttbF1Array[x].ta0sealcondition;
-          }              
+            this.itemOri.json.ta0sealdetail[i].ta0removeind = this.ttbF2Array[x].ta0removeind;
+            this.itemOri.json.ta0sealdetail[i].ta0sealremreason = this.ttbF2Array[x].ta0sealremreason;
+            this.itemOri.json.ta0sealdetail[i].ta0sealcondition = this.ttbF2Array[x].ta0sealcondition;
+          }
+          // settings to save global crimpless seal reason
+          if (this.gv.crimplessSealReason === null || this.gv.crimplessSealReason === '' || this.gv.crimplessSealReason === undefined) {
+            this.gv.crimplessSealReason = this.ttbF2Array[x].ta0sealremreason;
+          }
         }
       }
       if(this.ttbF3Array !== null && this.ttbF3Array.length > 0 ){
@@ -708,7 +717,7 @@ export class CrimplessSealPage implements OnInit {
             this.itemOri.json.ta0sealdetail[i].ta0removeind = this.ttbF3Array[x].ta0removeind;
             this.itemOri.json.ta0sealdetail[i].ta0sealremreason = this.ttbF3Array[x].ta0sealremreason;
             this.itemOri.json.ta0sealdetail[i].ta0sealcondition = this.ttbF3Array[x].ta0sealcondition;
-          }              
+          }
         }
       }
       if(this.sfuseF1Array !== null && this.sfuseF1Array.length > 0 ){
@@ -717,7 +726,11 @@ export class CrimplessSealPage implements OnInit {
             this.itemOri.json.ta0sealdetail[i].ta0removeind = this.sfuseF1Array[x].ta0removeind;
             this.itemOri.json.ta0sealdetail[i].ta0sealremreason = this.sfuseF1Array[x].ta0sealremreason;
             this.itemOri.json.ta0sealdetail[i].ta0sealcondition = this.sfuseF1Array[x].ta0sealcondition;
-          }              
+          }         
+          // settings to save global crimpless seal reason
+          if (this.gv.crimplessSealReason === null || this.gv.crimplessSealReason === '' || this.gv.crimplessSealReason === undefined) {
+            this.gv.crimplessSealReason = this.sfuseF1Array[x].ta0sealremreason;
+          }  
         }
       }
       if(this.meterKiosk1Array !== null && this.meterKiosk1Array.length > 0 ){
@@ -726,7 +739,11 @@ export class CrimplessSealPage implements OnInit {
             this.itemOri.json.ta0sealdetail[i].ta0removeind = this.meterKiosk1Array[x].ta0removeind;
             this.itemOri.json.ta0sealdetail[i].ta0sealremreason = this.meterKiosk1Array[x].ta0sealremreason;
             this.itemOri.json.ta0sealdetail[i].ta0sealcondition = this.meterKiosk1Array[x].ta0sealcondition;
-          }              
+          }
+          // settings to save global crimpless seal reason
+          if (this.gv.crimplessSealReason === null || this.gv.crimplessSealReason === '' || this.gv.crimplessSealReason === undefined) {
+            this.gv.crimplessSealReason = this.meterKiosk1Array[x].ta0sealremreason;
+          }
         }
       }
       if(this.meterTestBoxArray1 !== null && this.meterTestBoxArray1.length > 0 ){
@@ -735,7 +752,11 @@ export class CrimplessSealPage implements OnInit {
             this.itemOri.json.ta0sealdetail[i].ta0removeind = this.meterTestBoxArray1[x].ta0removeind;
             this.itemOri.json.ta0sealdetail[i].ta0sealremreason = this.meterTestBoxArray1[x].ta0sealremreason;
             this.itemOri.json.ta0sealdetail[i].ta0sealcondition = this.meterTestBoxArray1[x].ta0sealcondition;
-          }              
+          }
+          // settings to save global crimpless seal reason
+          if (this.gv.crimplessSealReason === null || this.gv.crimplessSealReason === '' || this.gv.crimplessSealReason === undefined) {
+            this.gv.crimplessSealReason = this.meterTestBoxArray1[x].ta0sealremreason;
+          }
         }
       }
       if(this.meterTestBoxArray2 !== null && this.meterTestBoxArray2.length > 0 ){
@@ -744,7 +765,11 @@ export class CrimplessSealPage implements OnInit {
             this.itemOri.json.ta0sealdetail[i].ta0removeind = this.meterTestBoxArray2[x].ta0removeind;
             this.itemOri.json.ta0sealdetail[i].ta0sealremreason = this.meterTestBoxArray2[x].ta0sealremreason;
             this.itemOri.json.ta0sealdetail[i].ta0sealcondition = this.meterTestBoxArray2[x].ta0sealcondition;
-          }              
+          }
+          // settings to save global crimpless seal reason
+          if (this.gv.crimplessSealReason === null || this.gv.crimplessSealReason === '' || this.gv.crimplessSealReason === undefined) {
+            this.gv.crimplessSealReason = this.meterTestBoxArray2[x].ta0sealremreason;
+          }
         }
       }
       if(this.ctChamberArrayF1 !== null && this.ctChamberArrayF1.length > 0 ){
@@ -753,7 +778,11 @@ export class CrimplessSealPage implements OnInit {
             this.itemOri.json.ta0sealdetail[i].ta0removeind = this.ctChamberArrayF1[x].ta0removeind;
             this.itemOri.json.ta0sealdetail[i].ta0sealremreason = this.ctChamberArrayF1[x].ta0sealremreason;
             this.itemOri.json.ta0sealdetail[i].ta0sealcondition = this.ctChamberArrayF1[x].ta0sealcondition;
-          }              
+          }
+          // settings to save global crimpless seal reason
+          if (this.gv.crimplessSealReason === null || this.gv.crimplessSealReason === '' || this.gv.crimplessSealReason === undefined) {
+            this.gv.crimplessSealReason = this.ctChamberArrayF1[x].ta0sealremreason;
+          }
         }
       }
       if(this.ptChamberArrayF1 !== null && this.ptChamberArrayF1.length > 0 ){
@@ -762,7 +791,11 @@ export class CrimplessSealPage implements OnInit {
             this.itemOri.json.ta0sealdetail[i].ta0removeind = this.ptChamberArrayF1[x].ta0removeind;
             this.itemOri.json.ta0sealdetail[i].ta0sealremreason = this.ptChamberArrayF1[x].ta0sealremreason;
             this.itemOri.json.ta0sealdetail[i].ta0sealcondition = this.ptChamberArrayF1[x].ta0sealcondition;
-          }              
+          }
+          // settings to save global crimpless seal reason
+          if (this.gv.crimplessSealReason === null || this.gv.crimplessSealReason === '' || this.gv.crimplessSealReason === undefined) {
+            this.gv.crimplessSealReason = this.ptChamberArrayF1[x].ta0sealremreason;
+          }
         }
       }
       if(this.terminalBoxArrayF1 !== null && this.terminalBoxArrayF1.length > 0 ){
@@ -771,7 +804,11 @@ export class CrimplessSealPage implements OnInit {
             this.itemOri.json.ta0sealdetail[i].ta0removeind = this.terminalBoxArrayF1[x].ta0removeind;
             this.itemOri.json.ta0sealdetail[i].ta0sealremreason = this.terminalBoxArrayF1[x].ta0sealremreason;
             this.itemOri.json.ta0sealdetail[i].ta0sealcondition = this.terminalBoxArrayF1[x].ta0sealcondition;
-          }              
+          }
+          // settings to save global crimpless seal reason
+          if (this.gv.crimplessSealReason === null || this.gv.crimplessSealReason === '' || this.gv.crimplessSealReason === undefined) {
+            this.gv.crimplessSealReason = this.terminalBoxArrayF1[x].ta0sealremreason;
+          }
         }
       }
       if(this.marshallingBoxArrayF1 !== null && this.marshallingBoxArrayF1.length > 0 ){
@@ -780,7 +817,11 @@ export class CrimplessSealPage implements OnInit {
             this.itemOri.json.ta0sealdetail[i].ta0removeind = this.marshallingBoxArrayF1[x].ta0removeind;
             this.itemOri.json.ta0sealdetail[i].ta0sealremreason = this.marshallingBoxArrayF1[x].ta0sealremreason;
             this.itemOri.json.ta0sealdetail[i].ta0sealcondition = this.marshallingBoxArrayF1[x].ta0sealcondition;
-          }              
+          }
+          // settings to save global crimpless seal reason
+          if (this.gv.crimplessSealReason === null || this.gv.crimplessSealReason === '' || this.gv.crimplessSealReason === undefined) {
+            this.gv.crimplessSealReason = this.marshallingBoxArrayF1[x].ta0sealremreason;
+          }
         }
       }
       if(this.ptSecondaryFuseArrayF1 !== null && this.ptSecondaryFuseArrayF1.length > 0 ){
@@ -789,10 +830,16 @@ export class CrimplessSealPage implements OnInit {
             this.itemOri.json.ta0sealdetail[i].ta0removeind = this.ptSecondaryFuseArrayF1[x].ta0removeind;
             this.itemOri.json.ta0sealdetail[i].ta0sealremreason = this.ptSecondaryFuseArrayF1[x].ta0sealremreason;
             this.itemOri.json.ta0sealdetail[i].ta0sealcondition = this.ptSecondaryFuseArrayF1[x].ta0sealcondition;
-          }              
+          }
+          // settings to save global crimpless seal reason
+          if (this.gv.crimplessSealReason === null || this.gv.crimplessSealReason === '' || this.gv.crimplessSealReason === undefined) {
+            this.gv.crimplessSealReason = this.ptSecondaryFuseArrayF1[x].ta0sealremreason;
+          }
         }
       }
     }
+
+    console.log(">>>>>> saving global value >>>>>> " + this.gv.crimplessSealReason);
     console.log(">SealCrimplessSealPage >>saveDeviceDetailsBefore >>>this.itemOri ==>",this.itemOri);
 
     let loading = this.loadingCtrl.create({

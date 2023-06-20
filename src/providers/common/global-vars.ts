@@ -146,9 +146,11 @@ export class GlobalVars {
     //validate against SQLite
     public validateDBSeal: boolean = false;
 
-
     //IEE Status Map
     public ieeMap = new Map<string, boolean>();
+
+    // Crimpless Seal Reasin
+    public crimplessSealReason: String;
 
     constructor(public events: Events) {
 
