@@ -1912,4 +1912,43 @@ export class SealCrimplessSealPage implements OnInit {
     this.loading2.present();
   }
 
+  /**
+   * Reason   : Method to assign value crimpless seal reason
+   * Created  : 21/06/2023
+   */
+  onClickRemove(val) {
+    console.log(">>>>> onRemove >>>>> " + JSON.stringify(val));
+    // console.log(">>>>> onRemove >>>>> " + this.itemOri.json.loc_crimplessSealReason);
+    // checking remove or not
+    if (val.ta0removeind) {
+      // checking crimpless seal removal reason
+      if (this.itemOri.json.loc_crimplessSealReason) {
+        console.log(">>>>> onRemove >>>>> " + this.itemOri.json.loc_crimplessSealReason);
+        if (typeof(val.ta0sealremreason) == 'undefined') {
+          val.ta0sealremreason = this.itemOri.json.loc_crimplessSealReason;
+          console.log(">>>>> onRemove >>>>> " + val.ta0sealremreason);
+        } else if (val.ta0sealremreason !== null && val.ta0sealremreason !== '' && val.ta0sealremreason !== undefined) {
+          val.ta0sealremreason = this.itemOri.json.loc_crimplessSealReason;
+          console.log(">>>>> onRemove >>>>> " + val.ta0sealremreason);
+        }
+      }
+    }
+  }
+
+  /**
+   * Reason   : Method to assign value crimpless seal reason
+   * Created  : 21/06/2023
+   */
+  onClickGetRemovalReason(val) {
+    console.log(">>>>> onChangeRemovalReason >>>>> " + val.ta0sealremreason);
+    console.log(">>>>> onChangeRemovalReason >>>>> " + this.itemOri.json.loc_crimplessSealReason);
+    // check crimpless seal removal reason
+    if (this.itemOri.json.loc_crimplessSealReason == undefined) {
+      // value available
+      if (val.ta0sealremreason !== null && val.ta0sealremreason !== '' && val.ta0sealremreason !== undefined) {
+        this.itemOri.json.loc_crimplessSealReason = val.ta0sealremreason;
+      }
+      console.log(">>>>> onChangeRemovalReason >>>>> " + this.itemOri.json.loc_crimplessSealReason);
+    }
+  }
 }
