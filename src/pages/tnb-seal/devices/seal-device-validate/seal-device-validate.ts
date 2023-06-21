@@ -33,7 +33,8 @@ export class SealDeviceValidatePage {
 
   // Declare Variables
   item: any;
-  serialnum: any;
+  serialnum: string;
+  seallocationdesc: string;
   options: BarcodeScannerOptions;
 
   constructor(public navCtrl: NavController,
@@ -76,35 +77,31 @@ export class SealDeviceValidatePage {
 
   validateDevice() {
     console.log(">>>> enter to validate device in SO >>>>>>");
-    let message: any = '-';
-
-    if (this.checkRespond() == true) {
-      message = "Successfully validate device " + this.serialnum + " for service order " + this.item.json.wonum + "!";
-    } else {
-      message = "Failed to validate device " + this.serialnum + " for service order " + this.item.json.wonum + "!";
+    let message: any = '';
+    let isFound: boolean = false;
+    //check against exsiting seal at device location
+    if (typeof this.item.json.ta0sealdetail !== 'undefined' && this.item.json.ta0sealdetail !== '' && this.item.json.ta0sealdetail !== null) {
+      let totalSealLocation = this.item.json.ta0sealdetail.length;
+      for (var i = 0; i < totalSealLocation; i++) {   
+        if (this.serialnum === this.item.json.ta0sealdetail[i].ta0sealnum) {
+          this.seallocationdesc = this.item.json.ta0sealdetail[i].ta0seallocation_description;
+          console.log(">>>>> ta0sealnum >>>>> " + this.serialnum + " >>>>> " + this.item.json.ta0sealdetail[i].ta0sealnum);
+          console.log(">>>>> ta0sealnum >>>>> " + this.serialnum + " >>>>> " + this.item.json.ta0sealdetail[i].ta0seallocation);
+          console.log(">>>>> ta0sealnum >>>>> " + this.serialnum + " >>>>> " + this.item.json.ta0sealdetail[i].ta0seallocation_description);
+          isFound = true;
+        }  
+      }
     }
 
-    // display alert
-    let alert = this.alertCtrl.create({
-      title: "Response!",
-      message: message,
-      buttons: ["Close"]
-    });
-    alert.present();
-    
-    console.log(">>>> exit to validate device in SO >>>>>>");
-  }
-
-  checkRespond() {
+    //check against existing seal at meter and ct
     if (typeof this.item.json.ta0feeder !== 'undefined' && this.item.json.ta0feeder !== '' && this.item.json.ta0feeder !== null) {
       if (typeof (this.item.json.ta0feeder.length) !== "undefined") {
         let fLength = this.item.json.ta0feeder.length;
         for (var i = 0; i < fLength; i++) {
           if (this.item.json.ta0feeder[i].hasOwnProperty("multiassetlocci")) {
             let mLength = this.item.json.ta0feeder[i].multiassetlocci.length
-            for (var m = 0; m < mLength; m++) {
-              if (this.item.json.ta0feeder[i].multiassetlocci[m].hasOwnProperty("ta0bcrmuploadindicator")) {
-                if (this.item.json.ta0feeder[i].multiassetlocci[m].ta0bcrmuploadindicator === DeviceConstants.BCRM_EXISTING_INDICATOR_MAIN_CT) {
+            for (var m = 0; m < mLength; m++) {              
+                if (this.item.json.ta0feeder[i].multiassetlocci[m].ta0existingdevice === true) {
                   // check ta0sealdetail
                   if (this.item.json.ta0feeder[i].multiassetlocci[m].hasOwnProperty("ta0sealdetail")) {
                     let sLength = this.item.json.ta0feeder[i].multiassetlocci[m].ta0sealdetail.length;
@@ -113,21 +110,48 @@ export class SealDeviceValidatePage {
                       if (this.item.json.ta0feeder[i].multiassetlocci[m].ta0sealdetail[k].hasOwnProperty("ta0sealnum")) {
                         // compare ta0sealnum existing
                         if (this.serialnum === this.item.json.ta0feeder[i].multiassetlocci[m].ta0sealdetail[k].ta0sealnum) {
+                          this.seallocationdesc = this.item.json.ta0feeder[i].multiassetlocci[m].ta0sealdetail[k].ta0seallocation_description;
                           console.log(">>>>> ta0sealnum >>>>> " + this.serialnum + " >>>>> " + this.item.json.ta0feeder[i].multiassetlocci[m].ta0sealdetail[k].ta0sealnum);
-                          return true;
+                          console.log(">>>>> ta0sealnum >>>>> " + this.serialnum + " >>>>> " + this.item.json.ta0feeder[i].multiassetlocci[m].ta0sealdetail[k].ta0seallocation);
+                          console.log(">>>>> ta0sealnum >>>>> " + this.serialnum + " >>>>> " + this.item.json.ta0feeder[i].multiassetlocci[m].ta0sealdetail[k].ta0seallocation_description);
+                          isFound = true;
                         }
                       }
                     }
                   }
                 }
-              }
             }
           }
         }
       }
     }
 
-    return false;
+
+    if (isFound == true) {
+      message = this.serialnum + " exists in " + this.seallocationdesc;
+      // display alert
+      let alert = this.alertCtrl.create({
+        title: "Response",
+        cssClass: 'alert-validatesealsuccess',
+        message: message,
+        buttons: ["Close"]
+      });
+      alert.present();
+      this.serialnum = '';
+      
+    } else {
+      message = this.serialnum + " is not found in service order " + this.item.json.wonum + "!";
+      // display alert
+      let alert = this.alertCtrl.create({
+        title: "Response",
+        cssClass: 'alert-validatesealfail',
+        message: message,
+        buttons: ["Close"]
+      });
+      alert.present();
+      this.serialnum = '';            
+    }        
+    console.log(">>>> exit to validate device in SO >>>>>>");
   }
 
 }

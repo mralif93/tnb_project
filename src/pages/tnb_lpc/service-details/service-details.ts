@@ -4024,5 +4024,25 @@ export class ServiceDetailsPage {
       });     
     });    
   }
+
+    /**
+   * Validation for validate device SO.
+   * Created: Alif (12/06/2023)
+   */
+    goToValidateDevicePage() {
+      console.log("Go to Seal Device Validate Page..");
+  
+      let loading = this.loadingCtrl.create({
+        content: "Please wait..."
+      });
+  
+      loading.present().then(() => {
+        let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
+        newRootNav.push("SealDeviceValidatePage", this.items);
+        loading.dismiss();
+      });
+  
+      this.gf.loadingTimer(loading);
+    }
   
 }
