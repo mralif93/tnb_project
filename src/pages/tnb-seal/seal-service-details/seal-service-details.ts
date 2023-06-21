@@ -1793,13 +1793,18 @@ export class SealServiceDetailsPage implements OnInit {
   }
 
   openCrimplessSeal() {
-    console.log('item.json.ta0feeder123', this.items.json.ta0feeder);
-
-    let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
-    newRootNav.push("CrimplessSealPage", {
-      from: 'my_Assigned_page',
-      feederDetails: this.feederDetails,
-      paramObj: this.items
+    let loading = this.loadingCtrl.create({
+      content: 'Loading...'
+    }); 
+    loading.present().then(() => {
+      let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
+      newRootNav.push("CrimplessSealPage", {
+        from: 'my_Assigned_page',
+        feederDetails: this.feederDetails,
+        paramObj: this.items
+      }).then(() => {
+        loading.dismiss();
+      });
     });
   }
 
