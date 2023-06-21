@@ -454,7 +454,8 @@ export class CtSilInfoPage {
    * Reason   : Method to save data.
    * Created  : 05/06/2023
    */
-  async saveCtSealDetails() {
+  async saveCtSealDetails(){
+    debugger;
     console.log(">>>> enter to save >>> ct sil details >>>");
     let string: boolean = true
     let loading = this.loadingCtrl.create({
@@ -515,7 +516,7 @@ export class CtSilInfoPage {
         console.log("validateSeal : "+validateSeal);
         console.log("olddeviceassetnum : "+olddeviceassetnum);
         console.log("assetnum : "+assetnum);      
-        if (validateSeal) {
+        if(validateSeal){
           //validate against database
           if (this.nTerminalCTArray.length > 0) {
             if (this.nTerminalCTArray[0].ta0sealnum !== null && this.nTerminalCTArray[0].ta0sealnum !== undefined && this.nTerminalCTArray[0].ta0sealnum !== '') {
@@ -531,8 +532,7 @@ export class CtSilInfoPage {
             }
           }
         }
-        
-        if (validateSeal === true && saveFlag === false) {
+        if(validateSeal === true && saveFlag === false) {
           loading.dismiss();
           this.gf.warningAlert('Warning', 'Invalid seal number '+fakeSealNum+' found!', 'Close');   
           return;
@@ -669,9 +669,9 @@ export class CtSilInfoPage {
               loading.dismiss();
             });
           }, 10000);
-    
+      
           this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
-    
+      
           if (this.gv.testMobile && (DeviceConstants.NETWORK_UNKNOWN === this.gf.checkNetwork() || DeviceConstants.NETWORK_NONE === this.gf.checkNetwork())) {
             this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
             this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_silStickers_haveChange = true;
@@ -739,7 +739,7 @@ export class CtSilInfoPage {
                 // newRootNav.push("SealServiceExecutionPage", this.itemOri);
               }
             });
-    
+      
           } else {
             var feederCode = this.itemOri.json.ta0feeder[this.fIndex].ta0feedercode;
             this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0silstickerstatus = 'Y';
@@ -789,7 +789,7 @@ export class CtSilInfoPage {
           }
         }
       }
-    }
+    } 
   }
 
   goBack() {
