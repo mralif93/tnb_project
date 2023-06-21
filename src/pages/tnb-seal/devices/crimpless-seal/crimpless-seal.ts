@@ -693,8 +693,8 @@ export class CrimplessSealPage implements OnInit {
           }
 
           // settings to save global crimpless seal reason
-          if (this.gv.crimplessSealReason === null || this.gv.crimplessSealReason === '' || this.gv.crimplessSealReason === undefined) {
-            this.gv.crimplessSealReason = this.ttbF1Array[x].ta0sealremreason;
+          if (this.itemOri.json.loc_crimplessSealReason === null || this.itemOri.json.loc_crimplessSealReason === '' || this.itemOri.json.loc_crimplessSealReason === undefined) {
+            this.itemOri.json.loc_crimplessSealReason = this.ttbF1Array[x].ta0sealremreason;
           }
         }
       }
@@ -706,8 +706,8 @@ export class CrimplessSealPage implements OnInit {
             this.itemOri.json.ta0sealdetail[i].ta0sealcondition = this.ttbF2Array[x].ta0sealcondition;
           }
           // settings to save global crimpless seal reason
-          if (this.gv.crimplessSealReason === null || this.gv.crimplessSealReason === '' || this.gv.crimplessSealReason === undefined) {
-            this.gv.crimplessSealReason = this.ttbF2Array[x].ta0sealremreason;
+          if (this.itemOri.json.loc_crimplessSealReason === null || this.itemOri.json.loc_crimplessSealReason === '' || this.itemOri.json.loc_crimplessSealReason === undefined) {
+            this.itemOri.json.loc_crimplessSealReason = this.ttbF2Array[x].ta0sealremreason;
           }
         }
       }
@@ -719,8 +719,8 @@ export class CrimplessSealPage implements OnInit {
             this.itemOri.json.ta0sealdetail[i].ta0sealcondition = this.ttbF3Array[x].ta0sealcondition;
           }
           // settings to save global crimpless seal reason
-          if (this.gv.crimplessSealReason === null || this.gv.crimplessSealReason === '' || this.gv.crimplessSealReason === undefined) {
-            this.gv.crimplessSealReason = this.ttbF3Array[x].ta0sealremreason;
+          if (this.itemOri.json.loc_crimplessSealReason === null || this.itemOri.json.loc_crimplessSealReason === '' || this.itemOri.json.loc_crimplessSealReason === undefined) {
+            this.itemOri.json.loc_crimplessSealReason = this.ttbF3Array[x].ta0sealremreason;
           }
         }
       }
@@ -732,8 +732,8 @@ export class CrimplessSealPage implements OnInit {
             this.itemOri.json.ta0sealdetail[i].ta0sealcondition = this.sfuseF1Array[x].ta0sealcondition;
           }         
           // settings to save global crimpless seal reason
-          if (this.gv.crimplessSealReason === null || this.gv.crimplessSealReason === '' || this.gv.crimplessSealReason === undefined) {
-            this.gv.crimplessSealReason = this.sfuseF1Array[x].ta0sealremreason;
+          if (this.itemOri.json.loc_crimplessSealReason === null || this.itemOri.json.loc_crimplessSealReason === '' || this.itemOri.json.loc_crimplessSealReason === undefined) {
+            this.itemOri.json.loc_crimplessSealReason = this.sfuseF1Array[x].ta0sealremreason;
           }
         }
       }
@@ -745,8 +745,8 @@ export class CrimplessSealPage implements OnInit {
             this.itemOri.json.ta0sealdetail[i].ta0sealcondition = this.meterKiosk1Array[x].ta0sealcondition;
           }
           // settings to save global crimpless seal reason
-          if (this.gv.crimplessSealReason === null || this.gv.crimplessSealReason === '' || this.gv.crimplessSealReason === undefined) {
-            this.gv.crimplessSealReason = this.meterKiosk1Array[x].ta0sealremreason;
+          if (this.itemOri.json.loc_crimplessSealReason === null || this.itemOri.json.loc_crimplessSealReason === '' || this.itemOri.json.loc_crimplessSealReason === undefined) {
+            this.itemOri.json.loc_crimplessSealReason = this.meterKiosk1Array[x].ta0sealremreason;
           }
         }
       }
@@ -758,8 +758,8 @@ export class CrimplessSealPage implements OnInit {
             this.itemOri.json.ta0sealdetail[i].ta0sealcondition = this.meterTestBoxArray1[x].ta0sealcondition;
           }
           // settings to save global crimpless seal reason
-          if (this.gv.crimplessSealReason === null || this.gv.crimplessSealReason === '' || this.gv.crimplessSealReason === undefined) {
-            this.gv.crimplessSealReason = this.meterTestBoxArray1[x].ta0sealremreason;
+          if (this.itemOri.json.loc_crimplessSealReason === null || this.itemOri.json.loc_crimplessSealReason === '' || this.itemOri.json.loc_crimplessSealReason === undefined) {
+            this.itemOri.json.loc_crimplessSealReason = this.meterTestBoxArray1[x].ta0sealremreason;
           }
         }
       }
@@ -771,8 +771,8 @@ export class CrimplessSealPage implements OnInit {
             this.itemOri.json.ta0sealdetail[i].ta0sealcondition = this.meterTestBoxArray2[x].ta0sealcondition;
           }
           // settings to save global crimpless seal reason
-          if (this.gv.crimplessSealReason === null || this.gv.crimplessSealReason === '' || this.gv.crimplessSealReason === undefined) {
-            this.gv.crimplessSealReason = this.meterTestBoxArray2[x].ta0sealremreason;
+          if (this.itemOri.json.loc_crimplessSealReason === null || this.itemOri.json.loc_crimplessSealReason === '' || this.itemOri.json.loc_crimplessSealReason === undefined) {
+            this.itemOri.json.loc_crimplessSealReason = this.meterTestBoxArray2[x].ta0sealremreason;
           }
         }
       }
@@ -784,8 +784,8 @@ export class CrimplessSealPage implements OnInit {
             this.itemOri.json.ta0sealdetail[i].ta0sealcondition = this.ctChamberArrayF1[x].ta0sealcondition;
           }
           // settings to save global crimpless seal reason
-          if (this.gv.crimplessSealReason === null || this.gv.crimplessSealReason === '' || this.gv.crimplessSealReason === undefined) {
-            this.gv.crimplessSealReason = this.ctChamberArrayF1[x].ta0sealremreason;
+          if (this.itemOri.json.loc_crimplessSealReason === null || this.itemOri.json.loc_crimplessSealReason === '' || this.itemOri.json.loc_crimplessSealReason === undefined) {
+            this.itemOri.json.loc_crimplessSealReason = this.ctChamberArrayF1[x].ta0sealremreason;
           }
         }
       }
@@ -797,8 +797,8 @@ export class CrimplessSealPage implements OnInit {
             this.itemOri.json.ta0sealdetail[i].ta0sealcondition = this.ptChamberArrayF1[x].ta0sealcondition;
           }
           // settings to save global crimpless seal reason
-          if (this.gv.crimplessSealReason === null || this.gv.crimplessSealReason === '' || this.gv.crimplessSealReason === undefined) {
-            this.gv.crimplessSealReason = this.ptChamberArrayF1[x].ta0sealremreason;
+          if (this.itemOri.json.loc_crimplessSealReason === null || this.itemOri.json.loc_crimplessSealReason === '' || this.itemOri.json.loc_crimplessSealReason === undefined) {
+            this.itemOri.json.loc_crimplessSealReason = this.ptChamberArrayF1[x].ta0sealremreason;
           }
         }
       }
@@ -810,8 +810,8 @@ export class CrimplessSealPage implements OnInit {
             this.itemOri.json.ta0sealdetail[i].ta0sealcondition = this.terminalBoxArrayF1[x].ta0sealcondition;
           }
           // settings to save global crimpless seal reason
-          if (this.gv.crimplessSealReason === null || this.gv.crimplessSealReason === '' || this.gv.crimplessSealReason === undefined) {
-            this.gv.crimplessSealReason = this.terminalBoxArrayF1[x].ta0sealremreason;
+          if (this.itemOri.json.loc_crimplessSealReason === null || this.itemOri.json.loc_crimplessSealReason === '' || this.itemOri.json.loc_crimplessSealReason === undefined) {
+            this.itemOri.json.loc_crimplessSealReason = this.terminalBoxArrayF1[x].ta0sealremreason;
           }
         }
       }
@@ -823,8 +823,8 @@ export class CrimplessSealPage implements OnInit {
             this.itemOri.json.ta0sealdetail[i].ta0sealcondition = this.marshallingBoxArrayF1[x].ta0sealcondition;
           }
           // settings to save global crimpless seal reason
-          if (this.gv.crimplessSealReason === null || this.gv.crimplessSealReason === '' || this.gv.crimplessSealReason === undefined) {
-            this.gv.crimplessSealReason = this.marshallingBoxArrayF1[x].ta0sealremreason;
+          if (this.itemOri.json.loc_crimplessSealReason === null || this.itemOri.json.loc_crimplessSealReason === '' || this.itemOri.json.loc_crimplessSealReason === undefined) {
+            this.itemOri.json.loc_crimplessSealReason = this.marshallingBoxArrayF1[x].ta0sealremreason;
           }
         }
       }
@@ -836,14 +836,14 @@ export class CrimplessSealPage implements OnInit {
             this.itemOri.json.ta0sealdetail[i].ta0sealcondition = this.ptSecondaryFuseArrayF1[x].ta0sealcondition;
           }
           // settings to save global crimpless seal reason
-          if (this.gv.crimplessSealReason === null || this.gv.crimplessSealReason === '' || this.gv.crimplessSealReason === undefined) {
-            this.gv.crimplessSealReason = this.ptSecondaryFuseArrayF1[x].ta0sealremreason;
+          if (this.itemOri.json.loc_crimplessSealReason === null || this.itemOri.json.loc_crimplessSealReason === '' || this.itemOri.json.loc_crimplessSealReason === undefined) {
+            this.itemOri.json.loc_crimplessSealReason = this.ptSecondaryFuseArrayF1[x].ta0sealremreason;
           }
         }
       }
     }
 
-    console.log(">>>>>> saving global value >>>>>> " + this.gv.crimplessSealReason);
+    console.log(">>>>>> saving global value >>>>>> " + this.itemOri.json.loc_crimplessSealReason);
     console.log(">SealCrimplessSealPage >>saveDeviceDetailsBefore >>>this.itemOri ==>",this.itemOri);
 
     let loading = this.loadingCtrl.create({
@@ -854,7 +854,7 @@ export class CrimplessSealPage implements OnInit {
 
     setTimeout(() => {
       loading.onWillDismiss(() => {
-        this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);        
+        this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
         this.gf.displayToast("Crimpless Details have updated.");
         loading.dismiss();
       });
@@ -1917,4 +1917,43 @@ export class CrimplessSealPage implements OnInit {
     this.loading2.present();
   }
 
+  /**
+   * Reason   : Method to assign value crimpless seal reason
+   * Created  : 21/06/2023
+   */
+  onClickRemove(val) {
+    console.log(">>>>> onRemove >>>>> " + JSON.stringify(val));
+    // console.log(">>>>> onRemove >>>>> " + this.itemOri.json.loc_crimplessSealReason);
+    // checking remove or not
+    if (val.ta0removeind) {
+      // checking crimpless seal removal reason
+      if (this.itemOri.json.loc_crimplessSealReason) {
+        console.log(">>>>> onRemove >>>>> " + this.itemOri.json.loc_crimplessSealReason);
+        if (typeof(val.ta0sealremreason) == 'undefined') {
+          val.ta0sealremreason = this.itemOri.json.loc_crimplessSealReason;
+          console.log(">>>>> onRemove >>>>> " + val.ta0sealremreason);
+        } else if (val.ta0sealremreason !== null && val.ta0sealremreason !== '' && val.ta0sealremreason !== undefined) {
+          val.ta0sealremreason = this.itemOri.json.loc_crimplessSealReason;
+          console.log(">>>>> onRemove >>>>> " + val.ta0sealremreason);
+        }
+      }
+    }
+  }
+
+  /**
+   * Reason   : Method to assign value crimpless seal reason
+   * Created  : 21/06/2023
+   */
+  onClickGetRemovalReason(val) {
+    console.log(">>>>> onChangeRemovalReason >>>>> " + val.ta0sealremreason);
+    console.log(">>>>> onChangeRemovalReason >>>>> " + this.itemOri.json.loc_crimplessSealReason);
+    // check crimpless seal removal reason
+    if (this.itemOri.json.loc_crimplessSealReason == undefined) {
+      // value available
+      if (val.ta0sealremreason !== null && val.ta0sealremreason !== '' && val.ta0sealremreason !== undefined) {
+        this.itemOri.json.loc_crimplessSealReason = val.ta0sealremreason;
+      }
+      console.log(">>>>> onChangeRemovalReason >>>>> " + this.itemOri.json.loc_crimplessSealReason);
+    }
+  }
 }

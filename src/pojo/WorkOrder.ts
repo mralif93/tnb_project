@@ -121,4 +121,5 @@ export class WorkorderPojo {
     loc_multiassetlocci_haveRemove: boolean;
     loc_feeder_haveRemove: boolean;
     loc_saveStatus: boolean;
+    loc_crimplessSealReason: string;
 }

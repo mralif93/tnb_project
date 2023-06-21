@@ -44,7 +44,7 @@
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1>
               <ion-item no-lines>
-                <ion-checkbox [(ngModel)]="attr.ta0removeind">
+                <ion-checkbox [(ngModel)]="attr.ta0removeind" (click)="onClickRemove(attr)">
                 </ion-checkbox>
               </ion-item>
             </ion-col>
@@ -104,7 +104,7 @@
             <ion-col col-12 col-sm-12 col-md-8 style="word-wrap:  break-all; padding-left: 5px;"
               *ngIf="attr.ta0removeind">
               <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value"
+                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value" (ionChange)="onClickGetRemovalReason(attr)"
                   [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
                   <ion-option *ngFor="let key of rr" value="{{ key.json.value }}">
                     {{ key.json.description }}
@@ -140,7 +140,7 @@
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1>
               <ion-item no-lines>
-                <ion-checkbox [(ngModel)]="attr.ta0removeind">
+                <ion-checkbox [(ngModel)]="attr.ta0removeind" (click)="onClickRemove(attr)">
                 </ion-checkbox>
               </ion-item>
             </ion-col>
@@ -200,7 +200,7 @@
             <ion-col col-12 col-sm-12 col-md-8 style="word-wrap:  break-all; padding-left: 5px;"
               *ngIf="attr.ta0removeind">
               <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value"
+                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value" (ionChange)="onClickGetRemovalReason(attr)"
                   [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
                   <ion-option *ngFor="let key of rr" value="{{ key.json.value }}">
                     {{ key.json.description }}
@@ -236,7 +236,7 @@
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1>
               <ion-item no-lines>
-                <ion-checkbox [(ngModel)]="attr.ta0removeind">
+                <ion-checkbox [(ngModel)]="attr.ta0removeind" (click)="onClickRemove(attr)">
                 </ion-checkbox>
               </ion-item>
             </ion-col>
@@ -297,7 +297,7 @@
             <ion-col col-12 col-sm-12 col-md-8 style="word-wrap:  break-all; padding-left: 5px;"
               *ngIf="attr.ta0removeind">
               <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value"
+                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value" (ionChange)="onClickGetRemovalReason(attr)"
                   [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
                   <ion-option *ngFor="let key of rr" value="{{ key.json.value }}">
                     {{ key.json.description }}
@@ -329,7 +329,7 @@
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1>
               <ion-item no-lines>
-                <ion-checkbox [(ngModel)]="attr.ta0removeind">
+                <ion-checkbox [(ngModel)]="attr.ta0removeind" (click)="onClickRemove(attr)">
                 </ion-checkbox>
               </ion-item>
             </ion-col>
@@ -391,7 +391,7 @@
             <ion-col col-12 col-sm-12 col-md-8 style="word-wrap:  break-all; padding-left: 5px;"
               *ngIf="attr.ta0removeind">
               <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value"
+                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value" (ionChange)="onClickGetRemovalReason(attr)"
                   [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
                   <ion-option *ngFor="let key of rr" value="{{ key.json.value }}">
                     {{ key.json.description }}
@@ -425,7 +425,7 @@
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1>
               <ion-item no-lines>
-                <ion-checkbox [(ngModel)]="attr.ta0removeind">
+                <ion-checkbox [(ngModel)]="attr.ta0removeind" (click)="onClickRemove(attr)">
                 </ion-checkbox>
               </ion-item>
             </ion-col>
@@ -483,7 +483,7 @@
             <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;"
               *ngIf="attr.ta0removeind">
               <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value"
+                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value" (ionChange)="onClickGetRemovalReason(attr)"
                   [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
                   <ion-option *ngFor="let key of sc" value="{{ key.json.value }}">
                     {{ key.json.description }}
@@ -516,7 +516,7 @@
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1>
               <ion-item no-lines>
-                <ion-checkbox [(ngModel)]="attr.ta0removeind">
+                <ion-checkbox [(ngModel)]="attr.ta0removeind" (click)="onClickRemove(attr)">
                 </ion-checkbox>
               </ion-item>
             </ion-col>
@@ -574,7 +574,7 @@
             <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;"
               *ngIf="attr.ta0removeind">
               <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value"
+                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value" (ionChange)="onClickGetRemovalReason(attr)"
                   [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
                   <ion-option *ngFor="let key of sc" value="{{ key.json.value }}">
                     {{ key.json.description }}
@@ -610,7 +610,7 @@
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1>
               <ion-item no-lines>
-                <ion-checkbox [(ngModel)]="attr.ta0removeind">
+                <ion-checkbox [(ngModel)]="attr.ta0removeind" (click)="onClickRemove(attr)">
                 </ion-checkbox>
               </ion-item>
             </ion-col>
@@ -672,7 +672,7 @@
             <ion-col col-12 col-sm-12 col-md-8 style="word-wrap:  break-all; padding-left: 5px;"
               *ngIf="attr.ta0removeind">
               <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value"
+                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value" (ionChange)="onClickGetRemovalReason(attr)"
                   [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
                   <ion-option *ngFor="let key of rr" value="{{ key.json.value }}">
                     {{ key.json.description }}
@@ -708,7 +708,7 @@
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1>
               <ion-item no-lines>
-                <ion-checkbox [(ngModel)]="attr.ta0removeind">
+                <ion-checkbox [(ngModel)]="attr.ta0removeind" (click)="onClickRemove(attr)">
                 </ion-checkbox>
               </ion-item>
             </ion-col>
@@ -770,7 +770,7 @@
             <ion-col col-12 col-sm-12 col-md-8 style="word-wrap:  break-all; padding-left: 5px;"
               *ngIf="attr.ta0removeind">
               <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value"
+                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value" (ionChange)="onClickGetRemovalReason(attr)"
                   [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
                   <ion-option *ngFor="let key of rr" value="{{ key.json.value }}">
                     {{ key.json.description }}
@@ -807,7 +807,7 @@
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1>
               <ion-item no-lines>
-                <ion-checkbox [(ngModel)]="attr.ta0removeind">
+                <ion-checkbox [(ngModel)]="attr.ta0removeind" (click)="onClickRemove(attr)">
                 </ion-checkbox>
               </ion-item>
             </ion-col>
@@ -869,7 +869,7 @@
             <ion-col col-12 col-sm-12 col-md-8 style="word-wrap:  break-all; padding-left: 5px;"
               *ngIf="attr.ta0removeind">
               <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value"
+                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value" (ionChange)="onClickGetRemovalReason(attr)"
                   [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
                   <ion-option *ngFor="let key of rr" value="{{ key.json.value }}">
                     {{ key.json.description }}
@@ -905,7 +905,7 @@
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1>
               <ion-item no-lines>
-                <ion-checkbox [(ngModel)]="attr.ta0removeind">
+                <ion-checkbox [(ngModel)]="attr.ta0removeind" (click)="onClickRemove(attr)">
                 </ion-checkbox>
               </ion-item>
             </ion-col>
@@ -967,7 +967,7 @@
             <ion-col col-12 col-sm-12 col-md-8 style="word-wrap:  break-all; padding-left: 5px;"
               *ngIf="attr.ta0removeind">
               <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value"
+                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value" (ionChange)="onClickGetRemovalReason(attr)"
                   [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
                   <ion-option *ngFor="let key of rr" value="{{ key.json.value }}">
                     {{ key.json.description }}
@@ -998,7 +998,7 @@
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1>
               <ion-item no-lines>
-                <ion-checkbox [(ngModel)]="attr.ta0removeind">
+                <ion-checkbox [(ngModel)]="attr.ta0removeind" (click)="onClickRemove(attr)">
                 </ion-checkbox>
               </ion-item>
             </ion-col>
@@ -1060,7 +1060,7 @@
             <ion-col col-12 col-sm-12 col-md-8 style="word-wrap:  break-all; padding-left: 5px;"
               *ngIf="attr.ta0removeind">
               <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value"
+                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value" (ionChange)="onClickGetRemovalReason(attr)"
                   [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
                   <ion-option *ngFor="let key of rr" value="{{ key.json.value }}">
                     {{ key.json.description }}
@@ -1092,7 +1092,7 @@
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1>
               <ion-item no-lines>
-                <ion-checkbox [(ngModel)]="attr.ta0removeind">
+                <ion-checkbox [(ngModel)]="attr.ta0removeind" (click)="onClickRemove(attr)">
                 </ion-checkbox>
               </ion-item>
             </ion-col>
@@ -1154,7 +1154,7 @@
             <ion-col col-12 col-sm-12 col-md-8 style="word-wrap:  break-all; padding-left: 5px;"
               *ngIf="attr.ta0removeind">
               <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value"
+                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value" (ionChange)="onClickGetRemovalReason(attr)"
                   [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
                   <ion-option *ngFor="let key of rr" value="{{ key.json.value }}">
                     {{ key.json.description }}
@@ -1185,7 +1185,7 @@
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1>
               <ion-item no-lines>
-                <ion-checkbox [(ngModel)]="attr.ta0removeind">
+                <ion-checkbox [(ngModel)]="attr.ta0removeind" (click)="onClickRemove(attr)">
                 </ion-checkbox>
               </ion-item>
             </ion-col>
@@ -1247,7 +1247,7 @@
             <ion-col col-12 col-sm-12 col-md-8 style="word-wrap:  break-all; padding-left: 5px;"
               *ngIf="attr.ta0removeind">
               <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value"
+                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value" (ionChange)="onClickGetRemovalReason(attr)"
                   [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
                   <ion-option *ngFor="let key of rr" value="{{ key.json.value }}">
                     {{ key.json.description }}
@@ -1281,7 +1281,7 @@
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1>
               <ion-item no-lines>
-                <ion-checkbox [(ngModel)]="attr.ta0removeind">
+                <ion-checkbox [(ngModel)]="attr.ta0removeind" (click)="onClickRemove(attr)">
                 </ion-checkbox>
               </ion-item>
             </ion-col>
@@ -1340,7 +1340,7 @@
             <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;"
               *ngIf="attr.ta0removeind">
               <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value"
+                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value" (ionChange)="onClickGetRemovalReason(attr)"
                   [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
                   <ion-option *ngFor="let key of sc" value="{{ key.json.value }}">
                     {{ key.json.description }}
@@ -1374,7 +1374,7 @@
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1>
               <ion-item no-lines>
-                <ion-checkbox [(ngModel)]="attr.ta0removeind">
+                <ion-checkbox [(ngModel)]="attr.ta0removeind" (click)="onClickRemove(attr)">
                 </ion-checkbox>
               </ion-item>
             </ion-col>
@@ -1433,7 +1433,7 @@
             <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;"
               *ngIf="attr.ta0removeind">
               <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value"
+                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value" (ionChange)="onClickGetRemovalReason(attr)"
                   [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
                   <ion-option *ngFor="let key of sc" value="{{ key.json.value }}">
                     {{ key.json.description }}
@@ -1465,7 +1465,7 @@
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1>
               <ion-item no-lines>
-                <ion-checkbox [(ngModel)]="attr.ta0removeind">
+                <ion-checkbox [(ngModel)]="attr.ta0removeind" (click)="onClickRemove(attr)">
                 </ion-checkbox>
               </ion-item>
             </ion-col>
@@ -1532,7 +1532,7 @@
             <ion-col col-12 col-sm-12 col-md-8 style="word-wrap:  break-all; padding-left: 5px;"
               *ngIf="attr.ta0removeind">
               <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value"
+                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value" (ionChange)="onClickGetRemovalReason(attr)"
                   [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
                   <ion-option *ngFor="let key of rr" value="{{ key.json.value }}">
                     {{ key.json.description }}
@@ -1563,7 +1563,7 @@
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1>
               <ion-item no-lines>
-                <ion-checkbox [(ngModel)]="attr.ta0removeind">
+                <ion-checkbox [(ngModel)]="attr.ta0removeind" (click)="onClickRemove(attr)">
                 </ion-checkbox>
               </ion-item>
             </ion-col>
@@ -1625,7 +1625,7 @@
             <ion-col col-12 col-sm-12 col-md-8 style="word-wrap:  break-all; padding-left: 5px;"
               *ngIf="attr.ta0removeind">
               <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value"
+                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value" (ionChange)="onClickGetRemovalReason(attr)"
                   [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
                   <ion-option *ngFor="let key of rr" value="{{ key.json.value }}">
                     {{ key.json.description }}
@@ -1659,7 +1659,7 @@
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1>
               <ion-item no-lines>
-                <ion-checkbox [(ngModel)]="attr.ta0removeind">
+                <ion-checkbox [(ngModel)]="attr.ta0removeind" (click)="onClickRemove(attr)">
                 </ion-checkbox>
               </ion-item>
             </ion-col>
@@ -1717,7 +1717,7 @@
             <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;"
               *ngIf="attr.ta0removeind">
               <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value"
+                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value" (ionChange)="onClickGetRemovalReason(attr)"
                   [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
                   <ion-option *ngFor="let key of sc" value="{{ key.json.value }}">
                     {{ key.json.description }}
@@ -1750,7 +1750,7 @@
             </ion-col>
             <ion-col col-12 col-sm-12 col-md-1>
               <ion-item no-lines>
-                <ion-checkbox [(ngModel)]="attr.ta0removeind">
+                <ion-checkbox [(ngModel)]="attr.ta0removeind" (click)="onClickRemove(attr)">
                 </ion-checkbox>
               </ion-item>
             </ion-col>
@@ -1808,7 +1808,7 @@
             <ion-col col-12 col-sm-12 col-md-6 style="word-wrap:  break-all; padding-left: 5px;"
               *ngIf="attr.ta0removeind">
               <ion-item>
-                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value"
+                <ion-select [(ngModel)]="attr.ta0sealremreason" interface="popover" placeholder="Please select value" (ionChange)="onClickGetRemovalReason(attr)"
                   [ngClass]="(attr.ta0sealremreason == '' || (attr.ta0sealremreason == undefined && !validateInput) || attr.ta0error ) ? 'redHighlightText' : 'blackHighlightText'">
                   <ion-option *ngFor="let key of sc" value="{{ key.json.value }}">
                     {{ key.json.description }}

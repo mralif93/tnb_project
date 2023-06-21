@@ -710,16 +710,17 @@ export class SealCtSilInfoPage {
    */
   onClickRemove(val) {
     // console.log(">>>>> onRemove >>>>> " + JSON.stringify(val));
+    // console.log(">>>>> onRemove >>>>> " + this.itemOri.json.loc_crimplessSealReason);
     // checking remove or not
     if (val.ta0removeind) {
       // checking crimpless seal removal reason
-      if (this.gv.crimplessSealReason) {
-        console.log(">>>>> onRemove >>>>> " + this.gv.crimplessSealReason);
+      if (this.itemOri.json.loc_crimplessSealReason) {
+        console.log(">>>>> onRemove >>>>> " + this.itemOri.json.loc_crimplessSealReason);
         if (typeof(val.ta0sealremreason) == 'undefined') {
-          val.ta0sealremreason = this.gv.crimplessSealReason;
+          val.ta0sealremreason = this.itemOri.json.loc_crimplessSealReason;
           console.log(">>>>> onRemove >>>>> " + val.ta0sealremreason);
         } else if (val.ta0sealremreason !== null && val.ta0sealremreason.ta0sealremreason !== '' && val.ta0sealremreason !== undefined) {
-          val.ta0sealremreason = this.gv.crimplessSealReason;
+          val.ta0sealremreason = this.itemOri.json.loc_crimplessSealReason;
           console.log(">>>>> onRemove >>>>> " + val.ta0sealremreason);
         }
       }
