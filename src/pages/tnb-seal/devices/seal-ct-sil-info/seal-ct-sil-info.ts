@@ -375,7 +375,8 @@ export class SealCtSilInfoPage {
    * Reason   : Method to save data.
    * Created  : 05/06/2023
    */
-  async saveCtSealDetails() {
+  async saveCtSealDetails(){
+    debugger;
     console.log(">>>> enter to save >>> ct sil details >>>");
     let string: boolean = true
     let loading = this.loadingCtrl.create({
@@ -383,18 +384,16 @@ export class SealCtSilInfoPage {
     });
     loading.present();
     this.gf.loadingTimer(loading);
-
     if (this.refSegment == 'before') {
-      if (this.terminalCTArray[0].ta0sealnum === null || this.terminalCTArray[0].ta0sealnum === '' ){
+      if(this.terminalCTArray[0].ta0sealnum === null || this.terminalCTArray[0].ta0sealnum === '' ){
         loading.dismiss();
         this.gf.warningAlert('Warning', 'Nothing to update !', 'Close');  
         this.allowSave = false;
-      } else {
+      }else{
         this.allowSave = true;
       }
-    }
-
-    if (this.allowSave == true) {
+    } 
+    if(this.allowSave == true){
       this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail = [];
 
       console.log(">>>> get standard data to save >>> ct sil details >>>");
@@ -414,7 +413,7 @@ export class SealCtSilInfoPage {
       console.log("validateSeal : "+validateSeal);
       console.log("olddeviceassetnum : "+olddeviceassetnum);
       console.log("assetnum : "+assetnum);      
-      if (validateSeal) {
+      if(validateSeal){
         //validate against database
         if (this.nTerminalCTArray.length > 0) {
           if (this.nTerminalCTArray[0].ta0sealnum !== null && this.nTerminalCTArray[0].ta0sealnum !== undefined && this.nTerminalCTArray[0].ta0sealnum !== '') {
@@ -430,8 +429,7 @@ export class SealCtSilInfoPage {
           }
         }
       }
-
-      if (validateSeal === true && saveFlag === false) {
+      if(validateSeal === true && saveFlag === false) {
         loading.dismiss();
         this.gf.warningAlert('Warning', 'Invalid seal number '+fakeSealNum+' found!', 'Close');   
         return;
@@ -480,7 +478,7 @@ export class SealCtSilInfoPage {
           }
         }
   
-        // validation
+        // Removal reason validation
         if (this.validationRemovalReason() == false) {
           loading.dismiss();
           this.gf.displayToast("Please check and try again!");
@@ -505,15 +503,16 @@ export class SealCtSilInfoPage {
             // let newRootNav = <NavController>this.appCtrl.getRootNavById("n4");
             // newRootNav.push("SealServiceExecutionPage", this.itemOri);
           } else if ((DeviceConstants.NETWORK_2G === this.gf.checkNetwork() || DeviceConstants.NETWORK_3G === this.gf.checkNetwork() || DeviceConstants.NETWORK_4G === this.gf.checkNetwork())) {
+
             cordova.plugins.MobileSignal.getSignalStrength((data) => {
               if (this.gv.deviceSignal <= data) {
                 var feederCode = this.itemOri.json.ta0feeder[this.fIndex].ta0feedercode;
                 this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0silstickerstatus = 'Y';
                 var itemVal = JSON.parse(JSON.stringify(this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex]));
                 var itemArray = [];
-                  delete itemVal['ta0registerdetail'];
-                  delete itemVal['ta0testdetail'];
-                  delete itemVal['ta4testdata'];
+                delete itemVal['ta0registerdetail'];
+                delete itemVal['ta0testdetail'];
+                delete itemVal['ta4testdata'];
                 itemArray.push(itemVal);
                 this.dataService
                   .saveRecordWithNewType(itemArray, this.itemOri.json.wonum, DeviceConstants.PAGE_ACTION_SILSTICKERS, feederCode, this.itemOri.json.worktype)
@@ -565,6 +564,7 @@ export class SealCtSilInfoPage {
                 // newRootNav.push("SealServiceExecutionPage", this.itemOri);
               }
             });
+
           } else {
             var feederCode = this.itemOri.json.ta0feeder[this.fIndex].ta0feedercode;
             this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0silstickerstatus = 'Y';
