@@ -545,7 +545,8 @@ export class CtSilInfoPage {
                 this.terminalCTArray[i].assetnum = assetnum;
                 this.terminalCTArray[i].orgid = orgid;
                 this.terminalCTArray[i].siteid = siteid;
-                this.terminalCTArray[i].wonum = wonum;            
+                this.terminalCTArray[i].wonum = wonum;
+                this.terminalCTArray[i].ta0updateflag = true;
                 this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].ta0sealdetail.push(this.terminalCTArray[i]);
               }
             }
@@ -599,6 +600,7 @@ export class CtSilInfoPage {
                 this.nTerminalCTArray[i].ta0installind = true;
                 this.nTerminalCTArray[i].devicecategory = ta0devicecategory;
                 this.nTerminalCTArray[i].serialnum = ta0serialnum;
+                this.nTerminalCTArray[i].ta0updateflag = true;
                 console.log("newCTType : "+this.newCTType);
                 if (this.newCTType === 'red'){
                   this.nTerminalCTArray[0].ta0seallocation = FunctionClass.TERMINAL_CT_RED;
@@ -664,7 +666,7 @@ export class CtSilInfoPage {
             loading.onWillDismiss(() => {
               console.log("this.itemOri : " + JSON.stringify(this.itemOri));
               this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
-              this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_silStickers_haveChange = true;
+              this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_ctSealInfo_haveChange = true;
               this.gf.displayToast("CT Sil Details updated.");
               loading.dismiss();
             });
@@ -674,7 +676,7 @@ export class CtSilInfoPage {
       
           if (this.gv.testMobile && (DeviceConstants.NETWORK_UNKNOWN === this.gf.checkNetwork() || DeviceConstants.NETWORK_NONE === this.gf.checkNetwork())) {
             this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
-            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_silStickers_haveChange = true;
+            this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_ctSealInfo_haveChange = true;
             this.gf.displayToast("CT Sil Details updated locally.");
             loading.dismiss();
             /** Sending latest data.. (alif) - (29.12.2018)*/
@@ -694,7 +696,7 @@ export class CtSilInfoPage {
                   .then(results => {
                     console.log(' result + ' + JSON.stringify(results));
                     this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", false);
-                    this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_ta0silStickers_haveChange = false;
+                    this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_ctSealInfo_haveChange = false;
       
                     /** convert string into json */
                     var resultDes = JSON.parse(results.toString());
@@ -730,7 +732,7 @@ export class CtSilInfoPage {
                   });
               } else {
                 this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", true);
-                this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_silStickers_haveChange = true;
+                this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_ctSealInfo_haveChange = true;
                 this.gf.displayToast("CT Sil Details updated locally.");
                 this.navCtrl.pop();
                 loading.dismiss();
@@ -754,7 +756,7 @@ export class CtSilInfoPage {
               .saveRecordWithNewType(itemArray, this.itemOri.json.wonum, DeviceConstants.PAGE_ACTION_SILSTICKERS, feederCode, this.itemOri.json.worktype)
               .then(results => {
                 this.jsonStore.replaceWO(this.itemOri, "LPCWORKORDER", false);
-                this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_ta0silStickers_haveChange = false;
+                this.itemOri.json.ta0feeder[this.fIndex].multiassetlocci[this.maIndex].loc_ctSealInfo_haveChange = false;
       
                 /** convert string into json */
                 var resultDes = JSON.parse(results.toString());

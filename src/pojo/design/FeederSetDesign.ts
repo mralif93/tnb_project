@@ -284,6 +284,27 @@ export class FeederSetDesign {
   eMeterCtBRemoveInd: boolean;
   eMeterCtBReplaceInd: boolean;
 
+  eMeterCtSealR: string;
+  eMeterCtSealRSerialNum: string;
+  eMeterCtSealRStatus: boolean = false;
+  eMeterCtSealRInstallInd: boolean;
+  eMeterCtSealRRemoveInd: boolean;
+  eMeterCtSealRReplaceInd: boolean;
+
+  eMeterCtSealY: string;
+  eMeterCtSealYSerialNum: string;
+  eMeterCtSealYStatus: boolean = false;
+  eMeterCtSealYInstallInd: boolean;
+  eMeterCtSealYRemoveInd: boolean;
+  eMeterCtSealYReplaceInd: boolean;
+
+  eMeterCtSealB: string;
+  eMeterCtSealBSerialNum: string;
+  eMeterCtSealBStatus: boolean = false;
+  eMeterCtSealBInstallInd: boolean;
+  eMeterCtSealBRemoveInd: boolean;
+  eMeterCtSealBReplaceInd: boolean;
+
   eMeterPtR: string;
   eMeterPtRSerialNum: string;
   eMeterPtRCtrl: string;

@@ -28,4 +28,5 @@ export class SealInfo {
     assetnum: string;
     siteid: string;
     parent: string;
+    ta0updateflag: boolean = false;
 }

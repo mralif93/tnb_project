@@ -354,15 +354,18 @@
                         <ion-label><strong></strong></ion-label>
                       </ion-item>
                       <button ion-item color="primary" class="custom-button" col-md-3 detail-none text-center text-wrap 
-                        [ngClass]="btn-transformer-uncomplete" (click)="openCtSealPage(i, device.eMeterCtRIndex, device.eCheckAllocationType, device, 'E')">
+                        [ngClass]="(device.eMeterCtSealRStatus) ? 'btn-transformer-complete' : 'btn-transformer-uncomplete'"
+                        (click)="openCtSealPage(i, device.eMeterCtRIndex, device.eCheckAllocationType, device, 'E')">
                         <h2>CT Seal</h2>
                       </button>
                       <button ion-item color="primary" class="custom-button" col-md-3 detail-none text-center text-wrap 
-                        [ngClass]="btn-transformer-uncomplete" (click)="openCtSealPage(i, device.eMeterCtYIndex, device.eCheckAllocationType, device, 'E')">
+                        [ngClass]="(device.eMeterCtSealYStatus) ? 'btn-transformer-complete' : 'btn-transformer-uncomplete'"
+                        (click)="openCtSealPage(i, device.eMeterCtYIndex, device.eCheckAllocationType, device, 'E')">
                         <h2>CT Seal</h2>
                       </button>
                       <button ion-item color="primary" class="custom-button" col-md-3 detail-none text-center text-wrap 
-                      [ngClass]="btn-transformer-uncomplete" (click)="openCtSealPage(i, device.eMeterCtBIndex, device.eCheckAllocationType, device, 'E')">
+                        [ngClass]="(device.eMeterCtSealBStatus) ? 'btn-transformer-complete' : 'btn-transformer-uncomplete'"
+                        (click)="openCtSealPage(i, device.eMeterCtBIndex, device.eCheckAllocationType, device, 'E')">
                         <h2>CT Seal</h2>
                       </button>
                     </ion-row>

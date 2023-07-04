@@ -374,7 +374,6 @@ export class SealValidationPage {
     }
   }
   delete(){
-    debugger;
-    this.ds.deleteDatabase();
+    // this.ds.deleteDatabase();
   }
 }

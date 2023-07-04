@@ -1219,6 +1219,15 @@ export class SealServiceExecutionPage {
                   } else {
                     feederSetDesign.eMeterCtRRemoveInd = feederArr.multiassetlocci[i].ta0removeind;
                   }
+                  if (typeof(feederArr.multiassetlocci[i].ta0sealdetail) !== 'undefined') {
+                    if (typeof(feederArr.multiassetlocci[i].ta0sealdetail[0].ta0updateflag) !== 'undefined') {
+                      if (feederArr.multiassetlocci[i].ta0sealdetail[0].ta0updateflag) {
+                        feederSetDesign.eMeterCtSealRStatus = true;
+                      } else {
+                        feederSetDesign.eMeterCtSealRStatus = false;
+                      }
+                    }
+                  }
                   ctECount++;
                 } else if (ctECount === 1) {
                   feederSetDesign.eMeterCtY = feederArr.multiassetlocci[i].assetnum;
@@ -1239,6 +1248,15 @@ export class SealServiceExecutionPage {
                   } else {
                     feederSetDesign.eMeterCtYRemoveInd = feederArr.multiassetlocci[i].ta0removeind;
                   }
+                  if (typeof(feederArr.multiassetlocci[i].ta0sealdetail) !== 'undefined') {
+                    if (typeof(feederArr.multiassetlocci[i].ta0sealdetail[0].ta0updateflag) !== 'undefined') {
+                      if (feederArr.multiassetlocci[i].ta0sealdetail[0].ta0updateflag) {
+                        feederSetDesign.eMeterCtSealYStatus = true;
+                      } else {
+                        feederSetDesign.eMeterCtSealYStatus = false;
+                      }
+                    }
+                  }
                   ctECount++;
                 } else {
                   feederSetDesign.eMeterCtB = feederArr.multiassetlocci[i].assetnum;
@@ -1258,6 +1276,15 @@ export class SealServiceExecutionPage {
                     feederSetDesign.eMeterCtBRemoveInd = feederArr.multiassetlocci[i].ta0replaceind;
                   } else {
                     feederSetDesign.eMeterCtBRemoveInd = feederArr.multiassetlocci[i].ta0removeind;
+                  }
+                  if (typeof(feederArr.multiassetlocci[i].ta0sealdetail) !== 'undefined') {
+                    if (typeof(feederArr.multiassetlocci[i].ta0sealdetail[0].ta0updateflag) !== 'undefined') {
+                      if (feederArr.multiassetlocci[i].ta0sealdetail[0].ta0updateflag) {
+                        feederSetDesign.eMeterCtSealBStatus = true;
+                      } else {
+                        feederSetDesign.eMeterCtSealBStatus = false;
+                      }
+                    }
                   }
                   ctECount++;
                 }

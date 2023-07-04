@@ -1220,7 +1220,6 @@ export class ServiceExecutionPage {
                 }
                 break;
               case DeviceConstants.BCRM_EXISTING_INDICATOR_MAIN_CT:
-                debugger;
                 if (ctECount === 0) {
                   feederSetDesign.eMeterCtR = feederArr.multiassetlocci[i].assetnum;
                   feederSetDesign.eMeterCtRSerialNum = feederArr.multiassetlocci[i].ta0serialnum;
@@ -1239,6 +1238,15 @@ export class ServiceExecutionPage {
                     feederSetDesign.eMeterCtRRemoveInd = feederArr.multiassetlocci[i].ta0replaceind;
                   } else {
                     feederSetDesign.eMeterCtRRemoveInd = feederArr.multiassetlocci[i].ta0removeind;
+                  }
+                  if (typeof(feederArr.multiassetlocci[i].ta0sealdetail) !== 'undefined') {
+                    if (typeof(feederArr.multiassetlocci[i].ta0sealdetail[0].ta0updateflag) !== 'undefined') {
+                      if (feederArr.multiassetlocci[i].ta0sealdetail[0].ta0updateflag) {
+                        feederSetDesign.eMeterCtSealRStatus = true;
+                      } else {
+                        feederSetDesign.eMeterCtSealRStatus = false;
+                      }
+                    }
                   }
                   ctECount++;
                 } else if (ctECount === 1) {
@@ -1260,6 +1268,15 @@ export class ServiceExecutionPage {
                   } else {
                     feederSetDesign.eMeterCtYRemoveInd = feederArr.multiassetlocci[i].ta0removeind;
                   }
+                  if (typeof(feederArr.multiassetlocci[i].ta0sealdetail) !== 'undefined') {
+                    if (typeof(feederArr.multiassetlocci[i].ta0sealdetail[0].ta0updateflag) !== 'undefined') {
+                      if (feederArr.multiassetlocci[i].ta0sealdetail[0].ta0updateflag) {
+                        feederSetDesign.eMeterCtSealYStatus = true;
+                      } else {
+                        feederSetDesign.eMeterCtSealYStatus = false;
+                      }
+                    }
+                  }
                   ctECount++;
                 } else {
                   feederSetDesign.eMeterCtB = feederArr.multiassetlocci[i].assetnum;
@@ -1279,6 +1296,15 @@ export class ServiceExecutionPage {
                     feederSetDesign.eMeterCtBRemoveInd = feederArr.multiassetlocci[i].ta0replaceind;
                   } else {
                     feederSetDesign.eMeterCtBRemoveInd = feederArr.multiassetlocci[i].ta0removeind;
+                  }
+                  if (typeof(feederArr.multiassetlocci[i].ta0sealdetail) !== 'undefined') {
+                    if (typeof(feederArr.multiassetlocci[i].ta0sealdetail[0].ta0updateflag) !== 'undefined') {
+                      if (feederArr.multiassetlocci[i].ta0sealdetail[0].ta0updateflag) {
+                        feederSetDesign.eMeterCtSealBStatus = true;
+                      } else {
+                        feederSetDesign.eMeterCtSealBStatus = false;
+                      }
+                    }
                   }
                   ctECount++;
                 }

@@ -394,16 +394,17 @@
                     <ion-row>
                       <ion-col col-3 col-sm-3 col-md-2></ion-col>
                       <ion-col col-3 col-sm-3 col-md-3 class="pointer" (click)="openCtSealPage(i, device.eMeterCtRIndex, device.eCheckAllocationType, device, 'E')">
-                        <h2 class="btn-transformer-uncomplete">CT Seal</h2>
+                        <h2 [ngClass]="[(device.eMeterCtSealRStatus) ? 'btn-transformer-complete' : 'btn-transformer-uncomplete']">CT Seal</h2>
                       </ion-col>
                       <ion-col col-3 col-sm-3 col-md-3 class="pointer" (click)="openCtSealPage(i, device.eMeterCtYIndex, device.eCheckAllocationType, device, 'E')">
-                        <h2 class="btn-transformer-uncomplete">CT Seal</h2>
+                        <h2 [ngClass]="[(device.eMeterCtSealYStatus) ? 'btn-transformer-complete' : 'btn-transformer-uncomplete']">CT Seal</h2>
                       </ion-col>
                       <ion-col col-3 col-sm-3 col-md-3 class="pointer" (click)="openCtSealPage(i, device.eMeterCtBIndex, device.eCheckAllocationType, device, 'E')">
-                        <h2 class="btn-transformer-uncomplete">CT Seal</h2>
+                        <h2 [ngClass]="[(device.eMeterCtSealBStatus) ? 'btn-transformer-complete' : 'btn-transformer-uncomplete']">CT Seal</h2>
                       </ion-col>
                       <ion-col col-3 col-sm-3 col-md-1 style=" text-align:right;">
-                        <ion-icon name="checkmark-circle" class="uncomplete-color"></ion-icon>
+                        <ion-icon name="checkmark-circle"
+                          [ngClass]="(device.eMeterCtSealRStatus && device.eMeterCtSealYStatus && device.eMeterCtSealBStatus) ? 'complete-color' : 'uncomplete-color'"></ion-icon>
                       </ion-col>
                     </ion-row>
                   </div>
