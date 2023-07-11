@@ -131,6 +131,39 @@ export class FeederSetDesign {
   nMeterCtBRemoveInd: boolean;
   nMeterCtBReplaceInd: boolean;
 
+  nMeterCtSealR: string;
+  nMeterCtSealRSerialNum: string;
+  nMeterCtSealRCtrl: string;
+  nMeterCtSealRIndex: number;
+  nMeterCtSealRAllocationType: string;
+  nMeterCtSealRStatus: boolean = false;
+  nMeterCtSealRRegisterStatus: string = 'Y';
+  nMeterCtSealRInstallInd: boolean;
+  nMeterCtSealRRemoveInd: boolean;
+  nMeterCtSealRReplaceInd: boolean;
+
+  nMeterCtSealY: string;
+  nMeterCtSealYSerialNum: string;
+  nMeterCtSealYCtrl: string;
+  nMeterCtSealYIndex: number;
+  nMeterCtSealYAllocationType: string;
+  nMeterCtSealYStatus: boolean = false;
+  nMeterCtSealYRegisterStatus: string = 'Y';
+  nMeterCtSealYInstallInd: boolean;
+  nMeterCtSealYRemoveInd: boolean;
+  nMeterCtSealYReplaceInd: boolean;
+
+  nMeterCtSealB: string;
+  nMeterCtSealBSerialNum: string;
+  nMeterCtSealBCtrl: string;
+  nMeterCtSealBIndex: number;
+  nMeterCtSealBAllocationType: string;
+  nMeterCtSealBStatus: boolean = false;
+  nMeterCtSealBRegisterStatus: string = 'Y';
+  nMeterCtSealBInstallInd: boolean;
+  nMeterCtSealBRemoveInd: boolean;
+  nMeterCtSealBReplaceInd: boolean;
+
   nMeterPtR: string;
   nMeterPtRSerialNum: string;
   nMeterPtRCtrl: string;
