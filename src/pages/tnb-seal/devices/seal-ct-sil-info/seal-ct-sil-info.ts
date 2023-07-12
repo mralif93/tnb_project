@@ -463,6 +463,7 @@ export class SealCtSilInfoPage {
               this.nTerminalCTArray[i].ta0installind = true;
               this.nTerminalCTArray[i].devicecategory = ta0devicecategory;
               this.nTerminalCTArray[i].serialnum = ta0serialnum;
+              this.nTerminalCTArray[i].ta0updateflag = true;
               console.log("newCTType : "+this.newCTType);
               if (this.newCTType === 'red'){
                 this.nTerminalCTArray[0].ta0seallocation = FunctionClass.TERMINAL_CT_RED;

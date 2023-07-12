@@ -758,27 +758,40 @@
                           (click)="(device.nMeterCtR == 'undefined' || device.nMeterCtR == '' || device.nMeterCtR == null) ? '' : openSealRegisterDetailsPage(i, device.nMeterCtRIndex, device.nCheckModemIndex, device.nCheckSimIndex, device.nMeterCtRIndex, '')">
                           {{ device.nMeterCtRSerialNum || '-' }} / {{ device.nMeterCtRCtrl || '-' }} </h2>
                       </ion-col>
-
                       <ion-col col-3 col-sm-3 col-md-3 class="pointer">
                         <h2
                           [ngClass]="(device.nMeterCtYRegisterStatus !== 'N') ? 'btn-transformer-complete' : 'btn-transformer-uncomplete'"
                           (click)="(device.nMeterCtY == 'undefined' || device.nMeterCtY == '' || device.nMeterCtY == null) ? '' : openSealRegisterDetailsPage(i, device.nMeterCtYIndex, device.nCheckModemIndex, device.nCheckSimIndex, device.nMeterCtYIndex, '')">
                           {{ device.nMeterCtYSerialNum || '-' }} / {{ device.nMeterCtYCtrl || '-' }} </h2>
                       </ion-col>
-
                       <ion-col col-3 col-sm-3 col-md-3 class="pointer">
                         <h2
                           [ngClass]="(device.nMeterCtBRegisterStatus !== 'N') ? 'btn-transformer-complete' : 'btn-transformer-uncomplete'"
                           (click)="(device.nMeterCtB == 'undefined' || device.nMeterCtB == '' || device.nMeterCtB == null) ? '' : openSealRegisterDetailsPage(i, device.nMeterCtBIndex, device.nCheckModemIndex, device.nCheckSimIndex, device.nMeterCtBIndex, '')">
                           {{ device.nMeterCtBSerialNum || '-' }} / {{ device.nMeterCtBCtrl || '-' }} </h2>
                       </ion-col>
-
                       <ion-col col-3 col-sm-3 col-md-1 style="text-align: right;">
                         <ion-icon name="checkmark-circle"
                           [ngClass]="(device.nMeterCtRRegisterStatus === 'Y' && device.nMeterCtYRegisterStatus === 'Y' && device.nMeterCtBRegisterStatus === 'Y') ? 'complete-color' : 'uncomplete-color'">
                         </ion-icon>
                       </ion-col>
+                    </ion-row>
 
+                    <ion-row>
+                      <ion-col col-3 col-sm-3 col-md-2></ion-col>
+                      <ion-col col-3 col-sm-3 col-md-3 class="pointer" (click)="openCtSealPage(i, device.nMeterCtRIndex, device.nCheckAllocationType, device, 'N')">
+                        <h2 [ngClass]="[(device.nMeterCtSealRStatus) ? 'btn-transformer-complete' : 'btn-transformer-uncomplete']">CT Seal</h2>
+                      </ion-col>
+                      <ion-col col-3 col-sm-3 col-md-3 class="pointer" (click)="openCtSealPage(i, device.nMeterCtYIndex, device.nCheckAllocationType, device, 'N')">
+                        <h2 [ngClass]="[(device.nMeterCtSealYStatus) ? 'btn-transformer-complete' : 'btn-transformer-uncomplete']">CT Seal</h2>
+                      </ion-col>
+                      <ion-col col-3 col-sm-3 col-md-3 class="pointer" (click)="openCtSealPage(i, device.nMeterCtBIndex, device.nCheckAllocationType, device, 'N')">
+                        <h2 [ngClass]="[(device.nMeterCtSealBStatus) ? 'btn-transformer-complete' : 'btn-transformer-uncomplete']">CT Seal</h2>
+                      </ion-col>
+                      <ion-col col-3 col-sm-3 col-md-1 style=" text-align:right;">
+                        <ion-icon name="checkmark-circle"
+                          [ngClass]="(device.nMeterCtSealRStatus && device.nMeterCtSealYStatus && device.nMeterCtSealBStatus) ? 'complete-color' : 'uncomplete-color'"></ion-icon>
+                      </ion-col>
                     </ion-row>
                   </div>
 
