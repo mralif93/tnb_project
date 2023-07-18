@@ -1084,8 +1084,8 @@
 
     <!-- Adhoc Replacement Start Shandeep Kumar...... -->
     <!-- Cancel not need to seal (Alif - 13-03-2019) -->
-    <!-- <div *ngIf="!showAdHoc && !gv.testMobile">
-      <ion-row *ngIf="( items.json.worktype === soTypes.ZISP && showAdHocError )">
+    <div *ngIf="!showAdHoc && !gv.testMobile">
+      <ion-row *ngIf="(items.json.worktype === soTypes.ZISO && showAdHocError )">
         <ion-col col-12 col-sm-12 col-md-12>
           <ion-item>
             <ion-label style="color: red; font-size: 10px;">You already created the adHoc, you should not able to
@@ -1093,7 +1093,7 @@
           </ion-item>
         </ion-col>
       </ion-row>
-      <ion-row *ngIf="items.json.worktype === soTypes.ZISP || items.json.worktype === soTypes.ZINR">
+      <ion-row *ngIf="items.json.worktype === soTypes.ZISO || items.json.worktype === soTypes.ZINR">
         <ion-col col-10 col-sm-10 col-md-10 >
           <ion-item>
             <ion-label color="primary" stacked style="font-weight: bold"> Ad-Hoc Replacement</ion-label>
@@ -1134,14 +1134,14 @@
       </div>
     </div>
     <div *ngIf="!showAdHoc && gv.testMobile">
-      <ion-row *ngIf="(items.json.worktype === soTypes.ZISP)">
+      <ion-row *ngIf="(items.json.worktype === soTypes.ZISO)">
         <ion-col col-12 col-sm-12 col-md-12>
           <ion-item>
             <ion-label style="color: red; font-size: 10px;">No Network Connection to access Ad-Hoc...</ion-label>
           </ion-item>
         </ion-col>
       </ion-row>
-    </div> -->
+    </div>
     <!-- Adhoc Replacement End -->
 
     <ion-list>

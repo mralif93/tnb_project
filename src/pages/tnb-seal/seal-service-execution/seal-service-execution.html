@@ -92,10 +92,15 @@
               </button>
             </ion-col>
             <ion-col col-6 col-sm-5 col-md-4 style="word-wrap:  break-all; padding-left: 5px; text-align: right;">
-              <button ion-button *ngIf="(item.json.worktype === soTypes.ZIST)"
+              <button ion-button *ngIf="(item.json.worktype === soTypes.ZIST || item.json.worktype === soTypes.ZISR && !wolo1Freeze)"
                 (click)="goToAddDevicesPage(i, feeder.eFeederVoltage)" style="background-color: transparent;"
                 detail-none [ngClass]="{'section-active': feeder.open, 'section': !feeder.open}">
                 <ion-icon name="add">&nbsp;Add Devices</ion-icon>
+              </button>
+              <button ion-button *ngIf="(item.json.worktype === soTypes.ZRCE && !wolo1Freeze)"
+                (click)="goToRemoveDevicesPage(i, feeder.eFeederVoltage)" style="background-color: transparent;"
+                detail-none [ngClass]="{'section-active': feeder.open, 'section': !feeder.open}">
+                <ion-icon name="repeat">&nbsp;Remove Devices</ion-icon>
               </button>
               <button ion-button *ngIf="(item.json.worktype === soTypes.ZISP || item.json.worktype === soTypes.ZISO)"
                 (click)="goToRemoveDevicesPage(i, feeder.eFeederVoltage)" style="background-color: transparent;"
@@ -207,19 +212,19 @@
                           </button>
 
                           <button [ngClass]="(device.eMeterSilStatus !== 'N') ? 'completeColor' : ''" ion-button
-                            *ngIf="(item.json.worktype === soTypes.ZIST || item.json.worktype === soTypes.ZISO || item.json.worktype === soTypes.ZISP)"
+                            *ngIf="(item.json.worktype === soTypes.ZIST || item.json.worktype === soTypes.ZISO || item.json.worktype === soTypes.ZISP || item.json.worktype === soTypes.ZRCE || item.json.worktype === soTypes.ZISR)"
                             (click)="openSealNStickerPage(i, device.eMeterIndex, device.eMeterAllocationType, device, 'E')">
                             <ion-icon name="ribbon">&nbsp;S&S</ion-icon>
                           </button>
 
                           <button [ngClass]="(device.eMeterTestStatus !== 'N') ? 'completeColor' : ''" ion-button
                             (click)="openSealLvInspectPage(i, device.eMeterIndex, device.eFeederVoltage)"
-                            *ngIf="(item.json.worktype === soTypes.ZISO || item.json.worktype === soTypes.ZISP) && device.eFeederVoltage === dCons.VOL_LEVEL_LPC_LV_400V">
+                            *ngIf="(item.json.worktype === soTypes.ZISO || item.json.worktype === soTypes.ZISP || item.json.worktype === soTypes.ZRCE || item.json.worktype === soTypes.ZISR) && device.eFeederVoltage === dCons.VOL_LEVEL_LPC_LV_400V">
                             <ion-icon name="flask">&nbsp;Lv Insp </ion-icon>
                           </button>
 
                           <button [ngClass]="(device.eMeterTestStatus !== 'N') ? 'completeColor' : ''" ion-button
-                            *ngIf="item.json.worktype === soTypes.ZISP && device.eFeederVoltage > dCons.VOL_LEVEL_LPC_LV_400V"
+                            *ngIf="(item.json.worktype === soTypes.ZISP || item.json.worktype === soTypes.ZRCE) && device.eFeederVoltage > dCons.VOL_LEVEL_LPC_LV_400V"
                             (click)="openSealMvhvInspectPage(i, device.eMeterIndex)">
                             <ion-icon name="flask">&nbsp;MVHV Insp</ion-icon>
                           </button>
@@ -227,7 +232,7 @@
                           <button ion-button
                             (click)="openSealOpcInspectPage(i, device.eMeterIndex, device.eFeederVoltage)"
                             [ngClass]="(device.eMeterTestStatus !== 'N') ? 'completeColor' : ''"
-                            *ngIf="(item.json.worktype === soTypes.ZISO || item.json.worktype === soTypes.ZISP) && device.eFeederVoltage < dCons.VOL_LEVEL_LPC_LV_400V">
+                            *ngIf="(item.json.worktype === soTypes.ZISO || item.json.worktype === soTypes.ZISP || item.json.worktype === soTypes.ZRCE || item.json.worktype === soTypes.ZISR) && device.eFeederVoltage < dCons.VOL_LEVEL_LPC_LV_400V">
                             <ion-icon name="flask">&nbsp;OPC Insp</ion-icon>
                           </button>
                         </ion-col>
@@ -288,33 +293,41 @@
                           <button
                             [ngClass]="(device.eCheckRegisterStatus !== 'N' && device.eCheckModemRegisterStatus !== 'N' && device.eCheckSimRegisterStatus !== 'N') ? 'completeColor' : ''"
                             ion-button
+                            *ngIf="device.eCheck && item.json.worktype === soTypes.ZISR"
+                            (click)="openSealRegisterDetailsPage(i, device.eCheckIndex, device.eCheckModemIndex, device.eCheckSimIndex)">
+                            <ion-icon name="information-circle">&nbsp;Info</ion-icon>
+                          </button>
+
+                          <button
+                            [ngClass]="(device.eCheckRegisterStatus !== 'N' && device.eCheckModemRegisterStatus !== 'N' && device.eCheckSimRegisterStatus !== 'N') ? 'completeColor' : ''"
+                            ion-button
                             *ngIf="device.eCheck && item.json.worktype !== soTypes.ZMMR && (item.json.worktype !== soTypes.ZISR)"
                             (click)="openSealRegisterDetailsPage(i, device.eCheckIndex, device.eCheckModemIndex, device.eCheckSimIndex)">
                             <ion-icon name="information-circle">&nbsp;Info</ion-icon>
                           </button>
 
                           <button [ngClass]="(device.eCheckSilStatus !== 'N') ? 'completeColor' : ''" ion-button
-                            *ngIf="(item.json.worktype === soTypes.ZIST || item.json.worktype === soTypes.ZISO || item.json.worktype === soTypes.ZISP)"
+                            *ngIf="(item.json.worktype === soTypes.ZIST || item.json.worktype === soTypes.ZISO || item.json.worktype === soTypes.ZISP || item.json.worktype === soTypes.ZRCE || item.json.worktype === soTypes.ZISR)"
                             (click)="openSealNStickerPage(i, device.eCheckIndex, device.eCheckAllocationType, device, 'E')">
                             <ion-icon name="ribbon">&nbsp;S&S</ion-icon>
                           </button>
 
                           <button [ngClass]="(device.eCheckTestStatus !== 'N') ? 'completeColor' : ''" ion-button
                             (click)="openSealLvInspectPage(i, device.eCheckIndex, device.eFeederVoltage)"
-                            *ngIf="(item.json.worktype === soTypes.ZISO || item.json.worktype === soTypes.ZISP) && device.eFeederVoltage === dCons.VOL_LEVEL_LPC_LV_400V">
+                            *ngIf="(item.json.worktype === soTypes.ZISO || item.json.worktype === soTypes.ZISP || item.json.worktype === soTypes.ZRCE || device.soWorkType === soTypes.ZISR) && device.eFeederVoltage === dCons.VOL_LEVEL_LPC_LV_400V">
                             <ion-icon name="flask">&nbsp;Lv Insp </ion-icon>
                           </button>
 
                           <button [ngClass]="(device.eCheckTestStatus !== 'N') ? 'completeColor' : ''" ion-button
                             (click)="openSealMvhvInspectPage(i, device.eCheckIndex)"
-                            *ngIf="item.json.worktype === soTypes.ZISP && device.eFeederVoltage > dCons.VOL_LEVEL_LPC_LV_400V">
+                            *ngIf="(item.json.worktype === soTypes.ZISP || item.json.worktype === soTypes.ZRCE) && device.eFeederVoltage > dCons.VOL_LEVEL_LPC_LV_400V">
                             <ion-icon name="flask">&nbsp;MVHV Insp</ion-icon>
                           </button>
 
                           <button ion-button
                             (click)="openSealOpcInspectPage(i, device.eCheckIndex, device.eFeederVoltage)"
                             [ngClass]="(device.eCheckTestStatus !== 'N') ? 'completeColor' : ''"
-                            *ngIf="(item.json.worktype === soTypes.ZISO || item.json.worktype === soTypes.ZISP) && device.eFeederVoltage < dCons.VOL_LEVEL_LPC_LV_400V">
+                            *ngIf="(item.json.worktype === soTypes.ZISO || item.json.worktype === soTypes.ZISP || item.json.worktype === soTypes.ZRCE || device.soWorkType === soTypes.ZISR) && device.eFeederVoltage < dCons.VOL_LEVEL_LPC_LV_400V">
                             <ion-icon name="flask">&nbsp;OPC Insp</ion-icon>
                           </button>
 
@@ -473,7 +486,7 @@
                   <ion-row>
                     <ion-col col-12 col-sm-12 col-md-6 style="text-align: left;">
                       <div
-                        *ngIf="device.soWorkType === soTypes.ZSRO || device.soWorkType === soTypes.ZRPM || device.soWorkType === soTypes.ZCER || device.soWorkType === soTypes.ZINL || device.soWorkType === soTypes.ZISO || device.soWorkType === soTypes.ZISP">
+                        *ngIf="device.soWorkType === soTypes.ZSRO || device.soWorkType === soTypes.ZRPM || device.soWorkType === soTypes.ZCER || device.soWorkType === soTypes.ZINL || device.soWorkType === soTypes.ZISO || device.soWorkType === soTypes.ZISP || device.soWorkType === soTypes.ZISR">
                         <p>
                           <strong>Replace New Device - {{ gv.departmentCode }} : {{ device.nFeederVoltage }}</strong>
                         </p>
@@ -582,7 +595,7 @@
 
                           <button [ngClass]="(device.nMeterTestStatus !== 'N') ? 'completeColor' : ''" ion-button
                             (click)="openSealTestListPage(i, device.nMeterIndex, device, 'main', 'N')"
-                            *ngIf="((item.json.worktype === soTypes.ZISO || item.json.worktype === soTypes.ZIST || item.json.worktype === soTypes.ZISP)  && (device.nFeederVoltage === dCons.VOL_LEVEL_LPC_LV_400V || device.nFeederVoltage < dCons.VOL_LEVEL_LPC_LV_400V))">
+                            *ngIf="((item.json.worktype === soTypes.ZISO || item.json.worktype === soTypes.ZIST || item.json.worktype === soTypes.ZISP || device.soWorkType === soTypes.ZISR)  && (device.nFeederVoltage === dCons.VOL_LEVEL_LPC_LV_400V || device.nFeederVoltage < dCons.VOL_LEVEL_LPC_LV_400V))">
                             <ion-icon name="flask">&nbsp;Test</ion-icon>
                           </button>
 
@@ -679,7 +692,7 @@
 
                           <button [ngClass]="(device.nCheckTestStatus !== 'N') ? 'completeColor' : ''" ion-button
                             (click)="openSealTestListPage(i, device.nCheckIndex, device, 'check', 'N')"
-                            *ngIf="((item.json.worktype === soTypes.ZISO || item.json.worktype === soTypes.ZIST || item.json.worktype === soTypes.ZISP)  && (device.nFeederVoltage === dCons.VOL_LEVEL_LPC_LV_400V || device.nFeederVoltage < dCons.VOL_LEVEL_LPC_LV_400V))">
+                            *ngIf="((item.json.worktype === soTypes.ZISO || item.json.worktype === soTypes.ZIST || item.json.worktype === soTypes.ZISP || device.soWorkType === soTypes.ZISR)  && (device.nFeederVoltage === dCons.VOL_LEVEL_LPC_LV_400V || device.nFeederVoltage < dCons.VOL_LEVEL_LPC_LV_400V))">
                             <ion-icon name="flask">&nbsp;Test</ion-icon>
                           </button>
 

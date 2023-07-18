@@ -180,6 +180,8 @@ export class WoHomePage {
         'ZIST',
         'ZDCN',
         'ZRCN',
+        'ZISR',
+        'ZRCE',
         'ALL'
       ];
     } else if (this.gv.departContent === 'lpc') {
