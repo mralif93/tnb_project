@@ -1085,7 +1085,7 @@
     <!-- Adhoc Replacement Start Shandeep Kumar...... -->
     <!-- Cancel not need to seal (Alif - 13-03-2019) -->
     <div *ngIf="!showAdHoc && !gv.testMobile">
-      <ion-row *ngIf="(items.json.worktype === soTypes.ZISO && showAdHocError )">
+      <ion-row *ngIf="(items.json.worktype === soTypes.ZISO && showAdHocError)">
         <ion-col col-12 col-sm-12 col-md-12>
           <ion-item>
             <ion-label style="color: red; font-size: 10px;">You already created the adHoc, you should not able to
@@ -1134,7 +1134,7 @@
       </div>
     </div>
     <div *ngIf="!showAdHoc && gv.testMobile">
-      <ion-row *ngIf="(items.json.worktype === soTypes.ZISO)">
+      <ion-row *ngIf="items.json.worktype === soTypes.ZISO">
         <ion-col col-12 col-sm-12 col-md-12>
           <ion-item>
             <ion-label style="color: red; font-size: 10px;">No Network Connection to access Ad-Hoc...</ion-label>

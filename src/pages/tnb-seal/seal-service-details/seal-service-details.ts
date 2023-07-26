@@ -766,7 +766,7 @@ export class SealServiceDetailsPage implements OnInit {
     this.amscheckcond = true;
 
     // console.log('Date for Items ', JSON.stringify(this.items));
-    if (this.items.json.worktype === 'ZISP' || this.items.json.worktype === 'ZISO') {
+    if (this.items.json.worktype === 'ZISP') {
       this.loadAdhocCheck();
     }
 
@@ -1007,7 +1007,6 @@ export class SealServiceDetailsPage implements OnInit {
     }
     this.currentRatio += " A";
 
-    console.log("STATUS : " + JSON.stringify(this.ta0wouserstatus));
     /**
      * Add:Ameer (23/4/2019)
      * Checking for user status for compliance
@@ -1858,6 +1857,17 @@ export class SealServiceDetailsPage implements OnInit {
           this.showAdHocError = true;
         else
           this.showAdHocError = false;
+      }
+    }
+
+    if (this.worktype === SoTypes.ZISO) {
+      // read existing user status RPSM
+      if (this.ta0wouserstatus.includes("RPSM")) {
+        // open section adhoc
+        this.showAdHoc = false;
+      } else {
+        // close section adhoc
+        this.showAdHoc = true;
       }
     }
   }
@@ -3873,6 +3883,17 @@ export class SealServiceDetailsPage implements OnInit {
     var checkMitsStatus: any = event.findIndex(item => {
       return item === 'MITS';
     });
+
+    // check RPSM for adhoc ziso
+    let checkRPSMStatus: any = event.findIndex(item => {
+      return item === 'RPSM';
+    });
+
+    if (checkRPSMStatus !== -1) {
+      this.showAdHoc = false;
+    } else {
+      this.showAdHoc = true;
+    }
 
     // checking condition to set value TA4HRC
     if (checkMitsStatus !== -1) {
