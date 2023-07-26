@@ -78,7 +78,7 @@ export class MyApp {
     this.pages = [
       { title: "Dashboard", component: "SearchPage", pageType: "opc" },
       { title: "Service Order", component: "WoHomePage", pageType: "opc" },
-      { title: 'Seal Sweep / AdHoc', component: 'SealsweepPage', pageType: 'seal' },
+      { title: 'Seal Sweep / AdHoc', component: 'SealSweepPage', pageType: 'seal' },
       { title: "Device Details", component: "AssetDetailsPage", pageType: "opc" },
       { title: "GIR Process", component: "GirListPage", pageType: "opc" },     
       { title: "Load Look Up", component: "LoadLookUpPage", pageType: "opc" },

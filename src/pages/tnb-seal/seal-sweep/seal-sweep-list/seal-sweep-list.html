@@ -1,0 +1,40 @@
+<ion-header mode="md">
+  <ion-navbar color="primary">
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="md-menu" color="light"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Seal Sweep / Adhoc Creation</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon [color]="gv.testMobile ? 'danger' : 'light'" name="md-planet" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+<ion-list color="light">
+  <ion-list-header>List of Work Order (0)</ion-list-header>
+  <ion-item *ngFor="let x of workorders202; let i = index;">
+    <ion-checkbox></ion-checkbox>
+    <ion-label>
+      <h3>{{ x.json.wonum }} ({{ x.json.ta0sncode }}) - {{ x.json.status }}</h3>
+      <p>{{ x.json.actstart | date: gv.dateFormat }} - {{ x.json.wol4 | date: gv.dateFormat }}</p>
+    </ion-label>
+    <ion-icon name="md-checkmark-circle" item-end color="secondary" style="margin-left: 16px;"></ion-icon>
+    <ion-icon name="md-alert" item-end color="danger" style="margin-left: 16px;"></ion-icon>
+    <ion-icon name="md-photos" item-end color="primary" style="margin-left: 16px;"></ion-icon>
+    <ion-icon name="md-cog" item-end color="primary" style="margin-left: 16px;"></ion-icon>
+  </ion-item>
+</ion-list>
+
+<ion-row>
+  <ion-col text-center>
+    <button ion-button mode="ios" (click)="updateWorkOrder()">Update</button>
+    <button ion-button mode="ios" (click)="submitWorkOrder('PENDTECO')">Submit</button>
+  </ion-col>
+</ion-row>
+</ion-content>

@@ -1,0 +1,62 @@
+<ion-header mode="md">
+  <ion-navbar color="primary">
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="md-menu" color="light"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Seal Sweep / Adhoc Creation</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon [color]="gv.testMobile ? 'danger' : 'light'" name="md-planet" class="flash_plnt"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-divider color="light" no-lines>Search</ion-item-divider>
+    <ion-item>
+      <ion-label stacked>Lead</ion-label>
+      <ion-input type="text" [(ngModel)]="lead" disabled></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Act Start</ion-label>
+      <ion-datetime displayFormat="YYYY/MM/DD" [(ngModel)]="actstart" disabled></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Asset Number</ion-label>
+      <ion-input type="text" [(ngModel)]="assetnum" placeholder="Enter or Scan Asset Number"></ion-input>
+      <ion-icon name="md-barcode" item-end color="primary" (click)="scanner()"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+  <ion-row>
+    <ion-col text-center>
+      <button ion-button (click)="addToList()">Add To List</button>
+    </ion-col>
+  </ion-row>
+
+  <ion-list style="margin-top: 25px">
+    <ion-item-divider color="light" no-lines>List of Work Order ({{ lists.length }})</ion-item-divider>
+    <ion-item text-center *ngIf="lists.length == 0">
+      <p>There are no records to display</p>
+    </ion-item>
+    <span *ngFor="let obj of lists; let i = index;">
+      <ion-item>
+        <h3>{{ obj.ACTSTART }}</h3>
+        <p>{{ obj.ASSETNUM }}</p>
+        <ion-icon name="alert" item-end color="primary" mode="md" *ngIf="!obj.STATUS"></ion-icon>
+        <ion-icon name="checkmark-circle" item-end color="secondary" mode="md" *ngIf="obj.STATUS"></ion-icon>
+        <!-- <ion-icon name="close-circle" item-end color="danger"></ion-icon> -->
+      </ion-item>
+    </span>
+  </ion-list>
+
+  <ion-row>
+    <ion-col text-center>
+      <button ion-button (click)="createWorkOrder()">Create WorkOrder</button>
+    </ion-col>
+  </ion-row>
+</ion-content>
