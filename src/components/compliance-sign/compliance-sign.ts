@@ -27,6 +27,7 @@ export class ComplianceSignComponent {
   public formBCess: any;
   public inspectNTest: any;
   public prejude: any;
+  public formBTnb: any;
   public signatureStaff: any;
   public formSelected: boolean = true;
   public person = [];
@@ -151,6 +152,19 @@ export class ComplianceSignComponent {
         this.gv.loc_woComplaints.set('prejudiceForm' + this.wonum, { woNo: this.wonum, data: this.prejude });
       }
 
+      if (gv.loc_woComplaints.has('formBTnb' + this.wonum)) {
+        let formB: any = gv.loc_woComplaints.get('formBTnb' + this.wonum);
+        if (formB.woNo === this.wonum) {
+          this.formBTnb = formB.data;
+        } else {
+          this.formBTnb = new Complaints();
+          this.gv.loc_woComplaints.set('formBTnb' + this.wonum, { woNo: this.wonum, data: this.formBTnb });
+        }
+      } else {
+        this.formBTnb = new Complaints();
+        this.gv.loc_woComplaints.set('formBTnb' + this.wonum, { woNo: this.wonum, data: this.formBTnb });
+      }
+
       if (gv.loc_woComplaints.has('delivery' + this.wonum)) {
         let delivery: any = gv.loc_woComplaints.get('delivery' + this.wonum);
         if (delivery.woNo === this.wonum) {
@@ -227,7 +241,7 @@ export class ComplianceSignComponent {
     */
   ngAfterViewInit() {
     switch (this.formType) {
-      //English section
+      // English section
       case 'formACust': {
         if (typeof (this.deliver.ta4signcustomer) !== 'undefined') {
           this.signaturePad.fromDataURL(this.deliver.ta4signcustomer, { ratio: 1 });
@@ -257,7 +271,7 @@ export class ComplianceSignComponent {
         }
         break;
       }
-      case 'installationInspection':
+      case 'installationInspection': {
         if (typeof (this.signatureStaff) !== 'undefined') {
           this.signaturePad.fromDataURL(this.signatureStaff, { ratio: 1 });
           this.signaturePad.off();
@@ -268,8 +282,8 @@ export class ComplianceSignComponent {
           }
         }
         break;
-
-      case 'tempCeassation':
+      }
+      case 'tempCeassation': {
         if (typeof (this.signatureStaff) !== 'undefined') {
           this.signaturePad.fromDataURL(this.signatureStaff, { ratio: 1 });
           this.signaturePad.off();
@@ -281,7 +295,8 @@ export class ComplianceSignComponent {
           }
         }
         break;
-      case 'inspect&Test':
+      }
+      case 'inspect&Test': {
         if (typeof (this.inspectNTest.ta4signmanger) !== 'undefined') {
           this.signaturePad.fromDataURL(this.inspectNTest.ta4signmanger, { ratio: 1 });
         }
@@ -291,6 +306,7 @@ export class ComplianceSignComponent {
 
         }
         break;
+      }
 
       // Bahasa section
       case 'borangA': {
@@ -317,7 +333,7 @@ export class ComplianceSignComponent {
         }
         break;
       }
-      case 'pepasanganMeter':
+      case 'pepasanganMeter': {
         if (typeof (this.signatureStaff) !== 'undefined') {
           this.signaturePad.fromDataURL(this.signatureStaff, { ratio: 1 });
           this.signaturePad.off();
@@ -328,8 +344,8 @@ export class ComplianceSignComponent {
           }
         }
         break;
-
-      case 'notisGanggungan':
+      }
+      case 'notisGanggungan': {
         if (typeof (this.signatureStaff) !== 'undefined') {
           this.signaturePad.fromDataURL(this.signatureStaff, { ratio: 1 });
           this.signaturePad.off();
@@ -339,7 +355,8 @@ export class ComplianceSignComponent {
           this.signaturePad2.fromDataURL(this.tempCeassation.ta4signwitness, { ratio: 1 });
         }
         break;
-      case 'pengujian_pemeriksaan':
+      }
+      case 'pengujian_pemeriksaan': {
         if (typeof (this.inspectNTest.ta4signmanger) !== 'undefined') {
           this.signaturePad.fromDataURL(this.inspectNTest.ta4signmanger, { ratio: 1 });
         }
@@ -348,9 +365,9 @@ export class ComplianceSignComponent {
           this.signaturePad2.off();
         }
         break;
+      }
     }
   }
-
 
   ionViewDidLoad() {
     var img1 = '../www/assets/imgs/markRight.png';
@@ -386,6 +403,7 @@ export class ComplianceSignComponent {
     };
     img.src = url;
   }
+
   imageToDataUri(img, width, height, callback) {
     debugger;
     var imgs = new Image();
@@ -493,7 +511,6 @@ export class ComplianceSignComponent {
     }
 
   }
-
 
   /**
    * 
@@ -1160,7 +1177,7 @@ export class ComplianceSignComponent {
         }
         break;
     }
-/*     var url = '../www/assets/data/positionOfficeNPIC.json';
+    /* var url = '../www/assets/data/positionOfficeNPIC.json';
     this.http
       .get(url)
       .map(res => res.json())
@@ -1218,7 +1235,8 @@ export class ComplianceSignComponent {
         }
 
       })
- */  }
+    */
+  }
 
   /**
    * Create by Ameer

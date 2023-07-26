@@ -55,7 +55,6 @@
 
 
 <ion-content padding>
-
   <!-- Start: Installation, Inspection & Testing -->
   <ion-list ion-row *ngIf="formType === 'inspect&Test'">
     <ion-item-divider class="item-divider-header">
@@ -1608,6 +1607,173 @@
 
   </ion-list>
   <!-- End: Session Without Prejudice -->
+
+  <!-- Start: Form B -->
+  <ion-list *ngIf='formType === "formBTnb"'>
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="bookmark" item-start></ion-icon>
+      <strong>Form B</strong>
+    </ion-item-divider>
+
+    <ion-item text-wrap no-lines text-center text-uppercase style="letter-spacing: 1px;font-size: 15px;">
+      <ion-label>Licensee Supply Regulations 1990</ion-label>
+    </ion-item>
+
+    <ion-item text-wrap no-lines text-center style="letter-spacing: 1px;font-size: 15px;">
+      <ion-label>Form B</ion-label>
+    </ion-item>
+
+    <ion-item text-wrap no-lines text-center style="letter-spacing: 1px;font-size: 15px;">
+      <ion-label>[sub-regulation 6A(2)]</ion-label>
+    </ion-item>
+
+    <ion-item text-wrap no-lines text-center text-uppercase style="letter-spacing: 1px;font-size: 15px;">
+      <ion-label>Malaysia</ion-label>
+    </ion-item>
+
+    <ion-item text-wrap no-lines text-center text-uppercase style="letter-spacing: 1px;font-size: 15px;">
+      <ion-label>STATE OF {{ formBtnb.ta4statename || '-' }}</ion-label>
+    </ion-item>
+
+    <ion-item col-md-6 offset-md-3 [class]="(!formBtnb.ta4statename) ? 'custom-box-red' : 'custom-box'"
+      style="letter-spacing: 1px;font-size: 15px;">
+      <ion-label fixed color="primary" style="text-align: center;">State</ion-label>
+      <ion-select ion-col col-md-8 [(ngModel)]="formBtnb.ta4statename" placeholder="Choose"
+        style="text-align: center;">
+        <ion-option value="Perak">Perak</ion-option>
+        <ion-option value="Perlis">Perlis</ion-option>
+        <ion-option value="Terengganu">Terengganu</ion-option>
+        <ion-option value="Kelantan">Kelantan</ion-option>
+        <ion-option value="Kedah">Kedah</ion-option>
+        <ion-option value="Selangor">Selangor</ion-option>
+        <ion-option value="Sabah">Sabah</ion-option>
+        <ion-option value="Sarawak">Sarawak</ion-option>
+        <ion-option value="Wilayah Persekutuan">Wilayah Persekutuan</ion-option>
+        <ion-option value="Melaka">Melaka</ion-option>
+        <ion-option value="Negeri Sembilan">Negeri Sembilan</ion-option>
+        <ion-option value="Johor">Johor</ion-option>
+        <ion-option value="Pahang">Pahang</ion-option>
+        <ion-option value="Putrajaya">Putrajaya</ion-option>
+        <ion-option value="Pulau Pinang">Pulau Pinang</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item no-lines style="letter-spacing: 1px;font-size: 15px;">
+      <ion-label text-wrap no-lines text-center text-uppercase>Electricity Supply Act 1990</ion-label>
+    </ion-item>
+
+    <ion-item col-md-7 no-lines style="letter-spacing: 1px;font-size: 15px;">
+      <ion-label>To :</ion-label>
+    </ion-item>
+
+    <ion-item col-md-7 style="letter-spacing: 1px;font-size: 15px;">
+      <ion-input type="text" placeholder="Auto Populate" value="{{ formBCess.ta4custname }}" readonly="true">
+      </ion-input>
+    </ion-item>
+
+    <ion-item col-md-7 text-wrap style="letter-spacing: 1px;font-size: 15px;">
+      <ion-textarea rows="3" placeholder="Auto Populate" value="{{ formBCess.ta4custaddress }}" readonly="true"
+        style="text-align: justify;">
+      </ion-textarea>
+    </ion-item>
+
+    <ion-item col-md-7 style="letter-spacing: 1px;font-size: 15px;">
+      <ion-label>Sir/Madam/Mr/Messrs,</ion-label>
+    </ion-item>
+
+    <ion-item-divider class="item-divider-header">
+      <ion-icon name="filing" item-start></ion-icon>
+      <strong>Notice of Temporary Cessation/Intrruption of Electricity Supply</strong>
+    </ion-item-divider>
+
+    <ion-item text-wrap no-lines style="line-height: 30px; text-align: justify;letter-spacing: 1px;font-size: 15px;">
+      <ion-label ion-col col-md-12>
+        Please be informed that the supply of electricity at <strong>{{ formBCess.tenant || '...' }}</strong> (address
+        of consumer/area to be affected) shall be temporarily ceased/interupted on
+        <strong>{{ formBCess.ta4datetime || '...'}}</strong> (date) from
+        <strong>{{ formBCess.ta4starttime  || '...'}}</strong> (start time) to
+        <strong>{{ formBCess.ta4endtime || '...' }}</strong> (end time) for the purpose of
+        <strong>{{ formBCess.ta4purpose || '...' }}</strong> (please specify).
+      </ion-label>
+    </ion-item>
+
+    <ion-row col-md-12 style="margin-left: 15px;margin-bottom: 20px;">
+      <ion-col col-md-9
+        [class]="((formBDate || formBStartInteruptTime || formBEndInteruptTime || formBPurpose) && (!formBCess.ta4datetime || !formBCess.ta4starttime || !formBCess.ta4endtime || !formBCess.ta4purpose)) ? 'custom-form-box-red' : 'custom-form-box'">
+        <ion-item
+          *ngIf="(formBDate || formBStartInteruptTime || formBEndInteruptTime || formBPurpose) && (!formBCess.ta4datetime || !formBCess.ta4starttime || !formBCess.ta4endtime || !formBCess.ta4purpose)"
+          text-wrap style="letter-spacing: 1px;font-size: 15px;;border-radius: 10px 10px 0px 0px;">
+          <p style="margin-top: 10px;font-style: italic;font-size: 14px;color: red;">
+            *Required date, time and purpose fields.
+          </p>
+        </ion-item>
+
+        <ion-item style="letter-spacing: 1px;font-size: 15px;border-radius: 10px 10px 0px 0px;">
+          <ion-label fixed color="primary">*Date</ion-label>
+          <ion-input type="text" value="{{ formBCess.ta4datetime }}" readonly="true" placeholder="Date"
+            (click)="presentPopover($event,'FormBInteruptDate')">
+          </ion-input>
+          <ion-icon name="calendar" item-end (click)="presentPopover($event,'FormBInteruptDate')"></ion-icon>
+        </ion-item>
+
+        <ion-item style="letter-spacing: 1px;font-size: 15px;">
+          <ion-label fixed color="primary">*From</ion-label>
+          <ion-datetime [(ngModel)]="formBCess.ta4starttime" displayFormat="HH:mm" placeholder="Start Time">
+          </ion-datetime>
+          <ion-icon name="time" item-end></ion-icon>
+        </ion-item>
+
+        <ion-item style="letter-spacing: 1px;font-size: 15px;">
+          <ion-label fixed color="primary">*To</ion-label>
+          <ion-datetime [(ngModel)]="formBCess.ta4endtime" displayFormat="HH:mm" placeholder="End Time">
+          </ion-datetime>
+          <ion-icon name="time" item-end></ion-icon>
+        </ion-item>
+
+        <ion-item no-lines style="letter-spacing: 1px;font-size: 15px;border-radius: 0px 0px 10px 10px;">
+          <ion-label fixed color="primary">*Purpose</ion-label>
+          <ion-textarea rows="5" [(ngModel)]="formBCess.ta4purpose" placeholder="Purpose"></ion-textarea>
+          <ion-icon name="journal" item-end></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-item style="letter-spacing: 1px;font-size: 15px;">
+      <ion-label fixed color="primary">Licensee</ion-label>
+      <ion-input type="text" placeholder="Auto Populate" readonly="true" value="TNB"></ion-input>
+      <ion-icon name="card" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item style="letter-spacing: 1px;font-size: 15px;">
+      <ion-label fixed color="primary">Region</ion-label>
+      <ion-input type="text" placeholder="Auto Populate" readonly="true" value="{{ siteId_region }}"></ion-input>
+      <ion-icon name="map" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item style="align-items: center;letter-spacing: 1px;font-size: 15px;">
+      <ion-label fixed color="primary" style="align-self: normal;">Address</ion-label>
+      <ion-textarea rows="3" text-wrap placeholder="Auto Populate" readonly="true"
+        value="{{ formBCess.ta4officeaddress }}">
+      </ion-textarea>
+      <ion-icon name="pin" item-end style="margin-right: 10px;"></ion-icon>
+    </ion-item>
+
+    <ion-item style="letter-spacing: 1px;font-size: 15px;">
+      <ion-label fixed color="primary">Tel. No.</ion-label>
+      <ion-input type="text" placeholder="Auto Populate" readonly="true" value="{{ formBCess.ta4officephone }}">
+      </ion-input>
+      <ion-icon name="call" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item style="letter-spacing: 1px;font-size: 15px;">
+      <ion-label fixed color="primary">Date</ion-label>
+      <ion-input type="text" placeholder="Date" readonly="true" value="{{ formBCess.ta4indatetime }}"
+        (click)="presentPopover($event,'formBdated')">
+      </ion-input>
+      <ion-icon name="calendar" item-end (click)="presentPopover($event,'formBdated')"></ion-icon>
+    </ion-item>
+  </ion-list>
+  <!-- End: Form B -->
 
   <!-- FormA for Staff -->
   <!-- <ion-grid *ngIf='formType === "formACust"'>

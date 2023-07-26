@@ -48,6 +48,7 @@ export class ComplianceListComponent {
   public formA_custBtn: boolean = false;
   public temp_cessationBtn: boolean = false;
   public formACust_btn: boolean = false;
+  public formBTnb_btn: boolean = false;
   // End setting btn collor
 
   public ShowNoticeOnly: boolean;
@@ -62,6 +63,7 @@ export class ComplianceListComponent {
   tempCeassation: any;
   inspectNTest: any;
   prejude: any;
+  formB: any;
 
   constructor(
     public navCtrl: NavController,
@@ -217,6 +219,25 @@ export class ComplianceListComponent {
           } else {
             this.complainceFormsVar.evelectricPrejudiciCllct = false;
             this.prejudiceBtn = false;
+          }
+        }
+      }
+
+      if (this.gv.loc_woComplaints.has('formBTnb' + this.wonum)) {
+        let formBTnb: any = this.gv.loc_woComplaints.get('formBTnb' + this.wonum);
+        if (formBTnb.woNo === this.wonum) {
+          this.formB = formBTnb.data;
+          if (typeof (this.formB.formIndicator) !== 'undefined') {
+            if (this.formB.formIndicator) {
+              this.complainceFormsVar.formBTnb = true;
+              this.formBTnb_btn = true;
+            } else {
+              this.complainceFormsVar.formBTnb = false;
+              this.formBTnb_btn = false;
+            }
+          } else {
+            this.complainceFormsVar.formBTnb = false;
+            this.formBTnb_btn = false;
           }
         }
       }
@@ -380,6 +401,25 @@ export class ComplianceListComponent {
           }
         }
 
+        if (this.gv.loc_woComplaints.has('formBTnb' + this.wonum)) {
+          let formBTnb: any = this.gv.loc_woComplaints.get('formBTnb' + this.wonum);
+          if (formBTnb.woNo === this.wonum) {
+            this.formB = formBTnb.data;
+            if (typeof (this.formB.formIndicator) !== 'undefined') {
+              if (this.formB.formIndicator) {
+                this.complainceFormsVar.formBTnb = true;
+                this.formBTnb_btn = true;
+              } else {
+                this.complainceFormsVar.formBTnb = false;
+                this.formBTnb_btn = false;
+              }
+            } else {
+              this.complainceFormsVar.formBTnb = false;
+              this.formBTnb_btn = false;
+            }
+          }
+        }
+
       }
 
       this.selectLanguage();
@@ -527,6 +567,25 @@ export class ComplianceListComponent {
         }
       }
 
+      if (this.gv.loc_woComplaints.has('formBTnb' + this.wonum)) {
+        let formBTnb: any = this.gv.loc_woComplaints.get('formBTnb' + this.wonum);
+        if (formBTnb.woNo === this.wonum) {
+          this.formB = formBTnb.data;
+          if (typeof (this.formB.formIndicator) !== 'undefined') {
+            if (this.formB.formIndicator) {
+              this.complainceFormsVar.formBTnb = true;
+              this.formBTnb_btn = true;
+            } else {
+              this.complainceFormsVar.formBTnb = false;
+              this.formBTnb_btn = false;
+            }
+          } else {
+            this.complainceFormsVar.formBTnb = false;
+            this.formBTnb_btn = false;
+          }
+        }
+      }
+
     }
 
     this.selectLanguage();
@@ -653,7 +712,23 @@ export class ComplianceListComponent {
           });
         });
       } break;
-
+      case 'formB': {
+        this.checkboxValue = false;
+        this.complainceFormsVar.formBTnb = true;
+        this.pdfSelectForm.push({ key: formtype, value: 'FormBTnb' });
+        let loading = this.loadingCtrl.create({ content: "Please wait.." });
+        loading.present().then(() => {
+          this.navCtrl.push("ComplaintFormPage", {
+            item: this.complainceFormsVar,
+            formType: formTypeVal,
+            /*    fIndex: this.fIndex,
+               maIndex: this.maIndex,*/
+            paramObj: this.itemOri
+          }).then(() => {
+            loading.dismiss();
+          });
+        });
+      } break;
       // End English form selection
 
       //Bahasa Form Selection
@@ -773,7 +848,6 @@ export class ComplianceListComponent {
         });
       } break;
     }
-
   }
 
 

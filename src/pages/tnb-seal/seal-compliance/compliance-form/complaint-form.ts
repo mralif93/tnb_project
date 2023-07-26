@@ -52,6 +52,7 @@ export class ComplaintFormPage extends ComplianceSignComponent {
   public form: any;
   public formtypeSubmit = [];
   public formA: any;
+  public formBtnb: any;
   public installationInspection: any;
   public formCust: any;
   public deliver: any;
@@ -281,10 +282,8 @@ export class ComplaintFormPage extends ComplianceSignComponent {
     }
 
     var arrayToString = addressItem.toString();
-    console.log("address : "+arrayToString);
     this.tempAddress = this.addressTableArray(addressItem, columnsAddress);
 
-    debugger;
     let mainMeter = [];
     let leadName;
     let leadSign;
@@ -388,9 +387,9 @@ export class ComplaintFormPage extends ComplianceSignComponent {
       customer_phone = '';
     }
 
-    console.log("constructor >>>formType : "+this.formType);
-
     this.dateCur = new Date();
+
+    console.log(">>>>> formType >>>>" + this.formType)
     switch (this.formType) {
       case "formACust": {
         // setting actual start date
@@ -580,10 +579,46 @@ export class ComplaintFormPage extends ComplianceSignComponent {
         this.prejude.ta4custaddress = arrayToString;
         break;
       }
-    }
-    console.log("Trigger this.findZonebySiteId");
-    this.findZoneBySiteId();
 
+      case 'formBTnb': {
+        console.log(">>>>> start 1 : formBTnb >>>>" + this.formBtnb)
+        let currentTime = moment().format('HH:mm');
+        let currentDateTime = moment().format("YYYY-MM-DDTHH:mmZ");
+
+        let curr_date = this.dateCur.getDate();
+        let curr_month = this.dateCur.getMonth() + 1; // Months are zero based
+        let curr_year = this.dateCur.getFullYear();
+
+        console.log(">>>>> start 2 : formBTnb >>>>" + this.formBtnb)
+        // ta4custname
+        // this.formBTnb.ta4custname = this.customerName;
+        // // ta4statename
+        // this.formBtnb.ta4statename = '';
+        // // tempAddress
+        // this.formBTnb.tempAddress = 'Test';
+        // // ta4custaddress
+        // this.formBTnb.ta4custaddress = arrayToString;
+        // // ta4datetime
+        // this.formBTnb.ta4datetime = curr_date + '/' + curr_month + '/' + curr_year;
+        // // ta4starttime
+        // this.formBTnb.ta4starttime = currentTime;
+        // // ta4endtime
+        // this.formBTnb.ta4endtime = currentTime;
+        // // ta4purpose
+        // this.formBTnb.ta4purpose = 'Test';
+        // // ta4officeaddress
+        // this.formBTnb.ta4officeaddress = 'Test';
+        // // ta4officephone
+        // this.formBTnb.ta4officephone = '061122334455';
+        // // ta4indatetime
+        // this.formBTnb.ta4indatetime = currentDateTime;
+        console.log(">>>>> end: formBTnb >>>>" + this.formBtnb)
+        break;
+      }
+    }
+    
+    // find zone site id
+    this.findZoneBySiteId();
   }
 
   /**
@@ -758,7 +793,6 @@ export class ComplaintFormPage extends ComplianceSignComponent {
       }).catch(error => {
         console.log('zone service failure : ' + JSON.stringify(error));
       });
-
   }
 
   /**
@@ -1173,7 +1207,6 @@ export class ComplaintFormPage extends ComplianceSignComponent {
    * Add new field when user select plus symbol at evidence collect
    */
   addEviItem() {
-    debugger;
     if (typeof (this.evidenceCollect.evidenceItem) === 'undefined') {
       this.evidenceCollect.evidenceItem = [];
     }
@@ -2213,7 +2246,6 @@ export class ComplaintFormPage extends ComplianceSignComponent {
         }
       } break;
       case 'prejudiceForm': {
-        debugger;
         return new Promise((resolve, reject) => {
           this.prejude.ta4formtype = 'nlwp'
 
@@ -2325,6 +2357,44 @@ export class ComplaintFormPage extends ComplianceSignComponent {
           //   paramObj: this.itemOri,
           //   language: 'true'
           // });
+        });
+      }
+      case 'formBTnb': {
+        return new Promise((resolve, reject) => {
+          this.formBTnb.ta4formtype = 'fbt'
+
+          if (this.formBTnb.tnbLogo === undefined || this.formBTnb.tnbLogo === '' || this.formBTnb.tnbLogo === null)
+            this.formBTnb.tnbLogo = this.tnblogoConvert;
+
+          if (this.formBTnb.tempAddress === null || this.formBTnb.tempAddress === '' || typeof (this.formBTnb.tempAddress) === 'undefined')
+            this.formBTnb.tempAddress = this.tempAddress;
+
+          this.formBTnb.formIndicator = true;
+
+          this.gv.loc_woComplaints.set('formBTnb' + this.wonum, { woNo: this.wonum, data: this.formBTnb });
+
+          if (this.itemOri.json.complaince.length === 0) {
+            this.itemOri.json.complaince.push({ name: 'FormBTnb', docType: "CF", data: this.formBTnb });
+          } else {
+            var indexArry = this.itemOri.json.complaince.findIndex(x => x.name === "FormBTnb");
+            if (indexArry > -1) {
+              this.itemOri.json.complaince.splice(indexArry, 1);
+              this.itemOri.json.complaince.push({ name: 'FormBTnb', docType: "CF", data: this.formBTnb });
+            }
+            else {
+              this.itemOri.json.complaince.push({ name: 'FormBTnb', docType: "CF", data: this.formBTnb });
+            }
+          }
+
+          resolve();
+        }).catch((reject) => {
+          this.gf.warningAlert("Error", 'Proccess not done yet', "Dismiss");
+        }).then(() => {
+          if (this.pdfLanguage === 'bhs') {
+
+          } else if (this.pdfLanguage === 'eng') {
+
+          }
         });
       }
     }
@@ -3354,6 +3424,30 @@ export class ComplaintFormPage extends ComplianceSignComponent {
                   loading.dismiss();
                 })
             });
+          }
+        });
+      }
+
+      case 'formBTnb': {
+        return new Promise((resolve, reject) => {
+          this.formBTnb.ta4formtype = 'fbt'
+
+          if (this.formBTnb.tnbLogo === undefined || this.formBTnb.tnbLogo === '' || this.formBTnb.tnbLogo === null)
+            this.formBTnb.tnbLogo = this.tnblogoConvert;
+
+          if (this.formBTnb.tempAddress === null || this.formBTnb.tempAddress === '' || typeof (this.formBTnb.tempAddress) === 'undefined')
+            this.formBTnb.tempAddress = this.tempAddress;
+
+          this.gv.loc_woComplaints.set('formBTnb' + this.wonum, { woNo: this.wonum, data: this.formBTnb });
+
+          resolve();
+        }).catch((reject) => {
+          this.gf.warningAlert("Error", 'Proccess not done yet', "Dismiss");
+        }).then(() => {
+          if (this.pdfLanguage === 'bhs') {
+
+          } else if (this.pdfLanguage === 'eng') {
+
           }
         });
       }

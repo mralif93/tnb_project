@@ -163,6 +163,25 @@
         </ion-icon>
       </ion-item>
 
+      <ion-item ion-col col-md-1 style="border-bottom: 0.55px solid #c8c7cc;"
+        *ngIf="langSelect">
+        <ion-checkbox [(ngModel)]="complainceFormsVar.schCust" (ionChange)="removelist('formACustomer',$event)"
+          checked="false" item-start></ion-checkbox>
+      </ion-item>
+
+      <ion-item ion-col col-md-10 style="border-bottom: 0.55px solid #c8c7cc;" text-uppercase
+        *ngIf="langSelect" (click)="reviewform('formB','formBTnb')">
+        <h2 text-wrap>Form B TNB</h2>
+        <p>Form</p>
+      </ion-item>
+
+      <ion-item ion-col col-md-1 style="border-bottom: 0.55px solid #c8c7cc;" detail-push
+        *ngIf="langSelect">
+        <ion-icon name="trash" color="danger" item-start *ngIf="gv.testMobile"
+          (click)="removePdf('formB', complainceFormsVar.formBTnb)">
+        </ion-icon>
+      </ion-item>
+
       <ion-item ion-col col-md-1 style="border-bottom: 0.55px solid #c8c7cc;" *ngIf="langSelect && ShowNoticeOnly">
         <ion-checkbox [(ngModel)]="complainceFormsVar.instInspecNTest"
           (ionChange)="removelist('inspectionAndTest', $event)" checked="false"></ion-checkbox>
@@ -180,7 +199,42 @@
           (click)="removePdf('meterInstallAndTest', complainceFormsVar.instInspecNTest)">
         </ion-icon>
       </ion-item>
+      
+      <ion-item ion-col col-md-1 style="border-bottom: 0.55px solid #c8c7cc;" *ngIf="langSelect && ShowNoticeOnly">
+        <ion-checkbox value="evidenceCollect" [(ngModel)]="complainceFormsVar.eviCllct"
+          (ionChange)="removelist('evidence',$event)"></ion-checkbox>
+      </ion-item>
 
+      <ion-item ion-col col-md-10 style="border-bottom: 0.55px solid #c8c7cc;" text-uppercase
+        (click)="reviewform('evidenceCollect','formEvidenceCollect')" *ngIf="langSelect && ShowNoticeOnly">
+        <h2 text-wrap>Evidence Collection</h2>
+        <p>Notification Letter</p>
+      </ion-item>
+
+      <ion-item ion-col col-md-1 style="border-bottom: 0.55px solid #c8c7cc;" detail-push
+        *ngIf="langSelect && ShowNoticeOnly">
+        <ion-icon name="trash" color="danger" item-start *ngIf="gv.testMobile"
+          (click)="removePdf('evidenceCollect', complainceFormsVar.eviCllct)">
+        </ion-icon>
+      </ion-item>
+
+      <ion-item ion-col col-md-1 style="border-bottom: 0.55px solid #c8c7cc;" *ngIf="langSelect && ShowNoticeOnly">
+        <ion-checkbox value="tempSupplyCess" [(ngModel)]="complainceFormsVar.electCess"
+          (ionChange)="removelist('cessation', $event)"></ion-checkbox>
+      </ion-item>
+
+      <ion-item ion-col col-md-10 style="border-bottom: 0.55px solid #c8c7cc;" text-uppercase
+        (click)="reviewform('cessation','tempCeassation')" *ngIf="langSelect && ShowNoticeOnly">
+        <h2 text-wrap>Cessation/Temporary Interruption of Electricity Supply</h2>
+        <p>Notification Notice</p>
+      </ion-item>
+
+      <ion-item ion-col col-md-1 style="border-bottom: 0.55px solid #c8c7cc;" detail-push
+        *ngIf="langSelect && ShowNoticeOnly">
+        <ion-icon name="trash" color="danger" item-start *ngIf="gv.testMobile"
+          (click)="removePdf('cessation', complainceFormsVar.electCess)">
+        </ion-icon>
+      </ion-item>
       <!-- End: English -->
 
       <!-- Start: Bahasa -->
@@ -327,6 +381,42 @@
         *ngIf="!langSelect && ShowNoticeOnly">
         <ion-icon name="trash" color="danger" item-start *ngIf="gv.testMobile"
           (click)="removePdf('inspectionAndTest', complainceFormsVar.instInspecNTest)"></ion-icon>
+      </ion-item>
+
+      <ion-item ion-col col-md-1 style="border-bottom: 0.55px solid #c8c7cc;" *ngIf="!langSelect && ShowNoticeOnly">
+        <ion-checkbox value="evidenceCollect" [(ngModel)]="complainceFormsVar.eviCllct"
+          (ionChange)="removelist('evidence',$event)"></ion-checkbox>
+      </ion-item>
+
+      <ion-item ion-col col-md-10 style="border-bottom: 0.55px solid #c8c7cc;" text-uppercase
+        (click)="reviewform('bukti','borangBukit')" *ngIf="!langSelect && ShowNoticeOnly">
+        <h2 text-wrap>Pengambilan Bahan-Bahan Bukti</h2>
+        <p>Surat Pemberitahuan</p>
+      </ion-item>
+
+      <ion-item ion-col col-md-1 style="border-bottom: 0.55px solid #c8c7cc;" detail-push
+        *ngIf="!langSelect && ShowNoticeOnly">
+        <ion-icon name="trash" color="danger" item-start *ngIf="gv.testMobile"
+          (click)="removePdf('evidence', complainceFormsVar.eviCllct)">
+        </ion-icon>
+      </ion-item>
+
+      <ion-item ion-col col-md-1 style="border-bottom: 0.55px solid #c8c7cc;" *ngIf="!langSelect && ShowNoticeOnly">
+        <ion-checkbox value="tempSupplyCess" [(ngModel)]="complainceFormsVar.electCess"
+          (ionChange)="removelist('cessation', $event)"></ion-checkbox>
+      </ion-item>
+
+      <ion-item ion-col col-md-10 style="border-bottom: 0.55px solid #c8c7cc;" text-uppercase
+        (click)="reviewform('notis','notisGanggungan')" *ngIf="!langSelect && ShowNoticeOnly">
+        <h2 text-wrap>Pemberhentian/Gangguan Sementara Bekalan Elektrik</h2>
+        <p>Surat Pemberitahuan</p>
+      </ion-item>
+
+      <ion-item ion-col col-md-1 style="border-bottom: 0.55px solid #c8c7cc;" detail-push
+        *ngIf="!langSelect && ShowNoticeOnly">
+        <ion-icon name="trash" color="danger" item-start *ngIf="gv.testMobile"
+          (click)="removePdf('cessation', complainceFormsVar.electCess)">
+        </ion-icon>
       </ion-item>
       <!-- End: Bahasa -->
     </ion-list>
